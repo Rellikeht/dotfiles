@@ -1,0 +1,397 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'b
+	/home/michal/bin/
+	..
+1595882289
+'h
+	/home/michal/
+	..
+1595882289
+
+# Bookmarks:
+
+# TUI:
+al
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/michal/Dokumenty
+	..
+0
+d/home/michal
+	defaultconfigs
+12
+d/home/michal/defaultconfigs
+	..
+0
+d/home/michal
+	config
+11
+d/home/michal/config
+	..
+0
+d/home/michal
+	Pobrane
+5
+d/home
+	michal
+7
+d/home/michal
+	..
+0
+d/home
+	lost+found
+6
+d/
+	home
+4
+d/home
+	michal
+7
+d/home/michal
+	mods
+14
+d/home/michal/mods
+	..
+0
+d/home/michal
+	..
+0
+d/home
+	..
+0
+d/
+	home
+4
+d/home
+	michal
+7
+d/home/michal
+	..
+0
+d/home
+	michal
+7
+d/home/michal
+	nohup.out
+19
+d/home/michal/.local/share/vifm/Trash
+	..
+0
+d/home/michal/.local/share/vifm
+	..
+0
+d/home/michal/.local/share
+	..
+0
+d/home/michal/.local
+	..
+0
+d/home/michal
+	nohup.out
+19
+d/usr
+	local
+7
+d/usr/local
+	..
+0
+d/usr
+	bin
+1
+d/
+	usr
+19
+d/usr
+	lib
+4
+d/usr/lib
+	moc
+4
+d/usr/lib/moc
+	decoder_plugins
+1
+d/usr/lib/moc/decoder_plugins
+	..
+0
+d/usr/lib/moc
+	..
+0
+d/usr/lib
+	..
+0
+d/usr
+	local
+7
+d/usr/local
+	etc
+2
+d/usr/local/etc
+	..
+0
+d/usr/local
+	bin
+1
+d/usr/local/bin
+	..
+0
+d/usr/local
+	lib
+5
+d/usr/local/lib
+	..
+0
+d/usr/local
+	share
+9
+d/usr/local/share
+	..
+0
+d/usr/local
+	..
+0
+d/usr
+	share
+9
+d/usr/share
+	moc
+39
+d/usr/share/moc
+	themes
+1
+d/usr/share/moc/themes
+	..
+0
+d/usr/share/moc
+	..
+0
+d/usr/share
+	..
+0
+d/usr
+	sbin
+8
+d/home
+	michal
+8
+d/home/michal
+	.ipython
+9
+d/home/michal/.ipython
+	..
+0
+d/home/michal
+	.activestate
+1
+d/home/michal/.activestate
+	komodo ide
+1
+d/home/michal/.activestate/komodo ide
+	Crash Reports
+1
+d/home/michal/.activestate/komodo ide/Crash Reports
+	..
+0
+d/home/michal/.activestate/komodo ide
+	Crash Reports
+1
+d/home/michal/.activestate
+	komodo ide
+1
+d/home/michal
+	.elinks
+5
+d/home/michal/.elinks
+	..
+0
+d/home/michal
+	.emacs.d
+6
+d/home/michal/.emacs.d
+	elpa
+2
+d/home/michal/.emacs.d/elpa
+	..
+0
+d/home/michal/.emacs.d
+	..
+0
+d/home/michal
+	.gnupg
+9
+d/home/michal/.gnupg
+	..
+0
+d/home/michal
+	.icewm
+10
+d/home/michal/.icewm
+	..
+0
+d/home/michal
+	.icewm
+10
+d/home/michal/.icewm
+	..
+0
+d/home/michal
+	.icewm
+10
+d/home/michal/.icewm
+	..
+0
+d/home/michal
+	.icewm
+10
+d/home/michal/.icewm
+	..
+0
+d/home/michal
+	.komodoide
+17
+d/home/michal/.komodoide
+	12.0
+1
+d/home/michal/.komodoide/12.0
+	..
+0
+d/home/michal/.komodoide
+	12.0
+1
+d/home/michal/.komodoide/12.0
+	tools
+5
+d/home/michal/.komodoide/12.0/tools
+	..
+0
+d/home/michal/.komodoide/12.0
+	..
+0
+d/home/michal/.komodoide
+	..
+0
+d/home/michal
+	.local
+18
+d/home/michal/.local
+	bin
+1
+d/home/michal/.local/bin
+	..
+0
+d/home/michal/.local
+	bin
+1
+d/home/michal
+	.moc
+23
+d/home/michal/.moc
+	..
+0
+d/home/michal
+	.nix-defexpr
+26
+d/home/michal/.nix-defexpr
+	..
+0
+d/home/michal
+	.mplayer
+25
+d/home/michal/.mplayer
+	..
+0
+d/home/michal
+	.moc
+23
+d/home/michal/.moc
+	..
+0
+d/home/michal
+	.moc
+13
+d/home
+	michal
+8
+d/home/michal
+	.moc
+23
+d
+
+# Right window history (oldest to newest):
+D/home/michal
+	Desktop
+1
+D/home
+	git projects
+5
+D/home/git projects
+	dotfiles
+2
+D/home/git projects/dotfiles
+	..
+0
+D/home/git projects
+	dotfiles
+2
+D/home/git projects/dotfiles
+	..
+0
+D/home/git projects
+	dotfiles
+2
+D/home/git projects/dotfiles
+	..
+0
+D
+
+# Command line history (oldest to newest):
+:next
+:vifm-_q
+:s
+:vifm-filters
+:filter 
+:filter .
+:filter
+:split
+:trashes
+:filter *
+:only
+:view
+:goto ~
+:.!mkdir dotfiles
+:edit config
+:help
+:q
+
+# Search history (oldest to newest):
+/moc
+
+# Prompt history (oldest to newest):
+
+# Local filter history (oldest to newest):
+
+# Registers:
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/home/michal/.local/share/vifm/Trash/000_xfce.log
+	/home/michal/xfce.log
+
+# State:
+f
+i1
+[.0
+[F
+F
+I1
+].1
+]F
+s0

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FeatherPad
+Comment=Lekki edytor tekstu oparty na Qt5
+Exec=featherpad %F
+Icon=featherpad
+Path=
+Terminal=false
+StartupNotify=false
