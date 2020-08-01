@@ -9,14 +9,23 @@ settings:
   bindings.commands:
     global:
       normal:
-        ',m': spawn mpv {url}
-        ',n': spawn mplayer {url}
+        ',M': hint links spawn smplayer {hint-url}
+        ',N': hint links spawn mpv {hint-url}
+        ',V': hint links spawn vlc {hint-url}
+        ',m': spawn smplayer {url}
+        ',n': spawn mpv {url}
+        ',v': spawn vlc {url}
         <Ctrl+r>: restart
         H: tab-prev
         J: back
         K: forward
         L: tab-next
+        ps: insert-text {primary}
+        ys: yank selection
   content.javascript.enabled:
+    '*://*.halny-treningi.gymmanager.com.pl/*': true
     '*://*.start.duckduckgo.com/*': true
+    '*://*.wiki.archlinux.org/*': true
     '*://*.www.youtube.com/*': true
     '*://www.youtube.com/*': true
+    global: true

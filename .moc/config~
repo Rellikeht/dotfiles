@@ -180,7 +180,7 @@ MusicDir = /home/michal/Muzyka/
 #Equalizer_SaveState = yes
 
 # Show files with dot at the beginning?
-ShowHiddenFiles = no
+#ShowHiddenFiles = no
 
 # Hide file name extensions?
 #HideFileExtension = no

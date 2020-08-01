@@ -157,8 +157,17 @@ config.bind('L', 'tab-next', mode="normal")
 config.bind('J', 'back', mode="normal")
 config.bind('K', 'forward', mode="normal")
 config.bind('<Ctrl+r>', 'restart', mode="normal")
+config.bind(',m', 'spawn smplayer {url}', mode="normal")
 
+import dracula.draw
 config.load_autoconfig()
+dracula.draw.blood(c, {
+    'spacing': {
+        'vertical': 4,
+        'horizontal': 6
+    }
+})
+
 config.set('content.javascript.enabled', False, '*')
 config.set('content.javascript.enabled', True, 'https://ytimg.com/*')
 #config.set('content.javascript.enabled', True, 'https://r4*googlevideo.com/*')
