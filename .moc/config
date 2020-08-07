@@ -70,6 +70,7 @@
 # Example:    MusicDir = "/home/joe/music"
 #
 MusicDir = /home/michal/Muzyka/
+#MusicDir = /ddisk/muzyka/
 
 # Start in the music directory by default?  If set to 'no', start
 # in the current directory by default.  A single directory on
@@ -295,9 +296,9 @@ Keymap = keymap
 #             Fastdir3 = /mp3/rap
 #             Fastdir4 = /mp3/etc
 #
-#Fastdir1 =
-#Fastdir2 =
-#Fastdir3 =
+Fastdir1 = "/home/michal/Muzyka/mały szajs/"
+Fastdir2 = "/home/michal/Muzyka/duży szajs/"
+Fastdir3 = /home/michal/Muzyka/stara/
 #Fastdir4 =
 #Fastdir5 =
 #Fastdir6 =

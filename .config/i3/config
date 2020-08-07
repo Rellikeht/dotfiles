@@ -53,6 +53,8 @@ bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+d exec dmenu_run
 bindsym $mod+g exec rofi -show run
 bindsym $mod+x exec pcmanfm
+bindsym $mod+b exec qutebrowser
+bindsym $mod+w exec pavucontrol
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -159,6 +161,7 @@ bindsym $mod+Next workspace next
 bindsym $mod+Shift+Prior move container to workspace next
 bindsym $mod+Shift+Next move container to workspace prev
 
+#Mod1=Alt
 bindsym $mod+Mod1+h workspace prev
 bindsym $mod+Mod1+l workspace next
 
@@ -214,25 +217,52 @@ bindsym $mod+r mode "resize"
 # Set the shortcuts and what they do
 set $mode_display Ext Screen (l) LVDS-1 ON, (h) HDMI ON, (k) LVDS-1 OFF, (j) HDMI OFF
 mode "mode display" {
-    bindsym h exec --no-startup-id xrandr --output HDMI-1 --auto --left-of LVDS-1, mode "default"
-
-    bindsym l exec --no-startup-id xrandr --output LVDS-1 --auto --right-of HDMI-1, mode "default"
-
-    bindsym k exec --no-startup-id xrandr --output LVDS-1 --auto --off, mode "default"
-
-    bindsym j exec --no-startup-id xrandr --output HDMI-1 --auto --off, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI-1 --auto --left-of LVDS-1
+    bindsym l exec --no-startup-id xrandr --output LVDS-1 --auto --right-of HDMI-1
+    bindsym k exec --no-startup-id xrandr --output LVDS-1 --auto --off
+    bindsym j exec --no-startup-id xrandr --output HDMI-1 --auto --off
 
 #    bindsym $mod+p exec xrandr --output LVDS-1 --off && nitrogen --restore
-
 #    bindsym $mod+o exec xrandr --output LVDS-1 --auto && xrandr --output LVDS-1 --mode 1600x900 --right-of HDMI-1 && nitrogen --restore
 
-    # back to normal: Enter or Escape
     bindsym Escape mode "default"
     bindsym Return mode "default"
     bindsym $mod+p mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+p mode "mode display"
+
+mode "mocp control" {
+    bindsym h exec mocp -k-2
+    bindsym l exec mocp -k+2
+    bindsym k exec mocp -f
+    bindsym j exec mocp -r
+    bindsym Shift+h exec mocp -k-10
+    bindsym Shift+l exec mocp -k+10
+    bindsym p exec mocp -G
+    bindsym s exec mocp -s
+    bindsym space exec mocp -U
+    bindsym c exec mocp -P
+    bindsym Return exec mocp -p
+    bindsym bracketleft exec mocp -v-5
+    bindsym bracketright exec mocp -v+5
+    bindsym braceleft exec mocp -v-1
+    bindsym braceright exec mocp -v+1
+    bindsym r exec mocp -t s
+    bindsym e exec mocp -S
+    bindsym q exec mocp -x
+    bindsym d exec mocp -c
+    bindsym i exec urxvt -e mocp 
+    bindsym m exec mocp `i3-input -l 2 -P "Percent from beginning: " -F "-j %s%"`
+    bindsym n exec mocp `i3-input -l 2 -P "Seconds from beginning: " -F "-j %ss"`
+
+
+
+    bindsym Escape mode "default"
+    bindsym $mod+m mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+m mode "mocp control"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -259,9 +289,10 @@ bar {
 
 #exec --no-startup-id xfce4-panel --disable-wm-check
 
-exec xrandr --output HDMI-1 --mode 1600x900
+#exec xrandr --output HDMI-1 --mode 1600x900
 exec xrdb .Xresources
-
+exec mocp -a ~/Muzyka
+#exec mocp -a /ddisk/muzyka
 exec nitrogen --restore
 #exec urxvtd
 #exec urxvt

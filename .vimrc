@@ -38,8 +38,8 @@ endif
 augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 80 characters.
+  autocmd FileType text setlocal textwidth=80
 augroup END
 
 " Add optional packages.
@@ -51,3 +51,13 @@ augroup END
 if has('syntax') && has('eval')
   packadd! matchit
 endif
+
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugins')
+
+Plug 'numirias/semshi'
+Plug 'preservim/nerdtree'
+Plug 'dense-analysis/ale'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
