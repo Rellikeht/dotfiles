@@ -32,6 +32,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym $mod+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -42,10 +44,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+c kill
 
-bindsym $mod+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-
-# start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+g exec rofi -show run
 bindsym $mod+d exec bemenu-run -p run:
@@ -53,7 +51,31 @@ bindsym $mod+g exec wofi --show run
 bindsym $mod+x exec pcmanfm
 bindsym $mod+q exec qterminal 
 bindsym $mod+b exec qutebrowser
-bindsym $mod+w exec pavucontrol 
+bindsym $mod+w exec pavucontrol
+
+#gaps
+bindsym $mod+equal gaps outer current plus 6
+bindsym $mod+minus gaps outer current minus 6
+bindsym $mod+plus gaps outer current plus 12
+bindsym $mod+underscore gaps outer current minus 12
+bindsym $mod+bracketright gaps inner current plus 6
+bindsym $mod+bracketleft gaps inner current minus 6
+bindsym $mod+braceright gaps inner current plus 12
+bindsym $mod+braceleft gaps inner current minus 12
+
+#opacity
+bindsym $mod+semicolon opacity minus 0.05
+bindsym $mod+apostrophe opacity plus 0.05
+bindsym $mod+colon opacity minus 0.1
+bindsym $mod+quotedbl opacity plus 0.1
+
+#border
+bindsym $mod+bar border normal
+bindsym $mod+backslash border none
+bindsym $mod+asciitilde default_border normal
+bindsym $mod+grave default_border none
+
+#TODO mode windows
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -67,11 +89,6 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-#bindsym $mod+Left focus left
-#bindsym $mod+Down focus down
-#bindsym $mod+Up focus up
-#bindsym $mod+Right focus right
-
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -84,16 +101,16 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left 20
+bindsym $mod+Shift+Down move down 20
+bindsym $mod+Shift+Up move up 20
+bindsym $mod+Shift+Right move right 20
 
 # split in horizontal orientation
-bindsym $mod+i split h
+bindsym $mod+i splith
 
 # split in vertical orientation
-bindsym $mod+u split v
+bindsym $mod+u splitv
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -108,8 +125,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-bindsym $mod+Shift+s exec systemctl suspend && swaylock
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -171,6 +186,8 @@ bindsym $mod+Mod1+k move container to workspace next
 bindsym $mod+Shift+r reload
 # exit sway (logs you out of your wayland session)
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -B 'Yes, exit sway' 'swaymsg exit'"
+#suspend and lock
+bindsym $mod+Shift+s exec systemctl suspend && swaylock
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -280,7 +297,13 @@ bar {
 
 #input 1241:5890:USB_Keyboard xkb_layout "pl"
 input * xkb_layout "pl"
-xwayland disable
+default_border none
+exec_always swaymsg output LVDS-1 toggle
+gaps inner 4
+gaps outer 4
+smart_borders no_gaps
+focus_wrapping workspace
+#xwayland disable
 #output * background ~/.config/sway/bg.png fill
 
 #exec --no-startup-id xfce4-panel --disable-wm-check
