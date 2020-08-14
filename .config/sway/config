@@ -295,7 +295,6 @@ bar {
     }
 }
 
-#input 1241:5890:USB_Keyboard xkb_layout "pl"
 input * xkb_layout "pl"
 default_border none
 exec_always swaymsg output LVDS-1 toggle
@@ -313,4 +312,5 @@ exec mocp -a ~/Muzyka
 #exec mocp -a /ddisk/muzyka
 #exec urxvtd
 #exec urxvt
+exec emacs --daemon=editor
 exec qterminal

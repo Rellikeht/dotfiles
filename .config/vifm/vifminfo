@@ -9,11 +9,15 @@
 	/home/michal/
 	..
 1595882289
+'k
+	/
+	ddisk
+1597140590
 
 # Bookmarks:
 
 # TUI:
-al
+ar
 q0
 v2
 ov
@@ -320,56 +324,311 @@ d/home
 	michal
 8
 d/home/michal
-	..
-0
+	bhp.py
+43
 d
 
 # Right window history (oldest to newest):
+D/home/michal/.py i inny szajs
+	arduino
+2
+D/home/michal/.py i inny szajs/arduino
+	..
+0
+D/home/michal/.py i inny szajs
+	arduino
+2
 D/home/michal
-	Desktop
-1
+	.py i inny szajs
+37
 D/home
-	git projects
-5
-D/home/git projects
-	dotfiles
-2
-D/home/git projects/dotfiles
-	..
-0
-D/home/git projects
-	dotfiles
-2
-D/home/git projects/dotfiles
-	..
-0
-D/home/git projects
-	dotfiles
-2
-D/home/git projects/dotfiles
-	..
-0
-D/home/git projects
-	..
-0
-D/home
-	..
-0
+	michal
+8
 D/
 	ddisk
 2
 D/ddisk
-	muzyka
+	modele
 25
-D/ddisk/muzyka
-	Tybercore - Eclipse [Epic Dark Trailer].mp3
-38
+D/ddisk/modele
+	..
+0
 D/ddisk
-	muzyka
+	modele
 25
-D/ddisk/muzyka
-	02. Hemp Gru - Wiem, Że Jest Warto feat. Żary [AUDIO] (DIIL.TV HD).mp3
+D/ddisk/modele
+	Materials
+1
+D/ddisk/modele/Materials
+	..
+0
+D/ddisk/modele
+	Materials
+1
+D/ddisk
+	modele
+25
+D/
+	mnt
+10
+D/mnt
+	ws
+5
+D/mnt/ws
+	Users
+14
+D/mnt/ws/Users
+	Admin
+1
+D/mnt/ws/Users/Admin
+	Moje dokumenty
+22
+D/mnt/ws/Users/Admin/Moje dokumenty
+	..
+0
+D/mnt/ws/Users/Admin
+	Moje dokumenty
+22
+D/mnt/ws/Users/Admin/Moje dokumenty
+	..
+0
+D/mnt/ws/Users/Admin
+	Links
+23
+D/mnt/ws/Users/Admin/Links
+	..
+0
+D/mnt/ws/Users/Admin
+	.config
+3
+D/mnt/ws/Users
+	Admin
+1
+D/mnt/ws/Users/Admin
+	.config
+3
+D/mnt/ws/Users/Admin/.config
+	..
+0
+D/mnt/ws/Users/Admin
+	Favorites
+22
+D/mnt/ws/Users
+	Admin
+1
+D/mnt/ws
+	Users
+14
+D/mnt
+	ws
+5
+D/
+	mnt
+10
+D/mnt
+	sdb2
+4
+D/mnt/sdb2
+	..
+0
+D/mnt
+	sdb2
+4
+D/mnt/sdb2
+	Python34
+15
+D/mnt/sdb2/Python34
+	PyScripter
+5
+D/mnt/sdb2/Python34/PyScripter
+	Lib
+1
+D/mnt/sdb2/Python34/PyScripter/Lib
+	..
+0
+D/mnt/sdb2/Python34/PyScripter
+	locale
 2
+D/mnt/sdb2/Python34/PyScripter/locale
+	..
+0
+D/mnt/sdb2/Python34/PyScripter
+	locale
+2
+D/mnt/sdb2/Python34
+	Scripts
+6
+D/mnt/sdb2/Python34/Scripts
+	..
+0
+D/mnt/sdb2/Python34
+	Notepad++
+4
+D/mnt/sdb2/Python34/Notepad++
+	..
+0
+D/mnt/sdb2/Python34
+	Notepad++
+4
+D/mnt/sdb2
+	Michał
+9
+D/mnt/sdb2/Michał
+	..
+0
+D/mnt/sdb2
+	Michał
+9
+D/mnt/sdb2/Michał
+	materiały
+6
+D/mnt/sdb2/Michał/materiały
+	szajs
+4
+D/mnt/sdb2/Michał/materiały/szajs
+	..
+0
+D/mnt/sdb2/Michał/materiały
+	bez_nazwy
+2
+D/mnt/sdb2/Michał/materiały/bez_nazwy
+	..
+0
+D/mnt/sdb2/Michał/materiały
+	bez_nazwy
+2
+D/mnt/sdb2/Michał/materiały/bez_nazwy
+	Nowy dokument tekstowy.txt
+1
+D/mnt/sdb2/Michał/materiały
+	animacja
+1
+D/mnt/sdb2/Michał/materiały/animacja
+	..
+0
+D/mnt/sdb2/Michał/materiały
+	..
+0
+D/mnt/sdb2/Michał
+	pendrive
+7
+D/mnt/sdb2/Michał/pendrive
+	chat
+1
+D/mnt/sdb2/Michał/pendrive/chat
+	..
+0
+D/mnt/sdb2/Michał/pendrive
+	..
+0
+D/mnt/sdb2/Michał
+	Eclipse Workspace
+2
+D/mnt/sdb2
+	Recovery
+17
+D/mnt
+	sdb2
+4
+D/mnt/sdb2
+	Windows
+20
+D/mnt/sdb2/Windows
+	..
+0
+D/mnt/sdb2
+	ProgramData
+15
+D/mnt/sdb2/ProgramData
+	..
+0
+D/mnt/sdb2
+	Program Files
+13
+D/mnt/sdb2/Program Files
+	Blender Foundation
+4
+D/mnt/sdb2/Program Files/Blender Foundation
+	Blender
+1
+D/mnt/sdb2/Program Files/Blender Foundation/Blender
+	2.77
+1
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77
+	scripts
+3
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/scripts
+	addons
+1
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77
+	python
+2
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/python
+	bin
+1
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/python/bin
+	..
+0
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/python
+	lib
+2
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/python/lib
+	..
+0
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/python
+	lib
+2
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77
+	datafiles
+1
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/datafiles
+	..
+0
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77
+	datafiles
+1
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77/datafiles
+	..
+0
+D/mnt/sdb2/Program Files/Blender Foundation/Blender/2.77
+	datafiles
+1
+D/mnt/sdb2/Program Files/Blender Foundation/Blender
+	2.77
+1
+D/mnt/sdb2/Program Files/Blender Foundation
+	Blender
+1
+D/mnt/sdb2/Program Files
+	Blender Foundation
+4
+D/mnt/sdb2
+	Program Files (x86)
+14
+D/mnt/sdb2/Program Files (x86)
+	VMware
+35
+D/mnt/sdb2/Program Files (x86)/VMware
+	..
+0
+D/mnt/sdb2/Program Files (x86)
+	desktop.ini
+46
+D/mnt/sdb2
+	Krzyś ;]
+8
+D/mnt/sdb2/Krzyś ;]
+	..
+0
+D/mnt/sdb2
+	.vifm-Trash-1000
+1
+D/mnt/sdb2/.vifm-Trash-1000
+	..
+0
+D/mnt/sdb2
+	$Recycle.Bin
+1
 D
 
 # Command line history (oldest to newest):
@@ -388,8 +647,11 @@ D
 :goto ~
 :.!mkdir dotfiles
 :edit config
-:help
 :select
+:.!sudo mount /ddisk/
+:.!sudo mount /dev/sda2 /mnt/ws/
+:.!sudo mount /dev/sdb2 /mnt/sdb2/
+:help
 :q
 
 # Search history (oldest to newest):
@@ -400,8 +662,12 @@ D
 # Local filter history (oldest to newest):
 
 # Registers:
-""/home/michal/.local/share/vifm/Trash/000_-.mkv
-""/home/michal/.local/share/vifm/Trash/000_-.mp4
+""/mnt/sdb2/.vifm-Trash-1000/001_chat
+""/mnt/sdb2/.vifm-Trash-1000/000_chat V.1.1
+""/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.5
+""/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.5a
+""/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.25
+""/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.25a
 
 # Directory stack (oldest to newest):
 
@@ -530,6 +796,24 @@ t/home/michal/.local/share/vifm/Trash/000_-.mkv
 	/home/michal/-.mkv
 t/home/michal/.local/share/vifm/Trash/000_-.mp4
 	/home/michal/-.mp4
+t/home/michal/.local/share/vifm/Trash/000_kill-list~
+	/home/michal/kill-list~
+t/mnt/sdb2/.vifm-Trash-1000/000_bez_nazwy
+	/mnt/sdb2/Michał/materiały/bez_nazwy
+t/mnt/sdb2/.vifm-Trash-1000/000_chat
+	/mnt/sdb2/Michał/pendrive/chat
+t/mnt/sdb2/.vifm-Trash-1000/001_chat
+	/mnt/sdb2/Michał/chat
+t/mnt/sdb2/.vifm-Trash-1000/000_chat V.1.1
+	/mnt/sdb2/Michał/chat V.1.1
+t/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.5
+	/mnt/sdb2/Michał/pianino windowsV0.5
+t/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.5a
+	/mnt/sdb2/Michał/pianino windowsV0.5a
+t/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.25
+	/mnt/sdb2/Michał/pianino windowsV0.25
+t/mnt/sdb2/.vifm-Trash-1000/000_pianino windowsV0.25a
+	/mnt/sdb2/Michał/pianino windowsV0.25a
 
 # State:
 f
@@ -538,6 +822,6 @@ i1
 [F
 F
 I1
-].1
+].0
 ]F
 s0

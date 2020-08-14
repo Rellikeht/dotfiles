@@ -10,7 +10,7 @@ alias ls='ls --color=always'
 alias ll='ls -la'
 PS1='[\u@\h \W]\$ '
 PAGER=less
-EDITOR=vim
+EDITOR=nano
 QT_QPA_PLATFORMTHEME=qt5ct
 
 export PATH="$PATH:/home/michal/.komodoide/12.0/XRE/state" # ActiveState State Tool

@@ -55,7 +55,6 @@ bindsym $mod+g exec rofi -show run
 bindsym $mod+x exec pcmanfm
 bindsym $mod+b exec qutebrowser
 bindsym $mod+w exec pavucontrol
-bindsym $mod+slash exec urxvt
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -293,13 +292,11 @@ bar {
 #exec --no-startup-id xfce4-panel --disable-wm-check
 
 #exec xrandr --output HDMI-1 --mode 1600x900
-exec pulseaudio --start
 exec xrdb .Xresources
 exec mocp -a ~/Muzyka
 #exec mocp -a /ddisk/muzyka
 exec nitrogen --restore
-exec urxvtd -o -f -q
-exec urxvt
+#exec urxvtd
+#exec urxvt
 #exec compton
-exec emacs --daemon=editor
 exec qterminal
