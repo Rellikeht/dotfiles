@@ -182,6 +182,12 @@ bindsym $mod+Mod1+l workspace next
 bindsym $mod+Mod1+j move container to workspace prev
 bindsym $mod+Mod1+k move container to workspace next
 
+bindsym $mod+Mod1+Left workspace prev
+bindsym $mod+Mod1+Right workspace next
+
+bindsym $mod+Mod1+Down move container to workspace prev
+bindsym $mod+Mod1+Up move container to workspace next
+
 # reload the configuration file
 bindsym $mod+Shift+r reload
 # exit sway (logs you out of your wayland session)
