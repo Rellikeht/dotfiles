@@ -10,6 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $ssuspend systemctl suspend
+set $osuspend loginctl suspend
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -74,8 +76,6 @@ bindsym $mod+bar border normal
 bindsym $mod+backslash border none
 bindsym $mod+asciitilde default_border normal
 bindsym $mod+grave default_border none
-
-#TODO mode windows
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -192,8 +192,15 @@ bindsym $mod+Mod1+Up move container to workspace next
 bindsym $mod+Shift+r reload
 # exit sway (logs you out of your wayland session)
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -B 'Yes, exit sway' 'swaymsg exit'"
+
 #suspend and lock
-bindsym $mod+Shift+s exec systemctl suspend && swaylock
+bindsym $mod+Ctrl+s exec $osuspend && swaylock
+bindsym $mod+Mod1+s exec grim - | gm convert - -gaussian 2 -blur 20 ~/.config/sway/lock_img.png | swaylock -i ~/.config/sway/lock_img.png & sleep 1 && $osuspend 
+bindsym $mod+Shift+s exec $osuspend && swaylock -t -i ~/.config/sway/lock.png
+
+bindsym $mod+Ctrl+d exec $ssuspend && swaylock
+bindsym $mod+Mod1+s exec grim - | gm convert - -gaussian 2 -blur 20 ~/.config/sway/lock_img.png | swaylock -i ~/.config/sway/lock_img.png & sleep 1 && $ssuspend
+bindsym $mod+Shift+d exec $ssuspend && swaylock -t -i ~/.config/sway/lock.png
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -247,33 +254,33 @@ mode "mode display" {
 bindsym $mod+p mode "mode display"
 
 mode "mocp control" {
-    bindsym h exec mocp -k-2
-    bindsym l exec mocp -k+2
-    bindsym k exec mocp -f
-    bindsym j exec mocp -r
-    bindsym Shift+h exec mocp -k-10
-    bindsym Shift+l exec mocp -k+10
-    bindsym p exec mocp -G
-    bindsym s exec mocp -s
-    bindsym space exec mocp -U
-    bindsym c exec mocp -P
-    bindsym Return exec mocp -p
-    bindsym bracketleft exec mocp -v-5
-    bindsym bracketright exec mocp -v+5
-    bindsym braceleft exec mocp -v-1
-    bindsym braceright exec mocp -v+1
-    bindsym r exec mocp -t s
-    bindsym e exec mocp -S
-    bindsym q exec mocp -x
-    bindsym d exec mocp -c
-    bindsym i exec qterminal -e mocp 
-    bindsym m exec mocp `i3-input -l 2 -P "Percent from beginning: " -F "-j %s%"`
-    bindsym n exec mocp `i3-input -l 2 -P "Seconds from beginning: " -F "-j %ss"`
-
-
+    bindsym h exec mocp -k-2 # -2sec
+    bindsym l exec mocp -k+2 # +2sec
+    bindsym k exec mocp -f # next
+    bindsym j exec mocp -r # prev
+    bindsym Shift+h exec mocp -k-10 # -10sec
+    bindsym Shift+l exec mocp -k+10 # +10sec
+    bindsym p exec mocp -G # toggle play/pause
+    bindsym s exec mocp -s # stop
+    bindsym space exec mocp -U # play
+    bindsym c exec mocp -P # pause
+    bindsym Return exec mocp -p # start playing
+    bindsym bracketleft exec mocp -v-5 # vol -5 
+    bindsym bracketright exec mocp -v+5 # vol +5
+    bindsym braceleft exec mocp -v-1 # vol -1
+    bindsym braceright exec mocp -v+1 # vol +1
+    bindsym r exec mocp -t s # toggle playlist visibility
+    bindsym e exec mocp -S # start server
+    bindsym q exec mocp -x # exit server
+    bindsym d exec mocp -c # clear playlist
+    bindsym i exec qterminal -e mocp # terminal with interface
+    bindsym Shift+i exec xmessage `mocp -i` # message about current state
+    bindsym m exec mocp `i3-input -l 2 -P "Percent from beginning: " -F "-j %s%"` # rewind using i3-input
+    bindsym n exec mocp `i3-input -l 2 -P "Seconds from beginning: " -F "-j %ss"` # rewind using i3-input
 
     bindsym Escape mode "default"
     bindsym $mod+m mode "default"
+
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+m mode "mocp control"

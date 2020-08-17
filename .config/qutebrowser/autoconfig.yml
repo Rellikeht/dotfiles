@@ -12,6 +12,8 @@ settings:
         ',M': hint links spawn smplayer {hint-url}
         ',NH': hint links spawn mpv --ytdl-format="bestvideo[height=1080]+bestaudio"
           {hint-url}
+        ',NL': hint links spawn mpv --ytdl-format="bestvideo[height=360]+bestaudio"
+          {hint-url}
         ',NM': hint links spawn mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
           {hint-url}
         ',Nh': hint links spawn mpv --ytdl-format="bestvideo[height=720]+bestaudio"
@@ -22,6 +24,8 @@ settings:
         ',V': hint links spawn vlc {hint-url}
         ',m': spawn smplayer {url}
         ',nH': spawn mpv --ytdl-format="bestvideo[height=1080]+bestaudio" {url}
+        ',nL': hint links spawn mpv --ytdl-format="bestvideo[height=360]+bestaudio"
+          {url}
         ',nM': spawn mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
           {url}
         ',nh': spawn mpv --ytdl-format="bestvideo[height=720]+bestaudio" {url}
@@ -38,13 +42,18 @@ settings:
   content.javascript.enabled:
     '*://*.allegro.pl/*': true
     '*://*.allegrolokalnie.pl/*': true
+    '*://*.brilliant.org/*': true
     '*://*.duckduckgo.com/*': true
+    '*://*.github.com/*': true
+    '*://*.guix.gnu.org/*': true
     '*://*.halny-treningi.gymmanager.com.pl/*': true
     '*://*.lynx.browser.org/*': true
     '*://*.start.duckduckgo.com/*': true
     '*://*.videos.lukesmith.xyz/*': true
+    '*://*.voidlinux.org/*': true
     '*://*.w3m.sourceforge.net/*': true
     '*://*.wiki.archlinux.org/*': false
+    '*://*.wiki.artixlinux.org/*': true
     '*://*.www.facebook.com/*': true
     '*://*.www.jikos.cz/*': true
     '*://*.www.youtube.com/*': true
@@ -55,6 +64,7 @@ settings:
     '*://www.youtube.com/*': true
     global: true
   content.notifications:
+    https://www.reddit.com: false
     https://www.youtube.com: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true

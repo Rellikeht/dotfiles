@@ -10,6 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $ssuspend systemctl suspend
+set $osuspend loginctl suspend
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -56,6 +58,23 @@ bindsym $mod+x exec pcmanfm
 bindsym $mod+b exec qutebrowser
 bindsym $mod+w exec pavucontrol
 bindsym $mod+slash exec urxvt
+bindsym $mod+q exec qterminal 
+
+#gaps
+bindsym $mod+equal gaps outer current plus 6
+bindsym $mod+minus gaps outer current minus 6
+bindsym $mod+plus gaps outer current plus 12
+bindsym $mod+underscore gaps outer current minus 12
+bindsym $mod+bracketright gaps inner current plus 6
+bindsym $mod+bracketleft gaps inner current minus 6
+bindsym $mod+braceright gaps inner current plus 12
+bindsym $mod+braceleft gaps inner current minus 12
+
+#border
+bindsym $mod+Shift+backslash border normal
+bindsym $mod+backslash border none
+#bindsym $mod+Shift+grave workspace back_and_forth border default normal
+#bindsym $mod+grave workspace back_and_forth border none
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -111,7 +130,13 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Shift+s exec i3lock && systemctl suspend
+bindsym $mod+Ctrl+s exec i3lock && $osuspend
+bindsym $mod+Mod1+s exec $osuspend && i3lock-fancy
+bindsym $mod+Shift+s exec $osuspend && i3lock -t -i ~/.config/i3/bg.png
+
+bindsym $mod+Ctrl+d exec i3lock && $ssuspend
+bindsym $mod+Mod1+d exec $ssuspend && i3lock-fancy
+bindsym $mod+Shift+d exec $ssuspend && i3lock -t -i ~/.config/i3/bg.png
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -175,10 +200,6 @@ bindsym $mod+Mod1+Right workspace next
 bindsym $mod+Mod1+Down move container to workspace prev
 bindsym $mod+Mod1+Up move container to workspace next
 
-
-
-bindsym $mod+q exec qterminal 
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -241,38 +262,36 @@ mode "mode display" {
 bindsym $mod+p mode "mode display"
 
 mode "mocp control" {
-    bindsym h exec mocp -k-2
-    bindsym l exec mocp -k+2
-    bindsym k exec mocp -f
-    bindsym j exec mocp -r
-    bindsym Shift+h exec mocp -k-10
-    bindsym Shift+l exec mocp -k+10
-    bindsym p exec mocp -G
-    bindsym s exec mocp -s
-    bindsym space exec mocp -U
-    bindsym c exec mocp -P
-    bindsym Return exec mocp -p
-    bindsym bracketleft exec mocp -v-5
-    bindsym bracketright exec mocp -v+5
-    bindsym braceleft exec mocp -v-1
-    bindsym braceright exec mocp -v+1
-    bindsym r exec mocp -t s
-    bindsym e exec mocp -S
-    bindsym q exec mocp -x
-    bindsym d exec mocp -c
-    bindsym i exec urxvt -e mocp 
-    bindsym m exec mocp `i3-input -l 2 -P "Percent from beginning: " -F "-j %s%"`
-    bindsym n exec mocp `i3-input -l 2 -P "Seconds from beginning: " -F "-j %ss"`
+    bindsym h exec mocp -k-2 # -2sec 
+    bindsym l exec mocp -k+2 # +2sec
+    bindsym k exec mocp -f # next
+    bindsym j exec mocp -r # prev
+    bindsym Shift+h exec mocp -k-10 # -10sec
+    bindsym Shift+l exec mocp -k+10 # +10sec
+    bindsym p exec mocp -G # toggle play/pause
+    bindsym s exec mocp -s # stop
+    bindsym space exec mocp -U # play
+    bindsym c exec mocp -P # pause
+    bindsym Return exec mocp -p # start playing
+    bindsym bracketleft exec mocp -v-5 # vol -5 
+    bindsym bracketright exec mocp -v+5 # vol +5 
+    bindsym braceleft exec mocp -v-1 # vol -1
+    bindsym braceright exec mocp -v+1 # vol +1
+    bindsym r exec mocp -t s # toggle playlist visibility
+    bindsym e exec mocp -S # start server
+    bindsym q exec mocp -x # exit server
+    bindsym d exec mocp -c # clear playlist
+    bindsym i exec qterminal -e mocp # terminal with interface  
+    bindsym Shift+i exec xmessage `mocp -i` # message about current state
+    bindsym m exec mocp `i3-input -l 2 -P "Percent from beginning: " -F "-j %s%"` # rewind using i3-input
+    bindsym n exec mocp `i3-input -l 2 -P "Seconds from beginning: " -F "-j %ss"` # rewind using i3-input
 
     bindsym Escape mode "default"
     bindsym $mod+m mode "default"
+
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+m mode "mocp control"
-
-#border
-bindsym $mod+bar border normal
-bindsym $mod+Shift+bar border none
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -306,7 +325,7 @@ exec mocp -a ~/Muzyka
 #exec mocp -a /ddisk/muzyka
 exec nitrogen --restore
 exec urxvtd -o -f -q
-exec urxvt
+#exec urxvt
 #exec compton
 exec emacs --daemon=editor
 exec qterminal
