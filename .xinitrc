@@ -1,9 +1,7 @@
 #!/bin/sh
-xrdb -load .Xresources
+xrdb .Xresources
 #[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-exec i3 #xmonad
-#xrandr --output LVDS-1 --off
-#nitrogen --restore
+exec i3
 #picom &
-#urxvtd &
 #urxvt
+#qterminal

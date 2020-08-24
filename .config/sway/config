@@ -52,6 +52,7 @@ bindsym $mod+d exec bemenu-run -p run:
 bindsym $mod+g exec wofi --show run
 bindsym $mod+x exec pcmanfm
 bindsym $mod+q exec qterminal 
+bindsym $mod+slash exec weston-terminal
 bindsym $mod+b exec qutebrowser
 bindsym $mod+w exec pavucontrol
 
@@ -199,7 +200,7 @@ bindsym $mod+Mod1+s exec grim - | gm convert - -gaussian 2 -blur 20 ~/.config/sw
 bindsym $mod+Shift+s exec $osuspend && swaylock -t -i ~/.config/sway/lock.png
 
 bindsym $mod+Ctrl+d exec $ssuspend && swaylock
-bindsym $mod+Mod1+s exec grim - | gm convert - -gaussian 2 -blur 20 ~/.config/sway/lock_img.png | swaylock -i ~/.config/sway/lock_img.png & sleep 1 && $ssuspend
+bindsym $mod+Mod1+d exec grim - | gm convert - -gaussian 2 -blur 20 ~/.config/sway/lock_img.png | swaylock -i ~/.config/sway/lock_img.png & sleep 1 && $ssuspend
 bindsym $mod+Shift+d exec $ssuspend && swaylock -t -i ~/.config/sway/lock.png
 
 # resize window (you can also use the mouse for that)
@@ -269,7 +270,7 @@ mode "mocp control" {
     bindsym bracketright exec mocp -v+5 # vol +5
     bindsym braceleft exec mocp -v-1 # vol -1
     bindsym braceright exec mocp -v+1 # vol +1
-    bindsym r exec mocp -t s # toggle playlist visibility
+    bindsym r exec mocp -t s # toggle shuffle 
     bindsym e exec mocp -S # start server
     bindsym q exec mocp -x # exit server
     bindsym d exec mocp -c # clear playlist
@@ -315,15 +316,14 @@ gaps inner 4
 gaps outer 4
 smart_borders no_gaps
 focus_wrapping workspace
-#xwayland disable
+xwayland disable
 #output * background ~/.config/sway/bg.png fill
 
-#exec --no-startup-id xfce4-panel --disable-wm-check
 #exec swaybg -i ~/.config/sway/bg.png
 exec xrdb .Xresources
 exec mocp -a ~/Muzyka
 #exec mocp -a /ddisk/muzyka
 #exec urxvtd
 #exec urxvt
-exec emacs --daemon=editor
+#exec emacs --daemon=editor
 exec qterminal

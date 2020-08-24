@@ -43,6 +43,8 @@ settings:
     '*://*.allegro.pl/*': true
     '*://*.allegrolokalnie.pl/*': true
     '*://*.brilliant.org/*': true
+    '*://*.discord.com/*': true
+    '*://*.docs.voidlinux.org/*': true
     '*://*.duckduckgo.com/*': true
     '*://*.github.com/*': true
     '*://*.guix.gnu.org/*': true

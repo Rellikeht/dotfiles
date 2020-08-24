@@ -59,6 +59,8 @@ bindsym $mod+b exec qutebrowser
 bindsym $mod+w exec pavucontrol
 bindsym $mod+slash exec urxvt
 bindsym $mod+q exec qterminal 
+bindsym $mod+Tab exec clipmenu
+
 
 #gaps
 bindsym $mod+equal gaps outer current plus 6
@@ -131,12 +133,16 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 bindsym $mod+Ctrl+s exec i3lock && $osuspend
-bindsym $mod+Mod1+s exec $osuspend && i3lock-fancy
+bindsym $mod+Mod1+s exec i3lock-fancy -p && $osuspend
 bindsym $mod+Shift+s exec $osuspend && i3lock -t -i ~/.config/i3/bg.png
 
 bindsym $mod+Ctrl+d exec i3lock && $ssuspend
-bindsym $mod+Mod1+d exec $ssuspend && i3lock-fancy
+bindsym $mod+Mod1+d exec i3lock-fancy -p && $ssuspend 
 bindsym $mod+Shift+d exec $ssuspend && i3lock -t -i ~/.config/i3/bg.png
+
+#interesting results
+#shotgun - | magick - -sample 640x360 -sample 1920x1080 - | feh -F -
+#shotgun - | magick - -sample 960x540 -sample 1920x1080 -blur 20 - | feh -F -
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -246,10 +252,10 @@ bindsym $mod+r mode "resize"
 # Set the shortcuts and what they do
 set $mode_display Ext Screen (l) LVDS-1 ON, (h) HDMI ON, (k) LVDS-1 OFF, (j) HDMI OFF
 mode "mode display" {
-    bindsym h exec --no-startup-id xrandr --output HDMI-1 --auto --left-of LVDS-1
-    bindsym l exec --no-startup-id xrandr --output LVDS-1 --auto --right-of HDMI-1
-    bindsym k exec --no-startup-id xrandr --output LVDS-1 --auto --off
-    bindsym j exec --no-startup-id xrandr --output HDMI-1 --auto --off
+    bindsym h exec xrandr --output HDMI-1 --auto --left-of LVDS-1 && nitrogen --restore
+    bindsym l exec xrandr --output LVDS-1 --auto --right-of HDMI-1 && nitrogen --restore
+    bindsym k exec xrandr --output LVDS-1 --auto --off && nitrogen --restore
+    bindsym j exec xrandr --output HDMI-1 --auto --off && nitrogen --restore
 
 #    bindsym $mod+p exec xrandr --output LVDS-1 --off && nitrogen --restore
 #    bindsym $mod+o exec xrandr --output LVDS-1 --auto && xrandr --output LVDS-1 --mode 1600x900 --right-of HDMI-1 && nitrogen --restore
@@ -275,9 +281,9 @@ mode "mocp control" {
     bindsym Return exec mocp -p # start playing
     bindsym bracketleft exec mocp -v-5 # vol -5 
     bindsym bracketright exec mocp -v+5 # vol +5 
-    bindsym braceleft exec mocp -v-1 # vol -1
-    bindsym braceright exec mocp -v+1 # vol +1
-    bindsym r exec mocp -t s # toggle playlist visibility
+    bindsym Shift+bracketleft exec mocp -v-1 # vol -1
+    bindsym Shift+bracketright exec mocp -v+1 # vol +1
+    bindsym r exec mocp -t s # toggle shuffle
     bindsym e exec mocp -S # start server
     bindsym q exec mocp -x # exit server
     bindsym d exec mocp -c # clear playlist
@@ -319,13 +325,13 @@ bar {
 #exec --no-startup-id xfce4-panel --disable-wm-check
 
 #exec xrandr --output HDMI-1 --mode 1600x900
-exec pulseaudio --start
-exec xrdb .Xresources
+#exec xrdb .Xresources
 exec mocp -a ~/Muzyka
 #exec mocp -a /ddisk/muzyka
 exec nitrogen --restore
 exec urxvtd -o -f -q
-#exec urxvt
+exec urxvt
 #exec compton
-exec emacs --daemon=editor
-exec qterminal
+#exec emacs --daemon=editor
+#exec qterminal
+exec xrandr --output LVDS-1 --off
