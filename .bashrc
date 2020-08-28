@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias nano='nano --rcfile=~/.nanorc'
-alias ls='ls --color=always'
+#alias ls='ls --color=always'
 alias ll='ls -la'
 #PS1='[\u@\h \W]\$ '
 PAGER=less

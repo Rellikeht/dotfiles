@@ -40,16 +40,19 @@ settings:
         ps: insert-text {primary}
         ys: yank selection
   content.javascript.enabled:
+    '*://*.accounts.google.com/*': true
     '*://*.allegro.pl/*': true
     '*://*.allegrolokalnie.pl/*': true
     '*://*.brilliant.org/*': true
     '*://*.discord.com/*': true
     '*://*.docs.voidlinux.org/*': true
     '*://*.duckduckgo.com/*': true
+    '*://*.ekursy.akademiakierowcy.pl/*': true
     '*://*.github.com/*': true
     '*://*.guix.gnu.org/*': true
     '*://*.halny-treningi.gymmanager.com.pl/*': true
     '*://*.lynx.browser.org/*': true
+    '*://*.mail.google.com/*': true
     '*://*.start.duckduckgo.com/*': true
     '*://*.videos.lukesmith.xyz/*': true
     '*://*.voidlinux.org/*': true
