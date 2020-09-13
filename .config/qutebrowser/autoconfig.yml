@@ -44,6 +44,7 @@ settings:
     '*://*.allegro.pl/*': true
     '*://*.allegrolokalnie.pl/*': true
     '*://*.brilliant.org/*': true
+    '*://*.cufs.vulcan.net.pl/*': true
     '*://*.discord.com/*': true
     '*://*.docs.voidlinux.org/*': true
     '*://*.duckduckgo.com/*': true
@@ -51,16 +52,22 @@ settings:
     '*://*.github.com/*': true
     '*://*.guix.gnu.org/*': true
     '*://*.halny-treningi.gymmanager.com.pl/*': true
+    '*://*.html.duckduckgo.com/*': true
     '*://*.lynx.browser.org/*': true
     '*://*.mail.google.com/*': true
+    '*://*.pkgs.alpinelinux.org/*': true
     '*://*.start.duckduckgo.com/*': true
     '*://*.videos.lukesmith.xyz/*': true
     '*://*.voidlinux.org/*': true
     '*://*.w3m.sourceforge.net/*': true
     '*://*.wiki.archlinux.org/*': false
     '*://*.wiki.artixlinux.org/*': true
+    '*://*.www.cda.pl/*': true
     '*://*.www.facebook.com/*': true
     '*://*.www.jikos.cz/*': true
+    '*://*.www.meteo.pl/*': true
+    '*://*.www.pekao.com.pl/*': true
+    '*://*.www.pekao24.pl/*': true
     '*://*.www.youtube.com/*': true
     '*://links.twibright.com/*': true
     '*://w3m.sourceforge.net/*': true
@@ -69,6 +76,7 @@ settings:
     '*://www.youtube.com/*': true
     global: true
   content.notifications:
+    https://www.komputronik.pl: false
     https://www.reddit.com: false
     https://www.youtube.com: false
   content.register_protocol_handler:

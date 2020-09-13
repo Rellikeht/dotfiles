@@ -36,7 +36,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym $mod+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-
+bindsym $mod+Shift+period exec "amixer -c 0 -- sset Master 3dB+"
+bindsym $mod+Shift+comma exec "amixer -c 0 -- sset Master 3dB-"
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -253,9 +254,8 @@ mode "mode display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+p mode "mode display"
-
 mode "mocp control" {
-    bindsym h exec mocp -k-2 # -2sec
+    bindsym h exec mocp -k-2 # -2sec 
     bindsym l exec mocp -k+2 # +2sec
     bindsym k exec mocp -f # next
     bindsym j exec mocp -r # prev
@@ -267,22 +267,36 @@ mode "mocp control" {
     bindsym c exec mocp -P # pause
     bindsym Return exec mocp -p # start playing
     bindsym bracketleft exec mocp -v-5 # vol -5 
-    bindsym bracketright exec mocp -v+5 # vol +5
-    bindsym braceleft exec mocp -v-1 # vol -1
-    bindsym braceright exec mocp -v+1 # vol +1
-    bindsym r exec mocp -t s # toggle shuffle 
+    bindsym bracketright exec mocp -v+5 # vol +5 
+    bindsym Shift+bracketleft exec mocp -v-1 # vol -1
+    bindsym Shift+bracketright exec mocp -v+1 # vol +1
+    bindsym r exec mocp -t s # toggle shuffle
+    bindsym Shift+r exec pulseaudio --kill # restart pulseaudio
     bindsym e exec mocp -S # start server
     bindsym q exec mocp -x # exit server
+    bindsym Shift+e exec "amixer -c 0 -- sset PCM 0dB+,1dB+"
+    # vol +1dB on right channel 
+    bindsym Shift+q exec "amixer -c 0 -- sset PCM 1dB+,0dB+"
+    # vol +1dB on left channel 
+    bindsym Shift+c exec "amixer -c 0 -- sset PCM 0dB+,1dB-"
+    # vol -1dB on right channel
+    bindsym Shift+z exec "amixer -c 0 -- sset PCM 1dB-,0dB+"
+    # vol -1dB on left channel
+    bindsym Shift+w exec "amixer -c 0 -- sset PCM 1dB+"     
+    # vol +1dB on both channels                                 
+    bindsym Shift+x exec "amixer -c 0 -- sset PCM 1dB-"         
+    # vol -1dB on both channels 
     bindsym d exec mocp -c # clear playlist
-    bindsym i exec qterminal -e mocp # terminal with interface
+    bindsym i exec qterminal -e mocp # terminal with interface  
+    bindsym a exec qterminal -e alsamixer # terminal with mixer
     bindsym Shift+i exec xmessage `mocp -i` # message about current state
     bindsym m exec mocp `i3-input -l 2 -P "Percent from beginning: " -F "-j %s%"` # rewind using i3-input
     bindsym n exec mocp `i3-input -l 2 -P "Seconds from beginning: " -F "-j %ss"` # rewind using i3-input
-
+    
     bindsym Escape mode "default"
     bindsym $mod+m mode "default"
 
-}
+}                                
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+m mode "mocp control"
 
