@@ -301,6 +301,10 @@ mode "mocp control" {
     # vol +1dB on both channels
     bindsym Shift+x exec "amixer -c 0 -- sset PCM 1dB-"
     #vol -1dB on both channels
+    bindsym $mod+Shift+period exec "amixer -c 0 -- sset Master 3dB+"
+    # vol +1dB to main level
+    bindsym $mod+Shift+comma exec "amixer -c 0 -- sset Master 3dB-"
+    # vol +1dB to main level
     bindsym d exec mocp -c # clear playlist
     bindsym i exec qterminal -e mocp # terminal with interface  
     bindsym a exec qterminal -e alsamixer # terminal with mixer
