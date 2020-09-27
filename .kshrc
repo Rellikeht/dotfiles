@@ -1,5 +1,5 @@
 #
-# ~/.mkshrc
+# ~/.kshrc
 #
 
 # If not running interactively, don't do anything
@@ -12,6 +12,7 @@ HISTFILE=~/.ksh_history
 PAGER=less
 EDITOR=nano
 VISUAL="emacs -nw"
+# VISUAL="nvim"
 QT_QPA_PLATFORMTHEME=qt5ct
 PLAN9=/ext/plan9
 PATH=$PATH:$PLAN9/bin
