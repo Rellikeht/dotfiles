@@ -46,6 +46,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+c kill
+bindsym $mod+Shift+Tab exec swaymsg bar mode toggle
 
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+g exec rofi -show run
@@ -56,6 +57,7 @@ bindsym $mod+q exec qterminal
 bindsym $mod+slash exec weston-terminal
 bindsym $mod+b exec qutebrowser
 bindsym $mod+w exec pavucontrol
+bindsym $mod+a exec alacritty
 
 #gaps
 bindsym $mod+equal gaps outer current plus 6
@@ -129,10 +131,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Ctrl+a focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -299,6 +301,7 @@ mode "mocp control" {
     
     bindsym Escape mode "default"
     bindsym $mod+m mode "default"
+    bindsym Shift+m mode "default"
 
 }                                
 # Declare here the shortcut to bring the display selection menu
@@ -310,7 +313,7 @@ bar {
 #    output            LVDS1
     status_command    i3status
     position          top
-    mode              dock
+    mode              hide
     workspace_buttons yes
     tray_output       none
     

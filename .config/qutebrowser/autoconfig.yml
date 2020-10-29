@@ -10,26 +10,26 @@ settings:
     global:
       normal:
         ',M': hint links spawn smplayer {hint-url}
-        ',NH': hint links spawn mpv --ytdl-format="bestvideo[height=1080]+bestaudio"
+        ',NH': hint links spawn mpv --ytdl-format="bestvideo[height<=1080]+bestaudio"
           {hint-url}
-        ',NL': hint links spawn mpv --ytdl-format="bestvideo[height=360]+bestaudio"
+        ',NL': hint links spawn mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
           {hint-url}
         ',NM': hint links spawn mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
           {hint-url}
-        ',Nh': hint links spawn mpv --ytdl-format="bestvideo[height=720]+bestaudio"
+        ',Nh': hint links spawn mpv --ytdl-format="bestvideo[height<=720]+bestaudio"
           {hint-url}
-        ',Nl': hint links spawn mpv --ytdl-format="bestvideo[height=480]+bestaudio"
+        ',Nl': hint links spawn mpv --ytdl-format="bestvideo[height<=480]+bestaudio"
           {hint-url}
         ',Nm': hint links spawn mpv {hint-url}
         ',V': hint links spawn vlc {hint-url}
         ',m': spawn smplayer {url}
-        ',nH': spawn mpv --ytdl-format="bestvideo[height=1080]+bestaudio" {url}
-        ',nL': hint links spawn mpv --ytdl-format="bestvideo[height=360]+bestaudio"
+        ',nH': spawn mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" {url}
+        ',nL': hint links spawn mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
           {url}
         ',nM': spawn mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
           {url}
-        ',nh': spawn mpv --ytdl-format="bestvideo[height=720]+bestaudio" {url}
-        ',nl': spawn mpv --ytdl-format="bestvideo[height=480]+bestaudio" {url}
+        ',nh': spawn mpv --ytdl-format="bestvideo[height<=720]+bestaudio" {url}
+        ',nl': spawn mpv --ytdl-format="bestvideo[height<=480]+bestaudio" {url}
         ',nm': spawn mpv {url}
         ',v': spawn vlc {url}
         <Ctrl+r>: restart
@@ -39,6 +39,8 @@ settings:
         L: tab-next
         ps: insert-text {primary}
         ys: yank selection
+  colors.webpage.darkmode.enabled:
+    global: true
   content.javascript.enabled:
     '*://*.accounts.google.com/*': true
     '*://*.allegro.pl/*': true
@@ -63,6 +65,7 @@ settings:
     '*://*.wiki.archlinux.org/*': false
     '*://*.wiki.artixlinux.org/*': true
     '*://*.www.cda.pl/*': true
+    '*://*.www.deepl.com/*': false
     '*://*.www.facebook.com/*': true
     '*://*.www.jikos.cz/*': true
     '*://*.www.meteo.pl/*': true
@@ -75,9 +78,33 @@ settings:
     '*://www.videolan.org/*': true
     '*://www.youtube.com/*': true
     global: true
+  content.media.audio_capture:
+    global: true
+    https://discord.com: true
+    https://teams.microsoft.com: true
+  content.media.audio_video_capture:
+    global: ask
+  content.media.video_capture:
+    global: ask
   content.notifications:
+    https://usersdrive.com: false
     https://www.komputronik.pl: false
+    https://www.mediaexpert.pl: false
     https://www.reddit.com: false
     https://www.youtube.com: false
+    https://zsem.edu.pl: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
+  editor.command:
+    global:
+    - nvim-qt
+    - -f
+    - '{file}'
+    - -c
+    - normal {line}G{column0}l
+  fonts.default_size:
+    global: 9pt
+  statusbar.show:
+    global: in-mode
+  tabs.show:
+    global: always

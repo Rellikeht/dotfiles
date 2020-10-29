@@ -47,6 +47,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+c kill
+bindsym $mod+Shift+Tab exec i3-msg bar mode toggle
 
 bindsym $mod+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
@@ -59,10 +60,12 @@ bindsym $mod+g exec rofi -show run
 bindsym $mod+x exec pcmanfm
 bindsym $mod+b exec qutebrowser
 bindsym $mod+w exec pavucontrol
-bindsym $mod+slash exec urxvt
+bindsym $mod+Shift+slash exec st
+bindsym $mod+slash exec urxvtc
+bindsym $mod+Mod1+slash exec urxvt
 bindsym $mod+q exec qterminal 
 bindsym $mod+Tab exec clipmenu
-
+bindsym $mod+a exec alacritty
 
 #gaps
 bindsym $mod+equal gaps outer current plus 6
@@ -134,11 +137,11 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Ctrl+s exec i3lock && $osuspend
+bindsym $mod+Control+s exec $osuspend && slock
 bindsym $mod+Mod1+s exec i3lock-fancy -p && $osuspend
 bindsym $mod+Shift+s exec $osuspend && i3lock -t -i ~/.config/i3/bg.png
 
-bindsym $mod+Ctrl+d exec i3lock && $ssuspend
+bindsym $mod+Control+d exec $ssuspend && slock 
 bindsym $mod+Mod1+d exec i3lock-fancy -p && $ssuspend 
 bindsym $mod+Shift+d exec $ssuspend && i3lock -t -i ~/.config/i3/bg.png
 
@@ -147,10 +150,10 @@ bindsym $mod+Shift+d exec $ssuspend && i3lock -t -i ~/.config/i3/bg.png
 #shotgun - | magick - -sample 960x540 -sample 1920x1080 -blur 20 - | feh -F -
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus parent
 
 # focus the child container
-bindsym $mod+Shift+a focus child
+bindsym $mod+Control+a focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -254,10 +257,15 @@ bindsym $mod+r mode "resize"
 # Set the shortcuts and what they do
 set $mode_display Ext Screen (l) LVDS-1 ON, (h) HDMI ON, (k) LVDS-1 OFF, (j) HDMI OFF
 mode "mode display" {
-    bindsym h exec xrandr --output HDMI-1 --auto --left-of LVDS-1 && nitrogen --restore
-    bindsym l exec xrandr --output LVDS-1 --auto --right-of HDMI-1 && nitrogen --restore
-    bindsym k exec xrandr --output LVDS-1 --auto --off && nitrogen --restore
-    bindsym j exec xrandr --output HDMI-1 --auto --off && nitrogen --restore
+    bindsym h exec xrandr --output HDMI1 --auto --left-of LVDS1 && nitrogen --restore
+    bindsym l exec xrandr --output LVDS1 --auto --right-of HDMI1 && nitrogen --restore
+    bindsym k exec xrandr --output LVDS1 --auto --off && nitrogen --restore
+    bindsym j exec xrandr --output HDMI1 --auto --off && nitrogen --restore
+
+    bindsym Shift+h exec xrandr --output HDMI-1 --auto --left-of LVDS-1 && nitrogen --restore
+    bindsym Shift+l exec xrandr --output LVDS-1 --auto --right-of HDMI-1 && nitrogen --restore
+    bindsym Shift+k exec xrandr --output LVDS-1 --auto --off && nitrogen --restore
+    bindsym Shift+j exec xrandr --output HDMI-1 --auto --off && nitrogen --restore
 
 #    bindsym $mod+p exec xrandr --output LVDS-1 --off && nitrogen --restore
 #    bindsym $mod+o exec xrandr --output LVDS-1 --auto && xrandr --output LVDS-1 --mode 1600x900 --right-of HDMI-1 && nitrogen --restore
@@ -307,6 +315,8 @@ mode "mocp control" {
     # vol +1dB to main level
     bindsym d exec mocp -c # clear playlist
     bindsym i exec qterminal -e mocp # terminal with interface  
+    bindsym $mod+Mod1+i mocp -i | grep -A 1 ^Title: | dmenu # dmenu with some info
+    bindsym Mod1+i mocp -i | grep -A 1 ^Title: | dmenu 
     bindsym a exec qterminal -e alsamixer # terminal with mixer
     bindsym Shift+i exec xmessage `mocp -i` # message about current state
     bindsym m exec mocp `i3-input -l 2 -P "Percent from beginning: " -F "-j %s%"` # rewind using i3-input
@@ -314,6 +324,7 @@ mode "mocp control" {
 
     bindsym Escape mode "default"
     bindsym $mod+m mode "default"
+    bindsym Shift+m mode "default"
 
 }
 # Declare here the shortcut to bring the display selection menu
@@ -325,7 +336,7 @@ bar {
 #    output            LVDS1
     status_command    slstatus -s #i3status
     position          top
-    mode              dock
+    mode              hide
     workspace_buttons yes
     tray_output       none
     
@@ -349,9 +360,11 @@ bar {
 exec mocp -a ~/Muzyka
 #exec mocp -a /ddisk/muzyka
 exec nitrogen --restore
-exec urxvtd -o -f -q
-exec urxvt
+exec xrandr --output LVDS1 --off
+exec xrandr --output HDMI1 --mode 1920x1080
+#exec urxvtd -o -f -q
+#exec urxvtc
 #exec compton
 #exec emacs --daemon=editor
 #exec qterminal
-exec xrandr --output LVDS-1 --off
+

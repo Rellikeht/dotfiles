@@ -11,11 +11,11 @@
 NoGrabServer
 RestartPreviousState
 DecorateTransients
-TitleFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
-ResizeFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
-MenuFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
-IconFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
-IconManagerFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*"
+TitleFont "-Fixed-normal--*-140-*-*-*-*-*-*"
+ResizeFont "-Fixed-normal--*-140-*-*-*-*-*-*"
+MenuFont "-Fixed-normal--*-140-*-*-*-*-*-*"
+IconFont "-Fixed-normal--*-120-*-*-*-*-*-*"
+IconManagerFont "-Fixed-normal--*-120-*-*-*"
 #ClientBorderWidth
 
 Color
@@ -70,7 +70,7 @@ Button2 = : iconmgr : f.iconify
 #
 menu "defops"
 {
-"Twm"	f.title
+"Twm"		f.title
 "Iconify"	f.iconify
 "Resize"	f.resize
 "Move"		f.move
@@ -85,8 +85,8 @@ menu "defops"
 "Qterminal"	f.exec "exec qterminal &"
 "Urxvt"		f.exec "exec urxvt &"
 "Xterm"		f.exec "exec xterm &"
-"Terminator"	f.exec "exec terminator &"
-"Termite"	f.exec "exec termite &"
+"st"		f.exec "exec st &"
+"Urxvtc"	f.exec "exec urxvtc &"
 ""		f.nop
 "Kill"		f.destroy
 "Delete"	f.delete
