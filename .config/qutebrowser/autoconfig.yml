@@ -39,8 +39,16 @@ settings:
         L: tab-next
         ps: insert-text {primary}
         ys: yank selection
+  colors.webpage.darkmode.algorithm:
+    global: lightness-hsl
+  colors.webpage.darkmode.contrast:
+    global: 0.0
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
+  colors.webpage.darkmode.policy.images:
+    global: never
+  content.geolocation:
+    https://allegrolokalnie.pl: true
   content.javascript.enabled:
     '*://*.accounts.google.com/*': true
     '*://*.allegro.pl/*': true
@@ -88,6 +96,7 @@ settings:
     global: ask
   content.notifications:
     https://usersdrive.com: false
+    https://www.filmweb.pl: false
     https://www.komputronik.pl: false
     https://www.mediaexpert.pl: false
     https://www.reddit.com: false
@@ -104,7 +113,11 @@ settings:
     - normal {line}G{column0}l
   fonts.default_size:
     global: 9pt
+  new_instance_open_target:
+    global: tab
   statusbar.show:
     global: in-mode
+  tabs.background:
+    global: true
   tabs.show:
     global: always

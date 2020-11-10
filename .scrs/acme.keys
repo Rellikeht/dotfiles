@@ -1,0 +1,5 @@
+#entermaster=grabkeys;
+#enterslave=grabkeys;
+key_Escape=exit#;
+button2=exec: xclip -o | sh -s | xmessage -file -;
+#static const char *plumbc[]  = { "sh", "-c", "xclip -o | sh -s | xclip -o | xclip -selection clipboard -i", NULL }; //done
