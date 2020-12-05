@@ -24,6 +24,6 @@ else
 	echo "w2: $w"
 fi
 
-xdotool mousemove 0 0
+sleep 0.2 && xdotool mousemove 0 0 &
 sed "/^#/d" ~/.scrs/$1.commands | dzen2 -p -fn 'MesloLGS NF-$fn' -w $w -h $((2*$fn+5)) -bg '#01080b' -fg '#18de4a' -l $cmdl -m h -e "`sed -n -z \"s/\n//gp\" ~/.scrs/$1.keys`"
 xdotool mousemove $loc 

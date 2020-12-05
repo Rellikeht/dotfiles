@@ -1,17 +1,11 @@
 #!/bin/sh
 xrdb .Xresources
 export QT_QPA_PLATFORM=xcb
-xhost +
-#xrandr --output LVDS1 --off
-#echo 1 > ~/xr.log
-xrandr --output LVDS1 --off --verbose >> ~/xr.log
-#echo 2 >> ~/xr.log
-xrandr --output HDMI1 --mode 1920x1080 --primary --verbose >> ~/xr.log
-#echo 3 >> ~/xr.log
-xrandr --output LVDS1 --mode 1600x900 --right-of HDMI1 --pos 1920x0 --verbose >> ~/xr.log
-#echo 4 >> ~/xr.log
+#xhost +
 xmodmap ~/.xmodmaprc
 keynav daemonize &
 #picom &
+xcompmgr -fcD 1 &
 unclutter --timeout 1.2 &
 nitrogen --restore
+pulseaudio --start

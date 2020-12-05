@@ -34,7 +34,7 @@
 ! URxvt*cursorUnderline:                boolean
  URxvt*cursorBlink:                    true
  URxvt*pointerBlank:                   true
- URxvt*background:                     [92]#000000
+ URxvt*background:                     [85]#000000
  URxvt*foreground:                     [100]#08e020
  URxvt*color0:                         #000814
 !nazwy pol (htop)/zegar (zsh-p10k-rainbow),tlo (mc)
@@ -44,11 +44,11 @@
 !tlo elementow docelowych linkow (bash)/tlo postepu (apt)/zuzycie zasobow (htop), katalogi (mc)
  URxvt*color3:                         #cfcf4a
 !tlo znacznikow czasu (zsh-p10k-rainbow)/postep pobierania (apt)
- URxvt*color4:                         #020148
+ URxvt*color4:                         #04127a
 !tlo polozenia (zsh-p10k-rainbow)/tlo podkreslenia linkow przy ls -la (bash)
  URxvt*color5:                         #ff0000
 !tlo oaczek z zewn repopzytoriow (pcurses)
- URxvt*color6:                         #280096
+ URxvt*color6:                         #3204a8
 !zajecie pamieci i tla opcji (htop), polecenie (zsh)
  URxvt*color7:                         #ffffee
 !tlo elementow bocznych (zsh-p10k-rainbow)

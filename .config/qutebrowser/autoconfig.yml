@@ -21,6 +21,8 @@ settings:
         ',Nl': hint links spawn mpv --ytdl-format="bestvideo[height<=480]+bestaudio"
           {hint-url}
         ',Nm': hint links spawn mpv {hint-url}
+        ',Nq': hint links spawn mpv --ytdl-format="bestvideo[height<=1440]+bestaudio"
+          {hint-url}
         ',V': hint links spawn vlc {hint-url}
         ',m': spawn smplayer {url}
         ',nH': spawn mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" {url}
@@ -31,6 +33,7 @@ settings:
         ',nh': spawn mpv --ytdl-format="bestvideo[height<=720]+bestaudio" {url}
         ',nl': spawn mpv --ytdl-format="bestvideo[height<=480]+bestaudio" {url}
         ',nm': spawn mpv {url}
+        ',nq': spawn mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" {url}
         ',v': spawn vlc {url}
         <Ctrl+r>: restart
         H: tab-prev
@@ -95,6 +98,8 @@ settings:
   content.media.video_capture:
     global: ask
   content.notifications:
+    https://explosionfiles.com: false
+    https://teamshiginima.com: false
     https://usersdrive.com: false
     https://www.filmweb.pl: false
     https://www.komputronik.pl: false
@@ -112,11 +117,13 @@ settings:
     - -c
     - normal {line}G{column0}l
   fonts.default_size:
-    global: 9pt
+    global: 10pt
+  fonts.web.size.default:
+    global: 18
   new_instance_open_target:
     global: tab
   statusbar.show:
-    global: in-mode
+    global: always
   tabs.background:
     global: true
   tabs.show:
