@@ -34,8 +34,8 @@
 ! URxvt*cursorUnderline:                boolean
  URxvt*cursorBlink:                    true
  URxvt*pointerBlank:                   true
- URxvt*background:                     [85]#000000
- URxvt*foreground:                     [100]#08e020
+ URxvt*background:                     [87]#000000
+ URxvt*foreground:                     [100]#08d020
  URxvt*color0:                         #000814
 !nazwy pol (htop)/zegar (zsh-p10k-rainbow),tlo (mc)
  URxvt*color1:                         #008888
@@ -63,7 +63,7 @@
  URxvt*color12:                        #dea000
 !katalogi (ls)
  URxvt*color13:                        #ff00f0
- !???
+!???
  URxvt*color14:                        #cd0224
 !nazwy miekkich linkow
  URxvt*color15:                        #666666

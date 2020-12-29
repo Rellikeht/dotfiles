@@ -48,7 +48,9 @@ semicolon warp,end
 1 click 1
 2 click 2
 3 click 3
-
+alt+1 drag 1
+alt+2 drag 2
+alt+3 drag 3
 # Zoom to the current window
 w windowzoom
 
