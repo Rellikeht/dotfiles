@@ -1,0 +1,23 @@
+alias nano='nano --rcfile=~/.nanorc'
+alias ls='ls --color=always'
+alias ll='ls -la'
+alias nv=nvim
+alias sv=svim
+alias gsv=gsvim
+alias se=exs
+alias em=emacs
+alias sb=sbase-box
+alias bb=busybox
+alias ss=sensors
+alias lcs='loginctl suspend'
+alias upg='pacman -Syu'
+alias yv=youtube-viewer
+alias rb=reboot
+alias po=poweroff
+alias pc=pcurses
+alias pa=pacman
+alias qalc="qalc -s \"decimal comma off\""
+alias lsf="ls -FA --color=never --dereference-command-line-symlink-to-dir"
+alias fzf="fzf -m -e"
+alias fzy="fzy -l 20"
+alias fzc="sh -c \`lsf \\\`echo $PATH | sed \"s/:/ /g\"\\\` | sed -n \"/\*/s/*//p\" | fzy\`"

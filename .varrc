@@ -1,0 +1,16 @@
+#better colors for man
+LESS_TERMCAP_md=$'\e[01;31m' \
+LESS_TERMCAP_me=$'\e[0m' \
+LESS_TERMCAP_se=$'\e[0m' \
+LESS_TERMCAP_so=$'\e[01;44;33m' \
+LESS_TERMCAP_ue=$'\e[0m' \
+LESS_TERMCAP_us=$'\e[01;32m' \
+
+#bind  '"\C-\\":"fzf"'
+PAGER=less
+EDITOR=vim
+QT_QPA_PLATFORMTHEME=qt5ct
+#PLAN9=/ext/plan9
+#QT_QPA_PLATFORM=xcb
+PATH=$PATH:$PLAN9/bin
+PATH=$PATH:/ext/eclipse/cpp/eclipse

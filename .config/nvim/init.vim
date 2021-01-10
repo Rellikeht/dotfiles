@@ -1,5 +1,6 @@
 " This line makes pacman-installed global Arch Linux vim packages work.
 source /usr/share/nvim/archlinux.vim
+source ~/.vimrc
 
 " Add optional packages.
 "
@@ -16,7 +17,7 @@ source /usr/share/nvim/archlinux.vim
 "
 " You should not turn this setting on if you wish to use ALE as a completion
 " source for other completion plugins, like Deoplete.
-let g:ale_completion_enabled = 1
+"let g:ale_completion_enabled = 1
 
 " Plugins will be downloaded under the specified directory.
  call plug#begin('~/.config/nvim/plugins')
@@ -29,7 +30,7 @@ let g:ale_completion_enabled = 1
  Plug 'unblevable/quick-scope'
 " Plug 'justinmk/vim-sneak'
  Plug 'easymotion/vim-easymotion'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'maxboisvert/vim-simple-complete'
  Plug 'norcalli/nvim-colorizer.lua'
 
@@ -41,15 +42,20 @@ let g:ale_completion_enabled = 1
 "  Plug 'roxma/vim-hug-neovim-rpc'
 "endif
 "  Plug 'deoplete-plugins/deoplete-jedi'
+"  Plug 'deoplete-plugins/deoplete-clangx'
 "let g:deoplete#enable_at_startup = 1
 
 " List ends here. Plugins become visible to Vim after this call.
  call plug#end()
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+inoremap <silent><expr> <Tab> coc#refresh()
+
 set termguicolors
 lua require'colorizer'.setup()
 
 let mapleader = ','
-
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -65,8 +71,18 @@ nmap <Leader>l <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+"nnoremap tk  :tabfirst<CR>
+"nnoremap tj  :tablast<CR>
+"nnoremap tm  :tabm<Space>
+"nnoremap te  :tabedit<Space>
+"nnoremap tt  :tabedit<Space>
+"nnoremap td  :tabclose<CR>
+"nnoremap tl :tabnext<CR>
+"nnoremap th :tabprev<CR>
+"nnoremap tn :tabnew<CR>
+
 set nu rnu
 syntax on
-set wildmenu
-set smartcase
-set ignorecase
+"set wildmenu
+"set smartcase
+"set ignorecase

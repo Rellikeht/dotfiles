@@ -9,3 +9,4 @@ xcompmgr -fcD 1 &
 unclutter --timeout 1.2 &
 nitrogen --restore
 pulseaudio --start
+nvidia-settings --load-config-only &

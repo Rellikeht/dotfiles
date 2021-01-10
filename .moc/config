@@ -69,13 +69,12 @@
 #
 # Example:    MusicDir = "/home/joe/music"
 #
-MusicDir = /home/michal/Muzyka/
-#MusicDir = /ddisk/muzyka/
+MusicDir = /mnt/karta/Muzyka/
 
 # Start in the music directory by default?  If set to 'no', start
 # in the current directory by default.  A single directory on
 # the command line takes precedence.
-#StartInMusicDir = no
+StartInMusicDir = no
 
 # How to sort?  FileName is the option's only value for now.
 #Sort = FileName
@@ -89,7 +88,7 @@ MusicDir = /home/michal/Muzyka/
 
 # Set playback toggles.
 #Repeat = no
-#Shuffle = no
+Shuffle = yes
 #AutoNext = yes
 
 # Default FormatString:
