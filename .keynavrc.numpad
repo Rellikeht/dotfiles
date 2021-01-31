@@ -1,0 +1,107 @@
+# This is a keynavrc file. Yours should live in 
+# $HOME/.config/keynav/keynavrc
+#
+# Lines beginning with '#' are comments.
+# Format is:
+#   keysequence cmd1,cmd2,cmd3...
+#
+# Other special values are:
+#   'clear' on a line by itself (no quotes) will erase all keybindings
+#   (including the defaults)
+#   'daemonize' on a line by itself (no quotes) will make keynav background
+#   after parsing the configfile and having no critical errors.
+# 
+# The 'start' command alone is handled specially, in that any key sequence
+# mapped to 'start' will be grabbed when keynav starts up so you can invoke it
+# to activate keynav. The remaining keys are only recognized while keynav is
+# active
+#
+# Project page; http://www.semicomplete.com/projects/keynav
+
+# Use 'clear' to blow away any previous keybindings
+#clear
+
+# Use 'daemonize' to background ourselves.
+#daemonize
+
+# Zoom to the current window
+#w windowzoom
+
+# Zoom to the cursor location with a given height and width
+#c cursorzoom 200 200
+
+# Record keynav actions
+#q record
+#shift+at playback
+### History
+#a history-back
+
+### Example using the 'sh' command.
+# Make firefox the active window
+#f sh "xdotool windowactivate $(xdotool search -title -- '- Mozilla Firefox')", end
+# Make a new tab in google chrome:
+#t sh "xdotool windowactivate $(xdotool search --title -- '- Google Chrome' | head -1); xdotool key ctrl+t",end
+# Paste
+#v sh "xdotool key shift+Insert"
+
+clear
+Super+ctrl+semicolon start, grid 3x3
+#control+semicolon start, grid 3x3
+Escape end
+#z end
+
+KP_Add click 1 #Numpad +
+KP_Enter click 3 #Numpad enter
+KP_Insert click 2 #Numpad 0
+KP_Delete history-back #Numpad del
+KP_Divide drag 1 #Numpad /
+KP_Multiply drag 2 #Numpad *
+KP_Subtract drag 3 #Numpad -
+
+Prior click 4
+Next click 5
+Home record
+End playback
+Insert restart
+Delete history-back
+
+#Numpad 1-9
+KP_End cell-select 1x3, warp
+KP_Down cell-select 2x3, warp
+KP_Next cell-select 3x3, warp
+KP_Left cell-select 1x2, warp
+KP_Begin cell-select 2x2, warp
+KP_Right cell-select 3x2, warp
+KP_Home cell-select 1x1, warp
+KP_Up cell-select 2x1, warp
+KP_Prior cell-select 3x1, warp
+
+shift+KP_End    move-down 1, move-left 1, warp
+shift+KP_Down   move-down 1, warp
+shift+KP_Next   move-down 1, move-right 1, warp
+shift+KP_Left   move-left 1, warp
+shift+KP_Begin  windowzoom, warp
+shift+KP_Right  move-right 1, warp
+shift+KP_Home   move-up 1, move-left 1, warp
+shift+KP_Up     move-up 1, warp
+shift+KP_Prior  move-up 1, move-right 1 , warp
+
+ctrl+KP_End    move-down 1,  move-left 1, move-down 1, move-left 1, warp
+ctrl+KP_Down   move-down 1              , move-down 1, warp
+ctrl+KP_Next   move-down 1,  move-right , move-down 1, move-right 11, warp
+ctrl+KP_Left   move-left 1              , move-left 1, warp
+#ctrl+KP_Begin                          , warp
+ctrl+KP_Right  move-right 1             , move-right 1, warp
+ctrl+KP_Home   move-up 1,   move-left 1 , move-up 1, move-left 1, warp
+ctrl+KP_Up     move-up 1                , move-up 1, warp
+ctrl+KP_Prior  move-up 1,   move-right 1, move-up 1, move-right 1 , warp
+
+alt+KP_End    move-down .5, move-left .5, warp
+alt+KP_Down   move-down .5, warp
+alt+KP_Next   move-down .5, move-right .5, warp
+alt+KP_Left   move-left .5, warp
+#alt+KP_Begin , warp
+alt+KP_Right  move-right .5, warp
+alt+KP_Home   move-up .5, move-left .5, warp
+alt+KP_Up     move-up .5, warp
+alt+KP_Prior  move-up .5, move-right .5 , warp

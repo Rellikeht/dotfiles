@@ -1,3 +1,4 @@
+alias sudo=doas
 alias nano='nano --rcfile=~/.nanorc'
 alias ls='ls --color=always'
 alias ll='ls -la'

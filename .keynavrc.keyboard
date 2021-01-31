@@ -1,0 +1,106 @@
+# This is a keynavrc file. Yours should live in 
+# $HOME/.config/keynav/keynavrc
+#
+# Lines beginning with '#' are comments.
+# Format is:
+#   keysequence cmd1,cmd2,cmd3...
+#
+# Other special values are:
+#   'clear' on a line by itself (no quotes) will erase all keybindings
+#   (including the defaults)
+#   'daemonize' on a line by itself (no quotes) will make keynav background
+#   after parsing the configfile and having no critical errors.
+# 
+# The 'start' command alone is handled specially, in that any key sequence
+# mapped to 'start' will be grabbed when keynav starts up so you can invoke it
+# to activate keynav. The remaining keys are only recognized while keynav is
+# active
+#
+# Project page; http://www.semicomplete.com/projects/keynav
+
+# Use 'clear' to blow away any previous keybindings
+#clear
+
+# Use 'daemonize' to background ourselves.
+#daemonize
+
+# Zoom to the current window
+#w windowzoom
+
+# Zoom to the cursor location with a given height and width
+#c cursorzoom 200 200
+
+# Record keynav actions
+#q record
+#shift+at playback
+### History
+#a history-back
+
+### Example using the 'sh' command.
+# Make firefox the active window
+#f sh "xdotool windowactivate $(xdotool search -title -- '- Mozilla Firefox')", end
+# Make a new tab in google chrome:
+#t sh "xdotool windowactivate $(xdotool search --title -- '- Google Chrome' | head -1); xdotool key ctrl+t",end
+# Paste
+#v sh "xdotool key shift+Insert"
+
+clear
+Super+semicolon start, grid 3x3
+#control+semicolon start, grid 3x3
+Escape end
+z end
+
+s click 1 
+d click 2 
+f click 3 
+w drag 1 
+e drag 2 
+r drag 3 
+a click 4
+g click 5
+
+q record
+t playback
+space history-back 
+v history-back 
+grave restart
+
+m  cell-select 1x3, warp
+comma  cell-select 2x3, warp
+period  cell-select 3x3, warp
+j  cell-select 1x2, warp
+k  cell-select 2x2, warp
+l  cell-select 3x2, warp
+u  cell-select 1x1, warp
+i cell-select 2x1, warp
+o cell-select 3x1, warp 
+
+shift+m    move-down 1, move-left 1, warp
+shift+comma    move-down 1, warp
+shift+period    move-down 1, move-right 1, warp
+shift+j    move-left 1, warp
+shift+k    windowzoom, warp
+shift+l    move-right 1, warp
+shift+u    move-up 1, move-left 1, warp
+shift+i    move-up 1, warp
+shift+o    move-up 1, move-right 1 , warp
+
+ctrl+m     move-down 1,  move-left 1, move-down 1, move-left 1, warp
+ctrl+comma    move-down 1              , move-down 1, warp
+ctrl+period    move-down 1,  move-right , move-down 1, move-right 11, warp
+ctrl+j     move-left 1              , move-left 1, warp
+#ctrl+k                             , warp
+ctrl+l     move-right 1             , move-right 1, warp
+ctrl+u     move-up 1,   move-left 1 , move-up 1, move-left 1, warp
+ctrl+i    move-up 1                , move-up 1, warp
+ctrl+o    move-up 1,   move-right 1, move-up 1, move-right 1 , warp
+
+alt+m    move-down .5, move-left .5, warp
+alt+comma   move-down .5, warp
+alt+period   move-down .5, move-right .5, warp
+alt+j    move-left .5, warp
+#alt+k   , warp
+alt+l    move-right .5, warp
+alt+u    move-up .5, move-left .5, warp
+alt+i     move-up .5, warp
+alt+o     move-up .5, move-right .5 , warp
