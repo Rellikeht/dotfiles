@@ -42,3 +42,6 @@ set nu rnu
 silent! syntax on
 silent! colorscheme darkblue
 "torte
+if v:progname =~? "gsvim" || v:progname =~? "gsview"
+	silent! set guifont=-xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1	
+endif

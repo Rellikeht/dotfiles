@@ -124,7 +124,7 @@ Shuffle = yes
 # Sound driver - OSS, ALSA, JACK, SNDIO (on OpenBSD) or null (only for
 # debugging).  You can enter more than one driver as a colon-separated
 # list.  The first working driver will be used.
-#SoundDriver = JACK:ALSA:OSS
+SoundDriver = ALSA:JACK:OSS
 
 # Jack output settings.
 #JackClientName = "moc"
@@ -180,7 +180,7 @@ Shuffle = yes
 #Equalizer_SaveState = yes
 
 # Show files with dot at the beginning?
-ShowHiddenFiles = no
+ShowHiddenFiles = yes
 
 # Hide file name extensions?
 #HideFileExtension = no
@@ -270,7 +270,7 @@ Theme = darkdot_theme
 #Precache = yes
 
 # Remember the playlist after exit?
-#SavePlaylist = yes
+SavePlaylist = yes
 
 # When using more than one client (interface) at a time, do they share
 # the playlist?
@@ -295,9 +295,9 @@ Keymap = keymap
 #             Fastdir3 = /mp3/rap
 #             Fastdir4 = /mp3/etc
 #
-Fastdir1 = "/home/michal/Muzyka/mały szajs/"
-Fastdir2 = "/home/michal/Muzyka/duży szajs/"
-Fastdir3 = /home/michal/Muzyka/stara/
+Fastdir1 = "/home/michal/Muzyka/"
+Fastdir2 = "/mnt/karta/Muzyka/"
+Fastdir3 = /home/michal/Pobrane/
 #Fastdir4 =
 #Fastdir5 =
 #Fastdir6 =
@@ -309,7 +309,7 @@ Fastdir3 = /home/michal/Muzyka/stara/
 # How fast to seek (in number of seconds per keystroke).  The first
 # option is for normal seek and the second for silent seek.
 #SeekTime = 1
-#SilentSeekTime = 5
+SilentSeekTime = 10
 
 # PreferredDecoders allows you to specify which decoder should be used
 # for any given audio format.  It is a colon-separated list in which

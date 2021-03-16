@@ -45,25 +45,37 @@
 #v sh "xdotool key shift+Insert"
 
 clear
-Super+ctrl+semicolon start, grid 3x3
+Super+shift+semicolon start, grid 3x3
+Super+colon start, loadconfig ~/.keynavrc.keyboard
 #control+semicolon start, grid 3x3
 Escape end
 #z end
 
-KP_Add click 1 #Numpad +
+KP_Add click 2 #Numpad +
 KP_Enter click 3 #Numpad enter
-KP_Insert click 2 #Numpad 0
-KP_Delete history-back #Numpad del
-KP_Divide drag 1 #Numpad /
-KP_Multiply drag 2 #Numpad *
+KP_Insert click 1 #Numpad 0
+#KP_Delete history-back #Numpad del
+#Numpad /
+KP_Divide start, grid 3x3
+KP_Multiply drag 1 #Numpad *
 KP_Subtract drag 3 #Numpad -
+KP_Delete end
 
-Prior click 4
-Next click 5
-Home record
-End playback
-Insert restart
-Delete history-back
+shift+KP_Add click 4 #Numpad +
+shift+KP_Enter click 5 #Numpad enter
+#shift+KP_Insert click 1 #Numpad 0
+#KP_Delete history-back #Numpad del
+#KP_Divide drag 1 #Numpad /
+shift+KP_Multiply drag 2 #Numpad *
+#KP_Subtract #Numpad -
+#KP_Delete start, grid 3x3
+
+#Prior click 4
+#Next click 5
+#Home record
+#End playback
+#Insert restart
+#Delete history-back
 
 #Numpad 1-9
 KP_End cell-select 1x3, warp
@@ -96,12 +108,80 @@ ctrl+KP_Home   move-up 1,   move-left 1 , move-up 1, move-left 1, warp
 ctrl+KP_Up     move-up 1                , move-up 1, warp
 ctrl+KP_Prior  move-up 1,   move-right 1, move-up 1, move-right 1 , warp
 
-alt+KP_End    move-down .5, move-left .5, warp
-alt+KP_Down   move-down .5, warp
-alt+KP_Next   move-down .5, move-right .5, warp
-alt+KP_Left   move-left .5, warp
-#alt+KP_Begin , warp
-alt+KP_Right  move-right .5, warp
-alt+KP_Home   move-up .5, move-left .5, warp
-alt+KP_Up     move-up .5, warp
-alt+KP_Prior  move-up .5, move-right .5 , warp
+#alt+KP_End    move-down .5, move-left .5, warp
+#alt+KP_Down   move-down .5, warp
+#alt+KP_Next   move-down .5, move-right .5, warp
+#alt+KP_Left   move-left .5, warp
+##alt+KP_Begin , warp
+#alt+KP_Right  move-right .5, warp
+#alt+KP_Home   move-up .5, move-left .5, warp
+#alt+KP_Up     move-up .5, warp
+#alt+KP_Prior  move-up .5, move-right .5 , warp
+
+#KP_Insert+KP_End   sh "xdotool mousemove_relative -- -50 -50" 
+#KP_Insert+KP_Down  sh "xdotool mousemove_relative -- 0 -50" 
+#KP_Insert+KP_Next  sh "xdotool mousemove_relative -- 50 -50" 
+#KP_Insert+KP_Left  sh "xdotool mousemove_relative -- -50 0" 
+##KP_Insert+KP_Begin sh "xdotool mousemove_relative 50 50" 
+#KP_Insert+KP_Right sh "xdotool mousemove_relative 50 0" 
+#KP_Insert+KP_Home  sh "xdotool mousemove_relative -- -50 50" 
+#KP_Insert+KP_Up    sh "xdotool mousemove_relative 0 50" 
+#KP_Insert+KP_Prior sh "xdotool mousemove_relative 50 50" 
+
+#alt+shift+KP_End   sh "xdotool mousemove_relative -- -50 50"
+#alt+shift+KP_Down  sh "xdotool mousemove_relative -- 0 50"
+#alt+shift+KP_Next  sh "xdotool mousemove_relative -- 50 50"
+#alt+shift+KP_Left  sh "xdotool mousemove_relative -- -50 0"
+##alt+shift+KP_Begin sh "xdotool mousemove_relative -- 50 50"
+#alt+shift+KP_Right sh "xdotool mousemove_relative -- 50 0"
+#alt+shift+KP_Home  sh "xdotool mousemove_relative -- -50 -50"
+#alt+shift+KP_Up    sh "xdotool mousemove_relative -- 0 -50"
+#alt+shift+KP_Prior sh "xdotool mousemove_relative -- 50 -50"
+
+alt+ctrl+KP_End   sh "for i in `seq 2 32`; do xdotool mousemove_relative -- -$((50/$i+1)) $((50/$i+1)); sleep .0133333333; done"
+alt+ctrl+KP_Down  sh "for i in `seq 2 32`; do xdotool mousemove_relative -- 0 $((50/$i+1)); sleep .0133333333; done"
+alt+ctrl+KP_Next  sh "for i in `seq 2 32`; do xdotool mousemove_relative -- $((50/$i+1)) $((50/$i+1)); sleep .0133333333; done"
+alt+ctrl+KP_Left  sh "for i in `seq 2 32`; do xdotool mousemove_relative -- -$((50/$i+1)) 0; sleep .0133333333; done"
+#alt+ctrl+KP_Begin sh "for i in `seq 2 32`; do xdotool mousemove_relative -- $((50/$i+1)) 0; sleep .0133333333; done"
+alt+ctrl+KP_Right sh "for i in `seq 2 32`; do xdotool mousemove_relative -- $((50/$i+1)) 0; sleep .0133333333; done"
+alt+ctrl+KP_Home  sh "for i in `seq 2 32`; do xdotool mousemove_relative -- -$((50/$i+1)) -$((50/$i+1)); sleep .0133333333; done"
+alt+ctrl+KP_Up    sh "for i in `seq 2 32`; do xdotool mousemove_relative -- 0 -$((50/$i+1)); sleep .0133333333; done"
+alt+ctrl+KP_Prior sh "for i in `seq 2 32`; do xdotool mousemove_relative -- $((50/$i+1)) -$((50/$i+1)); sleep .0133333333; done"
+
+alt+shift+KP_End   sh "for i in `seq 15 46`; do xdotool mousemove_relative -- -$((13-180/$i)) $((13-180/$i)); sleep .0133333333; done"
+alt+shift+KP_Down  sh "for i in `seq 15 46`; do xdotool mousemove_relative -- 0 $((13-180/$i)); sleep .0133333333; done"
+alt+shift+KP_Next  sh "for i in `seq 15 46`; do xdotool mousemove_relative -- $((13-180/$i)) $((13-180/$i)); sleep .0133333333; done"
+alt+shift+KP_Left  sh "for i in `seq 15 46`; do xdotool mousemove_relative -- -$((13-180/$i)) 0; sleep .0133333333; done"
+#alt+shift+KP_Begin sh "for i in `seq 15 46`; do xdotool mousemove_relative -- $((13-180/$i)) 0; sleep .0133333333; done"
+alt+shift+KP_Right sh "for i in `seq 15 46`; do xdotool mousemove_relative -- $((13-180/$i)) 0; sleep .0133333333; done"
+alt+shift+KP_Home  sh "for i in `seq 15 46`; do xdotool mousemove_relative -- -$((13-180/$i)) -$((13-180/$i)); sleep .0133333333; done"
+alt+shift+KP_Up    sh "for i in `seq 15 46`; do xdotool mousemove_relative -- 0 -$((13-180/$i)); sleep .0133333333; done"
+alt+shift+KP_Prior sh "for i in `seq 15 46`; do xdotool mousemove_relative -- $((13-180/$i)) -$((13-180/$i)); sleep .0133333333; done"
+
+alt+KP_End   sh "for i in `seq 1 18`; do xdotool mousemove_relative -- -2 2; sleep .0066666666; done"
+alt+KP_Down  sh "for i in `seq 1 18`; do xdotool mousemove_relative -- 0 2; sleep .0066666666; done"
+alt+KP_Next  sh "for i in `seq 1 18`; do xdotool mousemove_relative -- 2 2; sleep .0066666666; done"
+alt+KP_Left  sh "for i in `seq 1 18`; do xdotool mousemove_relative -- -2 0; sleep .0066666666; done"
+#alt+KP_Begin sh "for i in `seq 1 18`; do xdotool mousemove_relative -- 2 0; sleep .0066666666; done"
+alt+KP_Right sh "for i in `seq 1 18`; do xdotool mousemove_relative -- 2 0; sleep .0066666666; done"
+alt+KP_Home  sh "for i in `seq 1 18`; do xdotool mousemove_relative -- -2 -2; sleep .0066666666; done"
+alt+KP_Up    sh "for i in `seq 1 18`; do xdotool mousemove_relative -- 0 -2; sleep .0066666666; done"
+alt+KP_Prior sh "for i in `seq 1 18`; do xdotool mousemove_relative -- 2 -2; sleep .0066666666; done"
+
+#Num_Lock sh "xdotool key --window `xdotool getwindowfocus` k"
+#alt+Num_Lock sh "sleep 1 && xdotool key --window `xdotool getwindowfocus` k"
+#shift+Num_Lock sh "xdotool key k"
+#alt+Num_Lock sh "xmessage `xdotool getwindowfocus`"
+#Num_Lock sh "xdotool sleep 0.01 key --window `xdotool getwindowfocus` --clearmodifier k", end, start, grid 3x3
+#Num_Lock sh "xdotool sleep 0.02 keydown k sleep 0.02 keyup k sleep 0.02"
+#Num_Lock end, sh "xdotool key --clearmodifiers k", start, grid 3x3
+#Num_Lock sh "sleep 0.01 && xdotool key --clearmodifiers k", end, start, grid 3x3
+#Num_Lock sh "xdotool keydown --clearmodifiers k", end, start, grid 3x3
+#Num_Lock sh "xdotool keydown --clearmodifiers k", end, start, sh "xdotool keyup --clearmodifiers k", grid 3x3
+#Num_Lock end, sh "xdotool keydown k sleep .1 keyup k", start, grid 3x3
+#Num_Lock sh "xdotool key k", end
+
+#2x75 Hz
+#while true; do xdotool mousemove_relative 2 0; sleep .0066666666; done
+#2x60 Hz
+#while true; do xdotool mousemove_relative 2 0; sleep .0083333333; done

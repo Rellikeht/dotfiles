@@ -40,6 +40,10 @@ settings:
         J: back
         K: forward
         L: tab-next
+        gJ: null
+        gK: null
+        gh: tab-move -
+        gl: tab-move +
         ps: insert-text {primary}
         ys: yank selection
   colors.webpage.darkmode.algorithm:
@@ -50,6 +54,8 @@ settings:
     global: false
   colors.webpage.darkmode.policy.images:
     global: never
+  content.canvas_reading:
+    global: false
   content.geolocation:
     https://allegrolokalnie.pl: true
   content.javascript.enabled:

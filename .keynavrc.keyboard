@@ -46,6 +46,9 @@
 
 clear
 Super+semicolon start, grid 3x3
+#semicolon start, grid 3x3
+Super+shift+colon start, loadconfig ~/.keynavrc.numpad, loadconfig ~/.keynavrc.gaming
+Super+alt+colon start, loadconfig ~/.keynavrc.numpad
 #control+semicolon start, grid 3x3
 Escape end
 z end
@@ -58,9 +61,13 @@ e drag 2
 r drag 3 
 a click 4
 g click 5
+shift+a click 4 shift
+shift+g click 5 shift
+q click 4, click 4
+t click 5, click 5
 
-q record
-t playback
+x record
+c playback
 space history-back 
 v history-back 
 grave restart
@@ -104,3 +111,6 @@ alt+l    move-right .5, warp
 alt+u    move-up .5, move-left .5, warp
 alt+i     move-up .5, warp
 alt+o     move-up .5, move-right .5 , warp
+
+#c sh "xdotool mousemove_relative -- -50 -50"
+#c sh "xmessage `xdotool getactivewindow`"

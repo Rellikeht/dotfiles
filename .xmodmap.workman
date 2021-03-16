@@ -52,11 +52,11 @@ keycode  59 =        comma          less     dead_cedilla        asciitilde
 keycode  60 =       period       greater    dead_abovedot        asciitilde            
 keycode  61 =        slash      question     questiondown        asciitilde            
                                                                                       
-keycode  66 =    BackSpace        Escape        BackSpace         BackSpace            
+keycode  66 =    BackSpace        Escape        BackSpace         Escape
 keycode  94 =        minus    underscore           endash            emdash            
 keycode  65 =        space         space            space      nobreakspace            
 keycode 108 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
-keycode 113 =  Mode_switch   Mode_switch                                               
+!keycode 113 =  Mode_switch   Mode_switch                                               
 
 clear Lock
 

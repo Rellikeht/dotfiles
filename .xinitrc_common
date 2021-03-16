@@ -1,12 +1,14 @@
 #!/bin/sh
 xrdb .Xresources
-export QT_QPA_PLATFORM=xcb
+#export QT_QPA_PLATFORM=xcb
 #xhost +
-xmodmap ~/.xmodmaprc
 keynav daemonize &
 #picom &
-xcompmgr -fcD 1 &
+#xcompmgr -fcD 1 &
 unclutter --timeout 1.2 &
-nitrogen --restore
 pulseaudio --start &
 #nvidia-settings --load-config-only &
+#nvidia-settings -a "CurrentMetaMode=(ARmiaTyranaIjegoXenonu:0.0): id=50, switchable=no, source=nv-control :: DPY-1: nvidia-auto-select @2560x1440 +0+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+xrandr --output HDMI-0 --mode 2560x1440 --rate 75
+nitrogen --restore
+xmodmap ~/.xmodmaprc

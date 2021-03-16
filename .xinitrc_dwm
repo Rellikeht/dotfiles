@@ -1,5 +1,5 @@
 #!/bin/sh
-export TERMINAL=st
+#export TERMINAL=st
 rm .config/nitrogen/nitrogen.cfg 
 rm .config/nitrogen/bg-saved.cfg
 ln .config/nitrogen/nitrogen.dwm.cfg .config/nitrogen/nitrogen.cfg 

@@ -19,6 +19,7 @@ source ~/.vimrc
 " source for other completion plugins, like Deoplete.
 "let g:ale_completion_enabled = 1
 
+let g:ale_completion_enabled = 1
 " Plugins will be downloaded under the specified directory.
  call plug#begin('~/.config/nvim/plugins')
 
@@ -30,7 +31,7 @@ source ~/.vimrc
  Plug 'unblevable/quick-scope'
 " Plug 'justinmk/vim-sneak'
  Plug 'easymotion/vim-easymotion'
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'maxboisvert/vim-simple-complete'
  Plug 'norcalli/nvim-colorizer.lua'
 
@@ -50,7 +51,17 @@ source ~/.vimrc
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-inoremap <silent><expr> <Tab> coc#refresh()
+"inoremap <silent><expr> <Tab> coc#refresh()
+
+"inoremap <silent><expr> <Tab> deoplete#complete()
+" Use ALE as completion sources for all code.
+"call deoplete#custom#option('sources', {
+"\ '_': ['ale'],
+"\})
+
+let g:ale_completion_autoimport = 1
+"set omnifunc=ale#completion#OmniFunc
+"inoremap <silent><expr> <Tab> 
 
 set termguicolors
 lua require'colorizer'.setup()
@@ -82,7 +93,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "nnoremap tn :tabnew<CR>
 
 set nu rnu
-syntax on
+"syntax on
 "set wildmenu
 "set smartcase
 "set ignorecase

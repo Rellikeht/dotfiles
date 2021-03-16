@@ -5,14 +5,15 @@ then
 	then
 		spd="/"
 	fi
-	dirs="`ls -AFL \"$2$spd\" | nl -s "$2$spd" -n ln | sed -z \"s/\n/\\\\\n/g\"`"
+	dirs="`ls -AFL \"$2$spd\" | grep \"/\$\" | nl -s "$2$spd" -n ln | sed -z \"s/\n/\\\\\n/g\"`"
 	#  sed \"s/(.*)/\0/\" |
 else
-	dirs="`ls -AFL | sed -n \"/\//s/\///gp\" | nl -n ln | sed -z \"s/\n/\\\\\n/g\"`"
+	#dirs="`ls -AFL | sed -n \"/\//s/\///gp\" | nl -n ln | sed -z \"s/\n/\\\\\n/g\"`"
+	dirs="`ls -AFL | grep \"/\$\" | nl -s "./" -n ln | sed -z \"s/\n/\\\\\n/g\"`"
 fi
 #echo $dirs
+#echo
 echo $dirs | sed -n "/\/$/s/\/$//p"
-echo
 
 IFS="
 "
@@ -78,7 +79,7 @@ do
 
 		elif [ $c = "l" ]
 		then
-			echo $dirs | sed -n "/\/$/s/$\///p"
+			echo $dirs | sed -n "/\/$/s/\/$//p"
 		elif [ $c = "list" ]
 		then
 			echo $dirs | sed -n "/\/$/s/\/$//p"

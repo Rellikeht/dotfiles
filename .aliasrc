@@ -6,7 +6,9 @@ alias nv=nvim
 alias sv=svim
 alias gsv=gsvim
 alias se=exs
-alias em=emacs
+#alias emacs="emacs -nw"
+alias emg=emacs
+alias em="emacs -nw"
 alias sb=sbase-box
 alias bb=busybox
 alias ss=sensors
@@ -17,8 +19,15 @@ alias rb=reboot
 alias po=poweroff
 alias pc=pcurses
 alias pa=pacman
-alias qalc="qalc -s \"decimal comma off\""
+alias qc="qalc -s \"decimal comma off\""
 alias lsf="ls -FA --color=never --dereference-command-line-symlink-to-dir"
 alias fzf="fzf -m -e"
 alias fzy="fzy -l 20"
 alias fzc="sh -c \`lsf \\\`echo $PATH | sed \"s/:/ /g\"\\\` | sed -n \"/\*/s/*//p\" | fzy\`"
+alias spacemacs="HOME=~/.spacemacs.dir/ emacs"
+alias smg=spacemacs
+alias sm="spacemacs -nw"
+alias emc="emacsclient -nw"
+alias gemc=emacsclient
+alias emd="emacs --daemon"
+alias smd="spacemacs --daemon"
