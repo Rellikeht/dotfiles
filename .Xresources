@@ -161,3 +161,48 @@
  URxvt*keysym.M-p:			   eval:scroll_up 1
  URxvt*keysym.M-n:			   eval:scroll_down 1
 
+
+! XTerm*reverseVideo: on
+XTerm*font:                           xft:MesloLGS NF:regular:size=11
+XTerm*boldFont:                       xft:MesloLGS NF:bold:size=11
+XTerm*italicFont:                     xft:MesloLGS NF:italic:size=11
+
+!Gotham theme
+! XTerm*color0:			#0c1014
+! XTerm*color1:			#c23127
+! XTerm*color2:			#11151c
+! XTerm*color3:			#d26937
+! XTerm*color4:			#091f2e
+! XTerm*color5:			#edb443
+! XTerm*color6:			#0a3749
+! XTerm*color7:			#888ca6
+! XTerm*color8:			#245361
+! XTerm*color9:			#4e5166
+! XTerm*color10:			#599cab
+! XTerm*color11:			#195466
+! XTerm*color12:			#99d1ce
+! XTerm*color13:			#33859E
+! XTerm*color14:			#d3ebe9
+! XTerm*color15:			#2aa889
+
+!Omni theme (alacritty)
+XTerm*background:	#191622
+!XTerm*foreground:	#e1e1e6
+XTerm*cursorColor:	#f8f8f2
+XTerm*cursorColor2:	#191622
+XTerm*color0:		#000000
+XTerm*color1:		#ff5555
+XTerm*color2:		#50fa7b
+XTerm*color3:		#effa78
+XTerm*color4:		#bd93f9
+XTerm*color5:		#ff79c6
+XTerm*color6:		#8d79ba
+XTerm*color7:		#bfbfbf
+XTerm*color8:		#000000
+XTerm*color9:		#a90000
+XTerm*color10:		#049f2b
+XTerm*color11:		#a3b106
+XTerm*color12:		#530aba
+XTerm*color13:		#bb006b
+XTerm*color14:		#433364
+XTerm*color15:		#5f5f5f

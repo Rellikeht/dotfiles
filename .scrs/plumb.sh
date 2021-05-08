@@ -1,2 +1,2 @@
 #!/bin/sh
-xmessage "`xclip -o | sh -s`"
+xclip -o | sh -s | xmessage -file -

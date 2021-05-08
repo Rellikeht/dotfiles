@@ -177,6 +177,7 @@ dracula.draw.blood(c, {
 })
 
 config.set ("colors.webpage.darkmode.enabled", True)
-config.set ("fonts.default_size", "9pt")
+config.set ("fonts.default_size", "12pt")
 
 config.set('content.javascript.enabled', False, '*')
+config.set("hints.chars", "asdfjkl;")

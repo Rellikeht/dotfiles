@@ -56,6 +56,7 @@ keycode  66 =    BackSpace        Escape        BackSpace         Escape
 keycode  94 =        minus    underscore           endash            emdash            
 keycode  65 =        space         space            space      nobreakspace            
 keycode 108 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
+keycode 135 = Super_R
 !keycode 113 =  Mode_switch   Mode_switch                                               
 
 clear Lock

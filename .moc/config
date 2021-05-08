@@ -87,9 +87,9 @@ StartInMusicDir = no
 #MP3IgnoreCRCErrors = yes
 
 # Set playback toggles.
-#Repeat = no
+Repeat = no
 Shuffle = yes
-#AutoNext = yes
+AutoNext = yes
 
 # Default FormatString:
 #
@@ -183,15 +183,15 @@ SoundDriver = ALSA:JACK:OSS
 ShowHiddenFiles = yes
 
 # Hide file name extensions?
-#HideFileExtension = no
+HideFileExtension = no
 
 # Show file format in menu?
-#ShowFormat = yes
+ShowFormat = yes
 
 # Show file time in menu?  Possible values: 'yes', 'no' and 'IfAvailable'
 # (meaning show the time only when it is already known, which often works
 # faster).
-#ShowTime = IfAvailable
+ShowTime = yes
 
 # Show time played as a percentage in the time progress bar.
 #ShowTimePercent = no
@@ -237,7 +237,7 @@ Theme = darkdot_theme
 #MOCDir = ~/.moc
 
 # Use mmap() to read files.  mmap() is much slower on NFS.
-#UseMMap = no
+UseMMap = no
 
 # Use MIME to identify audio files.  This can make for slower loading
 # of playlists but is more accurate than using "extensions".
@@ -267,14 +267,14 @@ Theme = darkdot_theme
 #NonUTFXterm = no
 
 # Should MOC precache files to assist gapless playback?
-#Precache = yes
+Precache = yes
 
 # Remember the playlist after exit?
 SavePlaylist = yes
 
 # When using more than one client (interface) at a time, do they share
 # the playlist?
-#SyncPlaylist = yes
+SyncPlaylist = yes
 
 # Choose a keymap file (relative to '~/.moc/' or using an absolute path).
 # An annotated example keymap file is included ('keymap.example').
@@ -297,7 +297,7 @@ Keymap = keymap
 #
 Fastdir1 = "/home/michal/Muzyka/"
 Fastdir2 = "/mnt/karta/Muzyka/"
-Fastdir3 = /home/michal/Pobrane/
+Fastdir3 = "/home/michal/Pobrane/"
 #Fastdir4 =
 #Fastdir5 =
 #Fastdir6 =
@@ -308,7 +308,7 @@ Fastdir3 = /home/michal/Pobrane/
 
 # How fast to seek (in number of seconds per keystroke).  The first
 # option is for normal seek and the second for silent seek.
-#SeekTime = 1
+SeekTime = 1
 SilentSeekTime = 10
 
 # PreferredDecoders allows you to specify which decoder should be used
@@ -407,6 +407,7 @@ SilentSeekTime = 10
 #    Linear - a bit better and a bit slower.
 #
 #ResampleMethod = Linear
+ResampleMethod = SincMediumQuality
 
 # Always use this sample rate (in Hz) when opening the audio device (and
 # resample the sound if necessary).  When set to 0 the device is opened
@@ -418,7 +419,7 @@ SilentSeekTime = 10
 # to use 24bit output.  (The MP3 decoder, for example, uses this format.)
 # This is disabled by default because there were reports that it prevents
 # MP3 files from playing on some soundcards.
-#Allow24bitOutput = no
+Allow24bitOutput = yes
 
 # Use realtime priority for output buffer thread.  This will prevent gaps
 # while playing even with heavy load.  The user who runs MOC must have
@@ -483,13 +484,13 @@ SilentSeekTime = 10
 
 # When the song changes, should the menu be scrolled so that the currently
 # played file is visible?
-#FollowPlayedFile = yes
+FollowPlayedFile = yes
 
 # What to do if the interface was started and the server is already playing
 # something from the playlist?  If CanStartInPlaylist is set to 'yes', the
 # interface will switch to the playlist.  When set to 'no' it will start
 # from the last directory.
-#CanStartInPlaylist = yes
+CanStartInPlaylist = yes
 
 # Executing external commands (1 - 10) invoked with key commands (F1 - F10
 # by default).
@@ -549,7 +550,7 @@ SilentSeekTime = 10
 # levels of screen management are involved, detection might fail and this
 # could cause a screen upset.  In that situation you can use this option
 # to force screen titles off.
-#SetScreenTitle = yes
+SetScreenTitle = no
 
 # Display full paths instead of just file names in the playlist.
 #PlaylistFullPaths = yes
@@ -581,11 +582,11 @@ SilentSeekTime = 10
 #ErrorMessagesQueued = "!"
 
 # Self-describing ModPlug options (with 'yes' or 'no' values).
-#ModPlug_Oversampling = yes
-#ModPlug_NoiseReduction = yes
-#ModPlug_Reverb = no
-#ModPlug_MegaBass = no
-#ModPlug_Surround = no
+ModPlug_Oversampling = yes
+ModPlug_NoiseReduction = yes
+ModPlug_Reverb = no
+ModPlug_MegaBass = no
+ModPlug_Surround = yes
 
 # ModPlug resampling mode.
 # Valid values are:
@@ -687,4 +688,6 @@ SilentSeekTime = 10
 # is in the playlist.  The default is 'yes' because this is the way other
 # players usually behave.  (Note that this option previously took the
 # values 1 and 0; these are now deprecated in favour of 'yes' and 'no'.)
-#QueueNextSongReturn = yes
+QueueNextSongReturn = yes
+
+#add_directory

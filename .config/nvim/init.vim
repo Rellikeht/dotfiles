@@ -34,6 +34,7 @@ let g:ale_completion_enabled = 1
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'maxboisvert/vim-simple-complete'
  Plug 'norcalli/nvim-colorizer.lua'
+ Plug 'jceb/vim-orgmode'
 
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

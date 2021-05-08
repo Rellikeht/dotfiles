@@ -93,7 +93,7 @@ settings:
     '*://w3m.sourceforge.net/*': true
     '*://www.deepl.com/*': true
     '*://www.videolan.org/*': true
-    '*://www.youtube.com/*': true
+    '*://www.youtube.com/*': false
     global: true
   content.media.audio_capture:
     global: true
@@ -123,9 +123,11 @@ settings:
     - -c
     - normal {line}G{column0}l
   fonts.default_size:
-    global: 10pt
+    global: 14px
   fonts.web.size.default:
     global: 18
+  hints.chars:
+    global: asdfjkl;
   new_instance_open_target:
     global: tab
   statusbar.show:

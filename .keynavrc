@@ -30,5 +30,5 @@
 clear
 #loadconfig ~/.keynavrc.keyboard
 Super+colon start, loadconfig ~/.keynavrc.keyboard
-Super+shift+colon start, loadconfig ~/.keynavrc.numpad, loadconfig ~/.keynavrc.gaming
-Super+alt+colon start, loadconfig ~/.keynavrc.numpad
+#Super+shift+colon start, loadconfig ~/.keynavrc.numpad, loadconfig ~/.keynavrc.gaming
+#Super+alt+colon start, loadconfig ~/.keynavrc.numpad

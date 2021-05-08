@@ -5,6 +5,12 @@
 [[ $- != *i* ]] && return
 
 #aliases
+[ -f "/etc/.aliasrc" ] && source "/etc/.aliasrc"
+
+#common variables
+[ -f "/etc/.varrc" ] && source "/etc/.varrc"
+
+#aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
 #common variables

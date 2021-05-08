@@ -30,12 +30,16 @@ keycode  36 = Return NoSymbol Return
 keycode  37 = Control_L NoSymbol Control_L
 keycode  38 = a A a A aogonek Aogonek aogonek
 keycode  39 = s S s S sacute Sacute sacute
-keycode  40 = d D d D eth ETH eth
-keycode  41 = f F f F ae AE ae
+keycode  40 = d D d D braceleft bracketleft braceleft bracketleft 
+! eth ETH eth
+keycode  41 = f F f F braceright bracketright braceright bracketright
+! ae AE ae
 keycode  42 = g G g G eng ENG eng
 keycode  43 = h H h H rightsinglequotemark U2022 rightsinglequotemark
-keycode  44 = j J j J schwa SCHWA schwa
-keycode  45 = k K k K ellipsis dead_stroke ellipsis
+keycode  44 = j J j J minus underscore minus underscore
+! schwa SCHWA schwa
+keycode  45 = k K k K plus equal plus equal
+! ellipsis dead_stroke ellipsis
 keycode  46 = l L l L lstroke Lstroke lstroke
 keycode  47 = semicolon colon semicolon colon dead_acute dead_doubleacute dead_acute
 keycode  48 = apostrophe quotedbl apostrophe quotedbl dead_circumflex dead_caron dead_circumflex

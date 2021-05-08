@@ -1,29 +1,31 @@
 #!/bin/sh
+alias echo="echo -e"
 if [ -n "$2" ]
 then
 	if [ -z "`echo $2 | grep -E \"/$\"`" ]
 	then
 		spd="/"
 	fi
-	dirs="`ls -AFL \"$2$spd\" | grep \"/\$\" | nl -s "$2$spd" -n ln | sed -z \"s/\n/\\\\\n/g\"`"
+	dirs="`ls -AFL \"$2$spd\" | nl -s "$2$spd" -n ln | sed -z \"s/\n/\\\\\n/g\"`"
 	#  sed \"s/(.*)/\0/\" |
 else
-	#dirs="`ls -AFL | sed -n \"/\//s/\///gp\" | nl -n ln | sed -z \"s/\n/\\\\\n/g\"`"
-	dirs="`ls -AFL | grep \"/\$\" | nl -s "./" -n ln | sed -z \"s/\n/\\\\\n/g\"`"
+	dirs="`ls -AFL | sed -n \"/\//s/\///gp\" | nl -n ln | sed -z \"s/\n/\\\\\n/g\"`"
 fi
-#echo $dirs
-#echo
-echo $dirs | sed -n "/\/$/s/\/$//p"
+echo $dirs
+#echo $dirs | sed -n "/\/$/s/\/$//p"
+echo
 
+cf=0
 IFS="
 "
 opts="
- l (list)	- list directories\n
-d (del)	- delete file\n
-s (skip)	- skip file\n
-q (quit)	- quit\n
-o (opts)	- list options\n
-r (run)	- open file with program\n
+l (list)	- list directories\\n
+d (del)	- delete file\\n
+s (skip)	- skip file\\n
+q (quit)	- quit\\n
+o (opts)	- list options\\n
+r (run)	- open file with program\\n
+c (cp)		- copy file
 "
 
 rn()
@@ -60,6 +62,64 @@ do
 		then
 			continue
 
+		elif [ $c = "c" ] 
+		then
+			cf=1
+			read c
+			while [ -z "`echo $c | grep -E \"^[0-9]+$\"`" ]
+			do
+				read c
+				if [ $c = "q" ]
+				then
+					cf=2
+					break
+				fi
+			done
+			if [ $cf -eq 2 ]
+			then
+				cf=0
+				continue
+			fi
+			break
+
+		elif [ $c = "cp" ]
+		then
+			cf=1
+			read c
+			while [ -z "`echo $c | grep -E \"^[0-9]+$\"`" ]
+			do
+				read c
+				if [ $c = "q" ]
+				then
+					cf=2
+					break
+				fi
+			done
+			if [ $cf -eq 2 ]
+			then
+				cf=0
+				continue
+			fi
+
+		elif [ $c = "copy" ]
+		then
+			cf=1
+			read c
+			while [ -z "`echo $c | grep -E \"^[0-9]+$\"`" ]
+			do
+				read c
+				if [ $c = "q" ]
+				then
+					cf=2
+					break
+				fi
+			done
+			if [ $cf -eq 2 ]
+			then
+				cf=0
+				continue
+			fi
+
 		elif [ $c = "q" ] 
 		then
 			exit
@@ -79,10 +139,12 @@ do
 
 		elif [ $c = "l" ]
 		then
-			echo $dirs | sed -n "/\/$/s/\/$//p"
+			#echo $dirs | sed -n "/\/$/s/$\///p"
+			echo $dirs
 		elif [ $c = "list" ]
 		then
-			echo $dirs | sed -n "/\/$/s/\/$//p"
+			#echo $dirs | sed -n "/\/$/s/\/$//p"
+			echo $dirs
 
 		elif [ $c = "s" ]
 		then
@@ -102,15 +164,30 @@ do
 
 		elif [ $c = "d" ]
 		then
-			rm "$1$sp$f"
+			if [ -z `echo $f | grep -E "[^\\\\]/$"` ]
+			then
+				rm "$1$sp$f"
+			else
+				rm -r "$1$sp$f"
+			fi
 			break
 		elif [ $c = "del" ]
 		then
-			rm "$1$sp$f"
+			if [ -z `echo $f | grep -E "[^\\\\]/$"` ]
+			then
+				rm "$1$sp$f"
+			else
+				rm -r "$1$sp$f"
+			fi
 			break
 		elif [ $c = "delete" ]
 		then
-			rm "$1$sp$f"
+			if [ -z `echo $f | grep -E "[^\\\\]/$"` ]
+			then
+				rm "$1$sp$f"
+			else
+				rm -r "$1$sp$f"
+			fi
 			break
 
 		elif [ -n "`echo $c | grep -E \"^[0-9]+$\"`" ]
@@ -125,6 +202,7 @@ do
 	elif [ $c = "skip" ]
 	then
 		continue
+
 	elif [ $c = "d" ]
 	then
 		continue
@@ -136,6 +214,11 @@ do
 		continue
 	fi
 
+	if [ $cf -eq 1 ]
+	then
+		cp "$1$sp$f" "`echo $dirs | sed -n \"/^$c/{s/$c //;s/^[\t ]*//gp}\"`"
+		cf=0
+		continue
+	fi
 	mv "$1$sp$f" "`echo $dirs | sed -n \"/^$c/{s/$c //;s/^[\t ]*//gp}\"`"
 done
-
