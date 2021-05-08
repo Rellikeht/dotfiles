@@ -1,0 +1,15 @@
+!altgr
+keycode  92 = Control_R
+!keycode  92 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
+
+!left control
+!keycode  37 = Control_L NoSymbol Control_L
+keycode  37 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
+
+!caps lock
+clear Lock
+keycode 66 = Control_L
+
+!right control
+keycode 105 = Control_R NoSymbol Control_R
+!keycode 105 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
