@@ -44,13 +44,14 @@
 # Paste
 #v sh "xdotool key shift+Insert"
 
-clear
+#clear
 Super+semicolon start, grid 3x3
 #semicolon start, grid 3x3
 Super+shift+colon start, loadconfig ~/.keynavrc.numpad, loadconfig ~/.keynavrc.gaming
 Super+alt+colon start, loadconfig ~/.keynavrc.numpad
 #control+semicolon start, grid 3x3
 Escape end
+Caps_Lock end
 z end
 
 s click 1 

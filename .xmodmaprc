@@ -13,3 +13,4 @@ add mod3 = Hyper_L
 !keycode 9 = grave asciitilde grave asciitilde notsign logicalor notsign
 keycode  49 = grave asciitilde grave asciitilde asciitilde grave
 keycode 66 = Escape
+remove mod3 = Escape

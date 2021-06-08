@@ -9,7 +9,7 @@ lvl=$((lvl*65535/100))
 
 if [ -z "$2" ]
 then
-	timeout=.02
+	timeout=.05
 else
 	timeout=$2
 fi

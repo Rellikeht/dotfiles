@@ -166,6 +166,10 @@
 ;; End of xbindkeys guile configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-modules (ice-9 ftw))
+
+(define klays (list-tail (scandir ".xmodmap") 2))
+(define klay 0)
 (define pl "playerctl")
 (define pacts (list " play-pause" " volume 0"
 "d shift && playerctl -f \"{{xesam:title}}\" metadata | dzen2 -p 2"
@@ -198,20 +202,20 @@
 (xbindkey-function '("XF86AudioNext") (lambda () (pla pl 5)))
 (xbindkey-function '("XF86AudioPrev") (lambda () (pla pl 6)))
 
-;(xbindkey '("XF86AudioPlay") "playerctl play-pause")
-;(xbindkey '("XF86AudioMute") "playerctl volume 0")
-;(xbindkey '("XF86AudioStop") "playerctl stop")
-;(xbindkey '("XF86AudioRaiseVolume") "playerctl volume 0.05+")
-;(xbindkey '("XF86AudioLowerVolume") "playerctl volume 0.05-")
-;(xbindkey '("XF86AudioNext") "playerctl next")
-;(xbindkey '("XF86AudioPrev") "playerctl previous")
-
 (xbindkey '("XF86Calculator") "xcas")
-(xbindkey '("XF86HomePage") "tabbed st -w")
 (xbindkey '("XF86Mail") "emacs")
 (xbindkey '("XF86Explorer") "nvidia-settings")
+;(xbindkey '("XF86HomePage") "tabbed st -w")
+
+(xbindkey-function '("XF86HomePage") (lambda ()
+	(run-command (string-append "xmodmap .xmodmap/" (list-ref klays klay)))
+	(run-command (string-append "echo " (list-ref klays klay) " | dzen2 -p 2"))
+	(set! klay (modulo (+ klay 1) (length klays)))
+	(set! klays (list-tail (scandir ".xmodmap") 2))))
 
 (xbindkey '("Mod4" "Shift" "i") "xmodmap ~/.xmodmap/julka")
+(xbindkey '("Print") "shotgun")
+(xbindkey '("Pause") "playerctl -a pause")
 
 (define caps_mod 0)
 (define caps_amod 0)
@@ -229,3 +233,7 @@
 	(run-command (string-append "xmodmap -e 'keycode 66 = " (list-ref caps_amods caps_amod) "'"))
 	(run-command (string-append "echo " (list-ref caps_amods caps_amod) " | dzen2 -p 1"))))
 
+(define sl #f)
+(define sls (lambda () (set! sl (not sl)) (display sl)))
+; Mod4 + backslash
+(xbindkey-function '("m:0x40" "c:51") (lambda () (sls)))

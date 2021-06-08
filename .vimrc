@@ -59,11 +59,6 @@ nnoremap <C-k>H :tabm -1<CR>
 nnoremap <C-k>J :tabm $<CR>
 nnoremap <C-k>K :tabm 0<CR>
 
-"tnoremap <H-h> <C-w>h
-"tnoremap <H-j> <C-w>j
-"tnoremap <H-k> <C-w>k
-"tnoremap <H-l> <C-w>l
-
 set wildchar=<Tab>
 set wildmode=longest,list,full
 set wildmenu
@@ -84,3 +79,20 @@ silent! colorscheme darkblue
 if v:progname =~? "gsvim" || v:progname =~? "gsview"
 	silent! set guifont=-xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1	
 endif
+
+silent! let s:lay="qwe"
+silent! function! Wmt()
+	if s:lay =~? "wkm"
+		source .qwerty.vimrc
+		let s:lay="qwe"
+	else
+		source .workman.vimrc
+		let s:lay="wkm"
+	endif
+silent! endfunction
+
+" Mapping motion in workman layout to be more
+" 'normal' and cleaning keys messed in the process
+" y n e o are h j k l
+" and h j k l are e y n o
+map <C-x> :call Wmt()<CR>

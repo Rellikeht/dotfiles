@@ -4,7 +4,6 @@ if [ -n "$1" ]
 then
 	line=$1
 fi
-echo $line
 
 if [ -n "$2" ]
 then
