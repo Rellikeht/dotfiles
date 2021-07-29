@@ -145,6 +145,8 @@ SoundDriver = ALSA:JACK:OSS
 #    ALSADevice=tee:hw,'/tmp/out.wav',wav
 #
 #ALSADevice = default
+#ALSADevice = hw:1
+#ALSAMixer1 = Master
 #ALSAMixer1 = PCM
 #ALSAMixer2 = Master
 
@@ -180,7 +182,7 @@ SoundDriver = ALSA:JACK:OSS
 #Equalizer_SaveState = yes
 
 # Show files with dot at the beginning?
-ShowHiddenFiles = yes
+ShowHiddenFiles = no
 
 # Hide file name extensions?
 HideFileExtension = no
@@ -270,7 +272,7 @@ UseMMap = no
 Precache = yes
 
 # Remember the playlist after exit?
-SavePlaylist = yes
+SavePlaylist = no
 
 # When using more than one client (interface) at a time, do they share
 # the playlist?

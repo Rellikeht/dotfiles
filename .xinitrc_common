@@ -7,8 +7,13 @@ unclutter --timeout 1.2 &
 xrandr --output HDMI-0 --mode 2560x1440 --rate 75
 nitrogen --restore
 xmodmap ~/.xmodmap/qwerty
+sleep 0.3
 xmodmap ~/.xmodmaprc
 xbindkeys
-pulseaudio --start
+#pulseaudio --start
+pipewire &
+pipewire-pulse &
+pipewire-media-session &
 playerctld daemon
 ~/.scrs/mic_lev_stab.sh &
+# jackd -dalsa -dhw:1

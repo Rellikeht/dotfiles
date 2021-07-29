@@ -162,50 +162,81 @@
 ;;  "gv" "xpdf" "xterm" "xterm")
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; End of xbindkeys guile configuration ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; End of xbindkeys default guile configuration ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-modules (ice-9 ftw))
 
 (define klays (list-tail (scandir ".xmodmap") 2))
 (define klay 0)
-(define pl "playerctl")
-(define pacts (list " play-pause" " volume 0"
-"d shift && playerctl -f \"{{xesam:title}}\" metadata | dzen2 -p 2"
-" volume 0.02+" " volume 0.02-" " position 5+" " position 5-"))
-(define macts (list " -G" " -v0"
-" -i | awk \"BEGIN {FS=\\\"File: \\\"} /File:/ {print \\$2}\" | dzen2 -p 2"
-" -v+3" " -v-3" " -f" " -r"))
 
-(define pls (lambda (player) 
-	(set! pl player)
-	(run-command (string-append "echo " player " | dzen2 -p 1"))))
+;; CONTROL OVER MULTIPLE PLAYERS USING MULTIMEDIA KEYS
+;; playerctl
+(define pacts (list " play-pause"
+
+" metadata --format \"Pos: {{duration(position)}} / {{duration(mpris:length)}}        |        Vol: {{volume*100}} %\" | dzen2 -p 2"
+"d shift && playerctl -f \"{{xesam:title}}\" metadata | dzen2 -p 2"
+
+" volume 0.02+ && playerctl volume | dzen2 -p 1"
+" volume 0.02- && playerctl volume | dzen2 -p 1"
+
+" position 5+ &&
+playerctl metadata --format \"{{duration(position)}}\" | dzen2 -p 1"
+
+" position 5- &&
+playerctl metadata --format \"{{duration(position)}}\" | dzen2 -p 1"
+))
+
+;;TODO Reduce dzen spawning to use less cpu
+
+;; mocp
+(define macts (list " -G 2>/dev/null"
+
+" -i 2>/dev/null | grep -E \"^CurrentTime|^TotalTime\"
+
+| awk \"BEGIN {ORS=\\\" \\\";FS=\\\"[      ]|\\n\\\";RS=\\\"^\\$$\\\";OFS=\\\"\\\"}
+{print \\$4, \\\" / \\\", \\$2} END {print \\\"\\n\\\"}\" | dzen2 -p 1"
+
+" -i 2>/dev/null | awk \"BEGIN {FS=\\\"File: \\\"} /File:/ {print \\$2}\" | dzen2 -p 2"
+
+" -v+3 2>/dev/null" " -v-3 2>/dev/null"
+" -f 2>/dev/null" " -r 2>/dev/null"))
+
+;; cmus (WIP)
+;(define cats (list " -u"
+;" -Q" something to get remaining time
+;" -C \"format_print %F\""
+;" -v+3%" " -v-3%"
+;" -n" " -r"))
+
+(define players (list (list "playerctl" pacts) (list "mocp" macts))) ;(list "cmus-remote")
+(define pnum (length players))
+(define pln 0)
 
 (define pla (lambda (player action)
-	(if (string=? player "playerctl")
-	(run-command (string-append player (list-ref pacts action)))
-	(run-command (string-append player (list-ref macts action))))))
+	(let ((alist (list-ref players player)))
+	(run-command (string-append (list-ref alist 0) (list-ref (list-ref alist 1) action))))))
 
-(define plc (lambda () (if (string=? pl "playerctl")
-	(pls "mocp")
-	(pls "playerctl"))))
+(define plc (lambda ()
+	(set! pln (modulo (+ pln 1) pnum))
+	(run-command (string-append "echo " (list-ref (list-ref players pln) 0) " | dzen2 -p 1"))))
+
+;; MAPPING MULTIMEDIA KEYS
 
 (xbindkey-function '("XF86Tools") (lambda () (plc)))
-;(xbindkey '("XF86Tools") "st -e mocp")
-
-(xbindkey-function '("XF86AudioPlay") (lambda () (pla pl 0)))
-(xbindkey-function '("XF86AudioMute") (lambda () (pla pl 1)))
-(xbindkey-function '("XF86AudioStop") (lambda () (pla pl 2)))
-(xbindkey-function '("XF86AudioRaiseVolume") (lambda () (pla pl 3)))
-(xbindkey-function '("XF86AudioLowerVolume") (lambda () (pla pl 4)))
-(xbindkey-function '("XF86AudioNext") (lambda () (pla pl 5)))
-(xbindkey-function '("XF86AudioPrev") (lambda () (pla pl 6)))
+(xbindkey-function '("XF86AudioPlay") (lambda () (pla pln 0)))
+(xbindkey-function '("XF86AudioMute") (lambda () (pla pln 1)))
+(xbindkey-function '("XF86AudioStop") (lambda () (pla pln 2)))
+(xbindkey-function '("XF86AudioRaiseVolume") (lambda () (pla pln 3)))
+(xbindkey-function '("XF86AudioLowerVolume") (lambda () (pla pln 4)))
+(xbindkey-function '("XF86AudioNext") (lambda () (pla pln 5)))
+(xbindkey-function '("XF86AudioPrev") (lambda () (pla pln 6)))
+;; TODO add shift + keys
 
 (xbindkey '("XF86Calculator") "xcas")
 (xbindkey '("XF86Mail") "emacs")
 (xbindkey '("XF86Explorer") "nvidia-settings")
-;(xbindkey '("XF86HomePage") "tabbed st -w")
 
 (xbindkey-function '("XF86HomePage") (lambda ()
 	(run-command (string-append "xmodmap .xmodmap/" (list-ref klays klay)))
@@ -213,9 +244,13 @@
 	(set! klay (modulo (+ klay 1) (length klays)))
 	(set! klays (list-tail (scandir ".xmodmap") 2))))
 
+;; SOME MINOR BINDINGS
+
 (xbindkey '("Mod4" "Shift" "i") "xmodmap ~/.xmodmap/julka")
 (xbindkey '("Print") "shotgun")
 (xbindkey '("Pause") "playerctl -a pause")
+
+;; MAPPING CAPS_LOCK TO DIFFERENT KEYS
 
 (define caps_mod 0)
 (define caps_amod 0)
@@ -233,7 +268,67 @@
 	(run-command (string-append "xmodmap -e 'keycode 66 = " (list-ref caps_amods caps_amod) "'"))
 	(run-command (string-append "echo " (list-ref caps_amods caps_amod) " | dzen2 -p 1"))))
 
-(define sl #f)
-(define sls (lambda () (set! sl (not sl)) (display sl)))
+;; VOLUME CONTROL WITH SUPER + , AND SUPER + .
+
+(define cardn 1)
+(define sstep 1)
+(define bstep 3)
+(define cname "Master")
+
+(xbindkey-function '("m:0x40" "c:59") (lambda ()
+	(run-command (string-append "amixer -c " (number->string cardn) " -- sset " cname " " (number->string sstep) "db-"
+	" | awk \"BEGIN {FS=\\\"[ 	\\\\\\[\\\\\\]]*\\\"} /dB/ {print \\$5, \\\"	\\\", \\$6}\" | dzen2 -p 1"))))
+
+(xbindkey-function '("m:0x40" "c:60") (lambda () 
+	(run-command (string-append "amixer -c " (number->string cardn) " -- sset " cname " " (number->string sstep) "db+"
+	" | awk \"BEGIN {FS=\\\"[ 	\\\\\\[\\\\\\]]*\\\"} /dB/ {print \\$5, \\\"	\\\", \\$6}\" | dzen2 -p 1"))))
+
+
+(xbindkey-function '("m:0x41" "c:59") (lambda ()
+	(run-command (string-append "amixer -c " (number->string cardn) " -- sset " cname " " (number->string bstep) "db-"
+	" | awk \"BEGIN {FS=\\\"[ 	\\\\\\[\\\\\\]]*\\\"} /dB/ {print \\$5, \\\"	\\\", \\$6}\" | dzen2 -p 1"))))
+
+(xbindkey-function '("m:0x41" "c:60") (lambda () 
+	(run-command (string-append "amixer -c " (number->string cardn) " -- sset " cname " " (number->string bstep) "db+"
+	" | awk \"BEGIN {FS=\\\"[ 	\\\\\\[\\\\\\]]*\\\"} /dB/ {print \\$5, \\\"	\\\", \\$6}\" | dzen2 -p 1"))))
+
+;;TODO arrows
+;;TODO cursor movement?
+;;TODO super latch?
+;(define ss #t)
+;(define sl #f)
+;(define super_l '("c:135"))
+;(define super_l '("m:0x40" "c:135"))
+;(define super_l '("c:133"))
+;(define super_l '("Mod4" "Super_L"))
+;(define super_l '("Super_L"))
+;(define super_l '("m:0x40" "c:133"))
+
+;(define superlc "133")
+;(define super_l (string-append "c:" superlc))
+;(define super_switch "F20")
+
+;(define sups (lambda ()
+;	(if ss (run-command (string-append "xdotool keyup " super_switch " keydown " "Super_L"))
+;		(run-command (string-append "xdotool keyup " super_switch " keyup " "Super_R")))
+;	(set! ss (not ss)) (display "ss: ") (display ss) (newline)))
+
+;(define sls (lambda ()
+;	(run-command "xmodmap -pk | grep 133")
+;	(if sl (lambda ()
+;		(run-command (string-append "xmodmap -e \"keycode " superlc " = " super_switch "\""))
+;		(usleep 80000)
+;		(xbindkey-function super_switch sups))
+;		(lambda () 
+;		((remove-xbindkey super_switch)
+;		(usleep 80000)
+;		(run-coammand (string-append "xmodmap -e \"keycode " superlc " = Super_L" "\"")))))
+;	(set! sl (not sl)) (display "sl: ") (display sl) (newline)))
+
 ; Mod4 + backslash
-(xbindkey-function '("m:0x40" "c:51") (lambda () (sls)))
+;(xbindkey-function '("m:0x40" "c:51") (lambda () (sls)))
+;(run-command (string-append "xmodmap -e \"keycode " superlc " = " super_switch "\""))
+;(run-command "xmodmap -pk | grep 133")
+;(run-command (string-append "xmodmap -e \"remove mod4 = " superlc "\""))
+;(usleep 100000)
+;(xbindkey-function super_switch sups)

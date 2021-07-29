@@ -4,7 +4,9 @@ rm .config/nitrogen/nitrogen.cfg
 rm .config/nitrogen/bg-saved.cfg
 ln .config/nitrogen/nitrogen.dwm.cfg .config/nitrogen/nitrogen.cfg 
 ln .config/nitrogen/bg-saved.dwm.cfg .config/nitrogen/bg-saved.cfg 
-sh ~/.scrs/.dwmt.sh &
-sh ~/.xinitrc_common &
+~/.scrs/.dwmt.sh &
+~/.xinitrc_common &
 #exec /ext/suckless/my-dwm/dwm
+tabbed st -w &
+~/.starting_moves.sh &
 exec dwm

@@ -1,5 +1,13 @@
 #!/bin/sh
-alias echo="echo -e"
+
+#This script is really bad,
+#it unnecessarily uses sed,
+#grep, echo, ls and awk instead
+#of simply selecting files, it
+#probably should be written
+#from scratch;
+#but it works
+
 if [ -n "$2" ]
 then
 	if [ -z "`echo $2 | grep -E \"/$\"`" ]
