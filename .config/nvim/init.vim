@@ -35,6 +35,7 @@ let g:ale_completion_enabled = 1
 " Plug 'maxboisvert/vim-simple-complete'
  Plug 'norcalli/nvim-colorizer.lua'
  Plug 'jceb/vim-orgmode'
+ Plug 'vlime/vlime'
 
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -93,6 +94,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "nnoremap th :tabprev<CR>
 "nnoremap tn :tabnew<CR>
 
+filetype plugin on
 set nu rnu
 "syntax on
 "set wildmenu

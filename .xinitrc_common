@@ -10,7 +10,6 @@ xmodmap ~/.xmodmap/qwerty
 sleep 0.3
 xmodmap ~/.xmodmaprc
 xbindkeys
-#pulseaudio --start
 pipewire &
 pipewire-pulse &
 pipewire-media-session &

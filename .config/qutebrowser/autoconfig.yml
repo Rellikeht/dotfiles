@@ -9,32 +9,32 @@ settings:
   bindings.commands:
     global:
       normal:
-        ',M': hint links spawn smplayer {hint-url}
-        ',NH': hint links spawn mpv --ytdl-format="bestvideo[height<=1080]+bestaudio"
+        ',M': hint links spawn -d smplayer {hint-url}
+        ',NH': hint links spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio"
           {hint-url}
-        ',NL': hint links spawn mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
+        ',NL': hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
           {hint-url}
-        ',NM': hint links spawn mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
+        ',NM': hint links spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
           {hint-url}
-        ',Nh': hint links spawn mpv --ytdl-format="bestvideo[height<=720]+bestaudio"
+        ',Nh': hint links spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio"
           {hint-url}
-        ',Nl': hint links spawn mpv --ytdl-format="bestvideo[height<=480]+bestaudio"
+        ',Nl': hint links spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio"
           {hint-url}
-        ',Nm': hint links spawn mpv {hint-url}
-        ',Nq': hint links spawn mpv --ytdl-format="bestvideo[height<=1440]+bestaudio"
+        ',Nm': hint links spawn -d mpv {hint-url}
+        ',Nq': hint links spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio"
           {hint-url}
-        ',V': hint links spawn vlc {hint-url}
-        ',m': spawn smplayer {url}
-        ',nH': spawn mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" {url}
-        ',nL': hint links spawn mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
+        ',V': hint links spawn -d vlc {hint-url}
+        ',m': spawn -d smplayer {url}
+        ',nH': spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" {url}
+        ',nL': hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
           {url}
-        ',nM': spawn mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
+        ',nM': spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
           {url}
-        ',nh': spawn mpv --ytdl-format="bestvideo[height<=720]+bestaudio" {url}
-        ',nl': spawn mpv --ytdl-format="bestvideo[height<=480]+bestaudio" {url}
-        ',nm': spawn mpv {url}
-        ',nq': spawn mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" {url}
-        ',v': spawn vlc {url}
+        ',nh': spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio" {url}
+        ',nl': spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio" {url}
+        ',nm': spawn -d mpv {url}
+        ',nq': spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" {url}
+        ',v': spawn -d vlc {url}
         <Ctrl+r>: restart
         H: tab-prev
         J: back
@@ -66,7 +66,7 @@ settings:
     '*://*.cufs.vulcan.net.pl/*': true
     '*://*.discord.com/*': true
     '*://*.docs.voidlinux.org/*': true
-    '*://*.duckduckgo.com/*': true
+    '*://*.duckduckgo.com/*': false
     '*://*.ekursy.akademiakierowcy.pl/*': true
     '*://*.github.com/*': true
     '*://*.guix.gnu.org/*': true
@@ -89,6 +89,7 @@ settings:
     '*://*.www.pekao.com.pl/*': true
     '*://*.www.pekao24.pl/*': false
     '*://*.www.youtube.com/*': false
+    '*://*.zsem.edu.pl/*': true
     '*://links.twibright.com/*': true
     '*://w3m.sourceforge.net/*': true
     '*://www.deepl.com/*': true
@@ -103,7 +104,7 @@ settings:
     global: ask
   content.media.video_capture:
     global: ask
-  content.notifications:
+  content.notifications.enabled:
     https://explosionfiles.com: false
     https://teamshiginima.com: false
     https://usersdrive.com: false

@@ -64,6 +64,7 @@ set wildmode=longest,list,full
 set wildmenu
 set smartcase
 set ignorecase
+filetype plugin on
 
 " hybrid line numbers
 set number relativenumber

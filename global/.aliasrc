@@ -1,0 +1,57 @@
+#Coreutils
+alias sudo=doas
+alias ls='ls --color=always'
+alias ll='ls -la'
+alias lsn='ls --color=never'
+alias grep=grep --color=always
+alias exa='exa --color=always'
+alias ell='exa -la'
+alias bat='bat --color always'
+alias less='less -r'
+alias dus='du -sh'
+alias sb=sbase-box
+alias bb=busybox
+
+#Text Editors
+alias nano='nano --rcfile=~/.nanorc'
+alias nv=nvim
+alias sv=svim
+alias gsv=gsvim
+alias se=exs
+alias emg=emacs
+alias em="emacs -nw"
+alias emc="emacsclient -nw"
+alias gemc="emacsclient -c"
+alias emd="emacs --daemon"
+
+#System Commands
+alias sns=sensors
+alias lcs='loginctl suspend'
+alias pacman='pacman --color=always'
+alias upg='pacman -Syu'
+alias paru='paru --color=always'
+alias pc=pcurses
+alias pa=pacman
+alias rb=reboot
+alias po=poweroff
+
+#Settings
+alias pm=pulsemixer
+alias am=alsamixer
+
+#Tools
+alias qc='qalc -s "decimal comma off"'
+alias lsf="ls -FA --color=never --dereference-command-line-symlink-to-dir"
+alias fzf="fzf -m -e"
+alias fzy="fzy -l 20"
+alias fzc='echo $PATH | xargs -d ":" ls | grep -vE ":$" | fzy | sh -s'
+alias tm=tmux
+alias tma="tmux attach"
+alias sa="screen attach"
+alias bm="BEMENU_BACKEND=curses bemenu"
+alias nnn="nnn -d"
+alias rscl='rlwrap sbcl'
+alias scls='sbcl --script'
+
+#Other
+alias yv=youtube-viewer

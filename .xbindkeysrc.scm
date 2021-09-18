@@ -167,6 +167,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-modules (ice-9 ftw))
+(use-modules (ice-9 popen))
 
 (define klays (list-tail (scandir ".xmodmap") 2))
 (define klay 0)
@@ -291,6 +292,10 @@ playerctl metadata --format \"{{duration(position)}}\" | dzen2 -p 1"
 (xbindkey-function '("m:0x41" "c:60") (lambda () 
 	(run-command (string-append "amixer -c " (number->string cardn) " -- sset " cname " " (number->string bstep) "db+"
 	" | awk \"BEGIN {FS=\\\"[ 	\\\\\\[\\\\\\]]*\\\"} /dB/ {print \\$5, \\\"	\\\", \\$6}\" | dzen2 -p 1"))))
+
+;; KEEPING STATIC MICROPHONE LEVEL
+;;; Super + Ctrl + m
+(xbindkey '("m:0x44" "c:58") "~/.scrs/mic_stab_st.sh")
 
 ;;TODO arrows
 ;;TODO cursor movement?
