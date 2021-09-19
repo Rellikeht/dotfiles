@@ -1,32 +1,16 @@
-
 " When started as "evim", evim.vim will already have done these settings, bail
 " out.
 
-if v:progname =~? "evim"
-  finish
-endif
+"if v:progname =~? "evim"
+"  finish
+"endif
 
 if &t_Co > 2 || has("gui_running")
   " Switch on highlighting the last used search pattern.
   set hlsearch
 endif
 
-"nnoremap tk  :tabfirst<CR>
-"nnoremap tj  :tablast<CR>
-"nnoremap tt  :tabedit<Space>
-"nnoremap te  :tabedit<Space>
-"nnoremap tm  :tabm<Space>
-"nnoremap td  :tabclose<CR>
-"nnoremap tn :tabnew<CR>
-"nnoremap tl :tabnext<CR>
-"nnoremap th :tabprev<CR>
-"nnoremap tL :tabm +1<CR>
-"nnoremap tH :tabm -1<CR>
-"nnoremap tJ :tabm $<CR>
-"nnoremap tK :tabm 0<CR>
-
 tnoremap <C-w> <C-\><C-n>
-
 map <C-y> "+gP
 map <C-x>@hc :wqa<CR>
 map <C-x>@hs :w<CR>
@@ -58,12 +42,16 @@ nnoremap <C-k>L :tabm +1<CR>
 nnoremap <C-k>H :tabm -1<CR>
 nnoremap <C-k>J :tabm $<CR>
 nnoremap <C-k>K :tabm 0<CR>
+nnoremap _e 0v$"cy:execute "!" . getreg("c")<CR>
+nnoremap _d 0v$"cydd:execute "!" . getreg("c")<CR>
+"nnoremap _w bvw"cy:execute "!" . getreg("c")<CR>
 
 set wildchar=<Tab>
 set wildmode=longest,list,full
 set wildmenu
 set smartcase
 set ignorecase
+set incsearch
 filetype plugin on
 
 " hybrid line numbers
@@ -73,6 +61,32 @@ set nu rnu
 "if v:progname =~? "vim"
 "  finish
 "endif
+
+call plug#begin('~/.vim/plugged')
+ Plug 'mbbill/undotree'
+ Plug 'junegunn/fzf'
+ Plug 'unblevable/quick-scope'
+ Plug 'jceb/vim-orgmode'
+ Plug 'romainl/vim-cool'
+" Plug 'easymotion/vim-easymotion'
+ Plug 'justinmk/vim-sneak'
+call plug#end()
+
+"let mapleader = ','
+"" <Leader>f{char} to move to {char}
+"map  <Leader>f <Plug>(easymotion-bd-f)
+"nmap <Leader>f <Plug>(easymotion-overwin-f)
+"
+"" s{char}{char} to move to {char}{char}
+"nmap s <Plug>(easymotion-overwin-f2)
+"
+"" Move to line
+"map <Leader>l <Plug>(easymotion-bd-jk)
+"nmap <Leader>l <Plug>(easymotion-overwin-line)
+"
+"" Move to word
+"map  <Leader>w <Plug>(easymotion-bd-w)
+"nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 silent! syntax on
 silent! colorscheme darkblue

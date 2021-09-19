@@ -23,6 +23,7 @@ alias em="emacs -nw"
 alias emc="emacsclient -nw"
 alias gemc="emacsclient -c"
 alias emd="emacs --daemon"
+alias vis="TERM=st-256color vis"
 
 #System Commands
 alias sns=sensors
