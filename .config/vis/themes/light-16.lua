@@ -1,0 +1,1 @@
+/usr/share/vis/themes/light-16.lua

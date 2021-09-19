@@ -29,13 +29,13 @@ let g:ale_completion_enabled = 1
  Plug 'mbbill/undotree'
  Plug 'junegunn/fzf'
  Plug 'unblevable/quick-scope'
-" Plug 'justinmk/vim-sneak'
  Plug 'easymotion/vim-easymotion'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'maxboisvert/vim-simple-complete'
  Plug 'norcalli/nvim-colorizer.lua'
  Plug 'jceb/vim-orgmode'
  Plug 'vlime/vlime'
+ Plug 'romainl/vim-cool'
 
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

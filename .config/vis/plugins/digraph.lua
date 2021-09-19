@@ -1,0 +1,1 @@
+/usr/share/vis/plugins/digraph.lua

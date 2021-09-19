@@ -1,0 +1,1 @@
+/usr/share/vis/themes/default-256.lua

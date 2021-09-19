@@ -1,0 +1,1 @@
+/usr/share/vis/plugins/complete-filename.lua
