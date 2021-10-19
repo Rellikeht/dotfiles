@@ -6,11 +6,13 @@ remove mod1 = ISO_Level3_Shift
 add mod5 = ISO_Level3_Shift
 remove mod4 = Hyper_L
 add mod3 = Hyper_L
+remove mod3 = Escape
+
 !remove mod4 = Hyper_R
 !add mod3 = Hyper_R
 !keycode  49 = Escape NoSymbol Escape NoSymbol grave asciitilde
 !keycode  9 = Escape NoSymbol Escape
-!keycode 9 = grave asciitilde grave asciitilde notsign logicalor notsign
-keycode  49 = grave asciitilde grave asciitilde asciitilde grave
-keycode 66 = Escape
-remove mod3 = Escape
+
+keycode 9 = grave asciitilde grave asciitilde asciitilde grave
+keycode 49 = Hyper_L
+keycode 66 = Escape 

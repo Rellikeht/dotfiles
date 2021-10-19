@@ -1,16 +1,19 @@
-#Coreutils
+#Coreutils and similar
 alias sudo=doas
 alias ls='ls --color=always'
 alias ll='ls -la'
 alias lsn='ls --color=never'
-alias grep=grep --color=always
+alias grep='grep --color=always'
+alias rgrep='grep -r'
 alias exa='exa --color=always'
 alias ell='exa -la'
 alias bat='bat --color always'
-alias less='less -r'
+alias batl='bat -l lisp'
+alias less='less -rF'
 alias dus='du -sh'
 alias sb=sbase-box
 alias bb=busybox
+alias ag='ag --depth -1'
 
 #Text Editors
 alias nano='nano --rcfile=~/.nanorc'
@@ -19,40 +22,117 @@ alias sv=svim
 alias gsv=gsvim
 alias se=exs
 alias emg=emacs
-alias em="emacs -nw"
-alias emc="emacsclient -nw"
-alias gemc="emacsclient -c"
-alias emd="emacs --daemon"
-alias vis="TERM=st-256color vis"
+alias em='emacs -nw'
+alias emc='emacsclient -nw'
+alias gemc='emacsclient -c'
+alias emd='emacs --daemon'
+alias vis='TERM=st-256color vis'
+alias rsv='doas svim'
+alias rka='doas kak'
+alias rvi='doas vis'
 
 #System Commands
 alias sns=sensors
 alias lcs='loginctl suspend'
 alias pacman='pacman --color=always'
 alias upg='pacman -Syu'
+alias rupg='doas pacman -Syu'
 alias paru='paru --color=always'
 alias pc=pcurses
 alias pa=pacman
 alias rb=reboot
 alias po=poweroff
+alias rrb='doas reboot'
+alias rpo='doas poweroff'
+alias tbg='top -b | grep'
+alias tbgm='top -b -e m | grep'
+alias tbgo='top -b -n 1 | grep'
+alias tbgh='top -b -n 1 -e m | grep'
+alias mu='mount -o rw,uid=$UID'
+alias rmu='doas mount -o rw,uid=$UID'
+alias pbs='pacman -Ql | grep /bin/ | egrep'
 
 #Settings
 alias pm=pulsemixer
 alias am=alsamixer
 
 #Tools
-alias qc='qalc -s "decimal comma off"'
-alias lsf="ls -FA --color=never --dereference-command-line-symlink-to-dir"
-alias fzf="fzf -m -e"
-alias fzy="fzy -l 20"
-alias fzc='echo $PATH | xargs -d ":" ls | grep -vE ":$" | fzy | sh -s'
+alias qc="qalc -s 'decimal comma off'"
+alias lsf='ls -FA --color=never --dereference-command-line-symlink-to-dir'
+alias fzf='fzf -m -e'
+alias fzy='fzy -l 20'
+alias fzc='echo $PATH | xargs -d ':' ls | grep -vE ':$' | fzy | sh -s'
 alias tm=tmux
-alias tma="tmux attach"
-alias sa="screen attach"
-alias bm="BEMENU_BACKEND=curses bemenu"
-alias nnn="nnn -d"
+alias tma='tmux attach'
+alias sa='screen attach'
+alias bm='BEMENU_BACKEND=curses bemenu'
+alias nnn='nnn -d'
 alias rscl='rlwrap sbcl'
 alias scls='sbcl --script'
+alias xcc='xclip -i -selection clipboard'
+alias xcp='xclip -o -selection clipboard'
+alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
+alias edr='doas svim'
+alias sal='source /etc/.aliasrc'
 
 #Other
 alias yv=youtube-viewer
+
+#Functions
+bins () {
+	pacman -Ql $1 | egrep "`echo $PATH | sed 's/:/|/g'`"
+}
+
+cdc () {
+	cd $1 && clear
+}
+
+cdl () {
+	cdc $1 && ls
+}
+
+cdll () {
+	cdc $1 && ll
+}
+
+llh () {
+	ll $1 | head
+}
+
+maxe () {
+	if [ -n "$2" ]
+	then
+		cmds="$2"
+		prec="$1"
+	else
+		cmds="$1"
+		prec=20
+	fi
+	str=`echo -n $cmds | sed -z 's/[^;$\n]$/\0;/'`
+	maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" | \
+	sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
+	egrep '^[ 	]|\$|b0$|]$'
+}
+
+gple () {
+	gnuplot -e "plot $1;pause -1"
+}
+
+econf () {
+	if [ -n "$2" ]
+	then
+		$1 $2
+	else
+		svim $1
+	fi
+}
+
+eal () {
+	econf $1 /etc/.aliasrc
+}
+
+evr () {
+	econf $1 /etc/.varrc
+}
+
+#tail -f fi | maxima >> fo | tail -f fo

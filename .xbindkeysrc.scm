@@ -166,6 +166,7 @@
 ;; End of xbindkeys default guile configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 (use-modules (ice-9 ftw))
 (use-modules (ice-9 popen))
 
@@ -245,29 +246,91 @@ playerctl metadata --format \"{{duration(position)}}\" | dzen2 -p 1"
 	(set! klay (modulo (+ klay 1) (length klays)))
 	(set! klays (list-tail (scandir ".xmodmap") 2))))
 
+
 ;; SOME MINOR BINDINGS
 
 (xbindkey '("Mod4" "Shift" "i") "xmodmap ~/.xmodmap/julka")
 (xbindkey '("Print") "shotgun")
 (xbindkey '("Pause") "playerctl -a pause")
+(xbindkey-function '("F9") (lambda () (run-command "xdotool keyup F9 keydown ctrl key q keyup ctrl")))
+;(xbindkey '("f36") "xdotool keydown control key x keyup control key @ h")
+;(xbindkey '("f37") "xdotool keydown control key x keyup control key @ a")
+;(xbindkey '("f38") "xdotool keydown control key x keyup control key @ c")
+;(xbindkey '("f39") "xdotool keydown control key x keyup control key @ m")
 
 ;; MAPPING CAPS_LOCK TO DIFFERENT KEYS
 
 (define caps_mod 0)
 (define caps_amod 0)
-(define caps_mods (list "Escape" "Hyper_L"))
-(define caps_amods (list "ISO_Level3_Shift" "ISO_Level3_Latch" "BackSpace"))
-;"Control_L" 
+;(define caps_mods (list "Escape" "Hyper_L"))
+;(define caps_amods (list "ISO_Level3_Shift" "ISO_Level3_Latch")) ;"Control_L" 
 
-(xbindkey-function '("m:0x40" "c:66") (lambda () 
-	(set! caps_mod (modulo (+ caps_mod 1) (length caps_mods)))
-	(run-command (string-append "xmodmap -e 'keycode 66 = " (list-ref caps_mods caps_mod) "'"))
-	(run-command (string-append "echo " (list-ref caps_mods caps_mod) " | dzen2 -p 1"))))
+(define wrt_keys
+  '("Escape"
+    "grave asciitilde grave asciitilde notsign logicalor notsign"
+    "BackSpace"))
 
-(xbindkey-function '("m:0x41" "c:66") (lambda () 
-	(set! caps_amod (modulo (+ caps_amod 1) (length caps_amods)))
-	(run-command (string-append "xmodmap -e 'keycode 66 = " (list-ref caps_amods caps_amod) "'"))
-	(run-command (string-append "echo " (list-ref caps_amods caps_amod) " | dzen2 -p 1"))))
+(define norm_keys
+  (list (list-ref wrt_keys 1)
+	"Hyper_L"
+	(list-ref wrt_keys 0)))
+
+(define emacs_keys
+  (list (list-ref norm_keys 0)
+	(list-ref norm_keys 2)
+	(list-ref norm_keys 1)))
+
+(define alt_keys (list-copy wrt_keys))
+(list-set! alt_keys 2 "ISO_Level3_Shift") ;Latch
+
+(define (ffield str)
+  (list-ref (string-split str #\ ) 0))
+
+(define (caps_mode keys)
+  (let ((k0 (list-ref keys 0))
+	(k1 (list-ref keys 1))
+	(k2 (list-ref keys 2)))
+    (run-command (string-append "xmodmap -e 'keycode 9 = "  k0 "'"))
+    (run-command (string-append "xmodmap -e 'keycode 49 = " k1 "'"))
+    (run-command (string-append "xmodmap -e 'keycode 66 = " k2 "'"))
+    (run-command (string-append
+		   "echo " (ffield k0)
+		   " " (ffield k1)
+		   " " (ffield k2)
+		   " | dzen2 -p 1"))))
+
+(xbindkey-function '("m:0x40" "c:66")
+		   (lambda ()
+		     (if (zero? caps_mod)
+		       (caps_mode norm_keys)
+		       (caps_mode emacs_keys))
+		     (set! caps_mod (- 1 caps_mod))))
+
+(xbindkey-function '("m:0x41" "c:66")
+		   (lambda ()
+		     (if (zero? caps_amod)
+		       (caps_mode wrt_keys)
+		       (caps_mode alt_keys))
+		     (set! caps_amod (- 1 caps_amod))))
+
+;(xbindkey-function '("m:0x40" "c:66") (lambda () 
+;	(run-command (string-append "xmodmap -e 'keycode 9 = " (list-ref caps_mods caps_mod) "'"))
+;	(set! caps_mod (- 1 caps_mod ))
+;	(run-command (string-append "xmodmap -e 'keycode 66 = " (list-ref caps_mods caps_mod) "'"))
+;	(run-command (string-append "echo " (list-ref caps_mods caps_mod) " | dzen2 -p 1"))))
+
+;(xbindkey-function '("m:0x40" "c:66") (lambda () 
+;	(set! caps_mod (modulo (+ caps_mod 1) (length caps_mods)))
+;	(run-command (string-append "xmodmap -e 'keycode 66 = " (list-ref caps_mods caps_mod) "'"))
+;	(run-command (string-append "echo " (list-ref caps_mods caps_mod) " | dzen2 -p 1"))))
+
+;(xbindkey-function '("m:0x41" "c:66")
+;		   (lambda () 
+;		     (caps_mode norm_keys)
+;		     (set! caps_amod (modulo (+ caps_amod 1) (length caps_amods)))
+;		     (run-command (string-append "xmodmap -e 'keycode 66 = " (list-ref caps_amods caps_amod) "'"))
+;		     (run-command (string-append "echo " (list-ref caps_amods caps_amod) " | dzen2 -p 1"))))
+
 
 ;; VOLUME CONTROL WITH SUPER + , AND SUPER + .
 
@@ -293,11 +356,23 @@ playerctl metadata --format \"{{duration(position)}}\" | dzen2 -p 1"
 	(run-command (string-append "amixer -c " (number->string cardn) " -- sset " cname " " (number->string bstep) "db+"
 	" | awk \"BEGIN {FS=\\\"[ 	\\\\\\[\\\\\\]]*\\\"} /dB/ {print \\$5, \\\"	\\\", \\$6}\" | dzen2 -p 1"))))
 
+
 ;; KEEPING STATIC MICROPHONE LEVEL
 ;;; Super + Ctrl + m
-(xbindkey '("m:0x44" "c:58") "~/.scrs/mic_stab_st.sh")
+;(xbindkey '("m:0x44" "c:58") "~/.scrs/mic_stab_st.sh")
 
 ;;TODO arrows
+;; Alt + Shift + h/j/k/l ?
+;(xbindkey '("m:0x8" "c:43") "xdotool key Left")
+;(xbindkey '("m:0x8" "c:44") "xdotool key Down")
+;(xbindkey '("m:0x8" "c:45") "xdotool key Up")
+;(xbindkey '("m:0x8" "c:46") "xdotool key Right")
+
+;(xbindkey '("Alt" "Shift" "h") "xdotool key Left")
+;(xbindkey '("Alt" "Shift" "j") "xdotool key Down")
+;(xbindkey '("Alt" "Shift" "k") "xdotool key Up")
+;(xbindkey '("Alt" "Shift" "l") "xdotool key Right")
+
 ;;TODO cursor movement?
 ;;TODO super latch?
 ;(define ss #t)

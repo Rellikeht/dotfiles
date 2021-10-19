@@ -251,17 +251,17 @@ define-command -hidden enter-buffers-mode %{
 
 # Suggested hook
 
-#hook global WinDisplay .* info-buffers
+hook global WinDisplay .* info-buffers
 
 # Suggested mappings
 
-#map global user b ':enter-buffers-mode<ret>'              -docstring 'buffers…'
-#map global user B ':enter-user-mode -lock buffers<ret>'   -docstring 'buffers (lock)…'
+map global user b ':enter-buffers-mode<ret>'              -docstring 'buffers…'
+map global user B ':enter-user-mode -lock buffers<ret>'   -docstring 'buffers (lock)…'
 
 # Suggested aliases
 
-#alias global bd delete-buffer
-#alias global bf buffer-first
-#alias global bl buffer-last
-#alias global bo buffer-only
-#alias global bo! buffer-only-force
+alias global bd delete-buffer
+alias global bf buffer-first
+alias global bl buffer-last
+alias global bo buffer-only
+alias global bo! buffer-only-force

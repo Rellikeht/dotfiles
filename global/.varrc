@@ -14,3 +14,8 @@ QT_QPA_PLATFORMTHEME=qt5ct
 #QT_QPA_PLATFORM=xcb
 PATH=$PATH:$PLAN9/bin
 PATH=$PATH:/ext/eclipse/cpp/eclipse
+if [ -n "$TMUX" ]
+then
+	#TERM=st-256color
+	TERM=st-24bit
+fi

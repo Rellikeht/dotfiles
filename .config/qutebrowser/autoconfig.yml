@@ -9,43 +9,6 @@ settings:
   bindings.commands:
     global:
       normal:
-        ',M': hint links spawn -d smplayer {hint-url}
-        ',NH': hint links spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio"
-          {hint-url}
-        ',NL': hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
-          {hint-url}
-        ',NM': hint links spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
-          {hint-url}
-        ',Nh': hint links spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio"
-          {hint-url}
-        ',Nl': hint links spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio"
-          {hint-url}
-        ',Nm': hint links spawn -d mpv {hint-url}
-        ',Nq': hint links spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio"
-          {hint-url}
-        ',V': hint links spawn -d vlc {hint-url}
-        ',m': spawn -d smplayer {url}
-        ',nH': spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" {url}
-        ',nL': hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio"
-          {url}
-        ',nM': spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui
-          {url}
-        ',nh': spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio" {url}
-        ',nl': spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio" {url}
-        ',nm': spawn -d mpv {url}
-        ',nq': spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" {url}
-        ',v': spawn -d vlc {url}
-        <Ctrl+r>: restart
-        H: tab-prev
-        J: back
-        K: forward
-        L: tab-next
-        gJ: null
-        gK: null
-        gh: tab-move -
-        gl: tab-move +
-        ps: insert-text {primary}
-        ys: yank selection
   colors.webpage.darkmode.algorithm:
     global: lightness-hsl
   colors.webpage.darkmode.contrast:
@@ -56,6 +19,8 @@ settings:
     global: never
   content.canvas_reading:
     global: false
+  content.cookies.accept:
+    global: never
   content.geolocation:
     https://allegrolokalnie.pl: true
   content.javascript.enabled:
@@ -66,7 +31,7 @@ settings:
     '*://*.cufs.vulcan.net.pl/*': true
     '*://*.discord.com/*': true
     '*://*.docs.voidlinux.org/*': true
-    '*://*.duckduckgo.com/*': false
+    '*://*.duckduckgo.com/*': true
     '*://*.ekursy.akademiakierowcy.pl/*': true
     '*://*.github.com/*': true
     '*://*.guix.gnu.org/*': true
@@ -116,13 +81,6 @@ settings:
     https://zsem.edu.pl: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
-  editor.command:
-    global:
-    - nvim-qt
-    - -f
-    - '{file}'
-    - -c
-    - normal {line}G{column0}l
   fonts.default_size:
     global: 14px
   fonts.web.size.default:

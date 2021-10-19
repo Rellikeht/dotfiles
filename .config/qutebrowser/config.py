@@ -26,8 +26,14 @@
 #   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
-config.set('content.cookies.accept', 'no-unknown-3rdparty', 'chrome-devtools://*')
+
+# AUTOCONFIG!!!
+config.load_autoconfig()
+
 config.set('content.cookies.accept', 'never', '*')
+config.set('content.cookies.accept', 'no-unknown-3rdparty', 'chrome-devtools://*')
+config.set('content.cookies.accept', 'all', 'https://searx.info/*')
+config.set('content.cookies.store', True)
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -148,6 +154,7 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
+config.set("editor.command", ["gsvim", "-c", "normal {line}G{column0}1", "{file}"])
 
 config.unbind('J', mode='normal')
 config.unbind('K', mode='normal')
@@ -155,20 +162,54 @@ config.unbind('H', mode='normal')
 config.unbind('L', mode='normal')
 config.unbind('gJ', mode='normal')
 config.unbind('gK', mode='normal')
+
 config.bind('H', 'tab-prev', mode="normal")
 config.bind('L', 'tab-next', mode="normal")
 config.bind('gl', 'tab-move +', mode="normal")
 config.bind('gh', 'tab-move -', mode="normal")
 config.bind('J', 'back', mode="normal")
 config.bind('K', 'forward', mode="normal")
+
 config.bind('<Ctrl+r>', 'restart', mode="normal")
+config.bind('<Ctrl+o>', 'set-cmd-text -s :open -b', mode="normal")
+config.bind('ps', 'insert-text {primary}')
+config.bind('ys', 'yank selection')
+
+config.bind(',dm', 'open -t qute://log/?level=info')
+config.bind(',db', 'open -t qute://bindings/')
+config.bind(',dg', 'open -t chrome://gpu/')
+config.bind(',dh', 'open -t qute://help/index.html')
+config.bind(',dH', 'open -t qute://history')
+
 config.bind(',m', 'spawn smplayer {url}', mode="normal")
+config.bind(',M', 'hint links spawn -d smplayer {hint-url}')
 config.bind(",s", "config-cycle statusbar.show always never")
 config.bind(",t", "config-cycle tabs.show always never")
+config.bind(",e", "hint links spawn -d sh -c 'wget -O - {url} | gsvim -'")
+config.bind(",E", "spawn -d sh -c 'wget -O - {url} | gsvim -'")
+config.bind(",r", "hint links spawn -d sh -c 'wget -O - {url} | w3m -T text/html -dump | gsvim -'")
+config.bind(",R", "spawn -d sh -c 'wget -O - {url} | w3m -T text/html -dump | gsvim -'")
+config.bind(',v', 'spawn -d vlc {url}')
+config.bind(',V', 'hint links spawn -d vlc {hint-url}')
+
+config.bind(',NH', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" {hint-url}')
+config.bind(',NL', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio" {hint-url}')
+config.bind(',NM', 'hint links spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui {hint-url}')
+config.bind(',Nh', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio" {hint-url}')
+config.bind(',Nl', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio" {hint-url}')
+config.bind(',Nm', 'hint links spawn -d mpv {hint-url}')
+config.bind(',Nq', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" {hint-url}')
+config.bind(',nH', 'spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" {url}')
+config.bind(',nL', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio" {url}')
+config.bind(',nM', 'spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui {url}')
+config.bind(',nh', 'spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio" {url}')
+config.bind(',nl', 'spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio" {url}')
+config.bind(',nm', 'spawn -d mpv {url}')
+config.bind(',nq', 'spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" {url}')
+
 #config.bind(",", "")
 
 import dracula.draw
-config.load_autoconfig()
 dracula.draw.blood(c, {
     'spacing': {
         'vertical': 4,
@@ -181,3 +222,11 @@ config.set ("fonts.default_size", "12pt")
 
 config.set('content.javascript.enabled', False, '*')
 config.set("hints.chars", "asdfjkl;")
+
+config.set('url.default_page', 'https://searx.info')
+config.set('url.searchengines',
+        {'DEFAULT':'https://searx.info/search?q={}',
+            'ps':'https://searx.info/search?q={}&language=pl-PL',
+            'dg':'https://duckduckgo.com/?q={}',
+            'aw':'https://wiki.archlinux.org/index.php?search={}'})
+

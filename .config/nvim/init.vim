@@ -1,6 +1,7 @@
 " This line makes pacman-installed global Arch Linux vim packages work.
 source /usr/share/nvim/archlinux.vim
 source ~/.vimrc
+"colorscheme desert
 
 " Add optional packages.
 "
@@ -17,9 +18,8 @@ source ~/.vimrc
 "
 " You should not turn this setting on if you wish to use ALE as a completion
 " source for other completion plugins, like Deoplete.
-"let g:ale_completion_enabled = 1
-
 let g:ale_completion_enabled = 1
+
 " Plugins will be downloaded under the specified directory.
  call plug#begin('~/.config/nvim/plugins')
 
@@ -60,10 +60,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 "call deoplete#custom#option('sources', {
 "\ '_': ['ale'],
 "\})
-
 let g:ale_completion_autoimport = 1
-"set omnifunc=ale#completion#OmniFunc
-"inoremap <silent><expr> <Tab> 
 
 set termguicolors
 lua require'colorizer'.setup()
@@ -83,16 +80,6 @@ nmap <Leader>l <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-"nnoremap tk  :tabfirst<CR>
-"nnoremap tj  :tablast<CR>
-"nnoremap tm  :tabm<Space>
-"nnoremap te  :tabedit<Space>
-"nnoremap tt  :tabedit<Space>
-"nnoremap td  :tabclose<CR>
-"nnoremap tl :tabnext<CR>
-"nnoremap th :tabprev<CR>
-"nnoremap tn :tabnew<CR>
 
 filetype plugin on
 set nu rnu
