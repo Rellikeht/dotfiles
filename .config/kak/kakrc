@@ -14,4 +14,7 @@ map global normal <c-a> ':inc-dec-modify-numbers + 1<ret>'
 map global normal <c-x> ':inc-dec-modify-numbers - 1<ret>'
 
 map global user w 'Z%yz:info -title "Buffer size (wc)" %sh{echo -n "$kak_reg_dquote" | wc | awk "{print \"r:\", \$1, \"w:\", \$2, \"b:\", \$3}"}<ret>' \
-	-docstring 'show size of buffer (wc command)' 
+	-docstring 'show size of buffer (wc command)'
+
+map global user c ':palette-status<ret>' -docstring 'Info about color'
+map global user r ':list-registers<ret>' -docstring 'List register'

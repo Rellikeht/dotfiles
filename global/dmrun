@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "$@" | xargs `dmenu_path | dmenu`
+#echo "$@" | xmessage -file -
+#xmessage -file -

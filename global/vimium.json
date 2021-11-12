@@ -1,0 +1,94 @@
+{
+	"name": "Vimium C",
+	"@time": "10/30/2021, 10:10:13 AM",
+	"time": 1635588613900,
+	"environment": {
+		"extension": "1.94.0",
+		"platform": "linux",
+		"firefox": 91
+	},
+	"autoDarkMode": false,
+	"exclusionRules": [
+		{
+			"pattern": ":https://www.cda.pl/",
+			"passKeys": "d "
+		},
+		{
+			"pattern": "^https?://www\\.cda\\.pl/",
+			"passKeys": "d "
+		},
+		{
+			"pattern": ":moz-extension://63a6ceb7-97be-4639-b8b7-4ef8c948e175/",
+			"passKeys": "d "
+		}
+	],
+	"grabBackFocus": true,
+	"ignoreKeyboardLayout": true,
+	"keyMappings": [
+		"#!no-check",
+		"unmap J",
+		"unmap K",
+		"unmap H",
+		"unmap L",
+		"map J goBack",
+		"map K goForward",
+		"map H previousTab",
+		"map L nextTab",
+		"unmap F",
+		"map ;b LinkHints.activateOpenInNewTab",
+		"map ;f LinkHints.activateOpenInNewForegroundTab",
+		"map ;d LinkHints.activateDownloadLink",
+		"map ;i LinkHints.activateOpenImage",
+		"map ;y LinkHints.activateCopyLinkText",
+		"map ;h LinkHints.activateHover",
+		"",
+		"unmap X",
+		"unmap u",
+		"unmap d",
+		"unmap x",
+		"map u restoreTab",
+		"map <c-d> scrollPageDown",
+		"map <c-u> scrollPageUp",
+		"map <c-f> scrollFullPageDown",
+		"map <c-b> scrollFullPageUp",
+		"map d removeTab",
+		"map cd closeDownloadBar",
+		"",
+		"unmap >>",
+		"unmap <<",
+		"map gh moveTabLeft",
+		"map gl moveTabRight",
+		"mapkey - _",
+		"map _ zoomOut",
+		"map = zoomIn",
+		"map + zoomIn",
+		""
+	],
+	"linkHintCharacters": "asdfjkl;",
+	"mouseReachable": false,
+	"newTabUrl": "https://www.searx.info",
+	"notifyUpdate": false,
+	"regexFindMode": true,
+	"scrollStepSize": 80,
+	"searchEngines": [
+		"v.m|v\\:math: vimium://math\\ $S re= Calculate",
+		" s: https://www.searx.xyz/?q=%s",
+		" sp: https://www.searx.xyz/?q=%s&language=pl-PL",
+		" sf: https://www.paulgo.io/?q=%s",
+		" sfp: https://www.paulgo.io/?q=%s&language=pl-PL",
+		" y: https://www.youtube.com/results?search_query=%s YouTube",
+		" d: https://duckduckgo.com/?q=%s DuckDuckGo",
+		"qw: https://www.qwant.com/?q=%s QwantP",
+		""
+	],
+	"searchUrl": "https://searx.xyz/?q=$s",
+	"smoothScroll": false,
+	"vimSync": false,
+	"vomnibarOptions": {
+		"actions": "",
+		"maxMatches": 10,
+		"queryInterval": 333,
+		"sizes": "60,3,50",
+		"styles": "dark"
+	}
+}

@@ -22,28 +22,6 @@ nnoremap <C-x>@hJ :wincmd J<CR>
 nnoremap <C-x>@hK :wincmd K<CR>
 nnoremap <C-x>@hL :wincmd L<CR>
 
-"" tabs with unused <C-k>
-"nnoremap <C-k>k  :tabfirst<CR>
-"nnoremap <C-k>j  :tablast<CR>
-"nnoremap <C-k>t  :tabedit<Space>
-"nnoremap <C-k>e  :tabedit<Space>
-"nnoremap <C-k>m  :tabm<Space>
-"nnoremap <C-k>d  :tabclose<CR>
-"nnoremap <C-k>n :tabnew<CR>
-"nnoremap <C-k>l :tabnext<CR>
-"nnoremap <C-k>h :tabprev<CR>
-"nnoremap <C-k>L :tabm +1<CR>
-"nnoremap <C-k>H :tabm -1<CR>
-"nnoremap <C-k>J :tabm $<CR>
-"nnoremap <C-k>K :tabm 0<CR>
-"
-"" buffers
-"nnoremap <C-k>a  :bnext<CR>
-"nnoremap <C-k>d  :bprevious<CR>
-"nnoremap <C-k>R  :bdelete<CR>
-"nnoremap <C-k>u  :buffers<CR>
-"nnoremap <C-k>Q  :bunload<CR>
-
 " tabs with unused _
 nnoremap _k :tabfirst<CR>
 nnoremap _j :tablast<CR>
@@ -77,21 +55,8 @@ nnoremap _a :bad<Space>
 nnoremap _f :files<CR>
 nnoremap _c :bmodified<CR>
 nnoremap _C :bmodified!<CR>
-
-" emacs style C-k C-
-"nnoremap <C-k><C-k>  :tabfirst<CR>
-"nnoremap <C-k><C-j>  :tablast<CR>
-"nnoremap <C-k><C-t>  :tabedit<Space>
-"nnoremap <C-k><C-e>  :tabedit<Space>
-"nnoremap <C-k><C-m>  :tabm<Space>
-"nnoremap <C-k><C-d>  :tabclose<CR>
-"nnoremap <C-k><C-n> :tabnew<CR>
-"nnoremap <C-k><C-l> :tabnext<CR>
-"nnoremap <C-k><C-h> :tabprev<CR>
-"nnoremap <C-k><C-L> :tabm +1<CR>
-"nnoremap <C-k><C-H> :tabm -1<CR>
-"nnoremap <C-k><C-J> :tabm $<CR>
-"nnoremap <C-k><C-K> :tabm 0<CR>
+nnoremap _g :vsplit<Space>
+nnoremap _G :split<Space>
 
 nnoremap \e 0v$"cy:execute "!" . getreg("c")<CR>
 nnoremap \d 0v$"cydd:execute "!" . getreg("c")<CR>
@@ -104,37 +69,50 @@ vnoremap ie <Esc>gg}{vG{}k$
 "vae defined earlier doesn't work here
 nnoremap yae mcggvG$y'c
 
-filetype plugin on
-filetype indent on
-
 set wildchar=<Tab>
 set wildmode=longest,list,full
 set wildmenu
-set showcmd
-set cursorline
 
 " hybrid line numbers, my favourite
 set number relativenumber
 set nu rnu
-set ruler
 
 " searching
 set ignorecase
 set smartcase
-set showmatch
-set hlsearch
-set incsearch
-nnoremap <Space> :set hls!<CR>
-nnoremap <CR> :set hls!<CR>
 
-" For motif gui to work with accented letters
-if v:progname =~? "gsvim" || v:progname =~? "gsview"
-	silent! set guifont=-xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1	
-endif
+" I have probably the most minimalistic vim possible
+" from Artix/Arch repositories (vim-tiny package),
+" vim compiled with only features i need (binary is
+" called svim for distinction) and neovim (also from repos)
+" as small ide. This config is read by all of them, because
+" some parts are common, so i needed to do this:
+if v:progname !~? "vi(m|ew)?"
 
-if v:progname !=? "vim"
-	silent! syntax on
-	silent! colorscheme darkblue
+	" For motif gui to work with accented letters
+	if v:progname =~? "gsvi.*"
+		set guifont=-xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1	
+		hi MatchParen cterm=none ctermbg=green ctermfg=blue
+	endif
+
+	nnoremap <Space> :set hls!<CR>
+	"nnoremap <CR> :set hls!<CR>
+
+
+	" some good settings that
+	" don't work in vim-tiny
+	set showcmd
+	set cursorline
+	set showmatch
+	set ruler
+	set hlsearch
+	set incsearch
+
+
+	filetype plugin on
+	filetype indent on
+	syntax on
+	colorscheme darkblue
 	"desert/slate
 
 	" Attempt to make vim easier to use
@@ -158,25 +136,142 @@ if v:progname !=? "vim"
 	" and h j k l are e y n o
 	map <C-s> :call Wmt()<CR>
 	
-	call plug#begin('~/.vim/plugged')
-	 Plug 'mbbill/undotree'
-	 Plug 'junegunn/fzf'
-	 Plug 'unblevable/quick-scope'
-	 Plug 'jceb/vim-orgmode'
-	 "saddly has problems
-	 "Plug 'easymotion/vim-easymotion'
-	 Plug 'justinmk/vim-sneak'
-	call plug#end()
 
-	let g:qs_delay = 100
+	if v:progname =~? ".*svi.*"
+		call plug#begin('~/.vim/plugged')
+		 Plug 'mbbill/undotree'
+		 Plug 'junegunn/fzf'
+		 Plug 'unblevable/quick-scope'
+		 "saddly has problems
+		 "Plug 'easymotion/vim-easymotion'
+		 Plug 'justinmk/vim-sneak'
+		 " TODO all commands
+		 Plug 'tpope/vim-repeat'
+		 " TODO all commands
+		 Plug 'tpope/vim-surround'
+		 Plug 'tpope/vim-speeddating'
+		 Plug 'luochen1990/rainbow'
+		 Plug 'chrisbra/Colorizer'
+		 Plug 'maxboisvert/vim-simple-complete'
+		call plug#end()
 
+	
+		" TODO, but it takes much time with colors
+		" it is copied from repos README
+"		\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"		\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+"		\		'lisp': {
+"		\		'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+
+		let g:rainbow_conf = {
+		\	'guifgs':
+		\		['royalblue3',
+		\		'darkorange3',
+		\		'seagreen3',
+		\		'firebrick'
+		\		],
+		\	'ctermfgs':
+		\		['blue',
+		\		'lightyellow',
+		\		'lightcyan',
+		\		'lightmagenta'
+		\		],
+		\	'guis': [''],
+		\	'cterms': [''],
+		\	'operators': '_,_',
+		\	'parentheses':
+		\		['start=/(/ end=/)/ fold',
+		\		'start=/\[/ end=/\]/ fold',
+		\		'start=/{/ end=/}/ fold'
+		\		],
+		\	'separately': {
+		\		'*': {},
+		\		'markdown': {
+		\			'parentheses_options':
+		\			'containedin=markdownCode contained',
+		\		},
+		\		'lisp': {
+		\			'guifgs':
+		\				['royalblue3',
+		\				'darkorange3',
+		\				'seagreen3',
+		\				'firebrick',
+		\				'darkorchid3'
+		\				],
+		\		},
+		\		'haskell': {
+		\			'parentheses':
+		\				['start=/(/ end=/)/ fold',
+		\				'start=/\[/ end=/\]/ fold',
+		\				'start=/\v\{\ze[^-]/ end=/}/ fold'
+		\				],
+		\		},
+		\		'vim': {
+		\			'parentheses_options':
+		\			'containedin=vimFuncBody',
+		\		},
+		\		'perl': {
+		\			'syn_name_prefix':
+		\			'perlBlockFoldRainbow',
+		\		}
+		\	}
+		\}
+
+
+		" for quick scope to activate with delay
+		let g:qs_delay = 50
+
+	
+	endif
+	
+	"set to 0 if you want to enable it later via :RainbowToggle
+	let g:rainbow_active = 1
+
+	
+	" vim-sneak
+	let g:sneak#label = 1
+	map f <Plug>Sneak_f
+	map F <Plug>Sneak_F
+	map t <Plug>Sneak_t
+	map T <Plug>Sneak_T
+	map - <Plug>Sneak_,
+	map + <Plug>Sneak_;
+
+	" - Type sab to move the cursor immediately to the next instance of the text "ab".
+	" Additional matches, if any, are highlighted until the cursor is moved.
+	" - Type ; to go to the next match (or s again, if s_next is enabled; see :help sneak).
+	" - Type 3; to skip to the third match from the current position.
+	" - Type ctrl-o or `` to go back to the starting point.
+	" This is a built-in Vim motion; Sneak adds to Vim's jumplist only on s
+	" invocation—not repeats—so you can abandon a trail of ; or , by a single ctrl-o or ``.
+	" - Type s<Enter> at any time to repeat the last Sneak-search.
+	" - Type S to search backwards.
+	" Sneak can be limited to a vertical scope by prefixing s with a count.
+        " 
+	" - Type 5sxy to go immediately to the next instance of "xy" within 5 columns of the cursor.
+	" Sneak is invoked with operators via z (because s is taken by surround.vim).
+        " 
+	" - Type 3dzqt to delete up to the third instance of "qt".
+	" - Type . to repeat the 3dzqt operation.
+	" - Type 2. to repeat twice.
+	" - Type d; to delete up to the next match.
+	" - Type 4d; to delete up to the fourth next match.
+	" - Type yszxy] to surround in brackets up to xy.
+	" - Type . to repeat the surround operation.
+	" - Type gUz\} to upper-case the text from the cursor until the next instance of the literal text \}
+	" - Type . to repeat the gUz\} operation.
+
+
+	"" easymotion
+	"let g:EasyMotion_do_mapping = 0 " Disable default mappings
 	"let mapleader = ','
 	"" <Leader>f{char} to move to {char}
 	"map  <Leader>f <Plug>(easymotion-bd-f)
 	"nmap <Leader>f <Plug>(easymotion-overwin-f)
 	"
 	"" s{char}{char} to move to {char}{char}
-	"nmap s <Plug>(easymotion-overwin-f2)
+	"map s <Plug>(easymotion-overwin-f2)
+	""nmap s <Plug>(easymotion-overwin-f2)
 	"
 	"" Move to line
 	"map <Leader>l <Plug>(easymotion-bd-jk)

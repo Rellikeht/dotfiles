@@ -1,19 +1,26 @@
 #Coreutils and similar
 alias sudo=doas
-alias ls='ls --color=always'
-alias ll='ls -la'
 alias lsn='ls --color=never'
+alias ls='TERM=st-256color ls --color=always'
+alias lf='ls -F'
+alias ll='lf -la'
 alias grep='grep --color=always'
 alias rgrep='grep -r'
+alias bgrep='grep -I'
 alias exa='exa --color=always'
 alias ell='exa -la'
 alias bat='bat --color always'
 alias batl='bat -l lisp'
-alias less='less -rF'
+alias less='less -r'
+alias les='less -F'
 alias dus='du -sh'
 alias sb=sbase-box
 alias bb=busybox
-alias ag='ag --depth -1'
+alias ag='ag --color --depth -1 -a'
+alias agh='ag --hidden'
+#alias rg='rg -S'
+alias rgh='rg --hidden'
+alias eg='egrep'
 
 #Text Editors
 alias nano='nano --rcfile=~/.nanorc'
@@ -44,12 +51,14 @@ alias rb=reboot
 alias po=poweroff
 alias rrb='doas reboot'
 alias rpo='doas poweroff'
-alias tbg='top -b | grep'
-alias tbgm='top -b -e m | grep'
-alias tbgo='top -b -n 1 | grep'
-alias tbgh='top -b -n 1 -e m | grep'
+alias tbg='top -b | egrep'
+alias tbgm='top -b -e m | egrep'
+alias tbgo='top -b -n 1 | egrep'
+alias tbgh='top -b -n 1 -e m | egrep'
 alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID'
+alias um=umount
+alias rum='doas umount'
 alias pbs='pacman -Ql | grep /bin/ | egrep'
 
 #Settings
@@ -74,9 +83,16 @@ alias xcp='xclip -o -selection clipboard'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
 alias edr='doas svim'
 alias sal='source /etc/.aliasrc'
+alias de='dc -e'
+alias plc='plocate'
+alias plci='plocate -i'
+alias rlc='plocate -r'
+alias rlci='plocate -ir'
 
 #Other
 alias yv=youtube-viewer
+alias mdl='yv -n -d --convert-to=mp3'
+alias ytf='youtube-dl --list-formats'
 
 #Functions
 bins () {
@@ -115,10 +131,10 @@ maxe () {
 }
 
 gple () {
-	gnuplot -e "plot $1;pause -1"
+	gnuplot -e "plot '$1' w l;pause -1"
 }
 
-econf () {
+edt () {
 	if [ -n "$2" ]
 	then
 		$1 $2
@@ -128,11 +144,60 @@ econf () {
 }
 
 eal () {
-	econf $1 /etc/.aliasrc
+	edt $1 /etc/.aliasrc
 }
 
 evr () {
-	econf $1 /etc/.varrc
+	edt $1 /etc/.varrc
 }
 
+fec () {
+	if [ -n "$1" ]
+	then
+		edt="$1"
+	else
+		edt='vim'
+	fi
+
+	if [ -n "$2" ]
+	then
+		comm=$2
+	else
+		comm="`lsn | fzf`"
+	fi
+
+	$edt $comm
+}
+
+fe () {
+	fec "$1" "find -type f | fzf"
+}
+
+fed () {
+	fec "$1"
+}
+
+alias fvc="fe svim"
+alias fv="fed svim"
+alias fkc="fe kak"
+alias fk="fed kak"
+
+fnd () {
+	find . -name "*$1*"
+}
+
+fndi () {
+	find . -iname "*$1*"
+}
+
+fndr () {
+	find . -regex "*$1*"
+}
+
+fndf () {
+	find . -iregex "*$1*"
+}
+
+
+# Pseudo server made with files
 #tail -f fi | maxima >> fo | tail -f fo

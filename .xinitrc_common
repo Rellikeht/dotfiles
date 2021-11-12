@@ -10,9 +10,5 @@ xmodmap ~/.xmodmap/qwerty
 sleep 0.3
 xmodmap ~/.xmodmaprc
 xbindkeys
-pipewire &
-pipewire-pulse &
-pipewire-media-session &
+~/.audio_start.sh
 playerctld daemon
-~/.scrs/mic_lev_stab.sh &
-# jackd -dalsa -dhw:1

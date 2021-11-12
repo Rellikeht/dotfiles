@@ -1,2 +1,2 @@
 #!/bin/sh
-shotgun -g `hacksaw`
+wget -O - `xclip -o -selection CLIPBOARD` | `dmenu_path | dmenu` -
