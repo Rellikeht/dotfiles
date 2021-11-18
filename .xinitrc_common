@@ -1,8 +1,8 @@
 #!/bin/sh
+[ -e "~/.xinitrc_local" ] && ~/.xinitrc_local
 xrdb .Xresources
-#xhost +
 keynav daemonize &
-#xcompmgr -fcD 1 &
+xcompmgr -fcD 1 &
 unclutter --timeout 1.2 &
 xrandr --output HDMI-0 --mode 2560x1440 --rate 75
 nitrogen --restore
@@ -12,3 +12,4 @@ xmodmap ~/.xmodmaprc
 xbindkeys
 ~/.audio_start.sh
 playerctld daemon
+nvidia-settings --load-config-only
