@@ -25,7 +25,7 @@ alias eg='egrep'
 #Text Editors
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
-alias sv=svim
+alias s=svim
 alias gsv=gsvim
 alias se=exs
 alias emg=emacs

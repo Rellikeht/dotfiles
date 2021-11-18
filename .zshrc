@@ -13,7 +13,9 @@ bindkey -e
 alias ls="ls --color"
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
+zstyle :compinstall filename '/home/michal/.zshrc'
+
+zstyle ':completion:*' rehash true
 
 autoload -Uz compinit
 compinit
@@ -24,3 +26,25 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#aliases
+[ -f "/etc/.aliasrc" ] && source "/etc/.aliasrc"
+
+#common variables
+[ -f "/etc/.varrc" ] && source "/etc/.varrc"
+
+#aliases
+[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
+
+#common variables
+[ -f "$HOME/.varrc" ] && source "$HOME/.varrc"
+
+my-backward-delete-word () {
+   local WORDCHARS='~!#$%^*<>?+'
+   zle backward-delete-word
+}
+zle -N my-backward-delete-word
+
+bindkey    '\e^?' my-backward-delete-word
+
+source /home/michal/.config/broot/launcher/bash/br
