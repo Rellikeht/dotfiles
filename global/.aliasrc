@@ -88,6 +88,7 @@ alias plc='plocate'
 alias plci='plocate -i'
 alias rlc='plocate -r'
 alias rlci='plocate -ir'
+alias prr='prime-run'
 
 #Other
 alias yv=youtube-viewer
