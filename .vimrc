@@ -1,6 +1,12 @@
 tnoremap <C-w> <C-\><C-n>
 map <C-y> "+gP
 
+" This is alt, but should be altgr
+"map <A-s> <A-s><A-s>
+"map <A-s> :q!<CR>
+"imap <a-s> :q!<CR>
+"imap <m-s> :q!<CR>
+
 " Hyper modifier from emacs
 " working in console (even
 " bindings are similar):
@@ -93,6 +99,7 @@ if v:progname !~? "vi(m|ew)?"
 	if v:progname =~? "gsvi.*"
 		set guifont=-xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1	
 		hi MatchParen cterm=none ctermbg=green ctermfg=blue
+		set encoding=utf8
 	endif
 
 	nnoremap <Space> :set hls!<CR>

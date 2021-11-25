@@ -1,6 +1,9 @@
 (use-package dired-explorer
+  :ensure t
   :defer t)
 (use-package dired-toggle-sudo
+  :ensure t
   :defer t)
 (use-package direx
+  :ensure t
   :defer t)

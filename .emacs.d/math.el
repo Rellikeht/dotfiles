@@ -5,8 +5,9 @@
 ;  (setq
 ;   org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
 ;   maxima-display-maxima-buffer nil)
-    :mode ("\\.mac\\'" . maxima-mode)
-    :interpreter ("maxima" . maxima-mode))
+  :ensure t
+  :mode ("\\.mac\\'" . maxima-mode)
+  :interpreter ("maxima" . maxima-mode))
 
 (defun maxima-init ()
   (interactive)

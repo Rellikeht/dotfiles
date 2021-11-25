@@ -22,12 +22,13 @@
     (delete-window)))
 
 (use-package slime
-    :defer t
-    :mode ("\\.\\(scm\\|lisp\\|clj\\|cl\\)\\'" . lisp-mode)
-    :config
-    (setq slime-lisp-implementations
-	  `((sbcl ("/bin/sbcl"))
-	    (clisp ("/bin/clisp")))))
+  :ensure t
+  :defer t
+  :mode ("\\.\\(scm\\|lisp\\|clj\\|cl\\)\\'" . lisp-mode)
+  :config
+  (setq slime-lisp-implementations
+	`((sbcl ("/bin/sbcl"))
+	  (clisp ("/bin/clisp")))))
 ;	     (start-slime-async))
 ;  (slime)
 ;    (backward-other-window))
@@ -41,8 +42,9 @@
  '("\\.\\(cl\\|lisp\\|scm\\|clj\\|el\\)\\'" . lisp-mode))
 
 (use-package slime-company
-    :disabled t
-    :mode ("\\.\\(scm\\|lisp\\|clj\\|cl\\)\\'" . slime-mode))
+  :disabled t
+  :mode ("\\.\\(scm\\|lisp\\|clj\\|cl\\)\\'" . slime-mode))
 
 (use-package highlight-parentheses
+  :ensure t
   :mode ("\\.\\(el\\|scm\\|lisp\\|clj\\|cl\\)\\'" . lisp-mode))

@@ -1,5 +1,6 @@
 ;; Packages
-(use-package forest-blue-theme)
+(use-package forest-blue-theme
+  :ensure t)
 
 ;; Disable linum in doc view mode
 (add-hook 'doc-view-mode-hook
