@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ -z "$1" ]
 then
-	lvl=24
+	lvl=26
 else
 	lvl=$1
 fi
