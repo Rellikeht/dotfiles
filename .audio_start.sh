@@ -8,16 +8,24 @@ rp () {
 }
 
 nc () {
-	nohup $1 > /dev/null &
+	echo nc: $@
+	nohup $@ > /dev/null &
 }
 
 ri () {
-	rp $1 "nc $1"
+	if [ -n "$2" ]
+	then
+		PR="$2"
+	else
+		PR="$1"
+	fi
+	rp $1 "nc $PR"
 }
 
+cd
 ri "pipewire"
 ri "pipewire-pulse"
 ri "pipewire-media-session"
-ri "~/.scrs/mic_lev_stab.sh"
+ri "mic_lev_stab" ".scrs/mic_lev_stab.sh"
 
 # jackd -dalsa -dhw:1

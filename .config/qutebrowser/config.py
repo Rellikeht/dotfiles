@@ -236,6 +236,8 @@ config.set('url.searchengines',
             'aw':'https://wiki.archlinux.org/index.php?search={}',
             'gh':'https://github.com/search?q={}',
             'yt':'https://youtube.com/results?search_query={}',
+            'gw':'https://wiki.gentoo.org/index.php?search={}',
+            'gp':'https://packages.gentoo.org/packages/search?q={}',
             'lb':'https://odysee.com/$/search?q={}'
             })
 
