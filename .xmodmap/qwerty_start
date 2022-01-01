@@ -1,0 +1,23 @@
+clear Lock
+keycode  24 = q Q q Q Greek_pi Greek_OMEGA Greek_pi
+keycode  25 = w W w W oe OE oe
+keycode  26 = e E e E eogonek Eogonek eogonek
+keycode  27 = r R r R copyright registered copyright
+keycode  28 = t T t T ssharp trademark ssharp
+keycode  29 = y Y y Y leftarrow yen leftarrow
+keycode  30 = u U u U downarrow uparrow downarrow
+keycode  31 = i I i I rightarrow U2194 rightarrow
+keycode  33 = p P p P thorn THORN thorn
+keycode  40 = d D d D braceleft bracketleft braceleft bracketleft 
+keycode  41 = f F f F braceright bracketright braceright bracketright
+keycode  42 = g G g G eng ENG eng
+keycode  43 = h H h H rightsinglequotemark U2022 rightsinglequotemark
+keycode  44 = j J j J minus underscore minus underscore
+keycode  45 = k K k K plus equal plus equal
+keycode  46 = l L l L lstroke Lstroke lstroke
+keycode  55 = v V v V doublelowquotemark leftsinglequotemark doublelowquotemark
+keycode  56 = b B b B rightdoublequotemark leftdoublequotemark rightdoublequotemark
+keycode  58 = m M m M mu infinity mu
+keycode 133 = Super_L NoSymbol Super_L
+keycode 134 = Super_R NoSymbol Super_R
+keycode 135 = Super_R NoSymbol Super_R
