@@ -2,7 +2,6 @@
 #export TERMINAL=st
 ~/.scrs/.dwmt.sh &
 ~/.xinitrc_common &
-#exec /ext/suckless/my-dwm/dwm
 tabbed st -w &
 ~/.starting_moves.sh &
 exec dwm

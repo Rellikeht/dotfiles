@@ -4,12 +4,13 @@ xrdb .Xresources
 keynav daemonize &
 xcompmgr -fcD 1 &
 unclutter --timeout 1.2 &
-xrandr --output HDMI-0 --mode 2560x1440 --rate 75
-nitrogen --restore
-xmodmap ~/.xmodmap/qwerty_start
-sleep 0.3
-xmodmap ~/.xmodmaprc
+nitrogen --restore &
 xbindkeys
-~/.audio_start.sh
-playerctld daemon
+~/.audio_start.sh &
+playerctld daemon &
+xrandr --output HDMI-0 --mode 2560x1440 --rate 75 &
 nvidia-settings --load-config-only
+sleep 4
+xmodmap ~/.xmodmap/qwerty_start &
+#sleep 4
+#xmodmap ~/.xmodmaprc
