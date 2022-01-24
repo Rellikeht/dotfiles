@@ -12,5 +12,6 @@ xrandr --output HDMI-0 --mode 2560x1440 --rate 75 &
 nvidia-settings --load-config-only
 sleep 4
 xmodmap ~/.xmodmap/qwerty_start &
-#sleep 4
+sleep 4
+xmodmap -e 'clear Lock'
 #xmodmap ~/.xmodmaprc
