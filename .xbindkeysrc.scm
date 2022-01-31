@@ -239,8 +239,8 @@ playerctl metadata --format \"{{duration(position)}}\" | dzen2 -p 1"
 (xbindkey '("XF86Calculator") "xcas")
 (xbindkey '("XF86Mail") "emacs")
 (xbindkey '("XF86Explorer") "nvidia-settings")
-(xbindkey '("XF86MonBrightnessUp") "doas brightnessctl s +5%")
-(xbindkey '("XF86MonBrightnessDown") "doas brightnessctl s -5%")
+(xbindkey '("XF86MonBrightnessUp") "brightnessctl s 5%+")
+(xbindkey '("XF86MonBrightnessDown") "brightnessctl s 5%-")
 
 (xbindkey-function '("XF86HomePage") (lambda ()
 	(run-command (string-append "xmodmap .xmodmap/" (list-ref klays klay)))

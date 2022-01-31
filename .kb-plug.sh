@@ -1,4 +1,4 @@
 #!/bin/sh
 cd ~
-xmodmap .xmodmap/qwerty
-xmodmap .xmodmaprc
+xmodmap .xmodmap/qwerty_start
+#xmodmap .xmodmaprc

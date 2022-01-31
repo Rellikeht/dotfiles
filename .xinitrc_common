@@ -1,5 +1,5 @@
 #!/bin/sh
-[ -e "~/.xinitrc_local" ] && ~/.xinitrc_local
+[ -e "$HOME/.xinitrc_local" ] && ~/.xinitrc_local
 xrdb .Xresources
 keynav daemonize &
 xcompmgr -fcD 1 &
