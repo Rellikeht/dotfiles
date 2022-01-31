@@ -16,3 +16,4 @@ remove mod3 = Escape
 keycode 9 = grave asciitilde grave asciitilde asciitilde grave
 keycode 49 = Hyper_L
 keycode 66 = Escape 
+clear lock

@@ -254,7 +254,7 @@ playerctl metadata --format \"{{duration(position)}}\" | dzen2 -p 1"
 (xbindkey '("Mod4" "Shift" "i") "xmodmap ~/.xmodmap/julka")
 (xbindkey '("Print") "shotgun")
 (xbindkey '("Pause") "playerctl -a pause")
-(xbindkey-function '("F9") (lambda () (run-command "xdotool keyup F9 keydown ctrl key q keyup ctrl")))
+(xbindkey-function '("F2") (lambda () (run-command "xdotool keyup F2 keydown ctrl key q keyup ctrl")))
 ;(xbindkey '("f36") "xdotool keydown control key x keyup control key @ h")
 ;(xbindkey '("f37") "xdotool keydown control key x keyup control key @ a")
 ;(xbindkey '("f38") "xdotool keydown control key x keyup control key @ c")
