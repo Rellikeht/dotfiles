@@ -60,7 +60,9 @@ alias rmu='doas mount -o rw,uid=$UID'
 alias um=umount
 alias rum='doas umount'
 alias pbs='pacman -Ql | grep /bin/ | egrep'
-alias ws='watch -d -n 1 "sensors | egrep -v \"^$\""'
+alias ws='watch -d -n 1 sensors'
+alias wsc='watch -d -n 1 "sensors | egrep -v \"^$\""'
+alias wst='watch -c -d -n 1 "sensors | grep --color=always °"'
 
 #Settings
 alias pm=pulsemixer
