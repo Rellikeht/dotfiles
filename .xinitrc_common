@@ -8,8 +8,6 @@ nitrogen --restore &
 xbindkeys
 ~/.audio_start.sh &
 playerctld daemon &
-#xrandr --output HDMI-0 --mode 2560x1440 --rate 75 &
-#nvidia-settings --load-config-only
 sleep 4
 setxkbmap -option caps:escape
 xmodmap ~/.xmodmap/qwerty_start
