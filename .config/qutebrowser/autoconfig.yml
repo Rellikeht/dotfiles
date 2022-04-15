@@ -81,6 +81,8 @@ settings:
     https://zsem.edu.pl: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
+  downloads.prevent_mixed_content:
+    global: false
   fonts.default_size:
     global: 14px
   fonts.web.size.default:
@@ -95,3 +97,5 @@ settings:
     global: true
   tabs.show:
     global: always
+  zoom.default:
+    global: 150%
