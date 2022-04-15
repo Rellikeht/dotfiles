@@ -22,9 +22,6 @@
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
 
-# AUTOCONFIG!!!
-config.load_autoconfig()
-
 config.set('content.cookies.accept', 'never', '*')
 config.set('content.cookies.accept', 'no-unknown-3rdparty', 'chrome-devtools://*')
 config.set('content.cookies.accept', 'all', 'https://searx.info/*')
@@ -60,98 +57,23 @@ config.set('content.cookies.accept', 'no-unknown-3rdparty', 'devtools://*')
 # read from JavaScript is always the global value. With QtWebEngine
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
-# Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
-
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
-# Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
-
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
-# Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0', 'https://*.slack.com/*')
-
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
 # Type: FormatString #Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0
-config.set('content.headers.user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0', 'https://docs.google.com/*')
 config.set('content.headers.user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0', 'https://*')
 
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
-# Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://drive.google.com/*')
-
 # Load images automatically in web pages.
 # Type: Bool
-config.set('content.images', True, 'chrome-devtools://*')
-
-# Load images automatically in web pages.
-# Type: Bool
-config.set('content.images', True, 'devtools://*')
+config.set('content.images', True)
 
 # Enable JavaScript.
 # Type: Bool
+config.set('content.javascript.enabled', False, '*')
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
-
-# Enable JavaScript.
-# Type: Bool
 config.set('content.javascript.enabled', True, 'devtools://*')
-
-# Enable JavaScript.
-# Type: Bool
 config.set('content.javascript.enabled', True, 'chrome://*/*')
-
-# Enable JavaScript.
-# Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
-config.set('editor.command', ['gsvim', '-c', 'normal {line}G{column0}1', '{file}'])
+config.set('content.canvas_reading', False)
+
+config.set('hints.chars', 'asdfjkl;')
 
 config.unbind('J', mode='normal')
 config.unbind('K', mode='normal')
@@ -205,6 +127,7 @@ config.bind(',nm', 'spawn -d mpv "{url}"')
 config.bind(',nq', 'spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" "{url}"')
 
 #config.bind(',', '')
+config.set('editor.command', ['gsvim', '-c', 'normal {line}G{column0}1', '{file}'])
 
 import dracula.draw
 dracula.draw.blood(c, {
@@ -214,11 +137,22 @@ dracula.draw.blood(c, {
     }
 })
 
-config.set ('colors.webpage.darkmode.enabled', True)
-config.set ('fonts.default_size', '12pt')
+config.set('colors.webpage.darkmode.algorithm',  'lightness-hsl')
+config.set('colors.webpage.darkmode.contrast',  0.0)
+config.set('colors.webpage.darkmode.policy.images',  'never')
+config.set('colors.webpage.darkmode.enabled', True)
+config.set('fonts.default_size', '12pt')
 
-config.set('content.javascript.enabled', False, '*')
-config.set('hints.chars', 'asdfjkl;')
+config.set('content.media.audio_capture', 'ask')
+config.set('content.media.audio_video_capture', 'ask')
+config.set('content.media.video_capture', 'ask')
+config.set('downloads.prevent_mixed_content', False)
+config.set('new_instance_open_target', 'tab')
+config.set('statusbar.show', 'always')
+config.set('tabs.background', True)
+config.set('tabs.show', 'always')
+
+config.set('content.media.audio_capture', True, 'https://discord.com')
 
 config.set('url.default_page', 'https://searx.info')
 config.set('url.searchengines',
@@ -242,6 +176,19 @@ config.set('content.javascript.enabled', True, 'https://searx.xyz/*')
 config.set('content.javascript.enabled', True, 'https://paulgo.io/*')
 config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
 config.set('content.javascript.enabled', True, 'https://*.github.com/*')
-config.set('content.javascript.enabled', True, 'https://meteo.pl/*')
 config.set('content.javascript.enabled', True, 'https://odysee.com/*')
 config.set('content.javascript.enabled', True, 'https://youtube.com/*')
+config.set('content.javascript.enabled', True,  '*://*.docs.voidlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://*.duckduckgo.com/*')
+config.set('content.javascript.enabled', True,  '*://*.pkgs.alpinelinux.org/*')
+config.set('content.javascript.enabled', True,  '*://*.start.duckduckgo.com/*')
+config.set('content.javascript.enabled', True,  '*://*.voidlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://*.wiki.archlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://*.wiki.artixlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://www.deepl.com/*')
+
+# AUTOCONFIG!!!
+# I use it as local configuration
+# (different for different machines/systems)
+# and this file as global
+config.load_autoconfig()
