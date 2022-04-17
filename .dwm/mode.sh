@@ -1,6 +1,6 @@
 #!/bin/sh
 loc="`xdotool getmouselocation | sed \"s/ scr.*//;s/x://;s/y://\"`"
-cmdl="`grep -Ecv \"^\#\" ~/.scrs/$1.commands`"
+cmdl="`grep -Ecv \"^\#\" ~/.dwm/$1.commands`"
 
 if [ -n "$3" ]
 then
@@ -25,5 +25,5 @@ else
 fi
 
 sleep 0.2 && xdotool mousemove 0 0 &
-sed "/^#/d" ~/.scrs/$1.commands | dzen2 -p -fn 'MesloLGS NF-$fn' -w $w -h $((2*$fn+5)) -bg '#01080b' -fg '#18de4a' -l $cmdl -m h -e "`sed -n -z \"s/\n//gp\" ~/.scrs/$1.keys`"
+sed "/^#/d" ~/.dwm/$1.commands | dzen2 -p -fn 'MesloLGS NF-$fn' -w $w -h $((2*$fn+5)) -bg '#01080b' -fg '#18de4a' -l $cmdl -m h -e "`sed -n -z \"s/\n//gp\" ~/.dwm/$1.keys`"
 xdotool mousemove $loc 

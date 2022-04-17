@@ -1,4 +1,4 @@
 #!/bin/sh
-shotgun -g `slop` ~/.scrs/shot.png
-mtpaint ~/.scrs/shot.png
-rm ~/.scrs/shot.png
+shotgun -g `slop` ~/.shot.png
+mtpaint ~/.shot.png
+rm ~/.shot.png
