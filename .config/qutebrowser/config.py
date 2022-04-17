@@ -58,7 +58,7 @@ config.set('content.cookies.accept', 'no-unknown-3rdparty', 'devtools://*')
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString #Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0
-config.set('content.headers.user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0', 'https://*')
+#config.set('content.headers.user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0', 'https://*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -89,7 +89,7 @@ config.bind('gh', 'tab-move -', mode='normal')
 config.bind('J', 'back', mode='normal')
 config.bind('K', 'forward', mode='normal')
 
-config.bind('<Ctrl+r>', 'restart', mode='normal')
+#config.bind('<Ctrl+r>', 'restart', mode='normal')
 config.bind('<Ctrl+o>', 'set-cmd-text -s :open -b', mode='normal')
 config.bind('ps', 'insert-text {primary}')
 config.bind('ys', 'yank selection')
@@ -126,7 +126,25 @@ config.bind(',nl', 'spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio
 config.bind(',nm', 'spawn -d mpv "{url}"')
 config.bind(',nq', 'spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" "{url}"')
 
+config.unbind('D', mode="normal")
+config.bind('Db', 'set-cmd-text -s :bookmark-del')
+config.bind('Dq', 'set-cmd-text -s :quickmark-del')
+config.bind('gS', 'config-source')
+config.bind('gM', 'messages -t')
+config.bind('gE', 'config-diff')
+config.bind('gc', 'config-edit')
+
+config.bind('cg', 'set-cmd-text -s :tab-give')
+config.bind('cm', 'clear-messages')
+config.bind('ca', 'adblock-update')
+
 #config.bind(',', '')
+#good commands:
+#spawn - external command
+#hint - highlight some element for selecting
+#set-cmd-text - type some command and wait for user to execute it
+#config-cycle - cycle through valuses of some config option
+
 config.set('editor.command', ['gsvim', '-c', 'normal {line}G{column0}1', '{file}'])
 
 import dracula.draw
@@ -154,14 +172,13 @@ config.set('tabs.show', 'always')
 
 config.set('content.media.audio_capture', True, 'https://discord.com')
 
-config.set('url.default_page', 'https://searx.info')
+config.set('url.start_pages', 'https://paulgo.io')
+config.set('url.default_page', 'https://paulgo.io')
 config.set('url.searchengines',
         {'DEFAULT':'https://paulgo.io/search?q={}',
             'sf':'https://searx.xyz/search?q={}',
             'ps':'https://paulgo.io/search?q={}&language=pl-PL',
             'psf':'https://searx.xyz/search?q={}&language=pl-PL',
-            'dg':'https://duckduckgo.com/?q={}',
-            'dgp':'https://duckduckgo.com/?q={}&kl=pl-pl&t=h_&ia=web',
             'aw':'https://wiki.archlinux.org/index.php?search={}',
             'gh':'https://github.com/search?q={}',
             'yt':'https://youtube.com/results?search_query={}',
@@ -171,17 +188,13 @@ config.set('url.searchengines',
             })
 
 #Javascript in search engines and other useful websites
-config.set('content.javascript.enabled', True, 'https://searx.info/*')
 config.set('content.javascript.enabled', True, 'https://searx.xyz/*')
 config.set('content.javascript.enabled', True, 'https://paulgo.io/*')
-config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
 config.set('content.javascript.enabled', True, 'https://*.github.com/*')
 config.set('content.javascript.enabled', True, 'https://odysee.com/*')
 config.set('content.javascript.enabled', True, 'https://youtube.com/*')
 config.set('content.javascript.enabled', True,  '*://*.docs.voidlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.duckduckgo.com/*')
 config.set('content.javascript.enabled', True,  '*://*.pkgs.alpinelinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.start.duckduckgo.com/*')
 config.set('content.javascript.enabled', True,  '*://*.voidlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.wiki.archlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.wiki.artixlinux.org/*')
