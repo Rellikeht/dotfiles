@@ -97,6 +97,8 @@ alias prr='prime-run'
 alias yv=youtube-viewer
 alias mdl='yv -n -d --convert-to=mp3'
 alias ytf='youtube-dl --list-formats'
+alias pg='ping gnu.org'
+alias pg5'ping -c 5 gnu.org'
 
 #Functions
 bins () {

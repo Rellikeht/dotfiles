@@ -10,4 +10,6 @@ xbindkeys
 playerctld daemon &
 sleep 4
 setxkbmap -option caps:escape
-xmodmap ~/.xmodmap/qwerty_start
+#xmodmap ~/.xmodmap/qwerty_start
+#xmodmap ~/.xmodmaprc
+~/.kb-plug.sh
