@@ -1,3 +1,4 @@
+#!/bin/sh
 #Coreutils and similar
 alias sudo=doas
 alias lsn='ls --color=never'
@@ -97,6 +98,8 @@ alias prr='prime-run'
 alias yv=youtube-viewer
 alias mdl='yv -n -d --convert-to=mp3'
 alias ytf='youtube-dl --list-formats'
+alias pg='ping gnu.org'
+alias pgs='ping -c 3 gnu.org'
 
 #Functions
 
@@ -212,6 +215,3 @@ fndf () {
 	find . -iregex "*$1*"
 }
 
-
-# Pseudo server made with files
-#tail -f fi | maxima >> fo | tail -f fo
