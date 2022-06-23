@@ -18,12 +18,12 @@ keycode  55 = v V v V doublelowquotemark leftsinglequotemark doublelowquotemark
 keycode  56 = b B b B rightdoublequotemark leftdoublequotemark rightdoublequotemark
 keycode  58 = m M m M mu infinity mu
 
-keycode 135 = Super_R
-remove mod1 = ISO_Level3_Shift
-add mod5 = ISO_Level3_Shift
-remove mod4 = Hyper_L
-add mod3 = Hyper_L
-remove mod3 = Escape
+!keycode 9 = grave asciitilde grave asciitilde asciitilde grave
+!keycode 49 = Hyper_L
 
-keycode 9 = grave asciitilde grave asciitilde asciitilde grave
-keycode 49 = Hyper_L
+!keycode 135 = Super_R
+!remove mod1 = ISO_Level3_Shift
+!add mod5 = ISO_Level3_Shift
+!remove mod4 = Hyper_L
+!add mod3 = Hyper_L
+!remove mod3 = Escape

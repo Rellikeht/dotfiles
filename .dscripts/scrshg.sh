@@ -1,2 +1,4 @@
 #!/bin/sh
-shotgun -g `slop`
+GEOM=`slop`
+sleep 0.1
+shotgun -g $GEOM

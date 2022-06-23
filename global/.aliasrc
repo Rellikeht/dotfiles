@@ -99,6 +99,16 @@ alias mdl='yv -n -d --convert-to=mp3'
 alias ytf='youtube-dl --list-formats'
 
 #Functions
+
+lh () {
+	if [ -n "$1" ]
+	then
+		ls -t | sed "$1q"
+	else
+		ls -t | sed 12q
+	fi
+}
+
 bins () {
 	pacman -Ql $1 | egrep "`echo $PATH | sed 's/:/|/g'`"
 }
