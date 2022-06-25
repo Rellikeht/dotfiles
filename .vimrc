@@ -1,5 +1,3 @@
-silent! source .vimrc.local
-
 tnoremap <C-w> <C-\><C-n>
 map <C-y> "+gP
 
@@ -99,11 +97,6 @@ set mouse=a
 " some parts are common, so i needed to do this:
 if v:progname !~? "vi(m|ew)?"
 
-	if v:progname =~? "gsvi.*"
-		"silent! source .gvimrc
-		silent! source .gvimrc.local
-	endif
-
 	nnoremap <Space> :set hls!<CR>
 	"nnoremap <CR> :set hls!<CR>
 
@@ -144,7 +137,6 @@ if v:progname !~? "vi(m|ew)?"
 	" and h j k l are e y n o
 	map <C-s> :call Wmt()<CR>
 	
-
 	if v:progname =~? ".*svi.*"
 		call plug#begin('~/.vim/plugged')
 		 Plug 'mbbill/undotree'
@@ -162,7 +154,6 @@ if v:progname !~? "vi(m|ew)?"
 		 Plug 'chrisbra/Colorizer'
 		 Plug 'maxboisvert/vim-simple-complete'
 		call plug#end()
-
 	
 		" TODO, but it takes much time with colors
 		" it is copied from repos README
@@ -228,13 +219,11 @@ if v:progname !~? "vi(m|ew)?"
 
 		" for quick scope to activate with delay
 		let g:qs_delay = 50
-
 	
 	endif
 	
 	"set to 0 if you want to enable it later via :RainbowToggle
 	let g:rainbow_active = 1
-
 	
 	" vim-sneak
 	let g:sneak#label = 1
@@ -290,3 +279,5 @@ if v:progname !~? "vi(m|ew)?"
 	"nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 endif
+
+silent! source .vimrc.local
