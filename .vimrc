@@ -1,3 +1,5 @@
+silent! source .vimrc.local
+
 tnoremap <C-w> <C-\><C-n>
 map <C-y> "+gP
 
@@ -87,6 +89,8 @@ set nu rnu
 set ignorecase
 set smartcase
 
+set mouse=a
+
 " I have probably the most minimalistic vim possible
 " from Artix/Arch repositories (vim-tiny package),
 " vim compiled with only features i need (binary is
@@ -95,16 +99,13 @@ set smartcase
 " some parts are common, so i needed to do this:
 if v:progname !~? "vi(m|ew)?"
 
-	" For motif gui to work with accented letters
 	if v:progname =~? "gsvi.*"
-		set guifont=-xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1	
-		hi MatchParen cterm=none ctermbg=green ctermfg=blue
-		set encoding=utf8
+		"silent! source .gvimrc
+		silent! source .gvimrc.local
 	endif
 
 	nnoremap <Space> :set hls!<CR>
 	"nnoremap <CR> :set hls!<CR>
-
 
 	" some good settings that
 	" don't work in vim-tiny
