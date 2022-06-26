@@ -26,6 +26,6 @@ cd
 ri "pipewire"
 ri "pipewire-pulse"
 ri "pipewire-media-session"
-ri "mic_lev_stab.sh" ".scrs/mic_lev_stab.sh"
+ri "mic_lev_stab.sh" ".dwm/mic_lev_stab.sh"
 
 # jackd -dalsa -dhw:1
