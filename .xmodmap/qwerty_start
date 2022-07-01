@@ -1,29 +1,173 @@
-keycode  24 = q Q q Q Greek_pi Greek_OMEGA Greek_pi
-keycode  25 = w W w W oe OE oe
-keycode  26 = e E e E eogonek Eogonek eogonek
-keycode  27 = r R r R copyright registered copyright
-keycode  28 = t T t T ssharp trademark ssharp
-keycode  29 = y Y y Y leftarrow yen leftarrow
-keycode  30 = u U u U downarrow uparrow downarrow
-keycode  31 = i I i I rightarrow U2194 rightarrow
-keycode  33 = p P p P thorn THORN thorn
-keycode  40 = d D d D braceleft bracketleft braceleft bracketleft 
-keycode  41 = f F f F braceright bracketright braceright bracketright
-keycode  42 = g G g G eng ENG eng
-keycode  43 = h H h H rightsinglequotemark U2022 rightsinglequotemark
-keycode  44 = j J j J minus underscore minus underscore
-keycode  45 = k K k K plus equal plus equal
-keycode  46 = l L l L lstroke Lstroke lstroke
-keycode  55 = v V v V doublelowquotemark leftsinglequotemark doublelowquotemark
-keycode  56 = b B b B rightdoublequotemark leftdoublequotemark rightdoublequotemark
-keycode  58 = m M m M mu infinity mu
+!/usr/include/X11/keysymdef.h
 
-!keycode 9 = grave asciitilde grave asciitilde asciitilde grave
-!keycode 49 = Hyper_L
+keycode 9 = grave asciitilde grave asciitilde asciitilde asciitilde grave
+keycode  10 = 1 exclam 1 exclam 
+keycode  11 = 2 at 2 at twosuperior 
+keycode  12 = 3 numbersign 3 numbersign threesuperior 
+keycode  13 = 4 dollar 4 dollar onequarter
+keycode  14 = 5 percent 5 percent EuroSign 
 
-!keycode 135 = Super_R
-!remove mod1 = ISO_Level3_Shift
-!add mod5 = ISO_Level3_Shift
-!remove mod4 = Hyper_L
-!add mod3 = Hyper_L
-!remove mod3 = Escape
+keycode  15 = 6 asciicircum 6 asciicircum onehalf 
+keycode  16 = 7 ampersand 7 ampersand section 
+keycode  17 = 8 asterisk 8 asterisk threequarters periodcentered
+keycode  18 = 9 parenleft 9 parenleft guillemotleft plusminus
+keycode  19 = 0 parenright 0 parenright guillemotright degree
+keycode  20 = minus underscore minus underscore endash
+keycode  21 = equal plus equal plus
+keycode  22 = BackSpace
+
+keycode  24 = q Q q Q 
+keycode  25 = w W w W 
+keycode  26 = e E e E eogonek Eogonek
+keycode  27 = r R r R copyright registered
+keycode  28 = t T t T trademark approxeq
+
+keycode  29 = y Y y Y leftarrow notequal
+keycode  30 = u U Home U downarrow uparrow
+keycode  31 = i I Page_Up I rightarrow infinity
+keycode  32 = o O Page_Down O oacute Oacute
+keycode  33 = p P End P
+keycode  34 = bracketleft braceleft 
+keycode  35 = bracketright braceright 
+keycode  51 = backslash bar backslash bar singlelowquotemark leftsinglequotemark
+
+keycode  38 = a A a A aogonek Aogonek 
+!keycode  40 = d D d D braceleft bracketleft
+!keycode  41 = f F f F braceright bracketright
+keycode  40 = d D d D braceleft bracketleft
+keycode  41 = f F f F braceright bracketright
+keycode  42 = g G g G eng ENG
+
+keycode  43 = h H Left Left U2022 U2194
+keycode  44 = j J Down Undo 
+keycode  45 = k K Up Redo plus equal
+keycode  46 = l L Right Right lstroke Lstroke
+keycode  47 = semicolon colon 
+keycode  48 = apostrophe quotedbl apostrophe quotedbl rightdoublequotemark leftdoublequotemark
+keycode  36 = Return 
+
+keycode  52 = z Z z Z zabovedot Zabovedot
+keycode  53 = x X x X zacute Zacute 
+keycode  54 = c C c C cacute Cacute
+keycode  55 = v V v V 
+keycode  56 = b B b B 
+
+keycode  57 = n N n N nacute Nacute
+keycode  58 = m M m M
+keycode  59 = comma less comma less lessthanequal approximate
+keycode  60 = period greater period greater greaterthanequal similarequal
+keycode  61 = slash question 
+
+!Greek_alpha
+!Greek_beta
+!Greek_gamma
+!Greek_GAMMA
+!Greek_delta
+!Greek_DELTA
+!Greek_epsilon
+!Greek_zeta
+!Greek_eta
+!Greek_theta
+!Greek_THETA
+!Greek_iota
+!Greek_kappa
+!Greek_lambda
+!Greek_LAMBDA
+!Greek_mu
+!Greek_nu
+!Greek_xi
+!Greek_XI
+!Greek_pi
+!Greek_PI
+!Greek_rho
+!Greek_sigma
+!Greek_SIGMA
+!Greek_tau
+!Greek_upsilon
+!Greek_UPSILON
+!Greek_phi
+!Greek_PHI
+!Greek_chi
+!Greek_psi
+!Greek_PSI
+!Greek_omega
+!Greek_OMEGA
+
+!logicaland
+!logiclaor
+!union
+!intersection
+!includes
+!radical
+!identical
+!partialderivative
+!elementof
+!notelementof
+!emptyset
+!notidentical
+!notapproxeq
+!hebrew_aleph
+
+!XF86LaunchA
+!XF86LaunchB
+!XF86Launch1
+!XF86Launch2
+!XF86Launch3
+!XF86Launch4
+!XF86Launch5
+!XF86Launch6
+!XF86Launch7
+!XF86Launch8
+!XF86Launch9
+
+!XF86Copy
+!XF86Paste
+!XF86Cut
+!XF86Search
+!XF86Go
+!Find
+!XF86Open
+!XF86Close
+!XF86Back
+!XF86Forward
+!XF86Close
+!Cancel
+!XF86New
+
+!XF86Sleep
+!XF86WakeUp
+!XF86ScreenSaver
+!XF86PowerOff
+!XF86Suspend
+!XF86Battery
+
+!XF86MenuKB
+!XF86Calculator
+!XF86Explorer
+!XF86RotateWindows
+!XF86Tools
+!XF86HomePage
+!XF86Reload
+!XF86ScrollUp
+!XF86ScrollDown
+!XF86Tools
+!XF86Documents
+
+!XF86MonBrightnessDown
+!XF86MonBrightnessUp
+!XF86Display
+!XF86KbdLightOnOff
+!XF86KbdBrightnessDown
+!XF86KbdBrightnessUp
+
+!XF86Bluetooth
+!XF86WLAN
+!XF86RFKill
+
+!XF86AudioMedia
+!XF86AudioForward
+!XF86AudioPause
+!XF86AudioMicMute
+!XF86AudioStop
+!XF86AudioRecord
+!XF86AudioRewind

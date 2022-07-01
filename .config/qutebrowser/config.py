@@ -176,11 +176,13 @@ config.set('url.start_pages', 'https://paulgo.io')
 config.set('url.default_page', 'https://paulgo.io')
 config.set('url.searchengines',
         {'DEFAULT':'https://paulgo.io/search?q={}',
-            'sf':'https://searx.xyz/search?q={}',
+            'sb':'https://searx.xyz/search?q={}',
             'ps':'https://paulgo.io/search?q={}&language=pl-PL',
-            'psf':'https://searx.xyz/search?q={}&language=pl-PL',
+            'pb':'https://searx.xyz/search?q={}&language=pl-PL',
             'aw':'https://wiki.archlinux.org/index.php?search={}',
+            'au':'https://aur.archlinux.org/packages?K={}&PP=250&SB=n&SO=a',
             'gh':'https://github.com/search?q={}',
+            'sf':'https://sourceforge.net/directory/?clear&q={}',
             'yt':'https://youtube.com/results?search_query={}',
             'gw':'https://wiki.gentoo.org/index.php?search={}',
             'gp':'https://packages.gentoo.org/packages/search?q={}',
@@ -190,14 +192,18 @@ config.set('url.searchengines',
 #Javascript in search engines and other useful websites
 config.set('content.javascript.enabled', True, 'https://searx.xyz/*')
 config.set('content.javascript.enabled', True, 'https://paulgo.io/*')
-config.set('content.javascript.enabled', True, 'https://*.github.com/*')
 config.set('content.javascript.enabled', True, 'https://odysee.com/*')
 config.set('content.javascript.enabled', True, 'https://youtube.com/*')
+config.set('content.javascript.enabled', True, 'https://github.com/*')
+config.set('content.javascript.enabled', True, 'https://gitlab.com/*')
+config.set('content.javascript.enabled', True, 'https://sourceforge.net/*')
 config.set('content.javascript.enabled', True,  '*://*.docs.voidlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.pkgs.alpinelinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.voidlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.wiki.archlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.wiki.artixlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://*.archlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://wiki.archlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://aur.archlinux.org/*')
+config.set('content.javascript.enabled', True,  '*://*.artixlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://www.deepl.com/*')
 
 # AUTOCONFIG!!!
