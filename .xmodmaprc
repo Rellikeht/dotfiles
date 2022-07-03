@@ -8,6 +8,7 @@ remove mod4 = Hyper_L
 add mod3 = Hyper_L
 remove mod3 = Escape
 
-keycode 49 = Hyper_L Hyper_L Hyper_L Hyper_L Hyper_L Hyper_L
+keycode 9 = grave asciitilde grave asciitilde asciitilde asciitilde
+keycode 49 = Hyper_L Hyper_L Hyper_L Hyper_L asciitilde asciitilde
 keycode 66 = Escape Escape Escape Escape Escape Escape 
 clear lock
