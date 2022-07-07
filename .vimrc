@@ -109,12 +109,15 @@ if v:progname !~? "vi(m|ew)?"
 	set hlsearch
 	set incsearch
 
-
 	filetype plugin on
 	filetype indent on
 	syntax on
 	colorscheme darkblue
 	"desert/slate
+
+	"Syntax for undetected files
+	autocmd BufNewFile,BufRead .xmodmap/* set syntax=xmodmap
+	autocmd BufNewFile,BufRead .xbindkeys* set syntax=scheme
 
 	" Attempt to make vim easier to use
 	" in workman layout, with preserving

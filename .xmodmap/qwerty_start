@@ -1,12 +1,13 @@
 !/usr/include/X11/keysymdef.h
+!/usr/include/X11/XF86keysym.h
 
-keycode  10 = 1 exclam 1 exclam hebrew_aleph trademark 
-keycode  11 = 2 at 2 at twosuperior onehalf 
-keycode  12 = 3 numbersign 3 numbersign threesuperior 
-keycode  13 = 4 dollar 4 dollar Greek_xi Greek_XI
-keycode  14 = 5 percent 5 percent U2022 periodcentered
+keycode  10 = 1 exclam F13 F13 hebrew_aleph trademark 
+keycode  11 = 2 at F14 F14 bracketleft twosuperior
+keycode  12 = 3 numbersign F15 F15 bracketright threesuperior 
+keycode  13 = 4 dollar F16 F16 Greek_xi Greek_XI
+keycode  14 = 5 percent F17 F17 U2022 periodcentered
 
-keycode  15 = 6 asciicircum 6 asciicircum section EuroSign 
+keycode  15 = 6 asciicircum F18 F18 section EuroSign 
 keycode  16 = 7 ampersand 7 ampersand onequarter threequarters
 keycode  17 = 8 asterisk 8 asterisk Greek_alpha Greek_beta
 keycode  18 = 9 parenleft Undo Undo guillemotleft Greek_chi
@@ -16,13 +17,13 @@ keycode  21 = equal plus equal plus notequal plusminus
 !keycode  22 = BackSpace BackSpace
 keycode  22 = emptyset includes XF86Bluetooth XF86WLAN emptyset includes
 
-keycode  24 = q Q q Q Greek_pi Greek_PI
-keycode  25 = w W w W Greek_omega Greek_OMEGA
-keycode  26 = e E e E eogonek Eogonek
-keycode  27 = r R r R apostrophe quotedbl 
-keycode  28 = t T t T Greek_tau Greek_rho
+keycode  24 = q Q F19 F19 Greek_pi Greek_PI
+keycode  25 = w W F20 F20 Greek_omega Greek_OMEGA
+keycode  26 = e E F21 F21 eogonek Eogonek
+keycode  27 = r R F22 F22 infinity Greek_epsilon
+keycode  28 = t T F23 F23 Greek_tau Greek_rho
 
-keycode  29 = y Y y Y leftarrow U2194
+keycode  29 = y Y F24 F24 leftarrow U2194
 keycode  30 = u U Home Home downarrow uparrow
 keycode  31 = i I Page_Up Page_Up rightarrow Greek_zeta
 keycode  32 = o O Page_Down Page_Down oacute Oacute
@@ -32,44 +33,55 @@ keycode  33 = p P End End Greek_phi Greek_PHI
 !keycode  34 = bracketleft braceleft 
 !keycode  35 = bracketright braceright 
 !keycode  51 = backslash bar backslash bar
-keycode  34 = backslash bar backslash bar identical notidentical
-keycode  35 = union intersection union intersection elementof notelementof
-!keycode  51 = emptyset includes XF86Bluetooth XF86WLAN emptyset includes
-keycode  51 = logicaland logicalor logicaland logicalor Greek_kappa Greek_eta
+keycode  34 = apostrophe quotedbl XF86Tools XF86MonBrightnessUp
+keycode  35 = backslash bar XF86Explorer XF86MonBrightnessDown
+keycode  51 = Hyper_R Hyper_R
 
-keycode  38 = a A a A aogonek Aogonek 
-keycode  39 = s S s S sacute Sacute sacute
-keycode  40 = d D d D braceleft bracketleft
-keycode  41 = f F f F braceright bracketright
-keycode  42 = g G g G eng ENG Greek_delta Greek_DELTA
+keycode  38 = a A F25 F25 aogonek Aogonek 
+keycode  39 = s S F26 F26 sacute Sacute
+keycode  40 = d D F27 F27 braceleft
+keycode  41 = f F F28 F28 braceright
+keycode  42 = g G F29 F29 eng ENG Greek_delta Greek_DELTA
 
 keycode  43 = h H Left Left Greek_gamma Greek_GAMMA
 keycode  44 = j J Down Down Greek_lambda Greek_LAMBDA
 keycode  45 = k K Up Up Greek_sigma Greek_SIGMA
 keycode  46 = l L Right Right lstroke Lstroke
-keycode  47 = semicolon colon Insert Insert infinity Greek_epsilon
-!keycode  48 = apostrophe quotedbl apostrophe quotedbl Greek_kappa Greek_eta
-keycode  48 = BackSpace BackSpace Delete Delete
-keycode  36 = Return Return Return Return Begin
+keycode  47 = semicolon colon Insert Insert Greek_kappa Greek_eta
+!keycode  48 = apostrophe quotedbl
+keycode  48 = BackSpace BackSpace Delete Delete XF86Forward XF86Back
+keycode  36 = Return Return F30 F30
 
-keycode  52 = z Z z Z zabovedot Zabovedot
-keycode  53 = x X x X zacute Zacute 
-keycode  54 = c C c C cacute Cacute
-keycode  55 = v V v V Greek_theta Greek_THETA
-keycode  56 = b B b B Greek_psi Greek_PSI
+keycode  52 = z Z F31 F31 zabovedot Zabovedot
+keycode  53 = x X F32 F32 zacute Zacute 
+keycode  54 = c C F33 F33 cacute Cacute
+keycode  55 = v V F34 F34 Greek_theta Greek_THETA
+keycode  56 = b B F35 F35 Greek_psi Greek_PSI
 
-keycode  57 = n N n N nacute Nacute
-keycode  58 = m M m M Greek_mu Greek_nu
-keycode  59 = comma less comma less lessthanequal approximate
-keycode  60 = period greater period greater greaterthanequal similarequal
+!XF86Cut 
+!XF86Copy 
+!XF86Paste 
+
+keycode  57 = n N XF86AudioNext XF86AudioPrev nacute Nacute
+keycode  58 = m M XF86AudioPlay XF86AudioStop Greek_mu Greek_nu
+keycode  59 = comma less XF86AudioForward XF86AudioMedia less lessthanequal approximate
+keycode  60 = period greater XF86AudioRewind XF86AudioPause greater greaterthanequal similarequal
 keycode  61 = slash question slash question Greek_upsilon Greek_UPSILON
 
+!XF86AudioMicMute
+
+!XF86AudioRecord
+
+! identical notidentical
+!union intersection union intersection elementof notelementof
+!logicaland logicalor logicaland logicalor
 ! approxeq notapproxeq
 ! singlelowquotemark leftsinglequotemark
 ! rightdoublequotemark leftdoublequotemark
 ! copyright registered
 !partialderivative
 !endash 
+! onehalf 
 
 !XF86LaunchA
 !XF86LaunchB
@@ -83,9 +95,6 @@ keycode  61 = slash question slash question Greek_upsilon Greek_UPSILON
 !XF86Launch8
 !XF86Launch9
 
-!XF86Copy
-!XF86Paste
-!XF86Cut
 !XF86Search
 !XF86Go
 !XF86Open
@@ -104,14 +113,11 @@ keycode  61 = slash question slash question Greek_upsilon Greek_UPSILON
 
 !XF86MenuKB
 !XF86Calculator
-!XF86Explorer
 !XF86RotateWindows
-!XF86Tools
 !XF86HomePage
 !XF86Reload
 !XF86ScrollUp
 !XF86ScrollDown
-!XF86Tools
 !XF86Documents
 
 !XF86MonBrightnessDown
@@ -122,11 +128,3 @@ keycode  61 = slash question slash question Greek_upsilon Greek_UPSILON
 !XF86KbdBrightnessUp
 
 !XF86RFKill
-
-!XF86AudioMedia
-!XF86AudioForward
-!XF86AudioPause
-!XF86AudioMicMute
-!XF86AudioStop
-!XF86AudioRecord
-!XF86AudioRewind
