@@ -10,5 +10,11 @@ remove mod3 = Escape
 
 keycode 9 = grave asciitilde grave asciitilde asciitilde asciitilde
 keycode 49 = Hyper_L Hyper_L Hyper_L Hyper_L asciitilde asciitilde
-keycode 66 = Escape Escape Escape Escape Escape Escape 
+!keycode 66 = Escape Escape Escape Escape Escape Escape 
+keycode 66 = Meta_L
 clear lock
+
+!xmodmap -e 'keycode 23 = Mode_switch ISO_Left_Tab Tab ISO_Left_Tab Tab ISO_Left_Tab'
+! clicks tab two times when has it set as above
+keycode 23 = Mode_switch
+keycode any = Tab

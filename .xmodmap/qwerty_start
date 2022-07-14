@@ -13,15 +13,18 @@ keycode  17 = 8 asterisk 8 asterisk Greek_alpha Greek_beta
 keycode  18 = 9 parenleft Undo Undo guillemotleft Greek_chi
 keycode  19 = 0 parenright Redo Redo guillemotright degree
 keycode  20 = minus underscore minus underscore radical Greek_iota
-keycode  21 = equal plus equal plus notequal plusminus
+keycode  21 = Greek_epsilon Greek_rho XF86Tools XF86MonBrightnessUp
+!keycode  21 = equal plus equal plus notequal plusminus
 !keycode  22 = BackSpace BackSpace
-keycode  22 = emptyset includes XF86Bluetooth XF86WLAN emptyset includes
+!keycode  22 = Mode_switch
+keycode  22 = ISO_Group_Latch
+!XF86Bluetooth XF86WLAN 
 
 keycode  24 = q Q F19 F19 Greek_pi Greek_PI
 keycode  25 = w W F20 F20 Greek_omega Greek_OMEGA
 keycode  26 = e E F21 F21 eogonek Eogonek
-keycode  27 = r R F22 F22 infinity Greek_epsilon
-keycode  28 = t T F23 F23 Greek_tau Greek_rho
+keycode  27 = r R F22 F22 apostrophe infinity
+keycode  28 = t T F23 F23 quotedbl Greek_tau
 
 keycode  29 = y Y F24 F24 leftarrow U2194
 keycode  30 = u U Home Home downarrow uparrow
@@ -33,15 +36,16 @@ keycode  33 = p P End End Greek_phi Greek_PHI
 !keycode  34 = bracketleft braceleft 
 !keycode  35 = bracketright braceright 
 !keycode  51 = backslash bar backslash bar
-keycode  34 = apostrophe quotedbl XF86Tools XF86MonBrightnessUp
-keycode  35 = backslash bar XF86Explorer XF86MonBrightnessDown
-keycode  51 = Hyper_R Hyper_R
+!keycode  34 = Greek_epsilon Greek_rho XF86Tools XF86MonBrightnessUp
+keycode  34 = equal plus equal plus notequal plusminus
+keycode  35 = Hyper_R Hyper_R XF86Explorer XF86MonBrightnessDown
+keycode  51 = Meta_R Meta_R
 
 keycode  38 = a A F25 F25 aogonek Aogonek 
 keycode  39 = s S F26 F26 sacute Sacute
-keycode  40 = d D F27 F27 braceleft
-keycode  41 = f F F28 F28 braceright
-keycode  42 = g G F29 F29 eng ENG Greek_delta Greek_DELTA
+keycode  40 = d D F27 F27 braceleft backslash
+keycode  41 = f F F28 F28 braceright bar
+keycode  42 = g G F29 F29 Greek_delta Greek_DELTA
 
 keycode  43 = h H Left Left Greek_gamma Greek_GAMMA
 keycode  44 = j J Down Down Greek_lambda Greek_LAMBDA
@@ -53,7 +57,7 @@ keycode  48 = BackSpace BackSpace Delete Delete XF86Forward XF86Back
 keycode  36 = Return Return F30 F30
 
 keycode  52 = z Z F31 F31 zabovedot Zabovedot
-keycode  53 = x X F32 F32 zacute Zacute 
+keycode  53 = x X F32 F32 zacute Zacute
 keycode  54 = c C F33 F33 cacute Cacute
 keycode  55 = v V F34 F34 Greek_theta Greek_THETA
 keycode  56 = b B F35 F35 Greek_psi Greek_PSI
@@ -68,10 +72,7 @@ keycode  59 = comma less XF86AudioForward XF86AudioMedia less lessthanequal appr
 keycode  60 = period greater XF86AudioRewind XF86AudioPause greater greaterthanequal similarequal
 keycode  61 = slash question slash question Greek_upsilon Greek_UPSILON
 
-!XF86AudioMicMute
-
-!XF86AudioRecord
-
+!emptyset includes 
 ! identical notidentical
 !union intersection union intersection elementof notelementof
 !logicaland logicalor logicaland logicalor
@@ -82,6 +83,9 @@ keycode  61 = slash question slash question Greek_upsilon Greek_UPSILON
 !partialderivative
 !endash 
 ! onehalf 
+
+!XF86AudioMicMute
+!XF86AudioRecord
 
 !XF86LaunchA
 !XF86LaunchB

@@ -145,6 +145,7 @@ if v:progname !~? "vi(m|ew)?"
 		 Plug 'mbbill/undotree'
 		 Plug 'junegunn/fzf'
 		 Plug 'unblevable/quick-scope'
+		 Plug 'kmonad/kmonad-vim'
 		 "saddly has problems
 		 "Plug 'easymotion/vim-easymotion'
 		 Plug 'justinmk/vim-sneak'

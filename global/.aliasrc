@@ -200,18 +200,34 @@ alias fkc="fe kak"
 alias fk="fed kak"
 
 fnd () {
-	find . -name "*$1*"
+	find $@ . -name "*$1*" 2>/dev/null
 }
 
 fndi () {
-	find . -iname "*$1*"
+	find $@ . -iname "*$1*" 2>/dev/null
 }
 
 fndr () {
-	find . -regex "*$1*"
+	find $@ . -regex "*$1*" 2>/dev/null
 }
 
 fndf () {
-	find . -iregex "*$1*"
+	find $@ . -iregex "*$1*" 2>/dev/null
+}
+
+fnde () {
+	find $@ . -name "$1" 2>/dev/null
+}
+
+fndie () {
+	find $@ . -iname "$1" 2>/dev/null
+}
+
+fndre () {
+	find $@ . -regex "$1" 2>/dev/null
+}
+
+fndfe () {
+	find $@ . -iregex "$1" 2>/dev/null
 }
 

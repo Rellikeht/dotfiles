@@ -104,7 +104,7 @@
 (xbindkey '("XF86Explorer") "nvidia-settings")
 (xbindkey
   '("XF86MonBrightnessUp")
-  "doas brightnessctl s +5%
+  "doas brightnessctl s 5%+ |
   sed -En '/Current brightness/s/.*\\(|\\)//gp' |
   dzen2 -p 2")
 (xbindkey
