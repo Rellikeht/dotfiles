@@ -5,15 +5,15 @@ keycode  10 = 1 exclam F13 F13 hebrew_aleph trademark
 keycode  11 = 2 at F14 F14 bracketleft twosuperior
 keycode  12 = 3 numbersign F15 F15 bracketright threesuperior 
 keycode  13 = 4 dollar F16 F16 Greek_xi Greek_XI
-keycode  14 = 5 percent F17 F17 U2022 periodcentered
+keycode  14 = 5 percent 5 percent U2022 periodcentered
 
-keycode  15 = 6 asciicircum F18 F18 section EuroSign 
-keycode  16 = 7 ampersand 7 ampersand onequarter threequarters
-keycode  17 = 8 asterisk 8 asterisk Greek_alpha Greek_beta
+keycode  15 = 6 asciicircum 6 asciicircum section EuroSign 
+keycode  16 = 7 ampersand F17 F17 onequarter threequarters
+keycode  17 = 8 asterisk F18 F18 Greek_alpha Greek_beta
 keycode  18 = 9 parenleft Undo Undo guillemotleft Greek_chi
 keycode  19 = 0 parenright Redo Redo guillemotright degree
-keycode  20 = minus underscore minus underscore radical Greek_iota
-keycode  21 = Greek_epsilon Greek_rho XF86Tools XF86MonBrightnessUp
+keycode  20 = minus underscore XF86ScrollUp underscore U2213 radical
+keycode  21 = Greek_epsilon Greek_rho XF86Tools XF86MonBrightnessUp U2756 Greek_iota
 !keycode  21 = equal plus equal plus notequal plusminus
 !keycode  22 = BackSpace BackSpace
 !keycode  22 = Mode_switch
@@ -37,7 +37,7 @@ keycode  33 = p P End End Greek_phi Greek_PHI
 !keycode  35 = bracketright braceright 
 !keycode  51 = backslash bar backslash bar
 !keycode  34 = Greek_epsilon Greek_rho XF86Tools XF86MonBrightnessUp
-keycode  34 = equal plus equal plus notequal plusminus
+keycode  34 = equal plus XF86ScrollDown plus plusminus notequal
 keycode  35 = Hyper_R Hyper_R XF86Explorer XF86MonBrightnessDown
 keycode  51 = Meta_R Meta_R
 
@@ -120,8 +120,6 @@ keycode  61 = slash question slash question Greek_upsilon Greek_UPSILON
 !XF86RotateWindows
 !XF86HomePage
 !XF86Reload
-!XF86ScrollUp
-!XF86ScrollDown
 !XF86Documents
 
 !XF86MonBrightnessDown

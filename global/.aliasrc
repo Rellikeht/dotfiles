@@ -5,6 +5,7 @@ alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
 alias lf='ls -F'
 alias ll='lf -la'
+alias grepn='grep --color=never'
 alias grep='grep --color=always'
 alias rgrep='grep -r'
 alias bgrep='grep -I'
@@ -164,6 +165,10 @@ eal () {
 	edt $1 /etc/.aliasrc
 }
 
+eal () {
+	edt $1 /etc/.aliasrc
+}
+
 evr () {
 	edt $1 /etc/.varrc
 }
@@ -199,35 +204,64 @@ alias fv="fed svim"
 alias fkc="fe kak"
 alias fk="fed kak"
 
+find_command ()
+{
+	if [ -n "$2" ]
+	then
+		find $1 $SWITCH "$ALL${@[@]:2}$ALL" 2>/dev/null
+	else
+		find . $SWITCH "$ALL$1$ALL" 2>/dev/null
+	fi
+}
+
 fnd () {
-	find $@ . -name "*$1*" 2>/dev/null
+	SWITCH='-name'
+	ALL='*'
+	find_command $@
 }
 
 fndi () {
-	find $@ . -iname "*$1*" 2>/dev/null
+	SWITCH='-iname'
+	ALL='*'
+	find_command $@
+}
+
+fnds () {
+	SWITCH='-regex'
+	ALL='.*'
+	find_command $@
 }
 
 fndr () {
-	find $@ . -regex "*$1*" 2>/dev/null
-}
-
-fndf () {
-	find $@ . -iregex "*$1*" 2>/dev/null
+	SWITCH='-iregex'
+	ALL='.*'
+	find_command $@
 }
 
 fnde () {
-	find $@ . -name "$1" 2>/dev/null
+	SWITCH='-name'
+	find_command $@
 }
 
 fndie () {
-	find $@ . -iname "$1" 2>/dev/null
+	SWITCH='-iname'
+	find_command $@
+}
+
+fndse () {
+	SWITCH='-regex'
+	find_command $@
 }
 
 fndre () {
-	find $@ . -regex "$1" 2>/dev/null
+	SWITCH='-iregex'
+	find_command $@
 }
 
-fndfe () {
-	find $@ . -iregex "$1" 2>/dev/null
+hms () {
+	help2man --no-discard-stderr "$@" | man -l -
 }
 
+hm () {
+	help2man "$@" | man -l -
+}

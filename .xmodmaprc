@@ -6,12 +6,13 @@ remove mod1 = ISO_Level3_Shift
 add mod5 = ISO_Level3_Shift
 remove mod4 = Hyper_L
 add mod3 = Hyper_L
-remove mod3 = Escape
+!remove mod3 = Escape
 
 keycode 9 = grave asciitilde grave asciitilde asciitilde asciitilde
 keycode 49 = Hyper_L Hyper_L Hyper_L Hyper_L asciitilde asciitilde
 !keycode 66 = Escape Escape Escape Escape Escape Escape 
 keycode 66 = Meta_L
+keycode any = Escape
 clear lock
 
 !xmodmap -e 'keycode 23 = Mode_switch ISO_Left_Tab Tab ISO_Left_Tab Tab ISO_Left_Tab'
