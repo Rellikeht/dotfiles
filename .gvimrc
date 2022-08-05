@@ -3,5 +3,6 @@ set guifont=-xos4-terminus-medium-r-normal--18-180-72-72-c-100-iso10646-1
 
 hi MatchParen cterm=none ctermbg=green ctermfg=blue
 set encoding=utf8
+set go-=r
 
 silent! source .gvimrc.local

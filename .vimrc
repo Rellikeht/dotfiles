@@ -96,12 +96,11 @@ set mouse=a
 " as small ide. This config is read by all of them, because
 " some parts are common, so i needed to do this:
 if v:progname !~? "vi(m|ew)?"
+	" AND THIS ISN'T PROBABLY GOOD IDEA
 
 	nnoremap <Space> :set hls!<CR>
 	"nnoremap <CR> :set hls!<CR>
 
-	" some good settings that
-	" don't work in vim-tiny
 	set showcmd
 	set cursorline
 	set showmatch
@@ -118,6 +117,7 @@ if v:progname !~? "vi(m|ew)?"
 	"Syntax for undetected files
 	autocmd BufNewFile,BufRead .xmodmap/* set syntax=xmodmap
 	autocmd BufNewFile,BufRead .xbindkeys* set syntax=scheme
+	autocmd FileType json syntax match Comment +\/\/.\+$+
 
 	" Attempt to make vim easier to use
 	" in workman layout, with preserving
@@ -139,26 +139,29 @@ if v:progname !~? "vi(m|ew)?"
 	" and second time
 	" and h j k l are e y n o
 	map <C-s> :call Wmt()<CR>
-	
+
 	if v:progname =~? ".*svi.*"
 		call plug#begin('~/.vim/plugged')
-		 Plug 'mbbill/undotree'
-		 Plug 'junegunn/fzf'
-		 Plug 'unblevable/quick-scope'
-		 Plug 'kmonad/kmonad-vim'
-		 "saddly has problems
-		 "Plug 'easymotion/vim-easymotion'
-		 Plug 'justinmk/vim-sneak'
-		 " TODO all commands
-		 Plug 'tpope/vim-repeat'
-		 " TODO all commands
-		 Plug 'tpope/vim-surround'
-		 Plug 'tpope/vim-speeddating'
-		 Plug 'luochen1990/rainbow'
-		 Plug 'chrisbra/Colorizer'
-		 Plug 'maxboisvert/vim-simple-complete'
+		Plug 'mbbill/undotree'
+		Plug 'junegunn/fzf'
+		Plug 'unblevable/quick-scope'
+		Plug 'kmonad/kmonad-vim'
+
+		"saddly has problems
+		"Plug 'easymotion/vim-easymotion'
+		Plug 'justinmk/vim-sneak'
+		" TODO all commands
+		Plug 'tpope/vim-repeat'
+		" TODO all commands
+		Plug 'tpope/vim-surround'
+		Plug 'tpope/vim-speeddating'
+		Plug 'tpope/vim-commentary'
+
+		Plug 'luochen1990/rainbow'
+		Plug 'chrisbra/Colorizer'
+		Plug 'maxboisvert/vim-simple-complete'
 		call plug#end()
-	
+
 		" TODO, but it takes much time with colors
 		" it is copied from repos README
 "		\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -220,15 +223,14 @@ if v:progname !~? "vi(m|ew)?"
 		\	}
 		\}
 
-
 		" for quick scope to activate with delay
 		let g:qs_delay = 50
-	
+
 	endif
-	
+
 	"set to 0 if you want to enable it later via :RainbowToggle
 	let g:rainbow_active = 1
-	
+
 	" vim-sneak
 	let g:sneak#label = 1
 	map f <Plug>Sneak_f

@@ -19,50 +19,76 @@ endif
 " source for other completion plugins, like Deoplete.
 let g:ale_completion_enabled = 1
 
-" Plugins will be downloaded under the specified directory.
+" TODO incorporate them
 call plug#begin('~/.config/nvim/plugins')
 
- Plug 'mbbill/undotree'
- Plug 'junegunn/fzf.vim'
- Plug 'junegunn/fzf'
+Plug 'mbbill/undotree'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
 
- Plug 'easymotion/vim-easymotion'
- Plug 'justinmk/vim-sneak'
- Plug 'tpope/vim-repeat'
- Plug 'tpope/vim-surround'
- Plug 'tpope/vim-speeddating'
+Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-commentary'
 
- Plug 'luochen1990/rainbow'
- Plug 'norcalli/nvim-colorizer.lua'
- Plug 'unblevable/quick-scope'
+Plug 'luochen1990/rainbow'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'unblevable/quick-scope'
 
- Plug 'numirias/semshi', { 'do': 'UpdateRemotePlugins' }
- Plug 'jceb/vim-orgmode'
- Plug 'vlime/vlime'
- Plug 'mattn/emmet-vim'
+Plug 'kmonad/kmonad-vim'
+Plug 'numirias/semshi', { 'do': 'UpdateRemotePlugins' }
+Plug 'jceb/vim-orgmode'
+Plug 'vlime/vlime'
+Plug 'mattn/emmet-vim'
 
- " ?
+" ?
 " Plug 'maxboisvert/vim-simple-complete'
- Plug 'dense-analysis/ale'
- " TODO i don't really know how it works
- " but somehow it works
- Plug 'ms-jpq/coq_nvim'
- Plug 'ms-jpq/coq.artifacts'
+Plug 'dense-analysis/ale'
 
-" List ends here. Plugins become visible to Vim after this call.
+" TODO i don't really know how it works
+" but somehow it works
+Plug 'ms-jpq/coq_nvim'
+Plug 'ms-jpq/coq.artifacts'
+
+" TODO chcek if that are useful
+Plug 'WolfgangMehner/awk-support'
+Plug 'WolfgangMehner/bash-support'
+Plug 'WolfgangMehner/c-support'
+Plug 'WolfgangMehner/vim-support'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 
 let g:coq_settings = { 'auto_start': v:true }
 
 source ~/.vimrc
 
-autocmd FileType json syntax match Comment +\/\/.\+$+
-
 " Use ALE as completion sources for all code.
 "call deoplete#custom#option('sources', {
 "\ '_': ['ale'],
 "\})
 let g:ale_completion_autoimport = 1
+
+"	\ 'python': ['jedils'],
+"	\ 'c': ['ccls', 'clangd', 'flawfinder', 'cc'],
+"	\ 'cpp': ['ccls', 'clangd', 'flawfinder', 'cc'],
+let g:ale_linters = {
+	\ 'python': ['flake8'],
+	\ 'vim': ['vint'],
+	\ 'haskell': ['hlint'],
+	\ 'go': ['gopls', 'revive', 'gofmt'],
+	\ 'c': ['flawfinder', 'cc'],
+	\ 'cpp': ['flawfinder', 'cc'],
+	\ 'bash': ['bash-language-server'],
+	\ 'sh': ['shellcheck'],
+	\ 'json': ['jq'],
+	\ 'tex': ['texlab']
+	\}
+
+autocmd BufEnter *.S ALEDisable
+autocmd BufEnter *.asm ALEDisable
 
 set termguicolors
 lua require'colorizer'.setup()

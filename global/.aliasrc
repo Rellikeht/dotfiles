@@ -23,6 +23,8 @@ alias agh='ag --hidden'
 #alias rg='rg -S'
 alias rgh='rg --hidden'
 alias eg='egrep'
+alias gt='/bin/time'
+alias gtv='/bin/time -v'
 
 #Text Editors
 alias nano='nano --rcfile=~/.nanorc'
@@ -65,10 +67,12 @@ alias pbs='pacman -Ql | grep /bin/ | egrep'
 alias ws='watch -d -n 1 sensors'
 alias wsc='watch -d -n 1 "sensors | egrep -v \"^$\""'
 alias wst='watch -c -d -n 1 "sensors | grep --color=always °"'
+alias wb='bins | grep'
 
 #Settings
 alias pm=pulsemixer
 alias am=alsamixer
+alias als='alias | grep'
 
 #Tools
 alias qc="qalc -s 'decimal comma off'"
@@ -240,21 +244,25 @@ fndr () {
 
 fnde () {
 	SWITCH='-name'
+	ALL=''
 	find_command $@
 }
 
 fndie () {
 	SWITCH='-iname'
+	ALL=''
 	find_command $@
 }
 
 fndse () {
 	SWITCH='-regex'
+	ALL=''
 	find_command $@
 }
 
 fndre () {
 	SWITCH='-iregex'
+	ALL=''
 	find_command $@
 }
 
@@ -265,3 +273,32 @@ hms () {
 hm () {
 	help2man "$@" | man -l -
 }
+
+noerr ()
+{
+	$@ 2>/dev/null
+}
+
+silent ()
+{
+	noerr $@ >/dev/null
+}
+
+dis ()
+{
+	silent $@ &
+	disown
+}
+
+alias prg='progress -M -W 1'
+alias prgc='prg \
+	-a ffmpeg -a ebook-convert \
+	-a yt-dlp -a youtube-dl -a you-get \
+	-a vifm -a tree \
+	-a wget -a curl -a aria2 \
+	-a rm -a du \
+	-a rar -a unrar \
+	-a agrep -a ag -a pcregrep \
+	-a less -a tail -a tac \
+	-a sed -a awk \
+	'

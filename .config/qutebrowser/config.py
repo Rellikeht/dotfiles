@@ -170,6 +170,8 @@ config.set('statusbar.show', 'always')
 config.set('tabs.background', True)
 config.set('tabs.show', 'always')
 
+config.set('content.cache.size', 67108864)
+
 config.set('content.media.audio_capture', True, 'https://discord.com')
 
 config.set('url.start_pages', 'https://paulgo.io')
@@ -181,6 +183,7 @@ config.set('url.searchengines',
             'pb':'https://searx.xyz/search?q={}&language=pl-PL',
             'aw':'https://wiki.archlinux.org/index.php?search={}',
             'au':'https://aur.archlinux.org/packages?K={}&PP=250&SB=n&SO=a',
+            'ap':'https://archlinux.org/packages/?q={}',
             'gh':'https://github.com/search?q={}',
             'sf':'https://sourceforge.net/directory/?clear&q={}',
             'yt':'https://youtube.com/results?search_query={}',
