@@ -32,6 +32,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 
 Plug 'luochen1990/rainbow'
 Plug 'norcalli/nvim-colorizer.lua'
@@ -57,7 +58,7 @@ Plug 'WolfgangMehner/awk-support'
 Plug 'WolfgangMehner/bash-support'
 Plug 'WolfgangMehner/c-support'
 Plug 'WolfgangMehner/vim-support'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': 'GoUpdateBinaries' }
 
 call plug#end()
 

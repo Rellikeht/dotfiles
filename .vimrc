@@ -63,13 +63,14 @@ nnoremap _c :bmodified<CR>
 nnoremap _C :bmodified!<CR>
 nnoremap _g :vsplit<Space>
 nnoremap _G :split<Space>
+nnoremap _w :SudoWrite<CR>
 
 nnoremap \e 0v$"cy:execute "!" . getreg("c")<CR>
 nnoremap \d 0v$"cydd:execute "!" . getreg("c")<CR>
 "nnoremap \w bvw"cy:execute "!" . getreg("c")<CR>
 
 " Select whole buffer without plugins
-vnoremap ae <Esc>ggvG$
+vnoremap ae <Esc>gg0vG$
 " Not exact vie
 vnoremap ie <Esc>gg}{vG{}k$
 "vae defined earlier doesn't work here
@@ -89,6 +90,9 @@ set smartcase
 
 set mouse=a
 
+set noar
+"autocmd BufRead,BufNewFile */dzielone/* setlocal autoread
+
 " I have probably the most minimalistic vim possible
 " from Artix/Arch repositories (vim-tiny package),
 " vim compiled with only features i need (binary is
@@ -98,6 +102,8 @@ set mouse=a
 if v:progname !~? "vi(m|ew)?"
 	" AND THIS ISN'T PROBABLY GOOD IDEA
 
+	silent! source ~/.vim/vars.vim
+
 	nnoremap <Space> :set hls!<CR>
 	"nnoremap <CR> :set hls!<CR>
 
@@ -105,19 +111,17 @@ if v:progname !~? "vi(m|ew)?"
 	set cursorline
 	set showmatch
 	set ruler
-	set hlsearch
 	set incsearch
+	set hlsearch
+
+	colorscheme elflord
+	"slate/ron/darkblue
 
 	filetype plugin on
 	filetype indent on
 	syntax on
-	colorscheme darkblue
-	"desert/slate
-
-	"Syntax for undetected files
-	autocmd BufNewFile,BufRead .xmodmap/* set syntax=xmodmap
-	autocmd BufNewFile,BufRead .xbindkeys* set syntax=scheme
-	autocmd FileType json syntax match Comment +\/\/.\+$+
+	silent! source ~/.vim/colors.vim
+	silent! source ~/.vim/syntax.vim
 
 	" Attempt to make vim easier to use
 	" in workman layout, with preserving
@@ -145,7 +149,7 @@ if v:progname !~? "vi(m|ew)?"
 		Plug 'mbbill/undotree'
 		Plug 'junegunn/fzf'
 		Plug 'unblevable/quick-scope'
-		Plug 'kmonad/kmonad-vim'
+		"Plug 'kmonad/kmonad-vim'
 
 		"saddly has problems
 		"Plug 'easymotion/vim-easymotion'
@@ -156,10 +160,12 @@ if v:progname !~? "vi(m|ew)?"
 		Plug 'tpope/vim-surround'
 		Plug 'tpope/vim-speeddating'
 		Plug 'tpope/vim-commentary'
+		Plug 'tpope/vim-eunuch'
 
 		Plug 'luochen1990/rainbow'
 		Plug 'chrisbra/Colorizer'
 		Plug 'maxboisvert/vim-simple-complete'
+		Plug 'WolfgangMehner/vim-support'
 		call plug#end()
 
 		" TODO, but it takes much time with colors
