@@ -129,10 +129,10 @@ if v:progname !~? "vi(m|ew)?"
 	let s:lay="qwe"
 	function! Wmt()
 		if s:lay =~? "wkm"
-			source .qwerty.vimrc
+			source ~/.vim/qwerty.vim
 			let s:lay="qwe"
 		else
-			source .workman.vimrc
+			source ~/.vim/workman.vim
 			let s:lay="wkm"
 		endif
 	endfunction
