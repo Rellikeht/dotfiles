@@ -163,7 +163,7 @@ if v:progname !~? "vi(m|ew)?"
 		Plug 'tpope/vim-eunuch'
 
 		Plug 'luochen1990/rainbow'
-		Plug 'chrisbra/Colorizer'
+		Plug 'lilydjwg/colorizer'
 		Plug 'maxboisvert/vim-simple-complete'
 		Plug 'WolfgangMehner/vim-support'
 		call plug#end()
@@ -234,8 +234,8 @@ if v:progname !~? "vi(m|ew)?"
 
 	endif
 
-	"set to 0 if you want to enable it later via :RainbowToggle
 	let g:rainbow_active = 1
+	let g:colorizer_maxlines = 500
 
 	" vim-sneak
 	let g:sneak#label = 1

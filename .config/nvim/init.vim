@@ -78,7 +78,7 @@ let g:ale_completion_autoimport = 1
 let g:ale_linters = {
 	\ 'python': ['flake8'],
 	\ 'vim': ['vint'],
-	\ 'haskell': ['hlint'],
+	\ 'haskell': ['ghc', 'hls', 'hlint'],
 	\ 'go': ['gopls', 'revive', 'gofmt'],
 	\ 'c': ['flawfinder', 'cc'],
 	\ 'cpp': ['flawfinder', 'cc'],
@@ -86,6 +86,11 @@ let g:ale_linters = {
 	\ 'sh': ['shellcheck'],
 	\ 'json': ['jq'],
 	\ 'tex': ['texlab']
+	\}
+
+let g:ale_fixers = {
+	\ 'haskell': ['hlint'],
+	\ 'go': ['gofmt']
 	\}
 
 autocmd BufEnter *.S ALEDisable
