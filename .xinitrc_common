@@ -1,15 +1,18 @@
 #!/bin/sh
+
 [ -e "$HOME/.xinitrc_local" ] && ~/.xinitrc_local
 xrdb .Xresources
-keynav daemonize &
+
 xcompmgr -fcD 1 &
 unclutter --timeout 1.2 &
 nitrogen --restore &
+
+keynav daemonize &
 xbindkeys
+setxkbmap -option caps:escape
+~/.kb-plug.sh
+
+/usr/lib/notification-daemon-1.0/notification-daemon
 ~/.audio_start.sh &
 playerctld daemon &
-sleep 4
-setxkbmap -option caps:escape
-#xmodmap ~/.xmodmap/qwerty_start
-#xmodmap ~/.xmodmaprc
-~/.kb-plug.sh
+sleep 4 #????

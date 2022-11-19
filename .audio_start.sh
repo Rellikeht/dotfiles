@@ -1,7 +1,7 @@
 #!/bin/sh
 
 rp () {
-	if [ -z "`ps a | egrep \"$1$\" | grep -v grep`" ]
+	if [ -z "`ps a | grep -E \"$1$\" | grep -v grep`" ]
 	then
 		$2
 	fi

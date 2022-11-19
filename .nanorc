@@ -149,12 +149,8 @@
 ## does not have a default value.
 # set speller "aspell -x -c"
 
-## Allow nano to be suspended (with ^Z by default).
-set suspend
-## (The old form of this option, 'set suspend', is deprecated.)
-
 ## Use this tab size instead of the default; it must be greater than 0.
-# set tabsize 8
+set tabsize 4
 
 ## Convert typed tabs to spaces.
 # set tabstospaces
@@ -334,10 +330,12 @@ bind M-K nosyntax all
 bind M-( recordmacro all
 bind M-) runmacro all
 bind M-% replace all
-bind M-D cutwordright all
-bind M-Z cutwordleft all
+#bind M-D cutwordright all
+#bind M-Z cutwordleft all
+bind M-D chopwordright all
+bind M-Z chopwordleft all
 bind M-@ speller all
-bind M-C curpos main
+bind M-C location main
 bind M-{ beginpara all
 bind M-} endpara all
 bind M-> lastline all

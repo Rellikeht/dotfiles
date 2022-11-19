@@ -6,6 +6,7 @@
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/dracula/*
+.config/qutebrowser/qsettings
 .config/vifm/vifminfo*
 .config/youtube-viewer/*.txt
 .config/youtube-viewer/*/

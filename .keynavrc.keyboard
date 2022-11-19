@@ -51,7 +51,7 @@ Super+shift+colon start, loadconfig ~/.keynavrc.numpad, loadconfig ~/.keynavrc.g
 Super+alt+colon start, loadconfig ~/.keynavrc.numpad
 #control+semicolon start, grid 3x3
 Escape end
-Caps_Lock end
+#Caps_Lock end
 z end
 
 s click 1 

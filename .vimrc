@@ -162,6 +162,8 @@ if v:progname !~? "vi(m|ew)?"
 		Plug 'tpope/vim-commentary'
 		Plug 'tpope/vim-eunuch'
 
+		Plug 'zah/nim.vim'
+		Plug 'ziglang/zig.vim'
 		Plug 'luochen1990/rainbow'
 		Plug 'lilydjwg/colorizer'
 		Plug 'maxboisvert/vim-simple-complete'
@@ -231,6 +233,8 @@ if v:progname !~? "vi(m|ew)?"
 
 		" for quick scope to activate with delay
 		let g:qs_delay = 50
+
+		let g:zig_fmt_autosave = 0
 
 	endif
 

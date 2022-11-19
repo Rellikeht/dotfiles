@@ -1,5 +1,6 @@
 #!/bin/sh
-#Coreutils and similar
+
+# Coreutils and similar
 alias sudo=doas
 alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
@@ -24,11 +25,12 @@ alias ag='ag --color --depth -1'
 alias agh='ag --hidden'
 #alias rg='rg -S'
 alias rgh='rg --hidden'
+alias egrep='grep -E'
 alias eg='egrep'
 alias gt='/bin/time'
 alias gtv='/bin/time -v'
 
-#Text Editors
+# Text Editors
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
 alias s=svim
@@ -43,6 +45,10 @@ alias vis='TERM=st-256color vis'
 alias rsv='doas svim'
 alias rka='doas kak'
 alias rvi='doas vis'
+alias fvc="fe svim"
+alias fv="fed svim"
+alias fkc="fe kak"
+alias fk="fed kak"
 
 #System Commands
 alias sns=sensors
@@ -66,21 +72,14 @@ alias rmu='doas mount -o rw,uid=$UID'
 alias um=umount
 alias rum='doas umount'
 alias pbs='pacman -Ql | grep /bin/ | egrep'
-#alias w1='watch -n 1 -d'
-#alias w1c='watch -n 1 -d -c'
-alias w1='wat 1'
-alias w1c='watc 1'
-alias ws='w1 sensors'
-alias wsc='w1 "sensors | egrep -v \"^$\""'
-alias wst='w1c "sensors | grep --color=always °"'
 alias wb='bins | grep'
 
-#Settings
+# Settings
 alias pm=pulsemixer
 alias am=alsamixer
 alias als='alias | grep'
 
-#Tools
+# Tools
 alias qc="qalc -s 'decimal comma off'"
 alias lsf='ls -FA --color=never --dereference-command-line-symlink-to-dir'
 alias fzf='fzf -m -e'
@@ -91,28 +90,59 @@ alias tma='tmux attach'
 alias sa='screen attach'
 alias bm='BEMENU_BACKEND=curses bemenu'
 alias nnn='nnn -d'
-alias rscl='rlwrap sbcl'
-alias scls='sbcl --script'
 alias xcc='xclip -i -selection clipboard'
 alias xcp='xclip -o -selection clipboard'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
 alias edr='doas svim'
 alias sal='source /etc/.aliasrc'
+alias bal='bat /etc/.aliasrc'
 alias de='dc -e'
 alias plc='plocate'
 alias plci='plocate -i'
 alias rlc='plocate -r'
 alias rlci='plocate -ir'
 alias prr='prime-run'
+alias prg='progress -M -W 1'
+alias prgc='prg \
+	-a ffmpeg -a ebook-convert -a pdfgrep\
+	-a yt-dlp -a youtube-dl -a you-get \
+	-a vifm -a tree -a mpv \
+	-a wget -a curl -a aria2 \
+	-a rm -a du \
+	-a rar -a unrar \
+	-a zstd -a zstdcat -a zstdgrep -a unzstd \
+	-a agrep -a ag -a pcregrep \
+	-a less -a tail -a tac \
+	-a sed -a awk \
+	-a diff \
+	'
 
-#Other
+# Other
 alias yv=youtube-viewer
 alias mdl='yv -n -d --convert-to=mp3'
 alias ytf='youtube-dl --list-formats'
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
+#alias w1='watch -n 1 -d'
+#alias w1c='watch -n 1 -d -c'
+alias w1='wat 1'
+alias w1c='watc 1'
+alias ws='w1 sensors'
+alias wsc='w1 "sensors | egrep -v \"^$\""'
+alias wst='w1c "sensors | grep --color=always °"'
 
-#Functions
+# Languages
+alias scls='sbcl --script'
+alias rscl='rlwrap sbcl'
+PYPY='pypy3'
+PYPYP="/opt/$PYPY/bin"
+alias ipp="$PYPYP/ipython"
+alias ibp="$PYPYP/bpython"
+alias ppip="$PYPYP/pip"
+alias pypym="$PYPY -m"
+alias jule='julia -e'
+
+# Functions
 
 lh () {
 	if [ -n "$1" ]
@@ -209,11 +239,6 @@ fed () {
 	fec "$1"
 }
 
-alias fvc="fe svim"
-alias fv="fed svim"
-alias fkc="fe kak"
-alias fk="fed kak"
-
 find_command ()
 {
 	if [ -n "$2" ]
@@ -224,7 +249,8 @@ find_command ()
 		DIR=.
 		PATTERN=$@
 	fi
-	find $DIR $SWITCH "$ALL$PATTERN$ALL" 2>/dev/null
+	#find $DIR $SWITCH "$ALL$PATTERN$ALL" 2>/dev/null
+	find $DIR -regextype posix-extended $SWITCH "$ALL$PATTERN$ALL" 2>/dev/null
 }
 
 fnd () {
@@ -316,17 +342,3 @@ wat ()
 watc () {
 	wat $1 -c ${@:2}
 }
-
-alias prg='progress -M -W 1'
-alias prgc='prg \
-	-a ffmpeg -a ebook-convert -a pdfgrep\
-	-a yt-dlp -a youtube-dl -a you-get \
-	-a vifm -a tree -a mpv \
-	-a wget -a curl -a aria2 \
-	-a rm -a du \
-	-a rar -a unrar \
-	-a zstd -a zstdcat -a zstdgrep -a unzstd \
-	-a agrep -a ag -a pcregrep \
-	-a less -a tail -a tac \
-	-a sed -a awk \
-	'

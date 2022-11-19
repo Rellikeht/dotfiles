@@ -206,3 +206,6 @@ XTerm*color12:		#530aba
 XTerm*color13:		#bb006b
 XTerm*color14:		#433364
 XTerm*color15:		#5f5f5f
+
+Xcursor.theme:	Breeze Hacked
+Xcursor.size:	16
