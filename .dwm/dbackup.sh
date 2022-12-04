@@ -2,15 +2,20 @@
 
 TARS="t(ar)?(\.?(gz|xz|bz2|bz))?"
 ARCHS="rar|zip|lzma|xz|gz|bz2"
-IMGS="png|jpe?g|gif"
+IMGS="png|jpe?g|gif|webp|bmp"
 DOCS="pdf|djvu|epub|chm|mobi|az3"
-REST="out|txt|torrent"
+TEXT="sha256|sha1|crc|sum|txt|torrent"
+VIDS="webm|mp4|mkv|avi|ogv|m4a"
+MUSIC="mp3|wav|opus|ogg"
+DISKS="iso|ova|ovs|vdi|raw"
+EDITS="docx?|pptx?|pot|od[pt]|xlsx?"
+REST="out|download|crdownload|part"
 
 # '^[^.]*$ without extensions?
 # '[^.]{8,} maybe, maybe with $ (4 should be enough,
 # but torrent and maybe other long extensions
 
-EXTS="$IMGS|$TARS|$ARCHS|$DOCS|$REST"
+EXTS="$TARS|$ARCHS|$IMGS|$DOCS|$TEXT|$VIDS|$MUSIC|$EDITS|$DISKS|$REST"
 DOWNS=~/Pobrane/
 
 backup ()

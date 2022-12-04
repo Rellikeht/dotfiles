@@ -108,7 +108,7 @@ alias prgc='prg \
 	-a yt-dlp -a youtube-dl -a you-get \
 	-a vifm -a tree -a mpv \
 	-a wget -a curl -a aria2 \
-	-a rm -a du \
+	-a rm -a du -a dd \
 	-a rar -a unrar \
 	-a zstd -a zstdcat -a zstdgrep -a unzstd \
 	-a agrep -a ag -a pcregrep \
@@ -134,13 +134,15 @@ alias wst='w1c "sensors | grep --color=always °"'
 # Languages
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
+alias rooc='rlwrap ocaml'
 PYPY='pypy3'
 PYPYP="/opt/$PYPY/bin"
 alias ipp="$PYPYP/ipython"
 alias ibp="$PYPYP/bpython"
 alias ppip="$PYPYP/pip"
 alias pypym="$PYPY -m"
-alias jule='julia -e'
+alias jle='julia -e'
+alias pyc='python -c'
 
 # Functions
 

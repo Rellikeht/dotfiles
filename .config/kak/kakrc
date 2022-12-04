@@ -1,5 +1,4 @@
-#colorscheme red-phoenix
-colorscheme solarized-dark-termcolors
+colorscheme solarized-dark
 add-highlighter global/ wrap -word
 add-highlighter global/ number-lines -relative
 
