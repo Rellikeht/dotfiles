@@ -9,14 +9,16 @@ VIDS="webm|mp4|mkv|avi|ogv|m4a"
 MUSIC="mp3|wav|opus|ogg"
 DISKS="iso|ova|ovs|vdi|raw"
 EDITS="docx?|pptx?|pot|od[pt]|xlsx?"
+LANG="html?|css"
 REST="out|download|crdownload|part"
 
 # '^[^.]*$ without extensions?
 # '[^.]{8,} maybe, maybe with $ (4 should be enough,
 # but torrent and maybe other long extensions
 
-EXTS="$TARS|$ARCHS|$IMGS|$DOCS|$TEXT|$VIDS|$MUSIC|$EDITS|$DISKS|$REST"
+EXTS="$TARS|$ARCHS|$IMGS|$DOCS|$TEXT|$VIDS|$MUSIC|$DISKS|$EDITS|$LANG|$REST"
 DOWNS=~/Pobrane/
+DBD=~/Dbackup/
 
 backup ()
 {
@@ -25,5 +27,5 @@ backup ()
 		xargs -I{} cp -rn "$DOWNS"/{} "$2"
 }
 
-backup "$EXTS" ~/Dwns/ -v
-backup "$DOCS" ~/Dwns/pdf/
+backup "$EXTS" "$DBD" -v
+backup "$DOCS" "$DBD/pdf/"

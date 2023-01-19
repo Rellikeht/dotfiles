@@ -12,6 +12,6 @@ xcompmgr -fcD 1 &
 unclutter --timeout 1.2 &
 nitrogen --restore &
 
-/usr/lib/notification-daemon-1.0/notification-daemon &
+#/usr/lib/notification-daemon-1.0/notification-daemon &
 ~/.audio_start.sh &
 playerctld daemon &

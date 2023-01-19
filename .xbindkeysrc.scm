@@ -2,7 +2,12 @@
 (use-modules (ice-9 ftw))
 (use-modules (ice-9 popen))
 
-(define klays (list-tail (scandir ".xmodmap") 2))
+(define klays
+  (list-tail
+    (scandir
+      (string-append
+	(getenv "HOME")
+	"/.xmodmap")) 2))
 (define klay 0)
 
 ;; CONTROL OVER MULTIPLE PLAYERS USING MULTIMEDIA KEYS
@@ -130,13 +135,16 @@
 	      (length klays)))
     (set! klays
       (list-tail
-	(scandir ".xmodmap") 2))))
+	(scandir
+	  (string-append
+	    (getenv "HOME")
+	    "/.xmodmap")) 2))))
 
 
 ;; SOME MINOR BINDINGS
 
 (xbindkey '("Mod4" "Shift" "i") "xmodmap ~/.xmodmap/julka")
-(xbindkey '("Print") "shotgun")
+(xbindkey '("Print") "cd ~/Downloads && shotgun")
 (xbindkey '("Pause") "playerctl -a pause")
 (xbindkey-function
   '("F2")
@@ -165,14 +173,14 @@
     "BackSpace"))
 
 (define norm_keys
-  (list (list-ref wrt_keys 1)
-	"Hyper_L"
+  (list "Hyper_L"
+	(list-ref wrt_keys 1)
 	(list-ref wrt_keys 0)))
 
 (define emacs_keys
-  (list (list-ref norm_keys 0)
+  (list (list-ref norm_keys 1)
 	(list-ref norm_keys 2)
-	(list-ref norm_keys 1)))
+	(list-ref norm_keys 0)))
 
 (define alt_keys (list-copy wrt_keys))
 (list-set! alt_keys 2 "ISO_Level3_Shift") ;Latch
@@ -200,19 +208,21 @@
 	" " (ffield k2)
 	" | dzen2 -p 1"))))
 
-(xbindkey-function '("m:0x40" "c:66")
-		   (lambda ()
-		     (if (zero? caps_mod)
-		       (caps_mode norm_keys)
-		       (caps_mode emacs_keys))
-		     (set! caps_mod (- 1 caps_mod))))
+(xbindkey-function
+  '("m:0x40" "c:66")
+  (lambda ()
+    (if (zero? caps_mod)
+      (caps_mode norm_keys)
+      (caps_mode emacs_keys))
+    (set! caps_mod (- 1 caps_mod))))
 
-(xbindkey-function '("m:0x41" "c:66")
-		   (lambda ()
-		     (if (zero? caps_amod)
-		       (caps_mode wrt_keys)
-		       (caps_mode alt_keys))
-		     (set! caps_amod (- 1 caps_amod))))
+(xbindkey-function
+  '("m:0x41" "c:66")
+  (lambda ()
+    (if (zero? caps_amod)
+      (caps_mode wrt_keys)
+      (caps_mode alt_keys))
+    (set! caps_amod (- 1 caps_amod))))
 
 ;; VOLUME CONTROL WITH SUPER + , AND SUPER + .
 

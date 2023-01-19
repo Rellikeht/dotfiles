@@ -79,6 +79,7 @@ nnoremap yae mcggvG$y'c
 set wildchar=<Tab>
 set wildmode=longest,list,full
 set wildmenu
+set noterse
 
 " hybrid line numbers, my favourite
 set number relativenumber
@@ -89,6 +90,8 @@ set ignorecase
 set smartcase
 
 set mouse=a
+set shiftwidth=4
+set softtabstop=4
 
 set noar
 "autocmd BufRead,BufNewFile */dzielone/* setlocal autoread

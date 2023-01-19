@@ -23,9 +23,9 @@ ri () {
 }
 
 cd
-ri "pipewire"
-ri "pipewire-pulse"
-ri "pipewire-media-session"
+ri "pipewire" "dbus-launch pipewire"
+ri "pipewire-media-session" "dbus-launch pipewire-media-session"
+ri "pipewire-pulse" "dbus-launch pipewire-pulse"
 ri "mic_lev_stab.sh" ".dwm/mic_lev_stab.sh"
 
 # jackd -dalsa -dhw:1

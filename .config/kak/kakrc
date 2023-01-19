@@ -5,6 +5,10 @@ add-highlighter global/ number-lines -relative
 
 #plugins
 
+hook global BufCreate .*[.](cl) %{
+	set-option buffer filetype lisp
+}
+
 hook global WinSetOption filetype=(.*) %{
         rainbow-enable-window
 }

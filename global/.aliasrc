@@ -29,6 +29,7 @@ alias egrep='grep -E'
 alias eg='egrep'
 alias gt='/bin/time'
 alias gtv='/bin/time -v'
+alias diff='diff --color=always'
 
 # Text Editors
 alias nano='nano --rcfile=~/.nanorc'
@@ -68,7 +69,7 @@ alias tbgm='top -b -e m | egrep'
 alias tbgo='top -b -n 1 | egrep'
 alias tbgh='top -b -n 1 -e m | egrep'
 alias mu='mount -o rw,uid=$UID'
-alias rmu='doas mount -o rw,uid=$UID'
+alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
 alias um=umount
 alias rum='doas umount'
 alias pbs='pacman -Ql | grep /bin/ | egrep'

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+while [ ! -e "$1" -a -n "$1" ]
+do
+	ARGS=`echo $ARGS $1`
+	shift
+done
+
+[ -z "$THREADS" ] && THREADS=12 # TODO threads as command line argument
+DIR=.; [ "$1" ] && DIR=$@
+OUTDIR="/tmp/pdfgrep`date +%s%N`"
+mkdir -p $OUTDIR
+
+find $DIR -iname '*.pdf' | \
+	xargs -P $THREADS -I {} \
+	sh -c "export FILE=\`echo {} | sha256sum | cut -f1 -d' '\`;
+	pdfgrep --color=always -H $ARGS \"{}\" > $OUTDIR/\$FILE"
+
+cat $OUTDIR/*
+rm -rf $OUTDIR
+
+#DIR=`echo $@ | awk '{print $NF}'`
+#
+#if [ -d "$DIR" ]
+#then ARGS=`echo $@ | sed 's/\w*$//'`
+#elif [ -e "$DIR" ]
+#then
+#	while [ ! -e "$1" ];
+#	do
+#		ARGS=`echo $ARGS $1`
+#		shift
+#	done
+#	DIR=$@
+#else
+#	ARGS=$@
+#	DIR=.
+#fi
