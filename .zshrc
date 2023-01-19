@@ -29,14 +29,14 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 #aliases
 [ -f "/etc/.aliasrc" ] && source "/etc/.aliasrc"
+[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
+
+#functions
+[ -f "/etc/.funcrc" ] && source "/etc/.funcrc"
+[ -f "$HOME/.funcrc" ] && source "$HOME/.funcrc"
 
 #common variables
 [ -f "/etc/.varrc" ] && source "/etc/.varrc"
-
-#aliases
-[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
-
-#common variables
 [ -f "$HOME/.varrc" ] && source "$HOME/.varrc"
 
 my-backward-delete-word () {
@@ -47,4 +47,4 @@ zle -N my-backward-delete-word
 
 bindkey    '\e^?' my-backward-delete-word
 
-source /home/michal/.config/broot/launcher/bash/br
+#source /home/michal/.config/broot/launcher/bash/br

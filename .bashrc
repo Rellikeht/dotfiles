@@ -6,14 +6,14 @@
 
 #aliases
 [ -f "/etc/.aliasrc" ] && source "/etc/.aliasrc"
+[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
+
+#functions
+[ -f "/etc/.funcrc" ] && source "/etc/.funcrc"
+[ -f "$HOME/.funcrc" ] && source "$HOME/.funcrc"
 
 #common variables
 [ -f "/etc/.varrc" ] && source "/etc/.varrc"
-
-#aliases
-[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
-
-#common variables
 [ -f "$HOME/.varrc" ] && source "$HOME/.varrc"
 
 VISUAL="emacs -nw"
