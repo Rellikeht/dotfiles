@@ -165,24 +165,20 @@ hm () {
 	help2man "$@" | man -l -
 }
 
-noerr ()
-{
+noerr () {
 	$@ 2>/dev/null
 }
 
-silent ()
-{
+silent () {
 	noerr $@ >/dev/null
 }
 
-dis ()
-{
+dis () {
 	silent $@ &
 	disown
 }
 
-wat ()
-{
+wat () {
 	#if [ -n "$1" ]
 	if [ "$1" -gt 0 ] 2>/dev/null
 	then

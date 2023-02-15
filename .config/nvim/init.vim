@@ -1,6 +1,5 @@
 " This line makes pacman-installed global Arch Linux vim packages work.
 silent! source /usr/share/nvim/archlinux.vim
-"colorscheme desert
 
 " Add optional packages.
 "
@@ -50,7 +49,9 @@ Plug 'zah/nim.vim'
 
 call plug#end()
 
+colorscheme elflord
 source ~/.vimrc
+source ~/.vim/colors.vim
 
 set termguicolors
 

@@ -189,7 +189,8 @@ config.set('url.searchengines',
             'yt':'https://youtube.com/results?search_query={}',
             'gw':'https://wiki.gentoo.org/index.php?search={}',
             'gp':'https://packages.gentoo.org/packages/search?q={}',
-            'lb':'https://odysee.com/$/search?q={}'
+            'lb':'https://odysee.com/$/search?q={}',
+            'wc':'https://wikichip.org/wiki?search={}'
             })
 
 #Javascript in search engines and other useful websites

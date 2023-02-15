@@ -1,10 +1,13 @@
 " Vim color file
 
-set background=dark
 "hi clear
 if exists("syntax_on")
   syntax reset
 endif
+
+autocmd BufNewFile,BufRead *.h setlocal background=light
+autocmd FileType sh setlocal background=light
+autocmd FileType haskell colorscheme elflord
 
 " ========================
 "	PROGRAMMING
@@ -107,3 +110,17 @@ hi Title	guifg=#101f2f	guibg=#c2dcd2
 hi TabLine	guifg=#08caca	guibg=#101f2f
 hi TabLineFill	guifg=#000000	guibg=#043221
 hi TabLineSel	guifg=#00ffff	guibg=#0000ff	gui=bold
+
+if v:progname =~? ".*svi.*"
+    colorscheme default
+    "autocmd FileType ocaml colorscheme default
+    "autocmd FileType ocaml setlocal background=dark
+    "autocmd FileType go colorscheme default
+    "autocmd FileType go setlocal background=dark
+    "autocmd FileType c colorscheme default
+    "autocmd FileType c setlocal background=dark
+    "autocmd FileType cpp colorscheme default
+    "autocmd FileType cpp setlocal background=dark
+endif
+
+set background=dark

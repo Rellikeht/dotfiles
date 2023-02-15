@@ -15,6 +15,7 @@ QT_QPA_PLATFORMTHEME=qt5ct
 PATH=$PATH:$PLAN9/bin
 PATH=$PATH:/ext/eclipse/cpp/eclipse
 TERM=st-24bit
+TERMINFO=/usr/share/terminfo
 #if [ -n "$TMUX" ]
 #then
 #	TERM=st-24bit

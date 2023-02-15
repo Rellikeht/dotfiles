@@ -102,7 +102,7 @@ set noar
 " called svim for distinction) and neovim (also from repos)
 " as small ide. This config is read by all of them, because
 " some parts are common, so i needed to do this:
-if v:progname !~? "vi(m|ew)?"
+if v:progname !~? "^vi"
 	" AND THIS ISN'T PROBABLY GOOD IDEA
 
 	silent! source ~/.vim/vars.vim
@@ -117,14 +117,13 @@ if v:progname !~? "vi(m|ew)?"
 	set incsearch
 	set hlsearch
 
-	colorscheme elflord
-	"slate/ron/darkblue
-
 	filetype plugin on
 	filetype indent on
 	syntax on
-	silent! source ~/.vim/colors.vim
-	silent! source ~/.vim/syntax.vim
+	"silent! source ~/.vim/colors.vim
+	"silent! source ~/.vim/syntax.vim
+	source ~/.vim/colors.vim
+	source ~/.vim/syntax.vim
 
 	" Attempt to make vim easier to use
 	" in workman layout, with preserving

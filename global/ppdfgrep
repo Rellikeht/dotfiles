@@ -6,7 +6,7 @@ do
 	shift
 done
 
-[ -z "$THREADS" ] && THREADS=12 # TODO threads as command line argument
+[ -z "$THREADS" ] && THREADS=15 # TODO threads as command line argument
 DIR=.; [ "$1" ] && DIR=$@
 OUTDIR="/tmp/pdfgrep`date +%s%N`"
 mkdir -p $OUTDIR
