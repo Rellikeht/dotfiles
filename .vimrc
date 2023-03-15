@@ -164,6 +164,8 @@ if v:progname !~? "^vi"
 		Plug 'tpope/vim-commentary'
 		Plug 'tpope/vim-eunuch'
 
+		" TODO check
+		Plug 'WolfgangMehner/bash-support'
 		Plug 'zah/nim.vim'
 		Plug 'ziglang/zig.vim'
 		Plug 'luochen1990/rainbow'

@@ -34,6 +34,9 @@ alias diff='diff --color=always'
 # Text Editors
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
+alias mvim='svim -f'
+alias m=mvim
+alias svim='svim -f -X'
 alias s=svim
 alias gsv=gsvim
 alias se=exs
@@ -64,10 +67,10 @@ alias rb=reboot
 alias po=poweroff
 alias rrb='doas reboot'
 alias rpo='doas poweroff'
-alias tbg='top -b | egrep'
-alias tbgm='top -b -e m | egrep'
-# fltr - symbolic link for grep in /usr/local/bin for nonconflicting name
+# its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
+alias tbg='top -b -d 1 | its_just_grep -v its_just_grep | its_just_grep -E'
+alias tbgm='top -b -d 1 -e m | its_just_grep -v its_just_grep | its_just_grep -E'
 alias fpr='ps axh o size,rss,pid,user,cmd,state,pcpu | \
     its_just_grep -v its_just_grep | its_just_grep -E'
 alias fprh="ps axh o size,rss,pid,user,cmd,state,pcpu | \

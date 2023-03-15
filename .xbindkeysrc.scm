@@ -147,10 +147,10 @@
 (xbindkey '("Print") "cd ~/Downloads && shotgun")
 (xbindkey '("Pause") "playerctl -a pause")
 (xbindkey-function
-  '("F2")
+  '("F3")
   (lambda ()
     (run-command
-      "xdotool keyup F2 keydown ctrl key q keyup ctrl")))
+      "xdotool keyup F3 keydown ctrl key q keyup ctrl")))
 ;(xbindkey '("f36") "xdotool keydown control key x keyup control key @ h")
 ;(xbindkey '("f37") "xdotool keydown control key x keyup control key @ a")
 ;(xbindkey '("f38") "xdotool keydown control key x keyup control key @ c")

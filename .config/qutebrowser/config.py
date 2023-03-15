@@ -177,7 +177,7 @@ config.set('content.media.audio_capture', True, 'https://discord.com')
 config.set('url.start_pages', 'https://paulgo.io')
 config.set('url.default_page', 'https://paulgo.io')
 config.set('url.searchengines',
-        {'DEFAULT':'https://paulgo.io/search?q={}',
+           {'DEFAULT':'https://paulgo.io/search?q={}',
             'sb':'https://searx.xyz/search?q={}',
             'ps':'https://paulgo.io/search?q={}&language=pl-PL',
             'pb':'https://searx.xyz/search?q={}&language=pl-PL',
@@ -189,6 +189,7 @@ config.set('url.searchengines',
             'yt':'https://youtube.com/results?search_query={}',
             'gw':'https://wiki.gentoo.org/index.php?search={}',
             'gp':'https://packages.gentoo.org/packages/search?q={}',
+            'np':'https://search.nixos.org/packages?size=500&query={}',
             'lb':'https://odysee.com/$/search?q={}',
             'wc':'https://wikichip.org/wiki?search={}'
             })

@@ -11,10 +11,10 @@ DIR=.; [ "$1" ] && DIR=$@
 OUTDIR="/tmp/pdfgrep`date +%s%N`"
 mkdir -p $OUTDIR
 
-find $DIR -iname '*.pdf' | \
-	xargs -P $THREADS -I {} \
-	sh -c "export FILE=\`echo {} | sha256sum | cut -f1 -d' '\`;
-	pdfgrep --color=always -H $ARGS \"{}\" > $OUTDIR/\$FILE"
+find $DIR -iname '*.pdf' -printf "%h/%f\0" | \
+    xargs -0 -P $THREADS -I {} \
+    sh -c "export FILE=\`echo \"{}\" | sha256sum | cut -f1 -d' '\`; \
+    pdfgrep --color=always -H $ARGS \"{}\" > $OUTDIR/\$FILE"
 
 cat $OUTDIR/*
 rm -rf $OUTDIR

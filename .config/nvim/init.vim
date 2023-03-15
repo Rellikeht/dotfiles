@@ -38,8 +38,8 @@ Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " TODO chcek if that are useful
-Plug 'WolfgangMehner/awk-support'
 Plug 'WolfgangMehner/bash-support'
+Plug 'WolfgangMehner/awk-support'
 Plug 'WolfgangMehner/c-support'
 Plug 'WolfgangMehner/vim-support'
 Plug 'fatih/vim-go', { 'do': 'GoUpdateBinaries' }
