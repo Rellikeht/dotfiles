@@ -1,5 +1,5 @@
 #!/bin/sh
-DOWNS=~/Downloads
+DOWNS=~/Pobrane
 
 rm -rf $DOWNS/*
 doas mount \

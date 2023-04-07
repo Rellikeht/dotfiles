@@ -13,49 +13,32 @@ endif
 
 " TODO incorporate them
 call plug#begin('~/.config/nvim/plugins')
+    source ~/.vim/common-plugins.vim
 
-Plug 'mbbill/undotree'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'luochen1990/rainbow'
+    Plug 'norcalli/nvim-colorizer.lua'
+    Plug 'unblevable/quick-scope'
 
-Plug 'easymotion/vim-easymotion'
-Plug 'justinmk/vim-sneak'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
+    Plug 'kmonad/kmonad-vim'
+    Plug 'numirias/semshi', { 'do': 'UpdateRemotePlugins' }
+    Plug 'jceb/vim-orgmode'
+    Plug 'vlime/vlime'
+    Plug 'mattn/emmet-vim'
+    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-Plug 'luochen1990/rainbow'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'unblevable/quick-scope'
-
-Plug 'kmonad/kmonad-vim'
-Plug 'numirias/semshi', { 'do': 'UpdateRemotePlugins' }
-Plug 'jceb/vim-orgmode'
-Plug 'vlime/vlime'
-Plug 'mattn/emmet-vim'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-
-" TODO chcek if that are useful
-Plug 'WolfgangMehner/bash-support'
-Plug 'WolfgangMehner/awk-support'
-Plug 'WolfgangMehner/c-support'
-Plug 'WolfgangMehner/vim-support'
-Plug 'fatih/vim-go', { 'do': 'GoUpdateBinaries' }
-Plug 'ziglang/zig.vim'
-Plug 'JuliaEditorSupport/julia-vim'
-Plug 'zah/nim.vim'
+    Plug 'fatih/vim-go', { 'do': 'GoUpdateBinaries' }
+    Plug 'ziglang/zig.vim'
+    Plug 'JuliaEditorSupport/julia-vim'
+    Plug 'zah/nim.vim'
 
 call plug#end()
 
 colorscheme elflord
 source ~/.vimrc
-source ~/.vim/colors.vim
 
 set termguicolors
 
-let mapleader = ','
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)

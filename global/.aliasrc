@@ -55,18 +55,22 @@ alias fkc="fe kak"
 alias fk="fed kak"
 
 #System Commands
-alias sns=sensors
-alias lcs='loginctl suspend'
+alias pc=pcurses
+alias pa=pacman
 alias pacman='pacman --color=always'
 alias upg='pacman -Syu'
 alias rupg='doas pacman -Syu'
-alias paru='paru --color=always'
-alias pc=pcurses
-alias pa=pacman
+alias pbs='pacman -Ql | grep /bin/ | egrep'
+alias rmun='pacman -Rus $(pacman -Qqtd)'
+#alias paru='paru --color=always'
+
+alias sns=sensors
+alias lcs='loginctl suspend'
 alias rb=reboot
 alias po=poweroff
 alias rrb='doas reboot'
 alias rpo='doas poweroff'
+
 # its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
 alias tbg='top -b -d 1 | its_just_grep -v its_just_grep | its_just_grep -E'
@@ -80,7 +84,6 @@ alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
 alias um=umount
 alias rum='doas umount'
-alias pbs='pacman -Ql | grep /bin/ | egrep'
 alias wb='bins | grep'
 
 # Settings
@@ -104,7 +107,9 @@ alias xcp='xclip -o -selection clipboard'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
 alias edr='doas svim'
 alias sal='source /etc/.aliasrc'
+alias sfn='source /etc/.funcrc'
 alias bal='bat /etc/.aliasrc'
+alias bfn='bat /etc/.funcrc'
 alias de='dc -e'
 alias plc='plocate'
 alias plci='plocate -i'

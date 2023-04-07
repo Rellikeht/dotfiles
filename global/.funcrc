@@ -10,7 +10,7 @@ lh () {
 }
 
 bins () {
-	pacman -Ql $1 | egrep "`echo $PATH | sed 's/:/|/g'`"
+	pacman -Ql $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
 }
 
 cdc () {
@@ -38,7 +38,7 @@ maxe () {
 		cmds="$1"
 		prec=20
 	fi
-	str=`echo -n $cmds | sed -z 's/[^;$\n]$/\0;/'`
+	str=$(echo -n $cmds | sed -z 's/[^;$\n]$/\0;/')
 	maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" | \
 	sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
 	egrep '^[ 	]|\$|b0$|]$'
@@ -61,8 +61,8 @@ eal () {
 	edt $1 /etc/.aliasrc
 }
 
-eal () {
-	edt $1 /etc/.aliasrc
+efn () {
+	edt $1 /etc/.funcrc
 }
 
 evr () {
@@ -81,7 +81,7 @@ fec () {
 	then
 		comm=$2
 	else
-		comm="`lsn | fzf`"
+		comm="$(lsn | fzf)"
 	fi
 
 	$edt $comm

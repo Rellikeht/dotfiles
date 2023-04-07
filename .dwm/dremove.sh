@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOWNLOADS=~/Downloads/
+DOWNLOADS=~/Pobrane/
 
 find $DOWNLOADS -regextype egrep \
     -iregex ".*\.(png|jpe?g)" -a -cmin +60 -delete

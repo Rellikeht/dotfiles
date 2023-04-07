@@ -1,7 +1,7 @@
 #!/bin/sh
 
 GEOM=`slop`
-cd ~/Downloads
+cd ~/Pobrane
 
 sleep 0.1
-shotgun -g $GEOM
+shotgun -g "$GEOM"
