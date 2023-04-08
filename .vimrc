@@ -1,7 +1,7 @@
 source ~/.vim/tiny-compatible.vim
 
 " I have probably the most minimalistic vim possible
-" from Artix/Arch repositories (vim-tiny package),
+" from Herecura unofficial Arch repository (vim-tiny package),
 " vim compiled with only features i need (binary is
 " called svim for distinction) and neovim (also from repos)
 " as small ide. This config is read by all of them, because
