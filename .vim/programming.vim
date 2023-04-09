@@ -1,33 +1,73 @@
+" f, l, w, e are already used
+" ========================= SETUP =========================
+" Using tmux
+
+map <Leader>tC :Tmux
+
+" I don't know if it is doable
+"function CdUnder(path)
+"    "execute "Tmux run-shell 'tmux send-keys :suspend C-M cd ".a:path." fg C-M'"
+"    "execute "Tmux run-shell 'echo ".a:path." | \~/.vim/cd.sh'"
+"    execute "Tmux run-shell '\~/.vim/cd.sh'"
+"endfunction
+
+function Setup2Panes()
+    let path = expand('%:h')
+    execute 'Tmux split-window -h -c' path
+    execute 'Tmux select-pane -R'
+    execute 'cd' path
+endfunction
+
+function Setup3Panes()
+    let path = expand('%:h')
+    execute 'Tmux split-window -h -c' path
+    execute 'Tmux split-window -v -c' path
+    execute 'Tmux select-pane -R'
+    execute 'cd' path
+endfunction
+
+map <Leader>t3 :call Setup3Panes()<CR>
+map <Leader>t2 :call Setup3Panes()<CR>
+
+" ========================= EXECUTION AND BUILDING =========================
 " General shortcuts
 " <Leader>cc - simple compilation
 " starting with <Leader>cd and <Leader>cD - debug compilation
 " starting with <Leader>cr and <Leader>cR - release compilation
 " starting with <Leader>co and <Leader>cO - optimized compilation
 " starting with <Leader>cu and <Leader>cU - unsafely optimized compilation
-" starting with <Leader>cC ; <Leader>ca ; <Leader>cA - alternative compilers
+" starting with <Leader>cC and <Leader>ca and <Leader>cA - alternative compilers
 
 " <Leader>r - with 
 " <Leader>ra - running already compiled file (DANGEROUS)
 " <Leader>C and <Leader>R - <Leader>c and <Leader>r counterparts without <CR>
 " for changing command before running
 " for languages that can be both compiled and interpreted
-" there will be <Leader>i and <Leader>I options respectively to <Leader>r and <Leader>R
+" there will be <Leader>i and <Leader>I options respectively to
+" <Leader>r and <Leader>R
 
 " Building commands will be hard
 " <Leader>bb - building project
 
-" ============================== COMPILED ==============================
+" COMPILED
 
 function GenerateBindingsCompiled(name, compexe, bindings, prefix)
     for [key, cmd] in items(a:bindings)
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>C'.a:prefix.key ':!'.a:compexe cmd
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>c'.a:prefix.key '<Leader>C'.a:prefix.key '<CR>'
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>R'.a:prefix.key '<Leader>c'.a:prefix.key ':!./%:t:r'
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>r'.a:prefix.key '<Leader>R'.a:prefix.key '<CR>'
+	execute 'autocmd FileType' a:name
+		    \ 'nmap <buffer> <Leader>C'.a:prefix.key ':!'.a:compexe cmd
+	execute 'autocmd FileType' a:name
+		    \ 'nmap <buffer> <Leader>c'.a:prefix.key
+		    \ '<Leader>C'.a:prefix.key '<CR>'
+	execute 'autocmd FileType' a:name
+		    \ 'nmap <buffer> <Leader>R'.a:prefix.key
+		    \ '<Leader>c'.a:prefix.key ':!./%:t:r'
+	execute 'autocmd FileType' a:name
+		    \ 'nmap <buffer> <Leader>r'.a:prefix.key
+		    \ '<Leader>R'.a:prefix.key '<CR>'
     endfor
 
-    execute 'autocmd FileType' a:name 'map <buffer> <Leader>Ra :!./%:t:r'
-    execute 'autocmd FileType' a:name 'map <buffer> <Leader>ra :!./%:t:r<CR>'
+    execute 'autocmd FileType' a:name 'nmap <buffer> <Leader>Ra :!./%:t:r'
+    execute 'autocmd FileType' a:name 'nmap <buffer> <Leader>ra :!./%:t:r<CR>'
 endfunction
 
 " C
@@ -44,8 +84,8 @@ let cbindings = {
 
 call GenerateBindingsCompiled('c', 'gcc', cbindings, '')
 call GenerateBindingsCompiled('c', 'clang', cbindings, 'C')
-call GenerateBindingsCompiled('c', 'tcc', cbindings, 'a')
-call GenerateBindingsCompiled('c', 'musl-gcc', cbindings, 'A')
+call GenerateBindingsCompiled('c', 'tcc', cbindings, 't')
+call GenerateBindingsCompiled('c', 'musl-gcc', cbindings, 'm')
 
 " C++
 " TODO untested
@@ -65,19 +105,23 @@ call GenerateBindingsCompiled('cpp', 'clang++', cbindings, 'C')
 " nim
 " TODO not tested well
 let nimbindings = {
-    \ 'c': 'c --styleCheck:hint %', 
-    \ 'd': 'c --styleCheck:hint -d:debug %',
-    \ 'r': 'c --styleCheck:hint --hints:off -d:release --mm:orc %',
-    \ 'o': 'c --styleCheck:hint --hints:off -d:release --mm:arc %',
-    \ 'u': 'c --hints:off -d:danger --mm:orc %',
-    \ 'U': 'c --hints:off -d:danger --mm:arc %',
+    \ 'c': '--styleCheck:hint %', 
+    \ 'd': '--styleCheck:hint -d:debug %',
+    \ 'r': '--styleCheck:hint --hints:off -d:release --mm:orc %',
+    \ 'o': '--styleCheck:hint --hints:off -d:release --mm:arc %',
+    \ 'u': '--hints:off -d:danger --mm:orc %',
+    \ 'U': '--hints:off -d:danger --mm:arc %',
 \}
 
-call GenerateBindingsCompiled('nim', 'nim', nimbindings, '')
-call GenerateBindingsCompiled('nim', 'nlvm', nimbindings, 'C')
+call GenerateBindingsCompiled('nim', 'nim c', nimbindings, '')
+call GenerateBindingsCompiled('nim', 'nlvm c', nimbindings, 'n')
+call GenerateBindingsCompiled('nim', 'nim cpp', nimbindings, 'p')
+call GenerateBindingsCompiled('nim', 'nlvm cpp', nimbindings, 'np')
+" TODO nim js
+
 " TODO is this needed
-"autocmd FileType nim map <buffer> <Leader>RA :!nlvm r %
-"autocmd FileType nim map <buffer> <Leader>rA <Leader>RA<CR>
+"autocmd FileType nim nmap <buffer> <Leader>RA :!nlvm r %
+"autocmd FileType nim nmap <buffer> <Leader>rA <Leader>RA<CR>
 
 " go
 " TODO
@@ -100,12 +144,13 @@ call GenerateBindingsCompiled('nim', 'nlvm', nimbindings, 'C')
 " rust ???
 " TODO
 
-" ============================== INTERPRETED AND JIT ==============================
+" INTERPRETED AND JIT
 
 function GenerateBindingsInterpreted(name, bindings)
     for [key, cmd] in items(a:bindings)
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>R'.key cmd
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>r'.key '<Leader>R'.key '<CR>'
+	execute 'autocmd FileType' a:name 'nmap <buffer> <Leader>R'.key cmd
+	execute 'autocmd FileType' a:name 
+		    \ 'nmap <buffer> <Leader>r'.key '<Leader>R'.key '<CR>'
     endfor
 endfunction
 
@@ -125,11 +170,13 @@ let jlbindings = {
     \ 'r': ':!julia -g 0 -O 3 %',
     \ 'o': ':!julia -O 3 %',
     \ 'u': ':!julia -O 3 --min-optlevel=3 --math-mode=user --check-bounds=no %',
-    \ 'U': ':!julia -O 3 --min-optlevel=3 --math-mode=user --check-bounds=no -g 0 %',
+    \ 'U': 
+    \ ':!julia -O 3 --min-optlevel=3 --math-mode=user --check-bounds=no -g 0 %',
 \}
 call GenerateBindingsInterpreted('julia', jlbindings)
 
 " shell
+" TODO untested
 let shbindings = {
     \ 'c': ':!%:p', 
     \ 'd': ':!shellcheck %',
@@ -137,15 +184,15 @@ let shbindings = {
     \ 'o': ':!dash %',
     \ 'a': ':!ksh %',
     \
-    \ 'D7': ':!shellcheck -C always-S error -s sh %',
-    \ 'D8': ':!shellcheck -C always-S warning -s sh %',
-    \ 'D9': ':!shellcheck -C always-S info -s sh %',
-    \ 'D0': ':!shellcheck -C always-S style -s sh %',
+    \ 'D1': ':!shellcheck -C always-S error -s sh %',
+    \ 'D2': ':!shellcheck -C always-S warning -s sh %',
+    \ 'D3': ':!shellcheck -C always-S info -s sh %',
+    \ 'D4': ':!shellcheck -C always-S style -s sh %',
     \
-    \ 'Dd1': ':!shellcheck -C always -S error -s dash %',
-    \ 'Dd2': ':!shellcheck -C always -S warning -s dash %',
-    \ 'Dd3': ':!shellcheck -C always -S info -s dash %',
-    \ 'Dd4': ':!shellcheck -C always -S style -s dash %',
+    \ 'D7': ':!shellcheck -C always -S error -s dash %',
+    \ 'D8': ':!shellcheck -C always -S warning -s dash %',
+    \ 'D9': ':!shellcheck -C always -S info -s dash %',
+    \ 'D0': ':!shellcheck -C always -S style -s dash %',
     \
     \ 'Db1': ':!shellcheck -C always -S error -s bash %',
     \ 'Db2': ':!shellcheck -C always -S warning -s bash %',
@@ -167,12 +214,13 @@ call GenerateBindingsInterpreted('sh', shbindings)
 " lua ?
 " TODO
 
-" ============================== INTERPRETED COUNTERPARTS ==============================
+" INTERPRETED COUNTERPARTS
 
 function GenerateBindingsHybrid(name, bindings)
     for [key, cmd] in items(a:bindings)
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>I'.key cmd
-	execute 'autocmd FileType' a:name 'map <buffer> <Leader>i'.key '<Leader>I'.key '<CR>'
+	execute 'autocmd FileType' a:name 'nmap <buffer> <Leader>I'.key cmd
+	execute 'autocmd FileType' a:name 
+		    \ 'nmap <buffer> <Leader>i'.key '<Leader>I'.key '<CR>'
     endfor
 endfunction
 

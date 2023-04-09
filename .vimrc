@@ -8,7 +8,7 @@ source ~/.vim/tiny-compatible.vim
 " some parts are common, so i needed to do this:
 
 if v:progname !~? "^vi"
-    " AND THIS ISN'T PROBABLY GOOD IDEA
+    " and it works, at least now
     source ~/.vim/additional.vim
     if v:progname =~? ".*svi.*"
 	    call plug#begin('~/.vim/plugged')
