@@ -1,9 +1,9 @@
 function Xcopy(name)
-    system('echo -n '.shellescape(@").' \| xclip -i -selection '.a:name)
+    call system('echo -n '.shellescape(@").' \| xclip -i -selection '.a:name)
 endfunction
 
 function Xpaste(name)
-    execute 'normal a'.system('xclip -o -selection '.a:name)<CR>
+    execute 'normal a'.system('xclip -o -selection '.a:name)
 endfunction
 
 " Other _
