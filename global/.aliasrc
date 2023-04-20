@@ -16,7 +16,7 @@ alias exa='exa --color=always'
 alias ell='exa -la'
 alias bat='bat --color always'
 alias batl='bat -l lisp'
-alias less='less -r'
+alias less='less -r -I'
 alias les='less -F'
 alias dus='du -sh'
 alias sb=sbase-box
@@ -129,6 +129,7 @@ alias prgc='prg \
 	-a less -a tail -a tac \
 	-a sed -a awk \
 	-a diff \
+	-a cadaver -a ftp \
 	'
 
 # Other

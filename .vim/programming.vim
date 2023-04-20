@@ -26,8 +26,8 @@ function Setup3Panes()
     execute 'cd' path
 endfunction
 
+map <Leader>t2 :call Setup2Panes()<CR>
 map <Leader>t3 :call Setup3Panes()<CR>
-map <Leader>t2 :call Setup3Panes()<CR>
 
 " ========================= EXECUTION AND BUILDING =========================
 " General shortcuts

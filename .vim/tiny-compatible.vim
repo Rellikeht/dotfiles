@@ -40,8 +40,8 @@ nmap _t :tabedit<Space>
 nmap _m :tabm<Space>
 nmap _d :tabclose<CR>
 nmap _T :tabnew<CR>
-nmap _L :tabm +1'<CR>
-nmap _H :tabm -1'<CR>
+nmap _L :tabm +1<CR>
+nmap _H :tabm -1<CR>
 nmap _J :tabm $<CR>
 nmap _K :tabm 0<CR>
 nmap _B :tabnew<CR>:buffer<Space>

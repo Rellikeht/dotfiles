@@ -1,0 +1,58 @@
+{
+    "suggest.autoTrigger": "none",
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
+    "languageserver": {
+	"ocaml": {
+	    "filetypes": [
+		"ocaml"
+	    ],
+	    "command": "~/.opam/default/bin/ocamllsp"
+	},
+
+	"nim": {
+	    "command": "nimlsp",
+	    "args": [],
+	    //"rootPatterns": [
+	    //	"nimblemeta.json",
+	    //	"config.nims",
+	    //	"*.nimble"
+	    //],
+	    "filetypes": [
+		"nim",
+		"nimble"
+	    ],
+	    "trace.server": "verbose"
+	},
+
+	"zig.path": "/bin/zls",
+	"zig.enabled": true,
+	"zig.startUpMessage": true,
+	"zig.debugLog": false,
+
+	"haskell": {
+	  //"command": "haskell-language-server-wrapper",
+	  "command": "haskell-language-server",
+	  "args": [
+	      "--lsp",
+	      "-j",
+	      "6"
+	  ],
+
+	  "rootPatterns": [
+	    ".stack.yaml",
+	    ".hie-bios",
+	    "BUILD.bazel",
+	    "cabal.config",
+	    "package.yaml"
+	  ],
+
+	  "filetypes": [
+	    "hs",
+	    "lhs",
+	    "haskell"
+	  ]
+	},
+
+    }
+}
