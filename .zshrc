@@ -46,5 +46,3 @@ my-backward-delete-word () {
 zle -N my-backward-delete-word
 
 bindkey    '\e^?' my-backward-delete-word
-
-#source /home/michal/.config/broot/launcher/bash/br

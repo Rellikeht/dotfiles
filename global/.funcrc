@@ -9,10 +9,6 @@ lh () {
 	fi
 }
 
-bins () {
-	pacman -Ql $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
-}
-
 cdc () {
 	cd $1 && clear
 }
@@ -178,19 +174,34 @@ dis () {
 	disown
 }
 
-wat () {
-	#if [ -n "$1" ]
-	if [ "$1" -gt 0 ] 2>/dev/null
-	then
-		WTIME=$1
-		COMMAND=${@:2}
-	else
-		WTIME=1
-		COMMAND=$@
-	fi
-	watch -n $WTIME -d $COMMAND
-}
+if [ $(uname) = "FreeBSD" ]
+then
 
-watc () {
-	wat $1 -c ${@:2}
-}
+    bins () {
+	    pkg info -l $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+    }
+
+else
+
+    bins () {
+	    pacman -Ql $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+    }
+
+    wat () {
+	    #if [ -n "$1" ]
+	    if [ "$1" -gt 0 ] 2>/dev/null
+	    then
+		    WTIME=$1
+		    COMMAND=${@:2}
+	    else
+		    WTIME=1
+		    COMMAND=$@
+	    fi
+	    watch -n $WTIME -d $COMMAND
+    }
+
+    watc () {
+	    wat $1 -c ${@:2}
+    }
+
+fi

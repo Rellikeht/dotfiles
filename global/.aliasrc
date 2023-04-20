@@ -27,9 +27,6 @@ alias agh='ag --hidden'
 alias rgh='rg --hidden'
 alias egrep='grep -E'
 alias eg='egrep'
-alias gt='/bin/time'
-alias gtv='/bin/time -v'
-alias diff='diff --color=always'
 
 # Text Editors
 alias nano='nano --rcfile=~/.nanorc'
@@ -54,16 +51,6 @@ alias fv="fed svim"
 alias fkc="fe kak"
 alias fk="fed kak"
 
-#System Commands
-alias pc=pcurses
-alias pa=pacman
-alias pacman='pacman --color=always'
-alias upg='pacman -Syu'
-alias rupg='doas pacman -Syu'
-alias pbs='pacman -Ql | grep /bin/ | egrep'
-alias rmun='pacman -Rus $(pacman -Qqtd)'
-#alias paru='paru --color=always'
-
 alias sns=sensors
 alias lcs='loginctl suspend'
 alias rb=reboot
@@ -75,16 +62,10 @@ alias rpo='doas poweroff'
 alias its_just_grep='its_just_grep --color=always'
 alias tbg='top -b -d 1 | its_just_grep -v its_just_grep | its_just_grep -E'
 alias tbgm='top -b -d 1 -e m | its_just_grep -v its_just_grep | its_just_grep -E'
-alias fpr='ps axh o size,rss,pid,user,cmd,state,pcpu | \
-    its_just_grep -v its_just_grep | its_just_grep -E'
-alias fprh="ps axh o size,rss,pid,user,cmd,state,pcpu | \
-    numfmt --from-unit=1K --field=1,2 --to=iec | \
-    its_just_grep -v its_just_grep | its_just_grep -E"
 alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
 alias um=umount
 alias rum='doas umount'
-alias wb='bins | grep'
 
 # Settings
 alias pm=pulsemixer
@@ -92,11 +73,12 @@ alias am=alsamixer
 alias als='alias | grep'
 
 # Tools
+alias wb='bins | grep'
 alias qc="qalc -s 'decimal comma off'"
 alias lsf='ls -FA --color=never --dereference-command-line-symlink-to-dir'
 alias fzf='fzf -m -e'
 alias fzy='fzy -l 20'
-alias fzc='echo $PATH | xargs -d ':' ls | grep -vE ':$' | fzy | sh -s'
+alias fzc='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE ":$" | fzy | sh -s'
 alias tm=tmux
 alias tma='tmux attach'
 alias sa='screen attach'
@@ -138,13 +120,6 @@ alias mdl='yv -n -d --convert-to=mp3'
 alias ytf='youtube-dl --list-formats'
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
-#alias w1='watch -n 1 -d'
-#alias w1c='watch -n 1 -d -c'
-alias w1='wat 1'
-alias w1c='watc 1'
-alias ws='w1 sensors'
-alias wsc='w1 "sensors | egrep -v \"^$\""'
-alias wst='w1c "sensors | grep --color=always °"'
 alias ffmpeg='ffmpeg -hide_banner'
 
 # Languages
@@ -159,3 +134,40 @@ alias ppip="$PYPYP/pip"
 alias pypym="$PYPY -m"
 alias jle='julia -e'
 alias pyc='python -c'
+
+if [ $(uname) = "FreeBSD" ]
+then
+
+    alias gdiff='gdiff --color=always'
+    alias upg='pkg upgrade'
+    alias rmun='pkg autoremove'
+    alias pkc='pkg clean'
+
+else
+
+    alias diff='diff --color=always'
+    alias upg='pacman -Syu'
+    alias rmun='pacman -Rus $(pacman -Qqtd)'
+    alias pkc='pacman -Sc'
+    alias fpr='ps axh o size,rss,pid,user,cmd,state,pcpu | \
+	its_just_grep -v its_just_grep | its_just_grep -E'
+    alias fprh="ps axh o size,rss,pid,user,cmd,state,pcpu | \
+	numfmt --from-unit=1K --field=1,2 --to=iec | \
+	its_just_grep -v its_just_grep | its_just_grep -E"
+
+    alias gt='/bin/time'
+    alias gtv='/bin/time -v'
+    alias pc=pcurses
+    alias pa=pacman
+    alias pacman='pacman --color=always'
+    #alias paru='paru --color=always'
+
+    #alias w1='watch -n 1 -d'
+    #alias w1c='watch -n 1 -d -c'
+    alias w1='wat 1'
+    alias w1c='watc 1'
+    alias ws='w1 sensors'
+    alias wsc='w1 "sensors | egrep -v \"^$\""'
+    alias wst='w1c "sensors | grep --color=always °"'
+
+fi

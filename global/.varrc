@@ -9,13 +9,14 @@ LESS_TERMCAP_us=$'\e[01;32m' \
 #bind  '"\C-\\":"fzf"'
 PAGER=less
 EDITOR=vim
-QT_QPA_PLATFORMTHEME=qt5ct
+
 #PLAN9=/ext/plan9
-#QT_QPA_PLATFORM=xcb
-PATH=$PATH:$PLAN9/bin
-PATH=$PATH:/ext/eclipse/cpp/eclipse
+[ -n "$PLAN9" ] && PATH=$PATH:$PLAN9/bin
+
 TERM=st-24bit
-TERMINFO=/usr/share/terminfo
+
+[ -e "/etc/.varrc_local" ] && source /etc/.varrc_local
+
 #if [ -n "$TMUX" ]
 #then
 #	TERM=st-24bit
