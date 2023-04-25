@@ -22,7 +22,8 @@ function Setup3Panes()
     let path = expand('%:h')
     execute 'Tmux split-window -h -c' path
     execute 'Tmux split-window -v -c' path
-    execute 'Tmux select-pane -R'
+    execute 'Tmux select-pane -L'
+    execute 'Tmux select-pane -L'
     execute 'cd' path
 endfunction
 

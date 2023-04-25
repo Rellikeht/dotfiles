@@ -1,5 +1,5 @@
 function Xcopy(name)
-    call system('echo -n '.shellescape(@").' \| xclip -i -selection '.a:name)
+    call system('echo -n '.shellescape(@").' | xclip -i -selection '.a:name)
 endfunction
 
 function Xpaste(name)
