@@ -1,207 +1,218 @@
 #!/bin/sh
 
 lh () {
-	if [ -n "$1" ]
-	then
-		ls -t | sed "$1q"
-	else
-		ls -t | sed 12q
-	fi
+    if [ -n "$1" ]
+    then
+	    ls -t | sed "$1q"
+    else
+	    ls -t | sed 12q
+    fi
 }
 
 cdc () {
-	cd $1 && clear
+    cd $1 && clear
 }
 
 cdl () {
-	cdc $1 && ls
+    cdc $1 && ls
 }
 
 cdll () {
-	cdc $1 && ll
+    cdc $1 && ll
 }
 
 llh () {
-	ll $1 | head
+    ll $1 | head
 }
 
 maxe () {
-	if [ -n "$2" ]
-	then
-		cmds="$2"
-		prec="$1"
-	else
-		cmds="$1"
-		prec=20
-	fi
-	str=$(echo -n $cmds | sed -z 's/[^;$\n]$/\0;/')
-	maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" | \
-	sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
-	egrep '^[ 	]|\$|b0$|]$'
+    if [ -n "$2" ]
+    then
+	    cmds="$2"
+	    prec="$1"
+    else
+	    cmds="$1"
+	    prec=20
+    fi
+    str=$(echo -n $cmds | sed -z 's/[^;$\n]$/\0;/')
+    maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" | \
+    sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
+    egrep '^[ 	]|\$|b0$|]$'
 }
 
 gple () {
-	gnuplot -e "plot '$1' w l;pause -1"
+    gnuplot -e "plot '$1' w l;pause -1"
 }
 
 edt () {
-	if [ -n "$2" ]
-	then
-		$1 $2
-	else
-		svim $1
-	fi
+    if [ -n "$2" ]
+    then
+	    $1 $2
+    else
+	    svim $1
+    fi
 }
 
 eal () {
-	edt $1 /etc/.aliasrc
+    edt $1 /etc/.aliasrc
 }
 
 efn () {
-	edt $1 /etc/.funcrc
+    edt $1 /etc/.funcrc
 }
 
 evr () {
-	edt $1 /etc/.varrc
+    edt $1 /etc/.varrc
 }
 
 fec () {
-	if [ -n "$1" ]
-	then
-		edt="$1"
-	else
-		edt='vim'
-	fi
+    if [ -n "$1" ]
+    then
+	    edt="$1"
+    else
+	    edt='vim'
+    fi
 
-	if [ -n "$2" ]
-	then
-		comm=$2
-	else
-		comm="$(lsn | fzf)"
-	fi
+    if [ -n "$2" ]
+    then
+	    comm=$2
+    else
+	    comm="$(lsn | fzf)"
+    fi
 
-	$edt $comm
+    $edt $comm
 }
 
 fe () {
-	fec "$1" "find -type f | fzf"
+    fec "$1" "find -type f | fzf"
 }
 
 fed () {
-	fec "$1"
-}
-
-find_command ()
-{
-	if [ -n "$2" ]
-	then
-		DIR=$1
-		PATTERN=${@:2}
-	else
-		DIR=.
-		PATTERN=$@
-	fi
-	#find $DIR $SWITCH "$ALL$PATTERN$ALL" 2>/dev/null
-	find $DIR -regextype posix-extended $SWITCH "$ALL$PATTERN$ALL" 2>/dev/null
-}
-
-fnd () {
-	SWITCH='-name'
-	ALL='*'
-	find_command $@
-}
-
-fndi () {
-	SWITCH='-iname'
-	ALL='*'
-	find_command $@
-}
-
-fnds () {
-	SWITCH='-regex'
-	ALL='.*'
-	find_command $@
-}
-
-fndr () {
-	SWITCH='-iregex'
-	ALL='.*'
-	find_command $@
-}
-
-fnde () {
-	SWITCH='-name'
-	ALL=''
-	find_command $@
-}
-
-fndie () {
-	SWITCH='-iname'
-	ALL=''
-	find_command $@
-}
-
-fndse () {
-	SWITCH='-regex'
-	ALL=''
-	find_command $@
-}
-
-fndre () {
-	SWITCH='-iregex'
-	ALL=''
-	find_command $@
+    fec "$1"
 }
 
 hms () {
-	help2man --no-discard-stderr "$@" | man -l -
+    help2man --no-discard-stderr "$@" | man -l -
 }
 
 hm () {
-	help2man "$@" | man -l -
+    help2man "$@" | man -l -
 }
 
 noerr () {
-	$@ 2>/dev/null
+    $@ 2>/dev/null
 }
 
 silent () {
-	noerr $@ >/dev/null
+    noerr $@ >/dev/null
 }
 
 dis () {
-	silent $@ &
-	disown
+    silent $@ &
+    disown
 }
 
 if [ $(uname) = "FreeBSD" ]
 then
 
+    alias system_find_command='find -E'
+
     bins () {
-	    pkg info -l $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+	pkg info -l $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+    }
+
+    TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
+    ttgl () {
+	if [ $(sysctl -n hw.psm.synaptics.touchpad_off) == 0 ]
+	then $TOUCHPAD_CMD=1 > /dev/null
+	else $TOUCHPAD_CMD=0 > /dev/null
+	fi
     }
 
 else
 
+    alias system_find_command='find -regextype posix-extended'
+
     bins () {
-	    pacman -Ql $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+	pacman -Ql $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
     }
 
     wat () {
-	    #if [ -n "$1" ]
-	    if [ "$1" -gt 0 ] 2>/dev/null
-	    then
-		    WTIME=$1
-		    COMMAND=${@:2}
-	    else
-		    WTIME=1
-		    COMMAND=$@
-	    fi
-	    watch -n $WTIME -d $COMMAND
+	#if [ -n "$1" ]
+	if [ "$1" -gt 0 ] 2>/dev/null
+	then
+		WTIME=$1
+		COMMAND=${@:2}
+	else
+		WTIME=1
+		COMMAND=$@
+	fi
+	watch -n $WTIME -d $COMMAND
     }
 
     watc () {
-	    wat $1 -c ${@:2}
+	wat $1 -c ${@:2}
     }
 
 fi
+
+find_command ()
+{
+    DIR=.
+    if [ -d "$1" ]
+    then
+	DIR=$1
+	shift
+    fi
+
+    #system_find_command $DIR $SWITCH "$ALL$PATTERN$ALL" 2>/dev/null
+    system_find_command $DIR $SWITCH "$ALL$@$ALL"
+}
+
+fnd () {
+    SWITCH='-name'
+    ALL='*'
+    find_command $@
+}
+
+fndi () {
+    SWITCH='-iname'
+    ALL='*'
+    find_command $@
+}
+
+fnds () {
+    SWITCH='-regex'
+    ALL='.*'
+    find_command $@
+}
+
+fndr () {
+    SWITCH='-iregex'
+    ALL='.*'
+    find_command $@
+}
+
+fnde () {
+    SWITCH='-name'
+    ALL=''
+    find_command $@
+}
+
+fndie () {
+    SWITCH='-iname'
+    ALL=''
+    find_command $@
+}
+
+fndse () {
+    SWITCH='-regex'
+    ALL=''
+    find_command $@
+}
+
+fndre () {
+    SWITCH='-iregex'
+    ALL=''
+    find_command $@
+}

@@ -142,18 +142,19 @@ then
     alias upg='pkg upgrade'
     alias rmun='pkg autoremove'
     alias pkc='pkg clean'
+    alias ins='pkg install'
+    alias pinf='pkg info'
+    alias pfl='pkg list'
+    alias pls='pkg info -q'
+
+    alias fpr='ps -axo rss=,pid=,user=,args=,state=,pcpu= |
+	its_just_grep -v its_just_grep | its_just_grep -E'
+
+    alias fprh="ps -axo rss=,pid=,user=,args=,state=,pcpu= |
+	gnumfmt --from-unit=1K --field=1,2 --to=iec | \
+	its_just_grep -v its_just_grep | its_just_grep -E"
 
 else
-
-    alias diff='diff --color=always'
-    alias upg='pacman -Syu'
-    alias rmun='pacman -Rus $(pacman -Qqtd)'
-    alias pkc='pacman -Sc'
-    alias fpr='ps axh o size,rss,pid,user,cmd,state,pcpu | \
-	its_just_grep -v its_just_grep | its_just_grep -E'
-    alias fprh="ps axh o size,rss,pid,user,cmd,state,pcpu | \
-	numfmt --from-unit=1K --field=1,2 --to=iec | \
-	its_just_grep -v its_just_grep | its_just_grep -E"
 
     alias gt='/bin/time'
     alias gtv='/bin/time -v'
@@ -161,6 +162,21 @@ else
     alias pa=pacman
     alias pacman='pacman --color=always'
     #alias paru='paru --color=always'
+
+    alias diff='diff --color=always'
+    alias upg='pacman -Syu'
+    alias rmun='pacman -Rus $(pacman -Qqtd)'
+    alias pkc='pacman -Sc'
+    alias ins='pacman -S'
+    alias pinf='pacman -Qi'
+    alias pfl='pacman -Ql'
+    alias pls='pacman -Q'
+
+    alias fpr='ps axh o rss,pid,user,cmd,state,pcpu | \
+	its_just_grep -v its_just_grep | its_just_grep -E'
+    alias fprh="ps axh o rss,pid,user,cmd,state,pcpu | \
+	numfmt --from-unit=1K --field=1,2 --to=iec | \
+	its_just_grep -v its_just_grep | its_just_grep -E"
 
     #alias w1='watch -n 1 -d'
     #alias w1c='watch -n 1 -d -c'

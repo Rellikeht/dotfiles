@@ -5,7 +5,6 @@ xrdb .Xresources &
 
 keynav daemonize &
 setxkbmap -option caps:escape
-xbindkeys &
 ~/.kb-plug.sh &
 
 xcompmgr -fcD 1 &
@@ -13,6 +12,7 @@ unclutter --timeout 1.2 &
 nitrogen --restore &
 
 #/usr/lib/notification-daemon-1.0/notification-daemon &
+xbindkeys -n &
 ~/.audio_start.sh &
 sleep 0.2
 playerctld daemon &
