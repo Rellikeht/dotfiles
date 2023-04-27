@@ -16,7 +16,7 @@ alias exa='exa --color=always'
 alias ell='exa -la'
 alias bat='bat --color always'
 alias batl='bat -l lisp'
-alias less='less -r -I'
+alias less='less -r -i'
 alias les='less -F'
 alias dus='du -sh'
 alias sb=sbase-box

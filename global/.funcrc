@@ -112,13 +112,15 @@ dis () {
     disown
 }
 
+bins () {
+    pfl $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+}
+
 if [ $(uname) = "FreeBSD" ]
 then
 
-    alias system_find_command='find -E'
-
-    bins () {
-	pkg info -l $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+    find_system_special () {
+	find -E $@
     }
 
     TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
@@ -131,10 +133,10 @@ then
 
 else
 
-    alias system_find_command='find -regextype posix-extended'
-
-    bins () {
-	pacman -Ql $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+    find_system_special () {
+	D=$1
+	shift
+	find $D -regextype posix-extended $@
     }
 
     wat () {
@@ -142,16 +144,18 @@ else
 	if [ "$1" -gt 0 ] 2>/dev/null
 	then
 		WTIME=$1
-		COMMAND=${@:2}
+		shift
 	else
 		WTIME=1
 		COMMAND=$@
 	fi
-	watch -n $WTIME -d $COMMAND
+	watch -n $WTIME -d $@
     }
 
     watc () {
-	wat $1 -c ${@:2}
+	T=$1
+	shift
+	wat $T -c $@
     }
 
 fi
@@ -165,8 +169,7 @@ find_command ()
 	shift
     fi
 
-    #system_find_command $DIR $SWITCH "$ALL$PATTERN$ALL" 2>/dev/null
-    system_find_command $DIR $SWITCH "$ALL$@$ALL"
+    find_system_special $DIR $SWITCH "$ALL$@$ALL"
 }
 
 fnd () {
