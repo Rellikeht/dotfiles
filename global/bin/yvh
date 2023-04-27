@@ -1,0 +1,20 @@
+#!/bin/sh
+
+FILE=yvh
+alias yv=youtube-viewer
+cd /usr/local/share/info
+
+help () {
+    yv -v > "$1"
+    yv -h >> "$1"
+    echo >> "$1"
+    yv -T >> "$1"
+    echo >> "$1"
+    yv -H >> "$1"
+    echo >> "$1"
+    yv -E >> "$1"
+}
+
+[ ! -e "$FILE" -o ! -r "$FILE" ] && help /dev/stdout | bat && exit
+[ "$(yv -v)" != "$(sed 1q "$FILE")" ] && help "$FILE"
+bat "$FILE"

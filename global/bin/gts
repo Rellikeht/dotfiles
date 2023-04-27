@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SNAME="gts-$USER"
+VIM=svim
+GVIM=ssvim
+
+ps heo comm | grep $VIM > /dev/null && \
+    if $VIM --serverlist | grep -Ei "^$SNAME\$" > /dev/null
+    then
+	$VIM --servername $SNAME --remote-tab $@
+	exit
+    fi
+exec $GVIM --servername $SNAME $@

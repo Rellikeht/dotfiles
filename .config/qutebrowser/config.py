@@ -8,6 +8,20 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
+# QT flags, currently only for hardware acceleration
+config.set('qt.args',
+           ['ignore-gpu-blacklist',
+            'enable-gpu-rasterization',
+            'enable-zero-copy',
+            #'enable-native-gpu-memory-buffers',
+            'disable-gpu-driver-bug-workarounds',
+            'use-gl=egl',
+            'num-raster-threads=4',
+            'enable-features=VaapiVideoDecoder',
+            'enable-features=VaapiIgnoreDriverChecks',
+            'disable-features=UseChromeOSDirectVideoDecoder',
+            ])
+
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
 # including IndexedDB, DOM storage, filesystem API, service workers, and

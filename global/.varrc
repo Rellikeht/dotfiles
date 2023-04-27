@@ -8,7 +8,6 @@ LESS_TERMCAP_us=$'\e[01;32m' \
 
 #bind  '"\C-\\":"fzf"'
 PAGER=less
-EDITOR=vim
 
 #PLAN9=/ext/plan9
 [ -n "$PLAN9" ] && PATH=$PATH:$PLAN9/bin
