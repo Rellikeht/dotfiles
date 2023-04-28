@@ -121,6 +121,7 @@ alias ytf='youtube-dl --list-formats'
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
 alias ffmpeg='ffmpeg -hide_banner'
+alias help2man='help2man -N'
 
 # Languages
 alias scls='sbcl --script'
@@ -134,6 +135,7 @@ alias ppip="$PYPYP/pip"
 alias pypym="$PYPY -m"
 alias jle='julia -e'
 alias pyc='python -c'
+alias nimm='hm nim -h --fullhelp'
 
 if [ $(uname) = "FreeBSD" ]
 then
@@ -146,22 +148,21 @@ then
     alias pinf='pkg info'
     alias pfl='pkg list'
     alias pls='pkg info -q'
+    alias rorp='pkg autoremove'
 
-    alias fpr='ps -axo rss=,pid=,user=,args=,state=,pcpu= |
+    alias fpr='ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= |
 	its_just_grep -v its_just_grep | its_just_grep -E'
 
-    alias fprh="ps -axo rss=,pid=,user=,args=,state=,pcpu= |
+    alias fprh="ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= |
 	gnumfmt --from-unit=1K --field=1,2 --to=iec | \
 	its_just_grep -v its_just_grep | its_just_grep -E"
 
 else
 
-    alias gt='/bin/time'
-    alias gtv='/bin/time -v'
     alias pc=pcurses
     alias pa=pacman
     alias pacman='pacman --color=always'
-    #alias paru='paru --color=always'
+    alias paru='paru --color=always'
 
     alias diff='diff --color=always'
     alias upg='pacman -Syu'
@@ -171,6 +172,7 @@ else
     alias pinf='pacman -Qi'
     alias pfl='pacman -Ql'
     alias pls='pacman -Q'
+    alias rorp='pacman -Rus $(pacman -Qqtd)'
 
     alias fpr='ps axh o rss,pid,user,cmd,state,pcpu | \
 	its_just_grep -v its_just_grep | its_just_grep -E'
@@ -185,5 +187,7 @@ else
     alias ws='w1 sensors'
     alias wsc='w1 "sensors | egrep -v \"^$\""'
     alias wst='w1c "sensors | grep --color=always °"'
+    alias gt='/bin/time'
+    alias gtv='/bin/time -v'
 
 fi

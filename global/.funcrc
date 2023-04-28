@@ -96,7 +96,7 @@ hms () {
 }
 
 hm () {
-    help2man "$@" | man -l -
+    help2man "$@" | man /dev/stdin
 }
 
 noerr () {
