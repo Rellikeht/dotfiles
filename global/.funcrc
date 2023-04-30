@@ -10,19 +10,19 @@ lh () {
 }
 
 cdc () {
-    cd $1 && clear
+    cd "$1" && clear
 }
 
 cdl () {
-    cdc $1 && ls
+    cdc "$1" && ls
 }
 
 cdll () {
-    cdc $1 && ll
+    cdc "$1" && ll
 }
 
 llh () {
-    ll $1 | head
+    ll "$1" | head
 }
 
 maxe () {
@@ -36,8 +36,8 @@ maxe () {
     fi
     str=$(echo -n $cmds | sed -z 's/[^;$\n]$/\0;/')
     maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" | \
-    sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
-    egrep '^[ 	]|\$|b0$|]$'
+	sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
+	egrep '^[ 	]|\$|b0$|]$'
 }
 
 gple () {
@@ -47,9 +47,9 @@ gple () {
 edt () {
     if [ -n "$2" ]
     then
-	    $1 $2
+	    $1 "$@"
     else
-	    svim $1
+	    svim "$1"
     fi
 }
 
@@ -75,9 +75,9 @@ fec () {
 
     if [ -n "$2" ]
     then
-	    comm=$2
+	    comm="$2"
     else
-	    comm="$(lsn | fzf)"
+	    comm=$(lsn | fzf)
     fi
 
     $edt $comm
@@ -92,7 +92,7 @@ fed () {
 }
 
 hms () {
-    help2man --no-discard-stderr "$@" | man -l -
+    help2man --no-discard-stderr "$@" | man /dev/stdin
 }
 
 hm () {
@@ -104,23 +104,23 @@ noerr () {
 }
 
 silent () {
-    noerr $@ >/dev/null
+    noerr "$@" >/dev/null
 }
 
 dis () {
-    silent $@ &
+    silent "$@" &
     disown
 }
 
 bins () {
-    pfl $1 | egrep "$(echo $PATH | sed 's/:/|/g')"
+    pfl "$@" | egrep $(echo "$PATH" | sed 's/:/|/g')
 }
 
 if [ $(uname) = "FreeBSD" ]
 then
 
     find_system_special () {
-	find -E $@
+	find -E "$@"
     }
 
     TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
@@ -134,88 +134,86 @@ then
 else
 
     find_system_special () {
-	D=$1
+	D="$1"
 	shift
-	find $D -regextype posix-extended $@
+	find "$D" -regextype posix-extended "$@"
     }
 
     wat () {
+	local WTIME COMMAND
 	#if [ -n "$1" ]
 	if [ "$1" -gt 0 ] 2>/dev/null
 	then
-		WTIME=$1
+		WTIME="$1"
 		shift
 	else
 		WTIME=1
-		COMMAND=$@
+		COMMAND="$@"
 	fi
-	watch -n $WTIME -d $@
+	watch -n "$WTIME" -d "$@"
     }
 
     watc () {
-	T=$1
+	local T
+	T="$1"
 	shift
-	wat $T -c $@
+	wat "$T" -c "$@"
     }
 
 fi
 
 find_command ()
 {
+    local SWITCH ALL DIR PATTERN
+    SWITCH="$1"
+    ALL="$2"
     DIR=.
+    shift 2
+
     if [ -d "$1" ]
     then
-	DIR=$1
+	DIR="$1"
 	shift
     fi
 
-    find_system_special $DIR $SWITCH "$ALL$@$ALL"
+    if [ -n "$1" ]
+    then
+	PATTERN="$ALL$@$ALL"
+    else
+	PATTERN="$ALL"
+    fi
+
+    find_system_special "$DIR" "$SWITCH" "$PATTERN"
 }
 
-fnd () {
-    SWITCH='-name'
-    ALL='*'
-    find_command $@
+fnd() {
+    find_command -name '*' "$@"
 }
 
-fndi () {
-    SWITCH='-iname'
-    ALL='*'
-    find_command $@
+fndi() {
+    find_command -iname '*' "$@"
 }
 
 fnds () {
-    SWITCH='-regex'
-    ALL='.*'
-    find_command $@
+    find_command -regex '.*' "$@"
 }
 
 fndr () {
-    SWITCH='-iregex'
-    ALL='.*'
-    find_command $@
+    find_command -iregex '.*' "$@"
 }
 
 fnde () {
-    SWITCH='-name'
-    ALL=''
-    find_command $@
+    find_command -name '' "$@"
 }
 
 fndie () {
-    SWITCH='-iname'
-    ALL=''
-    find_command $@
+    find_command -name '' "$@"
 }
 
 fndse () {
-    SWITCH='-regex'
-    ALL=''
-    find_command $@
+    find_command -regex '' "$@"
 }
 
 fndre () {
-    SWITCH='-iregex'
-    ALL=''
-    find_command $@
+    find_command -regex '' "$@"
 }

@@ -157,6 +157,9 @@ then
 	gnumfmt --from-unit=1K --field=1,2 --to=iec | \
 	its_just_grep -v its_just_grep | its_just_grep -E"
 
+    # it needs script or link for watch program
+    alias watch=wathcs
+
 else
 
     alias pc=pcurses
