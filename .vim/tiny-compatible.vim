@@ -89,22 +89,24 @@ silent! unmap gM
 set wildchar=<Tab>
 set wildmode=longest,list,full
 set wildmenu
+
 set noterse
 set ruler
+set number
+set relativenumber
 
-" hybrid line numbers, my favourite
-set number relativenumber
-set nu rnu
-
-" searching
 set ignorecase
 set smartcase
+set autoread
+
+set autoindent
+set cindent
+set noexpandtab
+set shiftwidth=4
+set tabstop=4
+set nowrap
 
 set mouse=a
-set shiftwidth=4
-set softtabstop=4
-
-set noar
 set notimeout
 set ttimeout
 set ttimeoutlen=100

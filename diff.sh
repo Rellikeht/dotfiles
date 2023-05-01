@@ -8,8 +8,8 @@ do
 		if [ -n "$DIFF" ]
 		then
 			echo "$DIFF" | \
-			sed "1i $i\n" | \
-			less -r
+				sed "1i $i\n" | \
+				less -r
 		fi
 	fi
 done

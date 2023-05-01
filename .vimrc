@@ -8,15 +8,15 @@ source ~/.vim/tiny-compatible.vim
 " some parts are common, so i needed to do this:
 
 if v:progname !~? "^vi"
-    " and it works, at least now
-    source ~/.vim/additional.vim
-    if v:progname =~? ".*svi.*"
-	    call plug#begin('~/.vim/plugged')
+	" and it works, at least now
+	source ~/.vim/additional.vim
+	if v:progname =~? ".*svi.*"
+		call plug#begin('~/.vim/plugged')
 		source ~/.vim/common-plugins.vim
-	    call plug#end()
-	    source ~/.vim/svim-plug-handlers.vim
-    endif
-    source ~/.vim/plug-handlers.vim
+		call plug#end()
+		source ~/.vim/svim-plug-handlers.vim
+	endif
+	source ~/.vim/plug-handlers.vim
 endif
 
 silent! source ~/.vimrc.local

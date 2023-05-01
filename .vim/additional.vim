@@ -14,8 +14,8 @@ filetype indent on
 syntax on
 
 command! -nargs=+ Silent
-\	execute 'silent <args>'
-\	| redraw!
+			\	execute 'silent <args>'
+			\	| redraw!
 
 " Attempt to make vim easier to use
 " in workman layout, with preserving
