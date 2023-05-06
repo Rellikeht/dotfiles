@@ -159,6 +159,7 @@ then
 
     # it needs script or link for watch program
     alias watch=wathcs
+    alias updatedb='/usr/libexec/locate.updatedb'
 
 else
 

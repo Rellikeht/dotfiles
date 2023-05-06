@@ -1,8 +1,9 @@
-" f, l, w, e are already used
+" w, f, l (easymotion),
+" s, e (code plugins)
+" ;, <Space> (my mappings)
+" and their capital versions are already used
 " ========================= SETUP =========================
 " Using tmux
-
-map <Leader>tC :Tmux
 
 " I don't know if it is doable
 "function CdUnder(path)
@@ -10,6 +11,11 @@ map <Leader>tC :Tmux
 "    "execute "Tmux run-shell 'echo ".a:path." | \~/.vim/cd.sh'"
 "    execute "Tmux run-shell '\~/.vim/cd.sh'"
 "endfunction
+
+function Ccd()
+	let path = expand('%:h')
+	execute 'cd' path
+endfunction
 
 function Setup2Panes()
 	let path = expand('%:h')
@@ -27,10 +33,13 @@ function Setup3Panes()
 	execute 'cd' path
 endfunction
 
+map <Leader>tT :Tmux
 map <Leader>t2 :call Setup2Panes()<CR>
 map <Leader>t3 :call Setup3Panes()<CR>
+map <Leader>tC :call Ccd()<CR>
 
 " ========================= EXECUTION AND BUILDING =========================
+
 " General shortcuts
 " <Leader>cc - simple compilation
 " starting with <Leader>cd and <Leader>cD - debug compilation

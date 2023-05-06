@@ -100,7 +100,7 @@ hm () {
 }
 
 noerr () {
-    $@ 2>/dev/null
+    "$@" 2>/dev/null
 }
 
 silent () {

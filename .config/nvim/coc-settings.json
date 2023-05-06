@@ -11,7 +11,7 @@
 	},
 
 	"nim": {
-	    "command": "nimlsp",
+	    "command": "nimlangserver",
 	    "args": [],
 	    //"rootPatterns": [
 	    //	"nimblemeta.json",
@@ -25,8 +25,8 @@
 	    "trace.server": "verbose"
 	},
 
-	"zig.path": "/bin/zls",
 	"zig.enabled": true,
+	"zig.path": "/usr/local/bin/zls",
 	"zig.startUpMessage": true,
 	"zig.debugLog": false,
 

@@ -104,19 +104,31 @@
 (xbindkey-function '("XF86AudioPrev") (lambda () (pla pln 6)))
 ;; TODO add shift + keys
 
-(xbindkey '("XF86Calculator") "xcas")
+;(xbindkey '("XF86Calculator") "xcas")
 (xbindkey '("XF86Mail") "emacs")
-(xbindkey '("XF86Explorer") "nvidia-settings")
-(xbindkey
-  '("XF86MonBrightnessUp")
-  "doas brightnessctl s 5%+ |
-  sed -En '/Current brightness/s/.*\\(|\\)//gp' |
-  dzen2 -p 2")
-(xbindkey
-  '("XF86MonBrightnessDown")
-  "doas brightnessctl s 5%- |
-  sed -En '/Current brightness/s/.*\\(|\\)//gp' |
-  dzen2 -p 2")
+;(xbindkey '("XF86Explorer") "nvidia-settings")
+
+(define os-name (vector-ref (uname) 0))
+(define backlight-command ;; TODO proper case statement
+  (if (equal? os-name "FreeBSD")
+     (list
+       "intel_backlight incr | awk '/set/ {print $4}' | dzen2 -p 1"
+       "intel_backlight decr | awk '/set/ {print $4}' | dzen2 -p 1")
+
+     (if (equal? os-name "Linux")
+       (list
+	 "doas brightnessctl s 5%+ |
+	 sed -En '/Current brightness/s/.*\\(|\\)//gp' |
+	 dzen2 -p 2"
+
+	 "doas brightnessctl s 5%- |
+	 sed -En '/Current brightness/s/.*\\(|\\)//gp' |
+	 dzen2 -p 2")
+       (list "" ""))))
+
+(xbindkey '("XF86MonBrightnessUp") (car backlight-command))
+(xbindkey '("XF86MonBrightnessDown") (cadr backlight-command))
+
 
 (xbindkey-function
   '("XF86HomePage")
