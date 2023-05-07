@@ -22,16 +22,18 @@ Plug('JuliaEditorSupport/julia-vim')
 Plug('nvim-treesitter/nvim-treesitter', {on = 'TSUpdate'})
 
 Plug('neovim/nvim-lspconfig')
+Plug('windwp/nvim-autopairs')
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp')
-Plug('windwp/nvim-autopairs')
+Plug('hrsh7th/cmp-nvim-lua')
 
 vim.call('plug#end')
 
 modconfigs = {
-	--'treesitter',
-	'lspconfig',
 	'easymotion',
+	'cmp',
+	'lspconfig',
+	'treesitter',
 }
 
 for _, i in ipairs(modconfigs) do
