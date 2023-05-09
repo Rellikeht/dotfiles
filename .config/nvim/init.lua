@@ -21,6 +21,7 @@ Plug('mattn/emmet-vim')
 Plug('JuliaEditorSupport/julia-vim')
 Plug('nvim-treesitter/nvim-treesitter', {on = 'TSUpdate'})
 
+Plug('folke/zen-mode.nvim')
 Plug('neovim/nvim-lspconfig')
 Plug('windwp/nvim-autopairs')
 Plug('hrsh7th/nvim-cmp')

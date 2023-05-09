@@ -12,6 +12,10 @@
 "    execute "Tmux run-shell '\~/.vim/cd.sh'"
 "endfunction
 
+function Tm(cmd)
+	execute 'Tmux '.a:cmd
+endfunction
+
 function Ccd()
 	let path = expand('%:h')
 	execute 'cd' path
@@ -19,24 +23,34 @@ endfunction
 
 function Setup2Panes()
 	let path = expand('%:h')
-	execute 'Tmux split-window -h -c' path
-	execute 'Tmux select-pane -R'
+	call Tm('split-window -h -c '.path)
+	call Tm('select-pane -R')
 	execute 'cd' path
 endfunction
 
 function Setup3Panes()
 	let path = expand('%:h')
-	execute 'Tmux split-window -h -c' path
-	execute 'Tmux split-window -v -c' path
-	execute 'Tmux select-pane -U'
-	execute 'Tmux select-pane -L'
+	call Tm('split-window -h -c '.path)
+	call Tm('split-window -v -c '.path)
+	call Tm('select-pane -U')
+	call Tm('select-pane -L')
 	execute 'cd' path
+endfunction
+
+function SimpleNewWindow()
+	call Tm('new-window')
+	call Tm('last-window')
+endfunction
+
+function MarkCurrent()
+	call Tm('select-pane -m')
 endfunction
 
 map <Leader>tT :Tmux
 map <Leader>t2 :call Setup2Panes()<CR>
 map <Leader>t3 :call Setup3Panes()<CR>
 map <Leader>tC :call Ccd()<CR>
+map <Leader>tN :call SimpleNewWindow()<CR>
 
 " ========================= EXECUTION AND BUILDING =========================
 
