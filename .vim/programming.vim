@@ -1,7 +1,3 @@
-" w, f, l (easymotion),
-" s, e (code plugins)
-" ;, <Space> (my mappings)
-" and their capital versions are already used
 " ========================= SETUP =========================
 " Using tmux
 
