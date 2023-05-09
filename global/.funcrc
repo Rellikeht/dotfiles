@@ -10,15 +10,18 @@ lh () {
 }
 
 cdc () {
-    cd "$1" && clear
+    [ -d "$1" ] && cd "$1"
+	clear
 }
 
 cdl () {
-    cdc "$1" && ls
+    cdc "$1"
+	ls
 }
 
 cdll () {
-    cdc "$1" && ll
+    cdc "$1"
+	ll
 }
 
 llh () {
