@@ -12,7 +12,6 @@ if v:progname !~? "^vi"
 	source ~/.vim/additional.vim
 
 	if v:progname =~? ".*svi.*"
-		" TODO better plugin handling (directory)
 		call plug#begin('~/.vim/plugged')
 		source ~/.vim/common-plugins.vim
 		source ~/.vim/svim-plugins.vim
