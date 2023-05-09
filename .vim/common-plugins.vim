@@ -1,29 +1,24 @@
-" TODO config
-Plug 'mbbill/undotree'
-Plug 'junegunn/fzf'
+Plug 'mbbill/undotree' " TODO A
+Plug 'junegunn/fzf' " TODO A
 
-" TODO config
-Plug 'tpope/vim-tbone'
-Plug 'unblevable/quick-scope'
-Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-tbone' " TODO B
+Plug 'unblevable/quick-scope' " TODO A
+Plug 'justinmk/vim-sneak' " TODO A
 
-" TODO config
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive' " TODO A
+Plug 'tpope/vim-repeat' " TODO B
+Plug 'tpope/vim-surround' " TODO B
+Plug 'tpope/vim-speeddating' " TODO C
+Plug 'tpope/vim-commentary' " TODO B
 
-" TODO check
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-eunuch' " TODO B
+Plug 'tpope/vim-characterize' " TODO C
 
-" TODO config ???
 Plug 'WolfgangMehner/bash-support'
 Plug 'zah/nim.vim'
 Plug 'ziglang/zig.vim'
-Plug 'luochen1990/rainbow'
-Plug 'lilydjwg/colorizer'
-Plug 'maxboisvert/vim-simple-complete'
-Plug 'WolfgangMehner/vim-support'
+Plug 'luochen1990/rainbow' " TODO D
+Plug 'lilydjwg/colorizer' " TODO D
+Plug 'maxboisvert/vim-simple-complete' " TODO B
+Plug 'WolfgangMehner/vim-support' " TODO C
 "Plug 'kmonad/kmonad-vim'

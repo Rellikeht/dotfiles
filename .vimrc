@@ -10,9 +10,13 @@ source ~/.vim/tiny-compatible.vim
 if v:progname !~? "^vi"
 	" and it works, at least now
 	source ~/.vim/additional.vim
+
 	if v:progname =~? ".*svi.*"
+		" TODO better plugin handling (directory)
 		call plug#begin('~/.vim/plugged')
 		source ~/.vim/common-plugins.vim
+		source ~/.vim/svim-plugins.vim
+
 		call plug#end()
 		source ~/.vim/svim-plug-handlers.vim
 	endif
