@@ -10,7 +10,6 @@ Plug 'tpope/vim-repeat' " TODO B
 Plug 'tpope/vim-surround' " TODO B
 Plug 'tpope/vim-speeddating' " TODO C
 Plug 'tpope/vim-commentary' " TODO B
-
 Plug 'tpope/vim-eunuch' " TODO B
 Plug 'tpope/vim-characterize' " TODO C
 

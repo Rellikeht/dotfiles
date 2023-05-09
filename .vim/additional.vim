@@ -1,4 +1,5 @@
 silent! source ~/.vim/vars.vim
+source ~/.vim/functions.vim
 source ~/.vim/keys.vim
 
 set showcmd

@@ -1,6 +1,6 @@
 " KEYS
 
-tnoremap <C-w> <C-\><C-n>
+map <Space> <C-w>
 map <C-y> "+gP
 
 "" This is alt, but should be altgr
@@ -30,8 +30,7 @@ map <C-y> "+gP
 "nnoremap <C-x>@hK :wincmd K<CR>
 "nnoremap <C-x>@hL :wincmd L<CR>
 
-
-" tabs with unused _
+" Tabs with _
 nmap _k :tabfirst<CR>
 nmap _j :tablast<CR>
 nmap _l gt
@@ -75,14 +74,6 @@ vmap ae <Esc>gg0vG$
 vmap ie <Esc>gg}{vG{}k$
 "vae defined earlier doesn't work here
 nmap yae mcggvG$y`c
-
-" For custom mapping
-silent! unmap gc
-silent! unmap gC
-silent! unmap gr
-silent! unmap gR
-silent! unmap gm
-silent! unmap gM
 
 " SETTINGS
 
