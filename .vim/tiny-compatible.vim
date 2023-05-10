@@ -80,6 +80,7 @@ nmap yae mcggvG$y`c
 set wildchar=<Tab>
 set wildmode=longest,list,full
 set wildmenu
+set completeopt=menu,preview,menuone,noselect
 
 set noterse
 set ruler
