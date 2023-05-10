@@ -22,14 +22,14 @@ Plug('vlime/vlime') -- TODO C
 Plug('easymotion/vim-easymotion') -- TODO A
 Plug('nvim-lua/plenary.nvim') -- Dependency
 Plug('ThePrimeagen/harpoon') -- TODO A
-Plug('nvim-treesitter/nvim-treesitter', {on = 'TSUpdate'}) -- TODO B
+Plug('nvim-treesitter/nvim-treesitter', {on = 'TSUpdate'}) -- TODO A
 Plug('folke/zen-mode.nvim') -- TODO C
 
-Plug('folke/zen-mode.nvim')
+Plug('dcampos/nvim-snippy') -- TODO A (let this not interrupt normal work)
 Plug('neovim/nvim-lspconfig')
-Plug('windwp/nvim-autopairs') -- TODO C
+Plug('windwp/nvim-autopairs') -- TODO B
 Plug('hrsh7th/nvim-cmp')
-Plug('hrsh7th/cmp-nvim-lsp') -- TODO B
+Plug('hrsh7th/cmp-nvim-lsp') -- TODO C
 Plug('hrsh7th/cmp-nvim-lua')
 
 vim.call('plug#end')

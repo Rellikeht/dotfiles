@@ -1,6 +1,7 @@
 local cmp = require('cmp')
 local autopairs = require('nvim-autopairs').setup {}
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local snippy = require('snippy')
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 Capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -38,9 +39,14 @@ cmp.setup({
 		['<C-b>'] = cmp.mapping.scroll_docs(-8),
 	}),
 
+	snippet = {
+		expand = function(args)
+			snippy.expand_snippet(args.body)
+		end
+	},
+
 	sources = {
 		{ name = 'nvim_lua' },
 		{ name = 'nvim_lsp' },
-		--{ name = 'buffer' },
 	}
 })
