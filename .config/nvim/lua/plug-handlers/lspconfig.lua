@@ -2,6 +2,9 @@ local lspconfig = require('lspconfig')
 
 local function ssetup(server)
 	lspconfig[server].setup({
+		preselectSupport = false,
+		preselect = false,
+		single_file_support = true,
 		on_attach = lsp_attach,
 		capabilities = Capabilities,
 	})
@@ -13,7 +16,7 @@ local servers = {
 	'pylsp',
 
 	'gopls',
-	'ccls',
+	'clangd',
 
 	--'scheme_langserver',
 	'ocamllsp',
