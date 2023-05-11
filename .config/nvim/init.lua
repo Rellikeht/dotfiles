@@ -22,17 +22,11 @@ Plug('vlime/vlime') -- TODO C
 Plug('easymotion/vim-easymotion') -- TODO A
 Plug('nvim-lua/plenary.nvim') -- Dependency
 Plug('ThePrimeagen/harpoon') -- TODO A
-<<<<<<< HEAD
 Plug('nvim-treesitter/nvim-treesitter', {on = 'TSUpdate'}) -- TODO B
 Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 Plug('folke/zen-mode.nvim') -- TODO C
 
-=======
-Plug('nvim-treesitter/nvim-treesitter', {on = 'TSUpdate'}) -- TODO A
-Plug('folke/zen-mode.nvim') -- TODO C
-
 Plug('dcampos/nvim-snippy') -- TODO A (let this not interrupt normal work)
->>>>>>> refs/remotes/origin/master
 Plug('neovim/nvim-lspconfig')
 Plug('windwp/nvim-autopairs') -- TODO B
 Plug('hrsh7th/nvim-cmp')
