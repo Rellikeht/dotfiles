@@ -23,9 +23,9 @@ Plug('easymotion/vim-easymotion') -- TODO A
 Plug('nvim-lua/plenary.nvim') -- Dependency
 Plug('ThePrimeagen/harpoon') -- TODO A
 Plug('nvim-treesitter/nvim-treesitter', {on = 'TSUpdate'}) -- TODO B
+Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 Plug('folke/zen-mode.nvim') -- TODO C
 
-Plug('folke/zen-mode.nvim')
 Plug('neovim/nvim-lspconfig')
 Plug('windwp/nvim-autopairs') -- TODO C
 Plug('hrsh7th/nvim-cmp')
@@ -35,7 +35,7 @@ Plug('hrsh7th/cmp-nvim-lua')
 vim.call('plug#end')
 
 modconfigs = {
-	'easymotion',
+	'motion',
 	'cmp',
 	'lspconfig',
 	'treesitter',

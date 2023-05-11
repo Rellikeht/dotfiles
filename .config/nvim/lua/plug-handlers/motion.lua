@@ -1,3 +1,5 @@
+-- Easymotion, telescope, harpoon
+
 -- TODO
 -- <Leader>f{char} to move to {char}
 keymap("<Leader>f", "<Plug>(easymotion-bd-f)")
