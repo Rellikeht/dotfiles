@@ -11,10 +11,26 @@ HISTSIZE=10000
 SAVEHIST=10000
 bindkey -e
 alias ls="ls --color"
+
+conditional_source () {
+	[ -f "$1" ] && source "$1"
+}
+
+#aliases
+conditional_source "/etc/.aliasrc"
+conditional_source "$HOME/.aliasrc"
+
+#functions
+conditional_source "/etc/.funcrc"
+conditional_source "$HOME/.funcrc"
+
+#common variables
+conditional_source "/etc/.varrc"
+conditional_source "$HOME/.varrc"
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/michal/.zshrc'
-
+zstyle :compinstall filename '~/.zshrc'
 zstyle ':completion:*' rehash true
 
 autoload -Uz compinit
@@ -26,18 +42,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-#aliases
-[ -f "/etc/.aliasrc" ] && source "/etc/.aliasrc"
-[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
-
-#functions
-[ -f "/etc/.funcrc" ] && source "/etc/.funcrc"
-[ -f "$HOME/.funcrc" ] && source "$HOME/.funcrc"
-
-#common variables
-[ -f "/etc/.varrc" ] && source "/etc/.varrc"
-[ -f "$HOME/.varrc" ] && source "$HOME/.varrc"
 
 my-backward-delete-word () {
    local WORDCHARS='~!#$%^*<>?+'

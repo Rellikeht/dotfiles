@@ -12,12 +12,13 @@ end
 
 local servers = {
 	'lua_ls',
-	'pylsp',
-	'gopls',
+	'pylsp', -- Not tested well
+	'gopls', -- Not tested well
 	'clangd',
 
 	--'scheme_langserver',
-	'ocamllsp',
+	'julials', -- Untested
+	'ocamllsp', -- Untested
 	'zls',
 
 	-- on freebsd nimlsp can't even start
@@ -25,7 +26,16 @@ local servers = {
 	-- at least on simple projects with only .nim files
 	'nim_langserver',
 
-	'rust_analyzer',
+	'rust_analyzer', -- Untested
+	'tsserver', -- untested
+
+	--'bashls', -- TODO C
+	--'vimls', -- TODO C
+	--'opencl_ls', -- TODO C
+
+	--'awk_ls', -- TODO D
+	--'erlangls', --TODO D
+	--'yamlls', -- TODO D
 }
 
 for _, s in ipairs(servers) do ssetup(s) end

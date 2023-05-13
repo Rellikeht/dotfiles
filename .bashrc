@@ -4,17 +4,21 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+conditional_source () {
+	[ -f "$1" ] && source "$1"
+}
+
 #aliases
-[ -f "/etc/.aliasrc" ] && source "/etc/.aliasrc"
-[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
+conditional_source "/etc/.aliasrc"
+conditional_source "$HOME/.aliasrc"
 
 #functions
-[ -f "/etc/.funcrc" ] && source "/etc/.funcrc"
-[ -f "$HOME/.funcrc" ] && source "$HOME/.funcrc"
+conditional_source "/etc/.funcrc"
+conditional_source "$HOME/.funcrc"
 
 #common variables
-[ -f "/etc/.varrc" ] && source "/etc/.varrc"
-[ -f "$HOME/.varrc" ] && source "$HOME/.varrc"
+conditional_source "/etc/.varrc"
+conditional_source "$HOME/.varrc"
 
 #VISUAL="emacs -nw"
 PS1='\[\033[34m\][ \[\033[1;34m\]\u\[\033[1;36m\]@\[\033[1;31m\]\h\[\033[0;34m\] ]\[\033[1;36m\]:\[\033[1;35m\]\w\[\033[1;33m\]$\[\033[0m\] '
