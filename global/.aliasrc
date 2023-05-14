@@ -137,6 +137,15 @@ alias jle='julia -e'
 alias pyc='python -c'
 alias nimm='hm nim -h --fullhelp'
 
+# git
+alias gst='git status'
+alias grc='git remote show'
+alias gcb='git branch --no-color --show-current'
+alias gad='git add'
+alias gal='gad .'
+alias gcm='git commit -m'
+alias gpo='git push $(grs) $(gcb)'
+
 if [ $(uname) = "FreeBSD" ]
 then
 
