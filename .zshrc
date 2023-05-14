@@ -10,6 +10,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 bindkey -e
+bindkey \^U backward-kill-line
 alias ls="ls --color"
 
 conditional_source () {

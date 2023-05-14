@@ -24,7 +24,7 @@ local servers = {
 	-- on freebsd nimlsp can't even start
 	-- this leaves nimsuggest instances behind
 	-- at least on simple projects with only .nim files
-	'nim_langserver',
+	--'nim_langserver',
 
 	'rust_analyzer', -- Untested
 	'tsserver', -- untested
@@ -40,12 +40,24 @@ local servers = {
 
 for _, s in ipairs(servers) do ssetup(s) end
 
--- TODO 
 -- nimlangserver has it's own problems, maybe they can be
 -- adressed by copying solutions from vscode extension
---lspconfig.nim_langserver.setup({
---	single_file_support = true,
---	on_attach = lsp_attach,
---	capabilities = Capabilities,
---	nim_timeout = 1000,
---})
+lspconfig.nim_langserver.setup({
+	single_file_support = true,
+	on_attach = lsp_attach,
+	capabilities = Capabilities,
+
+--	settings = {
+--		nim = {
+--			--projectMapping = {
+--			--	{
+--			--		projectPath = "",
+--			--		fileregex = "*.nim"
+--			--	}
+--			--},
+--			--timeout = 2000,
+--			--autoCheckFile = true,
+--
+--		}
+--	},
+})

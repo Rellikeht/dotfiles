@@ -174,6 +174,7 @@ config.set('colors.webpage.darkmode.contrast',  0.0)
 config.set('colors.webpage.darkmode.policy.images',  'never')
 config.set('colors.webpage.darkmode.enabled', True)
 config.set('fonts.default_size', '12pt')
+config.set('messages.timeout', '1200')
 
 config.set('content.media.audio_capture', 'ask')
 config.set('content.media.audio_video_capture', 'ask')
@@ -185,7 +186,6 @@ config.set('tabs.background', True)
 config.set('tabs.show', 'always')
 
 config.set('content.cache.size', 67108864)
-
 config.set('content.media.audio_capture', True, 'https://discord.com')
 
 config.set('url.start_pages', 'https://paulgo.io')

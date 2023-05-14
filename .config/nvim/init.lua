@@ -13,10 +13,7 @@ vim.cmd('source '..vim_dir..'/common-plugins.vim')
 
 Plug('norcalli/nvim-colorizer.lua') -- TODO B
 --Plug('kmonad/kmonad-vim')
-Plug('numirias/semshi', {on = 'UpdateRemotePlugins'}) -- TODO C
-Plug('jceb/vim-orgmode')
 Plug('mattn/emmet-vim')
-Plug('JuliaEditorSupport/julia-vim') -- TODO C
 Plug('vlime/vlime') -- TODO C
 
 Plug('easymotion/vim-easymotion') -- TODO A
