@@ -6,17 +6,18 @@ Plug 'justinmk/vim-sneak' " TODO A
 Plug 'maxboisvert/vim-simple-complete' " TODO B
 
 Plug 'tpope/vim-fugitive' " TODO A
-Plug 'tpope/vim-repeat' " TODO B
+Plug 'tpope/vim-repeat' " TODO A
 Plug 'tpope/vim-surround' " TODO B
-Plug 'tpope/vim-speeddating' " TODO C
-Plug 'tpope/vim-commentary' " TODO B
+Plug 'tpope/vim-speeddating' " TODO B
+Plug 'tpope/vim-commentary' " TODO A
 Plug 'tpope/vim-eunuch' " TODO B
 Plug 'tpope/vim-characterize' " TODO C
 
+Plug 'lfilho/cosco.vim' " TODO B
 Plug 'jceb/vim-orgmode'
-Plug 'WolfgangMehner/bash-support'
-Plug 'zah/nim.vim'
-Plug 'ziglang/zig.vim'
+Plug 'WolfgangMehner/bash-support' " TODO C
+Plug 'zah/nim.vim' " TODO B
+Plug 'ziglang/zig.vim' " TODO C
 Plug 'JuliaEditorSupport/julia-vim' " TODO C
 Plug 'luochen1990/rainbow' " TODO D
 Plug 'WolfgangMehner/vim-support' " TODO C

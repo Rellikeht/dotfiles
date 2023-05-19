@@ -13,6 +13,10 @@ map T <Plug>Sneak_T
 map - <Plug>Sneak_,
 map + <Plug>Sneak_;
 
+" TODO A check
+nmap <silent> ; <Plug>(cosco-commaOrSemiColon)
+imap <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
+
 " - Type sab to move the cursor immediately to the next
 "   instance of the text "ab".
 " Additional matches, if any, are highlighted until the cursor is moved.

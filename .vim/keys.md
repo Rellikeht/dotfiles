@@ -81,7 +81,7 @@ TODO one or two for others
 
 # g combinations
 Available (useless otherwise):
-A, B, C, G, K, L, O, S, Y, Z
+A, B, C, G, K, L, O, S, Y
 b, j, l, o, y, z
 
 Rather useless:
@@ -104,7 +104,7 @@ q
 All special characters, besides: +, -, ., =, <CR>, numbers
 
 ## Nvim only
-- <Leader> - zen-mode ; NOT IMPLEMENTED
+- (something with z probably) - zen-mode ; NOT IMPLEMENTED
 
 # Miscelanous
 
@@ -113,6 +113,7 @@ All special characters, besides: +, -, ., =, <CR>, numbers
 - ae - (visual only) select whole buffer without plugins
 - ie - (visual only) Not exact vie
 - yae - copy whole buffer
+- ; - cosco (inserting semicolons and colons)
 
 # Available (or safe for remapping)
 TODO

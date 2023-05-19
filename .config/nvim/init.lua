@@ -25,6 +25,9 @@ Plug('folke/zen-mode.nvim') -- TODO C
 
 Plug('dcampos/nvim-snippy') -- TODO A (let this not interrupt normal work)
 Plug('neovim/nvim-lspconfig')
+-- Try if ↑ won't work well enough
+--Plug('jayli/vim-easycomplete')
+
 Plug('windwp/nvim-autopairs') -- TODO B
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp') -- TODO C
