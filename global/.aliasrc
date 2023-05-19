@@ -144,7 +144,7 @@ alias gcb='git branch --no-color --show-current'
 alias gad='git add'
 alias gal='gad .'
 alias gcm='git commit -m'
-alias gpo='git push $(grs) $(gcb)'
+alias gpo='git push $(grc) $(gcb)'
 
 if [ $(uname) = "FreeBSD" ]
 then
