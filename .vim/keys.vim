@@ -24,3 +24,6 @@ map <Leader>;e :Ex<CR>
 " map <Leader>;E 'cyy:execute '!' . getreg('c')<CR>
 " map <Leader>;D 'cyydd:execute '!' . getreg('c')<CR>
 "nmap <Leader>W bvw"cy:execute "!" . getreg('c')<CR>
+
+map gb <C-]>
+map gB <C-t>

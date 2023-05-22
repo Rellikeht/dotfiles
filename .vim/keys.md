@@ -81,8 +81,8 @@ TODO one or two for others
 
 # g combinations
 Available (useless otherwise):
-A, B, C, G, K, L, O, S, Y
-b, j, l, o, y, z
+C, G, K, L, O, Y
+j, l, o, y, z
 
 Rather useless:
 D, I, Q
@@ -96,6 +96,8 @@ h, m, n
 - S - vim-surround ; TODO
 - a - characterize ; TODO
 - x, X - netrw ; TODO
+- b - jump to tag under cursor (<C-]>)
+- B - jump to previous tag on stack (<C-T>)
 
 # z combinations
 Available (unused):
