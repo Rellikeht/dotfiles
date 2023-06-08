@@ -19,9 +19,18 @@ endfunction
 
 function Setup2Panes()
 	let path = expand('%:h')
+	execute 'cd' path
 	call Tm('split-window -h -c '.path)
 	call Tm('select-pane -R')
-	execute 'cd' path
+endfunction
+
+function CdPanesDangerous()
+	let path = expand('%:p:h')
+	call Tm("send-keys Escape :")
+	call Tm('setw synchronize-panes on')
+	call Tm("send-keys 'cd ".path."' C-m")
+	call Tm('setw synchronize-panes off')
+	call Tm("send-keys Enter C-l")
 endfunction
 
 function Setup3Panes()
@@ -45,6 +54,7 @@ endfunction
 map <Leader>tT :Tmux
 map <Leader>t2 :call Setup2Panes()<CR>
 map <Leader>t3 :call Setup3Panes()<CR>
+map <Leader>tD :call CdPanesDangerous()<CR>
 map <Leader>tC :call Ccd()<CR>
 map <Leader>tN :call SimpleNewWindow()<CR>
 
