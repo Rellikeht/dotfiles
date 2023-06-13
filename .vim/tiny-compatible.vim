@@ -93,7 +93,8 @@ set autoread
 
 set autoindent
 set cindent
-set noexpandtab
+"set noexpandtab
+set expandtab
 set shiftwidth=4
 set tabstop=4
 set nowrap
