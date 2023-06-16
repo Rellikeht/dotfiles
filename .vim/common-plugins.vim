@@ -15,10 +15,12 @@ Plug 'tpope/vim-characterize' " TODO C
 
 Plug 'lfilho/cosco.vim' " TODO B
 Plug 'jceb/vim-orgmode'
-Plug 'WolfgangMehner/bash-support' " TODO C
 Plug 'zah/nim.vim' " TODO B
 Plug 'ziglang/zig.vim' " TODO C
 Plug 'JuliaEditorSupport/julia-vim' " TODO C
 Plug 'luochen1990/rainbow' " TODO D
-Plug 'WolfgangMehner/vim-support' " TODO C
 "Plug 'kmonad/kmonad-vim'
+
+" Candidates for remove
+Plug 'WolfgangMehner/bash-support' " TODO C
+Plug 'WolfgangMehner/vim-support' " TODO C

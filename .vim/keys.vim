@@ -15,6 +15,7 @@ map <Leader>qq :call Wmt()<CR>
 map <Leader>;c :!clear<CR><CR>
 map <Leader>;l :!ls<CR>
 map <Leader>;e :Ex<CR>
+map <Leader>;r :!%<CR>
 
 " TODO B running command under cursor
 " TODO C running command in given register

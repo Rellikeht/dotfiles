@@ -135,12 +135,12 @@ call GenerateBindingsCompiled('cpp', 'clang++', cbindings, 'C')
 " nim
 " TODO not tested well
 let nimbindings = {
-			\ 'c': '--styleCheck:hint %', 
-			\ 'd': '--styleCheck:hint -d:debug %',
-			\ 'r': '--styleCheck:hint --hints:off -d:release --mm:orc %',
-			\ 'o': '--styleCheck:hint --hints:off -d:release --mm:arc %',
-			\ 'u': '--hints:off -d:danger --mm:orc %',
-			\ 'U': '--hints:off -d:danger --mm:arc %',
+			\ 'c': '%', 
+			\ 'd': '-d:debug %',
+			\ 'r': '--hints:off -d:release --mm:orc %',
+			\ 'o': '--hints:off -d:release --mm:arc %',
+			\ 'u': '-d:danger --mm:orc %',
+			\ 'U': '-d:danger --mm:arc %',
 			\}
 
 call GenerateBindingsCompiled('nim', 'nim c', nimbindings, '')
