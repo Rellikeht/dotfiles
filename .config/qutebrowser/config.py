@@ -159,7 +159,8 @@ config.bind('ca', 'adblock-update')
 #set-cmd-text - type some command and wait for user to execute it
 #config-cycle - cycle through valuses of some config option
 
-config.set('editor.command', ['gsvim', '-c', 'normal {line}G{column0}1', '{file}'])
+#config.set('editor.command', ['gsvim', '-c', 'normal {line}G{column0}1', '{file}'])
+config.set('editor.command', ['st', 'svim', '{file}'])
 
 import dracula.draw
 dracula.draw.blood(c, {
@@ -183,7 +184,8 @@ config.set('downloads.prevent_mixed_content', False)
 config.set('new_instance_open_target', 'tab')
 config.set('statusbar.show', 'always')
 config.set('tabs.background', True)
-config.set('tabs.show', 'always')
+config.set('tabs.show', 'multiple')
+config.set('statusbar.show', 'in-mode')
 
 config.set('content.cache.size', 67108864)
 config.set('content.media.audio_capture', True, 'https://discord.com')
