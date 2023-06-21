@@ -19,6 +19,7 @@ Plug 'zah/nim.vim' " TODO B
 Plug 'ziglang/zig.vim' " TODO C
 Plug 'JuliaEditorSupport/julia-vim' " TODO C
 Plug 'luochen1990/rainbow' " TODO D
+Plug 'ocaml/vim-ocaml' " TODO B
 "Plug 'kmonad/kmonad-vim'
 
 " Candidates for remove

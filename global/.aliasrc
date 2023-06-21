@@ -126,16 +126,20 @@ alias help2man='help2man -N'
 # Languages
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
+alias jle='julia -e'
+alias pyc='python -c'
+alias nimm='hm nim -h --fullhelp'
+alias nbup="nimble list -i | cut -d' ' -f1 | xargs nimble install -n"
+alias chn='choosenim'
 alias rooc='rlwrap ocaml'
+alias opup='opam update && opam upgrade'
+alias openv='eval $(opam env)'
 PYPY='pypy3'
 PYPYP="/opt/$PYPY/bin"
 alias ipp="$PYPYP/ipython"
 alias ibp="$PYPYP/bpython"
 alias ppip="$PYPYP/pip"
 alias pypym="$PYPY -m"
-alias jle='julia -e'
-alias pyc='python -c'
-alias nimm='hm nim -h --fullhelp'
 
 # git
 alias gst='git status'

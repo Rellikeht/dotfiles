@@ -190,25 +190,35 @@ config.set('statusbar.show', 'in-mode')
 config.set('content.cache.size', 67108864)
 config.set('content.media.audio_capture', True, 'https://discord.com')
 
-config.set('url.start_pages', 'https://paulgo.io')
-config.set('url.default_page', 'https://paulgo.io')
+DEFAULT_SEARX = 'https://paulgo.io'
+
+config.set('url.start_pages', DEFAULT_SEARX)
+config.set('url.default_page', DEFAULT_SEARX)
 config.set('url.searchengines',
-           {'DEFAULT':'https://paulgo.io/search?q={}',
-            'sb':'https://searx.xyz/search?q={}',
-            'ps':'https://paulgo.io/search?q={}&language=pl-PL',
-            'pb':'https://searx.xyz/search?q={}&language=pl-PL',
-            'aw':'https://wiki.archlinux.org/index.php?search={}',
-            'au':'https://aur.archlinux.org/packages?K={}&PP=250&SB=n&SO=a',
-            'ap':'https://archlinux.org/packages/?q={}',
-            'gh':'https://github.com/search?q={}',
-            'sf':'https://sourceforge.net/directory/?clear&q={}',
-            'yt':'https://youtube.com/results?search_query={}',
-            'gw':'https://wiki.gentoo.org/index.php?search={}',
-            'gp':'https://packages.gentoo.org/packages/search?q={}',
-            'np':'https://search.nixos.org/packages?size=500&query={}',
-            'lb':'https://odysee.com/$/search?q={}',
-            'wc':'https://wikichip.org/wiki?search={}'
-            })
+           {
+               'DEFAULT':DEFAULT_SEARX+'/search?q={}',
+               'sb':'https://searx.xyz/search?q={}',
+               'ps':DEFAULT_SEARX+'/search?q={}&language=pl-PL',
+               'pb':'https://searx.xyz/search?q={}&language=pl-PL',
+
+               'aw':'https://wiki.archlinux.org/index.php?search={}',
+               'gw':'https://wiki.gentoo.org/index.php?search={}',
+               'wc':'https://wikichip.org/wiki?search={}',
+
+               'au':'https://aur.archlinux.org/packages?K={}&PP=250&SB=n&SO=a',
+               'ap':'https://archlinux.org/packages/?q={}',
+               'gp':'https://packages.gentoo.org/packages/search?q={}',
+               'np':'https://search.nixos.org/packages?size=500&query={}',
+
+               'gh':'https://github.com/search?q={}',
+               'sf':'https://sourceforge.net/directory/?clear&q={}',
+
+               'yt':'https://youtube.com/results?search_query={}',
+               'lb':'https://odysee.com/$/search?q={}',
+
+               'pp':'https://pypi.org/search/?q={}',
+               'jp':'https://juliapackages.com/packages?search={}',
+               })
 
 #Javascript in search engines and other useful websites
 config.set('content.javascript.enabled', True, 'https://searx.xyz/*')
