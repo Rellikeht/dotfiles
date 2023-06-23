@@ -1,7 +1,10 @@
 " KEYS
 
 map <Space> <C-w>
-map <C-y> "+gP
+map gY "+gP
+
+map gb <C-]>
+map gB <C-t>
 
 "" This is alt, but should be altgr
 "map <A-s> <A-s><A-s>

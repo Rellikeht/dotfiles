@@ -11,38 +11,63 @@ local plug_dir = 'plug-handlers/'
 vim.call('plug#begin', nvim_dir..'/plugins')
 vim.cmd('source '..vim_dir..'/common-plugins.vim')
 
--- Dependencies
+-- DEPENDENCIES
+
 Plug('nvim-lua/plenary.nvim')
 
--- Motion
+-- LOOK
+
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
+Plug('norcalli/nvim-colorizer.lua') -- TODO C
+-- Plug('folke/tokyonight.nvim') -- TODO C
+
+-- TODO C check if it is needed at all
+-- Plug('folke/zen-mode.nvim')
+
+-- MOTION
+
 Plug('easymotion/vim-easymotion') -- TODO A
 Plug('ThePrimeagen/harpoon') -- TODO A
 Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 
--- Look
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
-Plug('norcalli/nvim-colorizer.lua') -- TODO B
-Plug('folke/zen-mode.nvim') -- TODO C
--- TODO B TODO plugin :)
+-- TODO C test that
+--Plug('nvim-treesitter/nvim-treesitter-textobjects')
 
--- Specialized
+-- SPECIALIZED
+
 --Plug('kmonad/kmonad-vim')
 Plug('mattn/emmet-vim') -- TODO C
--- TODO select
+
+-- TODO select one:
 --Plug('vlime/vlime') -- TODO C
 --Plug('jpalardy/vim-slime') -- TODO C
 
--- Completion
+-- COMPLETION
+
 --Plug('jayli/vim-easycomplete')
 -- Try if ↓ won't work well enough
-Plug('neovim/nvim-lspconfig')
-Plug('dcampos/nvim-snippy') -- TODO A (let this not interrupt normal work)
-Plug('windwp/nvim-autopairs') -- TODO B
+Plug('neovim/nvim-lspconfig') -- TODO A this can autocomplete
+
+-- This is probably done:
+-- TODO B (let this not interrupt normal work)
+Plug('dcampos/nvim-snippy')
+
 Plug('hrsh7th/nvim-cmp')
-Plug('hrsh7th/cmp-nvim-lsp') -- TODO C
+Plug('hrsh7th/cmp-nvim-lsp')
 Plug('hrsh7th/cmp-nvim-lua')
 
---Plug('rmagatti/auto-session') -- TODO B
+-- OTHER CODING HELP
+
+Plug('windwp/nvim-autopairs') -- TODO B
+Plug('nvim-treesitter/nvim-treesitter-refactor') -- TODO B
+
+-- TODO C try
+--Plug('rmagatti/auto-session')
+
+-- NICE TO HAVE
+
+-- Sadly doesn't work with my build of vim
+Plug('tpope/vim-characterize')
 
 vim.call('plug#end')
 
@@ -51,7 +76,7 @@ local modconfigs = {
 	'cmp',
 	'lspconfig',
 	'colors',
-	'rest',
+	'other',
 }
 
 for _, i in ipairs(modconfigs) do
@@ -59,5 +84,4 @@ for _, i in ipairs(modconfigs) do
 end
 
 vim.cmd('source ~/.vimrc')
-vim.opt.termguicolors = true
 vim.cmd.colorscheme('elflord')

@@ -10,32 +10,84 @@ local function ssetup(server)
 	})
 end
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
 local servers = {
 	'lua_ls',
-	'pylsp', -- Not tested well
+	'pylsp',
 	'gopls', -- Not tested well
 	'clangd',
+	'ocamllsp',
 
-	--'scheme_langserver',
-	'julials', -- Untested
-	'ocamllsp', -- Untested
+	'julials',
 	'zls',
 
-	-- on freebsd nimlsp can't even start
-	-- this leaves nimsuggest instances behind
-	-- at least on simple projects with only .nim files
+    -- TODO A:
+
+    --'nimlsp',
+	-- On freebsd can't even start
+
+	-- This leaves nimsuggest instances running after closing editor
+	-- At least on simple projects with only .nim files
 	--'nim_langserver',
+    -- For now it is added manually later
 
-	'rust_analyzer', -- Untested
-	'tsserver', -- untested
+    -- add if it stops eating so much memory
+    --'hls',
 
-	--'bashls', -- TODO C
-	--'vimls', -- TODO C
-	--'opencl_ls', -- TODO C
+    -- TODO B:
+    --'rnix-lsp',
+    -- or
+    --'nixd',
 
-	--'awk_ls', -- TODO D
-	--'erlangls', --TODO D
-	--'yamlls', -- TODO D
+    --'racket_langserver',
+    -- or
+	--'scheme_langserver',
+
+    --'sqls',
+    -- or
+    --'sqlls',
+
+    -- Somehow add tcl lsp if it works
+    -- https://github.com/Dufgui/lsp-jtcl
+
+    -- TODO C:
+
+	--'rust_analyzer', -- Untested
+	--'tsserver', -- Untested
+
+    -- TCL ???
+    -- https://github.com/soartech/soar-language-server
+
+	--'bashls', -- hard to get working
+	--'vimls', -- probably not really needed
+	--'opencl_ls',
+	--'awk_ls', -- ???
+
+    -- TODO D:
+
+    --'java_language_server',
+    -- or
+    --'jdtls', -- Probably too much work
+
+    --'metals', --scala
+    --'clojure_lsp',
+	--'erlangls',
+	--'yamlls',
+    --'asm-lsp',
+    --'emmet_ls',
+    --'gdscript',
+    --'fortls',
+
+    --'perlls',
+    -- or
+    --'perlpls',
+
+    --'vhdl_ls', -- ???
+
+    --'verible',
+    -- or
+    --'veridian',
 }
 
 for _, s in ipairs(servers) do ssetup(s) end

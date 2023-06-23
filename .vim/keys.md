@@ -81,7 +81,7 @@ TODO one or two for others
 
 # g combinations
 Available (useless otherwise):
-C, G, K, L, O, Y
+C, G, K, L, O
 j, l, o, y, z
 
 Rather useless:
@@ -93,11 +93,14 @@ H, J, M, N, V
 h, m, n
 
 - c - vim-commentary ; TODO
+- C - toggle colorizer
 - S - vim-surround ; TODO
 - a - characterize ; TODO
+- A - radical.vim
 - x, X - netrw ; TODO
 - b - jump to tag under cursor (<C-]>)
 - B - jump to previous tag on stack (<C-T>)
+- Y - "+gP (I don't know if it works) ; TODO
 
 # z combinations
 Available (unused):
@@ -105,12 +108,18 @@ B, I, J, K, Q, S, T, U, V, Y, Z
 q
 All special characters, besides: +, -, ., =, <CR>, numbers
 
+# c combinations
+## TODO
+- r[dxob] - radical.vim
+
+# [ and ]
+## TODO
+
 ## Nvim only
 - (something with z probably) - zen-mode ; NOT IMPLEMENTED
 
 # Miscelanous
 
-- C-y - "+gP (I don't know if it works)
 - Space - <C-w>
 - ae - (visual only) select whole buffer without plugins
 - ie - (visual only) Not exact vie

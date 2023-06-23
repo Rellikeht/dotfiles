@@ -14,7 +14,7 @@ tsconfig.setup({
 
         "make", "ninja", "meson", "cmake",
 
-        "sql", "rust", "cpp", "erlang", "cuda", "r",
+        "sql", "rust", "cpp", "erlang", "cuda", "r", "java",
         "scala", "ada", "odin", "fortran", "perl", "v"
     },
 
