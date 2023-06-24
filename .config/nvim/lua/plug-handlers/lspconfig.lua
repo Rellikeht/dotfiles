@@ -1,13 +1,18 @@
 local lspconfig = require('lspconfig')
 
 local function ssetup(server)
-	lspconfig[server].setup({
-		preselectSupport = false,
-		preselect = false,
-		single_file_support = true,
-		on_attach = lsp_attach,
-		capabilities = Capabilities,
-	})
+    local config = lspconfig[server]
+    if vim.fn.executable(config.document_config.default_config.cmd[1]) == 0 then
+        return
+    end
+
+    config.setup({
+        preselectSupport = false,
+        preselect = false,
+        single_file_support = true,
+        on_attach = lsp_attach,
+        capabilities = Capabilities,
+    })
 end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -18,9 +23,18 @@ local servers = {
 	'gopls', -- Not tested well
 	'clangd',
 	'ocamllsp',
+	'bashls',
 
 	'julials',
 	'zls',
+	'scheme_langserver',
+    'hls', -- TODO B memory
+
+	'rust_analyzer',
+    'racket_langserver',
+    'sqlls',
+
+	'tsserver',
 
     -- TODO A:
 
@@ -32,39 +46,20 @@ local servers = {
 	--'nim_langserver',
     -- For now it is added manually later
 
-    -- add if it stops eating so much memory
-    --'hls',
-
     -- TODO B:
     --'rnix-lsp',
     -- or
     --'nixd',
 
-    --'racket_langserver',
-    -- or
-	--'scheme_langserver',
-
-    --'sqls',
-    -- or
-    --'sqlls',
+    -- TODO C:
 
     -- Somehow add tcl lsp if it works
     -- https://github.com/Dufgui/lsp-jtcl
 
-    -- TODO C:
-
-	--'rust_analyzer', -- Untested
-	--'tsserver', -- Untested
-
     -- TCL ???
     -- https://github.com/soartech/soar-language-server
 
-	--'bashls', -- hard to get working
-	--'vimls', -- probably not really needed
 	--'opencl_ls',
-	--'awk_ls', -- ???
-
-    -- TODO D:
 
     --'java_language_server',
     -- or
@@ -73,24 +68,28 @@ local servers = {
     --'metals', --scala
     --'clojure_lsp',
 	--'erlangls',
-	--'yamlls',
-    --'asm-lsp',
-    --'emmet_ls',
     --'gdscript',
+
+    -- TODO D:
+
+	--'yamlls',
+    --'emmet_ls',
     --'fortls',
 
     --'perlls',
     -- or
     --'perlpls',
 
-    --'vhdl_ls', -- ???
+    --'vhdl_ls',
 
     --'verible',
     -- or
     --'veridian',
 }
 
-for _, s in ipairs(servers) do ssetup(s) end
+for _, s in ipairs(servers) do
+    ssetup(s)
+end
 
 -- nimlangserver has it's own problems, maybe they can be
 -- adressed by copying solutions from vscode extension

@@ -21,3 +21,7 @@ map global user w 'Z%yz:info -title "Buffer size (wc)" %sh{echo -n "$kak_reg_dqu
 
 map global user c ':palette-status<ret>' -docstring 'Info about color'
 map global user r ':list-registers<ret>' -docstring 'List register'
+
+# TODO C
+# https://github.com/kak-lsp/kak-lsp#configuration
+eval %sh{kak-lsp --kakoune -s $kak_session}
