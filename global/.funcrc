@@ -23,18 +23,19 @@ find_command ()
 
     if [ -d "$1" ]
     then
-	DIR="$1"
-	shift
+        DIR="$1"
+        shift
     fi
 
     if [ -n "$1" ]
     then
-	PATTERN="$ALL$@$ALL"
+        PATTERN="$ALL$1$ALL"
+        shift
     else
-	PATTERN="$ALL"
+        PATTERN="$ALL"
     fi
 
-    find_system_special "$DIR" "$SWITCH" "$PATTERN"
+    find_system_special "$DIR" "$SWITCH" "$PATTERN" $@
 }
 
 noerr () {
@@ -186,37 +187,37 @@ if [ $(uname) = "FreeBSD" ]
 then
 
     find_system_special () {
-	find -E "$@"
+        find -E "$@" # TODO
     }
 
     TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
     ttgl () {
-	if [ $(sysctl -n hw.psm.synaptics.touchpad_off) == 0 ]
-	then $TOUCHPAD_CMD=1 > /dev/null
-	else $TOUCHPAD_CMD=0 > /dev/null
-	fi
+        if [ $(sysctl -n hw.psm.synaptics.touchpad_off) == 0 ]
+        then $TOUCHPAD_CMD=1 > /dev/null
+        else $TOUCHPAD_CMD=0 > /dev/null
+        fi
     }
 
 else
 
     find_system_special () {
-	D="$1"
-	shift
-	find "$D" -regextype posix-extended "$@"
+        D="$1"
+        shift
+        find "$D" -regextype posix-extended $@
     }
 
     wat () {
-	local WTIME COMMAND
-	#if [ -n "$1" ]
-	if [ "$1" -gt 0 ] 2>/dev/null
-	then
-		WTIME="$1"
-		shift
-	else
-		WTIME=1
-		COMMAND="$@"
-	fi
-	watch -n "$WTIME" -d "$@"
+        local WTIME COMMAND
+        #if [ -n "$1" ]
+        if [ "$1" -gt 0 ] 2>/dev/null
+        then
+            WTIME="$1"
+            shift
+        else
+            WTIME=1
+            COMMAND="$@"
+        fi
+        watch -n "$WTIME" -d "$@"
     }
 
     watc () {
@@ -229,35 +230,35 @@ else
 fi
 
 fnd() {
-    find_command -name '*' "$@"
+    find_command -name '*' $@
 }
 
 fndi() {
-    find_command -iname '*' "$@"
+    find_command -iname '*' $@
 }
 
 fnds () {
-    find_command -regex '.*' "$@"
+    find_command -regex '.*' $@
 }
 
 fndr () {
-    find_command -iregex '.*' "$@"
+    find_command -iregex '.*' $@
 }
 
 fnde () {
-    find_command -name '' "$@"
+    find_command -name '' $@
 }
 
 fndie () {
-    find_command -name '' "$@"
+    find_command -name '' $@
 }
 
 fndse () {
-    find_command -regex '' "$@"
+    find_command -regex '' $@
 }
 
 fndre () {
-    find_command -regex '' "$@"
+    find_command -regex '' $@
 }
 
 # TODO selecting from dir

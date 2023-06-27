@@ -32,30 +32,21 @@ config.set('qt.args',
 # Type: String
 # Valid values:
 #   - all: Accept all cookies.
-#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
-#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - no-3rdparty: Accept cookies from the same origin only.
+#   This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only,
+#   unless a cookie is already set for the domain. On QtWebEngine,
+#   this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
 
 config.set('content.cookies.accept', 'never', '*')
-config.set('content.cookies.accept', 'no-unknown-3rdparty', 'chrome-devtools://*')
+config.set('content.cookies.accept',
+           'no-unknown-3rdparty',
+           'chrome-devtools://*')
 config.set('content.cookies.accept', 'all', 'https://searx.info/*')
 config.set('content.cookies.accept', 'all', 'https://searx.xyz/*')
 config.set('content.cookies.accept', 'all', 'https://paulgo.io/*')
 config.set('content.cookies.store', True)
-
-# Which cookies to accept. With QtWebEngine, this setting also controls
-# other features with tracking capabilities similar to those of cookies;
-# including IndexedDB, DOM storage, filesystem API, service workers, and
-# AppCache. Note that with QtWebKit, only `all` and `never` are
-# supported as per-domain values. Setting `no-3rdparty` or `no-
-# unknown-3rdparty` per-domain on QtWebKit will have the same effect as
-# `all`.
-# Type: String
-# Valid values:
-#   - all: Accept all cookies.
-#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
-#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
-#   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'no-unknown-3rdparty', 'devtools://*')
 
 # User agent to send.  The following placeholders are defined:  *
@@ -159,7 +150,9 @@ config.bind('ca', 'adblock-update')
 #set-cmd-text - type some command and wait for user to execute it
 #config-cycle - cycle through valuses of some config option
 
-#config.set('editor.command', ['gsvim', '-c', 'normal {line}G{column0}1', '{file}'])
+#config.set('editor.command',
+#           ['gsvim', '-c', 'normal {line}G{column0}1',
+#            '{file}'])
 config.set('editor.command', ['st', 'svim', '{file}'])
 
 import dracula.draw
@@ -182,10 +175,9 @@ config.set('content.media.audio_video_capture', 'ask')
 config.set('content.media.video_capture', 'ask')
 config.set('downloads.prevent_mixed_content', False)
 config.set('new_instance_open_target', 'tab')
-config.set('statusbar.show', 'always')
+config.set('statusbar.show', 'always') # in-mode bugs websites :(
 config.set('tabs.background', True)
 config.set('tabs.show', 'multiple')
-config.set('statusbar.show', 'in-mode')
 
 config.set('content.cache.size', 67108864)
 config.set('content.media.audio_capture', True, 'https://discord.com')
