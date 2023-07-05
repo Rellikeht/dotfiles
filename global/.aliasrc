@@ -16,7 +16,7 @@ alias exa='exa --color=always'
 alias ell='exa -la'
 alias bat='bat --color always'
 alias batl='bat -l lisp'
-alias less='less -r -i'
+alias less='less -i' # -r
 alias les='less -F'
 alias dus='du -sh'
 alias sb=sbase-box
@@ -126,14 +126,22 @@ alias help2man='help2man -N'
 # Languages
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
+
 alias jle='julia -e'
-alias pyc='python -c'
+
 alias nimm='hm nim -h --fullhelp'
+alias nimh='nim --fullhelp | less'
+alias nlmm='hm nlvm -h --fullhelp'
+alias nlvh='nlvm --fullhelp | less'
 alias nbup="nimble list -i | cut -d' ' -f1 | xargs nimble install -n"
 alias chn='choosenim'
+alias rns='rlwrap nim secret'
+
 alias rooc='rlwrap ocaml'
 alias opup='opam update && opam upgrade'
 alias openv='eval $(opam env)'
+
+alias pyc='python -c'
 PYPY='pypy3'
 PYPYP="/opt/$PYPY/bin"
 alias ipp="$PYPYP/ipython"

@@ -38,7 +38,7 @@ local servers = {
 
     -- TODO A:
 
-    --'nimlsp',
+    'nimls',
 	-- On freebsd can't even start
 
 	-- This leaves nimsuggest instances running after closing editor
@@ -93,10 +93,11 @@ end
 
 -- nimlangserver has it's own problems, maybe they can be
 -- adressed by copying solutions from vscode extension
-lspconfig.nim_langserver.setup({
-	single_file_support = true,
-	on_attach = lsp_attach,
-	capabilities = Capabilities,
+--lspconfig.nim_langserver.setup({
+
+--	single_file_support = true,
+--	on_attach = lsp_attach,
+--	capabilities = Capabilities,
 
 --	settings = {
 --		nim = {
@@ -111,4 +112,5 @@ lspconfig.nim_langserver.setup({
 --
 --		}
 --	},
-})
+
+--})

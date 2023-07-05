@@ -1,39 +1,60 @@
-import strscans
+var
+  silent {.compiletime.} = false
+  scrbase {.compiletime.} = false
+  tic {.compiletime.} = false
+  strip {.compiletime.} = false
+  musl {.compiletime.} = false
+  stat {.compiletime.} = false
 
 template define(name) =
-  const name {.booldefine.} = true
-
-#when defined incc:
-#  --incremental:on
+  static:
+    name = true
 
 # Don't know if this is needed
 when defined nimStrictMode:
-  --warningAsError:strictNotNil
+  #--warningAsError:strictNotNil
   discard
 
-# TODO orc by default
-#when not defined mm:
-#  --mm:orc
-#echo mm
+# script mode activated with
+#!/usr/bin/env -S nim c -d:script
+# on first line when on unix
+# Works much better than nim e
+
+when defined gscript:
+  define(scrbase)
+
+elif defined script:
+  define(scrbase)
+  define(tic)
+
+elif defined cscript:
+  define(scrbase)
+  define(tic)
+  # this is fastest in compilation but doesn't work with incremental
+  --mm:boehm
+
+else:
+  --styleCheck:hint
 
 # script base
-when defined scrbase:
+when scrbase:
   --r
   --d:release
   --checks:on
   define(silent)
 
 # all silent
-when defined silent:
+when silent or defined silent:
   --hints:off
   --warnings:off
   --styleCheck:off
   --debuginfo:off
   --verbosity:0
 
+
 # tcc
-when defined tic:
-  when not defined silent:
+when tic or defined tic:
+  when not silent and not defined silent:
     echo "tcc yay"
   --cc:tcc
   --tlsEmulation:on
@@ -54,8 +75,13 @@ when defined debug:
   --stacktrace:on
   --verbosity:3
 
+
+when defined smusl:
+  define(musl)
+  define(stat)
+
 # full musl experience
-when defined musl:
+when musl or defined musl:
   --cc:gcc
   --gcc.exe:"musl-gcc"
   --gcc.linkerexe:"musl-gcc"
@@ -66,35 +92,23 @@ when defined dmusl:
   --l:"-mmusl"
 
 # static binary
-when defined stat:
+when stat or defined stat:
   --l:"-static"
 
+#when strip:
+when strip or defined strip:
+  --l:"-s"
 
-proc strip(binFile, flags: string) =
-  if findExe("strip") != "":
-    let command = "strip " & flags & " " & binFile
-    when not defined silent:
-      echo "Running '" & command & "'"
-    exec command
+#[
+# TODO using zig here
+# If not as c backend then as compiler command or command line switch
 
-proc strip(binFile: string) {.inline.} = strip(binFile, "--strip-unneeded")
-proc stripTotal(binFile: string) {.inline.} = strip(binFile, "-s")
+# INVALID FUCKING OPTION
+when compileOption("cc", "zig"):
+  discard
 
-# TODO upx
-#  if findExe("upx") != "":
-#    when not defined silent:
-#      echo "Running 'upx --best' .."
-#    exec "upx --best " & binFile
+# emscripten
+when compileOption("cc", "emcc"):
+  discard
 
-proc getBin(): string =
-  for i in 2..paramCount():
-    let s = paramStr(i)
-    if len(s) > 4:
-      if s[^4..^1] == ".nim":
-        return s[0..^5]
-
-# TODO running after compilation
-#when defined strip: strip getBin()
-#elif defined tstrip:
-#  --d:strip
-#  stripTotal getBin()
+]#
