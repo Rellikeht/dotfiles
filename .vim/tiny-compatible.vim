@@ -106,3 +106,6 @@ set mouse=a
 set notimeout
 set ttimeout
 set ttimeoutlen=100
+
+" Neovim default setting at time of writing this
+set backspace=indent,eol,start

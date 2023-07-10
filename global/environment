@@ -1,2 +1,3 @@
 EDITOR=vim
 VISUAL=svim
+LESS=--save-marks --status-column --incsearch --ignore-case

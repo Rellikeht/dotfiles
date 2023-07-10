@@ -186,48 +186,58 @@ DEFAULT_SEARX = 'https://paulgo.io'
 
 config.set('url.start_pages', DEFAULT_SEARX)
 config.set('url.default_page', DEFAULT_SEARX)
-config.set('url.searchengines',
-           {
-               'DEFAULT':DEFAULT_SEARX+'/search?q={}',
-               'sb':'https://searx.xyz/search?q={}',
-               'ps':DEFAULT_SEARX+'/search?q={}&language=pl-PL',
-               'pb':'https://searx.xyz/search?q={}&language=pl-PL',
+config.set(
+        'url.searchengines',
+        {
+            'DEFAULT':DEFAULT_SEARX+'/search?q={}',
+            'sb':'https://searx.xyz/search?q={}',
+            'ps':DEFAULT_SEARX+'/search?q={}&language=pl-PL',
+            'pb':'https://searx.xyz/search?q={}&language=pl-PL',
 
-               'aw':'https://wiki.archlinux.org/index.php?search={}',
-               'gw':'https://wiki.gentoo.org/index.php?search={}',
-               'wc':'https://wikichip.org/wiki?search={}',
+            'aw':'https://wiki.archlinux.org/index.php?search={}',
+            'gw':'https://wiki.gentoo.org/index.php?search={}',
+            'wc':'https://wikichip.org/wiki?search={}',
 
-               'au':'https://aur.archlinux.org/packages?K={}&PP=250&SB=n&SO=a',
-               'ap':'https://archlinux.org/packages/?q={}',
-               'gp':'https://packages.gentoo.org/packages/search?q={}',
-               'np':'https://search.nixos.org/packages?size=500&query={}',
+            'ap':'https://archlinux.org/packages/?q={}',
+            'au':'https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a',
+            'auu':'https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a&outdated=off',
 
-               'gh':'https://github.com/search?q={}',
-               'sf':'https://sourceforge.net/directory/?clear&q={}',
+            'gp':'https://packages.gentoo.org/packages/search?q={}',
+            'np':'https://search.nixos.org/packages?size=500&query={}',
 
-               'yt':'https://youtube.com/results?search_query={}',
-               'lb':'https://odysee.com/$/search?q={}',
+            'fp':'https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=all',
+            'fpn':'https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=name',
+            'fpd':'https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=text',
 
-               'pp':'https://pypi.org/search/?q={}',
-               'jp':'https://juliapackages.com/packages?search={}',
-               })
+            'gh':'https://github.com/search?q={}',
+            'sf':'https://sourceforge.net/directory/?clear&q={}',
+
+            'yt':'https://youtube.com/results?search_query={}',
+            'lb':'https://odysee.com/$/search?q={}',
+
+            'pp':'https://pypi.org/search/?q={}',
+            'jp':'https://juliapackages.com/packages?search={}',
+            })
 
 #Javascript in search engines and other useful websites
-config.set('content.javascript.enabled', True, 'https://searx.xyz/*')
-config.set('content.javascript.enabled', True, 'https://paulgo.io/*')
-config.set('content.javascript.enabled', True, 'https://odysee.com/*')
-config.set('content.javascript.enabled', True, 'https://youtube.com/*')
-config.set('content.javascript.enabled', True, 'https://github.com/*')
-config.set('content.javascript.enabled', True, 'https://gitlab.com/*')
-config.set('content.javascript.enabled', True, 'https://sourceforge.net/*')
-config.set('content.javascript.enabled', True,  '*://*.docs.voidlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.pkgs.alpinelinux.org/*')
+config.set('content.javascript.enabled', True, 'https://*.searx.xyz/*')
+config.set('content.javascript.enabled', True, 'https://*.paulgo.io/*')
+
+config.set('content.javascript.enabled', True, 'https://*.odysee.com/*')
+config.set('content.javascript.enabled', True, 'https://*.youtube.com/*')
+
+config.set('content.javascript.enabled', True, 'https://*.github.com/*')
+config.set('content.javascript.enabled', True, 'https://*.gitlab.com/*')
+config.set('content.javascript.enabled', True, 'https://*.sourceforge.net/*')
+
+config.set('content.javascript.enabled', True,  '*://*.alpinelinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.voidlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.archlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://wiki.archlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://aur.archlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.artixlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://www.deepl.com/*')
+config.set('content.javascript.enabled', True,  '*://*.nixos.org/*')
+
+config.set('content.javascript.enabled', True,  '*://*.stackoverflow.com/*')
+config.set('content.javascript.enabled', True,  '*://*.stackexchange.com/*')
 
 # AUTOCONFIG!!!
 # I use it as local configuration
