@@ -86,21 +86,24 @@ j, l, o, y, z
 
 Rather useless:
 D, I, Q
-d, k, q, r, s, w
+d, k, q, r, w
 
 Rather useful:
 H, J, M, N, V
 h, m, n
 
-- c - vim-commentary ; TODO
+- c - vim-commentary
 - C - toggle colorizer
-- S - vim-surround ; TODO
-- a - characterize ; TODO
+- S - vim-surround
+- a - characterize
 - A - radical.vim
-- x, X - netrw ; TODO
+- x, X - netrw
 - b - jump to tag under cursor (<C-]>)
 - B - jump to previous tag on stack (<C-T>)
-- Y - "+gP (I don't know if it works) ; TODO
+- Y - "+gP (I don't know if it works)
+
+## Nvim only
+- s - vim-slime and similar
 
 # z combinations
 Available (unused):
@@ -108,15 +111,20 @@ B, I, J, K, Q, S, T, U, V, Y, Z
 q
 All special characters, besides: +, -, ., =, <CR>, numbers
 
+- S - sleep
+
+## Nvim only
+- (something with z probably) - zen-mode ; NOT IMPLEMENTED
+
+# Z combinations
+Only Z and Q is used
+
 # c combinations
 ## TODO
 - r[dxob] - radical.vim
 
 # [ and ]
 ## TODO
-
-## Nvim only
-- (something with z probably) - zen-mode ; NOT IMPLEMENTED
 
 # Miscelanous
 

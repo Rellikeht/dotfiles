@@ -15,6 +15,22 @@ when defined nimStrictMode:
   #--warningAsError:strictNotNil
   discard
 
+# Emscripten (untested)
+when getCommand() == "emc":
+  --cc:clang
+  --clang.exe:"emcc"
+  --clang.linkerexe:"emcc"
+  setCommand("c")
+
+# zig cc (untested)
+# TODO make this work with static compilation
+# and musl when zig compiler will be ready
+when getCommand() == "zc":
+  --cc:clang
+  --clang.exe:"zigcc"
+  --clang.linkerexe:"zigcc"
+  setCommand("c")
+
 # script mode activated with
 #!/usr/bin/env -S nim c -d:script
 # on first line when on unix
@@ -98,17 +114,3 @@ when stat or defined stat:
 #when strip:
 when strip or defined strip:
   --l:"-s"
-
-#[
-# TODO using zig here
-# If not as c backend then as compiler command or command line switch
-
-# INVALID FUCKING OPTION
-when compileOption("cc", "zig"):
-  discard
-
-# emscripten
-when compileOption("cc", "emcc"):
-  discard
-
-]#

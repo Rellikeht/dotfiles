@@ -6,6 +6,9 @@ map gY "+gP
 map gb <C-]>
 map gB <C-t>
 
+" Amateur but works
+map zS :sleep <CR>
+
 "" This is alt, but should be altgr
 "map <A-s> <A-s><A-s>
 "map <A-s> :q!<CR>

@@ -35,12 +35,9 @@ Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 
 -- SPECIALIZED
 
---Plug('kmonad/kmonad-vim')
-Plug('mattn/emmet-vim') -- TODO C
-
--- TODO select one:
---Plug('vlime/vlime') -- TODO C
---Plug('jpalardy/vim-slime') -- TODO C
+--Plug('kmonad/kmonad-vim') -- TODO C
+Plug('mattn/emmet-vim') -- TODO D
+Plug('jpalardy/vim-slime') -- TODO B
 
 -- COMPLETION
 
