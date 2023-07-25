@@ -1,3 +1,4 @@
+#!/usr/bin/env tclsh
 # In principal not necessary anymore, but: The cautious seldom err. - Confucius
 if {$tcl_interactive} {
     package require tclreadline

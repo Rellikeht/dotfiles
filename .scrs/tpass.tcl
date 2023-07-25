@@ -1,4 +1,5 @@
-#!/bin/tclsh
+#!/usr/bin/env tclsh
+
 #This is simple tcl script for entering password
 #to use with SUDO_ASKPASS=/path/to/this/script/ sudo -A command
 

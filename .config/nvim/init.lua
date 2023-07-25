@@ -2,6 +2,8 @@ require('functions')
 
 -- This line makes pacman-installed global Arch Linux vim packages work.
 vim.cmd('silent! source /usr/share/nvim/archlinux.vim')
+vim.cmd('source ~/.vimrc')
+vim.cmd.colorscheme('elflord')
 
 local Plug = vim.fn['plug#']
 local nvim_dir = vim.call('stdpath', 'config')
@@ -79,6 +81,3 @@ local modconfigs = {
 for _, i in ipairs(modconfigs) do
 	require(plug_dir..i)
 end
-
-vim.cmd('source ~/.vimrc')
-vim.cmd.colorscheme('elflord')

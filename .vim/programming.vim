@@ -24,13 +24,12 @@ function Setup2Panes()
 	call Tm('select-pane -R')
 endfunction
 
-function CdPanesDangerous()
-	let path = expand('%:p:h')
-	call Tm("send-keys Escape :")
-	call Tm('setw synchronize-panes on')
-	call Tm("send-keys 'cd ".path."' C-m")
-	call Tm('setw synchronize-panes off')
-	call Tm("send-keys Enter C-l")
+function MakeThirdVertical()
+	let path = expand('%:h')
+	execute 'cd' path
+	call Tm('select-pane -R')
+	call Tm('split-window -v -c '.path)
+	call Tm('select-pane -R')
 endfunction
 
 function Setup3Panes()
@@ -42,21 +41,60 @@ function Setup3Panes()
 	execute 'cd' path
 endfunction
 
-function SimpleNewWindow()
+function CdPanesDangerous(clear)
+	let path = expand('%:p:h')
+	call Tm('send-keys Escape :')
+	call Tm('setw synchronize-panes on')
+	call Tm("send-keys 'cd ".path."' C-m")
+    if a:clear
+        call Tm('send-keys C-l')
+    endif
+	call Tm('setw synchronize-panes off')
+	call Tm('send-keys Enter C-l')
+endfunction
+
+function NewWindow(home)
 	call Tm('new-window')
+    if a:home
+        call Tm('send-keys cd C-m C-l')
+    endif
 	call Tm('last-window')
 endfunction
 
-function MarkCurrent()
-	call Tm('select-pane -m')
+function ReplOnSecond()
+    let program = input("Type name of program for repl: ")
+    redraw
+    call Tm('split-window -v '.program)
 endfunction
 
-map <Leader>tT :Tmux
+function ReplOnThird()
+    call Tm('select-pane -R')
+    call Tm('select-pane -t {last}')
+    let program = input("Type name of program for repl: ")
+    redraw
+    call Tm('split-window -v -t {last} '.program)
+endfunction
+
+map <Leader>tt :Tmux
+map <Leader>tr :call ReplOnThird()<CR>
+map <Leader>tR :call ReplOnSecond()<CR>
+map <Leader>tn :call NewWindow(1)<CR>
+map <Leader>tN :call NewWindow(0)<CR>
+
 map <Leader>t2 :call Setup2Panes()<CR>
 map <Leader>t3 :call Setup3Panes()<CR>
-map <Leader>tD :call CdPanesDangerous()<CR>
-map <Leader>tC :call Ccd()<CR>
-map <Leader>tN :call SimpleNewWindow()<CR>
+map <Leader>td :call CdPanesDangerous(1)<CR>
+map <Leader>tD :call CdPanesDangerous(0)<CR>
+
+map <Leader>tp :Tmux select-pane -m -t {last} <CR>
+map <Leader>tP :Tmux select-pane -m<CR>
+
+map <Leader>tv :Tmux send-keys -t {last} C-l<CR>
+map <Leader>tV :call MakeThirdVertical()<CR>
+
+" map <Leader>t :call Ccd()<CR>
+map <Leader>tL :Tmux list-panes <CR>
+map <Leader>tq :Tmux kill-pane -t {last} <CR>
 
 " ========================= EXECUTION AND BUILDING =========================
 
