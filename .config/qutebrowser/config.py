@@ -226,6 +226,10 @@ config.set('content.javascript.enabled', True, 'https://*.paulgo.io/*')
 config.set('content.javascript.enabled', True, 'https://*.odysee.com/*')
 config.set('content.javascript.enabled', True, 'https://*.youtube.com/*')
 
+config.set('content.javascript.enabled', True, 'https://github.com/*')
+config.set('content.javascript.enabled', True, 'https://gitlab.com/*')
+config.set('content.javascript.enabled', True, 'https://sourceforge.net/*')
+
 config.set('content.javascript.enabled', True, 'https://*.github.com/*')
 config.set('content.javascript.enabled', True, 'https://*.gitlab.com/*')
 config.set('content.javascript.enabled', True, 'https://*.sourceforge.net/*')
@@ -236,8 +240,11 @@ config.set('content.javascript.enabled', True,  '*://*.archlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.artixlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.nixos.org/*')
 
+config.set('content.javascript.enabled', True,  '*://stackoverflow.com/*')
 config.set('content.javascript.enabled', True,  '*://*.stackoverflow.com/*')
 config.set('content.javascript.enabled', True,  '*://*.stackexchange.com/*')
+config.set('content.javascript.enabled', True,  '*://*.superuser.com/*')
+config.set('content.javascript.enabled', True,  '*://superuser.com/*')
 
 # AUTOCONFIG!!!
 # I use it as local configuration

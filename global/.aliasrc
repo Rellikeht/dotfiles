@@ -102,17 +102,18 @@ alias prg='progress -M -W 1'
 alias prgc='prg \
 	-a ffmpeg -a ebook-convert -a pdfgrep\
 	-a yt-dlp -a youtube-dl -a you-get \
-	-a vifm -a tree -a mpv \
+    -a mpv -a vlc -a mplayer \
+	-a vifm -a ranger -a nnn -a pcmanfm \
 	-a wget -a curl -a aria2 \
-	-a rm -a du -a dd \
 	-a rar -a unrar \
 	-a zstd -a zstdcat -a zstdgrep -a unzstd \
 	-a agrep -a ag -a pcregrep \
 	-a less -a tail -a tac \
 	-a sed -a awk \
-	-a diff \
-	-a cadaver -a ftp \
+	-a diff -a tree \
+	-a cadaver -a ftp -a ssh \
 	'
+#	-a rm -a du -a dd \
 
 # Other
 alias yv=youtube-viewer
@@ -160,6 +161,8 @@ alias gsh='git push'
 alias gll='git pull'
 alias gho='git push $(grc) $(gcb)'
 alias glo='git pull $(grc) $(gcb)'
+alias gdf='git diff --color=always'
+alias gdn='git diff --color=auto'
 
 if [ $(uname) = "FreeBSD" ]
 then
