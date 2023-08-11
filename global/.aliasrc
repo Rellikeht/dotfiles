@@ -1,26 +1,23 @@
 #!/bin/sh
 
-# Coreutils and similar
 alias sudo=doas
+
+# Coreutils
+
 alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
 alias lf='ls -F'
 alias ll='lf -la'
 alias lt='ls -t'
 alias llt='lt -la'
+alias lsf='ls -FA --color=never --dereference-command-line-symlink-to-dir'
+alias exa='exa --color=always'
+alias ell='exa -la'
+
 alias grepn='grep --color=never'
 alias grep='grep --color=always'
 alias rgrep='grep -r'
 alias bgrep='grep -I'
-alias exa='exa --color=always'
-alias ell='exa -la'
-alias bat='bat --color always'
-alias batl='bat -l lisp'
-alias less='less -i' # -r
-alias les='less -F'
-alias dus='du -sh'
-alias sb=sbase-box
-alias bb=busybox
 alias ag='ag --color --depth -1'
 alias agh='ag --hidden'
 #alias rg='rg -S'
@@ -28,7 +25,36 @@ alias rgh='rg --hidden'
 alias egrep='grep -E'
 alias eg='egrep'
 
+alias bat='bat --color always'
+alias batl='bat -l lisp'
+alias less='less -i' # -r
+alias les='less -F -r'
+
+alias sb=sbase-box
+alias bb=busybox
+
+alias dus='du -sh'
+
+# its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
+alias its_just_grep='its_just_grep --color=always'
+alias tbg='top -b -d 1 | its_just_grep -v its_just_grep | its_just_grep -E'
+alias tbgm='top -b -d 1 -e m | its_just_grep -v its_just_grep | its_just_grep -E'
+alias mu='mount -o rw,uid=$UID'
+alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
+alias um=umount
+alias rum='doas umount'
+
+# Session
+
+alias sns=sensors
+alias lcs='loginctl suspend'
+alias rb=reboot
+alias po=poweroff
+alias rrb='doas reboot'
+alias rpo='doas poweroff'
+
 # Text Editors
+
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
 alias mvim='svim -f'
@@ -51,48 +77,33 @@ alias fv="fed svim"
 alias fkc="fe kak"
 alias fk="fed kak"
 
-alias sns=sensors
-alias lcs='loginctl suspend'
-alias rb=reboot
-alias po=poweroff
-alias rrb='doas reboot'
-alias rpo='doas poweroff'
-
-# its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
-alias its_just_grep='its_just_grep --color=always'
-alias tbg='top -b -d 1 | its_just_grep -v its_just_grep | its_just_grep -E'
-alias tbgm='top -b -d 1 -e m | its_just_grep -v its_just_grep | its_just_grep -E'
-alias mu='mount -o rw,uid=$UID'
-alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
-alias um=umount
-alias rum='doas umount'
-
 # Settings
-alias pm=pulsemixer
-alias am=alsamixer
 alias als='alias | grep'
-
-# Tools
 alias wb='bins | grep'
-alias qc="qalc -s 'decimal comma off'"
-alias lsf='ls -FA --color=never --dereference-command-line-symlink-to-dir'
-alias fzf='fzf -m -e'
-alias fzy='fzy -l 20'
-alias fzc='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE ":$" | fzy | sh -s'
-alias tm=tmux
-alias tma='tmux attach'
-alias sa='screen attach'
-alias bm='BEMENU_BACKEND=curses bemenu'
-alias nnn='nnn -d'
-alias xcc='xclip -i -selection clipboard'
-alias xcp='xclip -o -selection clipboard'
-alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
-alias edr='doas svim'
+
 alias sal='source /etc/.aliasrc'
 alias sfn='source /etc/.funcrc'
 alias bal='bat /etc/.aliasrc'
 alias bfn='bat /etc/.funcrc'
+
+# Tools
+alias qc="qalc -s 'decimal comma off'"
 alias de='dc -e'
+
+alias fzf='fzf -m -e'
+alias fzy='fzy -l 20'
+alias fzc='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE ":$" | fzy | sh -s'
+
+alias tm=tmux
+alias tma='tmux attach'
+alias sa='screen attach'
+
+alias bm='BEMENU_BACKEND=curses bemenu'
+alias nnn='nnn -d'
+
+alias xcc='xclip -i -selection clipboard'
+alias xcp='xclip -o -selection clipboard'
+
 alias plc='plocate'
 alias plci='plocate -i'
 alias rlc='plocate -r'
@@ -115,14 +126,21 @@ alias prgc='prg \
 	'
 #	-a rm -a du -a dd \
 
-# Other
+# Multimedia and web
+alias ffmpeg='ffmpeg -hide_banner'
+alias pm=pulsemixer
+alias am=alsamixer
+
 alias yv=youtube-viewer
 alias mdl='yv -n -d --convert-to=mp3'
 alias ytf='youtube-dl --list-formats'
+
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
-alias ffmpeg='ffmpeg -hide_banner'
-alias help2man='help2man -N'
+alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
+alias aria='aria2c --continue=true --max-concurrent-downloads=20 \
+    --bt-detach-seed-only=true --bt-max-peers=80 \
+    --seed-ratio=0.0 --check-integrity=true'
 
 # Languages
 alias scls='sbcl --script'
@@ -130,11 +148,13 @@ alias rscl='rlwrap sbcl'
 
 alias jle='julia -e'
 
-alias nimm='hm nim -h --fullhelp'
+alias nimm='hm nim --fullhelp'
 alias nimh='nim --fullhelp | less'
-alias nlmm='hm nlvm -h --fullhelp'
+alias nlmm='hm nlvm --fullhelp'
 alias nlvh='nlvm --fullhelp | less'
-alias nbup="nimble list -i | cut -d' ' -f1 | xargs nimble install -n"
+alias nbl='nimble'
+alias nblh='nimble --help | less'
+alias nbup="nimble list --installed | cut -d' ' -f1 | xargs nimble install -n"
 alias chn='choosenim'
 alias rns='rlwrap nim secret'
 
@@ -151,18 +171,29 @@ alias ppip="$PYPYP/pip"
 alias pypym="$PYPY -m"
 
 # git
+alias git='git --no-pager'
+alias gsb='git submodule'
+alias gco='git checkout'
+alias gbr='git branch'
+
 alias gst='git status'
 alias grc='git remote show'
 alias gcb='git branch --no-color --show-current'
+alias glc='git log --color=alyways'
+alias gdf='git diff --color=always'
+alias gdn='git diff --color=auto'
+
+# alias gal='gad .'
 alias gad='git add'
-alias gal='gad .'
 alias gcm='git commit -m'
 alias gsh='git push'
 alias gll='git pull'
 alias gho='git push $(grc) $(gcb)'
 alias glo='git pull $(grc) $(gcb)'
-alias gdf='git diff --color=always'
-alias gdn='git diff --color=auto'
+
+# Other
+
+alias help2man='help2man -N'
 
 if [ $(uname) = "FreeBSD" ]
 then

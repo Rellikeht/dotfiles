@@ -10,10 +10,9 @@ template define(name) =
   static:
     name = true
 
-# Don't know if this is needed
 when defined nimStrictMode:
-  #--warningAsError:strictNotNil
-  discard
+  --experimental:strictNotNil
+  --warningAsError:strictNotNil
 
 # Emscripten (untested)
 when getCommand() == "emc":
