@@ -266,3 +266,14 @@ alias cf='cd $(dirf)'
 alias cfv='cd $(dirfv2)'
 alias cfvn='cd $(dirfv)'
 alias cfp='cd $(dirfp)'
+
+ariad () {
+    if [ -f "$1" ]
+    then
+        FILE="$(pwd)/$1"
+    else
+        FILE="$1"
+    fi
+
+    aria -D -d $(pwd) "$FILE" $@
+}

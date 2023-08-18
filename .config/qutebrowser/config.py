@@ -10,7 +10,7 @@
 
 # QT flags, currently only for hardware acceleration
 config.set('qt.args',
-           ['ignore-gpu-blacklist',
+           ['ignore-gpu-blocklist',
             'enable-gpu-rasterization',
             'enable-zero-copy',
             #'enable-native-gpu-memory-buffers',
