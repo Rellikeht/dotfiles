@@ -3,6 +3,7 @@
 **/*.jpeg
 !.scrs/*.png
 **/*.swp
+
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
 .config/qutebrowser/dracula/*
@@ -10,5 +11,7 @@
 .config/vifm/vifminfo*
 .config/youtube-viewer/*.txt
 .config/youtube-viewer/*/
+.config/kak/autoload/autoload
+
 *~
 TODO

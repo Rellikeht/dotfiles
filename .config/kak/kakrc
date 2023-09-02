@@ -2,7 +2,6 @@ colorscheme solarized-dark
 add-highlighter global/ wrap -word
 add-highlighter global/ number-lines -relative
 
-
 #plugins
 
 hook global BufCreate .*[.](cl) %{
@@ -11,6 +10,10 @@ hook global BufCreate .*[.](cl) %{
 
 hook global WinSetOption filetype=(.*) %{
         rainbow-enable-window
+}
+
+hook global BufOpenFile .* %{
+        modeline-parse
 }
 
 map global normal <c-a> ':inc-dec-modify-numbers + 1<ret>'
