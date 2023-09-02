@@ -112,3 +112,6 @@ set ttimeoutlen=100
 
 " Neovim default setting at time of writing this
 set backspace=indent,eol,start
+
+set modeline
+set modelines=10

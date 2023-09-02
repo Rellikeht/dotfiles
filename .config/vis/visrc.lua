@@ -9,10 +9,14 @@ end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	-- Your per window configuration options e.g.
-	vis:command('set rnu on')
+
+   -- why can't that work in previous section
+	vis:command('set number on')
+	vis:command('set relativenumbers on')
 	vis:command('set change-256colors on')
-	vis:command('set theme gruvbox')
-	vis:command('set et off')
+	vis:command('set theme dark-16')
+	vis:command('set expandtab on')
 	vis:command('set show-tabs on')
 	vis:command('set tw 3')
+
 end)

@@ -12,7 +12,11 @@ hook global WinSetOption filetype=(.*) %{
         rainbow-enable-window
 }
 
-# TODO do that better
+# TODO do that all better
+hook global BufOpenFile .* %{
+        modeline-parse
+}
+
 map global normal <c-a> ':inc-dec-modify-numbers + 1<ret>'
 map global normal <c-x> ':inc-dec-modify-numbers - 1<ret>'
 
