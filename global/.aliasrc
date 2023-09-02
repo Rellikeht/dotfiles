@@ -90,9 +90,19 @@ alias bfn='bat /etc/.funcrc'
 alias qc="qalc -s 'decimal comma off'"
 alias de='dc -e'
 
+alias fzs='fzf +m -e'
 alias fzf='fzf -m -e'
 alias fzy='fzy -l 20'
+
+alias fzd='find -type d | fzs'
+alias cdf='cd $(fzd)'
 alias fzc='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE ":$" | fzy | sh -s'
+
+# TODO merge that cd's
+alias cf='cd $(dirf)'
+alias cfv='cd $(dirfv2)'
+alias cfvn='cd $(dirfv)'
+alias cfp='cd $(dirfp)'
 
 alias tm=tmux
 alias tma='tmux attach'
@@ -136,7 +146,9 @@ alias am=alsamixer
 
 alias yv=youtube-viewer
 alias mdl='yv -n -d --convert-to=mp3'
-alias ytf='youtube-dl --list-formats'
+alias ytf='yt-dlp --list-formats'
+alias mpg='mpv --player-operation-mode=pseudo-gui'
+alias mpb='mpv --profile=big'
 
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
@@ -193,9 +205,13 @@ alias gdn='git diff --color=auto'
 alias gad='git add'
 alias gcm='git commit -m'
 alias gsh='git push'
+alias gsm='git push --recurse-submodules'
 alias gll='git pull'
+alias glm='git pull --recurse-submodules'
 alias gho='git push $(grc) $(gcb)'
-alias glo='git pull $(grc) $(gcb)'
+alias ghm='git push --recurse-submodules $(grc) $(gcb)'
+alias guo='git pull $(grc) $(gcb)'
+alias gum='git pull --recurse-submodules $(grc) $(gcb)'
 
 # Other
 
@@ -218,7 +234,7 @@ then
 	its_just_grep -v its_just_grep | its_just_grep -E'
 
     alias fprh="ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= |
-	gnumfmt --from-unit=1K --field=1,2 --to=iec | \
+	numfmt --from-unit=1K --field=1 --to=iec | \
 	its_just_grep -v its_just_grep | its_just_grep -E"
 
     # it needs script or link for watch program
@@ -244,8 +260,9 @@ else
 
     alias fpr='ps axh o rss,pid,user,cmd,state,pcpu | \
 	its_just_grep -v its_just_grep | its_just_grep -E'
+
     alias fprh="ps axh o rss,pid,user,cmd,state,pcpu | \
-	numfmt --from-unit=1K --field=1,2 --to=iec | \
+	numfmt --from-unit=1K --field=1 --to=iec | \
 	its_just_grep -v its_just_grep | its_just_grep -E"
 
     #alias w1='watch -n 1 -d'

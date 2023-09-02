@@ -261,12 +261,6 @@ fndre () {
     find_command -regex '' $@
 }
 
-# TODO selecting from dir
-alias cf='cd $(dirf)'
-alias cfv='cd $(dirfv2)'
-alias cfvn='cd $(dirfv)'
-alias cfp='cd $(dirfp)'
-
 ariad () {
     if [ -f "$1" ]
     then
