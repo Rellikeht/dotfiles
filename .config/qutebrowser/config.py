@@ -226,25 +226,27 @@ config.set('content.javascript.enabled', True, 'https://*.paulgo.io/*')
 config.set('content.javascript.enabled', True, 'https://*.odysee.com/*')
 config.set('content.javascript.enabled', True, 'https://*.youtube.com/*')
 
-config.set('content.javascript.enabled', True, 'https://github.com/*')
-config.set('content.javascript.enabled', True, 'https://gitlab.com/*')
-config.set('content.javascript.enabled', True, 'https://sourceforge.net/*')
+# Dunno if that is necessary
+config.set('content.javascript.enabled', True, '*://github.com/*')
+config.set('content.javascript.enabled', True, '*://gitlab.com/*')
+config.set('content.javascript.enabled', True, '*://sourceforge.net/*')
 
-config.set('content.javascript.enabled', True, 'https://*.github.com/*')
-config.set('content.javascript.enabled', True, 'https://*.gitlab.com/*')
-config.set('content.javascript.enabled', True, 'https://*.sourceforge.net/*')
+config.set('content.javascript.enabled', True, '*://*.github.com/*')
+config.set('content.javascript.enabled', True, '*://*.gitlab.com/*')
+config.set('content.javascript.enabled', True, '*://*.sourceforge.net/*')
 
 config.set('content.javascript.enabled', True,  '*://*.alpinelinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.voidlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.archlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.artixlinux.org/*')
 config.set('content.javascript.enabled', True,  '*://*.nixos.org/*')
+config.set('content.javascript.enabled', True,  '*://*.freebsd.org/*')
 
-config.set('content.javascript.enabled', True,  '*://stackoverflow.com/*')
-config.set('content.javascript.enabled', True,  '*://*.stackoverflow.com/*')
-config.set('content.javascript.enabled', True,  '*://*.stackexchange.com/*')
-config.set('content.javascript.enabled', True,  '*://*.superuser.com/*')
-config.set('content.javascript.enabled', True,  '*://superuser.com/*')
+config.set('content.javascript.enabled', True,  'https://stackoverflow.com/*')
+config.set('content.javascript.enabled', True,  'https://*.stackoverflow.com/*')
+config.set('content.javascript.enabled', True,  'https://*.stackexchange.com/*')
+config.set('content.javascript.enabled', True,  'https://*.superuser.com/*')
+config.set('content.javascript.enabled', True,  'https://superuser.com/*')
 
 # AUTOCONFIG!!!
 # I use it as local configuration

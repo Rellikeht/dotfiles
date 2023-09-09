@@ -41,16 +41,26 @@ function Setup3Panes()
 	execute 'cd' path
 endfunction
 
+function Echo(str)
+    execute 'echo "'.a:str.'"'
+endfunction
+
+
 function CdPanesDangerous(clear)
 	let path = expand('%:p:h')
-	call Tm('send-keys Escape :')
-	call Tm('setw synchronize-panes on')
-	call Tm("send-keys 'cd ".path."' C-m")
-    if a:clear
-        call Tm('send-keys C-l')
-    endif
-	call Tm('setw synchronize-panes off')
-	call Tm('send-keys Enter C-l')
+	"execute 'echo' "\"send-keys cd ".shellescape(path)." C-m\""
+	call Tm("send-keys \"cd ".shellescape(path)."\" C-m")
+
+	"call Tm('send-keys Escape :')
+	"call Tm('setw synchronize-panes on')
+
+    "if a:clear
+    "    call Tm('send-keys C-l')
+    "endif
+
+	"call Tm('setw synchronize-panes off')
+	"call Tm('send-keys Enter C-l')
+
 endfunction
 
 function NewWindow(home)

@@ -2,15 +2,18 @@
 
 alias sudo=doas
 
+# Get all possible programs
+alias progs='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE "^(.*:)?$"'
+
 # Coreutils
 
 alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
-alias lf='ls -F'
+alias lf='ls --classify'
 alias ll='lf -la'
 alias lt='ls -t'
 alias llt='lt -la'
-alias lsf='ls -FA --color=never --dereference-command-line-symlink-to-dir'
+alias lsf='lsn --classify --almost-all --dereference-command-line-symlink-to-dir'
 alias exa='exa --color=always'
 alias ell='exa -la'
 
@@ -24,21 +27,24 @@ alias agh='ag --hidden'
 alias rgh='rg --hidden'
 alias egrep='grep -E'
 alias eg='egrep'
+alias grepWgrep='its_just_grep --invert-match its_just_grep'
 
 alias bat='bat --color always'
-alias batl='bat -l lisp'
-alias less='less -i' # -r
-alias les='less -F -r'
+alias batl='bat --language lisp'
+alias less='less --ignore-case' # --raw-control-chars
+alias les='less --quit-if-one-screen --raw-control-chars'
 
 alias sb=sbase-box
 alias bb=busybox
 
-alias dus='du -sh'
+alias dh='du -sh'
 
 # its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
-alias tbg='top -b -d 1 | its_just_grep -v its_just_grep | its_just_grep -E'
-alias tbgm='top -b -d 1 -e m | its_just_grep -v its_just_grep | its_just_grep -E'
+alias tbd='top --batch --delay 1'
+alias tbg='tbd | grepWgrep | its_just_grep -E'
+alias tbgm='tbd --scale-task-mem m | grepWgrep | its_just_grep -E'
+
 alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
 alias um=umount
@@ -90,13 +96,30 @@ alias bfn='bat /etc/.funcrc'
 alias qc="qalc -s 'decimal comma off'"
 alias de='dc -e'
 
+# single
 alias fzs='fzf +m -e'
+# multi
 alias fzf='fzf -m -e'
+
+# fzy
 alias fzy='fzy -l 20'
 
-alias fzd='find -type d | fzs'
-alias cdf='cd $(fzd)'
-alias fzc='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE ":$" | fzy | sh -s'
+# default fuzzy finer with single match
+alias deffuz=fzs
+
+# dirs
+alias fzd='find -type d | deffuz'
+# cd with fuzzy dirs
+alias cdf='cd "$(fzd)"'
+
+# files
+alias fff="fzf | sed 's/^.*$/\"\0\"/g'"
+alias ffe='fff | xargs'
+
+# fuzzy select program to run on separate shell
+alias fze='progs | deffuz | sh -s'
+# fuzzy select program to run
+alias fzr='$(progs | deffuz)'
 
 # TODO merge that cd's
 alias cf='cd $(dirf)'
@@ -145,8 +168,9 @@ alias pm=pulsemixer
 alias am=alsamixer
 
 alias yv=youtube-viewer
-alias mdl='yv -n -d --convert-to=mp3'
-alias ytf='yt-dlp --list-formats'
+alias mdl='yv --novideo --download! --convert-to=opus'
+alias ytl='yt-dlp --list-formats'
+alias yts='yt-dlp --format-sort +size'
 alias mpg='mpv --player-operation-mode=pseudo-gui'
 alias mpb='mpv --profile=big'
 
@@ -230,12 +254,11 @@ then
     alias pls='pkg info -q'
     alias rorp='pkg autoremove'
 
-    alias fpr='ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= |
-	its_just_grep -v its_just_grep | its_just_grep -E'
+    alias fpr='ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= | \
+	grepWgrep | its_just_grep -E'
 
-    alias fprh="ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= |
-	numfmt --from-unit=1K --field=1 --to=iec | \
-	its_just_grep -v its_just_grep | its_just_grep -E"
+    alias fprh="ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= | \
+	numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     # it needs script or link for watch program
     alias watch=wathcs
@@ -259,11 +282,10 @@ else
     alias rorp='pacman -Rus $(pacman -Qqtd)'
 
     alias fpr='ps axh o rss,pid,user,cmd,state,pcpu | \
-	its_just_grep -v its_just_grep | its_just_grep -E'
+	grepWgrep | its_just_grep -E'
 
     alias fprh="ps axh o rss,pid,user,cmd,state,pcpu | \
-	numfmt --from-unit=1K --field=1 --to=iec | \
-	its_just_grep -v its_just_grep | its_just_grep -E"
+	numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     #alias w1='watch -n 1 -d'
     #alias w1c='watch -n 1 -d -c'

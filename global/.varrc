@@ -11,6 +11,7 @@ PAGER=less
 
 #PLAN9=/ext/plan9
 [ -n "$PLAN9" ] && PATH=$PATH:$PLAN9/bin
+PATH=$PATH:/usr/lib/xscreensaver
 
 if [ "$(uname)" = "Linux" ]
 then
