@@ -1,3 +1,7 @@
+# ============================================================
+# SOME HARD STUFF
+# ============================================================
+
 # NOTE: config.py is intended for advanced users who are comfortable
 # with manually migrating the config file on qutebrowser upgrades. If
 # you prefer, you can also configure qutebrowser using the
@@ -22,6 +26,10 @@ config.set('qt.args',
             'disable-features=UseChromeOSDirectVideoDecoder',
             ])
 
+# ============================================================
+# PRIVACY RELATED
+# ============================================================
+
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
 # including IndexedDB, DOM storage, filesystem API, service workers, and
@@ -43,11 +51,65 @@ config.set('content.cookies.accept', 'never', '*')
 config.set('content.cookies.accept',
            'no-unknown-3rdparty',
            'chrome-devtools://*')
-config.set('content.cookies.accept', 'all', 'https://searx.info/*')
-config.set('content.cookies.accept', 'all', 'https://searx.xyz/*')
-config.set('content.cookies.accept', 'all', 'https://paulgo.io/*')
 config.set('content.cookies.store', True)
 config.set('content.cookies.accept', 'no-unknown-3rdparty', 'devtools://*')
+
+COOKIES = [
+        'https://searx.info/*',
+        'https://searx.xyz/*',
+        'https://paulgo.io/*',
+        ]
+
+for page in COOKIES:
+    config.set('content.cookies.accept', 'all', page)
+
+config.set('content.canvas_reading', False)
+config.set('content.javascript.enabled', False, '*')
+
+# Enable JavaScript.
+JSENABLE = [
+        'chrome-devtools://*',
+        'devtools://*',
+        'chrome://*/*',
+        'qute://*/*',
+
+        'https://*.searx.xyz/*',
+        'https://*.paulgo.io/*',
+
+        'https://*.odysee.com/*',
+        'https://*.youtube.com/*',
+
+        # Dunno if that is necessary
+        '*://github.com/*',
+        '*://gitlab.com/*',
+        '*://sourceforge.net/*',
+
+        '*://*.github.com/*',
+        '*://*.gitlab.com/*',
+        '*://*.sourceforge.net/*',
+
+        '*://*.alpinelinux.org/*',
+        '*://*.voidlinux.org/*',
+        '*://*.archlinux.org/*',
+        '*://*.artixlinux.org/*',
+        '*://*.nixos.org/*',
+        '*://*.freebsd.org/*',
+
+        'https://stackoverflow.com/*',
+        'https://*.stackoverflow.com/*',
+        'https://*.stackexchange.com/*',
+        'https://*.superuser.com/*',
+        'https://superuser.com/*',
+        ]
+
+for page in JSENABLE:
+    config.set('content.javascript.enabled', True, page)
+
+config.set('content.media.audio_capture', 'ask')
+config.set('content.media.audio_video_capture', 'ask')
+config.set('content.media.video_capture', 'ask')
+
+config.set('content.media.audio_capture', True, 'https://discord.com')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -65,95 +127,12 @@ config.set('content.cookies.accept', 'no-unknown-3rdparty', 'devtools://*')
 # Type: FormatString #Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0
 #config.set('content.headers.user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0', 'https://*')
 
+# ============================================================
+# OTHER SETTINGS
+# ============================================================
+
 # Load images automatically in web pages.
-# Type: Bool
 config.set('content.images', True)
-
-# Enable JavaScript.
-# Type: Bool
-config.set('content.javascript.enabled', False, '*')
-config.set('content.javascript.enabled', True, 'chrome-devtools://*')
-config.set('content.javascript.enabled', True, 'devtools://*')
-config.set('content.javascript.enabled', True, 'chrome://*/*')
-config.set('content.javascript.enabled', True, 'qute://*/*')
-config.set('content.canvas_reading', False)
-
-config.set('hints.chars', 'asdfjkl;')
-
-config.unbind('J', mode='normal')
-config.unbind('K', mode='normal')
-config.unbind('H', mode='normal')
-config.unbind('L', mode='normal')
-config.unbind('gJ', mode='normal')
-config.unbind('gK', mode='normal')
-
-config.bind('H', 'tab-prev', mode='normal')
-config.bind('L', 'tab-next', mode='normal')
-config.bind('gl', 'tab-move +', mode='normal')
-config.bind('gh', 'tab-move -', mode='normal')
-config.bind('J', 'back', mode='normal')
-config.bind('K', 'forward', mode='normal')
-
-#config.bind('<Ctrl+r>', 'restart', mode='normal')
-config.bind('<Ctrl+o>', 'set-cmd-text -s :open -b', mode='normal')
-config.bind('ps', 'insert-text {primary}')
-config.bind('ys', 'yank selection')
-
-config.bind(',dm', 'open -t qute://log/?level=info')
-config.bind(',db', 'open -t qute://bindings/')
-config.bind(',dg', 'open -t chrome://gpu/')
-config.bind(',dh', 'open -t qute://help/index.html')
-config.bind(',dH', 'open -t qute://history')
-
-config.bind(',m', 'spawn smplayer "{url}"', mode='normal')
-config.bind(',M', 'hint links spawn -d smplayer "{hint-url}"')
-config.bind(',s', 'config-cycle statusbar.show always never')
-config.bind(',t', 'config-cycle tabs.show always never')
-config.bind(',e', 'hint links spawn -d sh -c "wget -O - "{url}" | gsvim -"')
-config.bind(',E', 'spawn -d sh -c "wget -O - "{url}" | gsvim -"')
-config.bind(',r', 'hint links spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"')
-config.bind(',R', 'spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"')
-config.bind(',v', 'spawn -d vlc "{url}"')
-config.bind(',V', 'hint links spawn -d vlc "{hint-url}"')
-
-config.bind(',NH', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" "{hint-url}"')
-config.bind(',NL', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio" "{hint-url}"')
-config.bind(',NM', 'hint links spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui "{hint-url}"')
-config.bind(',Nh', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio" "{hint-url}"')
-config.bind(',Nl', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio" "{hint-url}"')
-config.bind(',Nm', 'hint links spawn -d mpv "{hint-url}"')
-config.bind(',Nq', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" "{hint-url}"')
-config.bind(',nH', 'spawn -d mpv --ytdl-format="bestvideo[height<=1080]+bestaudio" "{url}"')
-config.bind(',nL', 'hint links spawn -d mpv --ytdl-format="bestvideo[height<=360]+bestaudio" "{url}"')
-config.bind(',nM', 'spawn -d mpv --ytdl-format="bestaudio" --player-operation-mode=pseudo-gui "{url}"')
-config.bind(',nh', 'spawn -d mpv --ytdl-format="bestvideo[height<=720]+bestaudio" "{url}"')
-config.bind(',nl', 'spawn -d mpv --ytdl-format="bestvideo[height<=480]+bestaudio" "{url}"')
-config.bind(',nm', 'spawn -d mpv "{url}"')
-config.bind(',nq', 'spawn -d mpv --ytdl-format="bestvideo[height<=1440]+bestaudio" "{url}"')
-
-config.unbind('D', mode="normal")
-config.bind('Db', 'set-cmd-text -s :bookmark-del')
-config.bind('Dq', 'set-cmd-text -s :quickmark-del')
-config.bind('gS', 'config-source')
-config.bind('gM', 'messages -t')
-config.bind('gE', 'config-diff')
-config.bind('gc', 'config-edit')
-
-config.bind('cg', 'set-cmd-text -s :tab-give')
-config.bind('cm', 'clear-messages')
-config.bind('ca', 'adblock-update')
-
-#config.bind(',', '')
-#good commands:
-#spawn - external command
-#hint - highlight some element for selecting
-#set-cmd-text - type some command and wait for user to execute it
-#config-cycle - cycle through valuses of some config option
-
-#config.set('editor.command',
-#           ['gsvim', '-c', 'normal {line}G{column0}1',
-#            '{file}'])
-config.set('editor.command', ['st', 'svim', '{file}'])
 
 import dracula.draw
 dracula.draw.blood(c, {
@@ -170,9 +149,6 @@ config.set('colors.webpage.darkmode.enabled', True)
 config.set('fonts.default_size', '12pt')
 config.set('messages.timeout', 1200)
 
-config.set('content.media.audio_capture', 'ask')
-config.set('content.media.audio_video_capture', 'ask')
-config.set('content.media.video_capture', 'ask')
 config.set('downloads.prevent_mixed_content', False)
 config.set('new_instance_open_target', 'tab')
 config.set('statusbar.show', 'always') # in-mode bugs websites :(
@@ -180,7 +156,15 @@ config.set('tabs.background', True)
 config.set('tabs.show', 'multiple')
 
 config.set('content.cache.size', 67108864)
-config.set('content.media.audio_capture', True, 'https://discord.com')
+
+#config.set('editor.command',
+#           ['gsvim', '-c', 'normal {line}G{column0}1',
+#            '{file}'])
+config.set('editor.command', ['st', 'svim', '{file}'])
+
+# ============================================================
+# SHORTCUTS
+# ============================================================
 
 DEFAULT_SEARX = 'https://paulgo.io'
 
@@ -219,34 +203,88 @@ config.set(
             'jp':'https://juliapackages.com/packages?search={}',
             })
 
-#Javascript in search engines and other useful websites
-config.set('content.javascript.enabled', True, 'https://*.searx.xyz/*')
-config.set('content.javascript.enabled', True, 'https://*.paulgo.io/*')
+# ============================================================
+# BINDINGS
+# ============================================================
 
-config.set('content.javascript.enabled', True, 'https://*.odysee.com/*')
-config.set('content.javascript.enabled', True, 'https://*.youtube.com/*')
+config.set('hints.chars', 'asdfjkl;')
 
-# Dunno if that is necessary
-config.set('content.javascript.enabled', True, '*://github.com/*')
-config.set('content.javascript.enabled', True, '*://gitlab.com/*')
-config.set('content.javascript.enabled', True, '*://sourceforge.net/*')
+config.unbind('J', mode='normal')
+config.unbind('K', mode='normal')
+config.unbind('H', mode='normal')
+config.unbind('L', mode='normal')
+config.unbind('gJ', mode='normal')
+config.unbind('gK', mode='normal')
 
-config.set('content.javascript.enabled', True, '*://*.github.com/*')
-config.set('content.javascript.enabled', True, '*://*.gitlab.com/*')
-config.set('content.javascript.enabled', True, '*://*.sourceforge.net/*')
+config.bind('H', 'tab-prev', mode='normal')
+config.bind('L', 'tab-next', mode='normal')
+config.bind('gl', 'tab-move +', mode='normal')
+config.bind('gh', 'tab-move -', mode='normal')
+config.bind('J', 'back', mode='normal')
+config.bind('K', 'forward', mode='normal')
 
-config.set('content.javascript.enabled', True,  '*://*.alpinelinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.voidlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.archlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.artixlinux.org/*')
-config.set('content.javascript.enabled', True,  '*://*.nixos.org/*')
-config.set('content.javascript.enabled', True,  '*://*.freebsd.org/*')
+#config.bind('<Ctrl+r>', 'restart', mode='normal')
+config.bind('<Ctrl+o>', 'set-cmd-text -s :open -b', mode='normal')
+config.bind('ps', 'insert-text {primary}')
+config.bind('ys', 'yank selection')
 
-config.set('content.javascript.enabled', True,  'https://stackoverflow.com/*')
-config.set('content.javascript.enabled', True,  'https://*.stackoverflow.com/*')
-config.set('content.javascript.enabled', True,  'https://*.stackexchange.com/*')
-config.set('content.javascript.enabled', True,  'https://*.superuser.com/*')
-config.set('content.javascript.enabled', True,  'https://superuser.com/*')
+config.bind(',dm', 'open -t qute://log/?level=info')
+config.bind(',db', 'open -t qute://bindings/')
+config.bind(',dg', 'open -t chrome://gpu/')
+config.bind(',dh', 'open -t qute://help/index.html')
+config.bind(',dH', 'open -t qute://history')
+
+config.bind(',s', 'config-cycle statusbar.show always never')
+config.bind(',t', 'config-cycle tabs.show always never')
+config.bind(',e', 'hint links spawn -d sh -c "wget -O - "{url}" | gsvim -"')
+config.bind(',E', 'spawn -d sh -c "wget -O - "{url}" | gsvim -"')
+config.bind(',r', 'hint links spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"')
+config.bind(',R', 'spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"')
+config.bind(',v', 'spawn -d vlc "{url}"')
+config.bind(',V', 'hint links spawn -d vlc "{hint-url}"')
+
+MPV = 'm'
+MPVU = MPV.upper()
+
+combs = [
+        ('M', 'gaudio'), ('m', 'default'),
+
+        ('S', '14'), ('s', '24'),
+        ('l', '48'), ('L', '36'),
+        ('h', 'hd'), ('H', 'fh'),
+        ('q', 'qh'), ('4', '4k'),
+
+        # TODO do that better somehow
+        ('b', 'hdb'), ('B', 'hdf'),
+        ('f', 'fhb'), ('F', 'fhf'),
+        ]
+
+for key, profile in combs:
+    config.bind(','+MPV+key, f"spawn -d mpv --profile={profile} {{url}}")
+    config.bind(','+MPVU+key,
+                f"hint links spawn -d mpv --profile={profile} {{url}}")
+
+config.unbind('D', mode="normal")
+config.bind('Db', 'set-cmd-text -s :bookmark-del')
+config.bind('Dq', 'set-cmd-text -s :quickmark-del')
+config.bind('gS', 'config-source')
+config.bind('gM', 'messages -t')
+config.bind('gE', 'config-diff')
+config.bind('gc', 'config-edit')
+
+config.bind('cg', 'set-cmd-text -s :tab-give')
+config.bind('cm', 'clear-messages')
+config.bind('ca', 'adblock-update')
+
+#good commands:
+#spawn - external command
+#hint - highlight some element for selecting
+#set-cmd-text - type some command and wait for user to execute it
+#config-cycle - cycle through valuses of some config option
+
+# ============================================================
+# LOCAL
+# ============================================================
 
 # AUTOCONFIG!!!
 # I use it as local configuration

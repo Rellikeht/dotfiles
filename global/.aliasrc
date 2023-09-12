@@ -171,8 +171,8 @@ alias yv=youtube-viewer
 alias mdl='yv --novideo --download! --convert-to=opus'
 alias ytl='yt-dlp --list-formats'
 alias yts='yt-dlp --format-sort +size'
-alias mpg='mpv --player-operation-mode=pseudo-gui'
 alias mpb='mpv --profile=big'
+alias mpg='mpv --profile=gaudio'
 
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
