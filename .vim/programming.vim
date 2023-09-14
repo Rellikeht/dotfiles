@@ -2,6 +2,8 @@
 " Using tmux
 
 " I don't know if it is doable
+" cd under vim
+" probably not
 "function CdUnder(path)
 "    "execute "Tmux run-shell 'tmux send-keys :suspend C-M cd ".a:path." fg C-M'"
 "    "execute "Tmux run-shell 'echo ".a:path." | \~/.vim/cd.sh'"
@@ -41,26 +43,16 @@ function Setup3Panes()
 	execute 'cd' path
 endfunction
 
-function Echo(str)
-    execute 'echo "'.a:str.'"'
-endfunction
-
-
 function CdPanesDangerous(clear)
 	let path = expand('%:p:h')
-	"execute 'echo' "\"send-keys cd ".shellescape(path)." C-m\""
-	call Tm("send-keys \"cd ".shellescape(path)."\" C-m")
-
-	"call Tm('send-keys Escape :')
-	"call Tm('setw synchronize-panes on')
-
-    "if a:clear
-    "    call Tm('send-keys C-l')
-    "endif
-
-	"call Tm('setw synchronize-panes off')
-	"call Tm('send-keys Enter C-l')
-
+    execute 'Tmux send-keys Escape :'
+	execute 'Tmux setw synchronize-panes on'
+    execute 'Tmux send-keys \"cd '.shellescape(path).'\"'
+	execute 'Tmux setw synchronize-panes off'
+    execute 'Tmux send-keys Escape :'
+	execute 'Tmux setw synchronize-panes on'
+    execute 'Tmux send-keys Enter C-l'
+	execute 'Tmux setw synchronize-panes off'
 endfunction
 
 function NewWindow(home)

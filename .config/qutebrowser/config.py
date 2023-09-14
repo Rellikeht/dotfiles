@@ -236,15 +236,12 @@ config.bind(',dH', 'open -t qute://history')
 
 config.bind(',s', 'config-cycle statusbar.show always never')
 config.bind(',t', 'config-cycle tabs.show always never')
-config.bind(',e', 'hint links spawn -d sh -c "wget -O - "{url}" | gsvim -"')
+config.bind(',e', 'hint links spawn -d sh -c "wget -O - "{hint-url}" | gsvim -"')
 config.bind(',E', 'spawn -d sh -c "wget -O - "{url}" | gsvim -"')
-config.bind(',r', 'hint links spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"')
+config.bind(',r', 'hint links spawn -d sh -c "wget -O - "{hint-url}" | w3m -T text/html -dump | gsvim -"')
 config.bind(',R', 'spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"')
 config.bind(',v', 'spawn -d vlc "{url}"')
 config.bind(',V', 'hint links spawn -d vlc "{hint-url}"')
-
-MPV = 'm'
-MPVU = MPV.upper()
 
 combs = [
         ('M', 'gaudio'), ('m', 'default'),
@@ -260,9 +257,9 @@ combs = [
         ]
 
 for key, profile in combs:
-    config.bind(','+MPV+key, f"spawn -d mpv --profile={profile} {{url}}")
-    config.bind(','+MPVU+key,
-                f"hint links spawn -d mpv --profile={profile} {{url}}")
+    config.bind(f',M{key}', f'spawn -d mpv --profile={profile} "{{url}}"')
+    config.bind(f',m{key}',
+                f'hint links spawn -d mpv --profile={profile} "{{hint-url}}"')
 
 config.unbind('D', mode="normal")
 config.bind('Db', 'set-cmd-text -s :bookmark-del')
