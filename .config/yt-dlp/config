@@ -1,0 +1,15 @@
+# That works, but doesn't help, at least for now
+# Maybe it needs tweaking parameters
+# Too much work as for now
+#--downloader aria2c
+#--downloader-args "aria2c:-j 200 -V -c -x 10 --file-allocation=falloc --optimize-concurrent-downloads=true"
+
+#--downloader-args "aria2c:-j 10 -V -c true"
+#--downloader-args "aria2c:-c -j 3 -x 3 -s 3 -k 1M"
+
+--no-warnings
+--no-playlist
+--convert-subtitles srt
+--concurrent-fragments 24
+
+--geo-bypass 

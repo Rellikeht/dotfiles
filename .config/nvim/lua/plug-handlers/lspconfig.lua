@@ -30,7 +30,7 @@ local servers = {
 	'scheme_langserver',
     'hls', -- TODO B memory
 
-	'rust_analyzer',
+	--'rust_analyzer',
     'racket_langserver',
     'sqlls',
 
@@ -90,6 +90,49 @@ local servers = {
 for _, s in ipairs(servers) do
     ssetup(s)
 end
+
+lspconfig.rust_analyzer.setup({
+    on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    capabilities = Capabilities,
+
+    -- TODO copying rust-project.json from config dir
+    -- to current dir to make this shit work
+    settings = {
+        ["rust-analyzer"] = {
+            -- Doesn't solve the problem
+            --standalone = true,
+            --workspaceFolders = false,
+            --workspace = {
+            --    workspaceFolders = false,
+            --},
+
+            completion = {
+                contextSupport = true,
+            },
+
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+
+            procMacro = {
+                enable = true
+            },
+
+        }
+    }
+})
 
 -- nimlangserver has it's own problems, maybe they can be
 -- adressed by copying solutions from vscode extension
