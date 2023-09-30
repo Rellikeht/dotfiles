@@ -1,6 +1,7 @@
 #!/bin/sh
 
 DEFS="grep -Ev '^[ 	]*(#.*)?$' format_defs.m4"
+mkdir -p formats
 
 # Debug macros
 # exec sh -c "$DEFS | m4 -DNM=FNAME -DHG=420" ; exit

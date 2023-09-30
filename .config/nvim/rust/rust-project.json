@@ -1,0 +1,10 @@
+{
+    "sysroot_src": "/usr/lib/rustlib/src/rust/library",
+    "crates": [
+
+        {
+            "root_module": "main.rs",
+            "edition": "2021",
+            "deps": []
+        }
+}

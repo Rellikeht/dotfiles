@@ -8,16 +8,21 @@
 .config/qutebrowser/bookmarks
 .config/qutebrowser/dracula/*
 .config/qutebrowser/qsettings
-.config/vifm/vifminfo*
+
 .config/youtube-viewer/*.txt
 .config/youtube-viewer/*/
-.config/kak/autoload/autoload
+.config/mpv/local.conf
+.config/mpv/watch_later
 
-.vim/plugged/
-.vim/autoload/
+.config/vifm/vifminfo*
+.config/kak/autoload/autoload
+.vim/plugged
+.vim/autoload
 .vim/.netrwhist
 .vim/test
 .vim/templates
+.config/nvim/plugins
+.config/nim/test
 
 *~
 TODO
