@@ -30,7 +30,7 @@ local servers = {
 	'scheme_langserver',
     'hls', -- TODO B memory
 
-	--'rust_analyzer',
+	-- 'rust_analyzer',
     'racket_langserver',
     'sqlls',
 
@@ -91,6 +91,10 @@ for _, s in ipairs(servers) do
     ssetup(s)
 end
 
+-- TODO copying rust-project.json from config dir
+-- to current dir to make this shit work
+
+-- No idea if all of that is really needed
 lspconfig.rust_analyzer.setup({
     on_attach = lsp_attach,
     preselectSupport = false,
@@ -98,8 +102,6 @@ lspconfig.rust_analyzer.setup({
     single_file_support = true,
     capabilities = Capabilities,
 
-    -- TODO copying rust-project.json from config dir
-    -- to current dir to make this shit work
     settings = {
         ["rust-analyzer"] = {
             -- Doesn't solve the problem

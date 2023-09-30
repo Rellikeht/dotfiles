@@ -62,11 +62,24 @@ local opts = {
     ]
     ]],
 }
+
 (require 'mp.options').read_options(opts, "youtube-quality")
 opts.quality_strings = utils.parse_json(opts.quality_strings)
 
 local destroyer = nil
 
+function dumpTable(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dumpTable(v) .. ','
+      end
+      return s .. '}\n'
+   else
+      return tostring(o)
+   end
+end
 
 function show_menu()
     local selected = 1
@@ -202,7 +215,7 @@ function download_formats()
         ytdl.searched = true
     end
 
-    local command = {ytdl.path, "--no-warnings", "--no-playlist", "-J"}
+    local command = {ytdl.path, "--no-warnings", "--no-playlist", "-J", "-S +res,+size"}
     table.insert(command, url)
     local es, json, result = exec(command)
 
@@ -229,10 +242,25 @@ function download_formats()
             local l = string.format("%-9s %-5s (%-4s / %s)", resolution, fps, v.ext, v.vcodec)
             local f = string.format("%s+bestaudio/best", v.format_id)
             table.insert(res, {label=l, format=f, width=v.width })
+
+            --print(dumpTable(v))
+            -- Not helpful
+            --print(dumpTable(v.downloader_options))
+
+            -- This is that needed field
+            -- but not all formats have it :(
+            --print(v.filesize)
+            --print()
         end
     end
 
-    table.sort(res, function(a, b) return a.width > b.width end)
+    table.sort(res, function(a, b)
+        --print(dumpTable(a))
+        --print(dumpTable(b))
+        --print()
+
+        return a.width > b.width
+    end)
 
     mp.osd_message("", 0)
     format_cache[url] = res

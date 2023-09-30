@@ -13,5 +13,11 @@
 .config/youtube-viewer/*/
 .config/kak/autoload/autoload
 
+.vim/plugged/
+.vim/autoload/
+.vim/.netrwhist
+.vim/test
+.vim/templates
+
 *~
 TODO

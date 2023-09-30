@@ -38,14 +38,10 @@ Plug 'zah/nim.vim' " TODO B
 Plug 'ziglang/zig.vim' " TODO C
 Plug 'JuliaEditorSupport/julia-vim' " TODO C
 
+Plug 'jpalardy/vim-slime'
+
 " TODO D better colors :(
 Plug 'luochen1990/rainbow'
 
 " TODO B
 Plug 'ocaml/vim-ocaml'
-
-"Plug 'kmonad/kmonad-vim'
-
-" Candidates for removal
-"Plug 'WolfgangMehner/bash-support' " TODO C
-"Plug 'WolfgangMehner/vim-support' " TODO C
