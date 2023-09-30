@@ -1,0 +1,122 @@
+#!/usr/bin/env -S ocaml -I +unix
+
+(* Interesting, without next line code doesn't work *)
+#load "unix.cma";;
+open Unix;;
+open Arg;;
+
+(*
+mpv inspired system of profiles for yt-dlp
+each module is just set of flags (command line parameters)
+for yt-dlp and they can contain each other
+they form a graph
+it should be also possible to break config into small pieces
+with something like include
+after getting all settings for a given profile yt-dlp with
+them will be launched with execv
+*)
+
+(*
+Exit codes:
+    1 - bad arguments to this command
+    2 - problems with file
+Rest will be handled by yt-dlp and system
+*)
+
+(* let iargs = [|"-h"|];; *)
+(* let iargs = [|""|];; *)
+let iargs = ref [];;
+
+(* defaults *)
+let deffname = "pytdl.conf";;
+let deffdir = "yt-dlp/";;
+let defconfdir =
+    try Sys.getenv "XDG_CONFIG_HOME"
+    with Not_found -> (Sys.getenv "HOME") ^ "/.config"
+;;
+let defconf = defconfdir ^ "/" ^ deffdir ^ deffname;;
+
+let help_string = Printf.sprintf
+"
+    Available command line switches:
+        -H, --phelp - print this help
+        --chelp - config file help
+        -c file, --config file - select conifig file,
+        default is %s
+        -p name, --profile name - select profile, multiple can be selected
+        -p help, --profile help - list profiles and show descriptions
+        --show-profile name - show contents of profile with given name
+
+    Others are passed to yt-dlp
+" defconf;;
+
+let config_help_string =
+"
+    Config file is made of profiles, which are essentialy lists
+    of command line options passed to yt-dlp.
+    Idea is inspired by mpv config.
+
+    Syntax:
+
+    Everything after # is comment.
+
+    Line consisting only of
+    [profile-name]
+    delcares that settings on next lines belog to that profile.
+
+    Default profile is named default and everything in global
+    namespace belongs to it, it is also included in all other profiles.
+
+    There is profile-desc for setting description of a given profile.
+    profile=name includes profile with a given name in current profile.
+";;
+
+(* parse options *)
+let cfile = ref defconf;;
+let help () = print_endline help_string; exit 0;;
+let chelp () = print_endline config_help_string; exit 0;;
+
+(* if empty list then print help *)
+let alen = Array.length Sys.argv;;
+if alen == 1 then help () else ();;
+
+let ytdl_options = ref [];;
+let profiles = ref [];;
+
+let set_profile name = ();;
+let show_profile name = ();;
+let add_rest args = ();;
+
+(* TODO Doc strings *)
+let specs = [
+    ("-H", Unit help, "Doc anonymous argument ???");
+    ("--phelp", Unit help, "");
+    ("--chelp", Unit chelp, "");
+
+    ("-p", String set_profile, "");
+    ("-c", Set_string cfile, ""); (* TODO check if file exists *)
+
+    (* TODO That should exit program *)
+    ("--show-profile", String show_profile, "");
+    ("--", Rest_all add_rest, "");
+];;
+
+(* TODO Anonymous arguments - names without hyphens *)
+let anonf name = ();;
+
+parse specs anonf help_string;;
+List.iter print_endline !ytdl_options;;
+print_newline ();;
+List.iter print_endline !profiles;;
+
+(* selecting profile *)
+(* get home *)
+(* get yt-dlp config dir *)
+(* get pytdl.conf (or .ini) *)
+(* read, check, create graph and lists of arguments *)
+(* add inclusion of other files if everything implemented *)
+(* select apropriate profiles *)
+(* add it's settings to command line arguments given to this program *)
+
+(* and go *)
+(* let args = Array.append [|"-S"; "yt-dlp"|] iargs in execv "/usr/bin/env" args *)

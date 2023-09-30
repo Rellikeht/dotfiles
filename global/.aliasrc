@@ -9,11 +9,9 @@ alias progs='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE "^(.*:)?$"'
 
 alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
-alias lf='ls --classify'
 alias ll='lf -la'
 alias lt='ls -t'
 alias llt='lt -la'
-alias lsf='lsn --classify --almost-all --dereference-command-line-symlink-to-dir'
 alias exa='exa --color=always'
 alias ell='exa -la'
 
@@ -244,6 +242,10 @@ alias help2man='help2man -N'
 if [ $(uname) = "FreeBSD" ]
 then
 
+    alias lsf='lsn -F --almost-all \
+        --dereference-command-line-symlink-to-dir'
+    alias lf='ls -F'
+
     alias gdiff='gdiff --color=always'
     alias upg='pkg upgrade'
     alias rmun='pkg autoremove'
@@ -265,6 +267,10 @@ then
     alias updatedb='/usr/libexec/locate.updatedb'
 
 else
+
+    alias lsf='lsn --classify --almost-all \
+        --dereference-command-line-symlink-to-dir'
+    alias lf='ls --classify'
 
     alias pc=pcurses
     alias pa=pacman

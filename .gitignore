@@ -10,6 +10,7 @@
 .config/qutebrowser/qsettings
 
 .config/youtube-viewer/*.txt
+.config/youtube-viewer/instances.json
 .config/youtube-viewer/*/
 .config/mpv/local.conf
 .config/mpv/watch_later
@@ -23,6 +24,7 @@
 .vim/templates
 .config/nvim/plugins
 .config/nim/test
+.config/ocaml/local.ml
 
 *~
 TODO
