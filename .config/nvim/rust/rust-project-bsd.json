@@ -1,5 +1,5 @@
 {
-    "sysroot_src": "/usr/lib/rustlib/src/rust/library",
+    "sysroot_src": "/usr/local/lib/rustlib/src/rust/library",
     "crates": [
 
         {
