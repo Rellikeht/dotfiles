@@ -63,7 +63,7 @@ local servers = {
 
     --'java_language_server',
     -- or
-    --'jdtls', -- Probably too much work
+    'jdtls',
 
     --'metals', --scala
     --'clojure_lsp',

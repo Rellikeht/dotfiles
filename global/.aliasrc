@@ -209,6 +209,10 @@ alias ibp="$PYPYP/bpython"
 alias ppip="$PYPYP/pip"
 alias pypym="$PYPY -m"
 
+alias Rc="/usr/local/bin/R"
+alias R="R --no-save --no-restore"
+alias Re="R -s -e"
+
 # git
 alias git='git --no-pager'
 alias gsb='git submodule'
@@ -268,6 +272,8 @@ then
     # it needs script or link for watch program
     alias watch=wathcs
     alias updatedb='/usr/libexec/locate.updatedb'
+
+    alias progress='doas progress'
 
 else
 
