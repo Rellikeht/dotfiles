@@ -1,0 +1,2 @@
+#!/bin/sh
+exec rustc -C target-feature=+crt-static $@

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ $# -lt 2 ] && echo Too little arguments && exit 1
+exec ln -s $(readlink -f "$1") "$2"
