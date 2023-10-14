@@ -46,7 +46,9 @@ hist_length = 2000
 #          atom -nw (Atom)
 # Default is to try $EDITOR and $VISUAL, then vi - but if you uncomment
 # the line below that will take precedence
-editor = nvim
+
+#editor = nvim
+editor = svim
 
 # Whether to append .py to the filename while saving session to a file.
 # (default: False)

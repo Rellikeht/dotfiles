@@ -3,6 +3,7 @@
 **/*.jpeg
 !.scrs/*.png
 **/*.swp
+__pycache__/
 
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
@@ -17,6 +18,7 @@
 
 .config/vifm/vifminfo*
 .config/vifm/vifm-help.txt
+
 .config/kak/autoload/autoload
 .vim/plugged
 .vim/autoload
@@ -26,6 +28,11 @@
 .config/nvim/plugins
 .config/nim/test
 .config/ocaml/local.ml
+
+.w3m/cookie
+.w3m/history
+.w3m/passwd
+.w3m/pre_form
 
 *~
 TODO

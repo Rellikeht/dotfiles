@@ -1,11 +1,11 @@
-" Other _
-nmap _w :SudoWrite<CR>
-nmap _r :redraw!<CR>
-vmap _y y:call Xcopy('clipboard')<CR>
-vmap _Y y:call Xcopy('primary')<CR>
+" Other ;
+nmap ;w :SudoWrite<CR>
+nmap ;r :redraw!<CR>
+vmap ;y y:call Xcopy('clipboard')<CR>
+vmap ;Y y:call Xcopy('primary')<CR>
 " TODO do this better
-nmap _y :call Xpaste('clipboard')<CR>
-nmap _Y :call Xpaste('primary')<CR>
+nmap ;y :call Xpaste('clipboard')<CR>
+nmap ;Y :call Xpaste('primary')<CR>
 
 let mapleader = ','
 

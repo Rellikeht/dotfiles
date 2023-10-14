@@ -1,0 +1,178 @@
+# Ctrl      : C-, ^
+# Escape    : ESC-, M-, ^[
+# Space     : SPC, ' '
+# Tab       : TAB, ^i, ^I
+# Delete    : DEL, ^?
+# Up	    : UP, ^[[A
+# Down	    : DOWN, ^[[B
+# Right	    : RIGHT, ^[[C
+# Left	    : LEFT, ^[[D
+
+# TESTED
+
+keymap h MOVE_LEFT
+keymap j MOVE_DOWN
+keymap k MOVE_UP
+keymap l MOVE_RIGHT
+
+keymap gg BEGIN
+keymap G END
+
+keymap w NEXT_WORD
+keymap b PREV_WORD
+
+keymap UP MOVE_UP
+keymap DOWN MOVE_DOWN
+keymap RIGHT MOVE_RIGHT
+keymap LEFT MOVE_LEFT
+
+# This needs rethinking
+# ---
+
+keymap zh SHIFT_LEFT
+keymap zl SHIFT_RIGHT
+#keymap < SHIFT_LEFT
+#keymap > SHIFT_RIGHT
+
+# ---
+
+keymap 0 LINE_BEGIN
+keymap $ LINE_END
+
+keymap ? ISEARCH_BACK
+keymap / ISEARCH
+keymap n SEARCH_NEXT
+keymap N SEARCH_PREV
+
+# Probably not needed
+#keymap / SEARCH
+#keymap ? SEARCH_BACK
+
+keymap C-z SUSPEND
+keymap C-l REDRAW
+keymap C-g LINE_INFO
+keymap C-f NEXT_PAGE
+keymap C-b PREV_PAGE
+keymap C-d NEXT_HALF_PAGE
+keymap C-u PREV_HALF_PAGE
+
+# Works on moves
+keymap u UNDO
+keymap C-r REDO
+
+keymap ! SHELL
+keymap | PIPE_BUF
+keymap # PIPE_SHELL
+
+keymap ZZ EXIT
+keymap ZQ ABORT
+
+keymap :w SAVE
+keymap :e EDIT
+keymap :! EXEC_SHELL
+
+# Incompatible, but good
+
+keymap :W PRINT
+keymap :E EDIT_SCREEN
+keymap :g GOTO_LINE
+keymap :G GOTO
+
+keymap R RELOAD
+keymap H PREV_TAB
+keymap L NEXT_TAB
+keymap t TAB_LINK
+keymap T NEW_TAB
+keymap Q CLOSE_TAB
+
+keymap J PREV
+keymap K NEXT
+
+keymap { PREV_LINK
+keymap } NEXT_LINK
+
+#keymap TAB NEXT_LINK
+# This is a joke
+#keymap C-u PREV_LINK
+
+# Untested
+
+keymap m MARK
+
+# TODO B marks
+# TODO B menus
+# TODO C rest of fucking list
+
+#keymap C-_ GOTO_HOME
+#keymap C-h HISTORY
+#keymap C-j GOTO_LINK
+#keymap C-k COOKIE
+#keymap C-m GOTO_LINK
+#keymap C-w WRAP_TOGGLE
+
+#keymap \" REG_MARK
+#keymap + NEXT_PAGE
+#keymap - PREV_PAGE
+#keymap : MARK_URL
+#keymap ";" MARK_WORD
+#keymap = INFO
+#keymap @ READ_SHELL
+#keymap D DOWNLOAD_LIST
+#keymap F FRAME
+#keymap H HELP
+#keymap I VIEW_IMAGE
+#keymap L LIST
+#keymap M EXTERN
+#keymap U GOTO
+#keymap V LOAD
+#keymap Z CENTER_H
+#keymap [ LINK_BEGIN
+#keymap ] LINK_END
+#keymap \^ LINE_BEGIN
+#keymap a SAVE_LINK
+#keymap b PREV_PAGE
+#keymap c PEEK
+#keymap i PEEK_IMG
+#keymap m MOUSE_TOGGLE
+#keymap o OPTIONS
+#keymap r VERSION
+#keymap s SELECT_MENU
+#keymap u PEEK_LINK
+#keymap v VIEW
+#keymap z CENTER_V
+
+#keymap M-TAB PREV_LINK
+#keymap M-C-j SAVE_LINK
+#keymap M-C-m SAVE_LINK
+
+#keymap M-: MARK_MID
+#keymap M-< BEGIN
+#keymap M-> END
+#keymap M-I SAVE_IMAGE
+#keymap M-M EXTERN_LINK
+#keymap M-W DICT_WORD_AT
+#keymap M-a ADD_BOOKMARK
+#keymap M-b BOOKMARK
+#keymap M-c COMMAND
+#keymap M-e EDIT_SCREEN
+#keymap M-k DEFINE_KEY
+#keymap M-l LIST_MENU
+#keymap M-m MOVE_LIST_MENU
+#keymap M-n NEXT_MARK
+#keymap M-o SET_OPTION
+#keymap M-p PREV_MARK
+#keymap M-t TAB_MENU
+#keymap M-u GOTO_RELATIVE
+#keymap M-w DICT_WORD
+
+#keymap M-[E MENU
+#keymap M-[L MENU
+#keymap M-[Z PREV_LINK
+
+#keymap M-[1~ BEGIN
+#keymap M-[2~ MENU
+#keymap M-[4~ END
+#keymap M-[5~ PREV_PAGE
+#keymap M-[6~ NEXT_PAGE
+#keymap M-[28~ MENU
+

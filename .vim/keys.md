@@ -3,54 +3,54 @@ This file is trial to describe all mappings and keep available
 keys in one place. With hundreds of mappings it is necessary
 
 # Unused keys
-\, |, ~ (hard to reach on some keyboards), ^
+\, |, ~ (hard to reach on some keyboards), ^, _
 There may be more, but there are already enough combinations
 
-# _ combinations
+# ; combinations
 They are general purpose, mainly for tab management
 
 ## Tabs
-- _<Tab> - g<Tab>
-- _B - :tabnew<CR>:buffer<Space>
-- _d - :tabclose<CR>
-- _h - gT
-- _H - :tabm -1<CR>
-- _k - :tabfirst<CR>
-- _i - :tabs<CR>
-- _j - :tablast<CR>
-- _J - :tabm $<CR>
-- _K - :tabm 0<CR>
-- _l - gt
-- _L - :tabm +1<CR>
-- _m - :tabm<Space>
-- _t - :tabedit<Space>
-- _T - :tabnew<CR>
+- ;<Tab> - g<Tab>
+- ;B - :tabnew<CR>:buffer<Space>
+- ;d - :tabclose<CR>
+- ;h - gT
+- ;H - :tabm -1<CR>
+- ;k - :tabfirst<CR>
+- ;i - :tabs<CR>
+- ;j - :tablast<CR>
+- ;J - :tabm $<CR>
+- ;K - :tabm 0<CR>
+- ;l - gt
+- ;L - :tabm +1<CR>
+- ;m - :tabm<Space>
+- ;t - :tabedit<Space>
+- ;T - :tabnew<CR>
 
 ## Buffers
-- _a - :bad<Space>
-- _b - :buffer<Space>
-- _c - :bmodified<CR>
-- _C - :bmodified!<CR>
-- _D - :bdelete<CR>
-- _f - :files<CR>
-- _g - :vsplit<Space>
-- _G - :split<Space>
-- _I - :buffers<CR>
-- _n - :bnext<CR>
-- _N - :bnext!<CR>
-- _p - :bprevious<CR>
-- _P - :bprevious!<CR>
-- _s - :sbprevious<CR>
-- _S - :sbnext<CR>
-- _U - :bunload<CR>
-- _v - :vsplit<CR>:bnext<CR>
-- _V - :vsplit<CR>:bprevious<CR>
+- ;a - :bad<Space>
+- ;b - :buffer<Space>
+- ;c - :bmodified<CR>
+- ;C - :bmodified!<CR>
+- ;D - :bdelete<CR>
+- ;f - :files<CR>
+- ;g - :vsplit<Space>
+- ;G - :split<Space>
+- ;I - :buffers<CR>
+- ;n - :bnext<CR>
+- ;N - :bnext!<CR>
+- ;p - :bprevious<CR>
+- ;P - :bprevious!<CR>
+- ;s - :sbprevious<CR>
+- ;S - :sbnext<CR>
+- ;U - :bunload<CR>
+- ;v - :vsplit<CR>:bnext<CR>
+- ;V - :vsplit<CR>:bprevious<CR>
 
 ## Miscelanous
-- _r - redraw command
-- _w - SudoWrite
-- _y - in normal paste, in visual copy to X11 clipboard
-- _Y - like _y, but using X11 primary
+- ;r - redraw command
+- ;w - SudoWrite
+- ;y - in normal paste, in visual copy to X11 clipboard
+- ;Y - like ;y, but using X11 primary
 
 ## Available
 Basically all special characters besides <Tab>
@@ -68,7 +68,6 @@ e, k, o, q, u, x, z
 - e, E, d, D - code plugins ; NOT IMPLEMENTED
 - s - treesitter ; NOT IMPLEMENTED
 - h - harpoon ; NOT IMPLEMENTED
-- v - vlime ; NOT IMPLEMENTED
 
 ## With plugins
 - ; - commands ; TODO
@@ -85,12 +84,12 @@ C, G, K, L, O
 j, l, o, y, z
 
 Rather useless:
-D, I, Q
-d, k, q, r, w
+D, I, Q, H
+d, h, k, q, r, w
 
 Rather useful:
-H, J, M, N, V
-h, m, n
+J, M, N, V
+m, n
 
 - c - vim-commentary
 - C - toggle colorizer
@@ -101,8 +100,6 @@ h, m, n
 - b - jump to tag under cursor (<C-]>)
 - B - jump to previous tag on stack (<C-T>)
 - Y - "+gP (I don't know if it works)
-
-## Nvim only
 - s - vim-slime and similar
 
 # z combinations
@@ -132,7 +129,7 @@ Only Z and Q is used
 - ae - (visual only) select whole buffer without plugins
 - ie - (visual only) Not exact vie
 - yae - copy whole buffer
-- ; - cosco (inserting semicolons and colons)
+- ;; - cosco (inserting semicolons and colons)
 
 # Available (or safe for remapping)
 TODO

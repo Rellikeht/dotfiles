@@ -1,53 +1,60 @@
 #!/usr/bin/env tclsh
 # In principal not necessary anymore, but: The cautious seldom err. - Confucius
-if {$tcl_interactive} {
-    package require tclreadline
 
-    # To be able to enter expressions
-    namespace path {::tcl::mathop ::tcl::mathfunc}
-
-
-    # The output from this proc is used as primary prompt.
-    proc ::tclreadline::prompt1 {} {
-
-        set cs1     "\033\[0;35m"
-        set cs2     "\033\[0;36m"
-        set cs3     "\033\[0;32m"
-        set cs4     "\033\[0;31m"
-        set ce      "\033\[0m"
-
-        set user        $::tcl_platform(user)
-        if {$user eq "root"} {
-            set temp    $cs1
-            set cs1 $cs2
-            set cs2 $temp
-        }
-        set currentDir  [regsub "^/home/$user" [pwd] ~]
-        set dateTime    [clock format [clock seconds] -format "%a, %e %b %T"]
-        set host        [lindex [split [info hostname] "."] 0]
-
-        format "%s%s %s\[%s%s%s@%s%s\]%s: %s%s$%s " \
-            $cs1                        \
-            tclsh$::tcl_version         \
-            $cs4                        \
-            $cs2                        \
-            $user                       \
-            $cs4                        \
-            $host                       \
-            $cs4                        \
-            $cs3			\
-            $currentDir                 \
-            $cs4                        \
-            $ce				
-    }
-
-    # I do not want unrecognised commands to be executed as shell commands.
-    # This minimises the difference between a script and an interactive shell.
-    # But this dimisses the usage as command line shell.
-    # If you want to use it as a command line shell comment this out.
-    set auto_noexec True
-
-
-    # Start the readline loop
-    ::tclreadline::Loop
-}
+# Something broke :(
+##if {$tcl_interactive} {
+#if {0} {
+##}
+#    try {
+#        package require tclreadline
+#
+#        # To be able to enter expressions
+#        namespace path {::tcl::mathop ::tcl::mathfunc}
+#
+#
+#        # The output from this proc is used as primary prompt.
+#        proc ::tclreadline::prompt1 {} {
+#
+#            set cs1     "\033\[0;35m"
+#            set cs2     "\033\[0;36m"
+#            set cs3     "\033\[0;32m"
+#            set cs4     "\033\[0;31m"
+#            set ce      "\033\[0m"
+#
+#            set user        $::tcl_platform(user)
+#            if {$user eq "root"} {
+#                set temp    $cs1
+#                set cs1 $cs2
+#                set cs2 $temp
+#            }
+#            set currentDir  [regsub "^/home/$user" [pwd] ~]
+#            set dateTime    [clock format [clock seconds] -format "%a, %e %b %T"]
+#            set host        [lindex [split [info hostname] "."] 0]
+#
+#            format "%s%s %s\[%s%s%s@%s%s\]%s: %s%s$%s " \
+#                $cs1                        \
+#                tclsh$::tcl_version         \
+#                $cs4                        \
+#                $cs2                        \
+#                $user                       \
+#                $cs4                        \
+#                $host                       \
+#                $cs4                        \
+#                $cs3			\
+#                $currentDir                 \
+#                $cs4                        \
+#                $ce				
+#        }
+#
+#        # I do not want unrecognised commands to be executed as shell commands.
+#        # This minimises the difference between a script and an interactive shell.
+#        # But this dimisses the usage as command line shell.
+#        # If you want to use it as a command line shell comment this out.
+#        set auto_noexec True
+#
+#
+#        # Start the readline loop
+#        ::tclreadline::Loop
+#
+#    }
+#}

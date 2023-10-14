@@ -2,3 +2,4 @@ EDITOR=vim
 VISUAL=svim
 LESS=--save-marks --status-column --incsearch --ignore-case
 ZIG_LOCAL_CACHE_DIR="/tmp/$USER-zig/"
+PYTHONDONTWRITEBYTECODE="false"
