@@ -209,7 +209,6 @@ alias ibp="$PYPYP/bpython"
 alias ppip="$PYPYP/pip"
 alias pypym="$PYPY -m"
 
-alias Rc="/usr/local/bin/R"
 alias R="R --no-save --no-restore"
 alias Re="R -s -e"
 
@@ -255,12 +254,14 @@ then
 
     alias gdiff='gdiff --color=always'
     alias upg='pkg upgrade'
-    alias rmun='pkg autoremove'
     alias pkc='pkg clean'
     alias ins='pkg install'
     alias pinf='pkg info'
     alias pfl='pkg list'
     alias pls='pkg info -q'
+
+    # TODO
+    alias rmun='pkg autoremove'
     alias rorp='pkg autoremove'
 
     alias fpr='ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= | \
@@ -274,6 +275,10 @@ then
     alias updatedb='/usr/libexec/locate.updatedb'
 
     alias progress='doas progress'
+    alias gt='/usr/bin/time'
+    alias gtv='gt -l'
+
+    alias Rc="/usr/local/bin/R"
 
 else
 
@@ -288,12 +293,14 @@ else
 
     alias diff='diff --color=always'
     alias upg='pacman -Syu'
-    alias rmun='pacman -Rus $(pacman -Qqtd)'
     alias pkc='pacman -Sc'
     alias ins='pacman -S'
     alias pinf='pacman -Qi'
     alias pfl='pacman -Ql'
     alias pls='pacman -Q'
+
+    # TODO
+    alias rmun='pacman -Rus $(pacman -Qqtd)'
     alias rorp='pacman -Rus $(pacman -Qqtd)'
 
     alias fpr='ps axh o rss,pid,user,cmd,state,pcpu | \
@@ -310,6 +317,8 @@ else
     alias wsc='w1 "sensors | egrep -v \"^$\""'
     alias wst='w1c "sensors | grep --color=always °"'
     alias gt='/bin/time'
-    alias gtv='/bin/time -v'
+    alias gtv='gt -v'
+
+    alias Rc="/usr/bin/R"
 
 fi

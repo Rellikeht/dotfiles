@@ -3,54 +3,54 @@ This file is trial to describe all mappings and keep available
 keys in one place. With hundreds of mappings it is necessary
 
 # Unused keys
-\, |, ~ (hard to reach on some keyboards), ^, _
+\, |, ~ (hard to reach on some keyboards), ^, \_, ;
 There may be more, but there are already enough combinations
 
-# ; combinations
+# <Tab> combinations
 They are general purpose, mainly for tab management
 
 ## Tabs
-- ;<Tab> - g<Tab>
-- ;B - :tabnew<CR>:buffer<Space>
-- ;d - :tabclose<CR>
-- ;h - gT
-- ;H - :tabm -1<CR>
-- ;k - :tabfirst<CR>
-- ;i - :tabs<CR>
-- ;j - :tablast<CR>
-- ;J - :tabm $<CR>
-- ;K - :tabm 0<CR>
-- ;l - gt
-- ;L - :tabm +1<CR>
-- ;m - :tabm<Space>
-- ;t - :tabedit<Space>
-- ;T - :tabnew<CR>
+- <Tab> - g<Tab>
+- B - :tabnew<CR>:buffer<Space>
+- d - :tabclose<CR>
+- h - gT
+- H - :tabm -1<CR>
+- k - :tabfirst<CR>
+- i - :tabs<CR>
+- j - :tablast<CR>
+- J - :tabm $<CR>
+- K - :tabm 0<CR>
+- l - gt
+- L - :tabm +1<CR>
+- m - :tabm<Space>
+- t - :tabedit<Space>
+- T - :tabnew<CR>
 
 ## Buffers
-- ;a - :bad<Space>
-- ;b - :buffer<Space>
-- ;c - :bmodified<CR>
-- ;C - :bmodified!<CR>
-- ;D - :bdelete<CR>
-- ;f - :files<CR>
-- ;g - :vsplit<Space>
-- ;G - :split<Space>
-- ;I - :buffers<CR>
-- ;n - :bnext<CR>
-- ;N - :bnext!<CR>
-- ;p - :bprevious<CR>
-- ;P - :bprevious!<CR>
-- ;s - :sbprevious<CR>
-- ;S - :sbnext<CR>
-- ;U - :bunload<CR>
-- ;v - :vsplit<CR>:bnext<CR>
-- ;V - :vsplit<CR>:bprevious<CR>
+- a - :bad<Space>
+- b - :buffer<Space>
+- c - :bmodified<CR>
+- C - :bmodified!<CR>
+- D - :bdelete<CR>
+- f - :files<CR>
+- g - :vsplit<Space>
+- G - :split<Space>
+- I - :buffers<CR>
+- n - :bnext<CR>
+- N - :bnext!<CR>
+- p - :bprevious<CR>
+- P - :bprevious!<CR>
+- s - :sbprevious<CR>
+- S - :sbnext<CR>
+- U - :bunload<CR>
+- v - :vsplit<CR>:bnext<CR>
+- V - :vsplit<CR>:bprevious<CR>
 
 ## Miscelanous
-- ;r - redraw command
-- ;w - SudoWrite
-- ;y - in normal paste, in visual copy to X11 clipboard
-- ;Y - like ;y, but using X11 primary
+- r - redraw command
+- w - SudoWrite
+- y - in normal paste, in visual copy to X11 clipboard
+- Y - like ;y, but using X11 primary
 
 ## Available
 Basically all special characters besides <Tab>
@@ -129,7 +129,7 @@ Only Z and Q is used
 - ae - (visual only) select whole buffer without plugins
 - ie - (visual only) Not exact vie
 - yae - copy whole buffer
-- ;; - cosco (inserting semicolons and colons)
+- TODO - cosco (inserting semicolons and colons)
 
 # Available (or safe for remapping)
 TODO

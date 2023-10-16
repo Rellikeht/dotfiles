@@ -36,43 +36,43 @@ map zS :sleep <CR>
 "nnoremap <C-x>@hK :wincmd K<CR>
 "nnoremap <C-x>@hL :wincmd L<CR>
 
-" Tabs with ;
-nmap ;k :tabfirst<CR>
-nmap ;j :tablast<CR>
-nmap ;l gt
-nmap ;h gT
-nmap ;t :tabedit<Space>
-nmap ;m :tabm<Space>
-nmap ;d :tabclose<CR>
-nmap ;T :tabnew<CR>
-nmap ;L :tabm +1<CR>
-nmap ;H :tabm -1<CR>
-nmap ;J :tabm $<CR>
-nmap ;K :tabm 0<CR>
-nmap ;B :tabnew<CR>:buffer<Space>
-nmap ;<Tab> g<Tab>
-nmap ;i :tabs<CR>
+" Tabs with <Tab>
+nmap <Tab>k :tabfirst<CR>
+nmap <Tab>j :tablast<CR>
+nmap <Tab>l gt
+nmap <Tab>h gT
+nmap <Tab>t :tabedit<Space>
+nmap <Tab>m :tabm<Space>
+nmap <Tab>d :tabclose<CR>
+nmap <Tab>T :tabnew<CR>
+nmap <Tab>L :tabm +1<CR>
+nmap <Tab>H :tabm -1<CR>
+nmap <Tab>J :tabm $<CR>
+nmap <Tab>K :tabm 0<CR>
+nmap <Tab>B :tabnew<CR>:buffer<Space>
+nmap <Tab><Tab> g<Tab>
+nmap <Tab>i :tabs<CR>
 
-" Buffers with ;
-nmap ;b :buffer<Space>
-nmap ;n :bnext<CR>
-nmap ;p :bprevious<CR>
-nmap ;N :bnext!<CR>
-nmap ;P :bprevious!<CR>
-nmap ;D :bdelete<CR>
-nmap ;U :bunload<CR>
-nmap ;s :sbprevious<CR>
-nmap ;S :sbnext<CR>
-nmap ;v :vsplit<CR>:bnext<CR>
-nmap ;V :vsplit<CR>:bprevious<CR>
-nmap ;a :bad<Space>
-"nmap ;A :balt<Space>
-nmap ;f :files<CR>
-nmap ;c :bmodified<CR>
-nmap ;C :bmodified!<CR>
-nmap ;g :vsplit<Space>
-nmap ;G :split<Space>
-nmap ;I :buffers<CR>
+" Buffers with <Tab>
+nmap <Tab>b :buffer<Space>
+nmap <Tab>n :bnext<CR>
+nmap <Tab>p :bprevious<CR>
+nmap <Tab>N :bnext!<CR>
+nmap <Tab>P :bprevious!<CR>
+nmap <Tab>D :bdelete<CR>
+nmap <Tab>U :bunload<CR>
+nmap <Tab>s :sbprevious<CR>
+nmap <Tab>S :sbnext<CR>
+nmap <Tab>v :vsplit<CR>:bnext<CR>
+nmap <Tab>V :vsplit<CR>:bprevious<CR>
+nmap <Tab>a :bad<Space>
+"nmap <Tab>A :balt<Space>
+nmap <Tab>f :files<CR>
+nmap <Tab>c :bmodified<CR>
+nmap <Tab>C :bmodified!<CR>
+nmap <Tab>g :vsplit<Space>
+nmap <Tab>G :split<Space>
+nmap <Tab>I :buffers<CR>
 
 " Select whole buffer without plugins
 vmap ae <Esc>gg0vG$

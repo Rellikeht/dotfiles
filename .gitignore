@@ -33,6 +33,7 @@ __pycache__/
 .w3m/history
 .w3m/passwd
 .w3m/pre_form
+.w3m/w3mtmp*
 
 *~
 TODO

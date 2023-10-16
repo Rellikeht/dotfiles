@@ -85,11 +85,20 @@ keymap t TAB_LINK
 keymap T NEW_TAB
 keymap Q CLOSE_TAB
 
-keymap J PREV
-keymap K NEXT
+#keymap J PREV
+#keymap K NEXT
+
+keymap gj PREV
+keymap gk NEXT
+keymap J UP
+keymap K DOWN
 
 keymap { PREV_LINK
 keymap } NEXT_LINK
+
+keymap zh CURSOR_TOP
+keymap zm CURSOR_MIDDLE
+keymap zl CURSOR_BOTTOM
 
 #keymap TAB NEXT_LINK
 # This is a joke

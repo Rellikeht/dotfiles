@@ -166,14 +166,6 @@ fed () {
     fec "$1"
 }
 
-hms () {
-    help2man --no-discard-stderr "$@" | man /dev/stdin
-}
-
-hm () {
-    help2man "$@" | man /dev/stdin
-}
-
 dis () {
     silent "$@" &
     disown
@@ -198,9 +190,22 @@ then
         fi
     }
 
+    hm () {
+        local F
+        F=$(mktemp)
+        help2man $@ > "$F"
+        man "$F"
+        rm "$F"
+    }
+
+    #hms () {
+    #    help2man --no-discard-stderr $@ | man /dev/stdin
+    #}
+
 else
 
     find_system_special () {
+        local D
         D="$1"
         shift
         find "$D" -regextype posix-extended $@
@@ -227,7 +232,19 @@ else
 	wat "$T" -c "$@"
     }
 
+    hm () {
+        help2man $@ | man /dev/stdin
+    }
+
+    #hms () {
+    #    help2man --no-discard-stderr $@ | man /dev/stdin
+    #}
+
 fi
+
+hms () {
+    hm --no-discard-stderr $@
+}
 
 fnd() {
     find_command -name '*' $@
@@ -262,6 +279,8 @@ fndre () {
 }
 
 ariad () {
+    local FILE
+
     if [ -f "$1" ]
     then
         FILE="$(pwd)/$1"
@@ -271,3 +290,26 @@ ariad () {
 
     aria -D -d $(pwd) "$FILE" $@
 }
+
+if ! echo "$0" | grep 'zsh$'
+then
+    WHICH_PROGRAM=$(which which)
+    which_helper () {
+        local WOUT
+        if [ -z "$@" ]
+        then
+            echo No argument given for which
+            return 1
+        fi
+
+        WOUT=$($WHICH_PROGRAM $@)
+
+        if [ -n "$WOUT" ]
+        then
+            echo "$WOUT"
+        else
+            alias $@
+        fi
+    }
+    alias which=which_helper
+fi

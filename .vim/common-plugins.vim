@@ -37,6 +37,7 @@ Plug 'jceb/vim-orgmode' " TODO C
 Plug 'zah/nim.vim' " TODO B
 Plug 'ziglang/zig.vim' " TODO C
 Plug 'JuliaEditorSupport/julia-vim' " TODO C
+Plug 'vale1410/vim-minizinc'
 
 Plug 'jpalardy/vim-slime'
 
