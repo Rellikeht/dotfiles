@@ -3,14 +3,14 @@
 #INF=2500000
 #doas rtcwake -m mem -s $INF
 
-#C=`doas fgconsole`
+C=$(doas fgconsole)
 
 $@ &
-sleep 0.2
-#doas chvt 63
-echo mem | doas tee /sys/power/state
-#sleep 0.25
-#doas chvt $C
+sleep 0.25
+doas chvt 63
+echo mem | doas tee /sys/power/state > /dev/null
+sleep 0.25
+doas chvt $C
 
 #if [ -z "$SUSPEND_TIME" ]
 #then

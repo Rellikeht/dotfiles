@@ -88,8 +88,11 @@ keymap Q CLOSE_TAB
 #keymap J PREV
 #keymap K NEXT
 
-keymap gj PREV
-keymap gk NEXT
+#keymap gj PREV
+#keymap gk NEXT
+
+keymap gj NEXT
+keymap gk PREV
 keymap J UP
 keymap K DOWN
 
