@@ -14,6 +14,7 @@ alias lt='ls -t'
 alias llt='lt -la'
 alias exa='exa --color=always'
 alias ell='exa -la'
+alias mkdir='mkdir -p'
 
 alias grepn='grep --color=never'
 alias grep='grep --color=always'
@@ -264,10 +265,10 @@ then
     alias rmun='pkg autoremove'
     alias rorp='pkg autoremove'
 
-    alias fpr='ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= | \
+    alias fpr='ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
 	grepWgrep | its_just_grep -E'
 
-    alias fprh="ps -ax -o rss= -o pid= -o user= -o args= -o state= -o pcpu= | \
+    alias fprh="ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
 	numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     # it needs script or link for watch program
@@ -303,10 +304,10 @@ else
     alias rmun='pacman -Rus $(pacman -Qqtd)'
     alias rorp='pacman -Rus $(pacman -Qqtd)'
 
-    alias fpr='ps axh o rss,pid,user,cmd,state,pcpu | \
+    alias fpr='ps axh o rss,pid,cmd,state,pcpu,user | \
 	grepWgrep | its_just_grep -E'
 
-    alias fprh="ps axh o rss,pid,user,cmd,state,pcpu | \
+    alias fprh="ps axh o rss,pid,cmd,state,pcpu,user | \
 	numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     #alias w1='watch -n 1 -d'

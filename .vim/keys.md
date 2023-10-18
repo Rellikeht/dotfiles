@@ -3,7 +3,8 @@ This file is trial to describe all mappings and keep available
 keys in one place. With hundreds of mappings it is necessary
 
 # Unused keys
-\, |, ~ (hard to reach on some keyboards), ^, \_, ;
+\ | ~ ^ (hard to reach on some keyboards)
+_ ; (painful in greater amounts)
 There may be more, but there are already enough combinations
 
 # <Tab> combinations
