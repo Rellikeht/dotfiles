@@ -1,1 +1,0 @@
-/usr/share/vis/themes/zenburn.lua

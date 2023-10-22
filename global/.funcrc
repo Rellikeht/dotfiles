@@ -191,11 +191,12 @@ then
     }
 
     hm () {
-        local F
-        F=$(mktemp)
-        help2man $@ > "$F"
-        man "$F"
-        rm "$F"
+        #local F
+        #F=$(mktemp)
+        #help2man $@ > "$F"
+        #man "$F"
+        #rm "$F"
+        help2man $@ | mandoc | less
     }
 
     #hms () {
