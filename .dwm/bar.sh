@@ -9,5 +9,5 @@ fi
 while true
 do
     xsetroot -name " < $(eval $BAT)$S$(date +"%H:%M:%S %d.%m.%Y") < "
-    sleep 1
+    sleep 0.5
 done
