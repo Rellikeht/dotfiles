@@ -292,25 +292,13 @@ ariad () {
     aria -D -d $(pwd) "$FILE" $@
 }
 
-if ! echo "$0" | grep 'zsh$'
+if ! which which | grep 'built-in' > /dev/null
 then
     WHICH_PROGRAM=$(which which)
     which_helper () {
-        local WOUT
-        if [ -z "$@" ]
-        then
-            echo No argument given for which
-            return 1
-        fi
-
-        WOUT=$($WHICH_PROGRAM $@)
-
-        if [ -n "$WOUT" ]
-        then
-            echo "$WOUT"
-        else
-            alias $@
-        fi
+        # ! $WHICH_PROGRAM $@ 2>/dev/null && alias $@
+        # TODO functions
+        [ $# -gt 0 ] && ! alias $@ 2>/dev/null && $WHICH_PROGRAM $@
     }
     alias which=which_helper
 fi

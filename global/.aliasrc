@@ -35,6 +35,7 @@ alias les='less --quit-if-one-screen --raw-control-chars'
 
 alias sb=sbase-box
 alias bb=busybox
+alias dash='dash -E'
 
 alias dh='du -sh'
 
@@ -304,10 +305,10 @@ else
     alias rmun='pacman -Rus $(pacman -Qqtd)'
     alias rorp='pacman -Rus $(pacman -Qqtd)'
 
-    alias fpr='ps axh o rss,pid,cmd,state,pcpu,user | \
+    alias fpr='ps axh o rss,pid,state,pcpu,user,cmd | \
 	grepWgrep | its_just_grep -E'
 
-    alias fprh="ps axh o rss,pid,cmd,state,pcpu,user | \
+    alias fprh="ps axh o rss,pid,state,pcpu,user,cmd | \
 	numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     #alias w1='watch -n 1 -d'
@@ -323,3 +324,10 @@ else
     alias Rc="/usr/bin/R"
 
 fi
+
+# TODO
+# type -f in zsh
+# type in bash
+# in ksh may be even impossible
+# there is also whence
+# crazy shit
