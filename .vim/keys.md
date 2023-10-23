@@ -103,6 +103,10 @@ m, n
 - Y - "+gP (I don't know if it works)
 - s - vim-slime and similar
 
+## TODO
+- + - v<C-a>
+- - - v<C-x>
+
 # z combinations
 Available (unused):
 B, I, J, K, Q, S, T, U, V, Y, Z

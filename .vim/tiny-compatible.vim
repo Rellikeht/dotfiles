@@ -6,6 +6,12 @@ map gY "+gP
 map gb <C-]>
 map gB <C-t>
 
+" TODO this is harder than it should
+map g+ v<C-a>
+map g- v<C-x>
+vmap + <C-a>
+vmap - <C-x>
+
 " Amateur but works
 map zS :sleep <CR>
 

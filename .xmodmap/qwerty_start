@@ -63,7 +63,8 @@ keycode  44 = j J Down Down Greek_lambda Greek_LAMBDA
 keycode  45 = k K Up Up Greek_sigma Greek_SIGMA
 keycode  46 = l L Right Right lstroke Lstroke
 keycode  47 = semicolon colon Insert Insert Greek_kappa Greek_eta
-keycode  48 = BackSpace BackSpace Delete Delete XF86Forward XF86Back
+keycode  48 = BackSpace BackSpace Delete Delete U2206 nabla
+!XF86Forward XF86Back
 !keycode  36 = Return Return F30 F30 approxeq U2249
 
 !keycode  52 = z Z F31 F31 zabovedot Zabovedot
