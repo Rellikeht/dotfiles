@@ -46,3 +46,7 @@ Plug 'luochen1990/rainbow'
 
 " TODO B
 Plug 'ocaml/vim-ocaml'
+
+" TODO B
+"Plug 'vim-latex/vim-latex'
+Plug 'lervag/vimtex'

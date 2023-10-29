@@ -81,6 +81,16 @@ let g:rainbow_conf = {
 \	}
 \}
 
+" VIMTEX
+
+" Viewer options: One may configure the viewer either by specifying a built-in
+let g:vimtex_view_method = 'zathura'
+" Works
+let g:vimtex_compiler_method = 'latexmk'
+
+" Also workWorkss
+"let g:vimtex_compiler_method = 'tectonic'
+
 " OTHERS
 
 " for quick scope to activate with delay
