@@ -30,17 +30,14 @@ local servers = {
 	'scheme_langserver',
     'hls', -- TODO B memory
 
-	-- 'rust_analyzer',
+    'texlab',
     'racket_langserver',
     'sqlls',
 
 	'tsserver',
 
-    -- TODO A:
-
+    -- Somehow works for now
     'nimls',
-	-- On freebsd can't even start
-
 	-- This leaves nimsuggest instances running after closing editor
 	-- At least on simple projects with only .nim files
 	--'nim_langserver',
@@ -51,40 +48,13 @@ local servers = {
     -- or
     --'nixd',
 
-    -- TODO C:
-
-    -- Somehow add tcl lsp if it works
-    -- https://github.com/Dufgui/lsp-jtcl
-
-    -- TCL ???
-    -- https://github.com/soartech/soar-language-server
-
-	--'opencl_ls',
-
     --'java_language_server',
     -- or
     'jdtls',
 
-    --'metals', --scala
-    --'clojure_lsp',
-	--'erlangls',
-    --'gdscript',
-
-    -- TODO D:
-
-	--'yamlls',
-    --'emmet_ls',
-    --'fortls',
-
     --'perlls',
     -- or
     --'perlpls',
-
-    --'vhdl_ls',
-
-    --'verible',
-    -- or
-    --'veridian',
 }
 
 for _, s in ipairs(servers) do
