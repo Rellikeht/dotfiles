@@ -22,7 +22,7 @@ DBD=~/Dbackup/
 
 backup ()
 {
-	ls $DOWNS | \
+	ls --color=never $DOWNS | \
 		grep -Ei $3 "\.($1)$" | \
 		xargs -I{} cp -rn "$DOWNS"/{} "$2"
 }

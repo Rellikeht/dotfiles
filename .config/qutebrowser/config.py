@@ -274,6 +274,13 @@ config.bind('cg', 'set-cmd-text -s :tab-give')
 config.bind('cm', 'clear-messages')
 config.bind('ca', 'adblock-update')
 
+c.aliases['sl'] = 'session-load'
+c.aliases['sS'] = 'session-save --current'
+c.aliases['ss'] = 'session-save --current --only-active-window'
+
+config.bind('sw', 'session-save --current --only-active-window')
+config.bind('sW', 'session-save --current')
+
 #good commands:
 #spawn - external command
 #hint - highlight some element for selecting

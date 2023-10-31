@@ -28,3 +28,5 @@ TERM=st-24bit
 #	TERM=st-24bit
 #	#TERM=xterm-24bit
 #fi
+
+PYTHONDONTWRITEBYTECODE="true"
