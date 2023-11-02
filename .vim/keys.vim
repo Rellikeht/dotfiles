@@ -16,6 +16,7 @@ map <Leader>;c :!clear<CR><CR>
 map <Leader>;l :!ls<CR>
 map <Leader>;e :Ex<CR>
 map <Leader>;r :!%<CR>
+map <Leader>qm :call ToggleManProg()<CR>
 
 " TODO B running command under cursor
 " TODO C running command in given register (???)

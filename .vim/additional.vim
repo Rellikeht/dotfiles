@@ -9,10 +9,15 @@ set incsearch
 set hlsearch
 "set cursorline
 
+" TODO B what this does
+packadd matchit
+
 filetype plugin on
 filetype indent on
 syntax on
 syntax reset
+
+" TODO C iskeyword
 
 "source ~/.vim/colors.vim
 

@@ -42,6 +42,7 @@ map zS :sleep <CR>
 "nnoremap <C-x>@hK :wincmd K<CR>
 "nnoremap <C-x>@hL :wincmd L<CR>
 
+" TODO Do all of this to include counts
 " Tabs with <Tab>
 nmap <Tab>k :tabfirst<CR>
 nmap <Tab>j :tablast<CR>

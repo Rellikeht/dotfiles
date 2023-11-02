@@ -60,9 +60,10 @@ e, k, o, q, u, x, z
 
 # Leader (,) combinations
 ## Simple mappings
-- q - miscelanous
+- q - miscelanous, settings
 - c, C, r, R, i, I, b, B - code ; TODO
 - <Space> - set hls!
+- ; - commands
 
 ## Nvim only
 - w, f, l, <Leader> - easymotion ; TODO
@@ -71,13 +72,10 @@ e, k, o, q, u, x, z
 - h - harpoon ; NOT IMPLEMENTED
 
 ## With plugins
-- ; - commands ; TODO
-- t - tmux ; TODO
+- t - tmux
 - g - git ; NOT IMPLEMENTED
 - u - undo tree ; NOT IMPLEMENTED
 - f - fuzzy finder ; NOT IMPLEMENTED
-
-TODO one or two for others
 
 # g combinations
 Available (useless otherwise):
