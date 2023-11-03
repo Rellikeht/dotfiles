@@ -2,7 +2,7 @@
 
 alias sudo=doas
 
-# Get all possible programs
+## Get all possible programs
 alias progs='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE "^(.*:)?$"'
 
 # Coreutils
@@ -39,7 +39,7 @@ alias dash='dash -E'
 
 alias dh='du -sh'
 
-# its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
+## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
 alias tbd='top --batch --delay 1'
 alias tbg='tbd | grepWgrep | its_just_grep -E'
@@ -69,19 +69,26 @@ alias svim='svim -f -X'
 alias s=svim
 alias gsv=gsvim
 alias se=exs
+
 alias emg=emacs
 alias em='emacs -nw'
 alias emc='emacsclient -nw'
 alias gemc='emacsclient -c'
 alias emd='emacs --daemon'
+
 alias vis='TERM=st-256color vis'
 alias rsv='doas svim'
 alias rka='doas kak'
 alias rvi='doas vis'
+
 alias fvc="fe svim"
 alias fv="fed svim"
 alias fkc="fe kak"
 alias fk="fed kak"
+
+alias groff='groff -ktep'
+alias grs='groff -ms'
+alias gsf='grs -Tpdf'
 
 # Settings
 alias als='alias | grep'
@@ -96,29 +103,29 @@ alias bfn='bat /etc/.funcrc'
 alias qc="qalc -s 'decimal comma off'"
 alias de='dc -e'
 
-# single
+## single
 alias fzs='fzf +m -e'
-# multi
+## multi
 alias fzf='fzf -m -e'
 
 # fzy
 alias fzy='fzy -l 20'
 
-# default fuzzy finer with single match
+## default fuzzy finer with single match
 alias deffuz=fzs
 
-# dirs
+## dirs
 alias fzd='find -type d | deffuz'
-# cd with fuzzy dirs
+## cd with fuzzy dirs
 alias cdf='cd "$(fzd)"'
 
-# files
+## files
 alias fff="fzf | sed 's/^.*$/\"\0\"/g'"
 alias ffe='fff | xargs'
 
-# fuzzy select program to run on separate shell
+## fuzzy select program to run on separate shell
 alias fze='progs | deffuz | sh -s'
-# fuzzy select program to run
+## fuzzy select program to run
 alias fzr='$(progs | deffuz)'
 
 # TODO merge that cd's
