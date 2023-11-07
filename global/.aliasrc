@@ -38,6 +38,7 @@ alias bb=busybox
 alias dash='dash -E'
 
 alias dh='du -sh'
+alias ddate='date "+%d.%m.%Y"'
 
 ## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
@@ -194,7 +195,10 @@ alias aria='aria2c --continue=true \
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
 
-alias jle='julia -e'
+alias jlE='julia -e'
+alias jle='julia --startup-file=no -e'
+alias jld="julia --startup-file=no -e 'using DaemonMode;serve()'"
+alias jlc="julia --startup-file=no -e 'using DaemonMode;runargs()'"
 
 alias nimm='hm nim --fullhelp'
 alias nimh='nim --fullhelp | less'
@@ -220,6 +224,8 @@ alias pypym="$PYPY -m"
 
 alias R="R --no-save --no-restore"
 alias Re="R -s -e"
+
+alias gpe='gnuplot -p -e'
 
 # git
 alias git='git --no-pager'

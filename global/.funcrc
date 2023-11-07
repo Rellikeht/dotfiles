@@ -116,7 +116,7 @@ maxe () {
 }
 
 gple () {
-    gnuplot -e "plot '$1' w l;pause -1"
+    gpe "plot '$1' using $2 w l"
 }
 
 edt () {

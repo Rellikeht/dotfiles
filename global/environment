@@ -1,5 +1,6 @@
 EDITOR=vim
 VISUAL=svim
+JULIA_EDITOR=ssvim
 LESS=--save-marks --status-column --incsearch --ignore-case
 ZIG_LOCAL_CACHE_DIR="/tmp/$USER-zig/"
 PYTHONDONTWRITEBYTECODE="false"
