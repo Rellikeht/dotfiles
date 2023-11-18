@@ -4,6 +4,7 @@
 !.scrs/*.png
 **/*.swp
 __pycache__/
+autoload
 
 .config/qutebrowser/autoconfig.yml
 .config/qutebrowser/bookmarks
@@ -21,7 +22,6 @@ __pycache__/
 
 .config/kak/autoload/autoload
 .vim/plugged
-.vim/autoload
 .vim/.netrwhist
 .vim/test
 .vim/templates

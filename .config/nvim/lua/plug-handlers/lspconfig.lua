@@ -28,7 +28,7 @@ local servers = {
 	'julials',
 	'zls',
 	'scheme_langserver',
-    'hls', -- TODO B memory
+    'hls', -- TODO C memory
 
     'texlab',
     'racket_langserver',
@@ -43,8 +43,10 @@ local servers = {
 	--'nim_langserver',
     -- For now it is added manually later
 
-    -- TODO B:
-    --'rnix-lsp',
+    -- TODO A:
+    -- config
+    'nil_ls',
+
     -- or
     --'nixd',
 
