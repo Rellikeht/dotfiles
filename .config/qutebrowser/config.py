@@ -189,6 +189,7 @@ config.set(
 
             'gp':'https://packages.gentoo.org/packages/search?q={}',
             'np':'https://search.nixos.org/packages?size=500&query={}',
+            'no':'https://search.nixos.org/options?size=500&query={}',
 
             'fp':'https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=all',
             'fpn':'https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=name',

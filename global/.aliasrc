@@ -185,6 +185,7 @@ alias yts='yt-dlp --format-sort +size'
 alias mpb='mpv --profile=big'
 alias mpg='mpv --profile=gaudio'
 
+alias gt='/usr/bin/time'
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
@@ -293,7 +294,6 @@ then
     alias updatedb='/usr/libexec/locate.updatedb'
 
     alias progress='doas progress'
-    alias gt='/usr/bin/time'
     alias gtv='gt -l'
 
     alias Rc="/usr/local/bin/R"
@@ -334,7 +334,6 @@ else
     alias ws='w1 sensors'
     alias wsc='w1 "sensors | egrep -v \"^$\""'
     alias wst='w1c "sensors | grep --color=always °"'
-    alias gt='/bin/time'
     alias gtv='gt -v'
 
     alias Rc="/usr/bin/R"
