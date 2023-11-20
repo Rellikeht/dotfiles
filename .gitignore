@@ -34,6 +34,7 @@ autoload
 .w3m/passwd
 .w3m/pre_form
 .w3m/w3mtmp*
+.w3m/w3mcache*
 
 *~
 TODO

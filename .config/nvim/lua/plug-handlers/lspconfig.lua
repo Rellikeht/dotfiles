@@ -25,6 +25,10 @@ local servers = {
 	'ocamllsp',
 	'bashls',
 
+    -- Am i stupid, or this and nil_ls both do almost nothing
+    -- where is my completion
+    'nixd',
+
 	'julials',
 	'zls',
 	'scheme_langserver',
@@ -42,13 +46,6 @@ local servers = {
 	-- At least on simple projects with only .nim files
 	--'nim_langserver',
     -- For now it is added manually later
-
-    -- TODO A:
-    -- config
-    'nil_ls',
-
-    -- or
-    --'nixd',
 
     --'java_language_server',
     -- or
@@ -108,26 +105,16 @@ lspconfig.rust_analyzer.setup({
     }
 })
 
--- nimlangserver has it's own problems, maybe they can be
--- adressed by copying solutions from vscode extension
---lspconfig.nim_langserver.setup({
-
---	single_file_support = true,
---	on_attach = lsp_attach,
---	capabilities = Capabilities,
-
---	settings = {
---		nim = {
---			--projectMapping = {
---			--	{
---			--		projectPath = "",
---			--		fileregex = "*.nim"
---			--	}
---			--},
---			--timeout = 2000,
---			--autoCheckFile = true,
---
---		}
---	},
-
---})
+-- lspconfig.nil_ls.setup({
+--         preselectSupport = false,
+--         preselect = false,
+--         single_file_support = true,
+--         on_attach = lsp_attach,
+--         capabilities = Capabilities,
+-- 
+--         settings = {
+--             ["nil_ls"] = {
+--                 nixpkgsInputName = "nixos",
+--             }
+--         }
+--     })

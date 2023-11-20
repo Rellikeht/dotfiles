@@ -226,7 +226,7 @@ config.bind('J', 'back', mode='normal')
 config.bind('K', 'forward', mode='normal')
 
 #config.bind('<Ctrl+r>', 'restart', mode='normal')
-config.bind('<Ctrl+o>', 'set-cmd-text -s :open -b', mode='normal')
+config.bind('<Ctrl+o>', 'cmd-set-text -s :open -b', mode='normal')
 config.bind('ps', 'insert-text {primary}')
 config.bind('ys', 'yank selection')
 
@@ -264,14 +264,14 @@ for key, profile in combs:
                 f'hint links spawn -d mpv --profile={profile} "{{hint-url}}"')
 
 config.unbind('D', mode="normal")
-config.bind('Db', 'set-cmd-text -s :bookmark-del')
-config.bind('Dq', 'set-cmd-text -s :quickmark-del')
+config.bind('Db', 'cmd-set-text -s :bookmark-del')
+config.bind('Dq', 'cmd-set-text -s :quickmark-del')
 config.bind('gS', 'config-source')
 config.bind('gM', 'messages -t')
 config.bind('gE', 'config-diff')
 config.bind('gc', 'config-edit')
 
-config.bind('cg', 'set-cmd-text -s :tab-give')
+config.bind('cg', 'cmd-set-text -s :tab-give')
 config.bind('cm', 'clear-messages')
 config.bind('ca', 'adblock-update')
 
@@ -285,7 +285,7 @@ config.bind('sW', 'session-save --current')
 #good commands:
 #spawn - external command
 #hint - highlight some element for selecting
-#set-cmd-text - type some command and wait for user to execute it
+#cmd-set-text - type some command and wait for user to execute it
 #config-cycle - cycle through valuses of some config option
 
 # ============================================================

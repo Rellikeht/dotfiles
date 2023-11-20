@@ -71,7 +71,11 @@ keymap :w SAVE
 keymap :e EDIT
 keymap :! EXEC_SHELL
 
+keymap o GOTO
+
 # Incompatible, but good
+
+keymap O LOAD
 
 keymap :W PRINT
 keymap :E EDIT_SCREEN
@@ -85,16 +89,12 @@ keymap t TAB_LINK
 keymap T NEW_TAB
 keymap Q CLOSE_TAB
 
-#keymap J PREV
-#keymap K NEXT
-
-#keymap gj PREV
-#keymap gk NEXT
-
-keymap gj NEXT
-keymap gk PREV
+keymap gj PREV
+keymap gk NEXT
 keymap J UP
 keymap K DOWN
+keymap gh TAB_LEFT
+keymap gl TAB_RIGHT
 
 keymap { PREV_LINK
 keymap } NEXT_LINK
@@ -110,6 +110,9 @@ keymap zl CURSOR_BOTTOM
 # Untested
 
 keymap m MARK
+keymap g? HELP
+keymap gt TAB_MENU
+keymap gr REINIT
 
 # TODO B marks
 # TODO B menus

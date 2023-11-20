@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-FILE=yvh
 alias yv=youtube-viewer
-cd /usr/local/share/info
 
 help () {
     yv -v > "$1"
@@ -15,6 +13,25 @@ help () {
     yv -E >> "$1"
 }
 
-[ ! -e "$FILE" -o ! -r "$FILE" ] && help /dev/stdout | bat && exit
-[ "$(yv -v)" != "$(sed 1q "$FILE")" ] && help "$FILE"
+fhelp () {
+    # generally too slow
+    TMP=$(mktemp)
+    help "$TMP"
+    bat "$TMP"
+    rm "$TMP"
+}
+
+FILE=yvh
+DIR="$HOME/.cache/yvh/"
+if ! mkdir -p "$DIR"
+then
+    fhelp
+    exit
+fi
+
+cd "$DIR"
+
+[ ! -e "$FILE" -o "$(yv -v)" != "$(sed 1q "$FILE" 2>/dev/null)" ] && \
+    help "$FILE"
+
 bat "$FILE"
