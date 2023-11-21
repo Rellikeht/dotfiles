@@ -4,7 +4,7 @@
 This is for comments
 .END
 
-.ig
+.ig END
 Inline equations
 
 .EQ
@@ -24,3 +24,22 @@ delim $$
 .de LN
 .IP \n+[step]
 ..
+
+.de LM
+.IP -
+..
+
+.ig END
+roots
+
+.EQ
+define root % sqrt special Rt %
+.EN
+.de Rt
+.  ds 0s \
+\Z'\h'0.3n'\\*(0s'\
+\h'-0.1n-\\n(0hu'\
+\v'\\n(0du-1n'
+..
+
+.END
