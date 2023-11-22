@@ -36,5 +36,9 @@ autoload
 .w3m/w3mtmp*
 .w3m/w3mcache*
 
+.moc/softmixer
+.moc/last_directory
+.moc/equalizer
+
 *~
 TODO

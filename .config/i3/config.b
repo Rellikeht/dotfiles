@@ -9,7 +9,6 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-#set $mod Mod4
 set $mod Mod4
 set $ssuspend systemctl suspend
 set $osuspend loginctl suspend
@@ -25,12 +24,20 @@ font pango:monospace 9
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+#exec --no-startup-id nm-applet
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -42,25 +49,23 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+c kill
 bindsym $mod+Shift+Tab exec i3-msg bar mode toggle
 
-#bindsym $mod+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-#bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-#bindsym $mod+Shift+period exec "amixer -c 0 -- sset Master 3dB+"
-#bindsym $mod+Shift+comma exec "amixer -c 0 -- sset Master 3dB-"
+bindsym $mod+period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym $mod+comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym $mod+Shift+period exec "amixer -c 0 -- sset Master 3dB+"
+bindsym $mod+Shift+comma exec "amixer -c 0 -- sset Master 3dB-"
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
-bindsym $mod+r exec rofi -show run
-bindsym $mod+q exec qutebrowser
-bindsym $mod+w exec passmenu
-
-#bindsym $mod+Shift+slash exec st
-#bindsym $mod+slash exec urxvtc
-#bindsym $mod+Mod1+slash exec urxvt
-
-#bindsym $mod+q exec qterminal 
-#bindsym $mod+Tab exec clipmenu
-
-bindsym $mod+Shift+Return exec alacritty
+bindsym $mod+g exec rofi -show run
+bindsym $mod+x exec pcmanfm
+bindsym $mod+b exec qutebrowser
+bindsym $mod+w exec pavucontrol
+bindsym $mod+Shift+slash exec st
+bindsym $mod+slash exec urxvtc
+bindsym $mod+Mod1+slash exec urxvt
+bindsym $mod+q exec qterminal 
+bindsym $mod+Tab exec clipmenu
+bindsym $mod+a exec alacritty
 
 #gaps
 bindsym $mod+equal gaps outer current plus 6
@@ -73,10 +78,8 @@ bindsym $mod+braceright gaps inner current plus 12
 bindsym $mod+braceleft gaps inner current minus 12
 
 #border
-
-#bindsym $mod+Shift+backslash border normal
-#bindsym $mod+backslash border none
-
+bindsym $mod+Shift+backslash border normal
+bindsym $mod+backslash border none
 #bindsym $mod+Shift+grave workspace back_and_forth border default normal
 #bindsym $mod+grave workspace back_and_forth border none
 
@@ -124,10 +127,9 @@ bindsym $mod+u split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-
-bindsym $mod+Control+p layout stacking
-bindsym $mod+Control+Shift+semicolon layout tabbed
-bindsym $mod+Control+semicolon layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -249,7 +251,7 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-#bindsym $mod+r mode "resize"
+bindsym $mod+r mode "resize"
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
@@ -332,12 +334,9 @@ bindsym $mod+m mode "mocp control"
 # finds out, if available)
 bar {
 #    output            LVDS1
-#    status_command    slstatus -s #i3status
-    status_command    i3status
+    status_command    slstatus -s #i3status
     position          top
-
-#    mode              hide
-
+    mode              hide
     workspace_buttons yes
     tray_output       none
     
@@ -358,16 +357,13 @@ bar {
 
 #exec xrandr --output HDMI-1 --mode 1600x900
 #exec xrdb .Xresources
-#exec mocp -a ~/Muzyka
-
+exec mocp -a ~/Muzyka
 #exec mocp -a /ddisk/muzyka
 exec nitrogen --restore
-#exec xrandr --output LVDS1 --off
-#exec xrandr --output HDMI1 --mode 1920x1080
-
+exec xrandr --output LVDS1 --off
+exec xrandr --output HDMI1 --mode 1920x1080
 #exec urxvtd -o -f -q
 #exec urxvtc
-
 #exec compton
 #exec emacs --daemon=editor
 #exec qterminal

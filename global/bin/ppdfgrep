@@ -1,37 +1,25 @@
 #!/bin/sh
 
+# TODO threads as command line argument
+[ -z "$THREADS" ] && \
+    THREADS=$(lscpu | \
+    sed -En '/^CPU\(s\):/s/[^0-9]*([0-9]*)/\1/p')
+
+OUTDIR=$(mktemp -d)
+
 while [ ! -e "$1" -a -n "$1" ]
 do
-	ARGS=`echo $ARGS $1`
+    ARGS=$(echo $ARGS $1)
 	shift
 done
 
-[ -z "$THREADS" ] && THREADS=15 # TODO threads as command line argument
-DIR=.; [ "$1" ] && DIR=$@
-OUTDIR="/tmp/pdfgrep`date +%s%N`"
-mkdir -p $OUTDIR
+DIR=.; [ -n "$1" ] && DIR=$@
 
 find $DIR -iname '*.pdf' -printf "%h/%f\0" | \
-    xargs -0 -P $THREADS -I {} \
-    sh -c "export FILE=\`echo \"{}\" | sha256sum | cut -f1 -d' '\`; \
-    pdfgrep --color=always -H $ARGS \"{}\" > $OUTDIR/\$FILE"
+    xargs -0 -P "$THREADS" -I{} \
+    sh -c "
+    export FILE=\$(echo \"{}\" | sha256sum | cut -f1 -d' ');
+    pdfgrep --color=always -H \"$ARGS\" \"{}\" > \"$OUTDIR/\$FILE\""
 
-cat $OUTDIR/*
-rm -rf $OUTDIR
-
-#DIR=`echo $@ | awk '{print $NF}'`
-#
-#if [ -d "$DIR" ]
-#then ARGS=`echo $@ | sed 's/\w*$//'`
-#elif [ -e "$DIR" ]
-#then
-#	while [ ! -e "$1" ];
-#	do
-#		ARGS=`echo $ARGS $1`
-#		shift
-#	done
-#	DIR=$@
-#else
-#	ARGS=$@
-#	DIR=.
-#fi
+cat "$OUTDIR"/*
+rm -rf "$OUTDIR"
