@@ -50,6 +50,7 @@ They are general purpose, mainly for tab management
 ## Miscelanous
 - r - redraw command
 - w - SudoWrite
+- W - toggle wrap
 - y - in normal paste, in visual copy to X11 clipboard
 - Y - like ;y, but using X11 primary
 

@@ -51,3 +51,5 @@ my-backward-delete-word () {
 zle -N my-backward-delete-word
 
 bindkey    '\e^?' my-backward-delete-word
+
+eval "$(direnv hook zsh)"
