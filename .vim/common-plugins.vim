@@ -7,15 +7,13 @@ Plug 'unblevable/quick-scope'
 " TODO A shortcuts
 Plug 'justinmk/vim-sneak'
 
-" TODO B
 Plug 'maxboisvert/vim-simple-complete'
-
 Plug 'wellle/context.vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
-
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'dbakker/vim-paragraph-motion'
 
 " TODO A
 Plug 'tpope/vim-fugitive'

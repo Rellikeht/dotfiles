@@ -40,5 +40,7 @@ autoload
 .moc/last_directory
 .moc/equalizer
 
+groff/
+
 *~
 TODO
