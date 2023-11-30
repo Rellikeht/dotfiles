@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+expac '%m %n' -l'\n' -Q $(pacman -Qq) | \
+          sort -rh | \
+          numfmt --from=si --to-unit=1M
