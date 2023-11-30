@@ -81,6 +81,9 @@ nmap <Tab>g :vsplit<Space>
 nmap <Tab>G :split<Space>
 nmap <Tab>I :buffers<CR>
 
+" Others
+nmap <Tab>W :set wrap!<CR>
+
 " Select whole buffer without plugins
 vmap ae <Esc>gg0vG$
 " Not exact vie
@@ -106,7 +109,6 @@ set autoread
 
 set autoindent
 set cindent
-"set noexpandtab
 set expandtab
 set shiftwidth=4
 set tabstop=4
