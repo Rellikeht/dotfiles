@@ -95,6 +95,7 @@ keymap J UP
 keymap K DOWN
 keymap gh TAB_LEFT
 keymap gl TAB_RIGHT
+keymap gw WRAP_TOGGLE
 
 keymap { PREV_LINK
 keymap } NEXT_LINK

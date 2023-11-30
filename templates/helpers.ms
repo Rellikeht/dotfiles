@@ -6,16 +6,24 @@ This is for comments
 
 .ig END
 Inline equations
+.END
 
 .EQ
 delim $$
 .EN
 
+.ig END
+bullet list
 .END
 
 .de LB
 .IP •
 ..
+
+.ig END
+List with numbers
+And setting count
+.END
 
 .de LNS
 .nr step 0 1

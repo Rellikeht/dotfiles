@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+time \
+    nix-instantiate '<nixpkgs/nixos>' -A 'system' $@

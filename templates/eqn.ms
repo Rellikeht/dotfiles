@@ -7,6 +7,15 @@ This is for comments
 .END
 
 .ig END
+Numbered equations
+.nr myeqn 0 1
+.\" ...stuff...
+.EQ C \n+[myeqn]
+e sup {i pi} + 1 = 0
+.EN
+.END
+
+.ig END
 https://douglasrumbaugh.com/post/groff-eqn/
 .END
 
