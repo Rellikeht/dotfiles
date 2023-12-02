@@ -69,6 +69,7 @@ e, k, o, q, u, x, z
 ## Nvim only
 - w, f, l, <Leader> - easymotion ; TODO
 - e, E, d, D - code plugins ; NOT IMPLEMENTED
+- dd - show diagnostic in floating window
 - s - treesitter ; NOT IMPLEMENTED
 - h - harpoon ; NOT IMPLEMENTED
 

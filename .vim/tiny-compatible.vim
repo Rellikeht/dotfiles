@@ -6,7 +6,7 @@ map gY "+gP
 map gb <C-]>
 map gB <C-t>
 
-" TODO this is harder than it should
+" TODO this is harder than it should be
 map g+ v<C-a>
 map g- v<C-x>
 vmap + <C-a>

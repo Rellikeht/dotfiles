@@ -14,6 +14,7 @@ Plug 'glts/vim-radical'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'dbakker/vim-paragraph-motion'
+Plug 'ryvnf/readline.vim'
 
 " TODO A
 Plug 'tpope/vim-fugitive'

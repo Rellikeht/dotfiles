@@ -17,8 +17,11 @@ REST="out|download|crdownload|part"
 # but torrent and maybe other long extensions
 
 EXTS="$TARS|$ARCHS|$IMGS|$DOCS|$TEXT|$VIDS|$MUSIC|$DISKS|$EDITS|$LANG|$REST"
-DOWNS=~/Pobrane/
+DOWNS=~/Downloads/
 DBD=~/Dbackup/
+
+mkdir -p "$DBD"
+mkdir -p "$DBD/pdf"
 
 backup ()
 {

@@ -1,5 +1,8 @@
 local lspconfig = require('lspconfig')
 
+vim.keymap.set('n', '<Leader>dd', vim.diagnostic.open_float)
+-- TODO other diagnostics, errors, repairs, info...
+
 local function ssetup(server)
     local config = lspconfig[server]
     if vim.fn.executable(config.document_config.default_config.cmd[1]) == 0 then

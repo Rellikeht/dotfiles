@@ -178,6 +178,7 @@ alias ffmpeg='ffmpeg -hide_banner'
 alias pm=pulsemixer
 alias am=alsamixer
 
+alias youtube-viewer='youtube-viewer --no-update-config!'
 alias yv=youtube-viewer
 alias mdl='yv --novideo --download! --convert-to=opus'
 alias ytl='yt-dlp --list-formats'
