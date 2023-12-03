@@ -38,8 +38,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-conditional_source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -48,8 +48,9 @@ my-backward-delete-word () {
    local WORDCHARS='~!#$%^*<>?+'
    zle backward-delete-word
 }
-zle -N my-backward-delete-word
 
+zle -N my-backward-delete-word
 bindkey    '\e^?' my-backward-delete-word
 
 eval "$(direnv hook zsh)"
+if [ -e /home/michal/.nix-profile/etc/profile.d/nix.sh ]; then . /home/michal/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
