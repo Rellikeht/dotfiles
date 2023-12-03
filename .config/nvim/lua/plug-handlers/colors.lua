@@ -15,10 +15,10 @@ tsconfig.setup({
         "make", "ninja", "meson", "cmake",
 
         "sql", "rust", "cpp", "erlang", "cuda", "r", "java",
-        "scala", "ada", "odin", "fortran", "perl", "v"
+        "scala", "ada", "odin", "fortran", "perl",
+--        "v"
     },
 
-    -- TODO A nix
     -- TODO B lisp
     -- TODO C org
 

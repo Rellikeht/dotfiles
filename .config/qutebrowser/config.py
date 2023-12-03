@@ -95,6 +95,7 @@ JSENABLE = [
         '*://*.nixos.org/*',
         '*://*.freebsd.org/*',
 
+        'https://askubuntu.com/*',
         'https://stackoverflow.com/*',
         'https://serverfault.com/*',
         'https://*.stackoverflow.com/*',

@@ -14,6 +14,7 @@ pub fn main() !void {
         std.debug.warn("unable to seed random number generator: {}", .{err});
         return err;
     };
+
     const seed = std.mem.readIntNative(u64, &seed_bytes);
     var prng = std.rand.DefaultPrng.init(seed);
 

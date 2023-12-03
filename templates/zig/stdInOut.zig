@@ -5,7 +5,10 @@ pub fn main() !void {
     const stdin = std.io.getStdIn().reader();
     const stdout = std.io.getStdOut().writer();
 
-    _ = try stdin.readUntilDelimiter(&input, '\n');
+    while (try stdin.readUntilDelimiterOrEof(&input, '\n')) |line| {
+        try stdout.print("line: {s}\n", .{line});
+    }
 
-    try stdout.print("The user entered: {s}\n", .{input});
+    //  _ = try stdin.readUntilDelimiter(&input, '\n');
+    try stdout.print("The user entered: \"{s}\"\n", .{input});
 }

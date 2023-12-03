@@ -96,4 +96,4 @@ let g:vimtex_compiler_method = 'latexmk'
 " for quick scope to activate with delay
 let g:qs_delay = 50
 
-let g:zig_fmt_autosave = 0
+let g:zig_fmt_autosave = 1
