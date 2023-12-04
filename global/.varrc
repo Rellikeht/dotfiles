@@ -1,17 +1,17 @@
 #better colors for man
-LESS_TERMCAP_md=$'\e[01;31m' \
-LESS_TERMCAP_me=$'\e[0m' \
-LESS_TERMCAP_se=$'\e[0m' \
-LESS_TERMCAP_so=$'\e[01;44;33m' \
-LESS_TERMCAP_ue=$'\e[0m' \
-LESS_TERMCAP_us=$'\e[01;32m' \
+export LESS_TERMCAP_md=$'\e[01;31m' \
+export LESS_TERMCAP_me=$'\e[0m' \
+export LESS_TERMCAP_se=$'\e[0m' \
+export LESS_TERMCAP_so=$'\e[01;44;33m' \
+export LESS_TERMCAP_ue=$'\e[0m' \
+export LESS_TERMCAP_us=$'\e[01;32m' \
 
 #bind  '"\C-\\":"fzf"'
-PAGER=less
+export PAGER='less -r'
 
 #PLAN9=/ext/plan9
-[ -n "$PLAN9" ] && PATH=$PATH:$PLAN9/bin
-PATH=$PATH:/usr/lib/xscreensaver
+[ -n "$PLAN9" ] && export PATH=$PATH:$PLAN9/bin
+export PATH=$PATH:/usr/lib/xscreensaver
 
 if [ "$(uname)" = "Linux" ]
 then
@@ -19,7 +19,7 @@ then
 else
     export TERMINFO=/usr/local/share/terminfo
 fi
-TERM=st-24bit
+export TERM=st-24bit
 
 [ -e "/etc/.varrc_local" ] && source /etc/.varrc_local
 
@@ -29,4 +29,4 @@ TERM=st-24bit
 #	#TERM=xterm-24bit
 #fi
 
-PYTHONDONTWRITEBYTECODE="true"
+export PYTHONDONTWRITEBYTECODE="true"

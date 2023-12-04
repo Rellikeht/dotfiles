@@ -1,5 +1,12 @@
-Plug 'mbbill/undotree' " TODO A
-Plug 'junegunn/fzf' " TODO A
+" TODO A
+Plug 'mbbill/undotree'
+
+" TODO A
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" TODO A
+Plug 'romainl/vim-tinyMRU'
 
 " TODO C defaults work great
 Plug 'unblevable/quick-scope'
