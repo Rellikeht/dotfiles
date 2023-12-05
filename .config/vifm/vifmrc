@@ -1,3 +1,4 @@
+" TODO Generally this file is one big todo
 " vim: filetype=vifm :
 " Sample configuration file for vifm (last updated: 31 August, 2021)
 " You can edit this file by hand.
@@ -500,3 +501,5 @@ nnoremap <a-o> :sync %c<cr>
 "     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
 "
 " let $VIFM_SERVER_NAME = v:servername
+
+nmap g! :shell<CR>

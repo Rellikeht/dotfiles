@@ -247,6 +247,7 @@ alias gbl='git branch --list'
 alias glc='git log --color=always'
 alias gdf='git diff --color=always'
 alias gdn='git diff --color=auto'
+alias gdd='git diff | delta'
 
 # alias gal='gad .'
 alias gad='git add'

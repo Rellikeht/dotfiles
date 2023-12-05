@@ -8,18 +8,19 @@ export LESS_TERMCAP_us=$'\e[01;32m' \
 
 #bind  '"\C-\\":"fzf"'
 export PAGER='less -r'
+export MANPAGER=less
 
 #PLAN9=/ext/plan9
 [ -n "$PLAN9" ] && export PATH=$PATH:$PLAN9/bin
 export PATH=$PATH:/usr/lib/xscreensaver
 
-if [ "$(uname)" = "Linux" ]
-then
-    export TERMINFO=/usr/share/terminfo
-else
-    export TERMINFO=/usr/local/share/terminfo
-fi
-export TERM=st-24bit
+#if [ "$(uname)" = "Linux" ]
+#then
+#    export TERMINFO=/usr/share/terminfo
+#else
+#    export TERMINFO=/usr/local/share/terminfo
+#fi
+#export TERM=st-24bit
 
 [ -e "/etc/.varrc_local" ] && source /etc/.varrc_local
 
@@ -30,3 +31,5 @@ export TERM=st-24bit
 #fi
 
 export PYTHONDONTWRITEBYTECODE="true"
+
+export WORDCHARS='%~!?+'

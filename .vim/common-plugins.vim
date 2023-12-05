@@ -4,6 +4,7 @@ Plug 'mbbill/undotree'
 " TODO A
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'vifm/vifm.vim'
 
 " TODO A
 Plug 'romainl/vim-tinyMRU'
