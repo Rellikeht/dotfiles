@@ -1,7 +1,50 @@
 local lspconfig = require('lspconfig')
 
-vim.keymap.set('n', '<Leader>dd', vim.diagnostic.open_float)
+local diag_modes = {'n'}
+local buf_modes = {'n', 'v'}
+
 -- TODO other diagnostics, errors, repairs, info...
+vim.keymap.set(diag_modes, '<Leader>df', vim.diagnostic.open_float)
+vim.keymap.set(diag_modes, '<Leader>dp', vim.diagnostic.goto_prev)
+vim.keymap.set(diag_modes, '<Leader>dn', vim.diagnostic.goto_next)
+--vim.keymap.set(diag_modes, '<Leader>dl', vim.diagnostic.setloclist)
+
+-- Copy from lspconfig help :(
+-- TODO do that well :(
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+callback = function(ev)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+  -- Buffer local mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local opts = { buffer = ev.buf }
+
+  vim.keymap.set(buf_modes, '<Leader>dd', vim.lsp.buf.declaration, opts)
+  vim.keymap.set(buf_modes, '<Leader>dD', vim.lsp.buf.definition, opts)
+  vim.keymap.set(buf_modes, '<Leader>dh', vim.lsp.buf.hover, opts)
+  vim.keymap.set(buf_modes, '<Leader>di', vim.lsp.buf.implementation, opts)
+  vim.keymap.set(buf_modes, '<Leader>ds', vim.lsp.buf.signature_help, opts)
+--  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.add_workspace_folder, opts)
+--  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.remove_workspace_folder, opts)
+
+--  vim.keymap.set(buf_modes, '<Leader>', function()
+--    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--  end, opts)
+
+  vim.keymap.set(buf_modes, '<Leader>dt', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set(buf_modes, '<Leader>dR', vim.lsp.buf.rename, opts)
+  vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
+  vim.keymap.set(buf_modes, '<Leader>dr', vim.lsp.buf.references, opts)
+  vim.keymap.set(buf_modes, '<Leader>dF', function()
+    vim.lsp.buf.format { async = true }
+  end, opts)
+
+end,
+})
 
 local function ssetup(server)
     local config = lspconfig[server]
@@ -75,7 +118,7 @@ lspconfig.rust_analyzer.setup({
     capabilities = Capabilities,
 
     settings = {
-        ["rust-analyzer"] = {
+        ['rust-analyzer'] = {
             -- Doesn't solve the problem
             --standalone = true,
             --workspaceFolders = false,
@@ -89,9 +132,9 @@ lspconfig.rust_analyzer.setup({
 
             imports = {
                 granularity = {
-                    group = "module",
+                    group = 'module',
                 },
-                prefix = "self",
+                prefix = 'self',
             },
 
             cargo = {
@@ -116,8 +159,8 @@ lspconfig.rust_analyzer.setup({
 --         capabilities = Capabilities,
 -- 
 --         settings = {
---             ["nil_ls"] = {
---                 nixpkgsInputName = "nixos",
+--             ['nil_ls'] = {
+--                 nixpkgsInputName = 'nixos',
 --             }
 --         }
 --     })

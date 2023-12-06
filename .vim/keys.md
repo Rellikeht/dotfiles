@@ -68,8 +68,7 @@ e, k, o, q, u, x, z
 
 ## Nvim only
 - w, f, l, <Leader> - easymotion ; TODO
-- e, E, d, D - code plugins ; NOT IMPLEMENTED
-- dd - show diagnostic in floating window
+- e, E, D - code plugins ; NOT IMPLEMENTED
 - s - treesitter ; NOT IMPLEMENTED
 - h - harpoon ; NOT IMPLEMENTED
 
@@ -78,6 +77,7 @@ e, k, o, q, u, x, z
 - g - git ; NOT IMPLEMENTED
 - u - undo tree ; NOT IMPLEMENTED
 - f - fuzzy finder ; NOT IMPLEMENTED
+- d - lspconfig diagnostics and lsp actions
 
 # g combinations
 Available (useless otherwise):
