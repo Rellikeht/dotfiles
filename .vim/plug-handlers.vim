@@ -97,3 +97,16 @@ let g:vimtex_compiler_method = 'latexmk'
 let g:qs_delay = 50
 
 let g:zig_fmt_autosave = 1
+
+" unicode.vim
+
+let g:Unicode_no_default_mappings = v:true
+
+" TODO
+nmap <Leader>sm <Plug>(MakeDigraph)
+vmap <Leader>sm <Plug>(MakeDigraph)
+imap <m-d> <Plug>(DigraphComplete)
+imap <m-u> <Plug>(UnicodeComplete)
+imap <m-h> <Plug>(HTMLEntityComplete)
+imap <m-f> <Plug>(UnicodeFuzzy)
+nmap <leader>ss <Plug>(UnicodeSwapCompleteName)
