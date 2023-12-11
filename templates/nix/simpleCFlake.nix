@@ -8,16 +8,17 @@
     nixpkgs,
   }: let
     system = "x86_64-linux";
+    name = "PACKAGE NAME";
+    src = self;
   in {
     packages.x86_64-linux.default = with import nixpkgs {system = system;};
       stdenv.mkDerivation {
-        name = "PACKAGE NAME";
-        src = self;
+        inherit name src;
 
         PREFIX = "$(out)";
         CC = pkgs.gcc;
 
-#       Build dependencies
+        #       Build dependencies
         buildInputs = with pkgs; [
           xorg.libX11
           xorg.libXft
@@ -32,7 +33,6 @@
           mkdir -p $out/bin
           make install
           ";
-
       };
   };
 }

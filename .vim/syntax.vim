@@ -29,7 +29,9 @@ function NixFmt()
     " Everything hardcoded, because vim goes crazy when using
     " variables and can't be or is very hard to get synchronous
     if executable('alejandra') && b:buffmt
-        0,$!alejandra -q
+        let pos = getpos(".")
+        0,$!alejandra -qq
+        call setpos(".", pos)
     endif
 endfunction
 
