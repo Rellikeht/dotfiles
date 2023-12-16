@@ -11,6 +11,7 @@
 
 .config/vifm/vifminfo*
 .config/vifm/vifm-help.txt
+.config/vifm/*local*
 
 .config/kak/autoload/autoload
 .vim/plugged

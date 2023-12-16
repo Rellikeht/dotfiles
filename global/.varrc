@@ -33,3 +33,5 @@ export PATH=$PATH:/usr/lib/xscreensaver
 export PYTHONDONTWRITEBYTECODE="true"
 
 export WORDCHARS='%~!?+'
+
+export NIX_REMOTE=daemon
