@@ -46,30 +46,22 @@ silent () {
     noerr "$@" >/dev/null
 }
 
-dirf () {
-	local D
-	D=$(dir_arg "$1")
-	noerr find_system_special "$D" -maxdepth 2 -type d -a \
-		-regex "${D%/}(/[^.][^/]*)*" | \
-		fzy
-}
+# TODO ??
+#dirf () {
+#	local D
+#	D=$(dir_arg "$1")
+#	noerr find_system_special "$D" -maxdepth 2 -type d -a \
+#		-regex "${D%/}(/[^.][^/]*)*" | \
+#		fzy
+#}
+#
+#alias dirfp='dirf ..'
 
-dirfv () {
-	local D
-	D=$(dir_arg "$1")
-	noerr find_system_special "$D" -type d | fzy
-}
-
-dirfv2 () {
-	local D
-	D=$(dir_arg "$1")
-	noerr find_system_special "$D" -maxdepth 2 -type d | fzy
-}
-
-alias dirfp='dirf ..'
+#alias cf='cd $(dirf)'
+#alias cfp='cd $(dirfp)'
 
 # ============================================================
-# 						MAINS
+# 						MAIN
 # ============================================================
 
 lh () {
@@ -97,7 +89,7 @@ cdll () {
 }
 
 llh () {
-    ll "$1" | head
+    ll $@ | head
 }
 
 maxe () {
@@ -245,6 +237,10 @@ fi
 
 hms () {
     hm --no-discard-stderr $@
+}
+
+rlw() {
+    readlink -f $(which "$1")
 }
 
 fnd() {

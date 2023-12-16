@@ -1,9 +1,29 @@
 #!/bin/sh
 
 ## Get all possible programs
-alias progs='echo $PATH | xargs -d ":" ls 2>/dev/null | grep -vE "^(.*:)?$"'
 
-if ! progs | grep -E '^sudo$' 2>&1 >/dev/null
+alias progp=' \
+    echo $PATH | \
+    xargs -d ":" -I{} \
+    find -L "{}" -executable -a -type f \
+    2>/dev/null
+    '
+
+alias progs=' \
+    echo $PATH | \
+    xargs -d ":" -I{} \
+    find -L "{}" -executable -a -type f \
+    -printf "%f\n" 2>/dev/null \
+    '
+
+alias prgs='progs | sort | uniq'
+
+#alias progs=' \
+#    echo $PATH | \
+#    xargs -d ":" ls 2>/dev/null | \
+#    grep -vE "^(.*:)?$"'
+
+if ! prgs | grep -E '^sudo$' 2>&1 >/dev/null
 then
     alias sudo=doas
 fi
@@ -31,6 +51,8 @@ alias egrep='grep -E'
 alias eg='egrep'
 alias grepWgrep='its_just_grep --invert-match its_just_grep'
 
+alias rlf='readlink -f'
+
 alias bat='bat --color always'
 alias batl='bat --language lisp'
 alias less='less --ignore-case' # --raw-control-chars
@@ -45,9 +67,11 @@ alias ddate='date "+%d.%m.%Y"'
 
 ## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
-alias tbd='top --batch --delay 1'
+# alias tbd='top --batch --delay 1'
+alias tbd='top -b -d 1'
 alias tbg='tbd | grepWgrep | its_just_grep -E'
-alias tbgm='tbd --scale-task-mem m | grepWgrep | its_just_grep -E'
+# alias tbgm='tbd --scale-task-mem m | grepWgrep | its_just_grep -E'
+alias tbgm='tbd -e m | grepWgrep | its_just_grep -E'
 
 alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
@@ -91,7 +115,7 @@ alias fkc="fe kak"
 alias fk="fed kak"
 
 alias groff='groff -ktep'
-alias grs='groff -ms'
+alias grm='groff -ms'
 alias gsf='grs -Tpdf'
 
 # Settings
@@ -103,16 +127,14 @@ alias sfn='source /etc/.funcrc'
 alias bal='bat /etc/.aliasrc'
 alias bfn='bat /etc/.funcrc'
 
-# Tools
-alias qc="qalc -s 'decimal comma off'"
-alias de='dc -e'
+# Fuzzy
 
 ## single
 alias fzs='fzf +m -e'
 ## multi
 alias fzf='fzf -m -e'
 
-# fzy
+## fzy
 alias fzy='fzy -l 20'
 
 ## default fuzzy finer with single match
@@ -120,27 +142,39 @@ alias deffuz=fzs
 
 ## dirs
 alias fzd='find -type d | deffuz'
+alias fzd2='find -maxdepth 2 -type d | deffuz'
+alias fzp='find .. -maxdepth 2 -type d | deffuz'
+
 ## cd with fuzzy dirs
 alias cdf='cd "$(fzd)"'
+alias cdf2='cd "$(fzd2)"'
+alias cdp='cd "$(fzp)"'
 
 ## files
-alias fff="fzf | sed 's/^.*$/\"\0\"/g'"
-alias ffe='fff | xargs'
+#alias fff="fzf | sed 's/^.*$/\"\0\"/g'"
+#alias ffx='fff | xargs'
+alias ffx='fzf | xargs'
 
 ## fuzzy select program to run on separate shell
-alias fze='progs | deffuz | sh -s'
+alias fze='prgs | deffuz | sh -s'
 ## fuzzy select program to run
-alias fzr='$(progs | deffuz)'
+alias fzr='$(prgs | deffuz)'
 
-# TODO merge that cd's
-alias cf='cd $(dirf)'
-alias cfv='cd $(dirfv2)'
-alias cfvn='cd $(dirfv)'
-alias cfp='cd $(dirfp)'
+# Tools
+
+# Maybe with stty will be better
+alias gth='glow -w $(($(tput cols)-2))'
+
+alias qc="qalc -s 'decimal comma off'"
+alias de='dc -e'
+
+alias sa='screen attach'
 
 alias tm=tmux
 alias tma='tmux attach'
-alias sa='screen attach'
+alias tms='tmux list-sessions'
+alias tmq='tmux kill-session'
+alias tmQ='tmux kill-server'
 
 alias bm='BEMENU_BACKEND=curses bemenu'
 alias nnn='nnn -d'
@@ -196,6 +230,9 @@ alias aria='aria2c --continue=true \
     --seed-ratio=0.0 --check-integrity=true \
     --file-allocation=falloc'
 
+alias w3m='w3m -B -H'
+alias w3h='w3m -T text/html'
+
 # Languages
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
@@ -239,9 +276,10 @@ alias gco='git checkout'
 alias gbr='git branch'
 alias grb='git rebase'
 alias gmb='git merge'
+alias grc='git rm --cached'
 
 alias gst='git status'
-alias grc='git remote show'
+alias grs='git remote show'
 alias gcb='git branch --show-current'
 alias gbl='git branch --list'
 alias glc='git log --color=always'
@@ -301,6 +339,13 @@ then
     alias Rc="/usr/local/bin/R"
 
 else
+
+    # TODO Distro select and maybe another
+    # alias file for selection
+    # Checking:
+    # /etc/*-release
+    # lsb_release
+    # /etc/issue
 
     alias lsf='lsn --classify --almost-all \
         --dereference-command-line-symlink-to-dir'

@@ -1,5 +1,5 @@
 doTheThing :: [String] -> [Int]
-doTheThing [] = []
+doTheThing [] = []
 doTheThing [_] = []
 doTheThing (_:y:xs) = result : doTheThing xs
   where
