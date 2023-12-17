@@ -227,16 +227,18 @@ filextype {*.pdf},<application/pdf>
 fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
 
 filextype {*.epub},<application/epub>
-    \ tzathura %f %i &,
+    \ tzathura %f &,
     \ zathura %f %i &,
 
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
-    \ zathura %f &,
+    \ tzathura %f &,
+    \ zathura %f %i &,
     \ gv %c %i &
 
 filextype {*.djvu},<image/vnd.djvu>
     \ {View in zathura}
-    \ zathura %f &,
+    \ tzathura %f &,
+    \ zathura %f %i &,
     \ {View in apvlv}
     \ apvlv %f &
 
@@ -244,9 +246,9 @@ filextype {*.djvu},<image/vnd.djvu>
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
        \ {Play using mpv}
-       \ mpv %f,
+       \ mpv %f %i &,
        \ {Play using vlc}
-       \ vlc %f,
+       \ vlc %f %i &,
        \ {Play using ffplay}
        \ ffplay -nodisp -autoexit %c,
 
@@ -264,9 +266,9 @@ filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.as[fx]},
          \<video/*>
         \ {View using mpv}
-        \ mpv %f,
+        \ mpv %f %i &,
         \ {View using vlc}
-        \ vlc %f,
+        \ vlc %f %i &,
         \ {View using ffplay}
         \ {View using ffplay}
         \ ffplay -fs -autoexit %f,
@@ -599,6 +601,7 @@ nnoremap <a-o> :sync %c<cr>
 " Compatible with my vim config
 nmap ,<Space> :set hls!<CR>
 map ,qw :echo system("du -sh ".expand("%f"))<CR>
+map <Space> <C-w>
 
 " Uncompatible
 nmap g! :shell<CR>

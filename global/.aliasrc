@@ -224,11 +224,15 @@ alias gt='/usr/bin/time'
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
-alias aria='aria2c --continue=true \
+alias aria_helper='aria2c --continue=true \
     --max-concurrent-downloads=200 --optimize-concurrent-downloads=true \
     --bt-detach-seed-only=true --bt-max-peers=80 \
-    --seed-ratio=0.0 --check-integrity=true \
-    --file-allocation=falloc'
+    --seed-ratio=0.0 --check-integrity=true '
+
+# It may be better to automate this somehow instead
+# of having multiple commands, but this will be hard
+alias aria='aria_helper --file-allocation=falloc'
+alias ariap='aria_helper --file-allocation=prealloc'
 
 alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'
