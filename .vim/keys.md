@@ -61,7 +61,13 @@ e, k, o, q, u, x, z
 
 # Leader (,) combinations
 ## Simple mappings
-- q - miscelanous, settings
+- q - miscelanous, settings:
+    + f,F - formatting on write
+    + c,C - compiling on write
+    + 0,1,2,...,9 - print variables
+    + m - man program
+    + M - set make program to make
+
 - c, C, r, R, i, I, b, B - code ; TODO
 - <Space> - set hls!
 - ; - commands

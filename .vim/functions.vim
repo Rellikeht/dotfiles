@@ -109,3 +109,20 @@ function ToggleManProg()
     endif
     echo &keywordprg
 endfunction
+
+function NixFmt()
+    " Everything hardcoded, because vim goes crazy when using
+    " variables and can't be or is very hard to get synchronous
+    if executable('alejandra') && b:buffmt
+        let pos = getpos('.')
+        0,$!alejandra -qq
+        call setpos('.', pos)
+    endif
+endfunction
+
+let g:groff_pdf = 'groff -ktep -T pdf '
+function CompileGroffMs()
+    if b:bufcomp
+        call system(g:groff_pdf.' -ms '.expand('%').' > '.expand('%:t:r').'.pdf')
+    endif
+endfunction

@@ -12,14 +12,25 @@ let mapleader = ','
 " General purpose leader mappings
 nmap <Leader><Space> :set hls!<CR>
 map <Leader>qq :call Wmt()<CR>
-map <Leader>;c :!clear<CR><CR>
+map <Leader>;C :!clear<CR><CR>
 map <Leader>;l :!ls<CR>
 map <Leader>;e :Ex<CR>
 map <Leader>;r :!%<CR>
+map <Leader>;m :make<CR>
+map <Leader>;M :make
 map <Leader>qm :call ToggleManProg()<CR>
+map <Leader>qM :set makeprg=make<CR>
+
+map <Leader>qf :let b:buffmt=!b:buffmt<CR>
+map <Leader>qF :let g:buffmt=!g:buffmt<CR>
+map <Leader>q1 :echo b:buffmt<CR>
+
+map <Leader>qc :let b:bufcomp=!b:bufcomp<CR>
+map <Leader>qC :let g:bufcomp=!g:bufcomp<CR>
+map <Leader>q2 :echo b:bufcomp<CR>
 
 " TODO A wc on buffer
-"map <Leader>qw
+"map <Leader>;c
 
 " TODO B running command under cursor
 " TODO C running command in given register (???)

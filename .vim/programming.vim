@@ -209,3 +209,5 @@ call GenerateBindingsHybrid('nim', nlvmbindings)
 
 " ocaml
 " TODO
+
+" TODO incorporate internal make and compile tools
