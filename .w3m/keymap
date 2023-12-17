@@ -1,3 +1,4 @@
+# Some keycodes:
 # Ctrl      : C-, ^
 # Escape    : ESC-, M-, ^[
 # Space     : SPC, ' '
@@ -8,12 +9,23 @@
 # Right	    : RIGHT, ^[[C
 # Left	    : LEFT, ^[[D
 
-# TESTED
+# And tutorial
+# http://w3m.rocks/howto/
 
-keymap h MOVE_LEFT
-keymap j MOVE_DOWN
-keymap k MOVE_UP
-keymap l MOVE_RIGHT
+# GOOD
+
+keymap h LEFT
+keymap j UP
+keymap k DOWN
+keymap l RIGHT
+
+keymap < SHIFT_LEFT
+keymap > SHIFT_RIGHT
+
+keymap H MOVE_LEFT
+keymap J MOVE_DOWN
+keymap K MOVE_UP
+keymap L MOVE_RIGHT
 
 keymap gg BEGIN
 keymap G END
@@ -25,16 +37,6 @@ keymap UP MOVE_UP
 keymap DOWN MOVE_DOWN
 keymap RIGHT MOVE_RIGHT
 keymap LEFT MOVE_LEFT
-
-# This needs rethinking
-# ---
-
-keymap zh SHIFT_LEFT
-keymap zl SHIFT_RIGHT
-#keymap < SHIFT_LEFT
-#keymap > SHIFT_RIGHT
-
-# ---
 
 keymap 0 LINE_BEGIN
 keymap $ LINE_END
@@ -82,19 +84,17 @@ keymap :E EDIT_SCREEN
 keymap :g GOTO_LINE
 keymap :G GOTO
 
+keymap gh PREV_TAB
+keymap gl NEXT_TAB
 keymap R RELOAD
-keymap H PREV_TAB
-keymap L NEXT_TAB
 keymap t TAB_LINK
 keymap T NEW_TAB
 keymap Q CLOSE_TAB
 
 keymap gj PREV
 keymap gk NEXT
-keymap J UP
-keymap K DOWN
-keymap gh TAB_LEFT
-keymap gl TAB_RIGHT
+keymap gH TAB_LEFT
+keymap gL TAB_RIGHT
 keymap gw WRAP_TOGGLE
 
 keymap { PREV_LINK
