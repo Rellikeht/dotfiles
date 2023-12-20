@@ -3,6 +3,12 @@
 .config/qutebrowser/dracula/*
 .config/qutebrowser/qsettings
 
+.config/transmission*/resume/
+.config/transmission*/torrents/
+.config/transmission*/blocklists/
+.config/transmission*/dht.dat
+.config/transmission*/stats.json
+
 .config/youtube-viewer/*.txt
 .config/youtube-viewer/instances.json
 .config/youtube-viewer/*/
@@ -22,6 +28,7 @@
 .config/nvim/plugins
 .config/nim/test
 .config/ocaml/local.ml
+.config/qalculate/qalc.history
 
 .w3m/cookie
 .w3m/history
