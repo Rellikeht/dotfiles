@@ -4,6 +4,20 @@
 This is for comments
 .END
 
+.nr PO 2c
+.nr LL 17c
+.nr HM 1.5c
+.nr FM 1.5c
+.fam H
+
+.ig END
+Left margin (page offset)
+Line length
+Top margin
+Bottom margin
+Font family
+.END
+
 .ig END
 Inline equations
 .END

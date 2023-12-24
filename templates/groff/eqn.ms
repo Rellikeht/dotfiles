@@ -178,17 +178,21 @@ define Zn %^ℤ^%
 define Qn %^ℚ^%
 define Rn %^ℝ^%
 define Cn %^ℂ^%
+
+define comment ' This is ugly, but may work '
+define Nn ' roman { N back 56.5 N } '
+define Zn ' roman { Z back 45 Z } '
+define Qn ' roman { Q back 58 Q } '
+define Rn ' roman { R back 53 R } '
+define Cn ' roman { C back 52 C } '
+
+Nn ~ Zn ~ Qn ~ Rn ~ Cn
+
 .EN
 
 .EQ
 
-Nn
-Zn
-Qn
-Rn
-Cn
-
-x in Rn, y in Qn rA x c. y = y c* x
+x in Rn , y in Qn rA x c. y = y c* x
 
 .EN
 

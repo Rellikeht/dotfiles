@@ -80,7 +80,7 @@ e, k, o, q, u, x, z
 
 ## With plugins
 - t - tmux
-- g - git ; NOT IMPLEMENTED
+- g - git ; TODO
 - u - undo tree ; NOT IMPLEMENTED
 - f - fuzzy finder ; NOT IMPLEMENTED
 - s - unicode.vim
