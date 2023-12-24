@@ -12,7 +12,7 @@
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd=vim
+set vicmd=svim
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
 
@@ -134,7 +134,7 @@ set ignorecase
 set smartcase
 
 " Don't highlight search results automatically
-" set nohlsearch
+set nohlsearch
 
 " Use increment searching (search while typing)
 set incsearch
@@ -336,13 +336,6 @@ fileviewer {*.o},<application/x-object>
     \ nm %f,
     \ strings %f,
 
-" Man page
-filetype {*.[1-8]},<text/troff>
-    \ man ./%c
-
-fileviewer {*.[1-8]},<text/troff>
-    \ man ./%c | col -b
-
 " Images
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ {View in sxiv}
@@ -450,11 +443,14 @@ filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
           \application/msword,
           \application/vnd.ms-excel>
         \ libreoffice %f &
+
 fileviewer {*.doc},<application/msword> catdoc %c
 fileviewer {*.docx},
           \<application/
            \vnd.openxmlformats-officedocument.wordprocessingml.document>
          \ docx2txt.pl %f -
+
+" TODO spreadsheets
 
 " For that i would need some better graphical file manager
 " Directories
@@ -462,13 +458,65 @@ fileviewer {*.docx},
 "        \ {View in pcmanfm}
 "        \ pcmanfm %f &,
 
-" TODO
-fileviewer {*.c},{*.cpp},{*.s},{*.asm},
-    \{*.rs},{*.hs},{*.go},{*.ml},{*.nim},{*.zig},{*.java},{*.d},
-    \{*.py},{*.r},{*.cl},{*.lisp},{*.scm},{*.jl},{*.js},{*.nix},{*.clj},
-    \{*.json},{*.toml},{*.yml},{*.xml},{*.conf},{*.md}
-    \ highlight -O truecolor %c,
-    \ bat %c
+filetype {*.[1-9]}
+    \ man ./%c
+
+fileviewer {*.[1-9]}
+    \ man ./%c | col -b
+
+" TODO languages and fucking style
+fileviewer {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
+    \?*.rs,?*.hs,?*.go,?*.ml,?*.nim,?*.zig,?*.jl,
+    \?*.java,?*.d,?*.clj,?*.scala,
+    \?*.py,?*.lua,?*.sh,?*.tcl,?*.vim,?*.vifm
+    \?*.cl,?*.lisp,?*.scm,?*.nix,?*.dhall,
+    \?*.html,?*.htm,?*.css,
+    \?*.r,?*.js,?*rb,
+    \?*.mzn,?*.pl,
+    \?*.json,?*.toml,?*.yml,?*.xml,?*.conf,?*.ini,
+    \?*.md,?*.csv,?*.tsv,
+    \Makefile,?*.cmake,
+    \.git*,
+    \}
+    \ highlight -O truecolor -s easter %c,
+    \ bat %c,
+
+" TODO cmake and other weird edge cases
+" Doesn't automatically recognize :(
+" \?*rc,?*common,?*local,?*dump,?*history,?*resources,?*setup
+
+" Hopefully this is correct
+fileviewer <text/troff>
+    \ highlight -O truecolor -s easter %c,
+    \ man ./%c | col -b
+
+filetype {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
+    \?*.rs,?*.hs,?*.go,?*.ml,?*.nim,?*.zig,?*.jl,
+    \?*.java,?*.d,?*.clj,?*.scala,
+    \?*.py,?*.lua,?*.sh,?*.tcl,?*.vim,?*.vifm
+    \?*.cl,?*.lisp,?*.scm,?*.nix,?*.dhall,
+    \?*.html,?*.htm,?*.css,
+    \?*.r,?*.js,?*rb,
+    \?*.mzn,?*.pl,
+    \?*.json,?*.toml,?*.yml,?*.xml,?*.conf,?*.ini,
+    \?*.json,?*.toml,?*.yml,?*.xml,?*.conf,?*.ini,
+    \?*.md,?*.csv,?*.tsv,?*.txt,
+    \Makefile,?*.cmake,
+    \?*rc,?*common,?*local,?*dump,?*history,?*resources,?*setup
+    \.git*,
+    \},<text/troff>
+    \ svim %f,
+    \ nvim %f,
+    \ vim %f,
+    \ kak %f,
+    \ vis %f,
+    \ emacs -nw %f,
+    \ mg %f,
+    \ vi %f,
+    \ bat %f,
+
+filetype <text/troff>
+    \ man ./%c,
 
 " WHAT, 
 " TODO highlighting for languages, that would be painful

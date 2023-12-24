@@ -213,3 +213,19 @@ pile {
     { root(1000,11) }
 }
 .EN
+
+.EQ
+f prime prime ( x ) = { d sup 2 f } over { {d x} sup 2 }
+.EN
+
+.ig END
+Some symbols fun
+.EQ
+sigma ~ zeta ~ omega ~ pi
+{sigma} ~
+"sigma" ~
+" sigma " ~
+" sigma ~ zeta ~ omega ~ pi "
+\"
+.EN
+.END
