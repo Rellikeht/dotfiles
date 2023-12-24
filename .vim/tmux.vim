@@ -97,7 +97,7 @@ map <Leader>tP :Tmux select-pane -m<CR>
 map <Leader>tv :Tmux send-keys -t {last} C-l<CR>
 map <Leader>tV :call MakeThirdVertical()<CR>
 
-" map <Leader>t :call Ccd()<CR>
+map <Leader>tC :call Ccd()<CR>
 map <Leader>tL :Tmux list-panes <CR>
 map <Leader>tq :Tmux kill-pane -t {last} <CR>
 
