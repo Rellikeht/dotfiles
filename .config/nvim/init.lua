@@ -1,7 +1,9 @@
 require('functions')
 
 -- This line makes pacman-installed global Arch Linux vim packages work.
-vim.cmd('silent! source /usr/share/nvim/archlinux.vim')
+-- vim.cmd('silent! source /usr/share/nvim/archlinux.vim')
+-- But that isn't needed really
+
 vim.cmd('source ~/.vimrc')
 vim.cmd.colorscheme('elflord')
 
@@ -19,7 +21,7 @@ Plug('nvim-lua/plenary.nvim')
 
 -- LOOK
 
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug('norcalli/nvim-colorizer.lua') -- TODO C
 -- Plug('folke/tokyonight.nvim') -- TODO C
 
@@ -30,15 +32,11 @@ Plug('norcalli/nvim-colorizer.lua') -- TODO C
 
 Plug('easymotion/vim-easymotion') -- TODO A
 Plug('ThePrimeagen/harpoon') -- TODO A
-Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
+Plug('nvim-telescope/telescope.nvim') -- TODO A
+--Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 
 -- TODO C test that
 --Plug('nvim-treesitter/nvim-treesitter-textobjects')
-
--- SPECIALIZED
-
---Plug('kmonad/kmonad-vim') -- TODO C
-Plug('mattn/emmet-vim') -- TODO D
 
 -- COMPLETION
 
@@ -65,7 +63,7 @@ Plug('nvim-treesitter/nvim-treesitter-refactor') -- TODO B
 -- NICE TO HAVE
 
 -- Sadly doesn't work with my build of vim
-Plug('tpope/vim-characterize')
+-- Plug('tpope/vim-characterize')
 
 vim.call('plug#end')
 

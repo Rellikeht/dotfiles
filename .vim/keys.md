@@ -83,7 +83,7 @@ e, k, o, q, u, x, z
 - g - git ; TODO
 - u - undo tree ; NOT IMPLEMENTED
 - f - fuzzy finder ; NOT IMPLEMENTED
-- s - unicode.vim
+- s - unicode
 
 # g combinations
 Available (useless otherwise):

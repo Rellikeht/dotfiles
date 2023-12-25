@@ -100,13 +100,18 @@ let g:zig_fmt_autosave = 1
 
 " unicode.vim
 
-let g:Unicode_no_default_mappings = v:true
+let g:Unicode_no_default_mappings = 1
 
-" TODO
-nmap <Leader>sm <Plug>(MakeDigraph)
-vmap <Leader>sm <Plug>(MakeDigraph)
-imap <m-d> <Plug>(DigraphComplete)
-imap <m-u> <Plug>(UnicodeComplete)
-imap <m-h> <Plug>(HTMLEntityComplete)
-imap <m-f> <Plug>(UnicodeFuzzy)
-nmap <leader>ss <Plug>(UnicodeSwapCompleteName)
+" TODO Uncomfortable mappings, should be shorter
+" but fucking alt refuses to work
+imap <c-x><c-g> <Plug>(DigraphComplete)
+imap <c-x><c-u> <Plug>(UnicodeComplete)
+imap <c-x><c-h> <Plug>(HTMLEntityComplete)
+imap <c-x><c-m> <Plug>(UnicodeFuzzy)
+
+map <Leader>sm <Plug>(MakeDigraph)
+map ga <Plug>(UnicodeGA)
+
+" ???
+"map <Leader>sT <Plug>(ToggleUnicodeCompletion)
+"nmap <leader>sS <Plug>(UnicodeSwapCompleteName)
