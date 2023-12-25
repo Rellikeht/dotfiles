@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 ## Get all possible programs
 
@@ -233,6 +233,8 @@ alias aria_helper='aria2c --continue=true \
 # of having multiple commands, but this will be hard
 alias aria='aria_helper --file-allocation=falloc'
 alias ariap='aria_helper --file-allocation=prealloc'
+
+alias trr='transmission-remote'
 
 alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'

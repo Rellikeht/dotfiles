@@ -1,14 +1,25 @@
-" TODO some simple fugitive commands
-" that won't interfere with other plugins
+" fugitive
 
 map <leader>gd :Gvdiffsplit<CR>
 map <leader>gsd :Gvdiffsplit
+map <leader>gop :diffput<CR>
+map <leader>gog :diffget<CR>
+
+map <leader>gm :G mergetool<CR>
 map <leader>gc :Git<CR>
 map <leader>gss :G status<CR>
 map <leader>gl :G log<CR>
 map <leader>gr :G reflog<CR>
 
-map <leader>gfa :G add %<CR>
+map <leader>goa :G add %<CR>
+map <leader>goc :G commit<CR>
+map <leader>gos :G push<CR>
+map <leader>gol :G pull<CR>
+map <leader>gor :Gread<CR>
+map <leader>gow :Gwrite<CR>
+
+map <leader>GF :GFiles<CR>
+map <leader>GD :GDelete<CR>
 
 " gv
 
@@ -27,14 +38,14 @@ map <leader>g? :GV?<CR>
 
 " signify
 
-map <leader>gsT :SignifyToggle<CR>
-map <leader>gsH :SignifyToggleHighlight<CR>
-map <leader>gsR :SignifyRefresh<CR>
-map <leader>gsL :SignifyList<CR>
-map <leader>gsD :SignifyDisableAll<CR>
-map <leader>gsE :SignifyEnableAll<CR>
+map <leader>gst :SignifyToggle<CR>
+map <leader>gsh :SignifyToggleHighlight<CR>
+map <leader>gsd :SignifyDisableAll<CR>
+map <leader>gse :SignifyEnableAll<CR>
+map <leader>gsr :SignifyRefresh<CR>
+map <leader>gsl :SignifyList<CR>
 
-map <leader>gD :SignifyHunkDiff<CR>
+map <leader>gh :SignifyHunkDiff<CR>
 map <leader>gu :SignifyHunkUndo<CR>
 map <leader>gj <plug>(signify-next-hunk)
 map <leader>gk <plug>(signify-prev-hunk)
