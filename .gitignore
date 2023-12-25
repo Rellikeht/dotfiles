@@ -57,6 +57,7 @@ templates/**/*
 *.jpeg
 !.scrs/*.png
 *.swp
+*.swo
 __pycache__/
 autoload
 

@@ -28,5 +28,3 @@ endif
 set background=light " dark
 
 source ~/.vim/syntax.vim
-source ~/.vim/tmux.vim
-source ~/.vim/programming.vim

@@ -127,3 +127,8 @@ function CompileGroffMs()
         call system(g:groff_pdf.' -ms '.expand('%').' > '.expand('%:r').'.pdf')
     endif
 endfunction
+
+function GeneralUpgrade()
+    PlugUpgrade
+    PlugUpdate --sync
+endfunction

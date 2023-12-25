@@ -67,6 +67,8 @@ e, k, o, q, u, x, z
     + 0,1,2,...,9 - print variables
     + m - man program
     + M - set make program to make
+    + u - general plug upgrade
+    + P - plug clean
 
 - c, C, r, R, i, I, b, B - code ; TODO
 - <Space> - set hls!
@@ -80,7 +82,7 @@ e, k, o, q, u, x, z
 
 ## With plugins
 - t - tmux
-- g - git ; TODO
+- g,G - git
 - u - undo tree ; NOT IMPLEMENTED
 - f - fuzzy finder ; NOT IMPLEMENTED
 - s - unicode

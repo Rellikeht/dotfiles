@@ -274,7 +274,8 @@ alias Re="R -s -e"
 alias gpe='gnuplot -p -e'
 
 # git
-alias git='git --no-pager'
+alias gnp='git --no-pager'
+alias git='git --paginate'
 alias gsb='git submodule'
 alias gco='git checkout'
 alias gbr='git branch'

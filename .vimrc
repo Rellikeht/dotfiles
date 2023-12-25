@@ -29,7 +29,9 @@ if v:progname !~? "^vi"
         call plug#end()
         source ~/.vim/svim-plug-handlers.vim
     endif
+
     source ~/.vim/plug-handlers.vim
+    source ~/.vim/programming.vim
 endif
 
 silent! source ~/.vimrc.local

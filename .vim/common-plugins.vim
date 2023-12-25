@@ -30,7 +30,8 @@ Plug 'ryvnf/readline.vim'
 " TODO A
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 
 " TODO B write shortcuts somewhere
 Plug 'tpope/vim-surround'
@@ -53,11 +54,12 @@ Plug 'vale1410/vim-minizinc'
 Plug 'ocaml/vim-ocaml', {'for': 'ocaml'} " TODO B
 Plug 'lervag/vimtex', {'for': 'latex'} " TODO C
 Plug 'Gavinok/vim-troff'
-" nix plugin ??
+
+" TODO A
+Plug 'LnL7/vim-nix'
 
 " Plug 'kmonad/kmonad-vim'
 Plug 'mattn/emmet-vim', {'for': 'html'}
-
 
 Plug 'jpalardy/vim-slime'
 
