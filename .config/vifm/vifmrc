@@ -382,18 +382,17 @@ filextype {*.torrent},<application/x-bittorrent>
 fileviewer {*.torrent},<application/x-bittorrent>
     \ dumptorrent -v %c
 
-" FuseZipMount
 filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
-        \<application/zip,application/java-archive>
-       \ {View contents}
-       \ unzip -l %c | less,
-       \ zip -sf %c | less,
+    \<application/zip,application/java-archive>
+    \ unzip %c | less,
 
-       " Some day
-       " \ {Mount with fuse-zip}
-       " \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+    " Some day
+    " \ {Mount with fuse-zip}
+    " \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
 
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt
+" fileviewer *.zip,*.jar,*.war,*.ear,*.oxt
+fileviewer {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
+    \ {View contents}
     \ zip -sf %c | less,
     \ unzip -l %f | less,
 
@@ -635,21 +634,21 @@ nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
 
-" Example of standard two-panel file managers mappings
-nnoremap <f3> :!less %f<cr>
-nnoremap <f4> :edit<cr>
-nnoremap <f5> :copy<cr>
-nnoremap <f6> :move<cr>
-nnoremap <f7> :mkdir<space>
-nnoremap <f8> :delete<cr>
+"" Example of standard two-panel file managers mappings
+"nnoremap <f3> :!less %f<cr>
+"nnoremap <f4> :edit<cr>
+"nnoremap <f5> :copy<cr>
+"nnoremap <f6> :move<cr>
+"nnoremap <f7> :mkdir<space>
+"nnoremap <f8> :delete<cr>
 
-" Midnight commander alike mappings
-" Open current directory in the other pane
-nnoremap <a-i> :sync<cr>
-" Open directory under cursor in the other pane
-nnoremap <a-o> :sync %c<cr>
-" Swap panes
-"nnoremap <c-u> <c-w>x
+"" Midnight commander alike mappings
+"" Open current directory in the other pane
+"nnoremap <a-i> :sync<cr>
+"" Open directory under cursor in the other pane
+"nnoremap <a-o> :sync %c<cr>
+"" Swap panes
+""nnoremap <c-u> <c-w>x
 
 " ------------------------------------------------------------------------------
 

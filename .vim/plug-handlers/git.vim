@@ -2,8 +2,27 @@
 
 map <leader>gd :Gvdiffsplit<CR>
 map <leader>gsd :Gvdiffsplit
+
+" so there is dp and do
 map <leader>gop :diffput<CR>
 map <leader>gog :diffget<CR>
+map <leader>gb [c
+map <leader>gf ]c
+
+map <leader>gp0 :diffput //0<CR>
+map <leader>gp1 :diffput //1<CR>
+map <leader>gp2 :diffput //2<CR>
+map <leader>gp3 :diffput //3<CR>
+
+function DiffGet(pane)
+    execute 'diffget'.a:pane
+    diffupdate
+endfunction
+
+map <leader>gg0 :call DiffGet('//0')<CR>
+map <leader>gg1 :call DiffGet('//1')<CR>
+map <leader>gg2 :call DiffGet('//2')<CR>
+map <leader>gg3 :call DiffGet('//3')<CR>
 
 map <leader>gm :G mergetool<CR>
 map <leader>gc :Git<CR>
