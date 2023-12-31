@@ -1,4 +1,5 @@
 " fugitive
+" TODO branches
 
 map <leader>gd :Gvdiffsplit<CR>
 map <leader>gsd :Gvdiffsplit
@@ -9,20 +10,32 @@ map <leader>gog :diffget<CR>
 map <leader>gb [c
 map <leader>gf ]c
 
-map <leader>gp0 :diffput //0<CR>
-map <leader>gp1 :diffput //1<CR>
-map <leader>gp2 :diffput //2<CR>
-map <leader>gp3 :diffput //3<CR>
-
 function DiffGet(pane)
-    execute 'diffget'.a:pane
+    execute 'diffget' a:pane
     diffupdate
 endfunction
 
-map <leader>gg0 :call DiffGet('//0')<CR>
-map <leader>gg1 :call DiffGet('//1')<CR>
-map <leader>gg2 :call DiffGet('//2')<CR>
-map <leader>gg3 :call DiffGet('//3')<CR>
+function DiffPut(pane)
+    execute 'diffget' a:pane
+    diffupdate
+endfunction
+
+" ????
+map <leader>gg0 :call DiffGet('.git//0')<CR>
+map <leader>gg1 :call DiffGet('.git//1')<CR>
+map <leader>gg2 :call DiffGet('.git//2')<CR>
+map <leader>gg3 :call DiffGet('.git//3')<CR>
+
+" ???
+map <leader>gp0 :call DiffPut('.git//0')<CR>
+map <leader>gp1 :call DiffPut('.git//1')<CR>
+map <leader>gp2 :call DiffPut('.git//2')<CR>
+map <leader>gp3 :call DiffPut('.git//3')<CR>
+
+" ??
+map <leader>gpf :call DiffPut(expand('%:t'))<CR>
+map <leader>ggf :call DiffGet(expand('%:t'))<CR>
+map <leader>gu :G diffupdate<CR>
 
 map <leader>gm :G mergetool<CR>
 map <leader>gc :Git<CR>
@@ -65,7 +78,7 @@ map <leader>gsr :SignifyRefresh<CR>
 map <leader>gsl :SignifyList<CR>
 
 map <leader>gh :SignifyHunkDiff<CR>
-map <leader>gu :SignifyHunkUndo<CR>
+map <leader>gU :SignifyHunkUndo<CR>
 map <leader>gj <plug>(signify-next-hunk)
 map <leader>gk <plug>(signify-prev-hunk)
 map <leader>gJ 9999<leader>gj

@@ -1,6 +1,6 @@
 local lspconfig = require('lspconfig')
 
-local diag_modes = {'n'}
+local diag_modes = {'n', 'v'}
 local buf_modes = {'n', 'v'}
 
 -- TODO other diagnostics, errors, repairs, info...
@@ -23,25 +23,33 @@ callback = function(ev)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local opts = { buffer = ev.buf }
 
+  vim.keymap.set(buf_modes, '<Leader>dI', ':LspInfo<CR>')
+  vim.keymap.set(buf_modes, '<Leader>dQ', ':LspLog<CR>')
+  vim.keymap.set(buf_modes, '<Leader>dL', ':LspRestart<CR>')
+  vim.keymap.set(buf_modes, '<Leader>dS', ':LspStart<CR>')
+  vim.keymap.set(buf_modes, '<Leader>dE', ':LspStop<CR>')
+
   vim.keymap.set(buf_modes, '<Leader>dd', vim.lsp.buf.declaration, opts)
   vim.keymap.set(buf_modes, '<Leader>dD', vim.lsp.buf.definition, opts)
   vim.keymap.set(buf_modes, '<Leader>dh', vim.lsp.buf.hover, opts)
   vim.keymap.set(buf_modes, '<Leader>di', vim.lsp.buf.implementation, opts)
   vim.keymap.set(buf_modes, '<Leader>ds', vim.lsp.buf.signature_help, opts)
---  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.add_workspace_folder, opts)
---  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.remove_workspace_folder, opts)
-
---  vim.keymap.set(buf_modes, '<Leader>', function()
---    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
---  end, opts)
 
   vim.keymap.set(buf_modes, '<Leader>dt', vim.lsp.buf.type_definition, opts)
   vim.keymap.set(buf_modes, '<Leader>dR', vim.lsp.buf.rename, opts)
-  vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
   vim.keymap.set(buf_modes, '<Leader>dr', vim.lsp.buf.references, opts)
   vim.keymap.set(buf_modes, '<Leader>dF', function()
     vim.lsp.buf.format { async = true }
   end, opts)
+
+  -- ???
+  vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
+
+--  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.add_workspace_folder, opts)
+--  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.remove_workspace_folder, opts)
+--  vim.keymap.set(buf_modes, '<Leader>', function()
+--    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--  end, opts)
 
 end,
 })

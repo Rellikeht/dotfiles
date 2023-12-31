@@ -140,6 +140,10 @@ alias fzy='fzy -l 20'
 ## default fuzzy finer with single match
 alias deffuz=fzs
 
+## files
+alias fff='find -type f | fzf'
+alias ffs='find -type f | fzs'
+
 ## dirs
 alias fzd='find -type d | deffuz'
 alias fzd2='find -maxdepth 2 -type d | deffuz'
@@ -163,7 +167,7 @@ alias fzr='$(prgs | deffuz)'
 # Tools
 
 # Maybe with stty will be better
-alias gth='glow -w $(($(tput cols)-2))'
+alias gth='glow -w $(($(tput cols)-3))'
 
 alias qc="qalc -s 'decimal comma off'"
 alias de='dc -e'
