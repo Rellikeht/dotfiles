@@ -288,13 +288,38 @@ ariad () {
     aria -D -d $(pwd) "$FILE" $@
 }
 
-if ! which which | grep 'built-in' > /dev/null
-then
-    WHICH_PROGRAM=$(which which)
-    which_helper () {
-        # ! $WHICH_PROGRAM $@ 2>/dev/null && alias $@
-        # TODO functions
-        [ $# -gt 0 ] && ! alias $@ 2>/dev/null && $WHICH_PROGRAM $@
-    }
-    alias which=which_helper
-fi
+#if ! which which | grep 'built-in' > /dev/null
+#then
+#    WHICH_PROGRAM=$(which which)
+#    which_helper () {
+#        # ! $WHICH_PROGRAM $@ 2>/dev/null && alias $@
+#        # TODO functions
+#        [ $# -gt 0 ] && ! alias $@ 2>/dev/null && $WHICH_PROGRAM $@
+#    }
+#    alias which=which_helper
+#fi
+
+# Basically find piped to fzf with history
+fzh () {
+    local FZF="$1"
+    shift
+    local FZH_FILE="$HOME/.$FZF-hist-file"
+    local TEMP=$(mktemp) # This should be helpful
+    touch "$FZH_FILE"
+    cat "$FZH_FILE" > "$TEMP"
+
+    local FFC=$(
+    ! find $@ |\
+        cat "$TEMP" - |\
+        eval $FZF
+    )
+
+    echo -n "$FFC" |\
+        xargs -d'\n' -I{} sh -c \
+        "! grep -x \"{}\" \"$TEMP\" 2>&1 >/dev/null &&\
+        echo \"{}\" >> \"$FZH_FILE\" "
+
+    rm "$TEMP"
+    echo "$FFC"
+}
+

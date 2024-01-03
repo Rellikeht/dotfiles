@@ -131,30 +131,41 @@ alias bfn='bat /etc/.funcrc'
 
 ## single
 alias fzs='fzf +m -e'
+
 ## multi
 alias fzf='fzf -m -e'
 
 ## fzy
 alias fzy='fzy -l 20'
 
-## default fuzzy finer with single match
-alias deffuz=fzs
+## default fuzzy finer with single match for dirs
+#alias deffuz=fzs
+alias dfuz=fzs
+alias dfuz2=fzs
+alias dfuzp=fzs
 
 ## files
-alias fff='find -type f | fzf'
-alias ffs='find -type f | fzs'
+
+# alias fff='find -type f | fzf'
+# alias ffs='find -type f | fzs'
+alias fff='fzh $fzf -type f'
+alias ffs='fzh $fzs -type f'
 
 ## dirs
-alias fzd='find -type d | deffuz'
-alias fzd2='find -maxdepth 2 -type d | deffuz'
-alias fzp='find .. -maxdepth 2 -type d | deffuz'
+
+# alias fzd='find -type d | deffuz'
+# alias fzd2='find -maxdepth 2 -type d | deffuz'
+# alias fzp='find .. -maxdepth 2 -type d | deffuz'
+alias fzd='fzh dfuz -type d'
+alias fzd2='fzh dfuz2 -maxdepth 2 -type d'
+alias fzp='fzh dfuzp .. -maxdepth 2 -type d'
 
 ## cd with fuzzy dirs
 alias cdf='cd "$(fzd)"'
 alias cdf2='cd "$(fzd2)"'
 alias cdp='cd "$(fzp)"'
 
-## files
+## TODO piping
 #alias fff="fzf | sed 's/^.*$/\"\0\"/g'"
 #alias ffx='fff | xargs'
 alias ffx='fzf | xargs'

@@ -47,6 +47,7 @@ groff/
 
 *~
 TODO
+highlight.css
 
 templates/**/*
 !templates/**/*/

@@ -315,26 +315,39 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
     \ file %c,
 
 filextype {*.html,*.htm},<text/html>
-        \ {Open with surf}
         \ surf %f %i &,
-        \ {Open with firefox}
         \ qutebrowser %f %i &,
-        \ {Open with firefox}
         \ firefox %f %i &,
 
-filetype {*.html,*.htm},<text/html>
-    \ w3m,
-    \ links,
-    \ lynx,
+        " \ {Open with surf}
+        " \ {Open with firefox}
+        " \ {Open with firefox}
 
+filetype {*.html,*.htm},<text/html>
+    \ w3m %f,
+    \ links %f,
+    \ lynx %f,
+
+fileviewer {*.md}
+    \ glow %c
+
+filetype {*.md}
+    \ glow %f,
+    \ w3m %f
+
+" TODO binaries
 " Object
 filetype {*.o},<application/x-object>
+    \ ldd %f | less,
     \ nm %f | less,
     \ strings %f | less,
+    \ file %f | less,
 
 fileviewer {*.o},<application/x-object>
-    \ nm %f,
-    \ strings %f,
+    \ ldd %c,
+    \ file %c,
+    \ nm %c,
+    \ strings %c,
 
 " Images
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
@@ -417,13 +430,15 @@ fileviewer *.tar.zst,*.tzst
 fileviewer {*.tar},<application/x-tar> 
     \ tar -tf %c | less
 
-" Rar2FsMount and rar archives
 filetype {*.rar},<application/x-rar>
-       \ {Mount with rar2fs}
-       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+    \ unrar x %c,
+    \ unrar-free -x %c,
+    \ {Mount with rar2fs}
+    \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
 
 fileviewer {*.rar},<application/x-rar> 
     \ unrar v %c
+    \ unrar-free -t %c
 
 " IsoMount
 filetype {*.iso},<application/x-iso9660-image>
@@ -682,6 +697,16 @@ map <Space> <C-w>
 
 " Uncompatible
 nmap g! :shell<CR>
+
+map <C-w>d :vsplit .<CR>
+map <C-w>D :split .<CR>
+map gcb :!cp -n %f %D &<CR>
+map gcB :!cp %f %D &<CR>
+map gcr :!rsync %f %D &<CR>
+map gcR :!rsync -a %f %D &<CR>
+
+" Holy shit, this works
+map gcc :!cp %f %D &<A-b><A-b><A-b>
 
 let $localConf = '~/.config/vifm/vifmrc-local'
 
