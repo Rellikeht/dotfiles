@@ -1,8 +1,11 @@
 " fugitive
 " TODO branches
+" That mappings are badly designed
 
-map <leader>gd :Gvdiffsplit<CR>
-map <leader>gsd :Gvdiffsplit
+map <leader>gds :Gvdiffsplit<CR>
+map <leader>gdh :Gdiffsplit<CR>
+map <leader>gdd :G diff<CR>
+map <leader>gdr :G diff<CR><C-w>o
 
 " so there is dp and do
 map <leader>gop :diffput<CR>
@@ -35,7 +38,7 @@ map <leader>gp3 :call DiffPut('.git//3')<CR>
 " ??
 map <leader>gpf :call DiffPut(expand('%:t'))<CR>
 map <leader>ggf :call DiffGet(expand('%:t'))<CR>
-map <leader>gu :G diffupdate<CR>
+map <leader>gu :diffupdate<CR>
 
 map <leader>gm :G mergetool<CR>
 map <leader>gc :Git<CR>

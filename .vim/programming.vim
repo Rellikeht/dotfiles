@@ -1,24 +1,25 @@
+" All of that starts with <Leader>
 " General shortcuts
-" <Leader>cc - simple compilation
-" starting with <Leader>cd and <Leader>cD - debug compilation
-" starting with <Leader>cr and <Leader>cR - release compilation
-" starting with <Leader>co and <Leader>cO - optimized compilation
-" starting with <Leader>cu and <Leader>cU - unsafely optimized compilation
-" starting with <Leader>cC and <Leader>ca and <Leader>cA - alternative compilers
+" cc - simple compilation
+" starting with cd and cD - debug compilation
+" starting with cr and cR - release compilation
+" starting with co and cO - optimized compilation
+" starting with cu and cU - unsafely optimized compilation
+" starting with cC and ca and cA - alternative compilers
 
-" <Leader>r - with 
-" <Leader>ra - running already compiled file (DANGEROUS)
-" <Leader>C and <Leader>R - <Leader>c and <Leader>r counterparts without <CR>
+" r - with 
+" ra - running already compiled file (DANGEROUS)
+" C and R - c and r counterparts without <CR>
 " for changing command before running
 " for languages that can be both compiled and interpreted
-" there will be <Leader>i and <Leader>I options respectively to
-" <Leader>r and <Leader>R
+" there will be i and I options respectively to
+" r and R
 
-" Building commands will be hard
-" <Leader>bb - building project
+" bb - building project
 
 " COMPILED
 
+" TODO background, combinations without <CR> aren't that important
 function GenerateBindingsCompiled(name, compexe, bindings, prefix)
 	for [key, cmd] in items(a:bindings)
 		execute 'autocmd FileType' a:name
@@ -84,7 +85,7 @@ let nimbindings = {
 call GenerateBindingsCompiled('nim', 'nim c', nimbindings, '')
 call GenerateBindingsCompiled('nim', 'nlvm c', nimbindings, 'n')
 call GenerateBindingsCompiled('nim', 'nim cpp', nimbindings, 'p')
-call GenerateBindingsCompiled('nim', 'nlvm cpp', nimbindings, 'np')
+call GenerateBindingsCompiled('nim', 'nlvm cpp', nimbindings, 'P')
 " TODO nim js
 
 " TODO is this needed
@@ -92,7 +93,12 @@ call GenerateBindingsCompiled('nim', 'nlvm cpp', nimbindings, 'np')
 "autocmd FileType nim nmap <buffer> <Leader>rA <Leader>RA<CR>
 
 " go
-" TODO
+let gobindings = {
+			\ 'c': '%', 
+			\ 'd': '-race %',
+			\}
+
+call GenerateBindingsCompiled('go', 'go build', gobindings, '')
 
 " haskell
 " TODO
@@ -211,3 +217,14 @@ call GenerateBindingsHybrid('nim', nlvmbindings)
 " TODO
 
 " TODO incorporate internal make and compile tools
+
+" SOME ADDITIONAL MAPPINGS
+
+" Random numbers
+map ,igr !!python -c "from random import randint;
+    \ [print(randint(-100,100),end=',') for _ in range(20)]"<CR><CR>
+
+map ,igR !!python -c "from random import randint;
+    \ [print(randint(-100,100),end=',') for _ in range(20)]"<A-b>
+
+" TODO templates

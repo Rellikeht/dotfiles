@@ -12,77 +12,48 @@ map g- v<C-x>
 vmap + <C-a>
 vmap - <C-x>
 
-" Amateur but works
-map zS :sleep <CR>
-
-"" This is alt, but should be altgr
-"map <A-s> <A-s><A-s>
-"map <A-s> :q!<CR>
-"imap <a-s> :q!<CR>
-"imap <m-s> :q!<CR>
-
-"" Hyper modifier from emacs
-"" working in console (even
-"" bindings are similar):
-"map <C-x>@hc :wqa<CR>
-"map <C-x>@hs :w<CR>
-"map <C-x>@ho :e
-"map <C-x>@h0 :q<CR>
-"map <C-x>@h2 :sp<CR>
-"map <C-x>@h3 :vs<CR>
-"
-"" Those are not
-"nnoremap <C-x>@hh :wincmd h<CR>
-"nnoremap <C-x>@hj :wincmd j<CR>
-"nnoremap <C-x>@hk :wincmd k<CR>
-"nnoremap <C-x>@hl :wincmd l<CR>
-"
-"nnoremap <C-x>@hH :wincmd H<CR>
-"nnoremap <C-x>@hJ :wincmd J<CR>
-"nnoremap <C-x>@hK :wincmd K<CR>
-"nnoremap <C-x>@hL :wincmd L<CR>
-
 " TODO Do all of this to include counts
 " Tabs with <Tab>
-nmap <Tab>k :tabfirst<CR>
-nmap <Tab>j :tablast<CR>
-nmap <Tab>l gt
-nmap <Tab>h gT
-nmap <Tab>t :tabedit<Space>
-nmap <Tab>m :tabm<Space>
-nmap <Tab>d :tabclose<CR>
-nmap <Tab>T :tabnew<CR>
-nmap <Tab>L :tabm +1<CR>
-nmap <Tab>H :tabm -1<CR>
-nmap <Tab>J :tabm $<CR>
-nmap <Tab>K :tabm 0<CR>
-nmap <Tab>B :tabnew<CR>:buffer<Space>
-nmap <Tab><Tab> g<Tab>
-nmap <Tab>i :tabs<CR>
+map <Tab>k :tabfirst<CR>
+map <Tab>j :tablast<CR>
+map <Tab>l gt
+map <Tab>h gT
+map <Tab>t :tabedit<Space>
+map <Tab>m :tabm<Space>
+map <Tab>d :tabclose<CR>
+map <Tab>T :tabnew<CR>
+map <Tab>L :tabm +1<CR>
+map <Tab>H :tabm -1<CR>
+map <Tab>J :tabm $<CR>
+map <Tab>K :tabm 0<CR>
+map <Tab>B :tabnew<CR>:buffer<Space>
+map <Tab><Tab> g<Tab>
+map <Tab>i :tabs<CR>
 
 " Buffers with <Tab>
-nmap <Tab>b :buffer<Space>
-nmap <Tab>n :bnext<CR>
-nmap <Tab>p :bprevious<CR>
-nmap <Tab>N :bnext!<CR>
-nmap <Tab>P :bprevious!<CR>
-nmap <Tab>D :bdelete<CR>
-nmap <Tab>U :bunload<CR>
-nmap <Tab>s :sbprevious<CR>
-nmap <Tab>S :sbnext<CR>
-nmap <Tab>v :vsplit<CR>:bnext<CR>
-nmap <Tab>V :vsplit<CR>:bprevious<CR>
-nmap <Tab>a :bad<Space>
-"nmap <Tab>A :balt<Space>
-nmap <Tab>f :files<CR>
-nmap <Tab>c :bmodified<CR>
-nmap <Tab>C :bmodified!<CR>
-nmap <Tab>g :vsplit<Space>
-nmap <Tab>G :split<Space>
-nmap <Tab>I :buffers<CR>
+map <Tab>b :buffer<Space>
+map <Tab>n :bnext<CR>
+map <Tab>p :bprevious<CR>
+map <Tab>N :bnext!<CR>
+map <Tab>P :bprevious!<CR>
+map <Tab>D :bdelete<CR>
+map <Tab>U :bunload<CR>
+map <Tab>s :sbprevious<CR>
+map <Tab>S :sbnext<CR>
+map <Tab>v :vsplit<CR>:bnext<CR>
+map <Tab>V :vsplit<CR>:bprevious<CR>
+map <Tab>a :bad<Space>
+"map <Tab>A :balt<Space>
+map <Tab>f :files<CR>
+map <Tab>c :bmodified<CR>
+map <Tab>C :bmodified!<CR>
+map <Tab>g :vsplit<Space>
+map <Tab>G :split<Space>
+map <Tab>I :buffers<CR>
 
 " Others
-nmap <Tab>W :set wrap!<CR>
+map <Tab>W :set wrap!<CR>
+map <Tab>o :source %<CR>
 
 " Select whole buffer without plugins
 vmap ae <Esc>gg0vG$

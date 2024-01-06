@@ -1,6 +1,14 @@
+" Better tab
+map <Tab>L :<C-u>execute 'tabm +'.v:count1<CR>
+map <Tab>H :<C-u>execute 'tabm -'.v:count1<CR>
+
+map <Tab>n :<C-u>execute 'bnext '.v:count1<CR>
+map <Tab>p :<C-u>execute 'bprevious '.v:count1<CR>
+map <Tab>N :<C-u>execute 'bnext! '.v:count1<CR>
+map <Tab>P :<C-u>execute 'bprevious! '.v:count1<CR>
+
 " Other <Tab>
 nmap <Tab>w :SudoWrite<CR>
-nmap <Tab>r :redraw!<CR>
 vmap <Tab>y y:call Xcopy('clipboard')<CR>
 vmap <Tab>Y y:call Xcopy('primary')<CR>
 " TODO do this better

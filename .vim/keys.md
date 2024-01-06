@@ -10,6 +10,7 @@ There may be more, but there are already enough combinations
 # <Tab> combinations
 They are general purpose, mainly for tab management
 
+## TODO make this nicer
 ## Tabs
 - <Tab> - g<Tab>
 - B - :tabnew<CR>:buffer<Space>
@@ -53,10 +54,11 @@ They are general purpose, mainly for tab management
 - W - toggle wrap
 - y - in normal paste, in visual copy to X11 clipboard
 - Y - like ;y, but using X11 primary
+- o - source %<CR>
 
 ## Available
 Basically all special characters besides <Tab>
-A, R, E, M, O, Q, R, W, X, Z
+A, R, E, M, O, Q, R, X, Z
 e, k, o, q, u, x, z
 
 # Leader (,) combinations
@@ -70,9 +72,17 @@ e, k, o, q, u, x, z
     + u - general plug upgrade
     + P - plug clean
 
-- c, C, r, R, i, I, b, B - code ; TODO
 - <Space> - set hls!
 - ; - commands
+
+## Code
+- c, C - compiling
+- r, R - running
+- b, B - building
+- i, I - running interpreted versions of compiled languages
+- exceptions (in all possible casing):
+    + ig - data generation
+    + it - templates
 
 ## Nvim only
 - w, f, l, <Leader> - easymotion ; TODO
