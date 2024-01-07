@@ -84,18 +84,18 @@ e, k, o, q, u, x, z
     + ig - data generation
     + it - templates
 
-## Nvim only
-- w, f, l, <Leader> - easymotion ; TODO
-- e, E, D - code plugins ; NOT IMPLEMENTED
-- h - harpoon ; NOT IMPLEMENTED
-- d - lspconfig diagnostics and lsp actions
-
 ## With plugins
 - t - tmux
 - g,G - git
-- u - undo tree ; NOT IMPLEMENTED
-- f - fuzzy finder ; NOT IMPLEMENTED
-- s - unicode
+- s - fzf, ctrlp
+- n - unicode
+- u - undo tree ; NOT IMPLEMENTED :(
+
+## Nvim only
+- d - lspconfig diagnostics and lsp actions
+- w, f, l, <Leader> - easymotion ; TODO
+- e, E, D - code plugins ; NOT IMPLEMENTED
+- h - harpoon ; NOT IMPLEMENTED
 
 # g combinations
 Available (useless otherwise):

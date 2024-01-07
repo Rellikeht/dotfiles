@@ -23,7 +23,7 @@ imap <c-x><c-u> <Plug>(UnicodeComplete)
 imap <c-x><c-h> <Plug>(HTMLEntityComplete)
 imap <c-x><c-m> <Plug>(UnicodeFuzzy)
 
-map <Leader>sm <Plug>(MakeDigraph)
+map <Leader>nm <Plug>(MakeDigraph)
 map ga <Plug>(UnicodeGA)
 
 " ???

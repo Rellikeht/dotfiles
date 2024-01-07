@@ -7,10 +7,10 @@ local buf_modes = {'n', 'v'}
 vim.keymap.set(diag_modes, '<Leader>df', vim.diagnostic.open_float)
 vim.keymap.set(diag_modes, '<Leader>dp', vim.diagnostic.goto_prev)
 vim.keymap.set(diag_modes, '<Leader>dn', vim.diagnostic.goto_next)
---vim.keymap.set(diag_modes, '<Leader>dl', vim.diagnostic.setloclist)
+vim.keymap.set(diag_modes, '<Leader>dl', vim.diagnostic.setloclist)
 
--- Copy from lspconfig help :(
--- TODO do that well :(
+-- TODO do that all well :(
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -42,7 +42,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format { async = true }
     end, opts)
 
-    -- ???
     vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
 
     --  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.add_workspace_folder, opts)
@@ -79,21 +78,19 @@ local servers = {
   'ocamllsp',
   'nimls',
 
+  'julials',
+  'zls',
+  'hls',
+
   -- Am i stupid, or this and nil_ls both do almost nothing
   -- where is my completion
   'nixd',
 
-  'julials',
-  'zls',
-  'scheme_langserver',
-  'hls', -- TODO C memory
-
   'bashls',
   'texlab',
+  -- 'scheme_langserver',
 
   'tsserver',
-  --'racket_langserver',
-  --'sqlls',
 }
 
 for _, s in ipairs(servers) do
