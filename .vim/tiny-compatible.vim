@@ -12,7 +12,6 @@ map g- v<C-x>
 vmap + <C-a>
 vmap - <C-x>
 
-" TODO Do all of this to include counts
 " Tabs with <Tab>
 map <Tab>k :tabfirst<CR>
 map <Tab>j :tablast<CR>

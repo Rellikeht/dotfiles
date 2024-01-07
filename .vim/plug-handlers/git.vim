@@ -1,19 +1,34 @@
 " fugitive
-" TODO branches
-" TODO fzf.vim
-" :help fzf-vim
-" That mappings are badly designed
+" TODO branches, remotes
+
+" Git commands
+
+map <leader>gc :Git<CR>
+map <leader>gC :Git<CR><C-w>T
+
+map <leader>goi :G status<CR>
+map <leader>goo :G log<CR>
+map <leader>gor :G reflog<CR>
+map <leader>god :G diff<CR>
+map <leader>got :G diff<CR><C-w>o
+
+map <leader>goa :G add %<CR>
+map <leader>goc :G commit<CR>
+map <leader>gos :G push<CR>
+map <leader>gol :G pull<CR>
+
+map <leader>gor :Gread<CR>
+map <leader>gow :Gwrite<CR>
+map <leader>gom :G mergetool<CR>
+
+" Diff
 
 map <leader>gds :Gvdiffsplit<CR>
 map <leader>gdh :Gdiffsplit<CR>
-map <leader>gdd :G diff<CR>
-map <leader>gdr :G diff<CR><C-w>o
+map <leader>gdu :diffupdate<CR>
 
-" so there is dp and do
-map <leader>gop :diffput<CR>
-map <leader>gog :diffget<CR>
-map <leader>gb [c
-map <leader>gf ]c
+map <leader>gdp :diffput<CR>
+map <leader>gdg :diffget<CR>
 
 function DiffGet(pane)
     execute 'diffget' a:pane
@@ -25,65 +40,45 @@ function DiffPut(pane)
     diffupdate
 endfunction
 
-" ????
-map <leader>gg0 :call DiffGet('.git//0')<CR>
-map <leader>gg1 :call DiffGet('.git//1')<CR>
-map <leader>gg2 :call DiffGet('.git//2')<CR>
-map <leader>gg3 :call DiffGet('.git//3')<CR>
-
-" ???
-map <leader>gp0 :call DiffPut('.git//0')<CR>
-map <leader>gp1 :call DiffPut('.git//1')<CR>
-map <leader>gp2 :call DiffPut('.git//2')<CR>
-map <leader>gp3 :call DiffPut('.git//3')<CR>
+" TODO doesn't find appropriate buffer :(
 
 " ??
+map <leader>gg0 :call DiffGet('//0')<CR>
+map <leader>gg1 :call DiffGet('//1')<CR>
+map <leader>gg2 :call DiffGet('//2')<CR>
+map <leader>gg3 :call DiffGet('//3')<CR>
+
+" ??
+map <leader>gp0 :call DiffPut('//0')<CR>
+map <leader>gp1 :call DiffPut('//1')<CR>
+map <leader>gp2 :call DiffPut('//2')<CR>
+map <leader>gp3 :call DiffPut('//3')<CR>
+
+" ????
 map <leader>gpf :call DiffPut(expand('%:t'))<CR>
 map <leader>ggf :call DiffGet(expand('%:t'))<CR>
-map <leader>gu :diffupdate<CR>
 
-map <leader>gm :G mergetool<CR>
-map <leader>gc :Git<CR>
-map <leader>gss :G status<CR>
-map <leader>gl :G log<CR>
-map <leader>gr :G reflog<CR>
+" Probably not very useful
+map <leader>gp [c
+map <leader>gn ]c
 
-map <leader>goa :G add %<CR>
-map <leader>goc :G commit<CR>
-map <leader>gos :G push<CR>
-map <leader>gol :G pull<CR>
-map <leader>gor :Gread<CR>
-map <leader>gow :Gwrite<CR>
-
-map <leader>GF :GFiles<CR>
-map <leader>GD :GDelete<CR>
-
-" gv
-
-" TODO somehow learn to use that
-map <leader>gv :GV<CR>
-map <leader>gV :GV!<CR>
-map <leader>g? :GV?<CR>
-
-" - `o` or `<cr>` on a commit to display the content of it
-" - `o` or `<cr>` on commits to display the diff in the range
-" - `O` opens a new tab instead
-" - `gb` for `:GBrowse`
-" - `]]` and `[[` to move between commits
-" - `.` to start command-line with `:Git [CURSOR] SHA` à la fugitive
-" - `q` or `gq` to close
+" TODO
+" fzf
+" :help fzf-vim
+"map <leader>GF :GFiles<CR>
+"map <leader>GD :GDelete<CR>
 
 " signify
 
 map <leader>gst :SignifyToggle<CR>
 map <leader>gsh :SignifyToggleHighlight<CR>
-map <leader>gsd :SignifyDisableAll<CR>
-map <leader>gse :SignifyEnableAll<CR>
+map <leader>gsD :SignifyDisableAll<CR>
+map <leader>gsE :SignifyEnableAll<CR>
 map <leader>gsr :SignifyRefresh<CR>
 map <leader>gsl :SignifyList<CR>
 
-map <leader>gh :SignifyHunkDiff<CR>
-map <leader>gU :SignifyHunkUndo<CR>
+map <leader>gsd :SignifyHunkDiff<CR>
+map <leader>gsu :SignifyHunkUndo<CR>
 map <leader>gj <plug>(signify-next-hunk)
 map <leader>gk <plug>(signify-prev-hunk)
 map <leader>gJ 9999<leader>gj
@@ -102,3 +97,17 @@ endfunction
 
 " default updatetime 4000ms is not good for async update
 set updatetime=100
+
+" gv
+
+map <leader>gv :GV<CR>
+map <leader>gV :GV!<CR>
+map <leader>g? :GV?<CR>
+
+" - `o` or `<cr>` on a commit to display the content of it
+" - `o` or `<cr>` on commits to display the diff in the range
+" - `O` opens a new tab instead
+" - `gb` for `:GBrowse`
+" - `]]` and `[[` to move between commits
+" - `.` to start command-line with `:Git [CURSOR] SHA` à la fugitive
+" - `q` or `gq` to close

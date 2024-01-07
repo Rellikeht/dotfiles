@@ -81,13 +81,16 @@ e, k, o, q, u, x, z
 - b, B - building
 - i, I - running interpreted versions of compiled languages
 - exceptions (in all possible casing):
-    + ig - data generation
-    + it - templates
+    + g - data generation
+    + t - templates
 
 ## With plugins
 - t - tmux
-- g,G - git
-- s - fzf, ctrlp
+- g - git
+    + s,j,k (every possible casing) - signify
+    + v,V,? - gv
+    + others - fugitive
+- s - fzf
 - n - unicode
 - u - undo tree ; NOT IMPLEMENTED :(
 
