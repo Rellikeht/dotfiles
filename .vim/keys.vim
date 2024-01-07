@@ -36,8 +36,6 @@ map <Leader>q1 :echo b:buffmt<CR>
 map <Leader>qc :let b:bufcomp=!b:bufcomp<CR>
 map <Leader>qC :let g:bufcomp=!g:bufcomp<CR>
 map <Leader>q2 :echo b:bufcomp<CR>
-map <Leader>qu :call GeneralUpgrade()<CR>
-map <Leader>qP :PlugClean!<CR>
 
 " TODO A wc on buffer
 "map <Leader>;c

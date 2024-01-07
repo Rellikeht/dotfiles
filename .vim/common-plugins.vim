@@ -1,15 +1,13 @@
-Plug 'mbbill/undotree' " TODO A
+Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'ctrlpvim/ctrlp.vim' " TODO A Everything
-
 Plug 'romainl/vim-tinyMRU' " TODO A
 Plug 'unblevable/quick-scope' " TODO C defaults work great
 Plug 'justinmk/vim-sneak' " TODO A shortcuts
 
+Plug 'wellle/context.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'maxboisvert/vim-simple-complete'
-Plug 'wellle/context.vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'tpope/vim-repeat'

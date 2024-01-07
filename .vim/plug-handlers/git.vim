@@ -1,5 +1,7 @@
 " fugitive
 " TODO branches
+" TODO fzf.vim
+" :help fzf-vim
 " That mappings are badly designed
 
 map <leader>gds :Gvdiffsplit<CR>

@@ -9,15 +9,12 @@ autocmd syntax * syntax match Operator /[.]/
 
 "autocmd BufNewFile,BufRead *.ml setlocal shiftwidth=4 softtabstop=4
 
-" zig
-autocmd FileType groff,troff,nroff,nix,haskell,lua setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType haskell,lua setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 "" For nim language server to work, dirty and not fully working
 "" workaround, but good enough
 "autocmd BufNewFile,BufRead *.nim silent! ! touch <afile>
 "autocmd BufNewFile,BufRead *.nim silent! e <afile>
-
-autocmd FileType nix setlocal commentstring=#\ %s
 
 let g:buffmt = 1
 let g:bufcomp = 1
