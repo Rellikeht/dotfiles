@@ -26,7 +26,7 @@ map <Tab>H :tabm -1<CR>
 map <Tab>J :tabm $<CR>
 map <Tab>K :tabm 0<CR>
 map <Tab>B :tabnew<CR>:buffer<Space>
-map <Tab><Tab> g<Tab>
+map <Tab><Tab> :tab<Space>
 map <Tab>i :tabs<CR>
 
 " Buffers with <Tab>
@@ -82,7 +82,11 @@ set cindent
 set expandtab
 set shiftwidth=4
 set tabstop=4
+
+set linebreak
 set nowrap
+set breakindent
+set showbreak=\\>>
 
 set mouse=a
 set notimeout

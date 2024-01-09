@@ -1,5 +1,6 @@
 " fugitive
-" TODO branches, remotes
+" TODO branches, remotes, blame
+" gedit, gmove, ggrep
 
 " Git commands
 

@@ -26,3 +26,5 @@ autocmd BufWritePre *.nix call NixFmt()
 
 " This should go to programming section
 autocmd BufWritePost *.ms call CompileGroffMs()
+
+set breakindentopt=shift:2,min:40,sbr

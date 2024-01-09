@@ -78,6 +78,10 @@ local servers = {
   'ocamllsp',
   'nimls',
 
+  -- TODO shit doesn't do diagnostics without project in
+  -- current dir
+  -- Why is this so fucking hard to simply make server run
+  -- They need fucking project files everywhere
   'julials',
   'zls',
   'hls',

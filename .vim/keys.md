@@ -12,15 +12,15 @@ They are general purpose, mainly for tab management
 
 ## TODO make this nicer
 ## Tabs
-- <Tab> - g<Tab>
+- <Tab> - :tab<Space>
 - B - :tabnew<CR>:buffer<Space>
 - d - :tabclose<CR>
 - h - gT
 - H - :tabm -1<CR>
-- k - :tabfirst<CR>
 - i - :tabs<CR>
 - j - :tablast<CR>
 - J - :tabm $<CR>
+- k - :tabfirst<CR>
 - K - :tabm 0<CR>
 - l - gt
 - L - :tabm +1<CR>
