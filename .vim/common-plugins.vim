@@ -15,6 +15,7 @@ Plug 'tpope/vim-commentary'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'ryvnf/readline.vim'
 
+Plug 'tpope/vim-dispatch' " TODO A incorporate this into programming.vim
 Plug 'tpope/vim-surround' " TODO B write shortcuts somewhere
 Plug 'tpope/vim-eunuch' " TODO C maybe some shortcuts
 Plug 'tpope/vim-speeddating' " TODO D add more formats

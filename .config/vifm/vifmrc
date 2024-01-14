@@ -390,6 +390,8 @@ filetype {*.asc},<application/pgp-signature>
 " TODO filetype, that will be tricky
 " Torrent
 filextype {*.torrent},<application/x-bittorrent>
+    \ dumptorrent -v %c | less,
+    \ transmission-remote -a %c,
     \ qbittorrent %f &
 
 fileviewer {*.torrent},<application/x-bittorrent>
@@ -397,7 +399,8 @@ fileviewer {*.torrent},<application/x-bittorrent>
 
 filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
     \<application/zip,application/java-archive>
-    \ unzip %c | less,
+    \ unzip %c,
+    \ unzip %c | less
 
     " Some day
     " \ {Mount with fuse-zip}
@@ -416,16 +419,16 @@ filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 
 fileviewer *.tgz,*.tar.gz 
-    \ tar -tzf %c
+    \ tar -tzf %c | less
 
 fileviewer *.tar.bz2,*.tbz2
-    \ tar -tjf %c
+    \ tar -tjf %c | less
 
 fileviewer *.tar.xz,*.txz
-    \ tar -tJf %c
+    \ tar -tJf %c | less
 
 fileviewer *.tar.zst,*.tzst
-    \ tar -t --zstd -f %c
+    \ tar -t --zstd -f %c | less
 
 fileviewer {*.tar},<application/x-tar> 
     \ tar -tf %c | less
@@ -437,8 +440,10 @@ filetype {*.rar},<application/x-rar>
     \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
 
 fileviewer {*.rar},<application/x-rar> 
-    \ unrar v %c
-    \ unrar-free -t %c
+    \ unrar v %c,
+    \ unrar-free -t %c,
+    \ unrar v %c | less,
+    \ unrar-free -t %c | less
 
 " IsoMount
 filetype {*.iso},<application/x-iso9660-image>

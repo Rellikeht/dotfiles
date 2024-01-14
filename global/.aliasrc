@@ -178,7 +178,7 @@ alias fzr='$(prgs | deffuz)'
 # Tools
 
 # Maybe with stty will be better
-alias gth='glow -w $(($(tput cols)-3))'
+alias gth='glow -w $(($(tput cols)-4))'
 
 alias qc="qalc -s 'decimal comma off'"
 alias de='dc -e'
@@ -291,8 +291,9 @@ alias Re="R -s -e"
 alias gpe='gnuplot -p -e'
 
 # git
-alias gnp='git --no-pager'
-alias git='git --paginate'
+#alias gnp='git --no-pager'
+#alias git='git --paginate'
+alias gitp='git --paginate'
 alias gsb='git submodule'
 alias gco='git checkout'
 alias gbr='git branch'
