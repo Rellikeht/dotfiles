@@ -13,7 +13,7 @@ if v:progname !~? "^vi"
     " and it works, at least now
     source ~/.vim/additional.vim
 
-    " let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+    let data_dir = has('nvim') ? stdpath('config') : '~/.vim'
     let data_dir = '~/.vim'
     if empty(glob(data_dir . '/autoload/plug.vim'))
         silent execute '!curl -fLo '.data_dir.
