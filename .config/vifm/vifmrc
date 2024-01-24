@@ -280,7 +280,7 @@ filextype {*.djvu},<image/vnd.djvu>
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
        \ {Play using mpv}
-       \ mpv %f %i &,
+       \ mpv %f %i ,
        \ {Play using vlc}
        \ vlc %f %i &,
        \ {Play using ffplay}
@@ -300,7 +300,7 @@ filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.as[fx]},
          \<video/*>
         \ {View using mpv}
-        \ mpv %f %i &,
+        \ mpv %f %i,
         \ {View using vlc}
         \ vlc %f %i &,
         \ {View using ffplay}

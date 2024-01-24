@@ -94,6 +94,7 @@ local servers = {
   'texlab',
   -- 'scheme_langserver',
 
+  'r_language_server',
   'tsserver',
 }
 

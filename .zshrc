@@ -53,4 +53,5 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 #bindkey    '\e^?' my-backward-delete-word
 
 eval "$(direnv hook zsh)"
-conditional_source /home/michal/.nix-profile/etc/profile.d/nix.sh
+conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
