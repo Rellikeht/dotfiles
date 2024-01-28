@@ -9,7 +9,7 @@ autocmd syntax * syntax match Operator /[.]/
 
 "autocmd BufNewFile,BufRead *.ml setlocal shiftwidth=4 softtabstop=4
 
-autocmd FileType haskell,lua setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType haskell,lua,r setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 "" For nim language server to work, dirty and not fully working
 "" workaround, but good enough

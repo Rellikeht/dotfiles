@@ -20,7 +20,9 @@ map <leader>gol :G pull<CR>
 
 map <leader>gor :Gread<CR>
 map <leader>gow :Gwrite<CR>
-map <leader>gom :G mergetool<CR>
+map <leader>gom :G merge<CR>
+map <leader>goM :G mergetool<CR>
+" TODO more commands
 
 " Diff
 
@@ -42,6 +44,7 @@ function DiffPut(pane)
 endfunction
 
 " TODO doesn't find appropriate buffer :(
+" No idea how to do that properly
 
 " ??
 map <leader>gg0 :call DiffGet('//0')<CR>
