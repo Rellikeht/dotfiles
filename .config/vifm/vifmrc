@@ -279,8 +279,10 @@ filextype {*.djvu},<image/vnd.djvu>
 " Audio
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
+       \ {Play using mpv in separate window}
+       \ mpv --player-operation-mode=pseudo-gui %f %i &,
        \ {Play using mpv}
-       \ mpv %f %i ,
+       \ mpv --player-operation-mode=cplayer %f %i,
        \ {Play using vlc}
        \ vlc %f %i &,
        \ {Play using ffplay}
@@ -300,7 +302,9 @@ filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.as[fx]},
          \<video/*>
         \ {View using mpv}
-        \ mpv %f %i,
+        \ mpv --player-operation-mode=pseudo-gui %f %i &,
+        \ {View using mpv with cplayer}
+        \ mpv --player-operation-mode=cplayer %f %i,
         \ {View using vlc}
         \ vlc %f %i &,
         \ {View using ffplay}
@@ -695,6 +699,29 @@ nnoremap ,w :set wrap!<cr>
 "
 " let $VIFM_SERVER_NAME = v:servername
 
+" TODO tmux integration
+
+" TODO use that
+" Commands from wiki
+command! FZFlocate : set noquickview
+                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute 'goto' fnameescape($FZF_PICK)
+                  \| endif
+
+command! FZFfind : set noquickview
+                \| let $FZF_PICK = term('find | fzf --height 10 2>/dev/tty')
+                \| if $FZF_PICK != ''
+                \|     execute 'goto' fnameescape($FZF_PICK)
+                \| endif
+
+" variation that automatically enters directories
+command! FZFlocate : set noquickview
+                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+                  \| endif
+
 " Compatible with my vim config
 nmap ,<Space> :set hls!<CR>
 map ,qw :echo system("du -sh ".expand("%f"))<CR>
@@ -702,6 +729,8 @@ map <Space> <C-w>
 
 " Uncompatible
 nmap g! :shell<CR>
+map gpp :cd ..<CR>
+map gp2 :cd ../..<CR>
 
 map <C-w>d :vsplit .<CR>
 map <C-w>D :split .<CR>

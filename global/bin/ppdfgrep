@@ -1,25 +1,41 @@
 #!/bin/sh
 
-# TODO threads as command line argument
-[ -z "$THREADS" ] && \
-    THREADS=$(lscpu | \
-    sed -En '/^CPU\(s\):/s/[^0-9]*([0-9]*)/\1/p')
-
-OUTDIR=$(mktemp -d)
-
 while [ ! -e "$1" -a -n "$1" ]
 do
     ARGS=$(echo $ARGS $1)
 	shift
 done
 
-DIR=.; [ -n "$1" ] && DIR=$@
+DIR=.
+if [ -n "$1" ]
+then
+    DIR="$@"
+    shift
+fi
 
-find $DIR -iname '*.pdf' -printf "%h/%f\0" | \
-    xargs -0 -P "$THREADS" -I{} \
-    sh -c "
-    export FILE=\$(echo \"{}\" | sha256sum | cut -f1 -d' ');
-    pdfgrep --color=always -H \"$ARGS\" \"{}\" > \"$OUTDIR/\$FILE\""
+# TODO TEST
+find "$DIR" -iname '*\.pdf' -print0 |\
+    parallel -0 -I{} pdfgrep -H $ARGS {}
 
-cat "$OUTDIR"/*
-rm -rf "$OUTDIR"
+#[ -z "$THREADS" ] && \
+#    THREADS=$(lscpu | \
+#    sed -En '/^CPU\(s\):/s/[^0-9]*([0-9]*)/\1/p')
+#
+#OUTDIR=$(mktemp -d)
+#
+#while [ ! -e "$1" -a -n "$1" ]
+#do
+#    ARGS=$(echo $ARGS $1)
+#	shift
+#done
+#
+#DIR=.; [ -n "$1" ] && DIR=$@
+#
+#find $DIR -iname '*.pdf' -printf "%h/%f\0" | \
+#    xargs -0 -P "$THREADS" -I{} \
+#    sh -c "
+#    export FILE=\$(echo \"{}\" | sha256sum | cut -f1 -d' ');
+#    pdfgrep --color=always -H \"$ARGS\" \"{}\" > \"$OUTDIR/\$FILE\""
+#
+#cat "$OUTDIR"/*
+#rm -rf "$OUTDIR"

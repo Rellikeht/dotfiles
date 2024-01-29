@@ -92,9 +92,9 @@ local servers = {
 
   'bashls',
   'texlab',
+  'typst_lsp',
   -- 'scheme_langserver',
 
-  'r_language_server',
   'tsserver',
 }
 

@@ -36,6 +36,7 @@ Plug 'vale1410/vim-minizinc'
 Plug 'ocaml/vim-ocaml', {'for': 'ocaml'} " TODO B what this gives
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
+Plug 'kaarmu/typst.vim' " TODO B everything including typst usage :)
 Plug 'vifm/vifm.vim'
 Plug 'LnL7/vim-nix' " TODO A what is going on
 Plug 'mattn/emmet-vim', {'for': 'html'} " TODO C do I even need that
