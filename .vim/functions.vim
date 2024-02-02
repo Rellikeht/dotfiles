@@ -127,3 +127,14 @@ function CompileGroffMs()
         call system(g:groff_pdf.' -ms '.expand('%').' > '.expand('%:r').'.pdf')
     endif
 endfunction
+
+" Simple wrapper because vim has working tabp, but
+" tabn is retarded and tabp won't work with negative counts
+function SwitchTab(count)
+    if a:count < 0
+        execute 'tabp '.-a:count
+    elseif a:count > 0
+        execute 'tabn '.((a:count+tabpagenr()-1)%tabpagenr('$')+1)
+    endif
+endfunction
+

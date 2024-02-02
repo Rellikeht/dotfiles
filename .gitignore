@@ -30,6 +30,8 @@
 .config/ocaml/local.ml
 .config/qalculate/qalc.history
 
+.config/nix/registry.json
+
 .w3m/cookie
 .w3m/history
 .w3m/passwd

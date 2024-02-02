@@ -76,6 +76,7 @@ JSENABLE = [
 
         'https://*.searx.xyz/*',
         'https://*.paulgo.io/*',
+        'https://paulgo.io/*',
 
         'https://*.odysee.com/*',
         'https://*.youtube.com/*',

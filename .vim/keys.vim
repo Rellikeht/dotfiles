@@ -1,6 +1,8 @@
 " Better tab
-map <Tab>h :<C-u>execute ''.v:count1.' tabp'<CR>
-map <Tab>l :<C-u>execute '+'.v:count1.' tabn'<CR>
+"map <Tab>h :<C-u>execute ''.v:count1.' tabp'<CR>
+"map <Tab>l :<C-u>execute '+'.v:count1.' tabn'<CR>
+map <Tab>l :<C-u>call SwitchTab(v:count1)<CR>
+map <Tab>h :<C-u>call SwitchTab(-v:count1)<CR>
 map <Tab>H :<C-u>execute 'tabm -'.v:count1<CR>
 map <Tab>L :<C-u>execute 'tabm +'.v:count1<CR>
 
