@@ -233,11 +233,14 @@ alias ffmpeg='ffmpeg -hide_banner'
 alias pm=pulsemixer
 alias am=alsamixer
 
-#alias youtube-viewer='youtube-viewer --no-update-config!'
+alias youtube-viewer='youtube-viewer --no-update-config'
 alias yv=youtube-viewer
 alias mdl='yv --novideo --download! --convert-to=opus'
 alias ytl='yt-dlp --list-formats'
+alias ytls='ytl --format-sort +size'
 alias yts='yt-dlp --format-sort +size'
+alias ytwa='yts -f wa'
+alias ytba='yts -f ba'
 alias mpb='mpv --profile=big'
 alias mpg='mpv --profile=gaudio'
 

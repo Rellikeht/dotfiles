@@ -74,7 +74,12 @@ lh () {
 }
 
 cdc () {
-    [ -d "$1" ] && cd "$1"
+    # return is lsp suggestion
+    if [ -z "$1" ]
+    then cd || return
+    elif [ -d "$1" ]
+    then cd "$1" || return
+    fi
 	clear
 }
 
@@ -88,10 +93,6 @@ cdll () {
 	ll
 }
 
-llh () {
-    ll $@ | head
-}
-
 maxe () {
     if [ -n "$2" ]
     then
@@ -101,10 +102,10 @@ maxe () {
 	    cmds="$1"
 	    prec=20
     fi
-    str=$(echo -n $cmds | sed -z 's/[^;$\n]$/\0;/')
+    str=$(echo -n "$cmds" | sed -z 's/[^;$\n]$/\0;/')
     maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" | \
 	sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
-	egrep '^[ 	]|\$|b0$|]$'
+	grep -E '^[ 	]|\$|b0$|]$'
 }
 
 gple () {
@@ -113,10 +114,8 @@ gple () {
 
 edt () {
     if [ -n "$2" ]
-    then
-	    $1 "$@"
-    else
-	    svim "$1"
+    then $1 "$@"
+    else svim "$1"
     fi
 }
 
@@ -134,17 +133,13 @@ evr () {
 
 fec () {
     if [ -n "$1" ]
-    then
-	    edt="$1"
-    else
-	    edt='vim'
+    then edt="$1"
+    else edt='vim'
     fi
 
     if [ -n "$2" ]
-    then
-	    comm="$2"
-    else
-	    comm=$(lsn | fzf)
+    then comm="$2"
+    else comm=$(lsn | fzf)
     fi
 
     $edt $comm
@@ -164,7 +159,7 @@ dis () {
 }
 
 bins () {
-    pfl "$@" | egrep $(echo "$PATH" | sed 's/:/|/g')
+    pfl "$@" | grep -E $(echo "$PATH" | sed 's/:/|/g')
 }
 
 if [ $(uname) = "FreeBSD" ]
@@ -177,8 +172,8 @@ then
     TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
     ttgl () {
         if [ $(sysctl -n hw.psm.synaptics.touchpad_off) == 0 ]
-        then $TOUCHPAD_CMD=1 > /dev/null
-        else $TOUCHPAD_CMD=0 > /dev/null
+        then eval "$TOUCHPAD_CMD=1" > /dev/null
+        else eval "$TOUCHPAD_CMD=0" > /dev/null
         fi
     }
 
@@ -190,10 +185,6 @@ then
         #rm "$F"
         help2man $@ | mandoc | less
     }
-
-    #hms () {
-    #    help2man --no-discard-stderr $@ | man /dev/stdin
-    #}
 
 else
 
@@ -229,10 +220,6 @@ else
         help2man $@ | man /dev/stdin
     }
 
-    #hms () {
-    #    help2man --no-discard-stderr $@ | man /dev/stdin
-    #}
-
 fi
 
 hms () {
@@ -240,7 +227,7 @@ hms () {
 }
 
 rlw() {
-    readlink -f $(which "$1")
+    readlink -f "$(/usr/bin/env which "$1")"
 }
 
 fnd() {
@@ -285,7 +272,7 @@ ariad () {
         FILE="$1"
     fi
 
-    aria -D -d $(pwd) "$FILE" $@
+    aria -D -d "$(pwd)" "$FILE" $@
 }
 
 #if ! which which | grep 'built-in' > /dev/null
@@ -311,7 +298,7 @@ fzh () {
     local FFC=$(
     ! find $@ |\
         cat "$TEMP" - |\
-        eval $FZF
+        eval "$FZF"
     )
 
     echo -n "$FFC" |\
