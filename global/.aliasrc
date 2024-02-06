@@ -235,6 +235,7 @@ alias am=alsamixer
 
 alias youtube-viewer='youtube-viewer --no-update-config'
 alias yv=youtube-viewer
+alias yv2='yv --results=20'
 alias mdl='yv --novideo --download! --convert-to=opus'
 alias ytl='yt-dlp --list-formats'
 alias ytls='ytl --format-sort +size'

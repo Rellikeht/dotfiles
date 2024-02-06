@@ -22,7 +22,7 @@ autocmd BufNewFile,BufRead * let b:buffmt = g:buffmt
 autocmd BufNewFile,BufRead * let b:bufcomp = g:bufcomp
 
 " Very temporary but should work well enough
-autocmd BufWritePre *.nix call NixFmt()
+"autocmd BufWritePre *.nix call NixFmt()
 
 " This should go to programming section
 autocmd BufWritePost *.ms call CompileGroffMs()

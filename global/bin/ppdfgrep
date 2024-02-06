@@ -1,41 +1,19 @@
 #!/bin/sh
+# This is all shit
 
-while [ ! -e "$1" -a -n "$1" ]
+while [ ! -e "$1" ] && [ -n "$1" ]
 do
-    ARGS=$(echo $ARGS $1)
+    ARGS="$ARGS $1"
 	shift
 done
 
-DIR=.
 if [ -n "$1" ]
 then
-    DIR="$@"
-    shift
+    find "$@" -iname '*\.pdf' -print0 |\
+        parallel -0 -I{} \
+        pdfgrep --color always -H $ARGS {}
+else
+    find . -iname '*\.pdf' -print0 |\
+        parallel -0 -I{} \
+        pdfgrep --color always -H $ARGS {}
 fi
-
-# TODO TEST
-find "$DIR" -iname '*\.pdf' -print0 |\
-    parallel -0 -I{} pdfgrep -H $ARGS {}
-
-#[ -z "$THREADS" ] && \
-#    THREADS=$(lscpu | \
-#    sed -En '/^CPU\(s\):/s/[^0-9]*([0-9]*)/\1/p')
-#
-#OUTDIR=$(mktemp -d)
-#
-#while [ ! -e "$1" -a -n "$1" ]
-#do
-#    ARGS=$(echo $ARGS $1)
-#	shift
-#done
-#
-#DIR=.; [ -n "$1" ] && DIR=$@
-#
-#find $DIR -iname '*.pdf' -printf "%h/%f\0" | \
-#    xargs -0 -P "$THREADS" -I{} \
-#    sh -c "
-#    export FILE=\$(echo \"{}\" | sha256sum | cut -f1 -d' ');
-#    pdfgrep --color=always -H \"$ARGS\" \"{}\" > \"$OUTDIR/\$FILE\""
-#
-#cat "$OUTDIR"/*
-#rm -rf "$OUTDIR"

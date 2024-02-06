@@ -27,6 +27,7 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 "Plug 'airblade/vim-gitgutter'
 
+Plug 'sbdchd/neoformat'
 Plug 'lfilho/cosco.vim' " TODO B ??
 Plug 'jceb/vim-orgmode' " TODO C No idea if this is necessary
 Plug 'zah/nim.vim', {'for': 'nim'} " TODO B what this gives

@@ -74,12 +74,12 @@ JSENABLE = [
         'chrome://*/*',
         'qute://*/*',
 
-        'https://*.searx.xyz/*',
-        'https://*.paulgo.io/*',
-        'https://paulgo.io/*',
+        '*://*.searx.xyz/*',
+        '*://*.paulgo.io/*',
+        '*://paulgo.io/*',
 
-        'https://*.odysee.com/*',
-        'https://*.youtube.com/*',
+        '*://*.odysee.com/*',
+        '*://*.youtube.com/*',
 
         # Dunno if that is necessary
         '*://github.com/*',
@@ -97,13 +97,13 @@ JSENABLE = [
         '*://*.nixos.org/*',
         '*://*.freebsd.org/*',
 
-        'https://askubuntu.com/*',
-        'https://stackoverflow.com/*',
-        'https://serverfault.com/*',
-        'https://*.stackoverflow.com/*',
-        'https://*.stackexchange.com/*',
-        'https://*.superuser.com/*',
-        'https://superuser.com/*',
+        '*://askubuntu.com/*',
+        '*://stackoverflow.com/*',
+        '*://serverfault.com/*',
+        '*://*.stackoverflow.com/*',
+        '*://*.stackexchange.com/*',
+        '*://*.superuser.com/*',
+        '*://superuser.com/*',
         ]
 
 for page in JSENABLE:

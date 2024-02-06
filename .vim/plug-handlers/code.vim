@@ -24,6 +24,48 @@ map <Leader>BN :NixEdit<CR>
 
 autocmd FileType groff,troff,nroff setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
+" neoformat
+
+" This probably isn't needed, because of lsp
+"let g:neoformat_enabled_go = ['gofmt']
+
+" ???
+let g:neoformat_enabled_python = ['autopep8']
+
+let g:neoformat_enabled_c = ['clang-format']
+let g:neoformat_enabled_nix = ['alejandra']
+let g:neoformat_enabled_ocaml = ['ocamlformat']
+let g:neoformat_enabled_rust = ['rustfmt']
+let g:neoformat_enabled_haskell = ['floskell']
+
+" done in zig plugin
+"let g:neoformat_enabled_zig = ['zig_fmt']
+
+" ??
+let g:neoformat_lua_luaformat = {
+            \ 'exe': 'lua-format',
+            \ 'args': [ 
+            \ '--tab-width=2',
+            \ '--indent-width=2',
+            \ '--continuation-indent-width=2'
+            \ ],
+            \ }
+
+" Untested
+let g:neoformat_enabled_lua = ['luaformat']
+
+" ???
+"let b:neoformat_run_all_formatters = 1
+let b:neoformat_basic_format_retab = 1
+let g:neoformat_only_msg_on_error = 1
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * if b:buffmt | undojoin | Neoformat | endif
+augroup END
+
+map <Leader>Ff :Neoformat<CR>
+
 " others
 
 function GeneralUpgrade()

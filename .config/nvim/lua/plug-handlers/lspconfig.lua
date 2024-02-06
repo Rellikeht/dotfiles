@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
+    local opts = {buffer = ev.buf}
 
     vim.keymap.set(buf_modes, '<Leader>dI', ':LspInfo<CR>')
     vim.keymap.set(buf_modes, '<Leader>dQ', ':LspLog<CR>')
@@ -38,9 +38,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set(buf_modes, '<Leader>dt', vim.lsp.buf.type_definition, opts)
     vim.keymap.set(buf_modes, '<Leader>dR', vim.lsp.buf.rename, opts)
     vim.keymap.set(buf_modes, '<Leader>dr', vim.lsp.buf.references, opts)
-    vim.keymap.set(buf_modes, '<Leader>dF', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
+    vim.keymap.set(buf_modes, '<Leader>dF',
+                   function() vim.lsp.buf.format {async = true} end, opts)
 
     vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
 
@@ -50,8 +49,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     --  end, opts)
 
-    end,
-  })
+  end
+})
 
 local function ssetup(server)
   local config = lspconfig[server]
@@ -64,43 +63,29 @@ local function ssetup(server)
     preselect = false,
     single_file_support = true,
     on_attach = lsp_attach,
-    capabilities = Capabilities,
-    --settings = {}
+    capabilities = Capabilities
+    -- settings = {}
   })
 end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
 local servers = {
-  'pylsp',
-  'gopls',
-  'clangd',
-  'ocamllsp',
-  'nimls',
+  'pylsp', 'gopls', 'clangd', 'ocamllsp', 'nimls',
 
   -- TODO shit doesn't do diagnostics without project in
   -- current dir
   -- Why is this so fucking hard to simply make server run
   -- They need fucking project files everywhere
-  'julials',
-  'zls',
-  'hls',
+  'julials', 'zls', 'hls',
 
   -- Am i stupid, or this and nil_ls both do almost nothing
   -- where is my completion
-  'nixd',
-
-  'bashls',
-  'texlab',
-  'typst_lsp',
-  -- 'scheme_langserver',
-
-  'tsserver',
+  'nixd', 'bashls', 'texlab', 'typst_lsp', -- 'scheme_langserver',
+  'tsserver'
 }
 
-for _, s in ipairs(servers) do
-  ssetup(s)
-end
+for _, s in ipairs(servers) do ssetup(s) end
 
 lspconfig.lua_ls.setup({
   preselectSupport = false,
@@ -113,16 +98,13 @@ lspconfig.lua_ls.setup({
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {
-          'vim',
-          'require'
-        },
+        globals = {'vim', 'require'}
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file("", true)
       },
-      telemetry = { enable = false, },
+      telemetry = {enable = false}
     }
   }
 
@@ -142,39 +124,26 @@ lspconfig.rust_analyzer.setup({
   settings = {
     ['rust-analyzer'] = {
       -- Doesn't solve the problem
-      --standalone = true,
-      --workspaceFolders = false,
-      --workspace = {
+      -- standalone = true,
+      -- workspaceFolders = false,
+      -- workspace = {
       --    workspaceFolders = false,
-      --},
+      -- },
 
-      completion = {
-        contextSupport = true,
-      },
+      completion = {contextSupport = true},
 
-      imports = {
-        granularity = {
-          group = 'module',
-        },
-        prefix = 'self',
-      },
+      imports = {granularity = {group = 'module'}, prefix = 'self'},
 
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-      },
+      cargo = {buildScripts = {enable = true}},
 
-      procMacro = {
-        enable = true
-      },
+      procMacro = {enable = true}
 
     }
   }
 })
 
 -- This has some weird problems
---lspconfig.java_language_server.setup({
+-- lspconfig.java_language_server.setup({
 --    preselectSupport = false,
 --    preselect = false,
 --    single_file_support = true,
@@ -182,4 +151,4 @@ lspconfig.rust_analyzer.setup({
 --    capabilities = Capabilities,
 --    cmd = {'java-language-server'},
 --    --settings = {}
---})
+-- })

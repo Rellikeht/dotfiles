@@ -93,6 +93,7 @@ e, k, o, q, u, x, z
 - s - fzf
 - n - unicode
 - u - undo tree ; NOT IMPLEMENTED :(
+- F - code formatting
 
 ## Nvim only
 - d - lspconfig diagnostics and lsp actions
