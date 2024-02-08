@@ -61,7 +61,16 @@ let g:neoformat_only_msg_on_error = 1
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre * if b:buffmt | undojoin | Neoformat | endif
+  "autocmd BufWritePre * if b:buffmt | undojoin | Neoformat | endif
+  autocmd BufWritePre *
+              \ if b:buffmt
+              \| try
+              \| undojoin
+              \| Neoformat
+              \| catch /E790/
+              \| Neoformat
+              \| endtry
+              \| endif
 augroup END
 
 map <Leader>Ff :Neoformat<CR>
