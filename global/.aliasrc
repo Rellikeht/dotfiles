@@ -23,7 +23,7 @@ alias prgs='progs | sort | uniq'
 #    xargs -d ":" ls 2>/dev/null | \
 #    grep -vE "^(.*:)?$"'
 
-if ! prgs | grep -E '^sudo$' 2>&1 >/dev/null
+if ! prgs | { grep -E '^sudo$' 2>&1; } >/dev/null
 then
     alias sudo=doas
 fi
@@ -148,6 +148,7 @@ alias dfuzp=fzs
 
 # alias fff='find -type f | fzf'
 # alias ffs='find -type f | fzs'
+# Doesn't work
 alias fff='fzh $fzf -type f'
 alias ffs='fzh $fzs -type f'
 
@@ -240,8 +241,8 @@ alias mdl='yv --novideo --download! --convert-to=opus'
 alias ytl='yt-dlp --list-formats'
 alias ytls='ytl --format-sort +size'
 alias yts='yt-dlp --format-sort +size'
-alias ytwa='yts -f wa'
-alias ytba='yts -f ba'
+alias ytwa='yts -f ba'
+alias ytba='yt-dlp -f ba'
 alias mpb='mpv --profile=big'
 alias mpg='mpv --profile=gaudio'
 
@@ -288,12 +289,12 @@ alias opup='opam update && opam upgrade'
 alias openv='eval $(opam env)'
 
 alias pyc='python -c'
-PYPY='pypy3'
-PYPYP="/opt/$PYPY/bin"
-alias ipp="$PYPYP/ipython"
-alias ibp="$PYPYP/bpython"
-alias ppip="$PYPYP/pip"
-alias pypym="$PYPY -m"
+alias pypy='pypy3'
+
+alias ipp="pypy/ipython"
+alias ibp="pypy/bpython"
+alias ppip="pypy/pip"
+alias pypym="pypy -m"
 
 alias R="R --no-save --no-restore"
 alias Re="R -s -e"
@@ -337,7 +338,7 @@ alias gum='git pull --recurse-submodules $(grc) $(gcb)'
 
 alias help2man='help2man -N'
 
-if [ $(uname) = "FreeBSD" ]
+if [ "$(uname)" = "FreeBSD" ]
 then
 
     alias lsf='lsn -F --almost-all \

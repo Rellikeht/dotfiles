@@ -151,12 +151,12 @@ endif
 " Set custom status line look
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
-set mintimeoutlen=100
-set timeoutlen=10000
+set mintimeoutlen=50
+set timeoutlen=100000
 
 set mouse='a'
 
-" I'm not brave enough
+" I'm not brave enough (and also some screens are to small)
 "set number
 "set relativenumber
 
@@ -487,7 +487,7 @@ filetype {*.[1-9]}
 fileviewer {*.[1-9]}
     \ man ./%c | col -b
 
-" TODO languages and fucking style
+" TODO more languages
 fileviewer {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
     \?*.rs,?*.hs,?*.go,?*.ml,?*.nim,?*.zig,?*.jl,
     \?*.java,?*.d,?*.clj,?*.scala,
@@ -500,11 +500,13 @@ fileviewer {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
     \?*.md,?*.csv,?*.tsv,
     \Makefile,?*.cmake,
     \.git*,
+    \?*.url,
     \}
     \ highlight -O truecolor -s easter %c,
     \ bat %c,
 
-" TODO cmake and other weird edge cases
+" TODO cmake, dune, nimble
+" TODO other weird edge cases
 " Doesn't automatically recognize :(
 " \?*rc,?*common,?*local,?*dump,?*history,?*resources,?*setup
 
@@ -527,6 +529,7 @@ filetype {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
     \Makefile,?*.cmake,
     \?*rc,?*common,?*local,?*dump,?*history,?*resources,?*setup
     \.git*,
+    \?*.url,
     \},<text/troff>
     \ svim %f,
     \ nvim %f,
@@ -541,10 +544,18 @@ filetype {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
 filetype <text/troff>
     \ man ./%c,
 
-" WHAT, 
-" TODO highlighting for languages, that would be painful
-" Syntax highlighting in preview
-"
+fileviewer ?*.exe,?*.dll
+    \ file %c,
+    \ strings %c,
+
+filetype ?*.exe
+    \ proton %c &,
+    \ wine %c &
+
+filetype ?*.exe,?*.dll
+    \ file %f | less,
+    \ strings %f | less,
+
 " Explicitly set highlight type for some extensions
 "
 " 256-color terminal
@@ -594,11 +605,6 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 " filter! {*.lo,*.o,*.d,*.class,*.pyc,*.pyo,.*~}
 
 " ------------------------------------------------------------------------------
-
-" Sample mappings
-
-" Start shell in current directory
-" nnoremap S :shell<cr>
 
 " Display sorting dialog
 nnoremap s :sort<cr>
