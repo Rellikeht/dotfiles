@@ -1,4 +1,5 @@
 # Utilities
+
 - plocate (?)
 - fzf (?)
 - ag
@@ -6,6 +7,7 @@
 - typst (?)
 
 # Languages
+
 - python (?, packages ?)
 - go (??)
 - ocaml (??)
@@ -16,7 +18,8 @@
 - julia (can be tricky)
 
 # Language servers
-- pylsp
+
+- pylsp, pylyzer
 - gopls
 - clangd
 - ocamllsp
@@ -32,5 +35,19 @@
 - rust_analyzer
 - lua_ls
 
+# linters
+
+- ruff, autopep8, flake8
+- alejandra
+- shfmt
+- ocamlformat
+- floskell
+- luaformat
+- rustfmt
+
+- gofmt (?)
+
 # Some day
+
 - groff with fonts
+- minizinc with all needed solvers

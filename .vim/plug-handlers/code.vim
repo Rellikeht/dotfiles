@@ -28,9 +28,10 @@ autocmd FileType groff,troff,nroff setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 " This probably isn't needed, because of lsp
 "let g:neoformat_enabled_go = ['gofmt']
+let g:neoformat_enabled_go = []
 
 " ???
-let g:neoformat_enabled_python = ['autopep8']
+let g:neoformat_enabled_python = ['ruff', 'autopep8', 'flake8']
 
 let g:neoformat_enabled_c = ['clang-format']
 let g:neoformat_enabled_nix = ['alejandra']
@@ -53,6 +54,9 @@ let g:neoformat_lua_luaformat = {
 
 " Untested
 let g:neoformat_enabled_lua = ['luaformat']
+let g:neoformat_enabled_nim = ['nimpretty']
+let g:neoformat_enabled_shell = ['shfmt']
+let g:neoformat_enabled_zsh = ['shfmt']
 
 " ???
 "let b:neoformat_run_all_formatters = 1

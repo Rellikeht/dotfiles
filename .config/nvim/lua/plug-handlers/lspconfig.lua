@@ -71,7 +71,8 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
 local servers = {
-  'pylsp', 'gopls', 'clangd', 'ocamllsp', 'nimls',
+  'pylyzer', -- 'pylsp', -- This has to be tested, but type checking...
+  'gopls', 'clangd', 'ocamllsp', 'nimls',
 
   -- TODO shit doesn't do diagnostics without project in
   -- current dir
