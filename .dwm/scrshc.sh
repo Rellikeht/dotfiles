@@ -1,5 +1,5 @@
 #!/bin/sh
-GEOM=`slop`
+GEOM=$(slop)
 DIR="~"
 
 sleep 0.1

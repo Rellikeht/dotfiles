@@ -1,6 +1,6 @@
 #!/bin/sh
 
-GEOM=`slop`
+GEOM=$(slop)
 cd ~/Pobrane
 
 sleep 0.1

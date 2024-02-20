@@ -10,8 +10,10 @@
     self,
     nixpkgs,
     flakeUtils,
-  }:
-    flakeUtils.lib.eachSystem [
+  }: let
+    flib = flakeUtils.lib;
+  in
+    flib.eachSystem [
       "x86_64-linux"
       "aarch64-linux"
     ] (system: let

@@ -24,8 +24,9 @@
     dependency3,
   }: let
     systems = ["x86_64-linux" "aarch64-linux"];
+    flib = flakeUtils.lib;
   in
-    flakeUtils.lib.eachSystem systems (system: let
+    flib.eachSystem systems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
       lib = pkgs.lib;
       name = "program";

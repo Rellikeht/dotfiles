@@ -1,6 +1,6 @@
 ^ca(2, acme) New ^ca()
 ^ca(2, xclip -o && xdotool key Delete) Cut ^ca()
-^ca(2, xdotool type "`xclip -o`") Paste ^ca()
+^ca(2, xdotool type "$(xclip -o)") Paste ^ca()
 ^ca(2, xclip -o | xclip -i -selection CLIPBOARD) Snarf ^ca()
 ^ca(2, exit) Exit ^ca()
 #^ca(1, mocp -v-8) V- ^ca()
