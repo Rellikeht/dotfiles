@@ -6,8 +6,7 @@ start=1
 shift $start
 
 # Maybe there is a better way
-while [ $# -gt 1 ]
-do
+while [ $# -gt 1 ]; do
     args="$args \"$1\""
     shift
 done

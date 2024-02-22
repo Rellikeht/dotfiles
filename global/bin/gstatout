@@ -1,13 +1,10 @@
 #!/bin/sh
 
-for i in $@
-do
-	if [ -d "$i" ]
-	then
+for i in $@; do
+    if [ -d "$i" ]; then
         echo $i
-		git --git-dir="$i"/.git --work-tree="$i" status
-#		echo
-		echo
-		echo
-	fi
+        git --git-dir="$i"/.git --work-tree="$i" status
+        echo
+        echo
+    fi
 done
