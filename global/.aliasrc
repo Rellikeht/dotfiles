@@ -63,6 +63,7 @@ alias dash='dash -E'
 
 alias dh='du -sh'
 alias ddate='date "+%d.%m.%Y"'
+alias pathprint="echo "$PATH" | sed 's/:/\n/g'"
 
 ## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'

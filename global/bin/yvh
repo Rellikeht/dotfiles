@@ -2,18 +2,18 @@
 
 alias yv=youtube-viewer
 
-help () {
-    yv -v > "$1"
-    yv -h >> "$1"
-    echo >> "$1"
-    yv -T >> "$1"
-    echo >> "$1"
-    yv -H >> "$1"
-    echo >> "$1"
-    yv -E >> "$1"
+help() {
+    yv -v >"$1"
+    yv -h >>"$1"
+    echo >>"$1"
+    yv -T >>"$1"
+    echo >>"$1"
+    yv -H >>"$1"
+    echo >>"$1"
+    yv -E >>"$1"
 }
 
-fhelp () {
+fhelp() {
     # generally too slow
     TMP=$(mktemp)
     help "$TMP"
@@ -23,15 +23,14 @@ fhelp () {
 
 FILE=yvh
 DIR="$HOME/.cache/yvh/"
-if ! mkdir -p "$DIR"
-then
+if ! mkdir -p "$DIR"; then
     fhelp
     exit
 fi
 
 cd "$DIR"
 
-[ ! -e "$FILE" -o "$(yv -v)" != "$(sed 1q "$FILE" 2>/dev/null)" ] && \
+[ ! -e "$FILE" -o "$(yv -v)" != "$(sed 1q "$FILE" 2>/dev/null)" ] &&
     help "$FILE"
 
 bat "$FILE"

@@ -1,19 +1,17 @@
 #!/bin/sh
 # This is all shit
 
-while [ ! -e "$1" ] && [ -n "$1" ]
-do
+while [ ! -e "$1" ] && [ -n "$1" ]; do
     ARGS="$ARGS $1"
-	shift
+    shift
 done
 
-if [ -n "$1" ]
-then
-    find "$@" -iname '*\.pdf' -print0 |\
+if [ -n "$1" ]; then
+    find "$@" -iname '*\.pdf' -print0 |
         parallel -0 -I{} \
-        pdfgrep --color always -H $ARGS {}
+            pdfgrep --color always -H $ARGS {}
 else
-    find . -iname '*\.pdf' -print0 |\
+    find . -iname '*\.pdf' -print0 |
         parallel -0 -I{} \
-        pdfgrep --color always -H $ARGS {}
+            pdfgrep --color always -H $ARGS {}
 fi

@@ -1,19 +1,16 @@
 #!/bin/sh
 
 SLEEP_TIME=1
-if [ "$1" == -n ]
-then
+if [ "$1" == -n ]; then
     SLEEP_TIME="$2"
     shift 2
 fi
 
-if [ -z "$1" ]
-then
+if [ -z "$1" ]; then
     exit
 fi
 
-while true
-do
+while true; do
     clear
     eval $@
     sleep "$SLEEP_TIME"

@@ -14,7 +14,6 @@ if v:progname !~? "^vi"
     source ~/.vim/additional.vim
 
     let data_dir = has('nvim') ? stdpath('config') : '~/.vim'
-    let data_dir = '~/.vim'
     if empty(glob(data_dir . '/autoload/plug.vim'))
         silent execute '!curl -fLo '.data_dir.
                     \'/autoload/plug.vim --create-dirs '.plug_src

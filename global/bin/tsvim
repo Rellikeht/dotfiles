@@ -3,10 +3,9 @@
 SNAME="$0-$USER"
 VIM=svim
 
-ps heo comm | grep $VIM > /dev/null && \
-    if $VIM --serverlist | grep -Ei "^$SNAME\$" > /dev/null
-    then
-	$VIM --servername $SNAME --remote-tab $@
-	exit
+ps heo comm | grep $VIM >/dev/null &&
+    if $VIM --serverlist | grep -Ei "^$SNAME\$" >/dev/null; then
+        $VIM --servername $SNAME --remote-tab $@
+        exit
     fi
 exec $VIM --servername $SNAME $@
