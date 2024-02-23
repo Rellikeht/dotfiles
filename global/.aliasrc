@@ -23,8 +23,7 @@ alias prgs='progs | sort | uniq'
 #    xargs -d ":" ls 2>/dev/null | \
 #    grep -vE "^(.*:)?$"'
 
-if ! prgs | { grep -E '^sudo$' 2>&1; } >/dev/null
-then
+if ! prgs | { grep -E '^sudo$' 2>&1; } >/dev/null; then
     alias sudo=doas
 fi
 
@@ -338,8 +337,7 @@ alias gum='git pull --recurse-submodules $(grc) $(gcb)'
 
 alias help2man='help2man -N'
 
-if [ "$(uname)" = "FreeBSD" ]
-then
+if [ "$(uname)" = "FreeBSD" ]; then
 
     alias lsf='lsn -F --almost-all \
         --dereference-command-line-symlink-to-dir'
@@ -422,6 +420,7 @@ else
 fi
 
 # TODO
+# packages shit gets to hard
 # type -f in zsh
 # type in bash
 # in ksh may be even impossible

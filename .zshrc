@@ -11,7 +11,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 bindkey -e
 bindkey \^U backward-kill-line
-alias ls="ls --color"
+# alias ls="ls --color"
 
 conditional_source () {
 	[ -f "$1" ] && source "$1"
@@ -20,14 +20,17 @@ conditional_source () {
 #aliases
 conditional_source "/etc/.aliasrc"
 conditional_source "$HOME/.aliasrc"
+conditional_source "$HOME/.local/.aliasrc"
 
 #functions
 conditional_source "/etc/.funcrc"
 conditional_source "$HOME/.funcrc"
+conditional_source "$HOME/.local/.funcrc"
 
 #common variables
 conditional_source "/etc/.varrc"
 conditional_source "$HOME/.varrc"
+conditional_source "$HOME/.local/.varrc"
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -38,6 +41,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Shit, removing this breaks zsh on arch :(((
 conditional_source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -52,6 +56,6 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 #zle -N my-backward-delete-word
 #bindkey    '\e^?' my-backward-delete-word
 
-eval "$(direnv hook zsh)"
+# ???
 conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-
+eval "$(direnv hook zsh)"

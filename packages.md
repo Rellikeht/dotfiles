@@ -35,7 +35,7 @@
 - rust_analyzer
 - lua_ls
 
-# linters
+# formatters
 
 - ruff, autopep8, flake8
 - alejandra
@@ -44,6 +44,7 @@
 - floskell
 - luaformat
 - rustfmt
+- jq
 
 - gofmt (?)
 

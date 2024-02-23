@@ -58,6 +58,12 @@ let g:neoformat_enabled_nim = ['nimpretty']
 let g:neoformat_enabled_shell = ['shfmt']
 let g:neoformat_enabled_zsh = ['shfmt']
 
+" prettier ???
+let g:neoformat_enabled_json = ['jq', 'prettier']
+let g:neoformat_enabled_jsonc = ['prettier']
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_typescript = ['prettier']
+
 " ???
 "let b:neoformat_run_all_formatters = 1
 let b:neoformat_basic_format_retab = 1
