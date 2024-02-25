@@ -1,2 +1,10 @@
-(use-modules (ice-9 readline))
+; vim: set syn=scheme ft=scheme:
+(use-modules
+  (ice-9 readline)
+  (ice-9 receive)
+  (ice-9 popen)
+  (ice-9 rdelim)
+  (ice-9 iconv)
+  ; (ice-9 unicode)
+  )
 (activate-readline)

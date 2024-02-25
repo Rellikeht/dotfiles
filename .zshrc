@@ -58,4 +58,5 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 
 # ???
 conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 eval "$(direnv hook zsh)"
