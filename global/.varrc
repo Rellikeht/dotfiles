@@ -11,7 +11,7 @@ export PAGER='less -r'
 export MANPAGER=less
 
 #PLAN9=/ext/plan9
-[ -n "$PLAN9" ] && export PATH=$PATH:$PLAN9/bin
+# [ -n "$PLAN9" ] && export PATH=$PATH:$PLAN9/bin
 #export PATH=$PATH:/usr/lib/xscreensaver
 
 #if [ "$(uname)" = "Linux" ]
@@ -22,6 +22,7 @@ export MANPAGER=less
 #fi
 #export TERM=st-24bit
 
+# ??
 [ -e "/etc/.varrc_local" ] && source /etc/.varrc_local
 
 #if [ -n "$TMUX" ]
@@ -31,7 +32,5 @@ export MANPAGER=less
 #fi
 
 export PYTHONDONTWRITEBYTECODE="true"
-
-export WORDCHARS='%~!?+'
 
 export NIX_REMOTE=daemon

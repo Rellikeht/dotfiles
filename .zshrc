@@ -9,6 +9,8 @@ fi
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+WORDCHARS='%~!?+'
+
 bindkey -e
 bindkey \^U backward-kill-line
 # alias ls="ls --color"
@@ -56,7 +58,6 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 #zle -N my-backward-delete-word
 #bindkey    '\e^?' my-backward-delete-word
 
-# ???
 conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 eval "$(direnv hook zsh)"

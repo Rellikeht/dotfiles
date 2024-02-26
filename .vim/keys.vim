@@ -41,6 +41,15 @@ map <Leader>qc :let b:bufcomp=!b:bufcomp<CR>
 map <Leader>qC :let g:bufcomp=!g:bufcomp<CR>
 map <Leader>q2 :echo b:bufcomp<CR>
 
+" Yeah, copying from wiki works
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
 " TODO A wc on buffer
 "map <Leader>;c
 

@@ -74,16 +74,10 @@ local servers = {
   'pylyzer', -- 'pylsp', -- This has to be tested, but type checking...
   'gopls', 'clangd', 'ocamllsp', 'nimls',
 
-  -- TODO shit doesn't do diagnostics without project in
-  -- current dir
-  -- Why is this so fucking hard to simply make server run
-  -- They need fucking project files everywhere
-  'julials', 'zls', 'hls',
-
-  -- Am i stupid, or this and nil_ls both do almost nothing
+  -- Am i stupid, or nix language servers do almost nothing
   -- where is my completion
-  'nixd', 'bashls', 'texlab', 'typst_lsp', -- 'scheme_langserver',
-  'tsserver'
+  'nixd', 'julials', 'zls', 'hls', -- 'r_language_server'
+  'bashls', 'texlab', 'typst_lsp', 'scheme_langserver', 'tsserver'
 }
 
 for _, s in ipairs(servers) do ssetup(s) end

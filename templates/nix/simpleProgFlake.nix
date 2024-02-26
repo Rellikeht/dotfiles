@@ -55,7 +55,7 @@
             description = "description";
             # license = licenses.gpl3;
             mainProgram = "programName";
-            maintainers = "Rellikeht";
+            maintainers = ["Rellikeht"];
             platforms = platforms.unix;
 
             longDescription = '''';
