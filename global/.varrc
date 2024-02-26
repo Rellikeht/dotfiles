@@ -9,6 +9,7 @@ export LESS_TERMCAP_us=$'\e[01;32m' \
 #bind  '"\C-\\":"fzf"'
 export PAGER='less -r'
 export MANPAGER=less
+export PATH="$PATH:$HOME/bin"
 
 #PLAN9=/ext/plan9
 # [ -n "$PLAN9" ] && export PATH=$PATH:$PLAN9/bin
@@ -27,8 +28,8 @@ export MANPAGER=less
 
 #if [ -n "$TMUX" ]
 #then
-#	TERM=st-24bit
-#	#TERM=xterm-24bit
+#   TERM=st-24bit
+#   #TERM=xterm-24bit
 #fi
 
 export PYTHONDONTWRITEBYTECODE="true"
