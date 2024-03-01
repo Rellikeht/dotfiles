@@ -51,9 +51,9 @@ groff/
 TODO
 highlight.css
 
-templates/**/*
-!templates/**/*/
-!templates/**/*.*
+Templates/**/*
+!Templates/**/*/
+!Templates/**/*.*
 
 *.png
 *.jpg
