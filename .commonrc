@@ -19,12 +19,15 @@ conditional_source "/etc/.varrc"
 conditional_source "$HOME/.varrc"
 conditional_source "$HOME/.local/.varrc"
 
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-    ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
+run_ssh_agent () {
+    if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+        ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
+    fi
+    if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+        source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    fi
+}
+run_ssh_agent
 
 conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"

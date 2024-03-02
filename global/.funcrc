@@ -1,34 +1,31 @@
-#!/bin/sh
+#!/bin/bash
+# vim: set syn=bash ft=bash:
 
 # ============================================================
 # 						HELPERS
 # ============================================================
 
-dir_arg () {
-	if [ -z "$1" ]
-	then
-		echo "."
-	else
-		echo "$1"
-	fi
+dir_arg() {
+    if [ -z "$1" ]; then
+        echo "."
+    else
+        echo "$1"
+    fi
 }
 
-find_command ()
-{
+find_command() {
     local SWITCH ALL DIR PATTERN
     SWITCH="$1"
     ALL="$2"
     DIR=.
     shift 2
 
-    if [ -d "$1" ]
-    then
+    if [ -d "$1" ]; then
         DIR="$1"
         shift
     fi
 
-    if [ -n "$1" ]
-    then
+    if [ -n "$1" ]; then
         PATTERN="$ALL$1$ALL"
         shift
     else
@@ -38,11 +35,11 @@ find_command ()
     find_system_special "$DIR" "$SWITCH" "$PATTERN" $@
 }
 
-noerr () {
+noerr() {
     "$@" 2>/dev/null
 }
 
-silent () {
+silent() {
     noerr "$@" >/dev/null
 }
 
@@ -64,120 +61,121 @@ silent () {
 # 						MAIN
 # ============================================================
 
-lh () {
-    if [ -n "$1" ]
-    then
-	    ls -t | sed "$1q"
+lh() {
+    if [ -n "$1" ]; then
+        ls -t | sed "$1q"
     else
-	    ls -t | sed 12q
+        ls -t | sed 12q
     fi
 }
 
-cdc () {
+cdc() {
     # return is lsp suggestion
-    if [ -z "$1" ]
-    then cd || return
-    elif [ -d "$1" ]
-    then cd "$1" || return
+    if [ -z "$1" ]; then
+        cd || return
+    elif [ -d "$1" ]; then
+        cd "$1" || return
     fi
-	clear
+    clear
 }
 
-cdl () {
+cdl() {
     cdc "$1"
-	ls
+    ls
 }
 
-cdll () {
+cdll() {
     cdc "$1"
-	ll
+    ll
 }
 
-maxe () {
-    if [ -n "$2" ]
-    then
-	    cmds="$2"
-	    prec="$1"
+maxe() {
+    if [ -n "$2" ]; then
+        cmds="$2"
+        prec="$1"
     else
-	    cmds="$1"
-	    prec=20
+        cmds="$1"
+        prec=20
     fi
     str=$(echo -n "$cmds" | sed -z 's/[^;$\n]$/\0;/')
-    maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" | \
-	sed -z 's/load[^\n]*\n[^\n]*\n//g' | \
-	grep -E '^[ 	]|\$|b0$|]$'
+    maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" |
+        sed -z 's/load[^\n]*\n[^\n]*\n//g' |
+        grep -E '^[ 	]|\$|b0$|]$'
 }
 
-gple () {
+gple() {
     gpe "plot '$1' using $2 w l"
 }
 
-edt () {
-    if [ -n "$2" ]
-    then $1 "$@"
-    else svim "$1"
+edt() {
+    if [ -n "$2" ]; then
+        $1 "$@"
+    else
+        svim "$1"
     fi
 }
 
-eal () {
+eal() {
     edt $1 /etc/.aliasrc
 }
 
-efn () {
+efn() {
     edt $1 /etc/.funcrc
 }
 
-evr () {
+evr() {
     edt $1 /etc/.varrc
 }
 
-fec () {
-    if [ -n "$1" ]
-    then edt="$1"
-    else edt='vim'
+fec() {
+    if [ -n "$1" ]; then
+        edt="$1"
+    else
+        edt='vim'
     fi
 
-    if [ -n "$2" ]
-    then comm="$2"
-    else comm=$(lsn | fzf)
+    if [ -n "$2" ]; then
+        comm="$2"
+    else
+        comm=$(lsn | fzf)
     fi
 
     $edt $comm
 }
 
-fe () {
+fe() {
     fec "$1" "find -type f | fzf"
 }
 
-fed () {
+fed() {
     fec "$1"
 }
 
-dis () {
+dis() {
     silent "$@" &
     disown
 }
 
-bins () {
+bins() {
     pfl "$@" | grep -E $(echo "$PATH" | sed 's/:/|/g')
 }
 
-if [ $(uname) = "FreeBSD" ]
-then
+if [ $(uname) = "FreeBSD" ]; then
 
-    find_system_special () {
+    find_system_special() {
         find -E "$@" # TODO
     }
 
     TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
-    ttgl () {
-        if [ $(sysctl -n hw.psm.synaptics.touchpad_off) == 0 ]
-        then eval "$TOUCHPAD_CMD=1" > /dev/null
-        else eval "$TOUCHPAD_CMD=0" > /dev/null
+    ttgl() {
+        if [ $(sysctl -n hw.psm.synaptics.touchpad_off) == 0 ]; then
+            eval "$TOUCHPAD_CMD=1" >/dev/null
+        else
+            eval "$TOUCHPAD_CMD=0" >/dev/null
         fi
     }
 
-    hm () {
+    hm() {
         #local F
         #F=$(mktemp)
         #help2man $@ > "$F"
@@ -188,18 +186,17 @@ then
 
 else
 
-    find_system_special () {
+    find_system_special() {
         local D
         D="$1"
         shift
         find "$D" -regextype posix-extended $@
     }
 
-    wat () {
+    wat() {
         local WTIME COMMAND
         #if [ -n "$1" ]
-        if [ "$1" -gt 0 ] 2>/dev/null
-        then
+        if [ "$1" -gt 0 ] 2>/dev/null; then
             WTIME="$1"
             shift
         else
@@ -209,20 +206,20 @@ else
         watch -n "$WTIME" -d "$@"
     }
 
-    watc () {
-	local T
-	T="$1"
-	shift
-	wat "$T" -c "$@"
+    watc() {
+        local T
+        T="$1"
+        shift
+        wat "$T" -c "$@"
     }
 
-    hm () {
+    hm() {
         help2man $@ | man /dev/stdin
     }
 
 fi
 
-hms () {
+hms() {
     hm --no-discard-stderr $@
 }
 
@@ -238,35 +235,34 @@ fndi() {
     find_command -iname '*' $@
 }
 
-fnds () {
+fnds() {
     find_command -regex '.*' $@
 }
 
-fndr () {
+fndr() {
     find_command -iregex '.*' $@
 }
 
-fnde () {
+fnde() {
     find_command -name '' $@
 }
 
-fndie () {
+fndie() {
     find_command -name '' $@
 }
 
-fndse () {
+fndse() {
     find_command -regex '' $@
 }
 
-fndre () {
+fndre() {
     find_command -regex '' $@
 }
 
-ariad () {
+ariad() {
     local FILE
 
-    if [ -f "$1" ]
-    then
+    if [ -f "$1" ]; then
         FILE="$(pwd)/$1"
     else
         FILE="$1"
@@ -287,26 +283,25 @@ ariad () {
 #fi
 
 # Basically find piped to fzf with history
-fzh () {
+fzh() {
     local FZF="$1"
     shift
     local FZH_FILE="$HOME/.$FZF-hist-file"
     local TEMP=$(mktemp) # This should be helpful
     touch "$FZH_FILE"
-    cat "$FZH_FILE" > "$TEMP"
+    cat "$FZH_FILE" >"$TEMP"
 
     local FFC=$(
-    ! find $@ |\
-        cat "$TEMP" - |\
-        eval "$FZF"
+        ! find $@ |
+            cat "$TEMP" - |
+            eval "$FZF"
     )
 
-    echo -n "$FFC" |\
+    echo -n "$FFC" |
         xargs -d'\n' -I{} sh -c \
-        "! grep -x \"{}\" \"$TEMP\" 2>&1 >/dev/null &&\
+            "! grep -x \"{}\" \"$TEMP\" 2>&1 >/dev/null &&\
         echo \"{}\" >> \"$FZH_FILE\" "
 
     rm "$TEMP"
     echo "$FFC"
 }
-
