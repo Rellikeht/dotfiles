@@ -1,0 +1,30 @@
+# vim: set syn=bash ft=bash:
+
+conditional_source() {
+    [ -f "$1" ] && source "$1"
+}
+
+#aliases
+conditional_source "/etc/.aliasrc"
+conditional_source "$HOME/.aliasrc"
+conditional_source "$HOME/.local/.aliasrc"
+
+#functions
+conditional_source "/etc/.funcrc"
+conditional_source "$HOME/.funcrc"
+conditional_source "$HOME/.local/.funcrc"
+
+#common variables
+conditional_source "/etc/.varrc"
+conditional_source "$HOME/.varrc"
+conditional_source "$HOME/.local/.varrc"
+
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+    ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
+conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"

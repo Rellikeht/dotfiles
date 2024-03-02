@@ -1,9 +1,10 @@
 {
-  description = "Simple flake for building some program";
+  description = "Flake with rust program";
 
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs;
     flakeUtils.url = github:numtide/flake-utils;
+
     package = {
       url = github:user/program;
       flake = false;
@@ -42,21 +43,19 @@
       src = package;
     in {
       packages = {
-        default = pkgs.stdenv.mkDerivation {
+        default = pkgs.rustPlatform.buildRustPackage {
           inherit name system src;
 
-          CMAKE_MAKE_PROGRAM = "make -j $NIX_BUILD_CORES";
-
-          buildInputs = with pkgs;
-            [
-            ]
-            ++ [
-              dependency1.${system}.default
-              dependency2.${system}.default
-              dependency3.${system}.default
-            ];
-
           nativeBuildInputs = with pkgs; [
+            installShellFiles
+          ];
+
+          cargoLock = {
+            lockFile = "${src}/Cargo.lock";
+          };
+
+          checkFlags = map (n: "--skip=" + n) [
+            "test"
           ];
 
           meta = with lib; {

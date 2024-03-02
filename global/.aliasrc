@@ -87,6 +87,9 @@ alias po=poweroff
 alias rrb='doas reboot'
 alias rpo='doas poweroff'
 
+alias sag='ssh-agent'
+alias sad='ssh-add'
+
 # Text Editors
 
 alias nano='nano --rcfile=~/.nanorc'
@@ -300,8 +303,6 @@ alias Re="R -s -e"
 alias gpe='gnuplot -p -e'
 
 # git
-#alias gnp='git --no-pager'
-#alias git='git --paginate'
 alias gitp='git --paginate'
 alias gsb='git submodule'
 alias gco='git checkout'
@@ -314,23 +315,25 @@ alias gst='git status'
 alias grs='git remote show'
 alias gcb='git branch --show-current'
 alias gbl='git branch --list'
+
 alias glc='git log --color=always'
 alias gdf='git diff --color=always'
 alias gdn='git diff --color=auto'
 alias gdd='git diff | delta'
 
-# alias gal='gad .'
 alias gad='git add'
 alias gcm='git commit -m'
 alias gcs='git commit'
+
 alias gsh='git push'
 alias gsm='git push --recurse-submodules'
+alias gho='git push origin $(gcb)'
+alias ghm='git push --recurse-submodules origin $(gcb)'
+
 alias gll='git pull'
 alias glm='git pull --recurse-submodules'
-alias gho='git push $(grc) $(gcb)'
-alias ghm='git push --recurse-submodules $(grc) $(gcb)'
-alias guo='git pull $(grc) $(gcb)'
-alias gum='git pull --recurse-submodules $(grc) $(gcb)'
+alias guo='git pull origin $(gcb)'
+alias gum='git pull --recurse-submodules origin $(gcb)'
 
 # Other
 

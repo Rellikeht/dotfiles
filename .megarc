@@ -1,0 +1,6 @@
+# vim: set ft=ini syn=ini:
+[Network]
+ParallelTransfers = 20
+
+[UI]
+Colors = true
