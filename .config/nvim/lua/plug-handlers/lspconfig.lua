@@ -49,6 +49,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     --  end, opts)
 
+    -- FUCK
+    vim.keymap.set('i', '<C-Space>', vim.lsp.buf.completion, opts)
   end
 })
 

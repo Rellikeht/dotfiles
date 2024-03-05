@@ -71,5 +71,3 @@ vim.call('plug#end')
 local modconfigs = {'motion', 'cmp', 'lspconfig', 'colors', 'other'}
 
 for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
-
--- api.nvim_create_autocmd

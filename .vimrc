@@ -8,11 +8,10 @@ source ~/.vim/tiny-compatible.vim
 " some parts are common, so i needed to do this:
 
 if v:progname !~? "^vi"
-    let plug_src = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
     " and it works, at least now
     source ~/.vim/additional.vim
 
+    let plug_src = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     let data_dir = has('nvim') ? stdpath('config') : '~/.vim'
     if empty(glob(data_dir . '/autoload/plug.vim'))
         silent execute '!curl -fLo '.data_dir.
