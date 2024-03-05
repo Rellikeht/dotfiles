@@ -20,10 +20,15 @@ conditional_source "$HOME/.varrc"
 conditional_source "$HOME/.local/.varrc"
 
 run_ssh_agent () {
-    if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-        ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
+    local AGENT_ENV="$XDG_RUNTIME_DIR/ssh-agent.env"
+
+    # Something goes wrong :(
+    # if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+    if ! [ -f "$AGENT_ENV" ]; then
+        ssh-agent -t 1h > $AGENT_ENV
     fi
-    if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+
+    if [ ! -f "$SSH_AUTH_SOCK" ]; then
         source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
     fi
 }

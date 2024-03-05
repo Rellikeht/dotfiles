@@ -12,8 +12,8 @@ local nvim_dir = vim.call('stdpath', 'config')
 local vim_dir = '~/.vim'
 local plug_dir = 'plug-handlers/'
 
-vim.call('plug#begin', nvim_dir..'/plugins')
-vim.cmd('source '..vim_dir..'/common-plugins.vim')
+vim.call('plug#begin', nvim_dir .. '/plugins')
+vim.cmd('source ' .. vim_dir .. '/common-plugins.vim')
 
 -- DEPENDENCIES
 
@@ -33,14 +33,14 @@ Plug('norcalli/nvim-colorizer.lua') -- TODO C
 Plug('easymotion/vim-easymotion') -- TODO A
 Plug('ThePrimeagen/harpoon') -- TODO A
 Plug('nvim-telescope/telescope.nvim') -- TODO A
---Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
+-- Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 
 -- TODO C test that
---Plug('nvim-treesitter/nvim-treesitter-textobjects')
+-- Plug('nvim-treesitter/nvim-treesitter-textobjects')
 
 -- COMPLETION
 
---Plug('jayli/vim-easycomplete')
+-- Plug('jayli/vim-easycomplete')
 -- Try if ↓ won't work well enough
 Plug('neovim/nvim-lspconfig') -- TODO A this can autocomplete
 Plug('mfussenegger/nvim-jdtls') -- :(
@@ -59,7 +59,7 @@ Plug('windwp/nvim-autopairs') -- TODO B
 Plug('nvim-treesitter/nvim-treesitter-refactor') -- TODO B
 
 -- TODO C try
---Plug('rmagatti/auto-session')
+-- Plug('rmagatti/auto-session')
 
 -- NICE TO HAVE
 
@@ -68,14 +68,8 @@ Plug('nvim-treesitter/nvim-treesitter-refactor') -- TODO B
 
 vim.call('plug#end')
 
-local modconfigs = {
-	'motion',
-	'cmp',
-	'lspconfig',
-	'colors',
-	'other',
-}
+local modconfigs = {'motion', 'cmp', 'lspconfig', 'colors', 'other'}
 
-for _, i in ipairs(modconfigs) do
-	require(plug_dir..i)
-end
+for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
+
+-- api.nvim_create_autocmd
