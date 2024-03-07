@@ -33,7 +33,8 @@ let g:neoformat_enabled_go = []
 " ???
 let g:neoformat_enabled_python = ['ruff', 'autopep8', 'flake8']
 
-let g:neoformat_enabled_c = ['clang-format']
+let g:neoformat_enabled_c = ['clangformat', 'astyle', 'uncrustify']
+let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_nix = ['alejandra']
 let g:neoformat_enabled_ocaml = ['ocamlformat']
 let g:neoformat_enabled_rust = ['rustfmt']
@@ -59,10 +60,11 @@ let g:neoformat_enabled_shell = ['shfmt']
 let g:neoformat_enabled_zsh = ['shfmt']
 
 " prettier ???
-let g:neoformat_enabled_json = ['jq', 'prettier']
+let g:neoformat_enabled_json = ['jq', 'clangformat', 'prettier']
 let g:neoformat_enabled_jsonc = ['prettier']
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_typescript = ['prettier']
+let g:neoformat_enabled_javascript = ['clangformat', 'prettier']
+let g:neoformat_enabled_typescript = ['clangformat', 'prettier']
+let g:neoformat_enabled_java = ['clangformat', 'astyle', 'uncrustify', 'prettier']
 
 " ???
 "let b:neoformat_run_all_formatters = 1

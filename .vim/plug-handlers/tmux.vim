@@ -14,56 +14,56 @@
 let g:ret = 'C-m'
 
 function Tm(cmd)
-	execute 'Tmux '.a:cmd
+    execute 'Tmux '.a:cmd
 endfunction
 
 function Ccd()
-	let path = expand('%:h')
-	execute 'cd' path
+    let path = expand('%:h')
+    execute 'cd' path
 endfunction
 
 function Setup2Panes()
-	let path = expand('%:h')
-	execute 'cd' path
-	call Tm('split-window -h -c '.path)
-	call Tm('select-pane -R')
+    let path = expand('%:h')
+    execute 'cd' path
+    call Tm('split-window -h -c '.path)
+    call Tm('select-pane -R')
 endfunction
 
 function MakeThirdVertical()
-	let path = expand('%:h')
-	execute 'cd' path
-	call Tm('select-pane -R')
-	call Tm('split-window -v -c '.path)
-	call Tm('select-pane -R')
+    let path = expand('%:h')
+    execute 'cd' path
+    call Tm('select-pane -R')
+    call Tm('split-window -v -c '.path)
+    call Tm('select-pane -R')
 endfunction
 
 function Setup3Panes()
-	let path = expand('%:h')
-	call Tm('split-window -h -c '.path)
-	call Tm('split-window -v -c '.path)
-	call Tm('select-pane -U')
-	call Tm('select-pane -L')
-	execute 'cd' path
+    let path = expand('%:h')
+    call Tm('split-window -h -c '.path)
+    call Tm('split-window -v -c '.path)
+    call Tm('select-pane -U')
+    call Tm('select-pane -L')
+    execute 'cd' path
 endfunction
 
 function CdPanesDangerous(clear)
-	let path = expand('%:p:h')
+    let path = expand('%:p:h')
     execute 'Tmux send-keys Escape :'
-	execute 'Tmux setw synchronize-panes on'
+    execute 'Tmux setw synchronize-panes on'
     execute 'Tmux send-keys \"cd '.shellescape(path).'\"'
-	execute 'Tmux setw synchronize-panes off'
+    execute 'Tmux setw synchronize-panes off'
     execute 'Tmux send-keys Escape :'
-	execute 'Tmux setw synchronize-panes on'
+    execute 'Tmux setw synchronize-panes on'
     execute 'Tmux send-keys Enter C-l'
-	execute 'Tmux setw synchronize-panes off'
+    execute 'Tmux setw synchronize-panes off'
 endfunction
 
 function NewWindow(home)
-	call Tm('new-window')
+    call Tm('new-window')
     if a:home
         call Tm('send-keys cd ' . g:ret . ' C-l')
     endif
-	call Tm('last-window')
+    call Tm('last-window')
 endfunction
 
 function ReplOnSecond()
@@ -113,12 +113,12 @@ let g:slime_dont_ask_default = 1
 let g:slime_bracketed_paste = 1
 let g:slime_no_mappings = 1
 
-function GetPaneSlime()
+function GetSlimePane()
     return get(b:, 'slime_config', g:slime_default_config)['target_pane']
 endfunction
 
-function SendKeysSlime(keys)
-    execute 'Tmux send-keys -t ' . GetPaneSlime() . ' ' . a:keys
+function SendKeys(keys)
+    execute 'Tmux send-keys -t ' . GetSlimePane() . ' ' . a:keys
 endfunction
 
 function ProgNameSlime()
@@ -169,10 +169,21 @@ map gss :SlimeSend<CR>
 map gsl <Plug>SlimeLineSend
 
 " Clear, exit
-map gsc :call SendKeysSlime("C-l")<CR>
-map gse :call SendKeysSlime("C-c C-d")<CR>
+map gsc :call SendKeys("C-l")<CR>
+map gse :call SendKeys("C-c C-d")<CR>
 
 " Launching program for currently edited langugage
-map gsb :call SendKeysSlime(ProgNameSlime())<CR>
-map gsB :call SendKeysSlime("rlwrap " . &filetype . ' ' . g:ret)<CR>
-map gsS :call SendKeysSlime(&filetype . ' ' . g:ret)<CR>
+map gsb :call SendKeys(ProgNameSlime())<CR>
+map gsB :call SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
+map gsS :call SendKeys(&filetype . ' ' . g:ret)<CR>
+
+" GDB
+" Maybe in the future more debuggers will land here
+" but this all is mostly useless
+
+" line('.') - current line
+" expand('%:t') - current filename (tail)
+" gdb can't toggle breakpoints,
+" so here should be kept list of them :(
+
+" map gsP :call SendKeys('b '.line('.'))

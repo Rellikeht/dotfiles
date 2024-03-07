@@ -73,7 +73,8 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
 local servers = {
-  'pylyzer', -- 'pylsp', -- This has to be tested, but type checking...
+  -- 'pylyzer',
+  'pylsp', -- pylyzer is unstable :(
   'gopls', 'clangd', 'ocamllsp', 'nimls',
 
   -- Am i stupid, or nix language servers do almost nothing

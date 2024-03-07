@@ -6,6 +6,13 @@
 - treesitter
 - typst (?)
 
+- dhall-nix
+- dhall-bash
+- dhall-nixpkgs
+- dhall-json
+- dhall-yaml
+- dhall
+
 # Languages
 
 - python (?, packages ?)
@@ -19,7 +26,7 @@
 
 # Language servers
 
-- pylsp, pylyzer
+- pylsp, pylsp-mypy, pylyzer
 - gopls
 - clangd
 - ocamllsp
@@ -34,6 +41,7 @@
 - tsserver
 - rust_analyzer
 - lua_ls
+- dhall-lsp-server
 
 # formatters
 
@@ -45,8 +53,13 @@
 - luaformat
 - rustfmt
 - jq
+- astyle
+- cmake-format
 
 - gofmt (?)
+- haskellPackages.cabal-fmt ??
+- uncrustify ??
+- prettier ???
 
 # Some day
 

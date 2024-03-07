@@ -45,6 +45,9 @@
 .moc/last_directory
 .moc/equalizer
 
+.julia/*
+!.julia/config
+
 groff/
 
 *~
