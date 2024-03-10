@@ -79,7 +79,8 @@ local servers = {
 
   -- Am i stupid, or nix language servers do almost nothing
   -- where is my completion
-  'nixd', 'julials', 'zls', 'hls', -- 'r_language_server'
+  -- 'nixd',
+  'nil_ls', 'julials', 'zls', 'hls', -- 'r_language_server'
   'bashls', 'texlab', 'typst_lsp', 'scheme_langserver', 'tsserver'
 }
 
