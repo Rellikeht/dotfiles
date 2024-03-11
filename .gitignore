@@ -67,6 +67,7 @@ Templates/**/*
 __pycache__/
 autoload
 
+.*history*
 *.o
 *.out
 *.hi

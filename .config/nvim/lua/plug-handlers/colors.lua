@@ -2,15 +2,15 @@ local tsconfig = require('nvim-treesitter.configs')
 tsconfig.setup({
   ensure_installed = {
     "lua", "vim", "vimdoc", "query", "comment", "todotxt", "c", "bash", "ocaml",
-    "go", "gomod", "gowork", "scheme", "nix", "git_config", "git_rebase",
-    "gitattributes", "gitcommit", "gitignore", "diff", "markdown",
-    "markdown_inline", "html", "css", "json", "latex", "ebnf", "ini", "toml",
-    "yaml", "julia", "haskell", "zig", "python", "verilog", "elixir", "clojure",
-    "racket", "make", "ninja", "meson", "cmake", "sql", "rust", "cpp", "erlang",
-    "cuda", "r", "java", "scala", "ada", "odin", "fortran", "perl"
+    "commonlisp", "go", "gomod", "gowork", "scheme", "nix", "dhall",
+    "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore",
+    "diff", "markdown", "markdown_inline", "html", "css", "json", "latex",
+    "ebnf", "ini", "toml", "yaml", "julia", "haskell", "zig", "python",
+    "verilog", "elixir", "clojure", "racket", "make", "ninja", "meson", "cmake",
+    "sql", "rust", "cpp", "erlang", "cuda", "r", "java", "scala", "ada", "odin",
+    "fortran", "perl", "asm"
   },
 
-  -- TODO B lisp
   -- TODO C org
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
