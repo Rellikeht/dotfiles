@@ -66,6 +66,19 @@ let g:neoformat_enabled_javascript = ['clangformat', 'prettier']
 let g:neoformat_enabled_typescript = ['clangformat', 'prettier']
 let g:neoformat_enabled_java = ['clangformat', 'astyle', 'uncrustify', 'prettier']
 
+" Totally differently than it seems
+" from reading README, but somehow This
+" shit works
+let g:neoformat_typst_typstfmt = {
+            \'exe': 'typstfmt',
+            \'args': ['-o -'],
+            \'stdin': 1,
+            \'stderr': 1,
+            \'replace': 0,
+            \'no_append': 1,
+            \}
+let g:neoformat_enabled_typst = ["typstfmt"]
+
 " ???
 "let b:neoformat_run_all_formatters = 1
 let b:neoformat_basic_format_retab = 1
