@@ -1,5 +1,3 @@
-a
-a
 #!/usr/bin/env sh
 
 ## Get all possible programs
@@ -218,21 +216,21 @@ alias rlci='plocate -ir'
 alias prr='prime-run'
 alias prg='progress -M -W 1'
 alias prgc='prg \
-	-a ffmpeg -a ebook-convert \
-	-a yt-dlp -a youtube-dl -a you-get \
+    -a ffmpeg -a ebook-convert \
+    -a yt-dlp -a youtube-dl -a you-get \
     -a mpv -a vlc \
-	-a vifm -a ranger -a nnn -a pcmanfm -a pcmanfm-qt \
-	-a wget -a curl -a aria2 -a rsync -a gdown -a megatools \
-	-a rar -a unrar -a 7z -a 7za -a 7zr \
+    -a vifm -a ranger -a nnn -a pcmanfm -a pcmanfm-qt \
+    -a wget -a curl -a aria2 -a rsync -a gdown -a megatools \
+    -a rar -a unrar -a 7z -a 7za -a 7zr \
     -a zipgrep -a zipcloak -a zipsplit \
     -a xz -a unxz -a xzcat -a lzma -a unlzma -a lzcat \
-	-a zstd -a zstdcat -a zstdgrep -a unzstd \
-	-a bzip2 -a bunzip2 -a bzcat -a bzip2recover -a bzdiff -a bzgrep \
-	-a less -a tail -a tac -a gpart \
-	-a sed -a awk -a pdfgrep -a agrep -a ag -a pcregrep \
-	-a diff -a diff3 \
-	-a cadaver -a ftp -a ssh -a chezdav -a nmap -a nc \
-	'
+    -a zstd -a zstdcat -a zstdgrep -a unzstd \
+    -a bzip2 -a bunzip2 -a bzcat -a bzip2recover -a bzdiff -a bzgrep \
+    -a less -a tail -a tac -a gpart \
+    -a sed -a awk -a pdfgrep -a agrep -a ag -a pcregrep \
+    -a diff -a diff3 \
+    -a cadaver -a ftp -a ssh -a chezdav -a nmap -a nc \
+    '
 
 # Multimedia and web
 alias ffmpeg='ffmpeg -hide_banner'
@@ -369,10 +367,10 @@ if [ "$(uname)" = "FreeBSD" ]; then
     alias rorp='pkg autoremove'
 
     alias fpr='ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
-	grepWgrep | its_just_grep -E'
+    grepWgrep | its_just_grep -E'
 
     alias fprh="ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
-	numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
+    numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     # it needs script or link for watch program
     alias watch=wathcs
@@ -414,10 +412,10 @@ else
     alias rorp='pacman -Rus $(pacman -Qqtd)'
 
     alias fpr='ps axh o rss,pid,state,pcpu,user,cmd | \
-	grepWgrep | its_just_grep -E'
+    grepWgrep | its_just_grep -E'
 
     alias fprh="ps axh o rss,pid,state,pcpu,user,cmd | \
-	numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
+    numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     #alias w1='watch -n 1 -d'
     #alias w1c='watch -n 1 -d -c'
