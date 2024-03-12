@@ -2,16 +2,16 @@
   description = "Flake with rust program";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs;
-    flakeUtils.url = github:numtide/flake-utils;
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    flakeUtils.url = "github:numtide/flake-utils";
 
     package = {
-      url = github:user/program;
+      url = "github:user/program";
       flake = false;
     };
 
     dependency1.url = "../dependency";
-    dependency2.url = github:user/program;
+    dependency2.url = "github:user/program";
     dependency3.url = "https://git.com/repo";
   };
 

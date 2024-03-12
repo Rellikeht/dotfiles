@@ -39,6 +39,7 @@ let g:neoformat_enabled_nix = ['alejandra']
 let g:neoformat_enabled_ocaml = ['ocamlformat']
 let g:neoformat_enabled_rust = ['rustfmt']
 let g:neoformat_enabled_haskell = ['floskell']
+autocmd FileType dhall let b:buffmt=0 " :(((
 
 " done in zig plugin
 "let g:neoformat_enabled_zig = ['zig_fmt']
@@ -86,7 +87,6 @@ let g:neoformat_only_msg_on_error = 1
 
 augroup fmt
   autocmd!
-  "autocmd BufWritePre * if b:buffmt | undojoin | Neoformat | endif
   autocmd BufWritePre *
               \ if b:buffmt
               \| try

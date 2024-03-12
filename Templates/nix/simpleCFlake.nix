@@ -1,7 +1,7 @@
 {
   description = "DESCRIPTION";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs;
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
 
   outputs = {
     self,

@@ -1,3 +1,5 @@
+a
+a
 #!/usr/bin/env sh
 
 ## Get all possible programs
@@ -125,10 +127,12 @@ alias gsf='grs -Tpdf'
 alias als='alias | grep'
 alias wb='bins | grep'
 
-alias sal='source /etc/.aliasrc'
-alias sfn='source /etc/.funcrc'
-alias bal='bat /etc/.aliasrc'
-alias bfn='bat /etc/.funcrc'
+_ALIASRC="$HOME/.aliasrc"
+_FUNCRC="$HOME/.funcrc"
+alias sal='source "$_ALIASRC"'
+alias sfn='source "$_FUNCRC"'
+alias bal='bat "$_ALIASRC"'
+alias bfn='bat "$_FUNCRC"'
 
 # Fuzzy
 
@@ -237,15 +241,20 @@ alias am=alsamixer
 
 alias youtube-viewer='youtube-viewer --no-update-config'
 alias yv=youtube-viewer
+alias yv1='yv --results=10'
 alias yv2='yv --results=20'
+alias yv3='yv --results=30'
 alias mdl='yv --novideo --download! --convert-to=opus'
+
 alias ytl='yt-dlp --list-formats'
 alias ytls='ytl --format-sort +size'
 alias yts='yt-dlp --format-sort +size'
 alias ytwa='yts -f ba'
 alias ytba='yt-dlp -f ba'
+
 alias mpb='mpv --profile=big'
 alias mpg='mpv --profile=gaudio'
+alias mpp='mpv --profile='
 
 alias gt='/usr/bin/time'
 alias pg='ping gnu.org'
@@ -315,6 +324,8 @@ alias gst='git status'
 alias grs='git remote show'
 alias gcb='git branch --show-current'
 alias gbl='git branch --list'
+alias glt='git ls-tree'
+alias glh='glt HEAD'
 
 alias glc='git log --color=always'
 alias gdf='git diff --color=always'

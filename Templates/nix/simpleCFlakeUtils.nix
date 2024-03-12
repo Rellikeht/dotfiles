@@ -2,8 +2,8 @@
   description = "DESCRIPTION";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs;
-    flakeUtils.url = github:numtide/flake-utils;
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    flakeUtils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
