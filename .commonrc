@@ -34,12 +34,13 @@ run_ssh_agent () {
 }
 run_ssh_agent
 
-__ID="$(id -u)"
-if [ "$__HM_SESS_SOURCER" != "$__ID" ]
-then
-    __HM_SESS_SOURCER="$(id -u)"
-    export __HM_SESS_VARS_SOURCED=
-fi
+# __ID="$(id -u)"
+# if [ "$__HM_SESS_SOURCER" != "$__ID" ]
+# then
+#     __HM_SESS_SOURCER="$(id -u)"
+#     export __HM_SESS_VARS_SOURCED=
+# fi
 
+export __HM_SESS_VARS_SOURCED=0 # fuck this
 conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"

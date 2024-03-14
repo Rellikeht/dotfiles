@@ -1,4 +1,4 @@
-" TODO A still everything
+" TODO Still everything
 " :help tinymru
 
 map ,us :UndotreeShow<CR>

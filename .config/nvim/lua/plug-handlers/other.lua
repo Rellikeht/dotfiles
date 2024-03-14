@@ -1,18 +1,22 @@
--- TODO A
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"},
+                            {pattern = "*.md", command = "set syntax=markdown"})
+
 require('mdeval').setup({
   -- Don't ask before executing code blocks
   require_confirmation = false,
   -- Change code blocks evaluation options.
   eval_options = {
+    -- TODO B more configurations, defaults:
+    -- .config/nvim/plugins/mdeval.nvim/lua/defaults.lua
     -- Set custom configuration for C++
-    cpp = {
-      command = {"clang++", "-std=c++20", "-O0"},
-      default_header = [[
-    #include <iostream>
-    #include <vector>
-    using namespace std;
-      ]]
-    }
+    -- cpp = {
+    --   command = {"clang++", "-std=c++20", "-O0"},
+    --   default_header = [[
+    -- #include <iostream>
+    -- #include <vector>
+    -- using namespace std;
+    --   ]]
+    -- }
   }
 })
 
@@ -83,5 +87,3 @@ vim.keymap.set(modes, 'glc', ':MdEvalClean<CR>') -- ???
 
 -- TODO C
 -- colorizer, zen-mode
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"},
-                            {pattern = "*.md", command = "set syntax=markdown"})

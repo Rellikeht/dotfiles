@@ -35,3 +35,5 @@ export PATH="$PATH:$HOME/bin"
 export PYTHONDONTWRITEBYTECODE="true"
 
 export NIX_REMOTE=daemon
+
+export FZF_DEFAULT_COMMAND='find .' fzf

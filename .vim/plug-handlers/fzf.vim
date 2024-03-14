@@ -2,6 +2,8 @@
 " :help fzf
 " :help fzf-vim
 
+let $FZF_DEFAULT_COMMAND='find .'
+
 " Basic keys
 map <leader>sf :FZF<CR>
 map <leader>sH :FZF ~<CR>
