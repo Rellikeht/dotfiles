@@ -91,7 +91,7 @@ e, k, o, q, u, x, z
     + v,V,? - gv
     + others - fugitive
 - s - fzf
-- n - unicode
+- n - unicode, uuid
 - u - undo tree ; NOT IMPLEMENTED :(
 - F - code formatting
 

@@ -1,1 +1,39 @@
-global/.varrc
+#better colors for man
+export LESS_TERMCAP_md=$'\e[01;31m' \
+export LESS_TERMCAP_me=$'\e[0m' \
+export LESS_TERMCAP_se=$'\e[0m' \
+export LESS_TERMCAP_so=$'\e[01;44;33m' \
+export LESS_TERMCAP_ue=$'\e[0m' \
+export LESS_TERMCAP_us=$'\e[01;32m' \
+
+#bind  '"\C-\\":"fzf"'
+export PAGER='less -r'
+export MANPAGER=less
+export PATH="$PATH:$HOME/bin"
+
+#PLAN9=/ext/plan9
+# [ -n "$PLAN9" ] && export PATH=$PATH:$PLAN9/bin
+#export PATH=$PATH:/usr/lib/xscreensaver
+
+#if [ "$(uname)" = "Linux" ]
+#then
+#    export TERMINFO=/usr/share/terminfo
+#else
+#    export TERMINFO=/usr/local/share/terminfo
+#fi
+#export TERM=st-24bit
+
+# ??
+[ -e "/etc/.varrc_local" ] && source /etc/.varrc_local
+
+#if [ -n "$TMUX" ]
+#then
+#   TERM=st-24bit
+#   #TERM=xterm-24bit
+#fi
+
+export PYTHONDONTWRITEBYTECODE="true"
+
+export NIX_REMOTE=daemon
+
+export FZF_DEFAULT_COMMAND='find .' fzf

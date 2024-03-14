@@ -51,3 +51,4 @@ Plug 'preservim/vim-markdown', {'for': 'markdown'}
 
 Plug 'luochen1990/rainbow' " TODO D better colors :(
 Plug 'chrisbra/unicode.vim', {'do': ':UnicodeDownload!'} " TODO C keys ?
+Plug 'kburdett/vim-nuuid'

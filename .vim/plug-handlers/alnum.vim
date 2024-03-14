@@ -29,3 +29,15 @@ map ga <Plug>(UnicodeGA)
 " ???
 "map <Leader>sT <Plug>(ToggleUnicodeCompletion)
 "nmap <leader>sS <Plug>(UnicodeSwapCompleteName)
+
+" vim-nuuid
+
+let g:nuuid_no_mappings = 1
+map <Leader>nA :NuuidAll<CR>
+" map <Leader>nu <Plug>Nuuid
+map <Leader>nu :exe 'norm a'.NuuidNewUuid()<CR>
+map <Leader>nU :NuuidToggleAbbrev<CR>
+
+" Pluto.jl :)
+map <Leader>nC :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
+map <Leader>nA :norm mCyyGp02lr╟lr─lxx'C<CR>
