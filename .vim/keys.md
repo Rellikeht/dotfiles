@@ -104,11 +104,11 @@ e, k, o, q, u, x, z
 # g combinations
 Available (useless otherwise):
 C, G, K, L, O
-j, l, o, y, z
+j, o, y, z
 
 Rather useless:
 D, I, Q, H
-d, h, k, q, r, w
+d, h, q, r, w
 
 Rather useful:
 J, M, N, V
@@ -117,13 +117,16 @@ m, n
 - c - vim-commentary
 - C - toggle colorizer
 - S - vim-surround
-- a - characterize
+- a - unicode
 - A - radical.vim
 - x, X - netrw
 - b - jump to tag under cursor (<C-]>)
 - B - jump to previous tag on stack (<C-T>)
 - Y - "+gP (I don't know if it works)
 - s - vim-slime and similar
+
+## Nvim only
+- l - mdeval, femaco
 
 ## TODO
 - + - v<C-a>

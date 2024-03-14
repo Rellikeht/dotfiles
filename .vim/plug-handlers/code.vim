@@ -74,7 +74,7 @@ let g:neoformat_only_msg_on_error = 1
 augroup fmt
   autocmd!
   autocmd BufWritePre *
-              \ if b:buffmt
+              \ if get(b:, buffmt, g:buffmt)
               \| try
               \| undojoin
               \| Neoformat
