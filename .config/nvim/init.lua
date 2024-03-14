@@ -21,6 +21,7 @@ Plug('nvim-lua/plenary.nvim')
 
 -- LOOK
 
+-- Plug('nvim-orgmode/orgmode') -- TODO B
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug('norcalli/nvim-colorizer.lua') -- TODO C
 -- Plug('folke/tokyonight.nvim') -- TODO C
@@ -43,7 +44,7 @@ Plug('nvim-telescope/telescope.nvim') -- TODO A
 -- Plug('jayli/vim-easycomplete')
 -- Try if ↓ won't work well enough
 Plug('neovim/nvim-lspconfig') -- TODO A this can autocomplete
-Plug('mfussenegger/nvim-jdtls') -- :(
+-- Plug('mfussenegger/nvim-jdtls') -- :(
 
 -- This is probably done:
 -- TODO B (let this not interrupt normal work)
@@ -63,8 +64,8 @@ Plug('nvim-treesitter/nvim-treesitter-refactor') -- TODO B
 
 -- NICE TO HAVE
 
--- Sadly doesn't work with my build of vim
--- Plug('tpope/vim-characterize')
+Plug('jubnzv/mdeval.nvim')
+Plug('AckslD/nvim-FeMaco.lua')
 
 vim.call('plug#end')
 

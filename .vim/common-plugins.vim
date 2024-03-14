@@ -25,11 +25,12 @@ Plug 'tpope/vim-tbone' " TODO C most important work done
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
-"Plug 'airblade/vim-gitgutter'
 
+" Some day
+" Plug 'Vimjas/vint'
 Plug 'sbdchd/neoformat'
 Plug 'lfilho/cosco.vim' " TODO B ??
-Plug 'jceb/vim-orgmode' " TODO C No idea if this is necessary
+Plug 'jceb/vim-orgmode' " TODO A
 Plug 'zah/nim.vim', {'for': 'nim'} " TODO B what this gives
 Plug 'ziglang/zig.vim', {'for': 'zig'} " TODO C what this gives
 Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'} " TODO C what this gives
@@ -42,6 +43,11 @@ Plug 'vifm/vifm.vim'
 Plug 'LnL7/vim-nix' " TODO A what is going on
 Plug 'mattn/emmet-vim', {'for': 'html'} " TODO C do I even need that
 " Plug 'kmonad/kmonad-vim'
+Plug 'preservim/vim-markdown', {'for': 'markdown'}
+
+" Maybe...
+" Plug 'vimwiki/vimwiki'
+" Plug 'dbridges/vim-markdown-runner'
 
 Plug 'luochen1990/rainbow' " TODO D better colors :(
 Plug 'chrisbra/unicode.vim', {'do': ':UnicodeDownload!'} " TODO C keys ?

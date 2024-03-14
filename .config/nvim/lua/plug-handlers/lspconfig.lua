@@ -74,14 +74,11 @@ end
 
 local servers = {
   -- 'pylyzer',
-  'pylsp', -- pylyzer is unstable :(
-  'gopls', 'clangd', 'ocamllsp', 'nimls',
-
-  -- Am i stupid, or nix language servers do almost nothing
-  -- where is my completion
-  -- 'nixd',
-  'nil_ls', 'julials', 'zls', 'hls', 'dhall_lsp_server', -- 'r_language_server'
-  'bashls', 'texlab', 'typst_lsp', 'scheme_langserver', 'tsserver'
+  'pylsp', -- pylyzer is too unstable for now :(
+  'gopls', 'clangd', 'ocamllsp', 'nimls', -- 'nixd',
+  'nil_ls', 'nickel_ls', 'julials', 'zls', 'hls', 'dhall_lsp_server',
+  'r_language_server', 'bashls', 'texlab', 'typst_lsp', 'scheme_langserver',
+  'tsserver'
 }
 
 for _, s in ipairs(servers) do ssetup(s) end

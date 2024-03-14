@@ -1,3 +1,7 @@
+-- TODO A
+require('femaco').setup({})
+require('mdeval').setup({})
+
 -- TODO C
 -- colorizer, zen-mode
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"},
