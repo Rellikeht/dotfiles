@@ -13,6 +13,7 @@ let g:vimtex_compiler_method = 'latexmk'
 autocmd FileType groff,troff,nroff setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 " vim-markdown
+" https://codeinthehole.com/tips/writing-markdown-in-vim/
 
 let g:vim_markdown_borderless_table = 1
 
