@@ -7,7 +7,6 @@ set showcmd
 set showmatch
 set incsearch
 set hlsearch
-"set cursorline
 
 " TODO B what this does
 packadd matchit
@@ -17,13 +16,8 @@ filetype indent on
 syntax on
 syntax reset
 
-" TODO C iskeyword
-
-"source ~/.vim/colors.vim
-
-" TODO C better colors
 if v:progname =~? ".*svi.*"
-	colorscheme default
+    colorscheme default
 endif
 set background=light " dark
 

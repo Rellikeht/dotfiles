@@ -57,7 +57,10 @@ Plug('hrsh7th/cmp-nvim-lua')
 -- OTHER CODING HELP
 
 Plug('windwp/nvim-autopairs') -- TODO B
-Plug('nvim-treesitter/nvim-treesitter-refactor') -- TODO B
+Plug('nvim-treesitter/nvim-treesitter-refactor') -- TODO C
+
+-- :(
+Plug('puremourning/vimspector') -- TODO B
 
 -- TODO C try
 -- Plug('rmagatti/auto-session')

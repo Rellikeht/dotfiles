@@ -27,6 +27,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set(buf_modes, '<Leader>dQ', ':LspLog<CR>')
     vim.keymap.set(buf_modes, '<Leader>dL', ':LspRestart<CR>')
     vim.keymap.set(buf_modes, '<Leader>dS', ':LspStart<CR>')
+    -- ???
+    vim.keymap.set(buf_modes, '<Leader>de', ':LspStop ')
     vim.keymap.set(buf_modes, '<Leader>dE', ':LspStop<CR>')
 
     vim.keymap.set(buf_modes, '<Leader>dd', vim.lsp.buf.declaration, opts)
@@ -65,17 +67,16 @@ local function ssetup(server)
     preselect = false,
     single_file_support = true,
     on_attach = lsp_attach,
-    capabilities = Capabilities
-    -- settings = {}
+    capabilities = Capabilities,
+    settings = {telemetry = {enable = false}}
   })
 end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-
 local servers = {
-  -- 'pylyzer',
-  'pylsp', -- pylyzer is too unstable for now :(
-  'gopls', 'clangd', 'ocamllsp', 'nimls', -- 'nixd',
+  'pylyzer', -- pylyzer is too unstable for now :(
+  -- But i will try anyway
+  'pylsp', 'gopls', 'clangd', 'ocamllsp', 'nimls', -- 'nixd',
   'nil_ls', 'nickel_ls', 'julials', 'zls', 'hls', 'dhall_lsp_server',
   'r_language_server', 'bashls', 'texlab', 'typst_lsp', 'scheme_langserver',
   'tsserver'
