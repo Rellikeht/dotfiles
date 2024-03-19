@@ -25,6 +25,7 @@ Plug 'tpope/vim-tbone' " TODO C most important work done
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
+Plug 'direnv/direnv.vim'
 
 " Some day
 " Plug 'Vimjas/vint'

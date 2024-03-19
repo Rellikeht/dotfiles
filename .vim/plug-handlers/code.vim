@@ -98,4 +98,9 @@ autocmd FileType zinc setlocal commentstring=%\ %s
 
 let g:zig_fmt_autosave = 1
 
+" context
+" TODO sane settings
+map <Leader>qt :ContextPeek<CR>
+map <Leader>qT :ContextToggle<CR>
+
 " TODO emmet

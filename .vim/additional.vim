@@ -21,6 +21,8 @@ if v:progname =~? ".*svi.*"
 endif
 set background=light " dark
 
+set foldmethod=marker
+
 source ~/.vim/syntax.vim
 
 if has('win32')

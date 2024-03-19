@@ -431,6 +431,25 @@ else
 
 fi
 
+# ~shitx~ nix
+alias ncg='nix-collect-garbage -d'
+alias nsh='nix shell'
+alias ndv='nix develop'
+alias nbu='nix build'
+alias nru='nix run'
+alias nst='nix store'
+alias npf='nix profile'
+
+alias nish='nix-shell'
+alias nist='nix-store'
+alias nibu='nix-build'
+
+alias dst='direnv status'
+alias dal='direnv allow'
+alias dde='direnv deny'
+alias dre='direnv reload'
+alias ded='direnv edit'
+
 alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
 # TODO
 # packages shit gets to hard
