@@ -45,6 +45,7 @@ Plug 'LnL7/vim-nix' " TODO A what is going on
 Plug 'mattn/emmet-vim', {'for': 'html'} " TODO C do I even need that
 " Plug 'kmonad/kmonad-vim'
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
+Plug 'nickel-lang/vim-nickel'
 
 " Maybe...
 " Plug 'vimwiki/vimwiki'

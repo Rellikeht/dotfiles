@@ -22,7 +22,7 @@ ri() {
 
 cd
 ri "pipewire" "dbus-launch pipewire"
-ri "pipewire-media-session" "dbus-launch pipewire-media-session"
+ri "wireplumber" "dbus-launch wireplumber"
 ri "pipewire-pulse" "dbus-launch pipewire-pulse"
 
 MIC_STAB=".local_scrs/mic_lev_stab.sh"

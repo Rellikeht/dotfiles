@@ -199,10 +199,16 @@ alias tmq='tmux kill-session'
 alias tmQ='tmux kill-server'
 alias tss='tmux split-window'
 alias tsd='tmux split-window -d'
+
 alias tsw='tsd -h'
 alias tsW='tsd -v'
 alias tsi='tsw -I'
 alias tsI='tsW -I'
+
+alias tt2d='tmux split-window -c "$(pwd)"'
+alias tt2='tt2d -h'
+# Weird workaround, but works
+alias tt3='tt2;tt2d -v'
 
 alias bm='BEMENU_BACKEND=curses bemenu'
 alias nnn='nnn -d'
