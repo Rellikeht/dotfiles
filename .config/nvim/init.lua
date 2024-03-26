@@ -44,7 +44,7 @@ Plug('nvim-telescope/telescope.nvim') -- TODO A
 -- Plug('jayli/vim-easycomplete')
 -- Try if ↓ won't work well enough
 Plug('neovim/nvim-lspconfig') -- TODO A this can autocomplete
--- Plug('mfussenegger/nvim-jdtls') -- :(
+Plug('mfussenegger/nvim-jdtls') -- :(
 
 -- This is probably done:
 -- TODO B (let this not interrupt normal work)

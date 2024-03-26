@@ -5,16 +5,10 @@
 
 # Language servers
 
-- clangd
 - julials (?)
-- bashls ( :( )
 - texlab (?)
 
 # formatters
-
-- rustfmt
-- astyle
-- cmake-format
 
 - haskellPackages.cabal-fmt ??
 - uncrustify ??
@@ -23,3 +17,4 @@
 # Some day
 
 - groff with fonts
+- bashls ( :( )
