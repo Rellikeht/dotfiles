@@ -23,10 +23,6 @@ alias prgs='progs | sort | uniq'
 #    xargs -d ":" ls 2>/dev/null | \
 #    grep -vE "^(.*:)?$"'
 
-if ! prgs | { grep -E '^sudo$' 2>&1; } >/dev/null; then
-    alias sudo=doas
-fi
-
 # Coreutils
 
 alias lsn='ls --color=never'

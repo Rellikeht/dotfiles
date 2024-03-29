@@ -8,7 +8,6 @@ WORDCHARS='%~!?+'
 
 bindkey -e
 bindkey \^U backward-kill-line
-# alias ls="ls --color"
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -31,7 +30,7 @@ conditional_source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+conditional_source ~/.p10k.zsh
 
 #my-backward-delete-word () {
 #   local WORDCHARS='~!#$%^*<>?+'
