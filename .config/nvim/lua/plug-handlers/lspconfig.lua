@@ -140,12 +140,12 @@ lspconfig.rust_analyzer.setup({
 })
 
 -- This has some weird problems
-lspconfig.java_language_server.setup({
-  cmd = {'java-language-server'},
-  preselectSupport = false,
-  preselect = false,
-  single_file_support = true,
-  on_attach = lsp_attach,
-  capabilities = Capabilities
-  -- settings = {}
-})
+-- lspconfig.java_language_server.setup({
+--   cmd = {'java-language-server'},
+--   preselectSupport = false,
+--   preselect = false,
+--   single_file_support = true,
+--   on_attach = lsp_attach,
+--   capabilities = Capabilities
+--   -- settings = {}
+-- })

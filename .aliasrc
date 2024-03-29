@@ -201,10 +201,13 @@ alias tsW='tsd -v'
 alias tsi='tsw -I'
 alias tsI='tsW -I'
 
+alias tsp='tmux select-pane'
+alias tpl='tmux select-pane -l'
+
 alias tt2d='tmux split-window -c "$(pwd)"'
-alias tt2='tt2d -h'
+alias tt2='tt2d -h;tpl'
 # Weird workaround, but works
-alias tt3='tt2;tt2d -v'
+alias tt3='tt2d -h;tt2d -v;tsp -L'
 
 alias bm='BEMENU_BACKEND=curses bemenu'
 alias nnn='nnn -d'
