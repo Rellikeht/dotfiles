@@ -3,6 +3,7 @@
 conditional_source() {
     [ -f "$1" ] && source "$1"
 }
+conditional_source "/etc/.commonrc"
 
 #aliases
 conditional_source "/etc/.aliasrc"
@@ -19,6 +20,7 @@ conditional_source "/etc/.varrc"
 conditional_source "$HOME/.varrc"
 conditional_source "$HOME/.local/.varrc"
 
+conditional_source "$HOME/.local/.commonrc"
 run_ssh_agent () {
     local AGENT_ENV="$XDG_RUNTIME_DIR/ssh-agent.env"
 

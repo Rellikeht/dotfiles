@@ -37,7 +37,7 @@ Plug('nvim-telescope/telescope.nvim') -- TODO A
 -- Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 
 -- TODO C test that
--- Plug('nvim-treesitter/nvim-treesitter-textobjects')
+Plug('nvim-treesitter/nvim-treesitter-textobjects')
 
 -- COMPLETION
 

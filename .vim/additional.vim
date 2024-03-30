@@ -8,8 +8,8 @@ set showmatch
 set incsearch
 set hlsearch
 
-" TODO B what this does
 packadd matchit
+runtime macros/matchit.vim
 
 filetype plugin on
 filetype indent on
