@@ -1,17 +1,21 @@
 # About
-This file is trial to describe all mappings and keep available
-keys in one place. With hundreds of mappings it is necessary
+
+This file is trial to describe all mappings and keep available keys in one
+place. With hundreds of mappings it is necessary
 
 # Unused keys
-\ | ~ ^ (hard to reach on some keyboards)
-_ ; (painful in greater amounts)
-There may be more, but there are already enough combinations
+
+\ | ~ ^ (hard to reach on some keyboards) _ ; (painful in greater amounts) There
+may be more, but there are already enough combinations
 
 # <Tab> combinations
+
 They are general purpose, mainly for tab management
 
 ## TODO make this nicer
+
 ## Tabs
+
 - <Tab> - :tab<Space>
 - B - :tabnew<CR>:buffer<Space>
 - d - :tabclose<CR>
@@ -29,6 +33,7 @@ They are general purpose, mainly for tab management
 - T - :tabnew<CR>
 
 ## Buffers
+
 - a - :bad<Space>
 - b - :buffer<Space>
 - c - :bmodified<CR>
@@ -49,70 +54,73 @@ They are general purpose, mainly for tab management
 - V - :vsplit<CR>:bprevious<CR>
 
 ## Miscelanous
+
 - r - redraw command
 - w - SudoWrite
 - W - toggle wrap
 - y - in normal paste, in visual copy to X11 clipboard
 - Y - like ;y, but using X11 primary
-- o - source %<CR>
+- o - source %
+- M - setlocal modeline!
+- E - :e
 
 ## Available
-Basically all special characters besides <Tab>
-A, R, E, M, O, Q, R, X, Z
-e, k, o, q, u, x, z
+
+Basically all special characters besides <Tab> A, R, E, M, O, Q, R, X, Z e, k,
+o, q, u, x, z
 
 # Leader (,) combinations
+
 ## Simple mappings
+
 - q - miscelanous, settings:
-    + f,F - formatting on write
-    + c,C - compiling on write
-    + 0,1,2,...,9 - print variables
-    + m - man program
-    + M - set make program to make
-    + u - general plug upgrade
-    + P - plug clean
+  - f,F - formatting on write
+  - c,C - compiling on write
+  - 0,1,2,...,9 - print variables
+  - m - man program
+  - M - set make program to make
+  - u - general plug upgrade
+  - P - plug clean
 
 - <Space> - set hls!
 - ; - commands
 
 ## Code
+
 - c, C - compiling
 - r, R - running
 - b, B - building
 - i, I - running interpreted versions of compiled languages
 - exceptions (in all possible casing):
-    + g - data generation
-    + t - templates
+  - g - data generation
+  - t - templates
 
 ## With plugins
+
 - t - tmux
 - g - git
-    + s,j,k (every possible casing) - signify
-    + v,V,? - gv
-    + others - fugitive
+  - s,j,k (every possible casing) - signify
+  - v,V,? - gv
+  - others - fugitive
 - s - fzf
 - n - unicode, uuid
 - u - undo tree ; NOT IMPLEMENTED :(
 - F - code formatting
 
 ## Nvim only
+
 - d - lspconfig diagnostics and lsp actions
 - w, f, l, <Leader> - easymotion ; TODO
 - e, E, D - code plugins ; NOT IMPLEMENTED
 - h - harpoon ; NOT IMPLEMENTED
 
 # g combinations
-Available (useless otherwise):
-C, G, K, L, O
-j, o, y, z
 
-Rather useless:
-D, I, Q, H
-d, h, q, r, w
+Available (useless otherwise): C, G, K, L, O j, o, y, z
 
-Rather useful:
-J, M, N, V
-m, n
+Rather useless: D, I, Q, H d, h, q, r, w
+
+Rather useful: J, M, N, V m, n
 
 - c - vim-commentary
 - C - toggle colorizer
@@ -126,31 +134,37 @@ m, n
 - s - vim-slime and similar
 
 ## Nvim only
+
 - l - mdeval, femaco
 
 ## TODO
-- + - v<C-a>
-- - - v<C-x>
+
+- "+" - v<C-a>
+- "-" - v<C-x>
 
 # z combinations
-Available (unused):
-B, I, J, K, Q, S, T, U, V, Y, Z
-q
-All special characters, besides: +, -, ., =, <CR>, numbers
+
+Available (unused): B, I, J, K, Q, S, T, U, V, Y, Z q All special characters,
+besides: +, -, ., =, <CR>, numbers
 
 - S - sleep
 
 ## Nvim only
+
 - (something with z probably) - zen-mode ; NOT IMPLEMENTED
 
 # Z combinations
+
 Only Z and Q is used
 
 # c combinations
+
 ## TODO
+
 - r[dxob] - radical.vim
 
-# [ and ]
+# "[" and "]"
+
 ## TODO
 
 # Miscelanous
@@ -162,4 +176,5 @@ Only Z and Q is used
 - TODO - cosco (inserting semicolons and colons)
 
 # Available (or safe for remapping)
+
 TODO

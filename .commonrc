@@ -16,9 +16,16 @@ conditional_source "$HOME/.funcrc"
 conditional_source "$HOME/.local/.funcrc"
 
 #common variables
-conditional_source "/etc/.varrc"
+
+if [ "$__VARRC_ETC_SOURCED" != "$UID" ]; then
+    conditional_source "/etc/.varrc"
+    export __VARRC_ETC_SOURCED="$UID"
+fi
 conditional_source "$HOME/.varrc"
-conditional_source "$HOME/.local/.varrc"
+if [ "$__VARRC_LOCAL_SOURCED" != "$UID" ]; then
+    conditional_source "$HOME/.local/.varrc"
+    export __VARRC_LOCAL_SOURCED="$UID"
+fi
 
 conditional_source "$HOME/.local/.commonrc"
 run_ssh_agent () {
@@ -36,6 +43,13 @@ run_ssh_agent () {
 }
 run_ssh_agent
 
+if [ "$__NIX_SOURCED" != "$UID" ]; then
+    conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    export __NIX_SOURCED="$UID"
+fi
+
 export __HM_SESS_VARS_SOURCED= # fuck this
-conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
+    conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    export __HM_SESS_SOURCED="$UID"
+fi

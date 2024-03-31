@@ -53,6 +53,8 @@ map <Tab>I :buffers<CR>
 " Others
 map <Tab>W :set wrap!<CR>
 map <Tab>o :source %<CR>
+map <Tab>M :setlocal modeline!<CR>
+map <Tab>E :e<CR>
 
 " Select whole buffer without plugins
 vmap ae <Esc>gg0vG$
@@ -96,5 +98,5 @@ set ttimeoutlen=100
 " Neovim default setting at time of writing this
 set backspace=indent,eol,start
 
-set modeline
+set nomodeline
 set modelines=10

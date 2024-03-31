@@ -352,6 +352,9 @@ alias glm='git pull --recurse-submodules'
 alias guo='git pull origin $(gcb)'
 alias gum='git pull --recurse-submodules origin $(gcb)'
 
+alias gta='git tag'
+alias gtl='gta -l'
+
 # Other
 
 alias help2man='help2man -N'
