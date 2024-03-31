@@ -17,7 +17,7 @@ They are general purpose, mainly for tab management
 ## Tabs
 
 - <Tab> - :tab<Space>
-- B - :tabnew<CR>:buffer<Space>
+- e - :tab<Space>sb<Space>
 - d - :tabclose<CR>
 - h - gT
 - H - :tabm -1<CR>
@@ -66,8 +66,11 @@ They are general purpose, mainly for tab management
 
 ## Available
 
-Basically all special characters besides <Tab> A, R, E, M, O, Q, R, X, Z e, k,
-o, q, u, x, z
+Basically all special characters besides <Tab>
+
+A, B, R, E, O, Q, R, X, Z
+
+k, q, u, x, z
 
 # Leader (,) combinations
 

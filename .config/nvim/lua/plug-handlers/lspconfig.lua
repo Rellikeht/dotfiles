@@ -3,13 +3,14 @@ local lspconfig = require('lspconfig')
 local diag_modes = {'n', 'v'}
 local buf_modes = {'n', 'v'}
 
--- TODO other diagnostics, errors, repairs, info...
-vim.keymap.set(diag_modes, '<Leader>df', vim.diagnostic.open_float)
-vim.keymap.set(diag_modes, '<Leader>dp', vim.diagnostic.goto_prev)
-vim.keymap.set(diag_modes, '<Leader>dn', vim.diagnostic.goto_next)
-vim.keymap.set(diag_modes, '<Leader>dl', vim.diagnostic.setloclist)
+vim.keymap.set(buf_modes, '<Leader>dI', ':LspInfo<CR>')
+vim.keymap.set(buf_modes, '<Leader>dQ', ':LspLog<CR>')
+vim.keymap.set(buf_modes, '<Leader>dL', ':LspRestart<CR>')
+vim.keymap.set(buf_modes, '<Leader>dS', ':LspStart<CR>')
+vim.keymap.set(buf_modes, '<Leader>de', ':LspStop ')
+vim.keymap.set(buf_modes, '<Leader>dE', ':LspStop<CR>')
 
--- TODO do that all well :(
+-- TODO do all that well :(
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -23,13 +24,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = {buffer = ev.buf}
 
-    vim.keymap.set(buf_modes, '<Leader>dI', ':LspInfo<CR>')
-    vim.keymap.set(buf_modes, '<Leader>dQ', ':LspLog<CR>')
-    vim.keymap.set(buf_modes, '<Leader>dL', ':LspRestart<CR>')
-    vim.keymap.set(buf_modes, '<Leader>dS', ':LspStart<CR>')
-    -- ???
-    vim.keymap.set(buf_modes, '<Leader>de', ':LspStop ')
-    vim.keymap.set(buf_modes, '<Leader>dE', ':LspStop<CR>')
+    -- TODO other diagnostics, errors, repairs, info...
+    vim.keymap.set(diag_modes, '<Leader>df', vim.diagnostic.open_float)
+    vim.keymap.set(diag_modes, '<Leader>dp', vim.diagnostic.goto_prev)
+    vim.keymap.set(diag_modes, '<Leader>dn', vim.diagnostic.goto_next)
+    vim.keymap.set(diag_modes, '<Leader>dl', vim.diagnostic.setloclist)
 
     vim.keymap.set(buf_modes, '<Leader>dd', vim.lsp.buf.declaration, opts)
     vim.keymap.set(buf_modes, '<Leader>dD', vim.lsp.buf.definition, opts)
@@ -76,10 +75,9 @@ end
 local servers = {
   'pylyzer', -- pylyzer is too unstable for now :(
   -- But i will try anyway
-  'pylsp', 'gopls', 'clangd', 'ocamllsp', 'nimls', -- 'nixd',
-  'nil_ls', 'nickel_ls', 'julials', 'zls', 'hls', 'dhall_lsp_server',
-  'r_language_server', 'bashls', 'texlab', 'typst_lsp', 'scheme_langserver',
-  'tsserver'
+  'pylsp', 'gopls', 'clangd', 'ocamllsp', 'nimls', 'julials', -- 'nixd',
+  'nil_ls', 'nickel_ls', 'zls', 'hls', 'dhall_lsp_server', 'r_language_server',
+  'bashls', 'texlab', 'typst_lsp', 'scheme_langserver', 'tsserver'
 }
 
 for _, s in ipairs(servers) do ssetup(s) end
@@ -106,6 +104,92 @@ lspconfig.lua_ls.setup({
   }
 
 })
+
+-- lspconfig.julials.setup({
+--   preselectSupport = false,
+--   preselect = false,
+--   single_file_support = true,
+--   on_attach = lsp_attach,
+--   capabilities = Capabilities,
+--   settings = {telemetry = {enable = false}},
+
+--   cmd = {
+--     'julia', '--startup-file=no', '--history-file=no', '-e', [[
+--       code = :(
+--         using LanguageServer;
+--         function serv(infile, outfile, path=pwd())
+--           cd(path)
+--           # Load LanguageServer.jl: attempt to load from ~/.julia/environments/nvim-lspconfig
+--           # with the regular load path as a fallback
+--           ls_install_path = joinpath(
+--               get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")),
+--               "environments", "nvim-lspconfig"
+--           );
+--           pushfirst!(LOAD_PATH, ls_install_path);
+--           popfirst!(LOAD_PATH);
+--           depot_path = get(ENV, "JULIA_DEPOT_PATH", "");
+--           project_path = let
+--               dirname(something(
+--                   ## 1. Finds an explicitly set project (JULIA_PROJECT)
+--                   Base.load_path_expand((
+--                       p = get(ENV, "JULIA_PROJECT", nothing);
+--                       p === nothing ? nothing : isempty(p) ? nothing : p
+--                   )),
+--                   ## 2. Look for a Project.toml file in the current working directory,
+--                   ##    or parent directories, with $HOME as an upper boundary
+--                   Base.current_project(),
+--                   ## 3. First entry in the load path
+--                   get(Base.load_path(), 1, nothing),
+--                   ## 4. Fallback to default global environment,
+--                   ##    this is more or less unreachable
+--                   Base.load_path_expand("@v#.#"),
+--               ))
+--           end;
+--           @info "Running language server" VERSION pwd() project_path depot_path;
+--           server = LanguageServer.LanguageServerInstance(infile, outfile, project_path, depot_path);
+--           server.runlinter = true;
+
+--           open("daemon", "w") do f
+--             write(f, infile);
+--             write(f, "\n");
+--             write(f, outfile);
+--           end;
+--           run(server);
+--         end
+--       )
+
+--       LSPORT=3210
+--       try
+--         import Pkg
+--         _ = Pkg.installed()["DaemonMode"]
+--         import Sockets
+--         import DaemonMode
+--         s = Sockets.connect(LSPORT)
+--         close(s)
+
+--         # What a lovely workaround
+--         f(x, y) = x
+--         infile = mktemp(f)
+--         outfile = mktemp(f)
+--         run(`mkfifo $(infile)`)
+--         run(`mkfifo $(outfile)`)
+--         DaemonMode.runexpr(string(code),port=LSPORT)
+--         DaemonMode.runexpr("
+--           open(\"$(infile)\", \"r\") do in
+--             open(\"$(outfile)\", \"w\") do out
+--               serv(in, out, \"$(pwd())\");
+--             end;
+--           end;
+--         ",port=LSPORT)
+
+--       catch _
+--         eval(code)
+--         serv(stdin, stdout)
+--       end
+--   ]]
+--   }
+
+-- })
 
 -- TODO copying rust-project.json from config dir
 -- to current dir to make this shit work

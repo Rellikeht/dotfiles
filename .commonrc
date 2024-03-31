@@ -17,9 +17,9 @@ conditional_source "$HOME/.local/.funcrc"
 
 #common variables
 
-if [ "$__VARRC_ETC_SOURCED" != "$UID" ]; then
+if [ -z "$__VARRC_ETC_SOURCED" ]; then
     conditional_source "/etc/.varrc"
-    export __VARRC_ETC_SOURCED="$UID"
+    export __VARRC_ETC_SOURCED=1
 fi
 conditional_source "$HOME/.varrc"
 if [ "$__VARRC_LOCAL_SOURCED" != "$UID" ]; then

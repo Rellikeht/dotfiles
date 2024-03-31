@@ -25,7 +25,7 @@ map <Tab>L :tabm +1<CR>
 map <Tab>H :tabm -1<CR>
 map <Tab>J :tabm $<CR>
 map <Tab>K :tabm 0<CR>
-map <Tab>B :tabnew<CR>:buffer<Space>
+map <Tab>e :tab<Space>sb<Space>
 map <Tab><Tab> :tab<Space>
 map <Tab>i :tabs<CR>
 

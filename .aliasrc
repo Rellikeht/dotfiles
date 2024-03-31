@@ -286,9 +286,17 @@ alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
 
 alias jlE='julia -e'
-alias jle='julia --startup-file=no -e'
-alias jld="julia --startup-file=no -e 'using DaemonMode;serve()'"
-alias jlc="julia --startup-file=no -e 'using DaemonMode;runargs()'"
+alias juliac='julia --startup-file=no'
+alias jle='juliac -e'
+alias jldaemon="juliac -t auto -O3 -e 'using DaemonMode;serve(async=true)'"
+alias jlfast="juliac -O0 -g0 --compile=min --check-bounds=no --color=no --banner=no"
+alias jlfclient="jlfast -e 'using DaemonMode;runargs()'"
+alias jlclient="jlfast -e 'using DaemonMode;runexpr.(ARGS)'"
+alias jld=jldaemon
+alias jlf=jlfclient
+alias jlc=jlclient
+
+alias jlservdaemon="juliac -t auto -O3 -e 'using DaemonMode;serve(3210,async=true)'"
 
 alias nimm='hm nim --fullhelp'
 alias nimh='nim --fullhelp | less'
