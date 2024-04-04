@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set(buf_modes, '<Leader>dR', vim.lsp.buf.rename, opts)
     vim.keymap.set(buf_modes, '<Leader>dr', vim.lsp.buf.references, opts)
     vim.keymap.set(buf_modes, '<Leader>dF',
-                   function() vim.lsp.buf.format {async = true} end, opts)
+                   function() vim.lsp.buf.format({async = true}) end, opts)
 
     vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
 

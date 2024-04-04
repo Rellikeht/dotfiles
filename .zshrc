@@ -5,6 +5,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 WORDCHARS='%~!?+'
+DISABLE_AUTO_UPDATE="true"
 
 bindkey -e
 bindkey \^U backward-kill-line
