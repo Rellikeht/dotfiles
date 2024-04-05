@@ -1,23 +1,37 @@
 # vim: set syn=zsh ft=zsh:
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=5000
+SAVEHIST=2000
 WORDCHARS='%~!?+'
-DISABLE_AUTO_UPDATE="true"
+
+DISABLE_AUTO_UPDATE='true'
+ZSH_AUTOSUGGEST_USE_ASYNC='true'
+
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_FCNTL_LOCK
+
+# setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
 
 bindkey -e
 bindkey \^U backward-kill-line
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+# This probably does nothing
 zstyle :compinstall filename '~/.zshrc'
-zstyle ':completion:*' rehash true
+# zstyle :compinstall filename '/etc/zshrc'
+# zstyle ':completion:*' rehash true
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+if [ -z "$__COMPINIT_RUN" ]; then
+    zstyle ':completion:*' use-cache on
+    zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zscompcache"
+
+    autoload -Uz compinit
+    compinit
+    __COMPINIT_RUN=1
+fi
 
 source ~/.commonrc
 

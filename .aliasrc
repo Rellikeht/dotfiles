@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+# Some start
+alias b1='cd ..'
+alias b2='cd ../..'
+alias b3='cd ../../..'
+alias b4='cd ../../../..'
+
 ## Get all possible programs
 
 alias progp=' \
@@ -45,7 +51,6 @@ alias au='ag --unrestricted'
 alias rgh='rg --hidden'
 alias egrep='grep -E'
 alias eg='egrep'
-alias grepWgrep='its_just_grep --invert-match its_just_grep'
 
 alias rlf='readlink -f'
 
@@ -60,12 +65,13 @@ alias dash='dash -E'
 
 alias dh='du -sh'
 alias ddate='date "+%d.%m.%Y"'
-alias pathprint="echo "$PATH" | sed 's/:/\n/g'"
+alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
 
 ## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
 # alias tbd='top --batch --delay 1'
 alias tbd='top -b -d 1'
+alias grepWgrep='its_just_grep --invert-match its_just_grep'
 alias tbg='tbd | grepWgrep | its_just_grep -E'
 # alias tbgm='tbd --scale-task-mem m | grepWgrep | its_just_grep -E'
 alias tbgm='tbd -e m | grepWgrep | its_just_grep -E'

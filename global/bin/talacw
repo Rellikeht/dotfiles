@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec tabbed -r 2 alacw --embed {} $@
