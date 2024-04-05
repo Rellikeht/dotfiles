@@ -1,6 +1,7 @@
 import = [
     "~/.alacritty.theme.toml"
 ]
+live_config_reload = true
 
 [bell]
 animation = "EaseOutExpo"
@@ -103,7 +104,7 @@ multiplier = 3
 startup_mode = "Maximized"
 title = "Alacritty"
 dynamic_title = true
-opacity = 0.95
+opacity = 0.98
 
 [terminal]
 osc52 = "CopyPaste"
