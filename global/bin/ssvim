@@ -1,2 +1,2 @@
 #!/bin/sh
-exec sterm svim $@
+exec st svim $@

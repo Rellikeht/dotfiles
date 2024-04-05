@@ -3,7 +3,7 @@
 SOCK="$XDG_RUNTIME_DIR/alacritty.sock"
 
 if [ -e "$SOCK" ]; then
-    [ "$1" == "--embed" ] && shift 2
+    [ "$1" = "--embed" ] && shift 2
     exec alacritty msg --socket "$SOCK" create-window $@
 else
     exec alacritty --socket "$SOCK" $@

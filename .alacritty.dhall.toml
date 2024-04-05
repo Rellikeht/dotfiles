@@ -1,0 +1,144 @@
+
+[bell]
+  animation = "EaseOutExpo"
+  color = "#023210"
+  duration = 0
+
+[colors]
+  [colors.bright]
+    black = "#666666"
+    blue = "#7aa6da"
+    cyan = "#70d8c4"
+    green = "#02fa3a"
+    magenta = "#e377ef"
+    red = "#ea1a2f"
+    white = "#eaeaea"
+    yellow = "#e7c547"
+
+  [colors.cursor]
+    cursor = "#40ffff"
+    text = "#000000"
+
+  [colors.normal]
+    black = "#0d0f11"
+    blue = "#2a82be"
+    cyan = "#8abeb7"
+    green = "#b5bd68"
+    magenta = "#b294bb"
+    red = "#cf1f1f"
+    white = "#95a8d6"
+    yellow = "#cfca4f"
+
+  [colors.primary]
+    background = "#000108"
+    bright_foreground = "#02aacd"
+    dim_foreground = "#020a0f"
+    foreground = "#0f58d0"
+
+  [colors.search.matches]
+    background = "#002412"
+    foreground = "#0256ce"
+
+  [colors.selection]
+    background = "#0f6faf"
+
+[cursor]
+  style = "Block"
+
+[debug]
+  log_level = "Warn"
+  persistent_logging = false
+  print_events = false
+
+[env]
+  TERM = "alacritty"
+
+[font]
+  size = 12.0
+
+  [font.bold]
+    family = "MesloLGS NF"
+    style = "Bold"
+
+  [font.bold_italic]
+    family = "MesloLGS NF"
+    style = "Bold Italic"
+
+  [font.italic]
+    family = "MesloLGS NF"
+    style = "Italic"
+
+  [font.normal]
+    family = "MesloLGS NF"
+    style = "Regular"
+
+[scrolling]
+  history = 10000
+  multiplier = 3
+
+[selection]
+  save_to_clipboard = true
+
+[terminal]
+  osc52 = "CopyPaste"
+
+[window]
+  dynamic_title = true
+  opacity = 0.95
+  startup_mode = "Maximized"
+  title = "Alacritty"
+
+[[keyboard.bindings]]
+  action = "Paste"
+  key = "V"
+  mods = "Control|Alt"
+
+[[keyboard.bindings]]
+  action = "Copy"
+  key = "C"
+  mods = "Control|Alt"
+
+[[keyboard.bindings]]
+  action = "ScrollPageUp"
+  key = "P"
+  mods = "Control|Alt"
+
+[[keyboard.bindings]]
+  action = "ScrollPageDown"
+  key = "N"
+  mods = "Control|Alt"
+
+[[keyboard.bindings]]
+  action = "ScrollToTop"
+  key = "Comma"
+  mods = "Shift|Control|Alt"
+
+[[keyboard.bindings]]
+  action = "ScrollToBottom"
+  key = "Period"
+  mods = "Shift|Control|Alt"
+
+[[keyboard.bindings]]
+  action = "ScrollPageUp"
+  key = "PageUp"
+  mode = "~Alt"
+  mods = "Shift"
+
+[[keyboard.bindings]]
+  action = "ScrollPageDown"
+  key = "PageDown"
+  mode = "~Alt"
+  mods = "Shift"
+
+[[keyboard.bindings]]
+  action = "ScrollToTop"
+  key = "Home"
+  mode = "~Alt"
+  mods = "Shift"
+
+[[keyboard.bindings]]
+  action = "ScrollToBottom"
+  key = "End"
+  mode = "~Alt"
+  mods = "Shift"
+

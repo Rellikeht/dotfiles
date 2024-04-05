@@ -1,0 +1,41 @@
+# TODO prettier colors
+
+[bell]
+color = "#023210"
+
+[colors.bright]
+black = "#666666"
+blue = "#7aa6da"
+cyan = "#70d8c4"
+green = "#02fa3a"
+magenta = "#e377ef"
+red = "#ea1a2f"
+white = "#eaeaea"
+yellow = "#e7c547"
+
+[colors.cursor]
+cursor = "#40ffff"
+text = "#000000"
+
+[colors.normal]
+black = "#0d0f11"
+blue = "#2a82be"
+cyan = "#8abeb7"
+green = "#b5bd68"
+magenta = "#b294bb"
+red = "#cf1f1f"
+white = "#95a8d6"
+yellow = "#cfca4f"
+
+[colors.primary]
+background = "#000108"
+bright_foreground = "#02aacd"
+dim_foreground = "#020a0f"
+foreground = "#0f58d0"
+
+[colors.search.matches]
+background = "#002412"
+foreground = "#0256ce"
+
+[colors.selection]
+background = "#0f6faf"
