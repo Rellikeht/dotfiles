@@ -27,7 +27,9 @@ map <leader>goM :G mergetool<CR>
 " Diff
 
 map <leader>gds :Gvdiffsplit<CR>
+map <leader>gdM :Gvdiffsplit!<CR>
 map <leader>gdh :Gdiffsplit<CR>
+map <leader>gdm :Gdiffsplit!<CR>
 map <leader>gdu :diffupdate<CR>
 
 map <leader>gdp :diffput<CR>

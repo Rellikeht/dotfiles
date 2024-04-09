@@ -12,9 +12,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_FCNTL_LOCK
 
-# setopt INC_APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
-setopt SHARE_HISTORY
+# setopt SHARE_HISTORY
 
 bindkey -e
 bindkey \^U backward-kill-line

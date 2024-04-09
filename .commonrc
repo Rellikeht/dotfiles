@@ -53,3 +53,8 @@ if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     export __HM_SESS_SOURCED="$UID"
 fi
+
+# Compatibility between tmux and direnv
+if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
+    unset "${!DIRENV_@}"  # unset env vars starting with DIRENV_
+fi

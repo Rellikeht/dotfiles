@@ -92,6 +92,8 @@ alias rpo='doas poweroff'
 
 alias sag='ssh-agent'
 alias sad='ssh-add'
+alias spl1='ssh "$(cat ~/.sshplayit1)"'
+alias spl2='ssh "$(cat ~/.sshplayit2)"'
 
 # Text Editors
 
