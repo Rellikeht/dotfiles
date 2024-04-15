@@ -56,5 +56,15 @@ fi
 
 # Compatibility between tmux and direnv
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
-    unset "${!DIRENV_@}"  # unset env vars starting with DIRENV_
+    # unset env vars starting with DIRENV_
+    # echo $0
+    # echo $SHELL
+    # echo "${0##*/}"
+    # echo "${SHELL##*/}"
+    # if [ "${${0##*/}%-*}" = "zsh" ]; then
+    if [ -n "$ZSH_NAME" ]; then
+        unset ${$(typeset -m "DIRENV_*")%%=*}
+    else
+        unset "${!DIRENV_@}"
+    fi
 fi

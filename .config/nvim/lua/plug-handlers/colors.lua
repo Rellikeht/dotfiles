@@ -54,6 +54,7 @@ tsconfig.setup({
     additional_vim_regex_highlighting = false
   }
 })
+vim.keymap.set({'n', 'v'}, '<Leader>DQ', ':TSToggle highlight<CR>')
 
 -- vim.cmd('hi Todo		guifg=#ffcf2f	guibg=#0e1224	gui=bold')
 

@@ -12,7 +12,7 @@ black = "#05080f"
 red = "#ff1816"
 green = "#1fff28"
 yellow = "#ffff28"
-blue = "#1422ff"
+blue = "#142fff"
 magenta = "#f02bff"
 cyan = "#3af8ff"
 white = "#bfcfef"
@@ -29,9 +29,9 @@ white = "#8ad0ff"
 
 [colors.primary]
 background = "#000108"
-bright_foreground = "#02aacd"
-dim_foreground = "#020a0f"
-foreground = "#0850ff"
+bright_foreground = "#02aacd" # ??
+dim_foreground = "#020a0f" # ??
+foreground = "#2850ff"
 
 [colors.search.matches]
 background = "#002412"

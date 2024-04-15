@@ -45,13 +45,14 @@ let g:neoformat_enabled_lua = ['luaformat']
 let g:neoformat_enabled_nim = ['nimpretty']
 let g:neoformat_enabled_shell = ['shfmt']
 let g:neoformat_enabled_zsh = ['shfmt']
+let g:neoformat_enabled_markdown = ['mdformat', 'prettierd', 'prettier']
 
 " prettier ???
-let g:neoformat_enabled_json = ['jq', 'clangformat', 'prettier']
-let g:neoformat_enabled_jsonc = ['prettier']
-let g:neoformat_enabled_javascript = ['clangformat', 'prettier']
-let g:neoformat_enabled_typescript = ['clangformat', 'prettier']
-let g:neoformat_enabled_java = ['clangformat', 'astyle', 'uncrustify', 'prettier']
+let g:neoformat_enabled_json = ['jq', 'clangformat', 'prettierd', 'prettier']
+let g:neoformat_enabled_jsonc = ['prettierd', 'prettier']
+let g:neoformat_enabled_javascript = ['clangformat', 'prettierd', 'prettier']
+let g:neoformat_enabled_typescript = ['clangformat', 'prettierd', 'prettier']
+let g:neoformat_enabled_java = ['clangformat', 'astyle', 'uncrustify', 'prettierd', 'prettier']
 
 " Totally differently than it seems
 " from reading README, but somehow This
