@@ -8,10 +8,20 @@ local config = {
   cmd = {'jdtls', '-data', workspace_dir},
 
   settings = {
-    java = {signatureHelp = {enabled = true}, autobuild = {enabled = false}}
+    java = {
+      signatureHelp = {enabled = true},
+      completion = {favoriteStaticMembers = {}},
+      autobuild = {enabled = false},
+      import = {enabled = true},
+      rename = {enabled = true}
+    }
   },
+  sources = {
+    organizeImports = {starThreshold = 9999, staticStarThreshold = 9999}
+  },
+  on_attach = lsp_attach,
 
-  completion = {favoriteStaticMembers = {"java.text.MessageFormat.format"}},
+  -- completion = {favoriteStaticMembers = {"java.text.MessageFormat.format"}},
   handlers = {["language/status"] = function() end},
 
   root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'},

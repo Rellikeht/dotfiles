@@ -75,7 +75,7 @@ end
 local servers = {
   'pylyzer', -- pylyzer is too unstable for now :(
   -- But i will try anyway
-  'pylsp', 'gopls', 'clangd', 'ocamllsp', 'nimls', 'julials', -- 'nixd',
+  'pylsp', 'gopls', 'ocamllsp', 'nimls', -- 'julials',
   'nil_ls', 'nickel_ls', 'zls', 'hls', 'dhall_lsp_server', 'r_language_server',
   'bashls', 'texlab', 'typst_lsp', 'scheme_langserver', 'tsserver'
 }
@@ -105,13 +105,93 @@ lspconfig.lua_ls.setup({
 
 })
 
--- lspconfig.julials.setup({
---   preselectSupport = false,
---   preselect = false,
---   single_file_support = true,
---   on_attach = lsp_attach,
---   capabilities = Capabilities,
---   settings = {telemetry = {enable = false}},
+lspconfig.julials.setup({
+  preselectSupport = false,
+  preselect = false,
+  single_file_support = true,
+  on_attach = lsp_attach,
+  capabilities = Capabilities,
+  settings = {telemetry = {enable = false}},
+
+  cmd = {
+    'julia', '-g0', '-O0', '--startup-file=no', '--history-file=no', '-e', [[
+    # Load LanguageServer.jl: attempt to load from ~/.julia/environments/nvim-lspconfig
+    # with the regular load path as a fallback
+    ls_install_path = joinpath(
+        get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")),
+        "environments", "nvim-lspconfig"
+    )
+    pushfirst!(LOAD_PATH, ls_install_path)
+    using LanguageServer
+    popfirst!(LOAD_PATH)
+    depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
+    project_path = let
+        dirname(something(
+            ## 1. Finds an explicitly set project (JULIA_PROJECT)
+            Base.load_path_expand((
+                p = get(ENV, "JULIA_PROJECT", nothing);
+                p === nothing ? nothing : isempty(p) ? nothing : p
+            )),
+            ## 2. Look for a Project.toml file in the current working directory,
+            ##    or parent directories, with $HOME as an upper boundary
+            Base.current_project(),
+            ## 3. First entry in the load path
+            get(Base.load_path(), 1, nothing),
+            ## 4. Fallback to default global environment,
+            ##    this is more or less unreachable
+            Base.load_path_expand("@v#.#"),
+        ))
+    end
+    @info "Running language server" VERSION pwd() project_path depot_path
+    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
+    server.runlinter = true
+    run(server)
+  ]]
+  }
+
+})
+
+-- TODO copying rust-project.json from config dir
+-- to current dir to make this shit work
+
+-- No idea if all of that is really needed
+lspconfig.rust_analyzer.setup({
+  on_attach = lsp_attach,
+  preselectSupport = false,
+  preselect = false,
+  single_file_support = true,
+  capabilities = Capabilities,
+
+  settings = {
+    ['rust-analyzer'] = {
+      -- Doesn't solve the problem
+      -- standalone = true,
+      -- workspaceFolders = false,
+      -- workspace = {
+      --    workspaceFolders = false,
+      -- },
+
+      completion = {contextSupport = true},
+      imports = {granularity = {group = 'module'}, prefix = 'self'},
+      cargo = {buildScripts = {enable = true}},
+      procMacro = {enable = true}
+    }
+  }
+})
+
+lspconfig.clangd.setup({
+  cmd = {
+    'clangd', '-j=2', '--clang-tidy', '--enable-config',
+    '--header-insertion=never', '--completion-style=detailed',
+    '--pch-storage=memory'
+  },
+  preselectSupport = false,
+  preselect = false,
+  single_file_support = true,
+  on_attach = lsp_attach,
+  capabilities = Capabilities,
+  settings = {}
+})
 
 --   cmd = {
 --     'julia', '--startup-file=no', '--history-file=no', '-e', [[
@@ -189,40 +269,6 @@ lspconfig.lua_ls.setup({
 --   ]]
 --   }
 
--- })
-
--- TODO copying rust-project.json from config dir
--- to current dir to make this shit work
-
--- No idea if all of that is really needed
-lspconfig.rust_analyzer.setup({
-  on_attach = lsp_attach,
-  preselectSupport = false,
-  preselect = false,
-  single_file_support = true,
-  capabilities = Capabilities,
-
-  settings = {
-    ['rust-analyzer'] = {
-      -- Doesn't solve the problem
-      -- standalone = true,
-      -- workspaceFolders = false,
-      -- workspace = {
-      --    workspaceFolders = false,
-      -- },
-
-      completion = {contextSupport = true},
-
-      imports = {granularity = {group = 'module'}, prefix = 'self'},
-
-      cargo = {buildScripts = {enable = true}},
-
-      procMacro = {enable = true}
-
-    }
-  }
-})
-
 -- This has some weird problems
 -- lspconfig.java_language_server.setup({
 --   cmd = {'java-language-server'},
@@ -230,6 +276,6 @@ lspconfig.rust_analyzer.setup({
 --   preselect = false,
 --   single_file_support = true,
 --   on_attach = lsp_attach,
---   capabilities = Capabilities
+--   capabilities = Capabilities,
 --   -- settings = {}
 -- })
