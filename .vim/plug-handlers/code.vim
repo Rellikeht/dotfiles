@@ -22,11 +22,11 @@ let g:neoformat_enabled_python = ['ruff', 'autopep8', 'flake8']
 let g:neoformat_enabled_c = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_nix = ['alejandra']
-let g:neoformat_enabled_ocaml = ['ocamlformat']
-let g:neoformat_enabled_rust = ['rustfmt']
+let g:neoformat_enabled_ocaml = ['ocamlformat', 'topiary']
 let g:neoformat_enabled_haskell = ['floskell']
-autocmd FileType dhall let b:buffmt=0 " :(((
+" TODO clangformat
 
+autocmd FileType dhall let b:buffmt=0 " :(((
 " done in zig plugin
 "let g:neoformat_enabled_zig = ['zig_fmt']
 
@@ -43,12 +43,24 @@ let g:neoformat_lua_luaformat = {
 " Untested
 let g:neoformat_enabled_lua = ['luaformat']
 let g:neoformat_enabled_nim = ['nimpretty']
-let g:neoformat_enabled_shell = ['shfmt']
+let g:neoformat_enabled_shell = ['shfmt', 'topiary']
 let g:neoformat_enabled_zsh = ['shfmt']
 let g:neoformat_enabled_markdown = ['mdformat', 'prettierd', 'prettier']
+let g:neoformat_enabled_yaml = ['yamlfix', 'pyaml', 'prettierd', 'prettier']
+
+let g:neoformat_markdown_mdformat = {
+        \ 'exe': 'mdformat',
+        \ 'args': ['--wrap', '64', '-'],
+        \ 'stdin': 1,
+        \ }
+let g:neoformat_yaml_yamlfix = {
+        \ 'exe': 'yamlfix',
+        \ 'args': ['-c', '~/.vim/plug-handlers/pyproject.toml', '-'],
+        \ 'stdin': 1,
+        \ }
 
 " prettier ???
-let g:neoformat_enabled_json = ['jq', 'clangformat', 'prettierd', 'prettier']
+let g:neoformat_enabled_json = ['jq', 'clangformat', 'topiary', 'prettierd', 'prettier']
 let g:neoformat_enabled_jsonc = ['prettierd', 'prettier']
 let g:neoformat_enabled_javascript = ['clangformat', 'prettierd', 'prettier']
 let g:neoformat_enabled_typescript = ['clangformat', 'prettierd', 'prettier']

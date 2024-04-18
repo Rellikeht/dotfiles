@@ -1,0 +1,7 @@
+[tool.yamlfix]
+allow_duplicate_keys = false
+line_length = 64
+none_representation = "null"
+whitelines = 1
+comments_whitelines = 2
+explicit_start = false
