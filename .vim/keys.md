@@ -1,12 +1,13 @@
 # About
 
-This file is trial to describe all mappings and keep available keys in one
-place. With hundreds of mappings it is necessary
+This file is trial to describe all mappings and keep available
+keys in one place. With hundreds of mappings it is necessary
 
 # Unused keys
 
-\ | ~ ^ (hard to reach on some keyboards) _ ; (painful in greater amounts) There
-may be more, but there are already enough combinations
+\\ | ~ ^ (hard to reach on some keyboards) _ ; (painful in
+greater amounts) There may be more, but there are already enough
+combinations
 
 # <Tab> combinations
 
@@ -77,15 +78,18 @@ k, q, u, x, z
 ## Simple mappings
 
 - q - miscelanous, settings:
-  - f,F - formatting on write
+
+  - f,F - toggle formatting on write
   - c,C - compiling on write
   - 0,1,2,...,9 - print variables
   - m - man program
   - M - set make program to make
-  - u - general plug upgrade
-  - P - plug clean
+  - eb - editorconfig toggle for buffer
+  - eg - editorconfig toggle globally
+  - er - editorconfig reload
 
 - <Space> - set hls!
+
 - ; - commands
 
 ## Code
@@ -101,14 +105,28 @@ k, q, u, x, z
 ## With plugins
 
 - t - tmux
+
 - g - git
+
   - s,j,k (every possible casing) - signify
   - v,V,? - gv
   - others - fugitive
+
 - s - fzf
-- n - unicode, uuid
+
+- n - unicode, nuuid
+
 - u - undo tree ; NOT IMPLEMENTED :(
+
 - F - code formatting
+
+- q misc again:
+
+  - u - general plug upgrade
+  - P - plug clean
+  - t - toggle context until move
+  - T - toggle context
+  - W - toggle context in current window
 
 ## Nvim only
 
@@ -131,7 +149,7 @@ Rather useful: J, M, N, V m, n
 - a - unicode
 - A - radical.vim
 - x, X - netrw
-- b - jump to tag under cursor (<C-]>)
+- b - jump to tag under cursor (\<C-\]>)
 - B - jump to previous tag on stack (<C-T>)
 - Y - "+gP (I don't know if it works)
 - s - vim-slime and similar
@@ -147,8 +165,8 @@ Rather useful: J, M, N, V m, n
 
 # z combinations
 
-Available (unused): B, I, J, K, Q, S, T, U, V, Y, Z q All special characters,
-besides: +, -, ., =, <CR>, numbers
+Available (unused): B, I, J, K, Q, S, T, U, V, Y, Z q All
+special characters, besides: +, -, ., =, <CR>, numbers
 
 - S - sleep
 
@@ -164,9 +182,9 @@ Only Z and Q is used
 
 ## TODO
 
-- r[dxob] - radical.vim
+- r\[dxob\] - radical.vim
 
-# "[" and "]"
+# "\[" and "\]"
 
 ## TODO
 

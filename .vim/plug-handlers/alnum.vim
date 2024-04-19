@@ -33,7 +33,8 @@ map ga <Plug>(UnicodeGA)
 " vim-nuuid
 
 let g:nuuid_no_mappings = 1
-map <Leader>nA :NuuidAll<CR>
+" map <Leader>nA :NuuidAll<CR>
+map <Leader>nN :NuuidAll<CR>
 " map <Leader>nu <Plug>Nuuid
 map <Leader>nu :exe 'norm a'.NuuidNewUuid()<CR>
 map <Leader>nU :NuuidToggleAbbrev<CR>

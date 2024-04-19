@@ -23,15 +23,17 @@ let mapleader = ','
 
 " General purpose leader mappings
 nmap <Leader><Space> :set hls!<CR>
-map <Leader>qq :call Wmt()<CR>
 map <Leader>;C :!clear<CR><CR>
 map <Leader>;l :!ls<CR>
 map <Leader>;e :Ex<CR>
 map <Leader>;r :!%<CR>
 map <Leader>;m :make<CR>
 map <Leader>;M :make
+
+map <Leader>qq :call Wmt()<CR>
 map <Leader>qm :call ToggleManProg()<CR>
 map <Leader>qM :set makeprg=make<CR>
+map <Leader>qE :EditorConfigReload<CR>
 
 map <Leader>qf :let b:buffmt=!b:buffmt<CR>
 map <Leader>qF :let g:buffmt=!g:buffmt<CR>

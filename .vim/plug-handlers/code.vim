@@ -98,6 +98,7 @@ augroup fmt
 augroup END
 
 map <Leader>Ff :Neoformat<CR>
+map <Leader>FF :Neoformat<Space>
 
 " others
 
@@ -115,5 +116,6 @@ let g:zig_fmt_autosave = 1
 " TODO sane settings
 map <Leader>qt :ContextPeek<CR>
 map <Leader>qT :ContextToggle<CR>
+map <Leader>qW :ContextToggleWindow<CR>
 
 " TODO emmet

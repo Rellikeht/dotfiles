@@ -10,8 +10,6 @@ vim.keymap.set(buf_modes, '<Leader>dS', ':LspStart<CR>')
 vim.keymap.set(buf_modes, '<Leader>de', ':LspStop ')
 vim.keymap.set(buf_modes, '<Leader>dE', ':LspStop<CR>')
 
--- TODO do all that well :(
-
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -24,7 +22,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = {buffer = ev.buf}
 
-    -- TODO other diagnostics, errors, repairs, info...
     vim.keymap.set(diag_modes, '<Leader>df', vim.diagnostic.open_float)
     vim.keymap.set(diag_modes, '<Leader>dp', vim.diagnostic.goto_prev)
     vim.keymap.set(diag_modes, '<Leader>dn', vim.diagnostic.goto_next)
