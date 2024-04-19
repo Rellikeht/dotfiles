@@ -1,1 +1,6 @@
-escape ^Jj
+escape ^||
+bindkey "^[ " command
+
+# Also works
+# register S ^|
+# bindkey "^[ " process S
