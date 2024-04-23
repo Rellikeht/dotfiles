@@ -54,3 +54,14 @@ let g:rainbow_conf = {
 \		}
 \	}
 \}
+
+" quick-scope
+let g:qs_hi_priority = 2
+
+let g:qs_lazy_highlight = 1
+
+" quick scope delay
+let g:qs_delay = 30
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']

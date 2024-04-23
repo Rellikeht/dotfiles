@@ -1,8 +1,8 @@
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'romainl/vim-tinyMRU' " TODO A
-Plug 'unblevable/quick-scope' " TODO C defaults work great
+Plug 'romainl/vim-tinyMRU'
+Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak' " TODO A shortcuts
 
 Plug 'wellle/context.vim'

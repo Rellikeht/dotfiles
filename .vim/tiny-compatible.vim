@@ -13,8 +13,8 @@ vmap + <C-a>
 vmap - <C-x>
 
 " Tabs with <Tab>
-map <Tab>k :tabfirst<CR>
-map <Tab>j :tablast<CR>
+map <Tab>0 :tabfirst<CR>
+map <Tab>$ :tablast<CR>
 map <Tab>l gt
 map <Tab>h gT
 map <Tab>t :tabedit<Space>
@@ -52,7 +52,7 @@ map <Tab>I :buffers<CR>
 
 " Others
 map <Tab>W :set wrap!<CR>
-map <Tab>o :source %<CR>
+map <Tab>Q :source %<CR>
 map <Tab>M :setlocal modeline!<CR>
 map <Tab>E :e<CR>
 

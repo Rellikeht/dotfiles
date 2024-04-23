@@ -1,3 +1,6 @@
+" Repeat:
+" silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+
 " Better tab
 map <Tab>l :<C-u>call SwitchTab(v:count1)<CR>
 map <Tab>h :<C-u>call SwitchTab(-v:count1)<CR>
@@ -26,6 +29,30 @@ map <Leader>;l :!ls<CR>
 map <Leader>;e :Ex<CR>
 map <Leader>;m :make<CR>
 map <Leader>;M :make
+
+nmap <C-j> :<C-u>execute 'cn '.v:count1<CR>
+nmap <C-k> :<C-u>execute 'cp '.v:count1<CR>
+vmap <C-j> :<C-u>execute 'cn '.v:count1<CR>
+vmap <C-k> :<C-u>execute 'cp '.v:count1<CR>
+
+" TODO what is l the fuck
+" TODO proper bindings
+" map <Tab>j :<C-u>execute 'cn '.v:count1<CR>
+" map <Tab>k :<C-u>execute 'cp '.v:count1<CR>
+" map <Tab>J :<C-u>execute 'ln '.v:count1<CR>
+" map <Tab>K :<C-u>execute 'lp '.v:count1<CR>
+" map <Tab>c :<C-u>execute 'cc '.v:count1<CR>
+" map <Tab>C :<C-u>execute 'll '.v:count1<CR>
+
+" map <Tab>J :<C-u>execute 'cnf '.v:count1<CR>
+" map <Tab>K :<C-u>execute 'cpf '.v:count1<CR>
+
+" map <Tab>d :cdo<Space>
+" map <Tab>D :ldo<Space>
+" map <Tab>o :copen<CR>
+" map <Tab>O :lopen<CR>
+" map <Tab>r :crewind<CR>
+" map <Tab>R :lrewind<CR>
 
 " ???
 " map <Leader>;r :!%<CR>

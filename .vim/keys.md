@@ -61,7 +61,7 @@ They are general purpose, mainly for tab management
 - W - toggle wrap
 - y - in normal paste, in visual copy to X11 clipboard
 - Y - like ;y, but using X11 primary
-- o - source %
+- Q - source %
 - M - setlocal modeline!
 - E - :e
 
@@ -120,6 +120,8 @@ k, q, u, x, z
 
 - F - code formatting
 
+- E,T,S,V - tinyMRU
+
 - q misc again:
 
   - u - general plug upgrade
@@ -139,7 +141,7 @@ k, q, u, x, z
 
 Available (useless otherwise): C, G, K, L, O j, o, y, z
 
-Rather useless: D, I, Q, H d, h, q, r, w
+Rather useless: D, I, Q, H d, h, r, w
 
 Rather useful: J, M, N, V m, n
 
