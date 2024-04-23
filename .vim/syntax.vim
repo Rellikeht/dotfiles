@@ -18,7 +18,8 @@ autocmd FileType haskell,lua,r setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 let g:buffmt = 1
 let g:bufcomp = 1
-autocmd BufNewFile,BufRead * let b:buffmt = g:buffmt
+autocmd BufNewFile,BufRead * let b:buffmt = 0
+autocmd BufNewFile,BufRead *.* let b:buffmt = g:buffmt
 autocmd BufNewFile,BufRead * let b:bufcomp = g:bufcomp
 
 " Very temporary but should work well enough

@@ -1,6 +1,4 @@
 " Better tab
-"map <Tab>h :<C-u>execute ''.v:count1.' tabp'<CR>
-"map <Tab>l :<C-u>execute '+'.v:count1.' tabn'<CR>
 map <Tab>l :<C-u>call SwitchTab(v:count1)<CR>
 map <Tab>h :<C-u>call SwitchTab(-v:count1)<CR>
 map <Tab>H :<C-u>execute 'tabm -'.v:count1<CR>
@@ -26,9 +24,11 @@ nmap <Leader><Space> :set hls!<CR>
 map <Leader>;C :!clear<CR><CR>
 map <Leader>;l :!ls<CR>
 map <Leader>;e :Ex<CR>
-map <Leader>;r :!%<CR>
 map <Leader>;m :make<CR>
 map <Leader>;M :make
+
+" ???
+" map <Leader>;r :!%<CR>
 
 map <Leader>qq :call Wmt()<CR>
 map <Leader>qm :call ToggleManProg()<CR>
@@ -52,8 +52,8 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-" TODO A wc on buffer
-"map <Leader>;c
+" Not the best, but should work
+map <Leader>;c mCggvG$:w !wc<CR>
 
 " TODO B running command under cursor
 " TODO C running command in given register (???)

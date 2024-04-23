@@ -61,7 +61,7 @@ vmap ae <Esc>gg0vG$
 " Not exact vie
 vmap ie <Esc>gg}{vG{}k$
 "vae defined earlier doesn't work here
-nmap yae mcggvG$y`c
+nmap yae mCggvG$y`C
 
 " SETTINGS
 
