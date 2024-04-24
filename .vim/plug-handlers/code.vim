@@ -2,6 +2,7 @@
 
 "nmap <silent> ; <Plug>(cosco-commaOrSemiColon)
 map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
+" let g:cosco_ignore_comment_lines = 1
 
 " nix
 
@@ -100,6 +101,24 @@ augroup END
 map <Leader>Ff :Neoformat<CR>
 map <Leader>FF :Neoformat<Space>
 
+" context
+" TODO B sane settings
+map <Leader>qt :ContextPeek<CR>
+map <Leader>qT :ContextToggle<CR>
+map <Leader>qW :ContextToggleWindow<CR>
+
+" TODO D emmet
+
+" zig.vim
+" TODO C compiler
+
+let g:zig_fmt_autosave = 1
+
+" julia-vim
+let g:latex_to_unicode_keymap = 1
+let g:latex_to_unicode_filetypes = '.*'
+noremap <expr> <Leader>nL LaTeXtoUnicode#Toggle()
+
 " others
 
 function GeneralUpgrade()
@@ -110,12 +129,6 @@ endfunction
 autocmd FileType zinc setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType zinc setlocal commentstring=%\ %s
 
-let g:zig_fmt_autosave = 1
-
-" context
-" TODO sane settings
-map <Leader>qt :ContextPeek<CR>
-map <Leader>qT :ContextToggle<CR>
-map <Leader>qW :ContextToggleWindow<CR>
-
-" TODO emmet
+" Pluto.jl :)
+map <Leader>nC :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
+map <Leader>nA :norm mCyyGp02lr╟lr─lxx'C<CR>

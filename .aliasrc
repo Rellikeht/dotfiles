@@ -39,6 +39,7 @@ alias llt='lt -la'
 alias exa='exa --color=always'
 alias ell='exa -la'
 alias mkdir='mkdir -p'
+alias pwl='readlink -f .'
 
 alias grepn='grep --color=never'
 alias grep='grep --color=always'
@@ -284,7 +285,13 @@ alias aria_helper='aria2c --continue=true \
 alias aria='aria_helper --file-allocation=falloc'
 alias ariap='aria_helper --file-allocation=prealloc'
 
+alias rsync='rsync --progress'
+
 alias trr='transmission-remote'
+alias trc='trr --no-incomplete-dir --download-dir "$PWD" --add'
+alias trcc='trr --incomplete-dir "$PWD" --download-dir "$PWD" --add'
+alias trC='trr --no-incomplete-dir --download-dir "$(readlink -f .)" --add'
+alias trCC='trr --incomplete-dir "$(readlink -f .)" --download-dir "$(readlink -f .)" --add'
 
 alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'
@@ -372,6 +379,9 @@ alias gta='git tag'
 alias gtl='gta -l'
 
 # Other
+
+alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
+alias stL='stc --homedir ~/.config/syncthing/'
 
 alias help2man='help2man -N'
 

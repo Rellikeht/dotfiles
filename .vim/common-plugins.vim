@@ -20,7 +20,6 @@ Plug 'tpope/vim-surround' " TODO B write shortcuts somewhere
 Plug 'tpope/vim-eunuch' " TODO C maybe some shortcuts
 Plug 'tpope/vim-speeddating' " TODO D add more formats
 Plug 'tpope/vim-tbone' " TODO C most important work done
-" TODO tabularize
 
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
@@ -30,20 +29,18 @@ Plug 'direnv/direnv.vim'
 " Some day
 " Plug 'Vimjas/vint'
 Plug 'sbdchd/neoformat'
-Plug 'lfilho/cosco.vim' " TODO B ??
+Plug 'lfilho/cosco.vim'
 Plug 'jceb/vim-orgmode' " TODO A
-Plug 'zah/nim.vim', {'for': 'nim'} " TODO B what this gives
-Plug 'ziglang/zig.vim', {'for': 'zig'} " TODO C what this gives
-Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'} " TODO C what this gives
+Plug 'ziglang/zig.vim', {'for': 'zig'}
+Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 Plug 'vale1410/vim-minizinc'
-Plug 'ocaml/vim-ocaml', {'for': 'ocaml'} " TODO B what this gives
-Plug 'lervag/vimtex', {'for': 'latex'}
+Plug 'lervag/vimtex', {'for': 'latex'} " TODO B
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim' " TODO B everything including typst usage :)
 Plug 'vifm/vifm.vim'
 Plug 'LnL7/vim-nix' " TODO A what is going on
-Plug 'mattn/emmet-vim', {'for': 'html'} " TODO C do I even need that
-" Plug 'kmonad/kmonad-vim'
+Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'kmonad/kmonad-vim'
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'nickel-lang/vim-nickel'
 
