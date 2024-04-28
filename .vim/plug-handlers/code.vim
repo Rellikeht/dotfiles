@@ -51,7 +51,7 @@ let g:neoformat_enabled_yaml = ['yamlfix', 'pyaml', 'prettierd', 'prettier']
 
 let g:neoformat_markdown_mdformat = {
         \ 'exe': 'mdformat',
-        \ 'args': ['--wrap', '64', '-'],
+        \ 'args': ['--number', '--wrap', '64', '-'],
         \ 'stdin': 1,
         \ }
 let g:neoformat_yaml_yamlfix = {

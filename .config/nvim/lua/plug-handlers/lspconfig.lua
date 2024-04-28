@@ -40,12 +40,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
                    function() vim.lsp.buf.format({async = true}) end, opts)
 
     vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
-
-    --  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.add_workspace_folder, opts)
-    --  vim.keymap.set(buf_modes, '<Leader>', vim.lsp.buf.remove_workspace_folder, opts)
-    --  vim.keymap.set(buf_modes, '<Leader>', function()
-    --    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    --  end, opts)
+    vim.keymap.set(buf_modes, '<Leader>dwa', vim.lsp.buf.add_workspace_folder,
+                   opts)
+    vim.keymap.set(buf_modes, '<Leader>dwr',
+                   vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set(buf_modes, '<Leader>dwl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
 
     -- FUCK
     vim.keymap.set('i', '<C-Space>', vim.lsp.buf.completion, opts)

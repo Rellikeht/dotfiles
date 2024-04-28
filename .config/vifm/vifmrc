@@ -737,6 +737,7 @@ map <Space> <C-w>
 nmap g! :shell<CR>
 map gpp :cd ..<CR>
 map gp2 :cd ../..<CR>
+map ,j :jobs<CR>
 
 map <C-w>d :vsplit .<CR>
 map <C-w>D :split .<CR>
@@ -744,6 +745,15 @@ map gcb :!cp -n %f %D &<CR>
 map gcB :!cp %f %D &<CR>
 map gcr :!rsync %f %D &<CR>
 map gcR :!rsync -a %f %D &<CR>
+
+map ,gh :history<CR>
+map ,gd :history dir<CR>
+map ,gc :history cmd<CR>
+map ,gs :history search<CR>
+map ,gS :history bsearch<CR>
+map ,gi :history input<CR>
+map ,ge :history expreg<CR>
+map ,gf :history filter<CR>
 
 " Holy shit, this works
 map gcc :!cp %f %D &<A-b><A-b><A-b>

@@ -93,8 +93,19 @@ alias rpo='doas poweroff'
 
 alias sag='ssh-agent'
 alias sad='ssh-add'
-alias spl1='ssh "$(cat ~/.sshplayit1)"'
-alias spl2='ssh "$(cat ~/.sshplayit2)"'
+alias khost="awk '{print \$1}' ~/.ssh/known_hosts | sort | uniq | fzs"
+alias skh='ssh "$(khost)"'
+
+## ???
+alias ssh1='ssh "$(cat ~/.ssh/h1)"'
+alias ssh2='ssh "$(cat ~/.ssh/h2)"'
+alias ssh3='ssh "$(cat ~/.ssh/h3)"'
+alias ssh4='ssh "$(cat ~/.ssh/h4)"'
+alias ssh5='ssh "$(cat ~/.ssh/h5)"'
+alias ssh6='ssh "$(cat ~/.ssh/h6)"'
+alias ssh7='ssh "$(cat ~/.ssh/h7)"'
+alias ssh8='ssh "$(cat ~/.ssh/h8)"'
+alias ssh9='ssh "$(cat ~/.ssh/h9)"'
 
 # Text Editors
 
@@ -123,9 +134,7 @@ alias fv="fed svim"
 alias fkc="fe kak"
 alias fk="fed kak"
 
-alias groff='groff -ktep'
-alias grm='groff -ms'
-alias gsf='grs -Tpdf'
+alias vifh="vifm -c history"
 
 # Settings
 alias als='alias | grep'
@@ -380,6 +389,12 @@ alias gtl='gta -l'
 
 # Other
 
+## groff
+alias groff='groff -ktep'
+alias grm='groff -ms'
+alias gsf='grs -Tpdf'
+
+## syncthing client
 alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
 alias stL='stc --homedir ~/.config/syncthing/'
 
