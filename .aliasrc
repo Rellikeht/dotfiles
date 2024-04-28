@@ -371,6 +371,7 @@ alias gdn='git diff --color=auto'
 alias gdd='git diff | delta'
 
 alias gad='git add'
+alias gad.='gad .'
 alias gcm='git commit -m'
 alias gcs='git commit'
 

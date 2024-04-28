@@ -119,6 +119,14 @@ let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_filetypes = '.*'
 noremap <expr> <Leader>nL LaTeXtoUnicode#Toggle()
 
+" direnv.vim
+let g:direnv_auto = 0
+let g:direnv_edit_mode = 'split'
+
+map <Leader>qde :EditEnvrc<CR>
+map <Leader>qdE :EditDirenvrc<CR>
+map <Leader>qdl :DirenvExport<CR>
+
 " others
 
 function GeneralUpgrade()

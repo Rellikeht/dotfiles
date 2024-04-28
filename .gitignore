@@ -41,6 +41,11 @@
 .w3m/w3msrc*
 .w3m/w3mcookie*
 
+.config/vimb/*
+!.config/vimb/**/config
+!.config/vimb/**/script.js
+!.config/vimb/**/style.css
+
 .moc/softmixer
 .moc/last_directory
 .moc/equalizer

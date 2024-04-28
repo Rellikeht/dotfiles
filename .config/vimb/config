@@ -1,0 +1,27 @@
+set accelerated-2d-canvas=true
+set hardware-acceleration-policy=ondemand
+set webgl=true
+set dark-mode=true
+set input-autohide=true
+set spell-checking=false
+set status-bar=true
+set webinspector=trueset
+set dns-prefetching=false
+set html5-database=true
+set html5-local-storage=true
+set strict-ssl=false
+
+set user-scripts=true
+set stylesheet=true
+set site-specific-quirks=true
+
+set default-font=MesloLGS NF
+set font-size=13
+#set monofont=M+ 1m
+set monospace-font=MesloLGS NF
+set monospace-font-size=13
+#set sansfont=DejaVu Sans
+#set seriffont=DejaVu Serif
+
+nunmap <c-z>
+iunmap <c-z>

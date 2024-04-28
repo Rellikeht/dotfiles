@@ -129,6 +129,9 @@ k, q, u, x, z
   - t - toggle context until move
   - T - toggle context
   - W - toggle context in current window
+  - de - edit envrc
+  - dE - edit direnvrc
+  - dl - direnv load
 
 ## Nvim only
 
