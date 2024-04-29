@@ -9,10 +9,10 @@ function Xpaste(name)
 endfunction
 
 command! -nargs=+ Silent
-            \	execute 'silent <args>'
-            \	| redraw!
+            \   execute 'silent <args>'
+            \   | redraw!
 
-command! We write | edit
+command! We write | sleep 500 m | edit
 
 " Attempt to make vim easier to use
 " in workman layout, with preserving

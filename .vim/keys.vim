@@ -14,6 +14,7 @@ map <Tab>P :<C-u>execute 'bprevious! '.v:count1<CR>
 
 " Other <Tab>
 nmap <Tab>w :SudoWrite<CR>
+nmap <Tab>W :We<CR>
 vmap <Tab>y y:call Xcopy('clipboard')<CR>
 vmap <Tab>Y y:call Xcopy('primary')<CR>
 " TODO do this better
