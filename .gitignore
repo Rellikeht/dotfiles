@@ -46,6 +46,8 @@
 !.config/vimb/**/script.js
 !.config/vimb/**/style.css
 
+.config/luakit/*.db
+
 .moc/softmixer
 .moc/last_directory
 .moc/equalizer

@@ -12,6 +12,8 @@ command! -nargs=+ Silent
             \	execute 'silent <args>'
             \	| redraw!
 
+command! We write | edit
+
 " Attempt to make vim easier to use
 " in workman layout, with preserving
 " logic (eg. d for delete, e for end...)
