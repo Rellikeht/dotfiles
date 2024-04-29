@@ -139,4 +139,9 @@ autocmd FileType zinc setlocal commentstring=%\ %s
 
 " Pluto.jl :)
 map <Leader>nC :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
+" Shown
+map <Leader>na :norm mCyyGp02lr╟lr═lxx'C<CR>
+" Hidden
 map <Leader>nA :norm mCyyGp02lr╟lr─lxx'C<CR>
+" TODO Toggle
+map <Leader>nt :echo "TODO"<CR>

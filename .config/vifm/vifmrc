@@ -319,7 +319,9 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
     \ file %c,
 
 filextype {*.html,*.htm},<text/html>
-        \ surf %f %i &,
+        \ luakit %f %i &,
+        \ vimb %f %i &,
+        " \ surf %f %i &,
         \ qutebrowser %f %i &,
         \ firefox %f %i &,
 
