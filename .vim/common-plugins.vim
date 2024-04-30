@@ -32,7 +32,7 @@ Plug 'sbdchd/neoformat'
 Plug 'lfilho/cosco.vim'
 Plug 'jceb/vim-orgmode' " TODO A
 Plug 'ziglang/zig.vim', {'for': 'zig'}
-Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
+Plug 'JuliaEditorSupport/julia-vim'
 Plug 'vale1410/vim-minizinc'
 Plug 'lervag/vimtex', {'for': 'latex'} " TODO B
 Plug 'Gavinok/vim-troff'

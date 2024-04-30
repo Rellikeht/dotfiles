@@ -305,3 +305,15 @@ fzh() {
     rm "$TEMP"
     echo "$FFC"
 }
+
+mps() {
+    local START="$1"
+    shift
+    mpv --start="$START" $@
+}
+
+mpp() {
+    local PROF="$1"
+    shift
+    mpv --profile="$PROF" $@
+}

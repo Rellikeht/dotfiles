@@ -138,10 +138,21 @@ autocmd FileType zinc setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType zinc setlocal commentstring=%\ %s
 
 " Pluto.jl :)
+
+function PLR()
+    if @" == '─'
+        call setreg('"', '═')
+    else
+        call setreg('"', '─')
+    endif
+endfunction
+
 map <Leader>nC :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
 " Shown
 map <Leader>na :norm mCyyGp02lr╟lr═lxx'C<CR>
 " Hidden
 map <Leader>nA :norm mCyyGp02lr╟lr─lxx'C<CR>
-" TODO Toggle
-map <Leader>nt :echo "TODO"<CR>
+" Toggle visibility when in cell list
+map <Leader>nT 03lx:call PLR()<CR>P
+" Toggle visibility when in cell
+map <Leader>nt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,nTnn

@@ -83,9 +83,27 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 " Not the best, but should work
 map <Leader>;c mCggvG$:w !wc<CR>
 
+" Netrw
+" TODO C
+let g:netrw_liststyle = 3
+" Some day
+" let g:netrw_banner = 0
+
+" TODO D linestyle toggle
+" map <Leader>xT :let g:netrw_liststyle=g:net
+
+" TODO B file openinng
+
+map <Leader>xx :Explore<CR>
+map <Leader>xX :Explore<Space>
+map <Leader>xt :Texplore<CR>
+map <Leader>xh :Sexplore<CR>
+map <Leader>xv :Vexplore<CR>
+map <Leader>xn :Nxplore<CR>
+map <Leader>xp :Pxplore<CR>
+
 " TODO B running command under cursor
 " TODO C running command in given register (???)
-" TODO C netrw keys
 " TODO C https://youtu.be/w7i4amO_zaE?t=1464
 " TODO D editing file in register
 

@@ -1,7 +1,9 @@
+set editor-command=st -e vim "%s"
+set dark-mode=true
+
 set accelerated-2d-canvas=true
 set hardware-acceleration-policy=always
 set webgl=true
-set dark-mode=true
 set input-autohide=true
 set spell-checking=false
 set status-bar=true
