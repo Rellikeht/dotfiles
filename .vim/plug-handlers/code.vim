@@ -31,16 +31,6 @@ autocmd FileType dhall let b:buffmt=0 " :(((
 " done in zig plugin
 "let g:neoformat_enabled_zig = ['zig_fmt']
 
-" ??
-let g:neoformat_lua_luaformat = {
-            \ 'exe': 'lua-format',
-            \ 'args': [ 
-            \ '--tab-width=2',
-            \ '--indent-width=2',
-            \ '--continuation-indent-width=2'
-            \ ],
-            \ }
-
 " Untested
 let g:neoformat_enabled_lua = ['luaformat']
 let g:neoformat_enabled_nim = ['nimpretty']
@@ -120,7 +110,7 @@ let g:latex_to_unicode_filetypes = '.*'
 noremap <expr> <Leader>nL LaTeXtoUnicode#Toggle()
 
 " direnv.vim
-let g:direnv_auto = 0
+" let g:direnv_auto = 0
 let g:direnv_edit_mode = 'split'
 
 map <Leader>qde :EditEnvrc<CR>

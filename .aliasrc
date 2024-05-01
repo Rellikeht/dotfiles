@@ -54,7 +54,6 @@ alias egrep='grep -E'
 alias eg='egrep'
 
 alias rlf='readlink -f'
-alias rlp='readlink -f $(!!)'
 
 alias bat='bat --color always'
 alias batl='bat --language lisp'
@@ -130,12 +129,12 @@ alias rsv='doas svim'
 alias rka='doas kak'
 alias rvi='doas vis'
 
-alias fvc="fe svim"
-alias fv="fed svim"
-alias fkc="fe kak"
-alias fk="fed kak"
+alias fvc='fe svim'
+alias fv='fed svim'
+alias fkc='fe kak'
+alias fk='fed kak'
 
-alias vifh="vifm -c history"
+alias vifh='vifm -c history'
 
 # Settings
 alias als='alias | grep'
