@@ -321,9 +321,10 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 filextype {*.html,*.htm},<text/html>
         \ luakit %d/%f %i &,
         \ vimb %f %i &,
-        " \ surf %f %i &,
+        \ cat %f | vimb - %i &,
         \ qutebrowser %f %i &,
         \ firefox %f %i &,
+        \ surf %f %i &,
 
         " \ {Open with surf}
         " \ {Open with firefox}
@@ -740,6 +741,9 @@ nmap g! :shell<CR>
 map gpp :cd ..<CR>
 map gp2 :cd ../..<CR>
 map ,j :jobs<CR>
+
+map K :histnext<CR>
+map J :histprev<CR>
 
 map <C-w>d :vsplit .<CR>
 map <C-w>D :split .<CR>

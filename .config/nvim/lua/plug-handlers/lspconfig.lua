@@ -1,61 +1,77 @@
-local lspconfig = require('lspconfig')
+local lspconfig = require("lspconfig")
 
-local diag_modes = {'n', 'v'}
-local buf_modes = {'n', 'v'}
+local diag_modes = {"n", "v"}
+local buf_modes = {"n", "v"}
 
-vim.keymap.set(buf_modes, '<Leader>dI', ':LspInfo<CR>')
-vim.keymap.set(buf_modes, '<Leader>dQ', ':LspLog<CR>')
-vim.keymap.set(buf_modes, '<Leader>dL', ':LspRestart<CR>')
-vim.keymap.set(buf_modes, '<Leader>dS', ':LspStart<CR>')
-vim.keymap.set(buf_modes, '<Leader>de', ':LspStop ')
-vim.keymap.set(buf_modes, '<Leader>dE', ':LspStop<CR>')
+vim.keymap.set(buf_modes, "<Leader>dI", ":LspInfo<CR>")
+vim.keymap.set(buf_modes, "<Leader>dQ", ":LspLog<CR>")
+vim.keymap.set(buf_modes, "<Leader>dL", ":LspRestart<CR>")
+vim.keymap.set(buf_modes, "<Leader>dS", ":LspStart<CR>")
+vim.keymap.set(buf_modes, "<Leader>de", ":LspStop ")
+vim.keymap.set(buf_modes, "<Leader>dE", ":LspStop<CR>")
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
     -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = {buffer = ev.buf}
 
-    vim.keymap.set(diag_modes, '<Leader>df', vim.diagnostic.open_float)
-    vim.keymap.set(diag_modes, '<Leader>dp', vim.diagnostic.goto_prev)
-    vim.keymap.set(diag_modes, '<Leader>dn', vim.diagnostic.goto_next)
-    vim.keymap.set(diag_modes, '<Leader>dl', vim.diagnostic.setloclist)
+    vim.keymap.set(diag_modes, "<Leader>df",
+                   vim.diagnostic.open_float)
+    vim.keymap.set(diag_modes, "<Leader>dp",
+                   vim.diagnostic.goto_prev)
+    vim.keymap.set(diag_modes, "<Leader>dn",
+                   vim.diagnostic.goto_next)
+    vim.keymap.set(diag_modes, "<Leader>dl",
+                   vim.diagnostic.setloclist)
 
-    vim.keymap.set(buf_modes, '<Leader>dd', vim.lsp.buf.declaration, opts)
-    vim.keymap.set(buf_modes, '<Leader>dD', vim.lsp.buf.definition, opts)
-    vim.keymap.set(buf_modes, '<Leader>dh', vim.lsp.buf.hover, opts)
-    vim.keymap.set(buf_modes, '<Leader>di', vim.lsp.buf.implementation, opts)
-    vim.keymap.set(buf_modes, '<Leader>ds', vim.lsp.buf.signature_help, opts)
-
-    vim.keymap.set(buf_modes, '<Leader>dt', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set(buf_modes, '<Leader>dR', vim.lsp.buf.rename, opts)
-    vim.keymap.set(buf_modes, '<Leader>dr', vim.lsp.buf.references, opts)
-    vim.keymap.set(buf_modes, '<Leader>dF',
-                   function() vim.lsp.buf.format({async = true}) end, opts)
-
-    vim.keymap.set(buf_modes, '<Leader>da', vim.lsp.buf.code_action, opts)
-    vim.keymap.set(buf_modes, '<Leader>dwa', vim.lsp.buf.add_workspace_folder,
+    vim.keymap.set(buf_modes, "<Leader>dd",
+                   vim.lsp.buf.declaration, opts)
+    vim.keymap.set(buf_modes, "<Leader>dD",
+                   vim.lsp.buf.definition, opts)
+    vim.keymap.set(buf_modes, "<Leader>dh", vim.lsp.buf.hover,
                    opts)
-    vim.keymap.set(buf_modes, '<Leader>dwr',
+    vim.keymap.set(buf_modes, "<Leader>di",
+                   vim.lsp.buf.implementation, opts)
+    vim.keymap.set(buf_modes, "<Leader>ds",
+                   vim.lsp.buf.signature_help, opts)
+
+    vim.keymap.set(buf_modes, "<Leader>dt",
+                   vim.lsp.buf.type_definition, opts)
+    vim.keymap.set(buf_modes, "<Leader>dR", vim.lsp.buf.rename,
+                   opts)
+    vim.keymap.set(buf_modes, "<Leader>dr",
+                   vim.lsp.buf.references, opts)
+    vim.keymap.set(buf_modes, "<Leader>dF", function()
+      vim.lsp.buf.format({async = true})
+    end, opts)
+
+    vim.keymap.set(buf_modes, "<Leader>da",
+                   vim.lsp.buf.code_action, opts)
+    vim.keymap.set(buf_modes, "<Leader>dwa",
+                   vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set(buf_modes, "<Leader>dwr",
                    vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set(buf_modes, '<Leader>dwl', function()
+    vim.keymap.set(buf_modes, "<Leader>dwl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
 
     -- FUCK
-    vim.keymap.set('i', '<C-Space>', vim.lsp.buf.completion, opts)
+    vim.keymap.set("i", "<C-Space>", vim.lsp.buf.completion,
+                   opts)
   end
 })
 
 local function ssetup(server)
   local config = lspconfig[server]
-  if vim.fn.executable(config.document_config.default_config.cmd[1]) == 0 then
+  if vim.fn.executable(
+    config.document_config.default_config.cmd[1]) == 0 then
     return
   end
 
@@ -71,11 +87,24 @@ end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
-  'pylyzer', -- pylyzer is too unstable for now :(
+  "pylyzer", -- pylyzer is too unstable for now :(
   -- But i will try anyway
-  'pylsp', 'gopls', 'ocamllsp', 'nimls', -- 'julials',
-  'nil_ls', 'nickel_ls', 'zls', 'hls', 'dhall_lsp_server', 'r_language_server',
-  'bashls', 'texlab', 'typst_lsp', 'scheme_langserver', 'tsserver'
+  "pylsp",
+  "gopls",
+  "ocamllsp",
+  "nimls",
+  -- "julials",
+  "nil_ls",
+  "nickel_ls",
+  "zls",
+  "hls",
+  "dhall_lsp_server",
+  "r_language_server",
+  "bashls",
+  "texlab",
+  "typst_lsp",
+  "scheme_langserver",
+  "tsserver"
 }
 
 for _, s in ipairs(servers) do ssetup(s) end
@@ -91,7 +120,7 @@ lspconfig.lua_ls.setup({
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim', 'require'}
+        globals = {"vim", "require"}
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -103,6 +132,8 @@ lspconfig.lua_ls.setup({
 
 })
 
+util = require("lspconfig.util")
+
 lspconfig.julials.setup({
   preselectSupport = false,
   preselect = false,
@@ -112,7 +143,13 @@ lspconfig.julials.setup({
   settings = {telemetry = {enable = false}},
 
   cmd = {
-    'julia', '-g0', '-O0', '--startup-file=no', '--history-file=no', '-e', [[
+    "julia",
+    "-g0",
+    "-O0",
+    "--startup-file=no",
+    "--history-file=no",
+    "-e",
+    [[
     # Load LanguageServer.jl: attempt to load from ~/.julia/environments/nvim-lspconfig
     # with the regular load path as a fallback
     ls_install_path = joinpath(
@@ -161,7 +198,7 @@ lspconfig.rust_analyzer.setup({
   capabilities = Capabilities,
 
   settings = {
-    ['rust-analyzer'] = {
+    ["rust-analyzer"] = {
       -- Doesn't solve the problem
       -- standalone = true,
       -- workspaceFolders = false,
@@ -170,7 +207,10 @@ lspconfig.rust_analyzer.setup({
       -- },
 
       completion = {contextSupport = true},
-      imports = {granularity = {group = 'module'}, prefix = 'self'},
+      imports = {
+        granularity = {group = "module"},
+        prefix = "self"
+      },
       cargo = {buildScripts = {enable = true}},
       procMacro = {enable = true}
     }
@@ -179,9 +219,13 @@ lspconfig.rust_analyzer.setup({
 
 lspconfig.clangd.setup({
   cmd = {
-    'clangd', '-j=2', '--clang-tidy', '--enable-config',
-    '--header-insertion=never', '--completion-style=detailed',
-    '--pch-storage=memory'
+    "clangd",
+    "-j=2",
+    "--clang-tidy",
+    "--enable-config",
+    "--header-insertion=never",
+    "--completion-style=detailed",
+    "--pch-storage=memory"
   },
   preselectSupport = false,
   preselect = false,

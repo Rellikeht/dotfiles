@@ -25,5 +25,8 @@ set monospace-font-size=13
 #set sansfont=DejaVu Sans
 #set seriffont=DejaVu Serif
 
+set print-backgrounds=true
+set offline-cache=true
+
 nunmap <c-z>
 iunmap <c-z>

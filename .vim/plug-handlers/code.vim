@@ -137,12 +137,31 @@ function PLR()
     endif
 endfunction
 
+" TODO make this more stable
+function PlutoAdd(hidden=0)
+    if a:hidden
+        norm mcyyGp02lr╟lr─lxx'c<CR>
+    else
+        norm mcyyGp02lr╟lr═lxx'c<CR>
+    endif
+endfunction
+
 map <Leader>nC :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
-" Shown
-map <Leader>na :norm mCyyGp02lr╟lr═lxx'C<CR>
-" Hidden
-map <Leader>nA :norm mCyyGp02lr╟lr─lxx'C<CR>
+map <Leader>na :call PlutoAdd()<CR>
+map <Leader>nA :call PlutoAdd(1)<CR>
+
 " Toggle visibility when in cell list
 map <Leader>nT 03lx:call PLR()<CR>P
 " Toggle visibility when in cell
 map <Leader>nt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,nTnn
+
+" TODO disable
+" Start:
+"#=╠═╡
+" End:
+"  ╠═╡ =#
+
+" Disabled in file:
+"# ╠═╡ skip_as_script = true
+" Disabled:
+"# ╠═╡ disabled = true

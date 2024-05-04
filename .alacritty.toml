@@ -92,6 +92,11 @@ mode = "~Alt"
 mods = "Shift"
 
 [[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+mode = "Alt"
+
+[[keyboard.bindings]]
 command = {program = "sh", args = ["-c", "~/.config/alacritty/theme-toggle.sh"]}
 key = "t"
 mods = "Control|Alt"
