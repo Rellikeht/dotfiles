@@ -106,8 +106,11 @@ let g:zig_fmt_autosave = 1
 
 " julia-vim
 let g:latex_to_unicode_keymap = 1
+let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_filetypes = '.*'
-noremap <expr> <Leader>nL LaTeXtoUnicode#Toggle()
+noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
+autocmd FileType julia map <buffer> <Leader>nld :execute 'JuliaDoc '.GetVisualSelection()<CR>
+autocmd FileType julia map <buffer> <Leader>nlD :JuliaDoc
 
 " direnv.vim
 " let g:direnv_auto = 0
