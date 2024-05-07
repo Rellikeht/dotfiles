@@ -55,7 +55,8 @@ alias eg='egrep'
 
 alias rlf='readlink -f'
 
-alias bat='bat --color always'
+export BAT_LESS_FLAGS='--save-marks --incsearch --ignore-case --wordwrap'
+alias bat='LESS="$BAT_LESS_FLAGS" bat --color always'
 alias batl='bat --language lisp'
 alias less='less --ignore-case' # --raw-control-chars
 alias les='less --quit-if-one-screen --raw-control-chars'

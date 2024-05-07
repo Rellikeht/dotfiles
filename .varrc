@@ -10,7 +10,8 @@
 #    export LESS_TERMCAP_us=$'\e[01;32m' \
 
 #bind  '"\C-\\":"fzf"'
-export LESS='--save-marks --status-column --incsearch --ignore-case --status-col-width=1'
+# export LESS='--save-marks --status-column --incsearch --ignore-case --status-col-width=1'
+export LESS='--save-marks --incsearch --ignore-case'
 export PAGER='less -r'
 export MANPAGER=less
 
