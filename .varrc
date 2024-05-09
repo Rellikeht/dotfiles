@@ -38,3 +38,5 @@ fi
 export NIX_REMOTE=daemon
 
 export FZF_DEFAULT_COMMAND='find .'
+
+export JULIA_SHELL='zsh -i'

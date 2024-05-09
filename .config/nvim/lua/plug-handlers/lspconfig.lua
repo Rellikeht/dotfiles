@@ -18,8 +18,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- :help vim.lsp.*
     local opts = {buffer = ev.buf}
 
     vim.keymap.set(diag_modes, "<Leader>df",
@@ -62,7 +61,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
 
-    -- FUCK
     vim.keymap.set("i", "<C-Space>", vim.lsp.buf.completion,
                    opts)
   end
@@ -85,10 +83,8 @@ local function ssetup(server)
   })
 end
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
-  "pylyzer", -- pylyzer is too unstable for now :(
-  -- But i will try anyway
+  "pylyzer",
   "pylsp",
   "gopls",
   "ocamllsp",
@@ -199,12 +195,9 @@ lspconfig.rust_analyzer.setup({
 
   settings = {
     ["rust-analyzer"] = {
-      -- Doesn't solve the problem
-      -- standalone = true,
-      -- workspaceFolders = false,
-      -- workspace = {
-      --    workspaceFolders = false,
-      -- },
+      standalone = true,
+      workspaceFolders = false,
+      workspace = {workspaceFolders = false},
 
       completion = {contextSupport = true},
       imports = {
@@ -216,6 +209,32 @@ lspconfig.rust_analyzer.setup({
     }
   }
 })
+
+-- lspconfig.pylyzer.setup({
+--   cmd = {"pylyzer", "--server"},
+
+--   --   root_dir = function(fname)
+--   --     local root_files = {
+--   --       "setup.py",
+--   --       "tox.ini",
+--   --       "requirements.txt",
+--   --       "Pipfile",
+--   --       "pyproject.toml"
+--   --     }
+--   --     return util.root_pattern(unpack(root_files))(fname) or
+--   --              util.find_git_ancestor(fname)
+--   --   end,
+
+--   single_file_support = true,
+--   settings = {
+--     python = {
+--       diagnostics = true,
+--       inlayHints = true,
+--       smartCompletion = true,
+--       checkOnType = true
+--     }
+--   }
+-- })
 
 lspconfig.clangd.setup({
   cmd = {
