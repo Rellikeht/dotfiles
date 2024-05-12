@@ -149,14 +149,14 @@ function PlutoAdd(hidden=0)
     endif
 endfunction
 
-map <Leader>nC :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
-map <Leader>na :call PlutoAdd()<CR>
-map <Leader>nA :call PlutoAdd(1)<CR>
+map <Leader>npc :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
+map <Leader>npa :call PlutoAdd()<CR>
+map <Leader>npA :call PlutoAdd(1)<CR>
 
 " Toggle visibility when in cell list
-map <Leader>nT 03lx:call PLR()<CR>P
+map <Leader>npT 03lx:call PLR()<CR>P
 " Toggle visibility when in cell
-map <Leader>nt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,nTnn
+map <Leader>npt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,npTnn
 
 " TODO disable
 " Start:

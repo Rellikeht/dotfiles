@@ -285,7 +285,7 @@ alias mpv-prof-fzf='mpv --profile=help | sed 1d | awk "{print \$1}" | fzs'
 alias mppf='mpv --profile="$(mpv-prof-fzf)"'
 alias mpi='mpv --idle=yes --keep-open'
 
-alias gt='/usr/bin/time'
+alias gt='/usr/bin/env -S time'
 alias pg='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
