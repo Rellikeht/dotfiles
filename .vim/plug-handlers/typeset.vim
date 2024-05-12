@@ -3,7 +3,14 @@ let g:pdf_viewers = ['zathura', 'mupdf', '']
 let g:cur_pdf_viewer = 0
 
 function NextPdfViewer()
-    let g:cur_pdf_viewer = (g:cur_pdf_viewer+1)%len(g:pdf_viewers)
+    let vlen = len(g:pdf_viewers)
+    let g:cur_pdf_viewer = (g:cur_pdf_viewer+1)%vlen
+    return g:pdf_viewers[g:cur_pdf_viewer]
+endfunction
+
+function PrevPdfViewer()
+    let vlen = len(g:pdf_viewers)
+    let g:cur_pdf_viewer = (g:cur_pdf_viewer+vlen-1)%vlen
     return g:pdf_viewers[g:cur_pdf_viewer]
 endfunction
 
@@ -43,10 +50,11 @@ autocmd FileType typst map <buffer> <Leader>ntw :TypstWatch<CR>
 
 " Common
 
-function PdfViewerToggle()
-    let viewer = NextPdfViewer()
+function PdfViewerToggle(fn)
+    let viewer = call(function(a:fn), [])
     let g:typst_pdf_viewer = viewer
     let g:vimtex_view_method = viewer
+    echo viewer
 endfunction
 
 function DocView(ext)
@@ -56,5 +64,6 @@ function DocView(ext)
 endfunction
 
 map <Leader>ntt :call TypstConcealToggle()<CR>
-map <Leader>ntn :call PdfViewerToggle()<CR>
+map <Leader>ntn :call PdfViewerToggle('NextPdfViewer')<CR>
+map <Leader>ntp :call PdfViewerToggle('PrevPdfViewer')<CR>
 map <Leader>nts :call DocView('pdf')<CR>

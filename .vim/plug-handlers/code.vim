@@ -8,8 +8,8 @@ map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
 
 autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 tabstop=2
-
-map <Leader>BN :NixEdit<CR>
+autocmd FileType nix map <buffer> <Leader>nle :NixEdit<CR>
+autocmd FileType nix map <buffer> <Leader>nlE :NixEdit<CR>
 
 " neoformat
 
@@ -107,7 +107,7 @@ let g:zig_fmt_autosave = 1
 " julia-vim
 let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
-let g:latex_to_unicode_filetypes = '.*'
+let g:latex_to_unicode_file_types = '.*'
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 autocmd FileType julia map <buffer> <Leader>nld :execute 'JuliaDoc '.GetVisualSelection()<CR>
 autocmd FileType julia map <buffer> <Leader>nlD :JuliaDoc
