@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+exec qutebrowser \
+    --config-py ".config/qutebrowser-s/config.py" \
+    --basedir ".local/share/qutebrowsers/" \
+    $@

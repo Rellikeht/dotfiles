@@ -422,6 +422,7 @@ fileviewer {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
 " ArchiveMount
 filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
         \<application/x-tar>
+        \ tar xf %f,
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 

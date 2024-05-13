@@ -11,25 +11,39 @@ map <leader>goi :G status<CR>
 map <leader>goo :G log<CR>
 map <leader>gor :G reflog<CR>
 map <leader>god :G diff<CR>
-map <leader>got :G diff<CR><C-w>o
+" map <leader>got :G diff<CR><C-w>o
 
 map <leader>goa :G add %<CR>
 map <leader>goc :G commit<CR>
 map <leader>gos :G push<CR>
 map <leader>gol :G pull<CR>
 
-map <leader>gor :Gread<CR>
-map <leader>gow :Gwrite<CR>
+map <leader>goA :G add <Space>
+map <leader>goC :G commit<Space>
+map <leader>goD :G diff<Space>
+
 map <leader>gom :G merge<CR>
 map <leader>goM :G mergetool<CR>
+
+map <leader>gob :G blame<CR>
+map <leader>goB :G blame<Space>
+map <leader>got :G tag  HEAD<C-b><C-b><C-b><C-b><C-b>
+map <leader>goT :G tag<Space>
+
+map <leader>gor :G revert<CR>
+map <leader>goR :G revert<Space>
+
+map <leader>g;r :Gread<CR>
+map <leader>g;w :Gwrite<CR>
+
 " TODO more commands
 
 " Diff
 
 map <leader>gds :Gvdiffsplit<CR>
-map <leader>gdM :Gvdiffsplit!<CR>
+map <leader>gdS :Gvdiffsplit!<CR>
 map <leader>gdh :Gdiffsplit<CR>
-map <leader>gdm :Gdiffsplit!<CR>
+map <leader>gdH :Gdiffsplit!<CR>
 map <leader>gdu :diffupdate<CR>
 
 map <leader>gdp :diffput<CR>
@@ -61,18 +75,16 @@ map <leader>gp2 :call DiffPut('//2')<CR>
 map <leader>gp3 :call DiffPut('//3')<CR>
 
 " ????
-map <leader>gpf :call DiffPut(expand('%:t'))<CR>
-map <leader>ggf :call DiffGet(expand('%:t'))<CR>
+map <leader>gpf :call DiffPut(expand('%:p'))<CR>
+map <leader>ggf :call DiffGet(expand('%:p'))<CR>
 
 " Probably not very useful
 map <leader>gp [c
 map <leader>gn ]c
 
-" TODO
 " fzf
-" :help fzf-vim
-"map <leader>GF :GFiles<CR>
-"map <leader>GD :GDelete<CR>
+map <leader>gff :GFiles<CR>
+map <leader>gfs :GFiles?<CR>
 
 " signify
 
