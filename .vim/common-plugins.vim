@@ -19,7 +19,7 @@ Plug 'tpope/vim-dispatch' " TODO A incorporate this into programming.vim
 Plug 'tpope/vim-surround' " TODO B write shortcuts somewhere
 Plug 'tpope/vim-eunuch' " TODO C maybe some shortcuts
 Plug 'tpope/vim-speeddating' " TODO D add more formats
-Plug 'tpope/vim-tbone' " TODO C most important work done
+Plug 'tpope/vim-tbone'
 
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'

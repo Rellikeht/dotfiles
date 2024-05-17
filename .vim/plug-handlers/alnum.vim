@@ -16,24 +16,19 @@ au VimEnter * SpeedDatingFormat %d %b, %Y
 
 let g:Unicode_no_default_mappings = 1
 
-" TODO Uncomfortable mappings, should be shorter
-" but fucking alt refuses to work
-imap <c-x><c-g> <Plug>(DigraphComplete)
-imap <c-x><c-u> <Plug>(UnicodeComplete)
-imap <c-x><c-h> <Plug>(HTMLEntityComplete)
-imap <c-x><c-m> <Plug>(UnicodeFuzzy)
+" Alt/meta doesn't cooperate
+imap <C-x>g <Plug>(DigraphComplete)
+imap <C-x>c <Plug>(UnicodeComplete)
+imap <C-x>h <Plug>(HTMLEntityComplete)
+imap <C-x>u <Plug>(UnicodeFuzzy)
 
 map <Leader>nm <Plug>(MakeDigraph)
 map ga <Plug>(UnicodeGA)
 
-" ???
-"map <Leader>sT <Plug>(ToggleUnicodeCompletion)
-"nmap <leader>sS <Plug>(UnicodeSwapCompleteName)
-
 " vim-nuuid
 
 let g:nuuid_no_mappings = 1
-map <Leader>nN :NuuidAll<CR>
 " map <Leader>nu <Plug>Nuuid
+map <Leader>nN :NuuidAll<CR>
 map <Leader>nu :exe 'norm a'.NuuidNewUuid()<CR>
 map <Leader>nU :NuuidToggleAbbrev<CR>

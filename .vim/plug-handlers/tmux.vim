@@ -125,7 +125,7 @@ endfunction
 function ProgNameSlime()
     let pname = &filetype
     let langs = {
-                \ 'shell':'rlwrap dash',
+                \ 'shell':'rlwrap bash',
                 \ 'python':'bpython',
                 \ 'tcl':'rlwrap tclsh',
                 \ 'lisp':'clisp',
@@ -136,14 +136,10 @@ function ProgNameSlime()
                 \ 'nim':'rlwrap nim secret',
                 \ 'forth':'gforth',
                 \ }
-                " TODO B perl
 
                 " this is tricky
                 " ???
                 " \ 'forth':'fth',
-
-                " lua doesn't need that probably
-                " \ 'lua':'rlwrap lua',
 
                 " \ 'lua':'rlwrap luajit',
                 " \ 'scheme':'gambit',

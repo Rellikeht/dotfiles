@@ -25,7 +25,6 @@ let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_nix = ['alejandra']
 let g:neoformat_enabled_ocaml = ['ocamlformat', 'topiary']
 let g:neoformat_enabled_haskell = ['floskell']
-" TODO clangformat
 
 autocmd FileType dhall let b:buffmt=0 " :(((
 " done in zig plugin
