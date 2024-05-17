@@ -16,10 +16,10 @@ autoload
 *.out
 *.hi
 
-.config/qutebrowser/autoconfig.yml
-.config/qutebrowser/bookmarks
-.config/qutebrowser/dracula/*
-.config/qutebrowser/qsettings
+.config/qutebrowser*/autoconfig.yml
+.config/qutebrowser*/bookmarks
+.config/qutebrowser*/dracula/*
+.config/qutebrowser*/qsettings
 
 .config/transmission*/resume/
 .config/transmission*/torrents/
