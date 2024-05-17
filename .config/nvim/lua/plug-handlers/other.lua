@@ -1,3 +1,8 @@
+-- TODO What a mess
+local modes = {"n", "v"}
+
+-- MDEVAL
+
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   pattern = "*.md",
   command = "set syntax=markdown"
@@ -21,6 +26,12 @@ require("mdeval").setup({
     -- }
   }
 })
+
+vim.keymap.set(modes, "gle", ":MdEval<CR>",
+               {silent = true, noremap = true})
+vim.keymap.set(modes, "glc", ":MdEvalClean<CR>") -- ???
+
+-- FEMACO
 
 local femacoUtils = require("femaco.utils")
 local clip_val = femacoUtils.clip_val
@@ -83,11 +94,32 @@ require("femaco").setup({
   normalize_indent = function(base_filetype) return false end
 })
 
-local modes = {"n", "v"}
 vim.keymap.set(modes, "glf", ":FeMaco<CR>")
-vim.keymap.set(modes, "gle", ":MdEval<CR>",
-               {silent = true, noremap = true})
-vim.keymap.set(modes, "glc", ":MdEvalClean<CR>") -- ???
+
+-- NVIM-LINT
+local nvim_lint = require("lint")
+
+nvim_lint.linters_by_ft = {
+  markdown = {"vale"},
+  python = {"pylint", "mypy"},
+  shell = {"dash", "shellcheck"},
+  bash = {"dash", "shellcheck"},
+  zsh = {"zsh"},
+  vim = {"vint"}
+}
+
+vim.api.nvim_create_autocmd({"BufWritePost"}, {
+  callback = function()
+    -- try_lint without arguments runs the linters defined in `linters_by_ft`
+    -- for the current filetype
+    require("lint").try_lint()
+  end
+})
+
+-- TODO
+-- Set pylint to work in virtualenv
+-- nvim_lint.linters.pylint.cmd = "python"
+-- nvim_lint.linters.pylint.args = {"-m", "pylint", "-f", "json"}
 
 -- TODO C
 -- colorizer, zen-mode ??

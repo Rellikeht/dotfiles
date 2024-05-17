@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 # vim: set syn=bash ft=bash:
 
 conditional_source() {
@@ -34,7 +35,7 @@ run_ssh_agent () {
     # Something goes wrong :(
     # if ! pgrep -u "$USER" ssh-agent >/dev/null; then
     if ! [ -f "$AGENT_ENV" ]; then
-        ssh-agent -t 1h > $AGENT_ENV
+        ssh-agent -t 1h > "$AGENT_ENV"
     fi
 
     if [ ! -f "$SSH_AUTH_SOCK" ]; then

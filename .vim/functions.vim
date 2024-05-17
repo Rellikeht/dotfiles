@@ -45,7 +45,7 @@ function ToggleHex()
     " hex mode should be considered a read-only operation
     " save values for modified and read-only for restoration later,
     " and clear the read-only flag for now
-    let l:modified=&mod
+    let l:modified=&modified
     let l:oldreadonly=&readonly
     let &readonly=0
     let l:oldmodifiable=&modifiable
@@ -53,13 +53,13 @@ function ToggleHex()
 
     if !exists('b:editHex') || !b:editHex
         " save old options
-        let b:oldft=&ft
-        let b:oldbin=&bin
+        let b:oldft=&filetype
+        let b:oldbin=&binary
         " set new options
         setlocal binary " make sure it overrides any textwidth, etc.
         silent :e " this will reload the file without trickeries 
         "(DOS line endings will be shown entirely )
-        let &ft='xxd'
+        let &filetype='xxd'
         " set status
         let b:editHex=1
         " switch to hex editor
@@ -67,7 +67,7 @@ function ToggleHex()
 
     else
         " restore old options
-        let &ft=b:oldft
+        let &filetype=b:oldft
         if !b:oldbin
             setlocal nobinary
         endif
@@ -78,7 +78,7 @@ function ToggleHex()
     endif
 
     " restore values for modified and read only state
-    let &mod=l:modified
+    let &modified=l:modified
     let &readonly=l:oldreadonly
     let &modifiable=l:oldmodifiable
 endfunction
