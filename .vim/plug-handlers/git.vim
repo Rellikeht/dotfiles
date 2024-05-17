@@ -11,30 +11,41 @@ map <leader>goi :G status<CR>
 map <leader>goo :G log<CR>
 map <leader>gor :G reflog<CR>
 map <leader>god :G diff<CR>
+map <leader>goD :G diff<Space>
 " map <leader>got :G diff<CR><C-w>o
+map <leader>gom :G mergetool<CR>
 
 map <leader>goa :G add %<CR>
+map <leader>goA :G add<Space>
 map <leader>goc :G commit<CR>
-map <leader>gos :G push<CR>
-map <leader>gol :G pull<CR>
-
-map <leader>goA :G add <Space>
 map <leader>goC :G commit<Space>
-map <leader>goD :G diff<Space>
-
-map <leader>gom :G merge<CR>
-map <leader>goM :G mergetool<CR>
+map <leader>gos :G push<CR>
+map <leader>goS :G push<Space>
+map <leader>gol :G pull<CR>
+map <leader>goL :G pull<Space>
 
 map <leader>gob :G blame<CR>
 map <leader>goB :G blame<Space>
 map <leader>got :G tag  HEAD<C-b><C-b><C-b><C-b><C-b>
 map <leader>goT :G tag<Space>
 
-map <leader>gor :G revert<CR>
 map <leader>goR :G revert<Space>
+map <leader>gon :G reset<Space>
+map <leader>goN :G reset --hard<Space>
 
 map <leader>g;r :Gread<CR>
+map <leader>g;R :Gread<Space>
 map <leader>g;w :Gwrite<CR>
+map <leader>g;W :Gwrite<Space>
+map <leader>g;t :tab Git --paginate<CR>
+map <leader>g;v :vert Git --paginate<CR>
+map <leader>g;s :Git --paginate<CR>
+
+map <leader>gti :G status<CR>
+map <leader>gto :G log<CR>
+map <leader>gtr :G reflog<CR>
+map <leader>gtd :G diff<CR>
+map <leader>gtD :G diff<Space>
 
 " TODO more commands
 
