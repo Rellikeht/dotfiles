@@ -3,7 +3,7 @@
 
 let $FZF_DEFAULT_COMMAND='find .'
 
-" Keys
+" KEYS
 
 map <leader>sf :FZF<CR>
 map <leader>sb :Buffers<CR>
@@ -38,8 +38,9 @@ map <leader>sw :Windows<CR>
 map <leader>sj :Jumps<CR>
 
 " TODO tmux
+" May be too painful
 
-" Settings
+" MORE KEYS
 
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -61,24 +62,15 @@ let g:fzf_action = {
             \ 'ctrl-x': 'split',
             \ 'ctrl-v': 'vsplit' }
 
-" " Default fzf layout
-" " - Popup window (center of the screen)
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" SETTINGS
 
-" " - Popup window (center of the current window)
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-" " - Popup window (anchored to the bottom of the current window)
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
-
-" - down / up / left / right
-" let g:fzf_layout = { 'down': '40%' }
-let g:fzf_layout = { 'down': '50%' }
-
-" " - Window using a Vim command
-" let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-" let g:fzf_layout = { 'window': '10new' }
+" COLORS
 
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
@@ -97,8 +89,32 @@ let g:fzf_colors =
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
 
-" Enable per-command history
-" - History files will be stored in the specified directory
-" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
-"   'previous-history' instead of 'down' and 'up'.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+" LAYOUT
+
+" " Default fzf layout
+" " - Popup window (center of the screen)
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" " - Popup window (center of the current window)
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+
+" " - Popup window (anchored to the bottom of the current window)
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
+
+" - down / up / left / right
+" let g:fzf_layout = { 'down': '40%' }
+
+" Simple yet powerful amount
+let g:fzf_percent = '60%'
+if exists('$TMUX')
+    " let g:fzf_layout = { 'tmux': '-p90%,60%' }
+    let g:fzf_layout = { 'tmux': '-d'.g:fzf_percent }
+else
+    " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+    let g:fzf_layout = { 'down': g:fzf_percent }
+endif
+
+" " - Window using a Vim command
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': '-tabnew' }
+" let g:fzf_layout = { 'window': '10new' }

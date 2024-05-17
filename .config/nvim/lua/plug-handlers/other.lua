@@ -1,7 +1,9 @@
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"},
-                            {pattern = "*.md", command = "set syntax=markdown"})
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = "*.md",
+  command = "set syntax=markdown"
+})
 
-require('mdeval').setup({
+require("mdeval").setup({
   -- Don't ask before executing code blocks
   require_confirmation = false,
   -- Change code blocks evaluation options.
@@ -20,9 +22,9 @@ require('mdeval').setup({
   }
 })
 
-local femacoUtils = require('femaco.utils')
+local femacoUtils = require("femaco.utils")
 local clip_val = femacoUtils.clip_val
-require('femaco').setup({
+require("femaco").setup({
   -- should prepare a new buffer and return the winid
   -- by default opens a floating window
   -- provide a different callback to change this behaviour
@@ -39,15 +41,16 @@ require('femaco').setup({
   --   * lang
   float_opts = function(code_block)
     return {
-      relative = 'cursor',
-      width = clip_val(5, 120, vim.api.nvim_win_get_width(0) - 10), -- TODO how to offset sign column etc?
+      relative = "cursor",
+      width = clip_val(5, 120,
+                       vim.api.nvim_win_get_width(0) - 10), -- TODO how to offset sign column etc?
       height = clip_val(20, #code_block.lines,
                         vim.api.nvim_win_get_height(0) - 6),
-      anchor = 'NW',
+      anchor = "NW",
       row = 0,
       col = 0,
-      style = 'minimal',
-      border = 'rounded',
+      style = "minimal",
+      border = "rounded",
       zindex = 1
     }
   end,
@@ -57,7 +60,7 @@ require('femaco').setup({
   ft_from_lang = function(lang) return lang end,
 
   -- what to do after opening the float
-  post_open_float = function(winnr) vim.wo.signcolumn = 'no' end,
+  post_open_float = function(winnr) vim.wo.signcolumn = "no" end,
 
   -- create the path to a temporary file
   create_tmp_filepath = function(filetype) return os.tmpname() end,
@@ -80,10 +83,11 @@ require('femaco').setup({
   normalize_indent = function(base_filetype) return false end
 })
 
-local modes = {'n', 'v'}
-vim.keymap.set(modes, 'glf', ':FeMaco<CR>')
-vim.keymap.set(modes, 'gle', ':MdEval<CR>', {silent = true, noremap = true})
-vim.keymap.set(modes, 'glc', ':MdEvalClean<CR>') -- ???
+local modes = {"n", "v"}
+vim.keymap.set(modes, "glf", ":FeMaco<CR>")
+vim.keymap.set(modes, "gle", ":MdEval<CR>",
+               {silent = true, noremap = true})
+vim.keymap.set(modes, "glc", ":MdEvalClean<CR>") -- ???
 
 -- TODO C
--- colorizer, zen-mode
+-- colorizer, zen-mode ??

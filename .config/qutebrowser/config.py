@@ -11,6 +11,15 @@
 # Documentation:
 #   qute://help/configuring.html
 #   qute://help/settings.html
+# from typing import Any
+from qutebrowser.config.configfiles import ConfigAPI  # type: ignore
+from qutebrowser.config.config import ConfigContainer  # type: ignore
+
+import dracula.draw as draw
+
+# ??
+config: ConfigAPI = config
+c: ConfigContainer = c
 
 # QT flags, currently only for hardware acceleration
 config.set(
@@ -37,9 +46,7 @@ config.set(
 # Load images automatically in web pages.
 config.set("content.images", True)
 
-import dracula.draw
-
-dracula.draw.blood(c, {"spacing": {"vertical": 4, "horizontal": 6}})
+draw.blood(c, {"spacing": {"vertical": 4, "horizontal": 6}})
 
 config.set("colors.webpage.darkmode.algorithm", "lightness-hsl")
 config.set("colors.webpage.darkmode.contrast", 0.0)

@@ -1,5 +1,5 @@
 " fugitive
-" TODO branches, remotes, blame
+" TODO remotes, blame
 " gedit, gmove, ggrep
 
 " Git commands
@@ -12,8 +12,9 @@ map <leader>goo :G log<CR>
 map <leader>gor :G reflog<CR>
 map <leader>god :G diff<CR>
 map <leader>goD :G diff<Space>
-" map <leader>got :G diff<CR><C-w>o
 map <leader>gom :G mergetool<CR>
+" ??
+" map <leader>goq :G diff<CR><C-w>o
 
 map <leader>goa :G add %<CR>
 map <leader>goA :G add<Space>
@@ -28,6 +29,8 @@ map <leader>gob :G blame<CR>
 map <leader>goB :G blame<Space>
 map <leader>got :G tag  HEAD<C-b><C-b><C-b><C-b><C-b>
 map <leader>goT :G tag<Space>
+map <leader>goh :G checkout<Space>
+map <leader>goH :G branch<Space>
 
 map <leader>goR :G revert<Space>
 map <leader>gon :G reset<Space>
@@ -41,11 +44,11 @@ map <leader>g;t :tab Git --paginate<CR>
 map <leader>g;v :vert Git --paginate<CR>
 map <leader>g;s :Git --paginate<CR>
 
-map <leader>gti :G status<CR>
-map <leader>gto :G log<CR>
-map <leader>gtr :G reflog<CR>
-map <leader>gtd :G diff<CR>
-map <leader>gtD :G diff<Space>
+map <leader>gti :tab G status<CR>
+map <leader>gto :tab G log<CR>
+map <leader>gtr :tab G reflog<CR>
+map <leader>gtd :tab G diff<CR>
+map <leader>gtD :tab G diff<Space>
 
 " TODO more commands
 
@@ -70,28 +73,22 @@ function DiffPut(pane)
     diffupdate
 endfunction
 
-" TODO doesn't find appropriate buffer :(
-" No idea how to do that properly
-
-" ??
 map <leader>gg0 :call DiffGet('//0')<CR>
 map <leader>gg1 :call DiffGet('//1')<CR>
 map <leader>gg2 :call DiffGet('//2')<CR>
 map <leader>gg3 :call DiffGet('//3')<CR>
 
-" ??
 map <leader>gp0 :call DiffPut('//0')<CR>
 map <leader>gp1 :call DiffPut('//1')<CR>
 map <leader>gp2 :call DiffPut('//2')<CR>
 map <leader>gp3 :call DiffPut('//3')<CR>
 
-" ????
 map <leader>gpf :call DiffPut(expand('%:p'))<CR>
+map <leader>gpF :call DiffPut(expand('%:t'))<CR>
 map <leader>ggf :call DiffGet(expand('%:p'))<CR>
+map <leader>ggF :call DiffGet(expand('%:t'))<CR>
 
-" Probably not very useful
-map <leader>gp [c
-map <leader>gn ]c
+" TODO there may be other (better ?) maps for this
 
 " fzf
 map <leader>gff :GFiles<CR>
@@ -125,7 +122,7 @@ function! s:show_current_hunk() abort
 endfunction
 
 " default updatetime 4000ms is not good for async update
-set updatetime=100
+set updatetime=50
 
 " gv
 
