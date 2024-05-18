@@ -46,7 +46,8 @@ function TypstConcealToggle()
     edit
 endfunction
 
-autocmd FileType typst map <buffer> <Leader>ntw :TypstWatch<CR>
+autocmd FileType typst nnoremap <buffer> <Leader>ntw :TypstWatch<CR>
+autocmd FileType typst nnoremap <silent> <buffer> <Leader>ntt :call TypstConcealToggle()<CR>
 
 " Common
 
@@ -63,7 +64,6 @@ function DocView(ext)
     redraw!
 endfunction
 
-map <Leader>ntt :call TypstConcealToggle()<CR>
-map <Leader>ntn :call PdfViewerToggle('NextPdfViewer')<CR>
-map <Leader>ntp :call PdfViewerToggle('PrevPdfViewer')<CR>
-map <Leader>nts :call DocView('pdf')<CR>
+nnoremap <silent> <Leader>ntn :call PdfViewerToggle('NextPdfViewer')<CR>
+nnoremap <silent> <Leader>ntp :call PdfViewerToggle('PrevPdfViewer')<CR>
+nnoremap <silent> <Leader>nts :call DocView('pdf')<CR>

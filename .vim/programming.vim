@@ -23,20 +23,20 @@
 function GenerateBindingsCompiled(name, compexe, bindings, prefix)
     for [key, cmd] in items(a:bindings)
         execute 'autocmd FileType' a:name
-                    \ 'nmap <buffer> <Leader>C'.a:prefix.key ':!'.a:compexe cmd
+                    \ 'nnoremap <buffer> <Leader>C'.a:prefix.key ':!'.a:compexe cmd
         execute 'autocmd FileType' a:name
-                    \ 'nmap <buffer> <Leader>c'.a:prefix.key
+                    \ 'nnoremap <buffer> <Leader>c'.a:prefix.key
                     \ '<Leader>C'.a:prefix.key '<CR>'
         execute 'autocmd FileType' a:name
-                    \ 'nmap <buffer> <Leader>R'.a:prefix.key
+                    \ 'nnoremap <buffer> <Leader>R'.a:prefix.key
                     \ '<Leader>c'.a:prefix.key ':!./%:t:r'
         execute 'autocmd FileType' a:name
-                    \ 'nmap <buffer> <Leader>r'.a:prefix.key
+                    \ 'nnoremap <buffer> <Leader>r'.a:prefix.key
                     \ '<Leader>R'.a:prefix.key '<CR>'
     endfor
 
-    execute 'autocmd FileType' a:name 'nmap <buffer> <Leader>Ra :!./%:t:r'
-    execute 'autocmd FileType' a:name 'nmap <buffer> <Leader>ra :!./%:t:r<CR>'
+    execute 'autocmd FileType' a:name 'nnoremap <silent> <buffer> <Leader>Ra :!./%:t:r'
+    execute 'autocmd FileType' a:name 'nnoremap <silent> <buffer> <Leader>ra :!./%:t:r<CR>'
 endfunction
 
 " C
@@ -220,10 +220,10 @@ call GenerateBindingsHybrid('nim', nlvmbindings)
 " SOME ADDITIONAL MAPPINGS
 
 " Random numbers
-map ,igr !!python -c "from random import randint;
+nnoremap ,igr !!python -c "from random import randint;
     \ [print(randint(-100,100),end=',') for _ in range(20)]"<CR><CR>
 
-map ,igR !!python -c "from random import randint;
+nnoremap ,igR !!python -c "from random import randint;
     \ [print(randint(-100,100),end=',') for _ in range(20)]"<A-b>
 
 " TODO templates

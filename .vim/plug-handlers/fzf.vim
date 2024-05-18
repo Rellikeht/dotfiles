@@ -5,37 +5,40 @@ let $FZF_DEFAULT_COMMAND='find .'
 
 " KEYS
 
-map <leader>sf :FZF<CR>
-map <leader>sb :Buffers<CR>
-map <leader>sph :FZF ~<CR>
-map <leader>spT :FZF ~/Templates<CR>
-map <leader>sp2 :FZF ../..<CR>
-map <leader>sp3 :FZF ../../..<CR>
-map <leader>sp4 :FZF ../../../..<CR>
-map <leader>sp5 :FZF ../../../../..<CR>
+nnoremap <leader>sf :FZF<CR>
+nnoremap <leader>sb :Buffers<CR>
+nnoremap <leader>sph :FZF ~<CR>
+nnoremap <leader>spT :FZF ~/Templates<CR>
+nnoremap <leader>sp2 :FZF ../..<CR>
+nnoremap <leader>sp3 :FZF ../../..<CR>
+nnoremap <leader>sp4 :FZF ../../../..<CR>
+nnoremap <leader>sp5 :FZF ../../../../..<CR>
 
-map <leader>slf :Files<CR>
-map <leader>slF :Files<Space>
-map <leader>sls :Locate<Space>
-map <leader>sla :Ag<CR>
-map <leader>slA :Ag<Space>
+nnoremap <leader>slf :Files<CR>
+nnoremap <leader>slF :Files<Space>
+nnoremap <leader>sls :Locate<Space>
+nnoremap <leader>sla :Ag<CR>
+nnoremap <leader>slA :Ag<Space>
 
-map <leader>slb :BLines<CR>
-map <leader>slB :BLines<Space>
-map <leader>sll :Lines<CR>
-map <leader>slL :Lines<Space>
+nnoremap <leader>slb :BLines<CR>
+nnoremap <leader>slB :BLines<Space>
+nnoremap <leader>sll :Lines<CR>
+nnoremap <leader>slL :Lines<Space>
 
-map <leader>shh :History<CR>
-map <leader>shc :Changes<CR>
-map <leader>sh/ :History/<CR>
-map <leader>sh: :History:<CR>
-map <leader>shC :Commits<CR>
-map <leader>shm :Marks<CR>
+nnoremap <leader>shh :History<CR>
+nnoremap <leader>shc :Changes<CR>
+nnoremap <leader>sh/ :History/<CR>
+nnoremap <leader>sh: :History:<CR>
+nnoremap <leader>shC :Commits<CR>
+nnoremap <leader>shm :Marks<CR>
 
-map <leader>sm :Maps<CR>
-map <leader>sH :Helptags<CR>
-map <leader>sw :Windows<CR>
-map <leader>sj :Jumps<CR>
+nnoremap <leader>sm :Maps<CR>
+nnoremap <leader>sH :Helptags<CR>
+nnoremap <leader>sw :Windows<CR>
+nnoremap <leader>sj :Jumps<CR>
+
+nnoremap <leader>gff :GFiles<CR>
+nnoremap <leader>gfs :GFiles?<CR>
 
 " TODO tmux
 " May be too painful
@@ -104,6 +107,7 @@ let g:fzf_colors =
 " - down / up / left / right
 " let g:fzf_layout = { 'down': '40%' }
 
+" TODO change position in case of unusal layout
 " Simple yet powerful amount
 let g:fzf_percent = '60%'
 if exists('$TMUX')

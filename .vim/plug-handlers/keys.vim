@@ -5,20 +5,20 @@
 " vim-sneak
 
 let g:sneak#label = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-map - <Plug>Sneak_,
-map + <Plug>Sneak_;
+noremap f <Plug>Sneak_f
+noremap F <Plug>Sneak_F
+noremap t <Plug>Sneak_t
+noremap T <Plug>Sneak_T
+noremap - <Plug>Sneak_,
+noremap + <Plug>Sneak_;
 
 " tinyMRU
-map <Leader>E :ME<Space>
-map <Leader>S :MS<Space>
-map <Leader>V :MV<Space>
-map <Leader>T :MT<Space>
+nnoremap <silent> <Leader>E :ME<Space>
+nnoremap <silent> <Leader>S :MS<Space>
+nnoremap <silent> <Leader>V :MV<Space>
+nnoremap <silent> <Leader>T :MT<Space>
 
 " others
 
-map <Leader>qu :call GeneralUpgrade()<CR>
-map <Leader>qP :PlugClean!<CR>
+nnoremap <silent> <Leader>qu :call GeneralUpgrade()<CR>
+nnoremap <silent> <Leader>qP :PlugClean!<CR>

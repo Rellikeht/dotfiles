@@ -17,18 +17,18 @@ au VimEnter * SpeedDatingFormat %d %b, %Y
 let g:Unicode_no_default_mappings = 1
 
 " Alt/meta doesn't cooperate
-imap <C-x>g <Plug>(DigraphComplete)
-imap <C-x>c <Plug>(UnicodeComplete)
-imap <C-x>h <Plug>(HTMLEntityComplete)
-imap <C-x>u <Plug>(UnicodeFuzzy)
+inoremap <C-x>g <Plug>(DigraphComplete)
+inoremap <C-x>c <Plug>(UnicodeComplete)
+inoremap <C-x>h <Plug>(HTMLEntityComplete)
+inoremap <C-x>u <Plug>(UnicodeFuzzy)
 
-map <Leader>nm <Plug>(MakeDigraph)
-map ga <Plug>(UnicodeGA)
+noremap <Leader>nm <Plug>(MakeDigraph)
+nnoremap ga <Plug>(UnicodeGA)
 
 " vim-nuuid
 
 let g:nuuid_no_mappings = 1
 " map <Leader>nu <Plug>Nuuid
-map <Leader>nN :NuuidAll<CR>
-map <Leader>nu :exe 'norm a'.NuuidNewUuid()<CR>
-map <Leader>nU :NuuidToggleAbbrev<CR>
+noremap <silent> <Leader>nN :NuuidAll<CR>
+noremap <silent> <Leader>nu :exe 'norm a'.NuuidNewUuid()<CR>
+noremap <silent> <Leader>nU :NuuidToggleAbbrev<CR>

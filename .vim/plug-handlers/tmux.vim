@@ -80,26 +80,26 @@ function ReplOnThird()
     call Tm('split-window -v -t {last} '.program)
 endfunction
 
-map <Leader>tt :Tmux
-map <Leader>tr :call ReplOnThird()<CR>
-map <Leader>tR :call ReplOnSecond()<CR>
-map <Leader>tn :call NewWindow(1)<CR>
-map <Leader>tN :call NewWindow(0)<CR>
+nnoremap <Leader>tt :Tmux
+nnoremap <silent> <Leader>tr :call ReplOnThird()<CR>
+nnoremap <silent> <Leader>tR :call ReplOnSecond()<CR>
+nnoremap <silent> <Leader>tn :call NewWindow(1)<CR>
+nnoremap <silent> <Leader>tN :call NewWindow(0)<CR>
 
-map <Leader>t2 :call Setup2Panes()<CR>
-map <Leader>t3 :call Setup3Panes()<CR>
-map <Leader>td :call CdPanesDangerous(1)<CR>
-map <Leader>tD :call CdPanesDangerous(0)<CR>
+nnoremap <silent> <Leader>t2 :call Setup2Panes()<CR>
+nnoremap <silent> <Leader>t3 :call Setup3Panes()<CR>
+nnoremap <silent> <Leader>td :call CdPanesDangerous(1)<CR>
+nnoremap <silent> <Leader>tD :call CdPanesDangerous(0)<CR>
 
-map <Leader>tp :Tmux select-pane -m -t {last} <CR>
-map <Leader>tP :Tmux select-pane -m<CR>
+nnoremap <silent> <Leader>tp :Tmux select-pane -m -t {last} <CR>
+nnoremap <silent> <Leader>tP :Tmux select-pane -m<CR>
 
-map <Leader>tv :Tmux send-keys -t {last} C-l<CR>
-map <Leader>tV :call MakeThirdVertical()<CR>
+noremap <silent> <Leader>tv :Tmux send-keys -t {last} C-l<CR>
+nnoremap <silent> <Leader>tV :call MakeThirdVertical()<CR>
 
-map <Leader>tC :call Ccd()<CR>
-map <Leader>tL :Tmux list-panes <CR>
-map <Leader>tq :Tmux kill-pane -t {last} <CR>
+nnoremap <silent> <Leader>tC :call Ccd()<CR>
+nnoremap <Leader>tL :Tmux list-panes<CR>
+nnoremap <silent> <Leader>tq :Tmux kill-pane -t {last} <CR>
 
 " ============================================================
 " vim-slime
@@ -159,20 +159,20 @@ function ProgNameSlime()
 endfunction
 
 " Some sending
-map gsr <Plug>SlimeRegionSend
-map gsp <Plug>SlimeParagraphSend
-map gs: <Plug>SlimeConfig
-map gss :SlimeSend<CR>
-map gsl <Plug>SlimeLineSend
+noremap gsr <Plug>SlimeRegionSend
+noremap gsp <Plug>SlimeParagraphSend
+noremap gs: <Plug>SlimeConfig
+noremap <silent> gss :SlimeSend<CR>
+noremap gsl <Plug>SlimeLineSend
 
 " Clear, exit
-map gsc :call SendKeys("C-l")<CR>
-map gse :call SendKeys("C-c C-d")<CR>
+nnoremap <silent> gsc :call SendKeys("C-l")<CR>
+nnoremap <silent> gse :call SendKeys("C-c C-d")<CR>
 
 " Launching program for currently edited langugage
-map gsb :call SendKeys(ProgNameSlime())<CR>
-map gsB :call SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
-map gsS :call SendKeys(&filetype . ' ' . g:ret)<CR>
+nnoremap <silent> gsb :call SendKeys(ProgNameSlime())<CR>
+nnoremap <silent> gsB :call SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
+nnoremap <silent> gsS :call SendKeys(&filetype . ' ' . g:ret)<CR>
 
 " GDB
 " Maybe in the future more debuggers will land here

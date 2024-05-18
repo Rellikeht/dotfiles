@@ -4,64 +4,64 @@
 
 " Git commands
 
-map <leader>gc :Git<CR>
-map <leader>gC :Git<CR><C-w>T
+nnoremap <silent> <leader>gc :Git<CR>
+nnoremap <silent> <leader>gC :Git<CR><C-w>T
 
-map <leader>goi :G status<CR>
-map <leader>goo :G log<CR>
-map <leader>gor :G reflog<CR>
-map <leader>god :G diff<CR>
-map <leader>goD :G diff<Space>
-map <leader>gom :G mergetool<CR>
+nnoremap <silent> <leader>goi :G status<CR>
+nnoremap <silent> <leader>goo :G log<CR>
+nnoremap <silent> <leader>gor :G reflog<CR>
+nnoremap <silent> <leader>god :G diff<CR>
+nnoremap <leader>goD :G diff<Space>
+nnoremap <silent> <leader>gom :G mergetool<CR>
 " ??
-" map <leader>goq :G diff<CR><C-w>o
+" map <silent> <leader>goq :G diff<CR><C-w>o
 
-map <leader>goa :G add %<CR>
-map <leader>goA :G add<Space>
-map <leader>goc :G commit<CR>
-map <leader>goC :G commit<Space>
-map <leader>gos :G push<CR>
-map <leader>goS :G push<Space>
-map <leader>gol :G pull<CR>
-map <leader>goL :G pull<Space>
+nnoremap <silent> <leader>goa :G add %<CR>
+nnoremap <leader>goA :G add<Space>
+nnoremap <silent> <leader>goc :G commit<CR>
+nnoremap <leader>goC :G commit<Space>
+nnoremap <silent> <leader>gos :G push<CR>
+nnoremap <leader>goS :G push<Space>
+nnoremap <silent> <leader>gol :G pull<CR>
+nnoremap <leader>goL :G pull<Space>
 
-map <leader>gob :G blame<CR>
-map <leader>goB :G blame<Space>
-map <leader>got :G tag  HEAD<C-b><C-b><C-b><C-b><C-b>
-map <leader>goT :G tag<Space>
-map <leader>goh :G checkout<Space>
-map <leader>goH :G branch<Space>
+nnoremap <silent> <leader>gob :G blame<CR>
+nnoremap <leader>goB :G blame<Space>
+nnoremap <leader>got :G tag  HEAD<C-b><C-b><C-b><C-b><C-b>
+nnoremap <leader>goT :G tag<Space>
+nnoremap <leader>goh :G checkout<Space>
+nnoremap <leader>goH :G branch<Space>
 
-map <leader>goR :G revert<Space>
-map <leader>gon :G reset<Space>
-map <leader>goN :G reset --hard<Space>
+nnoremap <leader>goR :G revert<Space>
+nnoremap <leader>gon :G reset<Space>
+nnoremap <leader>goN :G reset --hard<Space>
 
-map <leader>g;r :Gread<CR>
-map <leader>g;R :Gread<Space>
-map <leader>g;w :Gwrite<CR>
-map <leader>g;W :Gwrite<Space>
-map <leader>g;t :tab Git --paginate<CR>
-map <leader>g;v :vert Git --paginate<CR>
-map <leader>g;s :Git --paginate<CR>
+nnoremap <silent> <leader>g;r :Gread<CR>
+nnoremap <silent> <leader>g;R :Gread<Space>
+nnoremap <silent> <leader>g;w :Gwrite<CR>
+nnoremap <silent> <leader>g;W :Gwrite<Space>
+nnoremap <silent> <leader>g;t :tab Git --paginate<CR>
+nnoremap <silent> <leader>g;v :vert Git --paginate<CR>
+nnoremap <silent> <leader>g;s :Git --paginate<CR>
 
-map <leader>gti :tab G status<CR>
-map <leader>gto :tab G log<CR>
-map <leader>gtr :tab G reflog<CR>
-map <leader>gtd :tab G diff<CR>
-map <leader>gtD :tab G diff<Space>
+nnoremap <silent> <leader>gti :tab G status<CR>
+nnoremap <silent> <leader>gto :tab G log<CR>
+nnoremap <silent> <leader>gtr :tab G reflog<CR>
+nnoremap <silent> <leader>gtd :tab G diff<CR>
+nnoremap <leader>gtD :tab G diff<Space>
 
 " TODO more commands
 
 " Diff
 
-map <leader>gds :Gvdiffsplit<CR>
-map <leader>gdS :Gvdiffsplit!<CR>
-map <leader>gdh :Gdiffsplit<CR>
-map <leader>gdH :Gdiffsplit!<CR>
-map <leader>gdu :diffupdate<CR>
+nnoremap <silent> <leader>gds :Gvdiffsplit<CR>
+nnoremap <silent> <leader>gdS :Gvdiffsplit!<CR>
+nnoremap <silent> <leader>gdh :Gdiffsplit<CR>
+nnoremap <silent> <leader>gdH :Gdiffsplit!<CR>
+nnoremap <silent> <leader>gdu :diffupdate<CR>
 
-map <leader>gdp :diffput<CR>
-map <leader>gdg :diffget<CR>
+nnoremap <silent> <leader>gdp :diffput<CR>
+nnoremap <silent> <leader>gdg :diffget<CR>
 
 function DiffGet(pane)
     execute 'diffget' a:pane
@@ -73,44 +73,40 @@ function DiffPut(pane)
     diffupdate
 endfunction
 
-map <leader>gg0 :call DiffGet('//0')<CR>
-map <leader>gg1 :call DiffGet('//1')<CR>
-map <leader>gg2 :call DiffGet('//2')<CR>
-map <leader>gg3 :call DiffGet('//3')<CR>
+nnoremap <silent> <leader>gg0 :call DiffGet('//0')<CR>
+nnoremap <silent> <leader>gg1 :call DiffGet('//1')<CR>
+nnoremap <silent> <leader>gg2 :call DiffGet('//2')<CR>
+nnoremap <silent> <leader>gg3 :call DiffGet('//3')<CR>
 
-map <leader>gp0 :call DiffPut('//0')<CR>
-map <leader>gp1 :call DiffPut('//1')<CR>
-map <leader>gp2 :call DiffPut('//2')<CR>
-map <leader>gp3 :call DiffPut('//3')<CR>
+nnoremap <silent> <leader>gp0 :call DiffPut('//0')<CR>
+nnoremap <silent> <leader>gp1 :call DiffPut('//1')<CR>
+nnoremap <silent> <leader>gp2 :call DiffPut('//2')<CR>
+nnoremap <silent> <leader>gp3 :call DiffPut('//3')<CR>
 
-map <leader>gpf :call DiffPut(expand('%:p'))<CR>
-map <leader>gpF :call DiffPut(expand('%:t'))<CR>
-map <leader>ggf :call DiffGet(expand('%:p'))<CR>
-map <leader>ggF :call DiffGet(expand('%:t'))<CR>
+nnoremap <silent> <leader>gpf :call DiffPut(expand('%:p'))<CR>
+nnoremap <silent> <leader>gpF :call DiffPut(expand('%:t'))<CR>
+nnoremap <silent> <leader>ggf :call DiffGet(expand('%:p'))<CR>
+nnoremap <silent> <leader>ggF :call DiffGet(expand('%:t'))<CR>
 
-" TODO there may be other (better ?) maps for this
-
-" fzf
-map <leader>gff :GFiles<CR>
-map <leader>gfs :GFiles?<CR>
+" TODO there may be other (better ?) map <silent>s for this
 
 " signify
 
-map <leader>gst :SignifyToggle<CR>
-map <leader>gsh :SignifyToggleHighlight<CR>
-map <leader>gsD :SignifyDisableAll<CR>
-map <leader>gsE :SignifyEnableAll<CR>
-map <leader>gsr :SignifyRefresh<CR>
-map <leader>gsl :SignifyList<CR>
+nnoremap <silent> <leader>gst :SignifyToggle<CR>
+nnoremap <silent> <leader>gsh :SignifyToggleHighlight<CR>
+nnoremap <silent> <leader>gsD :SignifyDisableAll<CR>
+nnoremap <silent> <leader>gsE :SignifyEnableAll<CR>
+nnoremap <silent> <leader>gsr :SignifyRefresh<CR>
+nnoremap <silent> <leader>gsl :SignifyList<CR>
 
-map <leader>gsd :SignifyHunkDiff<CR>
-map <leader>gsu :SignifyHunkUndo<CR>
-map <leader>gj <plug>(signify-next-hunk)
-map <leader>gk <plug>(signify-prev-hunk)
-map <leader>gJ 9999<leader>gj
-map <leader>gK 9999<leader>gk
-map <leader>gsf :echo sy#repo#get_stats_decorated('.')<CR>
-map <leader>gsF :echo sy#repo#get_stats_decorated(expand('%'))<CR>
+nnoremap <silent> <leader>gsd :SignifyHunkDiff<CR>
+nnoremap <silent> <leader>gsu :SignifyHunkUndo<CR>
+nnoremap <leader>gj <plug>(signify-next-hunk)
+nnoremap <leader>gk <plug>(signify-prev-hunk)
+nnoremap <leader>gJ 9999<leader>gj
+nnoremap <leader>gK 9999<leader>gk
+nnoremap <silent> <leader>gsf :echo sy#repo#get_stats_decorated('.')<CR>
+nnoremap <silent> <leader>gsF :echo sy#repo#get_stats_decorated(expand('%'))<CR>
 
 autocmd User SignifyHunk call s:show_current_hunk()
 
@@ -126,9 +122,9 @@ set updatetime=50
 
 " gv
 
-map <leader>gv :GV<CR>
-map <leader>gV :GV!<CR>
-map <leader>g? :GV?<CR>
+nnoremap <silent> <leader>gv :GV<CR>
+nnoremap <silent> <leader>gV :GV!<CR>
+nnoremap <silent> <leader>g? :GV?<CR>
 
 " - `o` or `<cr>` on a commit to display the content of it
 " - `o` or `<cr>` on commits to display the diff in the range

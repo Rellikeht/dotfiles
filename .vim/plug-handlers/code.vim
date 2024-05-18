@@ -8,8 +8,8 @@ map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
 
 autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd FileType nix map <buffer> <Leader>nle :NixEdit<CR>
-autocmd FileType nix map <buffer> <Leader>nlE :NixEdit<CR>
+autocmd FileType nix nnoremap <buffer> <Leader>nle :NixEdit<CR>
+autocmd FileType nix nnoremap <buffer> <Leader>nlE :NixEdit<CR>
 
 " neoformat
 
@@ -87,14 +87,14 @@ augroup fmt
               \| endif
 augroup END
 
-map <Leader>Ff :Neoformat<CR>
-map <Leader>FF :Neoformat<Space>
+noremap <silent> <Leader>nf :Neoformat<CR>
+noremap <Leader>nF :Neoformat<Space>
 
 " context
 " TODO B sane settings
-map <Leader>qt :ContextPeek<CR>
-map <Leader>qT :ContextToggle<CR>
-map <Leader>qW :ContextToggleWindow<CR>
+nnoremap <Leader>qt :ContextPeek<CR>
+nnoremap <Leader>qT :ContextToggle<CR>
+nnoremap <Leader>qW :ContextToggleWindow<CR>
 
 " TODO D emmet
 
@@ -108,16 +108,16 @@ let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_file_types = '.*'
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
-autocmd FileType julia map <buffer> <Leader>nld :execute 'JuliaDoc '.GetVisualSelection()<CR>
-autocmd FileType julia map <buffer> <Leader>nlD :JuliaDoc
+autocmd FileType julia nnoremap <buffer> <Leader>nld :JuliaDoc
+autocmd FileType julia vnoremap <silent> <buffer> <Leader>nld :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>
 
 " direnv.vim
 " let g:direnv_auto = 0
 let g:direnv_edit_mode = 'split'
 
-map <Leader>qde :EditEnvrc<CR>
-map <Leader>qdE :EditDirenvrc<CR>
-map <Leader>qdl :DirenvExport<CR>
+nnoremap <silent> <Leader>qde :EditEnvrc<CR>
+nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>
+nnoremap <silent> <Leader>qdl :DirenvExport<CR>
 
 " others
 
@@ -148,14 +148,14 @@ function PlutoAdd(hidden=0)
     endif
 endfunction
 
-map <Leader>npc :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
-map <Leader>npa :call PlutoAdd()<CR>
-map <Leader>npA :call PlutoAdd(1)<CR>
+nnoremap <silent> <Leader>npc :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
+nnoremap <silent> <Leader>npa :call PlutoAdd()<CR>
+nnoremap <silent> <Leader>npA :call PlutoAdd(1)<CR>
 
 " Toggle visibility when in cell list
-map <Leader>npT 03lx:call PLR()<CR>P
+nnoremap <Leader>npT 03lx:call PLR()<CR>P
 " Toggle visibility when in cell
-map <Leader>npt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,npTnn
+nnoremap <Leader>npt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,npTnn
 
 " TODO disable
 " Start:

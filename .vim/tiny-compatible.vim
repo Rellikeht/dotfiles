@@ -1,67 +1,71 @@
 " KEYS
 
-map <Space> <C-w>
-map gY "+gP
+noremap <Space> <C-w>
+" Nope
+noremap gy "*y
+noremap gY "+y
+" noremap gy "*gP
+" noremap gY "+gP
 
-map gb <C-]>
-map gB <C-t>
+noremap gb <C-]>
+noremap gB <C-t>
 
 " TODO this is harder than it should be
-map g+ v<C-a>
-map g- v<C-x>
-vmap + <C-a>
-vmap - <C-x>
+noremap g+ v<C-a>
+noremap g- v<C-x>
+vnoremap + <C-a>
+vnoremap - <C-x>
 
 " Tabs with <Tab>
-map <Tab>0 :tabfirst<CR>
-map <Tab>$ :tablast<CR>
-map <Tab>l gt
-map <Tab>h gT
-map <Tab>t :tabedit<Space>
-map <Tab>m :tabm<Space>
-map <Tab>d :tabclose<CR>
-map <Tab>T :tabnew<CR>
-map <Tab>L :tabm +1<CR>
-map <Tab>H :tabm -1<CR>
-map <Tab>J :tabm $<CR>
-map <Tab>K :tabm 0<CR>
-map <Tab>e :tab<Space>sb<Space>
-map <Tab><Tab> :tab<Space>
-map <Tab>i :tabs<CR>
+noremap <silent> <Tab>0 :tabfirst<CR>
+noremap <silent> <Tab>$ :tablast<CR>
+noremap <Tab>l gt
+noremap <Tab>h gT
+noremap <Tab>t :tabedit<Space>
+noremap <Tab>m :tabm<Space>
+noremap <silent> <Tab>d :tabclose<CR>
+noremap <silent> <Tab>T :tabnew<CR>
+noremap <silent> <Tab>L :tabm +1<CR>
+noremap <silent> <Tab>H :tabm -1<CR>
+noremap <silent> <Tab>J :tabm $<CR>
+noremap <silent> <Tab>K :tabm 0<CR>
+noremap <Tab>e :tab<Space>sb<Space>
+noremap <Tab><Tab> :tab<Space>
+noremap <Tab><CR> :-tab<Space>
+noremap <silent> <Tab>i :tabs<CR>
 
 " Buffers with <Tab>
-map <Tab>b :buffer<Space>
-map <Tab>n :bnext<CR>
-map <Tab>p :bprevious<CR>
-map <Tab>N :bnext!<CR>
-map <Tab>P :bprevious!<CR>
-map <Tab>D :bdelete<CR>
-map <Tab>U :bunload<CR>
-map <Tab>s :sbprevious<CR>
-map <Tab>S :sbnext<CR>
-map <Tab>v :vsplit<CR>:bnext<CR>
-map <Tab>V :vsplit<CR>:bprevious<CR>
-map <Tab>a :bad<Space>
-"map <Tab>A :balt<Space>
-map <Tab>f :files<CR>
-map <Tab>c :bmodified<CR>
-map <Tab>C :bmodified!<CR>
-map <Tab>g :vsplit<Space>
-map <Tab>G :split<Space>
-map <Tab>I :buffers<CR>
+noremap <Tab>b :buffer<Space>
+noremap <silent> <Tab>n :bnext<CR>
+noremap <silent> <Tab>p :bprevious<CR>
+noremap <silent> <Tab>N :bnext!<CR>
+noremap <silent> <Tab>P :bprevious!<CR>
+noremap <silent> <Tab>D :bdelete<CR>
+noremap <silent> <Tab>U :bunload<CR>
+noremap <silent> <Tab>s :sbprevious<CR>
+noremap <silent> <Tab>S :sbnext<CR>
+noremap <silent> <Tab>v :vsplit<CR>:bnext<CR>
+noremap <silent> <Tab>V :vsplit<CR>:bprevious<CR>
+noremap <Tab>a :bad<Space>
+"noremap <Tab>A :balt<Space>
+noremap <silent> <Tab>f :files<CR>
+noremap <silent> <Tab>c :bmodified<CR>
+noremap <silent> <Tab>C :bmodified!<CR>
+noremap <Tab>g :vsplit<Space>
+noremap <Tab>G :split<Space>
+noremap <silent> <Tab>I :buffers<CR>
 
 " Others
-map <Tab>W :set wrap!<CR>
-map <Tab>Q :source %<CR>
-map <Tab>M :setlocal modeline!<CR>
-map <Tab>E :e<CR>
+noremap <Tab>W :set wrap!<CR>
+noremap <Tab>Q :source %<CR>
+noremap <Tab>M :setlocal modeline!<CR>
+noremap <Tab>E :e<CR>
 
 " Select whole buffer without plugins
-vmap ae <Esc>gg0vG$
+vnoremap ae <Esc>gg0vG$
 " Not exact vie
-vmap ie <Esc>gg}{vG{}k$
-"vae defined earlier doesn't work here
-nmap yae mCggvG$y`C
+vnoremap ie <Esc>gg}{vG{}k$
+nnoremap yae mcggvG$y`c
 
 " SETTINGS
 

@@ -1,7 +1,7 @@
 " TODO Still everything
 " :help tinymru
 
-map ,us :UndotreeShow<CR>
-map ,uh :UndotreeHide<CR>
-map ,ut :UndotreeToggle<CR>
-map ,ud <Plug>UndotreeDiff<CR>
+nnoremap <silent> ,us :UndotreeShow<CR>
+nnoremap <silent> ,uh :UndotreeHide<CR>
+nnoremap <silent> ,ut :UndotreeToggle<CR>
+nnoremap <silent> ,ud <Plug>UndotreeDiff<CR>
