@@ -13,9 +13,9 @@ vim.keymap.set(buf_modes, "<Leader>dE", ":LspStop<CR>")
 vim.keymap.set(diag_modes, "<Leader>df",
                vim.diagnostic.open_float)
 vim.keymap.set(diag_modes, "<Leader>dp",
-               vim.diagnostic.goto_prev)
+               commandRep(vim.diagnostic.goto_prev))
 vim.keymap.set(diag_modes, "<Leader>dn",
-               vim.diagnostic.goto_next)
+               commandRep(vim.diagnostic.goto_next))
 vim.keymap.set(diag_modes, "<Leader>dl",
                vim.diagnostic.setloclist)
 

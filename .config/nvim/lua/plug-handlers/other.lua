@@ -101,11 +101,13 @@ local nvim_lint = require("lint")
 
 nvim_lint.linters_by_ft = {
   markdown = {"vale"},
-  python = {"pylint", "mypy"},
+  python = {"pylint", "flake8", "mypy", "ruff"},
   shell = {"dash", "shellcheck"},
   bash = {"dash", "shellcheck"},
   zsh = {"zsh"},
-  vim = {"vint"}
+  vim = {"vint"},
+  nix = {"nix"},
+  ansible = {"ansible-lint"}
 }
 
 vim.api.nvim_create_autocmd({"BufWritePost"}, {

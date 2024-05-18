@@ -1,5 +1,7 @@
 " Repeat:
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+" https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
+" https://vi.stackexchange.com/questions/20760/how-to-add-a-count-to-a-binding
 
 " Better tab
 map <Tab>l :<C-u>call SwitchTab(v:count1)<CR>
@@ -99,8 +101,9 @@ map <Leader>xX :Explore<Space>
 map <Leader>xt :Texplore<CR>
 map <Leader>xh :Sexplore<CR>
 map <Leader>xv :Vexplore<CR>
-map <Leader>xn :Nxplore<CR>
-map <Leader>xp :Pxplore<CR>
+map <Leader>xn :Nexplore<CR>
+map <Leader>xp :Pexplore<CR>
+map <Leader>xr :Rexplore<CR>
 
 " TODO B running command under cursor
 " TODO C running command in given register (???)

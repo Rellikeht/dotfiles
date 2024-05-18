@@ -43,6 +43,7 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'kmonad/kmonad-vim'
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'nickel-lang/vim-nickel'
+Plug 'pearofducks/ansible-vim' " TODO when needed
 
 " Maybe...
 " Plug 'vimwiki/vimwiki'
