@@ -5,3 +5,4 @@ none_representation = "null"
 whitelines = 1
 comments_whitelines = 2
 explicit_start = false
+sequence_style = "keep_style"

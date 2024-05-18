@@ -36,7 +36,12 @@ let g:neoformat_enabled_nim = ['nimpretty']
 let g:neoformat_enabled_shell = ['shfmt', 'topiary']
 let g:neoformat_enabled_zsh = ['shfmt']
 let g:neoformat_enabled_markdown = ['mdformat', 'prettierd', 'prettier']
-let g:neoformat_enabled_yaml = ['yamlfix', 'pyaml', 'prettierd', 'prettier']
+
+" FUCKING YAML
+" let g:neoformat_enabled_yaml = ['google_yamlfmt', 'yamlfix', 'pyaml', 'prettierd', 'prettier']
+let g:neoformat_enabled_yaml = ['google_yamlfmt', 'pyaml', 'prettierd', 'prettier']
+" https://github.com/mikefarah/yq
+" https://github.com/opt-nc/yamlfixer
 
 let g:neoformat_markdown_mdformat = {
         \ 'exe': 'mdformat',

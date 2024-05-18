@@ -109,7 +109,7 @@ let g:fzf_colors =
 
 " TODO change position in case of unusal layout
 " Simple yet powerful amount
-let g:fzf_percent = '60%'
+let g:fzf_percent = '55%'
 if exists('$TMUX')
     " let g:fzf_layout = { 'tmux': '-p90%,60%' }
     let g:fzf_layout = { 'tmux': '-d'.g:fzf_percent }

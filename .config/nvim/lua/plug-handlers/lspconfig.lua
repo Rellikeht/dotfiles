@@ -3,21 +3,29 @@ local lspconfig = require("lspconfig")
 local diag_modes = {"n", "v"}
 local buf_modes = {"n", "v"}
 
-vim.keymap.set(buf_modes, "<Leader>dI", ":LspInfo<CR>")
-vim.keymap.set(buf_modes, "<Leader>dQ", ":LspLog<CR>")
-vim.keymap.set(buf_modes, "<Leader>dL", ":LspRestart<CR>")
-vim.keymap.set(buf_modes, "<Leader>dS", ":LspStart<CR>")
-vim.keymap.set(buf_modes, "<Leader>de", ":LspStop ")
-vim.keymap.set(buf_modes, "<Leader>dE", ":LspStop<CR>")
+vim.keymap.set(buf_modes, "<Leader>dI", ":LspInfo<CR>",
+               {noremap = true})
+vim.keymap.set(buf_modes, "<Leader>dQ", ":LspLog<CR>",
+               {noremap = true})
+vim.keymap.set(buf_modes, "<Leader>dL", ":LspRestart<CR>",
+               {noremap = true})
+vim.keymap.set(buf_modes, "<Leader>dS", ":LspStart<CR>",
+               {noremap = true})
+vim.keymap.set(buf_modes, "<Leader>de", ":LspStop ",
+               {noremap = true})
+vim.keymap.set(buf_modes, "<Leader>dE", ":LspStop<CR>",
+               {noremap = true})
 
 vim.keymap.set(diag_modes, "<Leader>df",
-               vim.diagnostic.open_float)
+               vim.diagnostic.open_float, {noremap = true})
 vim.keymap.set(diag_modes, "<Leader>dp",
-               commandRep(vim.diagnostic.goto_prev))
+               commandRep(vim.diagnostic.goto_prev),
+               {noremap = true})
 vim.keymap.set(diag_modes, "<Leader>dn",
-               commandRep(vim.diagnostic.goto_next))
+               commandRep(vim.diagnostic.goto_next),
+               {noremap = true})
 vim.keymap.set(diag_modes, "<Leader>dl",
-               vim.diagnostic.setloclist)
+               vim.diagnostic.setloclist, {noremap = true})
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -28,7 +36,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- :help vim.lsp.*
-    local opts = {buffer = ev.buf}
+    local opts = {buffer = ev.buf, noremap = true}
 
     vim.keymap.set(buf_modes, "<Leader>dd",
                    vim.lsp.buf.declaration, opts)

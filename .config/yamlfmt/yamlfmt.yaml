@@ -1,0 +1,5 @@
+---
+formatter:
+  include_document_start: yes
+  max_line_length: 64
+  type: basic
