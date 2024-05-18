@@ -1,1 +1,4 @@
-" No idea what to put here
+" vifm
+" TODO
+
+" if nerdtree happens it will land here

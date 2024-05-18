@@ -58,10 +58,6 @@ nnoremap <silent> <leader>gds :Gvdiffsplit<CR>
 nnoremap <silent> <leader>gdS :Gvdiffsplit!<CR>
 nnoremap <silent> <leader>gdh :Gdiffsplit<CR>
 nnoremap <silent> <leader>gdH :Gdiffsplit!<CR>
-nnoremap <silent> <leader>gdu :diffupdate<CR>
-
-nnoremap <silent> <leader>gdp :diffput<CR>
-nnoremap <silent> <leader>gdg :diffget<CR>
 
 function DiffGet(pane)
     execute 'diffget' a:pane

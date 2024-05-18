@@ -5,8 +5,13 @@ let $FZF_DEFAULT_COMMAND='find .'
 
 " KEYS
 
-nnoremap <leader>sf :FZF<CR>
-nnoremap <leader>sb :Buffers<CR>
+" Insert mode completion
+imap <c-x>w <plug>(fzf-complete-word)
+imap <c-x>p <plug>(fzf-complete-path)
+imap <c-x>l <plug>(fzf-complete-line)
+
+nnoremap <leader>sff :FZF<CR>
+nnoremap <leader>svb :Buffers<CR>
 nnoremap <leader>sph :FZF ~<CR>
 nnoremap <leader>spT :FZF ~/Templates<CR>
 nnoremap <leader>sp2 :FZF ../..<CR>
@@ -32,13 +37,45 @@ nnoremap <leader>sh: :History:<CR>
 nnoremap <leader>shC :Commits<CR>
 nnoremap <leader>shm :Marks<CR>
 
-nnoremap <leader>sm :Maps<CR>
-nnoremap <leader>sH :Helptags<CR>
-nnoremap <leader>sw :Windows<CR>
-nnoremap <leader>sj :Jumps<CR>
+nnoremap <leader>svm :Maps<CR>
+nnoremap <leader>svH :Helptags<CR>
+nnoremap <leader>svw :Windows<CR>
+nnoremap <leader>svj :Jumps<CR>
 
 nnoremap <leader>gff :GFiles<CR>
 nnoremap <leader>gfs :GFiles?<CR>
+
+command! -bang -nargs=? -complete=dir Fdiffs
+            \ call fzf#run(fzf#wrap({
+            \ 'sink': 'diffs',
+            \ 'dir': <q-args>,
+            \ 'options': [
+            \ '--preview',
+            \ 'delta '.expand("%:p").' {}',
+            \ '--preview-window',
+            \ '60%,right',
+            \ ],
+            \ },
+            \ <bang>0))
+
+" TODO do this better
+command! -bang -nargs=? -complete=dir Fdiffv
+            \ call fzf#run(fzf#wrap({
+            \ 'sink': 'vert diffs',
+            \ 'dir': <q-args>,
+            \ 'options': [
+            \ '--preview',
+            \ 'delta '.expand("%:p").' {}',
+            \ '--preview-window',
+            \ '60%,right',
+            \ ],
+            \ },
+            \ <bang>0))
+
+nnoremap <leader>sds :Fdiffs<CR>
+nnoremap <leader>sdS :Fdiffs<Space>
+nnoremap <leader>sdv :Fdiffv<CR>
+nnoremap <leader>sdV :Fdiffv<Space>
 
 " TODO tmux
 " May be too painful

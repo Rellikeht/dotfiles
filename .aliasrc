@@ -203,7 +203,7 @@ alias fzr='$(prgs | deffuz)'
 alias gth='glow -w $(($(tput cols)-4))'
 
 alias qc="qalc -s 'decimal comma off'"
-alias de='dc -e'
+alias de='dc -e 8k -e'
 
 alias sa='screen attach'
 
