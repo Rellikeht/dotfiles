@@ -18,9 +18,14 @@ autocmd FileType haskell,lua,r,markdown,nim setlocal shiftwidth=2 softtabstop=2 
 
 let g:buffmt = 1
 let g:bufcomp = 1
-autocmd BufNewFile,BufRead * let b:buffmt = 0
-autocmd BufNewFile,BufRead *.* let b:buffmt = g:buffmt
-autocmd BufNewFile,BufRead * let b:bufcomp = g:bufcomp
+
+" autocmd BufNewFile,BufNew * let b:buffmt = 0
+" autocmd BufNewFile,BufNew *.* let b:buffmt = g:buffmt
+" autocmd BufNewFile,BufNew * let b:bufcomp = g:bufcomp
+
+" ?? that autocommand
+autocmd FileType * let b:buffmt = g:buffmt
+autocmd FileType * let b:bufcomp = g:bufcomp
 
 " Very temporary but should work well enough
 "autocmd BufWritePre *.nix call NixFmt()

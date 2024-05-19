@@ -5,8 +5,8 @@ keys in one place. With hundreds of mappings it is necessary
 
 # Unused keys
 
-\\ | ~ ^ (hard to reach on some keyboards) _ ; (painful in
-greater amounts) There may be more, but there are already enough
+\\ | ~ ^ (hard to reach on some keyboards) _ (painful in greater
+amounts) There may be more, but there are already enough
 combinations
 
 # <Tab> combinations
@@ -92,6 +92,8 @@ k, q, u, x, z
 
 - ; - commands
 
+- f - diffs
+
 ## Code
 
 - c, C - compiling
@@ -135,7 +137,7 @@ k, q, u, x, z
 ## Nvim only
 
 - d - lspconfig diagnostics and lsp actions
-- w, f, l, <Leader> - easymotion ; TODO
+- <Leader> - easymotion ; TODO
 - e, E, D - code plugins ; NOT IMPLEMENTED
 - h - harpoon ; NOT IMPLEMENTED
 
@@ -195,6 +197,7 @@ Only Z and Q is used
 - ae - (visual only) select whole buffer without plugins
 - ie - (visual only) Not exact vie
 - yae - copy whole buffer
+- ; - motions
 - TODO - cosco (inserting semicolons and colons)
 
 # Available (or safe for remapping)

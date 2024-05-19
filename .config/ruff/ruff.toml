@@ -1,0 +1,11 @@
+target-version = "py312"
+line-length = 78
+extend-include = ["*.ipynb"]
+
+[lint]
+select = ["E", "F", "W", "B", "C"]
+
+[format]
+indent-style = "space"
+docstring-code-format = true
+docstring-code-line-length = 60

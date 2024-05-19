@@ -3,96 +3,133 @@ local lspconfig = require("lspconfig")
 local diag_modes = {"n", "v"}
 local buf_modes = {"n", "v"}
 
-vim.keymap.set(buf_modes, "<Leader>dI", ":LspInfo<CR>",
-               {noremap = true})
-vim.keymap.set(buf_modes, "<Leader>dQ", ":LspLog<CR>",
-               {noremap = true})
-vim.keymap.set(buf_modes, "<Leader>dL", ":LspRestart<CR>",
-               {noremap = true})
-vim.keymap.set(buf_modes, "<Leader>dS", ":LspStart<CR>",
-               {noremap = true})
-vim.keymap.set(buf_modes, "<Leader>de", ":LspStop ",
-               {noremap = true})
-vim.keymap.set(buf_modes, "<Leader>dE", ":LspStop<CR>",
-               {noremap = true})
+vim.keymap.set(
+  buf_modes, "<Leader>dqi", ":LspInfo<CR>", {noremap = true}
+)
+vim.keymap.set(
+  buf_modes, "<Leader>dql", ":LspLog<CR>", {noremap = true}
+)
+vim.keymap.set(
+  buf_modes, "<Leader>dqr", ":LspRestart<CR>", {noremap = true}
+)
+vim.keymap.set(
+  buf_modes, "<Leader>dqs", ":LspStart<CR>", {noremap = true}
+)
+vim.keymap.set(
+  buf_modes, "<Leader>dqe", ":LspStop ", {noremap = true}
+)
+vim.keymap.set(
+  buf_modes, "<Leader>dqE", ":LspStop<CR>", {noremap = true}
+)
 
-vim.keymap.set(diag_modes, "<Leader>df",
-               vim.diagnostic.open_float, {noremap = true})
-vim.keymap.set(diag_modes, "<Leader>dp",
-               commandRep(vim.diagnostic.goto_prev),
-               {noremap = true})
-vim.keymap.set(diag_modes, "<Leader>dn",
-               commandRep(vim.diagnostic.goto_next),
-               {noremap = true})
-vim.keymap.set(diag_modes, "<Leader>dl",
-               vim.diagnostic.setloclist, {noremap = true})
+vim.keymap.set(
+  diag_modes, "<Leader>df", vim.diagnostic.open_float,
+  {noremap = true}
+)
+vim.keymap.set(
+  diag_modes, "<Leader>dp",
+  commandRep(vim.diagnostic.goto_prev), {noremap = true}
+)
+vim.keymap.set(
+  diag_modes, "<Leader>dn",
+  commandRep(vim.diagnostic.goto_next), {noremap = true}
+)
+vim.keymap.set(
+  diag_modes, "<Leader>dl", vim.diagnostic.setloclist,
+  {noremap = true}
+)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+vim.api.nvim_create_autocmd(
+  "LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+      -- Enable completion triggered by <c-x><c-o>
+      vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    -- :help vim.lsp.*
-    local opts = {buffer = ev.buf, noremap = true}
+      -- :help vim.lsp.*
+      local opts = {buffer = ev.buf, noremap = true}
 
-    vim.keymap.set(buf_modes, "<Leader>dd",
-                   vim.lsp.buf.declaration, opts)
-    vim.keymap.set(buf_modes, "<Leader>dD",
-                   vim.lsp.buf.definition, opts)
-    vim.keymap.set(buf_modes, "<Leader>dh", vim.lsp.buf.hover,
-                   opts)
-    vim.keymap.set(buf_modes, "<Leader>di",
-                   vim.lsp.buf.implementation, opts)
-    vim.keymap.set(buf_modes, "<Leader>ds",
-                   vim.lsp.buf.signature_help, opts)
+      vim.keymap.set(
+        buf_modes, "<Leader>dd", vim.lsp.buf.declaration, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dD", vim.lsp.buf.definition, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dh", vim.lsp.buf.hover, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>di", vim.lsp.buf.implementation,
+        opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>ds", vim.lsp.buf.signature_help,
+        opts
+      )
 
-    vim.keymap.set(buf_modes, "<Leader>dt",
-                   vim.lsp.buf.type_definition, opts)
-    vim.keymap.set(buf_modes, "<Leader>dR", vim.lsp.buf.rename,
-                   opts)
-    vim.keymap.set(buf_modes, "<Leader>dr",
-                   vim.lsp.buf.references, opts)
-    vim.keymap.set(buf_modes, "<Leader>dF", function()
-      vim.lsp.buf.format({async = true})
-    end, opts)
+      vim.keymap.set(
+        buf_modes, "<Leader>dt", vim.lsp.buf.type_definition,
+        opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dR", vim.lsp.buf.rename, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dr", vim.lsp.buf.references, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dF",
+        function() vim.lsp.buf.format({async = true}) end, opts
+      )
 
-    vim.keymap.set(buf_modes, "<Leader>da",
-                   vim.lsp.buf.code_action, opts)
-    vim.keymap.set(buf_modes, "<Leader>dwa",
-                   vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set(buf_modes, "<Leader>dwr",
-                   vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set(buf_modes, "<Leader>dwl", function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
+      vim.keymap.set(
+        buf_modes, "<Leader>da", vim.lsp.buf.code_action, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dwa",
+        vim.lsp.buf.add_workspace_folder, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dwr",
+        vim.lsp.buf.remove_workspace_folder, opts
+      )
+      vim.keymap.set(
+        buf_modes, "<Leader>dwl", function()
+          print(
+            vim.inspect(vim.lsp.buf.list_workspace_folders())
+          )
+        end, opts
+      )
 
-    vim.keymap.set("i", "<C-Space>", vim.lsp.buf.completion,
-                   opts)
-  end
-})
+      vim.keymap.set(
+        "i", "<C-Space>", vim.lsp.buf.completion, opts
+      )
+    end
+  }
+)
 
 local function ssetup(server)
   local config = lspconfig[server]
   if vim.fn.executable(
-    config.document_config.default_config.cmd[1]) == 0 then
-    return
-  end
+    config.document_config.default_config.cmd[1]
+  ) == 0 then return end
 
-  config.setup({
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
-    capabilities = Capabilities,
-    settings = {telemetry = {enable = false}}
-  })
+  config.setup(
+    {
+      preselectSupport = false,
+      preselect = false,
+      single_file_support = true,
+      on_attach = lsp_attach,
+      capabilities = Capabilities,
+      settings = {telemetry = {enable = false}}
+    }
+  )
 end
 
 local servers = {
-  "pylyzer",
+  -- "pylyzer",
   "pylsp",
   "gopls",
   "ocamllsp",
@@ -113,47 +150,50 @@ local servers = {
 
 for _, s in ipairs(servers) do ssetup(s) end
 
-lspconfig.lua_ls.setup({
-  preselectSupport = false,
-  preselect = false,
-  single_file_support = true,
-  on_attach = lsp_attach,
-  capabilities = Capabilities,
+lspconfig.lua_ls.setup(
+  {
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
 
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {"vim", "require"}
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true)
-      },
-      telemetry = {enable = false}
+    settings = {
+      Lua = {
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {"vim", "require"}
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true)
+        },
+        telemetry = {enable = false}
+      }
     }
-  }
 
-})
+  }
+)
 
 util = require("lspconfig.util")
 
-lspconfig.julials.setup({
-  preselectSupport = false,
-  preselect = false,
-  single_file_support = true,
-  on_attach = lsp_attach,
-  capabilities = Capabilities,
-  settings = {telemetry = {enable = false}},
+lspconfig.julials.setup(
+  {
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    settings = {telemetry = {enable = false}},
 
-  cmd = {
-    "julia",
-    "-g0",
-    "-O0",
-    "--startup-file=no",
-    "--history-file=no",
-    "-e",
-    [[
+    cmd = {
+      "julia",
+      "-g0",
+      "-O0",
+      "--startup-file=no",
+      "--history-file=no",
+      "-e",
+      [[
     # Load LanguageServer.jl: attempt to load from ~/.julia/environments/nvim-lspconfig
     # with the regular load path as a fallback
     ls_install_path = joinpath(
@@ -186,37 +226,40 @@ lspconfig.julials.setup({
     server.runlinter = true
     run(server)
   ]]
-  }
+    }
 
-})
+  }
+)
 
 -- TODO copying rust-project.json from config dir
 -- to current dir to make this shit work
 
 -- No idea if all of that is really needed
-lspconfig.rust_analyzer.setup({
-  on_attach = lsp_attach,
-  preselectSupport = false,
-  preselect = false,
-  single_file_support = true,
-  capabilities = Capabilities,
+lspconfig.rust_analyzer.setup(
+  {
+    on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    capabilities = Capabilities,
 
-  settings = {
-    ["rust-analyzer"] = {
-      standalone = true,
-      workspaceFolders = false,
-      workspace = {workspaceFolders = false},
+    settings = {
+      ["rust-analyzer"] = {
+        standalone = true,
+        workspaceFolders = false,
+        workspace = {workspaceFolders = false},
 
-      completion = {contextSupport = true},
-      imports = {
-        granularity = {group = "module"},
-        prefix = "self"
-      },
-      cargo = {buildScripts = {enable = true}},
-      procMacro = {enable = true}
+        completion = {contextSupport = true},
+        imports = {
+          granularity = {group = "module"},
+          prefix = "self"
+        },
+        cargo = {buildScripts = {enable = true}},
+        procMacro = {enable = true}
+      }
     }
   }
-})
+)
 
 -- lspconfig.pylyzer.setup({
 --   cmd = {"pylyzer", "--server"},
@@ -244,23 +287,25 @@ lspconfig.rust_analyzer.setup({
 --   }
 -- })
 
-lspconfig.clangd.setup({
-  cmd = {
-    "clangd",
-    "-j=2",
-    "--clang-tidy",
-    "--enable-config",
-    "--header-insertion=never",
-    "--completion-style=detailed",
-    "--pch-storage=memory"
-  },
-  preselectSupport = false,
-  preselect = false,
-  single_file_support = true,
-  on_attach = lsp_attach,
-  capabilities = Capabilities,
-  settings = {}
-})
+lspconfig.clangd.setup(
+  {
+    cmd = {
+      "clangd",
+      "-j=2",
+      "--clang-tidy",
+      "--enable-config",
+      "--header-insertion=never",
+      "--completion-style=detailed",
+      "--pch-storage=memory"
+    },
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    settings = {}
+  }
+)
 
 --   cmd = {
 --     'julia', '--startup-file=no', '--history-file=no', '-e', [[

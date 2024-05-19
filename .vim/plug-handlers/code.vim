@@ -20,6 +20,14 @@ let g:neoformat_enabled_go = []
 " ???
 let g:neoformat_enabled_python = ['ruff', 'autopep8', 'flake8']
 
+" function! neoformat#formatters#python#ruff() abort
+"     return {
+"                 \ 'exe': 'ruff',
+"                 \ 'stdin': 1,
+"                 \ 'args': ['format', '-q', '-'],
+"                 \ }
+" endfunction
+
 let g:neoformat_enabled_c = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_nix = ['alejandra']
