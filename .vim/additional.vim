@@ -11,6 +11,7 @@ set hlsearch
 
 packadd matchit
 runtime macros/matchit.vim
+runtime! ftplugin/man.vim
 
 filetype plugin on
 filetype indent on

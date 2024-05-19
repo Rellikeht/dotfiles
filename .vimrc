@@ -21,6 +21,7 @@ if v:progname !~? "^vi"
 
     if v:progname =~? ".*svi.*"
         call plug#begin('~/.vim/plugged')
+        source ~/.vim/svimrc.vim
         source ~/.vim/common-plugins.vim
         source ~/.vim/svim-plugins.vim
 

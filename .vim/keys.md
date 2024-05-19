@@ -143,7 +143,7 @@ k, q, u, x, z
 
 # g combinations
 
-Available (useless otherwise): C, G, K, L, O, j, o, z
+Available (useless otherwise): C, G, K, L, j, o, z
 
 Rather useless: I, Q, H, h, r, w
 
@@ -155,8 +155,7 @@ Rather useful: J, M, N, V, m, n
 - a - unicode
 - A - radical.vim
 - x, X - netrw
-- b - jump to tag under cursor (\<C-\]>)
-- B - jump to previous tag on stack (<C-T>)
+- j - tag jumping
 - y,Y - "\*y,"+y
 - s - vim-slime and similar
 - "+" - v<C-a>

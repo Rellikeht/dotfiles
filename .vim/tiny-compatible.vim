@@ -7,9 +7,6 @@ noremap gY "+y
 " noremap gy "*gP
 " noremap gY "+gP
 
-noremap gb <C-]>
-noremap gB <C-t>
-
 " TODO this is harder than it should be
 noremap g+ v<C-a>
 noremap g- v<C-x>

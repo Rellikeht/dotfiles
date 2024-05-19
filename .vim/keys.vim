@@ -3,6 +3,15 @@
 " https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 " https://vi.stackexchange.com/questions/20760/how-to-add-a-count-to-a-binding
 
+" Tags
+" TODO
+
+noremap gjf <C-]>
+noremap gjb <C-t>
+noremap <silent> gjts :ts<CR>
+noremap <silent> gjth :sts<CR>
+noremap <silent> gjtv :vert sts<CR>
+
 " Better tab
 noremap <silent> <Tab>l :<C-u>call SwitchTab(v:count1)<CR>
 " noremap <silent> <Tab>h :<C-u>call SwitchTab(-v:count1)<CR>
