@@ -15,10 +15,10 @@ noremap <silent> <Tab>N :<C-u>execute 'bnext! '.v:count1<CR>
 noremap <silent> <Tab>P :<C-u>execute 'bprevious! '.v:count1<CR>
 
 " Other <silent> <Tab>
-nnoremap <silent> <Tab>ws :SudoWrite<CR>
-nnoremap <silent> <Tab>ww :We<CR>
 noremap <silent> <Tab>y :call Xpaste('clipboard')<CR>
 noremap <silent> <Tab>Y :call Xpaste('primary')<CR>
+nnoremap <silent> <Tab>w :We<CR>
+
 " TODO do this better
 
 let mapleader = ','
@@ -56,18 +56,17 @@ noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
 " map <Leader>;r :!%<CR>
 
 " TODO confirmation maybe?
-noremap <Leader>qq :call Wmt()<CR>
-noremap <silent> <Leader>qm :call ToggleManProg()<CR>
-noremap <Leader>qM :set makeprg=make<CR>
-noremap <silent> <Leader>qE :EditorConfigReload<CR>
+noremap <Leader>qkw :call Wmt()<CR>
+noremap <silent> <Leader>qpm :call ToggleManProg()<CR>
+noremap <Leader>qpM :set makeprg=make<CR>
 
-noremap <Leader>qf :let b:buffmt=!b:buffmt<CR>
-noremap <Leader>qF :let g:buffmt=!g:buffmt<CR>
-noremap <Leader>q1 :echo b:buffmt<CR>
+noremap <Leader>qff :let b:buffmt=!b:buffmt<CR>
+noremap <Leader>qfF :let g:buffmt=!g:buffmt<CR>
+noremap <Leader>qv1 :echo b:buffmt<CR>
 
-noremap <Leader>qc :let b:bufcomp=!b:bufcomp<CR>
-noremap <Leader>qC :let g:bufcomp=!g:bufcomp<CR>
-noremap <Leader>q2 :echo b:bufcomp<CR>
+noremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
+noremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
+noremap <Leader>qv2 :echo b:bufcomp<CR>
 
 " Yeah, copying from wiki works
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

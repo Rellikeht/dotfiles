@@ -1,6 +1,8 @@
 " eunch
 " TODO
 
+nnoremap <silent> <Leader>;ws :SudoWrite<CR>
+
 " vifm
 " TODO
 

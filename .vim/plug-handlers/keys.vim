@@ -3,6 +3,7 @@
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " vim-sneak
+" TODO more
 
 let g:sneak#label = 1
 noremap f <Plug>Sneak_f

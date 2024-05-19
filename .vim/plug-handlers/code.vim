@@ -105,9 +105,9 @@ noremap <Leader>nF :Neoformat<Space>
 
 " context
 " TODO B sane settings
-nnoremap <Leader>qt :ContextPeek<CR>
-nnoremap <Leader>qT :ContextToggle<CR>
-nnoremap <Leader>qW :ContextToggleWindow<CR>
+nnoremap <Leader>qcp :ContextPeek<CR>
+nnoremap <Leader>qct :ContextToggle<CR>
+nnoremap <Leader>qcw :ContextToggleWindow<CR>
 
 " TODO D emmet
 

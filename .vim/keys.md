@@ -57,8 +57,7 @@ They are general purpose, mainly for tab management
 ## Miscelanous
 
 - r - redraw command
-- w - SudoWrite
-- W - toggle wrap
+- w - toggle wrap
 - y - in normal paste, in visual copy to X11 clipboard
 - Y - like ;y, but using X11 primary
 - Q - source %
@@ -79,20 +78,21 @@ k, q, u, x, z
 
 - q - miscelanous, settings:
 
-  - f,F - toggle formatting on write
-  - c,C - compiling on write
-  - 0,1,2,...,9 - print variables
-  - m - man program
-  - M - set make program to make
+  - ff,fF - toggle formatting on write
+  - fc,fC - compiling on write
+  - v0,v1,v2,...,v9 - print variables
+  - pm - man program
+  - pM - set make program to make
   - eb - editorconfig toggle for buffer
   - eg - editorconfig toggle globally
   - er - editorconfig reload
+  - kw - toggle workman layout help
 
 - <Space> - set hls!
 
 - ; - commands
 
-- f - diffs
+- f - diffs and more in future probably
 
 ## Code
 
@@ -127,9 +127,9 @@ k, q, u, x, z
 
   - u - general plug upgrade
   - P - plug clean
-  - t - toggle context until move
-  - T - toggle context
-  - W - toggle context in current window
+  - cp - toggle context until move
+  - ct - toggle context
+  - cw - toggle context in current window
   - de - edit envrc
   - dE - edit direnvrc
   - dl - direnv load
