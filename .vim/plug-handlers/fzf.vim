@@ -12,12 +12,12 @@ imap <c-x>l <plug>(fzf-complete-line)
 
 nnoremap <leader>sff :FZF<CR>
 nnoremap <leader>svb :Buffers<CR>
-nnoremap <leader>sph :FZF ~<CR>
-nnoremap <leader>spT :FZF ~/Templates<CR>
-nnoremap <leader>sp2 :FZF ../..<CR>
-nnoremap <leader>sp3 :FZF ../../..<CR>
-nnoremap <leader>sp4 :FZF ../../../..<CR>
-nnoremap <leader>sp5 :FZF ../../../../..<CR>
+nnoremap <leader>sph :Files ~<CR>
+nnoremap <leader>spT :Files ~/Templates<CR>
+nnoremap <leader>sp2 :Files ../..<CR>
+nnoremap <leader>sp3 :Files ../../..<CR>
+nnoremap <leader>sp4 :Files ../../../..<CR>
+nnoremap <leader>sp5 :Files ../../../../..<CR>
 
 nnoremap <leader>slf :Files<CR>
 nnoremap <leader>slF :Files<Space>

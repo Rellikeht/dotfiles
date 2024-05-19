@@ -98,9 +98,6 @@ k, q, u, x, z
 - r, R - running
 - b, B - building
 - i, I - running interpreted versions of compiled languages
-- exceptions (in all possible casing):
-  - g - data generation
-  - t - templates
 
 ## With plugins
 
@@ -144,11 +141,11 @@ k, q, u, x, z
 
 # g combinations
 
-Available (useless otherwise): C, G, K, L, O j, o, y, z
+Available (useless otherwise): C, G, K, L, O, j, o, z
 
-Rather useless: D, I, Q, H d, h, r, w
+Rather useless: I, Q, H, h, r, w
 
-Rather useful: J, M, N, V m, n
+Rather useful: J, M, N, V, m, n
 
 - c - vim-commentary
 - C - toggle colorizer
@@ -158,17 +155,14 @@ Rather useful: J, M, N, V m, n
 - x, X - netrw
 - b - jump to tag under cursor (\<C-\]>)
 - B - jump to previous tag on stack (<C-T>)
-- Y - "+gP (I don't know if it works)
+- y,Y - "\*y,"+y
 - s - vim-slime and similar
+- "+" - v<C-a>
+- "-" - v<C-x>
 
 ## Nvim only
 
 - l - mdeval, femaco
-
-## TODO
-
-- "+" - v<C-a>
-- "-" - v<C-x>
 
 # z combinations
 
