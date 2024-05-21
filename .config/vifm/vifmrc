@@ -753,6 +753,9 @@ map gcB :!cp %f %D &<CR>
 map gcr :!rsync %f %D &<CR>
 map gcR :!rsync -a %f %D &<CR>
 
+" TODO adb
+" TODO more rsyncs
+
 map ,gh :history<CR>
 map ,gd :history dir<CR>
 map ,gc :history cmd<CR>

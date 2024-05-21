@@ -132,6 +132,15 @@ nnoremap <silent> <Leader>qde :EditEnvrc<CR>
 nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>
 nnoremap <silent> <Leader>qdl :DirenvExport<CR>
 
+" vim-simple-complete
+
+let g:vsc_completion_command = get(g:, 'vsc_completion_command', "\<C-N>")
+let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command', "\<C-P>")
+let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 0) " FUCK
+let g:vsc_type_complete = get(g:, 'vsc_type_complete', 1)
+let g:vsc_type_complete_length = get(g:, 'vsc_type_complete_length', 3)
+let g:vsc_pattern = get(g:, 'vsc_pattern', '\k')
+
 " others
 
 function GeneralUpgrade()

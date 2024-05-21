@@ -14,6 +14,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'ryvnf/readline.vim'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tmux-plugins/vim-tmux'
 
 Plug 'tpope/vim-dispatch' " TODO A incorporate this into programming.vim
 Plug 'tpope/vim-surround' " TODO B write shortcuts somewhere

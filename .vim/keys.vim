@@ -7,10 +7,11 @@
 " TODO
 
 noremap gjf <C-]>
-noremap gjb <C-t>
+nnoremap gjb <C-t>
 noremap <silent> gjts :ts<CR>
 noremap <silent> gjth :sts<CR>
 noremap <silent> gjtv :vert sts<CR>
+noremap <silent> gjtl :tags<CR>
 
 " Better tab
 noremap <silent> <Tab>l :<C-u>call SwitchTab(v:count1)<CR>

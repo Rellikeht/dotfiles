@@ -153,3 +153,32 @@ function GetVisualSelection()
     let lines[0] = lines[0][column_start - 1:]
     return join(lines, "\n")
 endfunction
+
+let g:autoread = 0
+function ToggleAutoread()
+    let g:autoread = !g:autoread
+    if g:autoread
+        set autoread
+        echo 'Autoread enabled'
+    else
+        set noautoread
+        echo 'Autoread disabled'
+    endif
+endfunction
+
+let g:autoupdate = 0
+function ToggleAutoupdate()
+    let g:autoupdate = !g:autoupdate
+    if g:autoupdate
+        set autoread
+        augroup FileAutoUpdate
+            au CursorHold,CursorHoldI * checktime
+            au FocusGained,BufEnter * checktime
+        augroup END
+        echo 'Autoupdate enabled'
+    else
+        set noautoread
+        augroup! FileAutoUpdate
+        echo 'Autoupdate disabled'
+    endif
+endfunction
