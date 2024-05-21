@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # vim: set syn=bash ft=bash:
 
 conditional_source() {
@@ -18,17 +18,26 @@ conditional_source "$HOME/.local/.funcrc"
 
 #common variables
 
+conditional_source "$HOME/.local/.commonrc"
+
 if [ -z "$__VARRC_ETC_SOURCED" ]; then
     conditional_source "/etc/.varrc"
     export __VARRC_ETC_SOURCED=1
 fi
+
 conditional_source "$HOME/.varrc"
+
 if [ "$__VARRC_LOCAL_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.local/.varrc"
     export __VARRC_LOCAL_SOURCED="$UID"
 fi
 
-conditional_source "$HOME/.local/.commonrc"
+# if [ -z "$TMUX_LOCK" ]; then
+#     if [ -n "$TMUX" ]; then
+#         export TMUX_LOCK=1
+#     fi
+# fi
+
 run_ssh_agent () {
     local AGENT_ENV="$XDG_RUNTIME_DIR/ssh-agent.env"
 

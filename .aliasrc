@@ -208,30 +208,31 @@ alias de='dc -e 8k -e'
 
 alias sa='screen attach'
 
-alias tm=tmux
-alias etm='exec tmux'
-alias tma='tmux attach'
+alias tmc='/usr/bin/env tmux'
+alias tm='tmux -L sock'
+alias etm='exec tm'
+alias tma='tm attach'
 alias etma='etm attach'
 
-alias tms='tmux list-sessions'
-alias tmq='tmux kill-session'
-alias tmQ='tmux kill-server'
-alias tss='tmux split-window'
-alias tsd='tmux split-window -d'
+alias tms='tm list-sessions'
+alias tmq='tm kill-session'
+alias tmQ='tm kill-server'
+alias tss='tm split-window'
+alias tsd='tm split-window -d'
 
 alias tsw='tsd -h'
 alias tsW='tsd -v'
 alias tsi='tsw -I'
 alias tsI='tsW -I'
 
-alias tsp='tmux select-pane'
-alias tpl='tmux select-pane -l'
+alias tsp='tm select-pane'
+alias tpl='tm select-pane -l'
 
-alias tt2d='tmux split-window -c "$(pwd)"'
+alias tt2d='tm split-window -c "$(pwd)"'
 alias tt2s='tt2d -h'
 alias tt2='tt2d -h;tpl'
 alias tt3='tt2d -h;tt2d -v;tsp -L'
-alias ttw='tmux new-window -c "$(pwd)"'
+alias ttw='tm new-window -c "$(pwd)"'
 
 alias bm='BEMENU_BACKEND=curses bemenu'
 alias nnn='nnn -d'

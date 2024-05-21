@@ -48,12 +48,20 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 conditional_source ~/.p10k.zsh
 
-#my-backward-delete-word () {
-#   local WORDCHARS='~!#$%^*<>?+'
-#   zle backward-delete-word
-#}
-#
-#zle -N my-backward-delete-word
-#bindkey    '\e^?' my-backward-delete-word
-
 eval "$(direnv hook zsh)"
+
+if [ -z "$__CONDA_SETUP" ]; then
+    echo CONDA_SETUP
+    __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
+            . "$HOME/.conda/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/.conda/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    export __CONDA_SETUP=1
+fi
