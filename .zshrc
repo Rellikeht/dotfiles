@@ -51,7 +51,6 @@ conditional_source ~/.p10k.zsh
 eval "$(direnv hook zsh)"
 
 if [ -z "$__CONDA_SETUP" ]; then
-    echo CONDA_SETUP
     __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
