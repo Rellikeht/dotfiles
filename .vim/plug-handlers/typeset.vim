@@ -32,6 +32,28 @@ autocmd FileType groff,troff,nroff setlocal shiftwidth=2 softtabstop=2 tabstop=2
 " https://codeinthehole.com/tips/writing-markdown-in-vim/
 
 let g:vim_markdown_borderless_table = 1
+let g:vim_markdown_folding_disabled = 0
+let g:vim_markdown_folding_level = 0
+let g:vim_markdown_no_default_key_mappings = 0
+
+" Fold heading in with the contents.
+let g:vim_markdown_folding_style_pythonic = 1
+
+" Autoshrink TOCs.
+let g:vim_markdown_toc_autofit = 1
+
+" Indentation for new lists. We don't insert bullets as it doesn't play
+" nicely with `gq` formatting. It relies on a hack of treating bullets
+" as comment characters.
+" See https://github.com/plasticboy/vim-markdown/issues/232
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_auto_insert_bullets = 0
+
+" Filetype names and aliases for fenced code blocks.
+" let g:vim_markdown_fenced_languages = ['php', 'py=python', 'js=javascript', 'bash=sh', 'viml=vim']
+
+" Format strike-through text (wrapped in `~~`).
+let g:vim_markdown_strikethrough = 1
 
 " typst
 let g:typst_pdf_viewer = g:pdf_viewers[0]

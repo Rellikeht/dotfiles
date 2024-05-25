@@ -152,9 +152,11 @@ alias bfn='bat "$_FUNCRC"'
 
 ## single
 alias fzs='fzf +m -e'
+alias fzsp="fzs --preview 'bls {}'"
 
 ## multi
 alias fzf='fzf -m -e'
+alias fzfp="fzf --preview 'bls {}'"
 
 ## fzy
 alias fzy='fzy -l 20'
@@ -509,6 +511,7 @@ alias dal='direnv allow'
 alias dde='direnv deny'
 alias dre='direnv reload'
 alias ded='direnv edit'
+alias dhook='eval "$(direnv hook $SHELL)"'
 
 alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
 # TODO
