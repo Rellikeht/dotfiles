@@ -212,7 +212,7 @@ alias sa='screen attach'
 
 alias tmc='/usr/bin/env tmux'
 alias tm='tmux -L sock'
-alias etm='exec tm'
+alias etm='exec eval tm'
 alias tma='tm attach'
 alias etma='etm attach'
 

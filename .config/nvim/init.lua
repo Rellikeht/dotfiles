@@ -1,9 +1,5 @@
 require("functions")
 
--- This line makes pacman-installed global Arch Linux vim packages work.
--- vim.cmd('silent! source /usr/share/nvim/archlinux.vim')
--- But that isn't needed really
-
 vim.cmd("source ~/.vimrc")
 vim.cmd.colorscheme("elflord")
 
@@ -78,23 +74,30 @@ local modconfigs = {
   "cmp",
   "lspconfig",
   "colors",
-  "other"
+  "other",
 }
 
 for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
 
 -- Proper editorconfig handling
 vim.g.editorconfig = false
-vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPre"}, {
-  pattern = {"*"},
-  callback = function(ev)
-    vim.b.editorconfig = vim.g.editorconfig
-  end
-})
-vim.keymap.set({"n", "v"}, "<Leader>qeg",
-               ":let g:editorconfig=!g:editorconfig<CR>")
-vim.keymap.set({"n", "v"}, "<Leader>qeb",
-               ":let b:editorconfig=!b:editorconfig<CR>")
+vim.api.nvim_create_autocmd(
+  {"BufNewFile", "BufReadPre"}, {
+    pattern = {"*"},
+    callback = function(ev)
+      vim.b.editorconfig = vim.g.editorconfig
+    end,
+  }
+)
+vim.keymap.set(
+  {"n", "v"}, "<Leader>qeg",
+  ":let g:editorconfig=!g:editorconfig<CR>"
+)
+vim.keymap.set(
+  {"n", "v"}, "<Leader>qeb",
+  ":let b:editorconfig=!b:editorconfig<CR>"
+)
 -- Totally unprofessional
-vim.keymap.set({"n", "v"}, "<Leader>qer",
-               "<Leader>qeb<Leader>qeb")
+vim.keymap.set(
+  {"n", "v"}, "<Leader>qer", "<Leader>qeb<Leader>qeb"
+)

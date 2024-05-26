@@ -291,7 +291,8 @@ fzh() {
     touch "$FZH_FILE"
     cat "$FZH_FILE" >"$TEMP"
 
-    local FFC=$(
+    local FFC
+    FFC=$(
         ! find $@ |
             cat "$TEMP" - |
             eval "$FZF"

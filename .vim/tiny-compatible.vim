@@ -1,6 +1,6 @@
 " KEYS
 
-noremap <Space> <C-w>
+map <Space> <C-w>
 " Nope
 noremap gy "*y
 noremap gY "+y
@@ -80,6 +80,7 @@ set relativenumber
 set ignorecase
 set smartcase
 set autoread
+set noautochdir
 
 set autoindent
 set cindent
@@ -99,6 +100,11 @@ set ttimeoutlen=100
 
 " Neovim default setting at time of writing this
 set backspace=indent,eol,start
+
+" ???
+" let &termencoding = &encoding
+set termencoding=utf-8
+set encoding=utf-8
 
 set nomodeline
 set modelines=10

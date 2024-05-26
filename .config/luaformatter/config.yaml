@@ -22,7 +22,7 @@ break_before_table_rb: true
 chop_down_table: true
 chop_down_kv_table: true
 table_sep: ','
-extra_sep_at_table_end: false
+extra_sep_at_table_end: true
 column_table_limit: 64
 spaces_inside_table_braces: false
 break_after_operator: true

@@ -6,12 +6,12 @@
 " Tags
 " TODO
 
-noremap gjf <C-]>
-nnoremap gjb <C-t>
-noremap <silent> gjts :ts<CR>
-noremap <silent> gjth :sts<CR>
-noremap <silent> gjtv :vert sts<CR>
-noremap <silent> gjtl :tags<CR>
+noremap gof <C-]>
+nnoremap gob <C-t>
+noremap <silent> gots :ts<CR>
+noremap <silent> goth :sts<CR>
+noremap <silent> gotv :vert sts<CR>
+noremap <silent> gotl :tags<CR>
 
 " Better tab
 noremap <silent> <Tab>l :<C-u>call SwitchTab(v:count1)<CR>

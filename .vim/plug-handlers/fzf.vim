@@ -141,12 +141,36 @@ command! -bang -nargs=? -complete=dir Fdiffv
             \ fzf_preview_default,
             \ ],
             \ },
-            \ <bang>0))
+            \ <bang>0)
+            \ )
+
+let grep_args = '-EI --line-number'
+
+command! -bang -nargs=* Fgrep
+            \ call fzf#vim#grep(
+            \ "grep ".grep_args."  --dereference-recursive -- "
+            \ .fzf#shellescape(<q-args>),
+            \ fzf#vim#with_preview(),
+            \ <bang>0
+            \ )
+
+" From official instructions
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep '.grep_args.' --recursive -- '.fzf#shellescape(<q-args>),
+  \   fzf#vim#with_preview(
+  \      {'dir': systemlist('git rev-parse --show-toplevel')[0]}
+  \   ), <bang>0)
 
 nnoremap <leader>sds :Fdiffs<CR>
 nnoremap <leader>sdS :Fdiffs<Space>
 nnoremap <leader>sdv :Fdiffv<CR>
 nnoremap <leader>sdV :Fdiffv<Space>
+
+nnoremap <leader>slp :Fgrep<CR>
+nnoremap <leader>slP :Fgrep<Space>
+nnoremap <leader>slg :GGrep<CR>
+nnoremap <leader>slG :GGrep<Space>
 
 " TODO tmux
 " May be too painful

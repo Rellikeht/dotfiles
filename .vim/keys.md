@@ -143,7 +143,7 @@ k, q, u, x, z
 
 # g combinations
 
-Available (useless otherwise): C, G, K, L, j, o, z
+Available (useless otherwise): C, G, K, L, z
 
 Rather useless: I, Q, H, h, r, w
 
@@ -155,7 +155,7 @@ Rather useful: J, M, N, V, m, n
 - a - unicode
 - A - radical.vim
 - x, X - netrw
-- j - tag jumping
+- o - tag jumping
 - y,Y - "\*y,"+y
 - s - vim-slime and similar
 - "+" - v<C-a>
