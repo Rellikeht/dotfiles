@@ -12,6 +12,12 @@
 "endfunction
 
 let g:ret = 'C-m'
+let g:default_tmux_socket = 'default'
+if $TMUX_SOCKET == ""
+    let g:tmux_socket = g:default_tmux_socket
+else
+    let g:tmux_socket = $TMUX_SOCKET
+endif
 
 function Tm(cmd)
     execute 'Tmux '.a:cmd
@@ -107,8 +113,11 @@ nnoremap <silent> <Leader>tq :Tmux kill-pane -t {last} <CR>
 
 let g:slime_target = 'tmux'
 let g:slime_paste_file = tempname()
-let g:slime_default_config =
-            \ {'socket_name':'default', 'target_pane':'{top-right}'}
+let g:slime_default_config = {
+            \ 'socket_name':g:tmux_socket,
+            \ 'target_pane':'{top-right}'
+            \ }
+
 let g:slime_dont_ask_default = 1
 let g:slime_bracketed_paste = 1
 let g:slime_no_mappings = 1

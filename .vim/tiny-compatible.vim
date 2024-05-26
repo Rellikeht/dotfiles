@@ -27,7 +27,10 @@ noremap <silent> <Tab>H :tabm -1<CR>
 noremap <silent> <Tab>J :tabm $<CR>
 noremap <silent> <Tab>K :tabm 0<CR>
 noremap <Tab>e :tab<Space>sb<Space>
-noremap <Tab><Tab> :tab<Space>
+
+" TODO how to setup all this commands properly
+" noremap <Tab><Tab> :tab<Space>
+noremap <C-w>: :tab<Space>
 noremap <Tab><CR> :-tab<Space>
 noremap <silent> <Tab>i :tabs<CR>
 

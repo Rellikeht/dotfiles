@@ -87,6 +87,7 @@ k, q, u, x, z
   - eg - editorconfig toggle globally
   - er - editorconfig reload
   - kw - toggle workman layout help
+  - m - man/help opening location
 
 - <Space> - set hls!
 
@@ -155,7 +156,6 @@ Rather useful: J, M, N, V, m, n
 - a - unicode
 - A - radical.vim
 - x, X - netrw
-- o - tag jumping
 - y,Y - "\*y,"+y
 - s - vim-slime and similar
 - "+" - v<C-a>

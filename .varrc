@@ -36,6 +36,8 @@ fi
 #   #TERM=xterm-24bit
 #fi
 
+export TMUX_SOCKET='sock'
+
 export NIX_REMOTE=daemon
 
 export FZF_DEFAULT_COMMAND='find .'
