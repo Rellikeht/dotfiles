@@ -13,16 +13,19 @@ combinations
 
 They are general purpose, mainly for tab management
 
-## TODO make this nicer
+## TODO
+
+- make this better
+
+<!-- - <Tab> - :tab<Space> -->
 
 ## Tabs
 
-- <Tab> - :tab<Space>
 - e - :tab<Space>sb<Space>
+- E - :-tab<Space>sb<Space>
 - d - :tabclose<CR>
 - h - gT
 - H - :tabm -1<CR>
-- i - :tabs<CR>
 - j - :tablast<CR>
 - J - :tabm $<CR>
 - k - :tabfirst<CR>
@@ -31,19 +34,19 @@ They are general purpose, mainly for tab management
 - L - :tabm +1<CR>
 - m - :tabm<Space>
 - t - :tabedit<Space>
-- T - :tabnew<CR>
+- T - :-tabedit<Space>
+- O - :tabnew<CR>
 
 ## Buffers
 
 - a - :bad<Space>
+- A - :balt<Space>
 - b - :buffer<Space>
 - c - :bmodified<CR>
 - C - :bmodified!<CR>
 - D - :bdelete<CR>
-- f - :files<CR>
 - g - :vsplit<Space>
 - G - :split<Space>
-- I - :buffers<CR>
 - n - :bnext<CR>
 - N - :bnext!<CR>
 - p - :bprevious<CR>
@@ -62,15 +65,8 @@ They are general purpose, mainly for tab management
 - Y - like ;y, but using X11 primary
 - Q - source %
 - M - setlocal modeline!
-- E - :e
-
-## Available
-
-Basically all special characters besides <Tab>
-
-A, B, R, E, O, Q, R, X, Z
-
-k, q, u, x, z
+- i - some info
+- ^, > - resizing windows
 
 # Leader (,) combinations
 

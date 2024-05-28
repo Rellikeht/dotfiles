@@ -78,6 +78,11 @@ noremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
 noremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
 noremap <Leader>qv2 :echo b:bufcomp<CR>
 
+" Matchit
+map <Leader>{ [%
+map <Leader>} ]%
+let b:match_ignorecase = 0
+
 " Yeah, copying from wiki works
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 

@@ -3,20 +3,21 @@ source ~/.vim/functions.vim
 source ~/.vim/keys.vim
 source ~/.vim/files.vim
 
+set nocompatible
 set termguicolors
 set showcmd
 set showmatch
 set incsearch
 set hlsearch
 
-packadd matchit
-runtime macros/matchit.vim
-runtime! ftplugin/man.vim
-
 filetype plugin on
 filetype indent on
 syntax on
 syntax reset
+
+packadd! matchit
+runtime macros/matchit.vim
+runtime! ftplugin/man.vim
 
 if v:progname =~? ".*svi.*"
     colorscheme default

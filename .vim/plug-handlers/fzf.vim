@@ -79,7 +79,9 @@ imap <c-x>w <plug>(fzf-complete-word)
 imap <c-x>p <plug>(fzf-complete-path)
 imap <c-x>l <plug>(fzf-complete-line)
 
+" Not needed really
 nnoremap <leader>sff :FZF<CR>
+
 nnoremap <leader>sph :Files ~<CR>
 nnoremap <leader>spT :Files ~/Templates<CR>
 nnoremap <leader>sp1 :Files ..<CR>
@@ -115,8 +117,7 @@ nnoremap <leader>svj :Jumps<CR>
 nnoremap <leader>gff :GFiles<CR>
 nnoremap <leader>gfs :GFiles?<CR>
 
-" TODO function for generating
-" TODO preview like in other commands
+" TODO preview like in other commands (probably impossible)
 command! -bang -nargs=? -complete=dir Fdiffs
             \ call fzf#run(fzf#wrap({
             \ 'sink': 'diffs',
@@ -173,7 +174,7 @@ nnoremap <leader>slg :GGrep<CR>
 nnoremap <leader>slG :GGrep<Space>
 
 " TODO tmux
-" May be too painful
+" May be too painful or at least not worth
 
 " MORE KEYS
 

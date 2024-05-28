@@ -28,8 +28,8 @@ Plug("norcalli/nvim-colorizer.lua") -- TODO C
 -- MOTION
 
 Plug("easymotion/vim-easymotion") -- TODO A
-Plug("ThePrimeagen/harpoon") -- TODO A
-Plug("nvim-telescope/telescope.nvim") -- TODO A
+Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"}) -- TODO A
+-- Plug("nvim-telescope/telescope.nvim") -- TODO A
 -- Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO A
 
 -- TODO C test that
