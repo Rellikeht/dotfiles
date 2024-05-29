@@ -61,12 +61,14 @@ noremap <Tab>>4 :vertical resize 40<CR>
 noremap <Tab>>5 :vertical resize 50<CR>
 noremap <Tab>>r :vertical resize <Space>
 
-noremap <Tab>>+ :vertical resize +1<CR>
-noremap <Tab>>a :vertical resize +5<CR>
-noremap <Tab>>A :vertical resize +10<CR>
+noremap <Tab>>= :vertical resize +1<CR>
+noremap <Tab>>+ :vertical resize +5<CR>
+noremap <Tab>>a :vertical resize +10<CR>
+noremap <Tab>>A :vertical resize +20<CR>
 noremap <Tab>>- :vertical resize -1<CR>
-noremap <Tab>>d :vertical resize -5<CR>
-noremap <Tab>>D :vertical resize -10<CR>
+noremap <Tab>>_ :vertical resize -5<CR>
+noremap <Tab>>d :vertical resize -10<CR>
+noremap <Tab>>D :vertical resize -20<CR>
 
 noremap <Tab>^1 :resize 10<CR>
 noremap <Tab>^2 :resize 20<CR>
@@ -75,12 +77,14 @@ noremap <Tab>^4 :resize 40<CR>
 noremap <Tab>^5 :resize 50<CR>
 noremap <Tab>^r :resize <Space>
 
-noremap <Tab>^+ :resize +1<CR>
-noremap <Tab>^a :resize +5<CR>
-noremap <Tab>^A :resize +10<CR>
+noremap <Tab>^= :resize +1<CR>
+noremap <Tab>^+ :resize +5<CR>
+noremap <Tab>^a :resize +10<CR>
+noremap <Tab>^A :resize +20<CR>
 noremap <Tab>^- :resize -1<CR>
-noremap <Tab>^d :resize -5<CR>
-noremap <Tab>^D :resize -10<CR>
+noremap <Tab>^_ :resize -5<CR>
+noremap <Tab>^d :resize -10<CR>
+noremap <Tab>^D :resize -20<CR>
 
 
 " Others

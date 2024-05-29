@@ -2,10 +2,16 @@
 " TODO C
 
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
 let g:netrw_menu = 1
+let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
+let g:netrw_hide = 0
+let g:netrw_keepdir = 1
+
+" ???
+let g:netrw_silent = 0
+let g:netrw_fastbrowse = 0
 
 " TODO D steering
 let g:netrw_winsize = 30

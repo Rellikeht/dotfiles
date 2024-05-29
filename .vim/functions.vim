@@ -172,8 +172,8 @@ function ToggleAutoupdate()
     if g:autoupdate
         set autoread
         augroup FileAutoUpdate
-            au CursorHold,CursorHoldI * checktime
-            au FocusGained,BufEnter * checktime
+            autocmd CursorHold,CursorHoldI * checktime
+            autocmd FocusGained,BufEnter * checktime
         augroup END
         echo 'Autoupdate enabled'
     else

@@ -1,3 +1,5 @@
+let mapleader = ','
+
 " Repeat:
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 " https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
@@ -24,14 +26,12 @@ noremap <silent> <Tab>p :<C-u>execute 'bprevious '.v:count1<CR>
 noremap <silent> <Tab>N :<C-u>execute 'bnext! '.v:count1<CR>
 noremap <silent> <Tab>P :<C-u>execute 'bprevious! '.v:count1<CR>
 
+" TODO do this better
+
 " Other <silent> <Tab>
 noremap <silent> <Tab>y :call Xpaste('clipboard')<CR>
 noremap <silent> <Tab>Y :call Xpaste('primary')<CR>
 nnoremap <silent> <Tab>w :We<CR>
-
-" TODO do this better
-
-let mapleader = ','
 
 " General purpose leader mappings
 nnoremap <Leader><Space> :set hls!<CR>
