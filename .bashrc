@@ -5,15 +5,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#VISUAL="emacs -nw"
 PSC='$'
 [ "$(id -u)" -eq 0 ] && PSC='#'
 PS1='\[\033[34m\][ \[\033[1;34m\]\u\[\033[1;36m\]@\[\033[1;31m\]\h\[\033[0;34m\] ]\[\033[1;36m\]:\[\033[1;35m\]\w\[\033[1;33m\]$PSC\[\033[0m\] '
 
+source ~/.commonrc
+
 conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.bash"
 conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.bash"
 
-source ~/.commonrc
 eval "$(direnv hook bash)"
 
 if [ -z "$__CONDA_SETUP" ]; then

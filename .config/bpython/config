@@ -1,5 +1,5 @@
-# vim: set filetype=yaml:
-# kak: filetype=yaml
+# vim: set filetype=toml:
+# kak: filetype=toml
 # This is a standard Python config file.
 # Valid values can be True, False, integer numbers, and strings.
 # Lines starting with # are treated as comments.
@@ -47,8 +47,9 @@ hist_length = 2000
 # Default is to try $EDITOR and $VISUAL, then vi - but if you uncomment
 # the line below that will take precedence
 
-#editor = nvim
-editor = svim
+# TODO nvim server when will be available
+;editor = nvim
+#editor = svim
 
 # Whether to append .py to the filename while saving session to a file.
 # (default: False)
@@ -95,6 +96,7 @@ brackets_completion = True
 # edit_config = F3
 # reverse_incremental_search = M-r
 # incremental_search = M-s
+external_editor = M-e
 
 [curtsies]
 

@@ -284,10 +284,11 @@ ariad() {
 
 # Basically find piped to fzf with history
 fzh() {
-    local FZF="$1"
+    local FZF FZH_FILE TEMP
+    FZF="$1"
     shift
-    local FZH_FILE="$HOME/.$FZF-hist-file"
-    local TEMP=$(mktemp) # This should be helpful
+    FZH_FILE="$HOME/.$FZF-hist-file"
+    TEMP=$(mktemp) # This should be helpful
     touch "$FZH_FILE"
     cat "$FZH_FILE" >"$TEMP"
 

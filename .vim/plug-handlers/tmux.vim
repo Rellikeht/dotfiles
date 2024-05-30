@@ -184,7 +184,7 @@ endfunction
 
 " noremap <silent> gss :SlimeSend<CR>
 noremap <silent> gss :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
-noremap <silent> gsS :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
+noremap <silent> gsa :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
 
 xnoremap gsr <Plug>SlimeRegionSend
 nnoremap gsp <Plug>SlimeParagraphSend

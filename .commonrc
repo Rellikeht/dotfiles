@@ -2,6 +2,8 @@
 # vim: set syn=bash ft=bash:
 
 alias whichp='/usr/bin/env which'
+export HISTSIZE=5000
+export HISTFILESIZE=10000
 
 find_fzf() {
     whichp fzf 2>/dev/null | read FZFPATH
@@ -41,12 +43,6 @@ if [ "$__VARRC_LOCAL_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.local/.varrc"
     export __VARRC_LOCAL_SOURCED="$UID"
 fi
-
-# if [ -z "$TMUX_LOCK" ]; then
-#     if [ -n "$TMUX" ]; then
-#         export TMUX_LOCK=1
-#     fi
-# fi
 
 run_ssh_agent () {
     local AGENT_ENV="$XDG_RUNTIME_DIR/ssh-agent.env"

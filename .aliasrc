@@ -24,11 +24,6 @@ alias progs=' \
 
 alias prgs='progs | sort | uniq'
 
-#alias progs=' \
-#    echo $PATH | \
-#    xargs -d ":" ls 2>/dev/null | \
-#    grep -vE "^(.*:)?$"'
-
 # Coreutils
 
 alias lsn='ls --color=never'
@@ -71,11 +66,9 @@ alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
 
 ## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
-# alias tbd='top --batch --delay 1'
 alias tbd='top -b -d 1'
 alias grepWgrep='its_just_grep --invert-match its_just_grep'
 alias tbg='tbd | grepWgrep | its_just_grep -E'
-# alias tbgm='tbd --scale-task-mem m | grepWgrep | its_just_grep -E'
 alias tbgm='tbd -e m | grepWgrep | its_just_grep -E'
 
 alias mu='mount -o rw,uid=$UID'
@@ -118,6 +111,9 @@ alias svim='svim -f -X'
 alias s=svim
 alias gsv=gsvim
 alias se=exs
+
+alias nvl='nvim --listen'
+alias nvt='nvim --listen'
 
 alias emg=emacs
 alias em='emacs -nw'
@@ -504,6 +500,7 @@ alias nbu='nix build'
 alias nru='nix run'
 alias nst='nix store'
 alias npf='nix profile'
+alias nfl='nix flake'
 
 alias nish='nix-shell'
 alias nist='nix-store'
@@ -517,10 +514,3 @@ alias ded='direnv edit'
 alias dhook='eval "$(direnv hook $SHELL)"'
 
 alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
-# TODO
-# packages shit gets to hard
-# type -f in zsh
-# type in bash
-# in ksh may be even impossible
-# there is also whence
-# crazy shit

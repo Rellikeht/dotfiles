@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+export EDITOR='vim'
+export VISUAL='svim'
+
 # ????
 #better colors for man
 export LESS_TERMCAP_md=$'\e[01;31m'
@@ -45,3 +48,4 @@ export FZF_CTRL_T_COMMAND='find . -mindepth 1 -type d -o -type f -o -type l'
 export FZF_ALT_C_COMMAND='find . -mindepth 1 -type d -o -type l'
 
 export JULIA_SHELL='zsh -i'
+export JULIA_EDITOR='ssvim'
