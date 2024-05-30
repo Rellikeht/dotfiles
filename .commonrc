@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 # vim: set syn=bash ft=bash:
 
+alias whichp='/usr/bin/env which'
+
+find_fzf() {
+    whichp fzf 2>/dev/null | read FZFPATH
+    echo "${FZFPATH%/*/*}"
+}
+
+find_fzf | read FZF_STARTUP_LOCATION && export FZF_STARTUP_LOCATION
+
 conditional_source() {
     [ -f "$1" ] && source "$1"
 }
+
 conditional_source "/etc/.commonrc"
 
 #aliases

@@ -167,12 +167,31 @@ function ProgNameSlime()
     return pname . ' ' . g:ret
 endfunction
 
+autocmd BufEnter,VimEnter * let b:slime_config = slime_default_config
+
+function SlimeOverride_EscapeText_sh(text)
+  let l:lines = slime#common#lines(slime#common#tab_to_spaces(a:text))
+  " return slime#common#unlines(l:lines)
+  return l:lines
+endfunction
+
+" This is all one big shit
+" hardcoding everywhere
+" hard dependency on tmux, because slime isn't flexible enough
+" documentation doesn't help
+
 " Some sending
-noremap gsr <Plug>SlimeRegionSend
-noremap gsp <Plug>SlimeParagraphSend
+
+" noremap <silent> gss :SlimeSend<CR>
+noremap <silent> gss :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
+noremap <silent> gsS :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
+
+xnoremap gsr <Plug>SlimeRegionSend
+nnoremap gsp <Plug>SlimeParagraphSend
 noremap gs: <Plug>SlimeConfig
-noremap <silent> gss :SlimeSend<CR>
-noremap gsl <Plug>SlimeLineSend
+
+nnoremap gsl <Plug>SlimeLineSend
+nnoremap gsm <Plug>SlimeMotionSend
 
 " Clear, exit
 nnoremap <silent> gsc :call SendKeys("C-l")<CR>
@@ -181,7 +200,7 @@ nnoremap <silent> gse :call SendKeys("C-c C-d")<CR>
 " Launching program for currently edited langugage
 nnoremap <silent> gsb :call SendKeys(ProgNameSlime())<CR>
 nnoremap <silent> gsB :call SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
-nnoremap <silent> gsS :call SendKeys(&filetype . ' ' . g:ret)<CR>
+" nnoremap <silent> gsS :call SendKeys(&filetype . ' ' . g:ret)<CR>
 
 " GDB
 " Maybe in the future more debuggers will land here

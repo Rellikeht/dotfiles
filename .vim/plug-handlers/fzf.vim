@@ -36,7 +36,8 @@ let g:fzf_layout = { 'down': g:fzf_percent }
 " It will show on the right with 50% width, but if the width is smaller
 " than 70 columns, it will show above the candidate list
 " let fzf_preview_default = 'right,64%,<70(up,40%)'
-let fzf_preview_default = 'right,64%'
+" let fzf_preview_default = 'right,64%'
+let fzf_preview_default = 'right,55%'
 let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-/']
 
 " " - Window using a Vim command

@@ -48,6 +48,9 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 conditional_source ~/.p10k.zsh
 
+conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.zsh"
+conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.zsh"
+
 eval "$(direnv hook zsh)"
 
 if [ -z "$__CONDA_SETUP" ]; then
