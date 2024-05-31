@@ -479,11 +479,53 @@ fileviewer {*.docx},
 
 " TODO spreadsheets
 
-" For that i would need some better graphical file manager
 " Directories
-"filextype */
-"        \ {View in pcmanfm}
-"        \ pcmanfm %f &,
+filextype */
+        \ pcmanfm %f &,
+        \ pcmanfm %c &,
+        \ ranger %f &,
+        \ ranger %c &,
+
+filextype */
+        \ tar cJf %c.tar.xz %c,
+        \ tar czf %c.tar.gz %c,
+        \ tar cjf %c.tar.bz2 %c,
+        \
+        \ zip -6 -r %c %c,
+        \ zip -9 -r %c %c,
+        \ zip -1 -r %c %c,
+        \ tar cf %c.tar %c,
+        \
+        \ tar cf - %c | xz -9 > %c.tar.xz,
+        \ tar cf - %c | xz -6 > %c.tar.xz,
+        \ tar cf - %c | xz -3 > %c.tar.xz,
+        \ tar cf - %c | xz -0 > %c.tar.xz,
+        \
+        \ tar cf - %c | xz -T0 -9 > %c.tar.xz,
+        \ tar cf - %c | xz -T0 -6 > %c.tar.xz,
+        \ tar cf - %c | xz -T0 -3 > %c.tar.xz,
+        \ tar cf - %c | xz -T0 -0 > %c.tar.xz,
+
+filextype */
+        \ tar cJf %c.tar.xz %c &,
+        \ tar czf %c.tar.gz %c &,
+        \ tar cjf %c.tar.bz2 %c &,
+        \
+        \ zip -6 -r %c %c &,
+        \ zip -9 -r %c %c &,
+        \ zip -1 -r %c %c &,
+        \ tar cf %c.tar %c &,
+        \
+        \ tar cf - %c | xz -9 > %c.tar.xz &,
+        \ tar cf - %c | xz -6 > %c.tar.xz &,
+        \ tar cf - %c | xz -3 > %c.tar.xz &,
+        \ tar cf - %c | xz -0 > %c.tar.xz &,
+        \
+        \ tar cf - %c | xz -T0 -9 > %c.tar.xz &,
+        \ tar cf - %c | xz -T0 -6 > %c.tar.xz &,
+        \ tar cf - %c | xz -T0 -3 > %c.tar.xz &,
+        \ tar cf - %c | xz -T0 -0 > %c.tar.xz &,
+
 
 filetype {*.[1-9]}
     \ man ./%c
@@ -617,10 +659,10 @@ nnoremap s :sort<cr>
 " Toggle visibility of preview window
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
-nmap W <S-Tab>
-qmap W <S-Tab>
-nmap ,w :view<cr><S-Tab>
-qmap ,w <S-Tab>:view<cr>
+map W <S-Tab>
+nmap ,W w<S-Tab>
+qmap ,W <S-Tab>w
+qmap w <S-Tab>
 
 " TODO A gvim
 " Open file in existing instance of gvim

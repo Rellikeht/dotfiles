@@ -501,10 +501,15 @@ alias nru='nix run'
 alias nst='nix store'
 alias npf='nix profile'
 alias nfl='nix flake'
+alias nre='nix repl'
+
+alias npr="nix repl --expr 'import <nixpkgs> {}'"
+alias nur="nix repl --expr 'import <unstable> {}'"
 
 alias nish='nix-shell'
 alias nist='nix-store'
 alias nibu='nix-build'
+alias nich='nix-channel'
 
 alias dst='direnv status'
 alias dal='direnv allow'

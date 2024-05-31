@@ -17,13 +17,8 @@ autocmd FileType haskell,lua,r,markdown,nim setlocal shiftwidth=2 softtabstop=2 
 "autocmd BufNewFile,BufRead *.nim silent! e <afile>
 
 let g:buffmt = 1
-let g:bufcomp = 1
+let g:bufcomp = 1 " ???
 
-" autocmd BufNewFile,BufNew * let b:buffmt = 0
-" autocmd BufNewFile,BufNew *.* let b:buffmt = g:buffmt
-" autocmd BufNewFile,BufNew * let b:bufcomp = g:bufcomp
-
-" ?? that autocommand
 autocmd FileType * let b:buffmt = g:buffmt
 autocmd FileType * let b:bufcomp = g:bufcomp
 
