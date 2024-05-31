@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
 
 lspconfig.lua_ls.setup(
@@ -10,14 +11,22 @@ lspconfig.lua_ls.setup(
 
     settings = {
       Lua = {
+        runtime = {
+          version = "LuaJIT",
+          -- Setup your lua path
+          path = vim.split(package.path, ";"),
+        },
+
         diagnostics = {
           -- Get the language server to recognize the `vim` global
           globals = {"vim", "require"},
         },
+
         workspace = {
           -- Make the server aware of Neovim runtime files
           library = vim.api.nvim_get_runtime_file("", true),
         },
+
         telemetry = {enable = false},
       },
     },

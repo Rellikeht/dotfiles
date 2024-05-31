@@ -74,6 +74,7 @@ local modconfigs = {
   "cmp",
   "lspconfig",
   "colors",
+  "treesitter",
   "other",
 }
 
@@ -84,6 +85,7 @@ vim.g.editorconfig = false
 vim.api.nvim_create_autocmd(
   {"BufNewFile", "BufReadPre"}, {
     pattern = {"*"},
+    ---@diagnostic disable-next-line: unused-local
     callback = function(ev)
       vim.b.editorconfig = vim.g.editorconfig
     end,

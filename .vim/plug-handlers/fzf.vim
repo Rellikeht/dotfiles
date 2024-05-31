@@ -158,11 +158,14 @@ command! -bang -nargs=* Fgrep
 
 " From official instructions
 command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep '.grep_args.' --recursive -- '.fzf#shellescape(<q-args>),
-  \   fzf#vim#with_preview(
-  \      {'dir': systemlist('git rev-parse --show-toplevel')[0]}
-  \   ), <bang>0)
+            \ call fzf#vim#grep(
+            \   'git grep '.grep_args.' --recursive -- '.fzf#shellescape(<q-args>),
+            \   fzf#vim#with_preview(
+            \      {'dir': systemlist('git rev-parse --show-toplevel')[0]}
+            \   ), <bang>0)
+
+command! -bang -nargs=* Ah 
+            \ call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
 
 nnoremap <leader>sds :Fdiffs<CR>
 nnoremap <leader>sdS :Fdiffs<Space>
@@ -173,6 +176,8 @@ nnoremap <leader>slp :Fgrep<CR>
 nnoremap <leader>slP :Fgrep<Space>
 nnoremap <leader>slg :GGrep<CR>
 nnoremap <leader>slG :GGrep<Space>
+nnoremap <leader>slh :Ah<CR>
+nnoremap <leader>slH :Ah<Space>
 
 " TODO tmux
 " May be too painful or at least not worth

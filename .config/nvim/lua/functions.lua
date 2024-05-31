@@ -1,3 +1,5 @@
+---@diagnostic disable: lowercase-global
+
 -- KEYMAPS
 function mkeymap(mode, src, dest, options)
   vim.keymap.set(mode, src, dest, options)
@@ -16,7 +18,7 @@ function vkeymap(src, dest, options)
 end
 
 function commandRep(fn)
-  return function() for i = 1, vim.v.count1 do fn() end end
+  return function() for _ = 1, vim.v.count1 do fn() end end
 end
 
 -- With more typical vim mappings

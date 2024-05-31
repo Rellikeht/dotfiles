@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
 
 local diag_modes = {"n", "v"}

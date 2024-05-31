@@ -124,7 +124,7 @@ endfunction
 
 let g:groff_pdf = 'groff -ktep -T pdf '
 function CompileGroffMs()
-    if get(b:, bufcomp, 0)
+    if get(b:, "bufcomp", 0)
         " TODO maybe another function or parameter, for expand('%:t:r') ↓
         call system(g:groff_pdf.' -ms '.expand('%').' > '.expand('%:r').'.pdf')
     endif

@@ -17,10 +17,7 @@ Plug("windwp/nvim-autopairs")
 
 vim.call("plug#end")
 
-local modconfigs = {
-  "motion",
-  "other",
-}
+local modconfigs = {"motion"}
 
 for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
 
@@ -46,3 +43,11 @@ vim.keymap.set(
 vim.keymap.set(
   {"n", "v"}, "<Leader>qer", "<Leader>qeb<Leader>qeb"
 )
+
+local modes = {"n", "v"}
+
+vim.api.nvim_create_autocmd(
+  {"BufRead", "BufNewFile"},
+  {pattern = "*.md", command = "set syntax=markdown"}
+)
+

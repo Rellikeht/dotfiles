@@ -18,15 +18,12 @@ autocmd FileType nix nnoremap <buffer> <Leader>nlE :NixEdit<CR>
 let g:neoformat_enabled_go = []
 
 " ???
-let g:neoformat_enabled_python = ['ruff', 'autopep8', 'flake8']
-
-" function! neoformat#formatters#python#ruff() abort
-"     return {
-"                 \ 'exe': 'ruff',
-"                 \ 'stdin': 1,
-"                 \ 'args': ['format', '-q', '-'],
-"                 \ }
-" endfunction
+let g:neoformat_enabled_python = [
+            \ 'ruff',
+            \ 'autopep8',
+            \ 'flake8',
+            \ 'docformatter'
+            \ ]
 
 let g:neoformat_enabled_c = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
@@ -38,29 +35,42 @@ autocmd FileType dhall let b:buffmt=0 " :(((
 " done in zig plugin
 "let g:neoformat_enabled_zig = ['zig_fmt']
 
-" Untested
-let g:neoformat_enabled_lua = ['luaformat']
 let g:neoformat_enabled_nim = ['nimpretty']
 let g:neoformat_enabled_shell = ['shfmt', 'topiary']
 let g:neoformat_enabled_zsh = ['shfmt']
 let g:neoformat_enabled_markdown = ['mdformat', 'prettierd', 'prettier']
 
+let g:neoformat_enabled_lua = [
+            \ 'luaformat',
+            \ ]
+            " \ 'luaformatter',
+" let g:neoformat_lua_luaformat = {
+"             \ 'exe': 'lua-format'
+"             \ }
+
+
 " FUCKING YAML
-" let g:neoformat_enabled_yaml = ['google_yamlfmt', 'pyaml', 'prettierd', 'prettier']
-let g:neoformat_enabled_yaml = ['google_yamlfmt', 'yamlfix', 'prettierd', 'prettier']
+let g:neoformat_enabled_yaml = [
+            \ 'google_yamlfmt',
+            \ 'yamlfix',
+            \ 'prettierd',
+            \ 'prettier'
+            \ ]
+" \ 'pyaml'
+"
 " https://github.com/mikefarah/yq
 " https://github.com/opt-nc/yamlfixer
 
 let g:neoformat_markdown_mdformat = {
-        \ 'exe': 'mdformat',
-        \ 'args': ['--number', '--wrap', '64', '-'],
-        \ 'stdin': 1,
-        \ }
+            \ 'exe': 'mdformat',
+            \ 'args': ['--number', '--wrap', '64', '-'],
+            \ 'stdin': 1,
+            \ }
 let g:neoformat_yaml_yamlfix = {
-        \ 'exe': 'yamlfix',
-        \ 'args': ['-c', '~/.vim/plug-handlers/pyproject.toml', '-'],
-        \ 'stdin': 1,
-        \ }
+            \ 'exe': 'yamlfix',
+            \ 'args': ['-c', '~/.vim/plug-handlers/pyproject.toml', '-'],
+            \ 'stdin': 1,
+            \ }
 
 " prettier ???
 let g:neoformat_enabled_json = ['jq', 'clangformat', 'topiary', 'prettierd', 'prettier']
@@ -88,16 +98,16 @@ let b:neoformat_basic_format_retab = 1
 let g:neoformat_only_msg_on_error = 1
 
 augroup fmt
-  autocmd!
-  autocmd BufWritePre *
-              \ if get(b:, buffmt, 0)
-              \| try
-              \| undojoin
-              \| Neoformat
-              \| catch /E790/
-              \| Neoformat
-              \| endtry
-              \| endif
+    autocmd!
+    autocmd BufWritePre *
+                \ if get(b:, "buffmt", 0)
+                \| try
+                \| undojoin
+                \| Neoformat
+                \| catch /E790/
+                \| Neoformat
+                \| endtry
+                \| endif
 augroup END
 
 noremap <silent> <Leader>nf :Neoformat<CR>

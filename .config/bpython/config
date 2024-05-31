@@ -69,6 +69,8 @@ single_undo_time = 2.0
 # Enable autocompletion of brackets and quotes (default: False)
 brackets_completion = True
 
+autocomplete_mode = fuzzy
+
 [keyboard]
 
 # All key bindings are shown commented out with their default binding
@@ -81,8 +83,6 @@ brackets_completion = True
 # save = C-s
 # undo = C-r
 # redo = C-g
-# up_one_line = C-p
-# down_one_line = C-n
 # cut_to_buffer = C-k
 # search = C-o
 # yank_from_buffer = C-y
@@ -96,6 +96,9 @@ brackets_completion = True
 # edit_config = F3
 # reverse_incremental_search = M-r
 # incremental_search = M-s
+
+up_one_line = C-p
+down_one_line = C-n
 external_editor = M-e
 
 [curtsies]
