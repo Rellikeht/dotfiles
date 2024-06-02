@@ -1,0 +1,1 @@
+alias etm='eval tm'

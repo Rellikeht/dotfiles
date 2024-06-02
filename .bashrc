@@ -10,9 +10,13 @@ PSC='$'
 PS1='\[\033[34m\][ \[\033[1;34m\]\u\[\033[1;36m\]@\[\033[1;31m\]\h\[\033[0;34m\] ]\[\033[1;36m\]:\[\033[1;35m\]\w\[\033[1;33m\]$PSC\[\033[0m\] '
 
 source ~/.commonrc
+conditional_source ~/.aliasrc.bash
+conditional_source ~/.funcrc.bash
 
-conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.bash"
-conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.bash"
+if [ -n "$FZF_STARTUP_LOCATION" ]; then
+    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.bash"
+    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.bash"
+fi
 
 eval "$(direnv hook bash)"
 

@@ -195,7 +195,9 @@ nnoremap gsm <Plug>SlimeMotionSend
 
 " Clear, exit
 nnoremap <silent> gsc :call SendKeys("C-l")<CR>
-nnoremap <silent> gse :call SendKeys("C-c C-d")<CR>
+nnoremap <silent> gsq :call SendKeys("C-c C-d")<CR>
+nnoremap <silent> gse :call SendKeys("C-c")<CR>
+nnoremap <silent> gs<cr> :call SendKeys("Enter")<CR>
 
 " Launching program for currently edited langugage
 nnoremap <silent> gsb :call SendKeys(ProgNameSlime())<CR>

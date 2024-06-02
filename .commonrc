@@ -5,12 +5,14 @@ alias whichp='/usr/bin/env which'
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
-find_fzf() {
-    whichp fzf 2>/dev/null | read FZFPATH
-    echo "${FZFPATH%/*/*}"
-}
+if [ -z "$FZF_STARTUP_LOCATION" ]; then
+    find_fzf() {
+        readlink -f $(whichp fzf 2>/dev/null) | read FZFPATH
+        echo "${FZFPATH%/*/*}"
+    }
 
-find_fzf | read FZF_STARTUP_LOCATION && export FZF_STARTUP_LOCATION
+    find_fzf | read FZF_STARTUP_LOCATION && export FZF_STARTUP_LOCATION
+fi
 
 conditional_source() {
     [ -f "$1" ] && source "$1"

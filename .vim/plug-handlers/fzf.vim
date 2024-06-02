@@ -167,6 +167,9 @@ command! -bang -nargs=* GGrep
 command! -bang -nargs=* Ah 
             \ call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
 
+command! -bang -nargs=* Au 
+            \ call fzf#vim#ag(<q-args>, '--unrestricted', fzf#vim#with_preview(), <bang>0)
+
 nnoremap <leader>sds :Fdiffs<CR>
 nnoremap <leader>sdS :Fdiffs<Space>
 nnoremap <leader>sdv :Fdiffv<CR>
@@ -178,6 +181,8 @@ nnoremap <leader>slg :GGrep<CR>
 nnoremap <leader>slG :GGrep<Space>
 nnoremap <leader>slh :Ah<CR>
 nnoremap <leader>slH :Ah<Space>
+nnoremap <leader>slu :Au<CR>
+nnoremap <leader>slU :Au<Space>
 
 " TODO tmux
 " May be too painful or at least not worth

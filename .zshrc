@@ -1,11 +1,12 @@
 # vim: set syn=zsh ft=zsh:
 
-HISTFILE=~/.histfile
-WORDCHARS='%~!?+'
+export HISTFILE=~/.histfile
+export WORDCHARS='%~!?+'
 
-DISABLE_AUTO_UPDATE='true'
-ZSH_AUTOSUGGEST_USE_ASYNC='true'
-POWERLEVEL9K_INSTANT_PROMPT=quiet
+export DISABLE_AUTO_UPDATE='true'
+export ZSH_AUTOSUGGEST_USE_ASYNC='true'
+export POWERLEVEL9K_INSTANT_PROMPT=quiet
+export SAVEHIST=$HISTFILESIZE
 
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
@@ -33,7 +34,8 @@ if [ -z "$__COMPINIT_RUN" ]; then
 fi
 
 source ~/.commonrc
-export SAVEHIST=$HISTFILESIZE
+conditional_source ~/.aliasrc.zsh
+conditional_source ~/.funcrc.zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -47,8 +49,10 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 conditional_source ~/.p10k.zsh
 
-conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.zsh"
-conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.zsh"
+if [ -n "$FZF_STARTUP_LOCATION" ]; then
+    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.zsh"
+    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.zsh"
+fi
 
 eval "$(direnv hook zsh)"
 
