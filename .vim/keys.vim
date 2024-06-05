@@ -84,13 +84,15 @@ map <Leader>} ]%
 let b:match_ignorecase = 0
 
 " Yeah, copying from wiki works
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <Cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<TAB>"
 
 " Not the best, but should work
 noremap <silent> <Leader>;c mCggvG$:w !wc<CR>

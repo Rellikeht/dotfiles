@@ -1,6 +1,8 @@
 " KEYS
 
 map <Space> <C-w>
+map <Space><Space> <C-w><C-w>
+
 " Nope
 noremap gy "*y
 noremap gY "+y
@@ -148,4 +150,4 @@ set termencoding=utf-8
 set encoding=utf-8
 
 set nomodeline
-set modelines=10
+set modelines=5

@@ -319,16 +319,12 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
     \ file %c,
 
 filextype {*.html,*.htm},<text/html>
-        \ luakit %d/%f %i &,
-        \ vimb %f %i &,
+        " \ luakit %d/%f %i &,
         \ cat %f | vimb - %i &,
+        \ vimb %f %i &,
         \ qutebrowser %f %i &,
         \ firefox %f %i &,
-        \ surf %f %i &,
-
-        " \ {Open with surf}
-        " \ {Open with firefox}
-        " \ {Open with firefox}
+        " \ surf %f %i &,
 
 filetype {*.html,*.htm},<text/html>
     \ w3m %f,
