@@ -78,6 +78,9 @@ noremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
 noremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
 noremap <Leader>qv2 :echo b:bufcomp<CR>
 
+noremap <Leader>qen :set relativenumber!<CR>
+noremap <Leader>qeN :set number!<CR>
+
 " Matchit
 map <Leader>{ [%
 map <Leader>} ]%
@@ -100,7 +103,6 @@ noremap <silent> <Leader>;c mCggvG$:w !wc<CR>
 " TODO B running command under cursor
 " TODO C running command in given register (???)
 " TODO C https://youtu.be/w7i4amO_zaE?t=1464
-" TODO D editing file in register
 
 " Run command in register c
 " map <silent> <Leader>;E 'cyy:execute '!' . getreg('c')<CR>

@@ -3,6 +3,10 @@
 export EDITOR='vim'
 export VISUAL='svim'
 
+if [ "$(uname)" = "Linux" ]; then
+    export DISTRO="$(sed -En '/^ID/s/ID=//p' /etc/os-release)"
+fi
+
 # ????
 #better colors for man
 export LESS_TERMCAP_md=$'\e[01;31m'

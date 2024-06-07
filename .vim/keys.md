@@ -82,6 +82,7 @@ They are general purpose, mainly for tab management
   - eb - editorconfig toggle for buffer
   - eg - editorconfig toggle globally
   - er - editorconfig reload
+  - en, eN - line numbering
   - kw - toggle workman layout help
   - m - man/help opening location
 

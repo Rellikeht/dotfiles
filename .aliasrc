@@ -350,6 +350,7 @@ alias pypym="pypy -m"
 
 alias R="R --no-save --no-restore"
 alias Re="R -s -e"
+alias Rc="/usr/bin/env R"
 
 alias gpe='gnuplot -p -e'
 
@@ -366,7 +367,8 @@ alias grh='git reset --hard'
 alias grH='git reset --hard HEAD'
 
 alias gst='git status'
-alias grs='git remote show'
+alias grm='git remote'
+alias grw='git remote show'
 alias gcb='git branch --show-current'
 alias gbl='git branch --list'
 alias glt='git ls-tree'
@@ -404,7 +406,7 @@ alias gsl='git stash list'
 
 ## groff
 alias groff='groff -ktep'
-alias grm='groff -ms'
+alias grs='groff -ms'
 alias gsf='grs -Tpdf'
 
 ## syncthing client
@@ -420,16 +422,6 @@ if [ "$(uname)" = "FreeBSD" ]; then
     alias lf='ls -F'
 
     alias gdiff='gdiff --color=always'
-    alias upg='pkg upgrade'
-    alias pkc='pkg clean'
-    alias ins='pkg install'
-    alias pinf='pkg info'
-    alias pfl='pkg list'
-    alias pls='pkg info -q'
-
-    # TODO
-    alias rmun='pkg autoremove'
-    alias rorp='pkg autoremove'
 
     alias fpr='ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
     grepWgrep | its_just_grep -E'
@@ -444,37 +436,19 @@ if [ "$(uname)" = "FreeBSD" ]; then
     alias progress='doas progress'
     alias gtv='gt -l'
 
-    alias Rc="/usr/local/bin/R"
-
 else
-
-    # TODO Distro select and maybe another
-    # alias file for selection
-    # Checking:
-    # /etc/*-release
-    # lsb_release
-    # /etc/issue
-
     alias lsf='lsn --classify --almost-all \
         --dereference-command-line-symlink-to-dir'
     alias lf='ls --classify'
 
-    alias pc=pcurses
-    alias pa=pacman
-    alias pacman='pacman --color=always'
-    alias paru='paru --color=always'
+    if eval type pacman >/dev/null; then
+        alias pc=pcurses
+        alias pa=pacman
+        alias pacman='pacman --color=always'
+        alias paru='paru --color=always'
+    fi
 
     alias diff='diff --color=always'
-    alias upg='pacman -Syu'
-    alias pkc='pacman -Sc'
-    alias ins='pacman -S'
-    alias pinf='pacman -Qi'
-    alias pfl='pacman -Ql'
-    alias pls='pacman -Q'
-
-    # TODO
-    alias rmun='pacman -Rus $(pacman -Qqtd)'
-    alias rorp='pacman -Rus $(pacman -Qqtd)'
 
     alias fpr='ps axh o rss,pid,state,pcpu,user,cmd | \
     grepWgrep | its_just_grep -E'
@@ -490,8 +464,6 @@ else
     alias wsc='w1 "sensors | egrep -v \"^$\""'
     alias wst='w1c "sensors | grep --color=always °"'
     alias gtv='gt -v'
-
-    alias Rc="/usr/bin/R"
 
 fi
 
