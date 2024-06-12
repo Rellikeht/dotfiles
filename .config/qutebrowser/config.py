@@ -24,7 +24,7 @@ c: ConfigContainer = c
 # QT flags, currently only for hardware acceleration
 config.set(
     "qt.args",
-    [
+    [  # {{{
         "ignore-gpu-blocklist",
         "enable-gpu-rasterization",
         "enable-zero-copy",
@@ -36,7 +36,7 @@ config.set(
         "enable-features=VaapiVideoDecoder",
         "enable-features=VaapiIgnoreDriverChecks",
         "disable-features=UseChromeOSDirectVideoDecoder",
-    ],
+    ],  # }}}
 )
 
 # ============================================================
@@ -78,30 +78,45 @@ config.set("url.start_pages", DEFAULT_SEARX)
 config.set("url.default_page", DEFAULT_SEARX)
 config.set(
     "url.searchengines",
-    {
+    {  # {{{
         "DEFAULT": DEFAULT_SEARX + "/search?q={}",
         "sb": "https://searx.xyz/search?q={}",
         "ps": DEFAULT_SEARX + "/search?q={}&language=pl-PL",
         "pb": "https://searx.xyz/search?q={}&language=pl-PL",
+    }  # }}}
+    | {  # {{{
         "aw": "https://wiki.archlinux.org/index.php?search={}",
         "gw": "https://wiki.gentoo.org/index.php?search={}",
+        "nw": "https://nixos.wiki/index.php?search={}",
         "wc": "https://wikichip.org/wiki?search={}",
+    }  # }}}
+    | {  # {{{
         "ap": "https://archlinux.org/packages/?q={}",
         "au": "https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a",
         "auu": "https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a&outdated=off",
+    }  # }}}
+    | {  # {{{
         "gp": "https://packages.gentoo.org/packages/search?q={}",
         "np": "https://search.nixos.org/packages?size=500&query={}",
         "no": "https://search.nixos.org/options?size=500&query={}",
+    }  # }}}
+    | {  # {{{
         "fp": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=all",
         "fpn": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=name",
         "fpd": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=text",
+    }  # }}}
+    | {  # {{{
         "gh": "https://github.com/search?q={}",
         "sf": "https://sourceforge.net/directory/?clear&q={}",
-        "yt": "https://youtube.com/results?search_query={}",
-        "lb": "https://odysee.com/$/search?q={}",
+    }  # }}}
+    | {  # {{{
         "pp": "https://pypi.org/search/?q={}",
         "jp": "https://juliapackages.com/packages?search={}",
-    },
+    }  # }}}
+    | {  # {{{
+        "yt": "https://youtube.com/results?search_query={}",
+        "lb": "https://odysee.com/$/search?q={}",
+    },  # }}}
 )
 
 # ============================================================
@@ -137,19 +152,23 @@ config.bind(",dH", "open -t qute://history")
 
 config.bind(",s", "config-cycle statusbar.show always never")
 config.bind(",t", "config-cycle tabs.show always never")
-config.bind(",e", 'hint links spawn -d sh -c "wget -O - "{hint-url}" | gsvim -"')
+config.bind(
+    ",e", 'hint links spawn -d sh -c "wget -O - "{hint-url}" | gsvim -"'
+)
 config.bind(",E", 'spawn -d sh -c "wget -O - "{url}" | gsvim -"')
 config.bind(
     ",r",
     'hint links spawn -d sh -c "wget -O - "{hint-url}" | w3m -T text/html -dump | gsvim -"',
 )
 config.bind(
-    ",R", 'spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"'
+    ",R",
+    'spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"',
 )
 config.bind(",v", 'spawn -d vlc "{url}"')
 config.bind(",V", 'hint links spawn -d vlc "{hint-url}"')
 
 combs = [
+    # {{{
     ("M", "gaudio"),
     ("m", "default"),
     ("S", "14"),
@@ -165,12 +184,13 @@ combs = [
     ("B", "hdf"),
     ("f", "fhb"),
     ("F", "fhf"),
-]
+]  # }}}
 
 for key, profile in combs:
     config.bind(f",M{key}", f'spawn -d mpv --profile={profile} "{{url}}"')
     config.bind(
-        f",m{key}", f'hint links spawn -d mpv --profile={profile} "{{hint-url}}"'
+        f",m{key}",
+        f'hint links spawn -d mpv --profile={profile} "{{hint-url}}"',
     )
 
 config.unbind("D", mode="normal")

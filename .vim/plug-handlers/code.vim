@@ -10,6 +10,7 @@ autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType nix nnoremap <buffer> <Leader>nle :NixEdit<CR>
 autocmd FileType nix nnoremap <buffer> <Leader>nlE :NixEdit<CR>
+" autocmd FileType nix setlocal modeline
 
 " neoformat
 
@@ -114,7 +115,11 @@ noremap <silent> <Leader>nf :Neoformat<CR>
 noremap <Leader>nF :Neoformat<Space>
 
 " context
+
 " TODO B sane settings
+" :(
+let g:context_enabled = 0
+
 nnoremap <Leader>qcp :ContextPeek<CR>
 nnoremap <Leader>qct :ContextToggle<CR>
 nnoremap <Leader>qcw :ContextToggleWindow<CR>

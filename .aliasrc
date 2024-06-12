@@ -87,6 +87,14 @@ alias rpo='doas poweroff'
 
 alias sag='ssh-agent'
 alias sad='ssh-add'
+alias sadt='sad -t'
+
+alias sa9='sadt "90m"'
+alias sa2='sadt "2h"'
+alias satd='sadt "1d"'
+alias sath='sadt "12h"'
+alias satw='sadt "1w"'
+
 alias khost="awk '{print \$1}' ~/.ssh/known_hosts | sort | uniq | fzs"
 alias skh='ssh "$(khost)"'
 
@@ -341,12 +349,12 @@ alias opup='opam update && opam upgrade'
 alias openv='eval $(opam env)'
 
 alias pyc='python -c'
-alias pypy='pypy3'
+alias pir='pip --install -r requirements.txt'
 
-alias ipp="pypy/ipython"
-alias ibp="pypy/bpython"
-alias ppip="pypy/pip"
-alias pypym="pypy -m"
+alias pyip="pypy -m ipython"
+alias pybp="pypy -m bpython"
+alias pypip="pypy -m pip"
+alias pypm="pypy -m"
 
 alias R="R --no-save --no-restore"
 alias Re="R -s -e"
