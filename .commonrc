@@ -49,6 +49,10 @@ if [ -z "$SSH_AGENT_TIME" ]; then
     export SSH_AGENT_TIME="90m"
 fi
 
+if ! [ -d "$XDG_RUNTIME_DIR" ]; then
+    export XDG_RUNTIME_DIR="$HOME/.local/run"
+fi
+
 run_ssh_agent () {
     local AGENT_ENV="$XDG_RUNTIME_DIR/ssh-agent.env"
 

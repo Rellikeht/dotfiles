@@ -453,7 +453,7 @@ else
         --dereference-command-line-symlink-to-dir'
     alias lf='ls --classify'
 
-    if eval type pacman >/dev/null; then
+    if eval type pacman >/dev/null 2>/dev/null; then
         alias pc=pcurses
         alias pa=pacman
         alias pacman='pacman --color=always'

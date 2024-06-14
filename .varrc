@@ -3,7 +3,7 @@
 export EDITOR='vim'
 export VISUAL='svim'
 
-if [ "$(uname)" = "Linux" ]; then
+if [ "$(uname)" = "Linux" ] && [ -f /etc/os-release ]; then
     export DISTRO="$(sed -En '/^ID/s/ID=//p' /etc/os-release)"
 fi
 
