@@ -45,17 +45,23 @@ They are general purpose, mainly for tab management
 - c - :bmodified<CR>
 - C - :bmodified!<CR>
 - D - :bdelete<CR>
-- g - :vsplit<Space>
-- G - :split<Space>
 - n - :bnext<CR>
 - N - :bnext!<CR>
 - p - :bprevious<CR>
 - P - :bprevious!<CR>
-- s - :sbprevious<CR>
-- S - :sbnext<CR>
 - U - :bunload<CR>
-- v - :vsplit<CR>:bnext<CR>
-- V - :vsplit<CR>:bprevious<CR>
+
+<!-- - v - :vsplit<CR>:bnext<CR> -->
+
+<!-- - V - :vsplit<CR>:bprevious<CR> -->
+
+<!-- - s - :sbprevious<CR> -->
+
+<!-- - S - :sbnext<CR> -->
+
+<!-- - g - :vsplit<Space> -->
+
+<!-- - G - :split<Space> -->
 
 ## Miscelanous
 

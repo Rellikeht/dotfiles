@@ -43,16 +43,24 @@ noremap <silent> <Tab>N :bnext!<CR>
 noremap <silent> <Tab>P :bprevious!<CR>
 noremap <silent> <Tab>D :bdelete<CR>
 noremap <silent> <Tab>U :bunload<CR>
-noremap <silent> <Tab>s :sbprevious<CR>
-noremap <silent> <Tab>S :sbnext<CR>
-noremap <silent> <Tab>v :vsplit<CR>:bnext<CR>
-noremap <silent> <Tab>V :vsplit<CR>:bprevious<CR>
 noremap <Tab>a :badd<Space>
 noremap <Tab>A :balt<Space>
 noremap <silent> <Tab>c :bmodified<CR>
 noremap <silent> <Tab>C :bmodified!<CR>
-noremap <Tab>g :vsplit<Space>
-noremap <Tab>G :split<Space>
+
+noremap <silent> <Tab>v :vsplit<Space>
+noremap <silent> <Tab>V :vsplit<CR>
+noremap <silent> <Tab>s :split<Space>
+noremap <silent> <Tab>S :split<CR>
+noremap <silent> <Tab>g :botright split<Space>
+noremap <silent> <Tab>G :botright split<CR>
+
+" noremap <silent> <Tab>s :sbprevious<CR>
+" noremap <silent> <Tab>S :sbnext<CR>
+" noremap <silent> <Tab>v :vsplit<CR>:bnext<CR>
+" noremap <silent> <Tab>V :vsplit<CR>:bprevious<CR>
+" noremap <Tab>g :vsplit<Space>
+" noremap <Tab>G :split<Space>
 
 " Windows
 

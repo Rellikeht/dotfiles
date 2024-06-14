@@ -194,14 +194,13 @@ else
     }
 
     wat() {
-        local WTIME COMMAND
-        #if [ -n "$1" ]
+        local WTIME # COMMAND
         if [ "$1" -gt 0 ] 2>/dev/null; then
             WTIME="$1"
             shift
         else
             WTIME=1
-            COMMAND="$@"
+            # COMMAND="$@"
         fi
         watch -n "$WTIME" -d "$@"
     }
@@ -318,4 +317,34 @@ mpp() {
     local PROF="$1"
     shift
     mpv --profile="$PROF" $@
+}
+
+ytdg() {
+    local QUAL FORM
+    if [ -n "$2" ]; then
+        QUAL="$1"
+        shift
+    fi
+    if [ -n "$2" ]; then
+        FORM="$1"
+        shift
+    fi
+    yts -f "ba+bv[height>=$QUAL]/best[height>=$QUAL]$FORM" $@
+}
+
+ytda() {
+    local QUAL FORM LANG
+    if [ -n "$2" ]; then
+        LANG="$1"
+        shift
+    fi
+    if [ -n "$2" ]; then
+        QUAL="$1"
+        shift
+    fi
+    if [ -n "$2" ]; then
+        FORM="$1"
+        shift
+    fi
+    yts -f "ba[language=$LANG]+bv[height>=$1]/best[height>=$1]$FORM" $@
 }

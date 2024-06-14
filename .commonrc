@@ -7,11 +7,10 @@ export HISTFILESIZE=10000
 
 if [ -z "$FZF_STARTUP_LOCATION" ]; then
     find_fzf() {
-        readlink -f $(whichp fzf 2>/dev/null) | read FZFPATH
-        echo "${FZFPATH%/*/*}"
+        readlink -f "$(whichp fzf 2>/dev/null)" | \
+            sed 's#/[^/]*/[^/]*$##'
     }
-
-    find_fzf | read FZF_STARTUP_LOCATION && export FZF_STARTUP_LOCATION
+    export FZF_STARTUP_LOCATION="$(find_fzf)"
 fi
 
 conditional_source() {
