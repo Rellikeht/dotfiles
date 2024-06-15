@@ -45,8 +45,6 @@ fi
 
 export TMUX_SOCKET='sock'
 
-export NIX_REMOTE=daemon
-
 export FZF_DEFAULT_COMMAND='find . -mindepth 1 -type f -o -type l'
 export FZF_CTRL_T_COMMAND='find . -mindepth 1 -type d -o -type f -o -type l'
 export FZF_ALT_C_COMMAND='find . -mindepth 1 -type d -o -type l'

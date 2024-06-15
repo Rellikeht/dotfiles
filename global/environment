@@ -7,3 +7,4 @@ PYTHONDONTWRITEBYTECODE='false'
 _JAVA_AWT_WM_NONREPARENTING='1'
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
 PAGER='less -r'
+NIX_REMOTE=daemon
