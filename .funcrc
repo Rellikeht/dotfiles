@@ -157,7 +157,7 @@ dis() {
 }
 
 bins() {
-    pfl "$@" | grep -E $(echo "$PATH" | sed 's/:/|/g')
+    pkgf "$@" | grep -E $(echo "$PATH" | sed 's/:/|/g')
 }
 
 if [ $(uname) = "FreeBSD" ]; then

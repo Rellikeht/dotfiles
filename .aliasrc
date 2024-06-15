@@ -427,12 +427,14 @@ alias stL='stc --homedir ~/.config/syncthing/'
 
 alias help2man='help2man -N'
 
-# if eval type pacman >/dev/null 2>/dev/null; then
 alias pc=pcurses
 alias pa=pacman
 alias pacman='pacman --color=always'
 alias paru='paru --color=always'
-# fi
+
+if eval type pacman >/dev/null 2>/dev/null; then
+    alias pkgf="pacman -Ql"
+fi
 
 if [ "$(uname)" = "FreeBSD" ]; then
 
@@ -448,13 +450,15 @@ if [ "$(uname)" = "FreeBSD" ]; then
     alias fprh="ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
     numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
-    # it needs script or link for watch program
     # TODO
+    # it needs script or link for watch program
     alias watch=wathcs
     alias updatedb='/usr/libexec/locate.updatedb'
 
     alias progress='doas progress'
     alias gtv='gt -l'
+
+    alias pkgf="pkg list"
 
 else
     alias lsf='lsn --classify --almost-all \
@@ -475,6 +479,11 @@ else
     alias wsc='w1 "sensors | egrep -v \"^$\""'
     alias wst='w1c "sensors | grep --color=always °"'
     alias gtv='gt -v'
+
+    # TODO
+    if eval type apk >/dev/null 2>/dev/null; then
+        alias pkgf="apk show"
+    fi
 
 fi
 

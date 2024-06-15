@@ -21,5 +21,5 @@ nnoremap <silent> <Leader>T :MT<Space>
 
 " others
 
-nnoremap <silent> <Leader>qu :call GeneralUpgrade()<CR>
-nnoremap <silent> <Leader>qP :PlugClean!<CR>
+nnoremap <silent> <Leader>qu :silent! call GeneralUpgrade()<CR>
+nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>

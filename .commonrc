@@ -49,19 +49,25 @@ if [ -z "$SSH_AGENT_TIME" ]; then
     export SSH_AGENT_TIME="90m"
 fi
 
-if ! [ -d "$XDG_RUNTIME_DIR" ]; then
-    export XDG_RUNTIME_DIR="$HOME/.local/run"
-fi
+# if ! [ -d "$XDG_RUNTIME_DIR" ]; then
+#     export XDG_RUNTIME_DIR="$HOME/.local/run"
+# fi
 
 run_ssh_agent() {
-    local AGENT_ENV="$XDG_RUNTIME_DIR/ssh-agent.env"
+    local DIR
+    if [ -n "$XDG_RUNTIME_DIR" ]; then
+        DIR="$XDG_RUNTIME_DIR"
+    else
+        DIR="/run/user/$UID"
+    fi
+    local AGENT_ENV="$DIR/ssh-agent.env"
 
     if ! [ -f "$AGENT_ENV" ]; then
         ssh-agent -t "$SSH_AGENT_TIME" >"$AGENT_ENV"
     fi
 
     if [ ! -f "$SSH_AUTH_SOCK" ]; then
-        source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+        source "$DIR/ssh-agent.env" >/dev/null
     fi
 }
 

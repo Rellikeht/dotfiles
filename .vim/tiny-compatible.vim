@@ -52,17 +52,13 @@ noremap <silent> <Tab>v :vsplit<Space>
 noremap <silent> <Tab>V :vsplit<CR>
 noremap <silent> <Tab>s :split<Space>
 noremap <silent> <Tab>S :split<CR>
-noremap <silent> <Tab>g :botright split<Space>
-noremap <silent> <Tab>G :botright split<CR>
-
-" noremap <silent> <Tab>s :sbprevious<CR>
-" noremap <silent> <Tab>S :sbnext<CR>
-" noremap <silent> <Tab>v :vsplit<CR>:bnext<CR>
-" noremap <silent> <Tab>V :vsplit<CR>:bprevious<CR>
-" noremap <Tab>g :vsplit<Space>
-" noremap <Tab>G :split<Space>
+noremap <silent> <Tab>u :botright split<Space>
+noremap <silent> <Tab>U :botright split<CR>
+noremap <silent> <Tab>g :botright vsplit<Space>
+noremap <silent> <Tab>G :botright vsplit<CR>
 
 " Windows
+" TODO more
 
 noremap <Tab>>1 :vertical resize 10<CR>
 noremap <Tab>>2 :vertical resize 20<CR>
