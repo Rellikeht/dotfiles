@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 
-# Some start
+# {{{ Some start
 alias b1='cd ..'
 alias b2='cd ../..'
 alias b3='cd ../../..'
 alias b4='cd ../../../..'
+# }}}
 
-## Get all possible programs
-
+## {{{ Get all possible programs
 alias progp=' \
     echo $PATH | \
     xargs -d ":" -I{} \
@@ -23,9 +23,9 @@ alias progs=' \
     '
 
 alias prgs='progs | sort | uniq'
+# }}}
 
-# Coreutils
-
+# {{{ Coreutils
 alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
 alias ll='lf -la'
@@ -49,7 +49,9 @@ alias egrep='grep -E'
 alias eg='egrep'
 
 alias rlf='readlink -f'
+# }}}
 
+# {{{ ## Coleagues
 export BAT_LESS_FLAGS='--save-marks --incsearch --ignore-case --wordwrap'
 alias bat='LESS="$BAT_LESS_FLAGS" bat --color always'
 alias batl='bat --language lisp'
@@ -75,16 +77,18 @@ alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
 alias um=umount
 alias rum='doas umount'
+# }}}
 
-# Session
-
+# {{{ Session
 alias sns=sensors
 alias lcs='loginctl suspend'
 alias rb=reboot
 alias po=poweroff
 alias rrb='doas reboot'
 alias rpo='doas poweroff'
+# }}}
 
+# {{{ ssh
 alias sag='ssh-agent'
 alias sad='ssh-add'
 alias sadt='sad -t'
@@ -108,9 +112,9 @@ alias ssh6='ssh "$(cat ~/.ssh/h6)"'
 alias ssh7='ssh "$(cat ~/.ssh/h7)"'
 alias ssh8='ssh "$(cat ~/.ssh/h8)"'
 alias ssh9='ssh "$(cat ~/.ssh/h9)"'
+# }}}
 
-# Text Editors
-
+# {{{ Text Editors
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
 alias mvim='svim -f'
@@ -138,10 +142,9 @@ alias fvc='fe svim'
 alias fv='fed svim'
 alias fkc='fe kak'
 alias fk='fed kak'
+# }}}
 
-alias vifh='vifm -c history'
-
-# Settings
+# {{{ Settings
 alias als='alias | grep'
 alias wb='bins | grep'
 
@@ -151,9 +154,9 @@ alias sal='source "$_ALIASRC"'
 alias sfn='source "$_FUNCRC"'
 alias bal='bat "$_ALIASRC"'
 alias bfn='bat "$_FUNCRC"'
+# }}}
 
-# Fuzzy
-
+# {{{ Fuzzy
 ## single
 alias fzs='fzf +m -e'
 alias fzsp="fzs --preview 'bls {}'"
@@ -202,8 +205,10 @@ alias ffx='fzf | xargs'
 alias fze='prgs | deffuz | sh -s'
 ## fuzzy select program to run
 alias fzr='$(prgs | deffuz)'
+# }}}
 
-# Tools
+# {{{ Tools
+alias vifh='vifm -c history'
 
 # Maybe with stty will be better
 # alias gth='glow -w $(($(tput cols)-4))'
@@ -267,8 +272,9 @@ alias prgc='prg \
     -a diff -a diff3 \
     -a cadaver -a ftp -a ssh -a chezdav -a nmap -a nc \
     '
+# }}}
 
-# Multimedia and web
+# {{{ Multimedia and web
 alias ffmpeg='ffmpeg -hide_banner'
 alias pm=pulsemixer
 alias am=alsamixer
@@ -320,8 +326,9 @@ alias trCC='trr --incomplete-dir "$(readlink -f .)" --download-dir "$(readlink -
 
 alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'
+# }}}
 
-# Languages
+# {{{ Languages
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
 
@@ -365,8 +372,9 @@ alias Re="R -s -e"
 alias Rc="/usr/bin/env R"
 
 alias gpe='gnuplot -p -e'
+# }}}
 
-# git
+# {{{ git
 alias gitp='git --paginate'
 alias gsb='git submodule'
 alias gco='git checkout'
@@ -413,8 +421,11 @@ alias gis='git stash'
 alias gsp='git stash push'
 alias gsg='git stash pop'
 alias gsl='git stash list'
+# }}}
 
-# Other
+# {{{ Other
+alias kbp="~/.kb-plug.sh"
+alias help2man='help2man -N'
 
 ## groff
 alias groff='groff -ktep'
@@ -425,8 +436,7 @@ alias gsf='grs -Tpdf'
 alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
 alias stL='stc --homedir ~/.config/syncthing/'
 
-alias help2man='help2man -N'
-
+## pacman
 alias pc=pcurses
 alias pa=pacman
 alias pacman='pacman --color=always'
@@ -435,9 +445,10 @@ alias paru='paru --color=always'
 if eval type pacman >/dev/null 2>/dev/null; then
     alias pkgf="pacman -Ql"
 fi
+# }}}
 
 if [ "$(uname)" = "FreeBSD" ]; then
-
+    # {{{
     alias lsf='lsn -F --almost-all \
         --dereference-command-line-symlink-to-dir'
     alias lf='ls -F'
@@ -459,8 +470,9 @@ if [ "$(uname)" = "FreeBSD" ]; then
     alias gtv='gt -l'
 
     alias pkgf="pkg list"
-
+    # }}}
 else
+    # {{{
     alias lsf='lsn --classify --almost-all \
         --dereference-command-line-symlink-to-dir'
     alias lf='ls --classify'
@@ -484,10 +496,10 @@ else
     if eval type apk >/dev/null 2>/dev/null; then
         alias pkgf="apk show"
     fi
-
+# }}}
 fi
 
-# ~shitx~ nix
+# {{{ ~shitx~ nix
 alias ncg='nix-collect-garbage -d'
 alias nsh='nix shell'
 alias ndv='nix develop'
@@ -505,12 +517,17 @@ alias nish='nix-shell'
 alias nist='nix-store'
 alias nibu='nix-build'
 alias nich='nix-channel'
+# }}}
 
+# {{{ direnv
 alias dst='direnv status'
 alias dal='direnv allow'
 alias dde='direnv deny'
 alias dre='direnv reload'
 alias ded='direnv edit'
 alias dhook='eval "$(direnv hook $SHELL)"'
+# }}}
 
+# {{{ other
 alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
+# }}}
