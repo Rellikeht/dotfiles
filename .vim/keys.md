@@ -50,18 +50,7 @@ They are general purpose, mainly for tab management
 - p - :bprevious<CR>
 - P - :bprevious!<CR>
 - U - :bunload<CR>
-
-<!-- - v - :vsplit<CR>:bnext<CR> -->
-
-<!-- - V - :vsplit<CR>:bprevious<CR> -->
-
-<!-- - s - :sbprevious<CR> -->
-
-<!-- - S - :sbnext<CR> -->
-
-<!-- - g - :vsplit<Space> -->
-
-<!-- - G - :split<Space> -->
+- TODO
 
 ## Miscelanous
 

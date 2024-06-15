@@ -1,4 +1,4 @@
-# vim: set syn=zsh ft=zsh:
+#!/usr/bin/env zsh
 
 export HISTFILE=~/.histfile
 export WORDCHARS='%~!?+'
@@ -14,7 +14,6 @@ setopt HIST_FCNTL_LOCK
 
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
-# setopt SHARE_HISTORY
 
 bindkey -e
 bindkey \^U backward-kill-line
@@ -52,6 +51,11 @@ conditional_source ~/.p10k.zsh
 if [ -n "$FZF_STARTUP_LOCATION" ]; then
     conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.zsh"
     conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.zsh"
+fi
+
+# Compatibility between tmux and direnv
+if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
+    unset ${$(typeset -m "DIRENV_*")%%=*}
 fi
 
 eval "$(direnv hook zsh)"

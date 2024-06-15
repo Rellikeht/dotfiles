@@ -427,6 +427,13 @@ alias stL='stc --homedir ~/.config/syncthing/'
 
 alias help2man='help2man -N'
 
+# if eval type pacman >/dev/null 2>/dev/null; then
+alias pc=pcurses
+alias pa=pacman
+alias pacman='pacman --color=always'
+alias paru='paru --color=always'
+# fi
+
 if [ "$(uname)" = "FreeBSD" ]; then
 
     alias lsf='lsn -F --almost-all \
@@ -442,6 +449,7 @@ if [ "$(uname)" = "FreeBSD" ]; then
     numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     # it needs script or link for watch program
+    # TODO
     alias watch=wathcs
     alias updatedb='/usr/libexec/locate.updatedb'
 
@@ -453,13 +461,6 @@ else
         --dereference-command-line-symlink-to-dir'
     alias lf='ls --classify'
 
-    if eval type pacman >/dev/null 2>/dev/null; then
-        alias pc=pcurses
-        alias pa=pacman
-        alias pacman='pacman --color=always'
-        alias paru='paru --color=always'
-    fi
-
     alias diff='diff --color=always'
 
     alias fpr='ps axh o rss,pid,state,pcpu,user,cmd | \
@@ -468,8 +469,6 @@ else
     alias fprh="ps axh o rss,pid,state,pcpu,user,cmd | \
     numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
-    #alias w1='watch -n 1 -d'
-    #alias w1c='watch -n 1 -d -c'
     alias w1='wat 1'
     alias w1c='watc 1'
     alias ws='w1 sensors'

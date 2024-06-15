@@ -7,7 +7,7 @@ export HISTFILESIZE=10000
 
 if [ -z "$FZF_STARTUP_LOCATION" ]; then
     find_fzf() {
-        readlink -f "$(whichp fzf 2>/dev/null)" | \
+        readlink -f "$(whichp fzf 2>/dev/null)" |
             sed 's#/[^/]*/[^/]*$##'
     }
     export FZF_STARTUP_LOCATION="$(find_fzf)"
@@ -53,11 +53,11 @@ if ! [ -d "$XDG_RUNTIME_DIR" ]; then
     export XDG_RUNTIME_DIR="$HOME/.local/run"
 fi
 
-run_ssh_agent () {
+run_ssh_agent() {
     local AGENT_ENV="$XDG_RUNTIME_DIR/ssh-agent.env"
 
     if ! [ -f "$AGENT_ENV" ]; then
-        ssh-agent -t "$SSH_AGENT_TIME" > "$AGENT_ENV"
+        ssh-agent -t "$SSH_AGENT_TIME" >"$AGENT_ENV"
     fi
 
     if [ ! -f "$SSH_AUTH_SOCK" ]; then
@@ -66,8 +66,7 @@ run_ssh_agent () {
 }
 
 # Should be good
-if ! pgrep -u "$USER" ssh-agent >/dev/null 2>/dev/null
-then
+if ! pgrep -u "$USER" ssh-agent >/dev/null 2>/dev/null; then
     run_ssh_agent
 fi
 
@@ -80,14 +79,4 @@ export __HM_SESS_VARS_SOURCED= # fuck this
 if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     export __HM_SESS_SOURCED="$UID"
-fi
-
-# Compatibility between tmux and direnv
-if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
-    # unset env vars starting with DIRENV_
-    if [ -n "$ZSH_NAME" ]; then
-        unset ${$(typeset -m "DIRENV_*")%%=*}
-    else
-        unset "${!DIRENV_@}"
-    fi
 fi
