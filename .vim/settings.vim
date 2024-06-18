@@ -43,15 +43,8 @@ noremap <Leader>qfw :call ToggleBuffer('autowrite')<CR>
 noremap <Leader>qfW :let g:vautowrite=!g:vautowrite<CR>
 noremap <Leader>qv4 :echo b:vautowrite<CR>
 
+set cursorline
 noremap <Leader>qec :set cursorline!<CR>
-
-" TODO focus autocmd
-" Good, but not enough now
-" augroup CursorLine
-"   au!
-"   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-"   autocmd WinLeave * setlocal nocursorline
-" augroup END
 
 " TODO
 " let g:autoupdate = 0

@@ -1,15 +1,10 @@
-silent! source ~/.vim/vars.vim
-source ~/.vim/functions.vim
-source ~/.vim/settings.vim
-source ~/.vim/keys.vim
-source ~/.vim/files.vim
-
 set nocompatible
 set termguicolors
 set showcmd
 set showmatch
 set incsearch
 set hlsearch
+set foldmethod=marker
 
 filetype plugin on
 filetype indent on
@@ -20,11 +15,11 @@ packadd! matchit
 runtime macros/matchit.vim
 runtime! ftplugin/man.vim
 
-if v:progname =~? ".*svi.*"
-    colorscheme default
-endif
-
-set foldmethod=marker
+silent! source ~/.vim/vars.vim
+source ~/.vim/functions.vim
+source ~/.vim/settings.vim
+source ~/.vim/keys.vim
+source ~/.vim/files.vim
 source ~/.vim/syntax.vim
 
 if has('win32')

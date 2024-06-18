@@ -1,7 +1,5 @@
-require("functions")
-
 vim.cmd("source ~/.vimrc")
-vim.cmd.colorscheme("elflord")
+require("functions")
 
 local Plug = vim.fn["plug#"]
 local nvim_dir = vim.call("stdpath", "config")
@@ -79,27 +77,4 @@ local modconfigs = {
 }
 
 for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
-
--- Proper editorconfig handling
-vim.g.editorconfig = false
-vim.api.nvim_create_autocmd(
-  {"BufNewFile", "BufReadPre"}, {
-    pattern = {"*"},
-    ---@diagnostic disable-next-line: unused-local
-    callback = function(ev)
-      vim.b.editorconfig = vim.g.editorconfig
-    end,
-  }
-)
-vim.keymap.set(
-  {"n", "v"}, "<Leader>qeg",
-  ":let g:editorconfig=!g:editorconfig<CR>"
-)
-vim.keymap.set(
-  {"n", "v"}, "<Leader>qeb",
-  ":let b:editorconfig=!b:editorconfig<CR>"
-)
--- Totally unprofessional
-vim.keymap.set(
-  {"n", "v"}, "<Leader>qer", "<Leader>qeb<Leader>qeb"
-)
+require("additional")

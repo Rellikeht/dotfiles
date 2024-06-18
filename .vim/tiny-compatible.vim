@@ -113,8 +113,6 @@ nnoremap yae mcggvG$y`c
 
 " SETTINGS
 
-set background=light
-
 " What happens here
 set wildchar=<Tab>
 set wildmode=list:full
@@ -154,10 +152,13 @@ set ttimeoutlen=100
 " Neovim default setting at time of writing this
 set backspace=indent,eol,start
 
-" ???
-" let &termencoding = &encoding
 set termencoding=utf-8
 set encoding=utf-8
 
 set nomodeline
 set modelines=5
+
+" ???
+if v:progname =~? "vim.*"
+    set background=dark
+endif

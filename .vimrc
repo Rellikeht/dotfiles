@@ -31,6 +31,7 @@ if v:progname !~? "^vi"
 
     source ~/.vim/plug-handlers.vim
     source ~/.vim/programming.vim
+    source ~/.vim/colors.vim
 endif
 
 silent! source ~/.vimrc.local

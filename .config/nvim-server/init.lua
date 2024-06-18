@@ -1,7 +1,5 @@
-require("functions")
-
 vim.cmd("source ~/.vimrc")
-vim.cmd.colorscheme("elflord")
+require("functions")
 
 local Plug = vim.fn["plug#"]
 local nvim_dir = vim.call("stdpath", "config")
@@ -20,34 +18,4 @@ vim.call("plug#end")
 local modconfigs = {"motion"}
 
 for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
-
--- Proper editorconfig handling
-vim.g.editorconfig = false
-vim.api.nvim_create_autocmd(
-  {"BufNewFile", "BufReadPre"}, {
-    pattern = {"*"},
-    callback = function(ev)
-      vim.b.editorconfig = vim.g.editorconfig
-    end,
-  }
-)
-
-vim.keymap.set(
-  {"n", "v"}, "<Leader>qeg",
-  ":let g:editorconfig=!g:editorconfig<CR>"
-)
-vim.keymap.set(
-  {"n", "v"}, "<Leader>qeb",
-  ":let b:editorconfig=!b:editorconfig<CR>"
-)
-vim.keymap.set(
-  {"n", "v"}, "<Leader>qer", "<Leader>qeb<Leader>qeb"
-)
-
-local modes = {"n", "v"}
-
-vim.api.nvim_create_autocmd(
-  {"BufRead", "BufNewFile"},
-  {pattern = "*.md", command = "set syntax=markdown"}
-)
-
+require("additional")
