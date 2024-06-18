@@ -113,11 +113,16 @@ nnoremap yae mcggvG$y`c
 
 " SETTINGS
 
+set background=light
+
+" What happens here
 set wildchar=<Tab>
-set wildmode=longest,list,full
+set wildmode=list:full
+set wildoptions=fuzzy,tagfile,pum
 set wildmenu
-set completeopt=menu,menuone,noselect,preview
-set complete=w,b,d,s,i,d,t
+
+set completeopt=menu,menuone,noselect,noinsert,preview
+set complete=w,b,d,s,i,d,t,.,k
 
 set noterse
 set ruler
@@ -126,9 +131,10 @@ set relativenumber
 
 set ignorecase
 set smartcase
-set autoread
 set noautochdir
+set autoread
 
+set formatoptions=tcroqlwn
 set autoindent
 set cindent
 set expandtab

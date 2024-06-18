@@ -530,4 +530,6 @@ alias dhook='eval "$(direnv hook $SHELL)"'
 
 # {{{ other
 alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
+
+alias amm='aft-mtp-mount'
 # }}}

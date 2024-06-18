@@ -1,5 +1,6 @@
 silent! source ~/.vim/vars.vim
 source ~/.vim/functions.vim
+source ~/.vim/settings.vim
 source ~/.vim/keys.vim
 source ~/.vim/files.vim
 
@@ -22,10 +23,8 @@ runtime! ftplugin/man.vim
 if v:progname =~? ".*svi.*"
     colorscheme default
 endif
-set background=light " dark
 
 set foldmethod=marker
-
 source ~/.vim/syntax.vim
 
 if has('win32')

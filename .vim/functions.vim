@@ -9,7 +9,7 @@ function Xpaste(name)
 endfunction
 
 command! -nargs=+ Silent
-            \   execute 'silent <args>'
+            \   execute 'silent! <args>'
             \   | redraw!
 
 command! We write | sleep 500 m | edit
@@ -154,19 +154,18 @@ function GetVisualSelection()
     return join(lines, "\n")
 endfunction
 
-let g:autoread = 0
-function ToggleAutoread()
-    let g:autoread = !g:autoread
-    if g:autoread
-        set autoread
-        echo 'Autoread enabled'
+function ToggleBuffer(name)
+    execute 'let b:v'.a:name.' = !b:v'.a:name
+    if get(b:, 'v'.a:name)
+        execute 'setlocal '.a:name
+        echo a:name.' enabled'
     else
-        set noautoread
-        echo 'Autoread disabled'
+        execute 'setlocal no'.a:name
+        echo a:name.' disabled'
     endif
 endfunction
 
-let g:autoupdate = 0
+" TODO
 function ToggleAutoupdate()
     let g:autoupdate = !g:autoupdate
     if g:autoupdate

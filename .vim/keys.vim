@@ -1,5 +1,3 @@
-let mapleader = ','
-
 " Repeat:
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 " https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
@@ -34,7 +32,6 @@ noremap <silent> <Tab>Y :call Xpaste('primary')<CR>
 nnoremap <silent> <Tab>w :We<CR>
 
 " General purpose leader mappings
-nnoremap <Leader><Space> :set hls!<CR>
 noremap <Leader>;C :!clear<CR><CR>
 noremap <Leader>;l :!ls<CR>
 noremap <Leader>;m :make<CR>
@@ -65,26 +62,9 @@ noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
 " ???
 " map <Leader>;r :!%<CR>
 
-" TODO confirmation maybe?
-noremap <Leader>qkw :call Wmt()<CR>
-noremap <silent> <Leader>qpm :call ToggleManProg()<CR>
-noremap <Leader>qpM :set makeprg=make<CR>
-
-noremap <Leader>qff :let b:buffmt=!b:buffmt<CR>
-noremap <Leader>qfF :let g:buffmt=!g:buffmt<CR>
-noremap <Leader>qv1 :echo b:buffmt<CR>
-
-noremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
-noremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
-noremap <Leader>qv2 :echo b:bufcomp<CR>
-
-noremap <Leader>qen :set relativenumber!<CR>
-noremap <Leader>qeN :set number!<CR>
-
 " Matchit
 map <Leader>{ [%
 map <Leader>} ]%
-let b:match_ignorecase = 0
 
 " Yeah, copying from wiki works
 inoremap <expr> <Cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
