@@ -64,7 +64,7 @@ fi
 
 eval "$(direnv hook zsh)"
 
-if whichp opam >/dev/null 2>/dev/null; then
+if whichp opam >/dev/null 2>/dev/null && [ -f "$HOME/.opam" ]; then
     eval "$(opam env --shell zsh)"
 fi
 
