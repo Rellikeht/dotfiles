@@ -1,10 +1,13 @@
 EDITOR='vim'
 VISUAL='svim'
-JULIA_EDITOR='ssvim'
 LESS='--save-marks --status-column --incsearch --ignore-case --status-col-width=1'
+PAGER='less -r'
+
+JULIA_EDITOR='ssvim'
 ZIG_LOCAL_CACHE_DIR='/tmp/$USER-zig/'
 PYTHONDONTWRITEBYTECODE='false'
+
+NIX_REMOTE=daemon
+
 _JAVA_AWT_WM_NONREPARENTING='1'
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
-PAGER='less -r'
-NIX_REMOTE=daemon

@@ -85,3 +85,4 @@ Templates/**/*
 !Templates/**/*.*
 Templates/**/*.o
 Templates/**/*.so
+!Templates/direnv/*envrc*

@@ -1,0 +1,10 @@
+# vim: set ft=direnv syn=direnv:
+CONDA_ENV="$(sed -En 's/name: (.*)/\1/p' environment.yaml)" # "${PWD##*/}"
+
+# Shitty workaround, but somehow also works
+export CONDA_SHLVL="$((CONDA_SHLVL+1))"
+export CONDA_PREFIX="$PWD"
+export CONDA_DEFAULT_ENV="$CONDA_ENV"
+export CONDA_PROMPT_MODIFIER="($CONDA_DEFAULT_ENV)"
+export XML_CATALOG_FILES="file://$HOME/.conda/envs/$CONDA_DEFAULT_ENV/etc/xml/catalog file:///etc/xml/catalog"
+PATH_add "$HOME/.conda/envs/$CONDA_DEFAULT_ENV/bin"

@@ -32,9 +32,13 @@ if [ -z "$__COMPINIT_RUN" ]; then
     __COMPINIT_RUN=1
 fi
 
-source ~/.commonrc
+if [ -f "$HOME/.commonrc" ]; then
+    source "$HOME/.commonrc"
+fi
+
 conditional_source ~/.aliasrc.zsh
 conditional_source ~/.funcrc.zsh
+conditional_source "$HOME/.local/.zshrc"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -59,6 +63,10 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
 fi
 
 eval "$(direnv hook zsh)"
+
+if whichp opam >/dev/null 2>/dev/null; then
+    eval "$(opam env --shell zsh)"
+fi
 
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"

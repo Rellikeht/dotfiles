@@ -1,0 +1,10 @@
+# vim: set ft=direnv syn=direnv:
+
+if [ -e "$HOME/.conda/etc/profile.d/conda.sh" ]; then
+    source "$HOME/.conda/etc/profile.d/conda.sh"
+elif [ -e /etc/profile.d/conda.sh ]; then
+    source /etc/profile.d/conda.sh
+fi
+
+CONDA_ENV="$(sed -En 's/name: (.*)/\1/p' environment.yaml)" # "${PWD##*/}"
+conda activate "$CONDA_ENV"

@@ -5,7 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source ~/.commonrc
+if [ -f "$HOME/.commonrc" ]; then
+    source "$HOME/.commonrc"
+fi
 
 if ! conditional_source ~/.prompt.bash >/dev/null 2>/dev/null; then
     PSC='$'
@@ -19,6 +21,7 @@ fi
 
 conditional_source ~/.aliasrc.bash
 conditional_source ~/.funcrc.bash
+conditional_source "$HOME/.local/.bashrc"
 
 if [ -n "$FZF_STARTUP_LOCATION" ]; then
     conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.bash"
@@ -32,6 +35,10 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
 fi
 
 eval "$(direnv hook bash)"
+
+if whichp opam >/dev/null 2>/dev/null; then
+    eval "$(opam env --shell bash)"
+fi
 
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup=$("$HOME/.conda/bin/conda" 'shell.bash' 'hook' 2>/dev/null)

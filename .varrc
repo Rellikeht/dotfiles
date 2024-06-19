@@ -4,11 +4,11 @@ export EDITOR='vim'
 export VISUAL='svim'
 
 if [ "$(uname)" = "Linux" ] && [ -f /etc/os-release ]; then
-    export DISTRO="$(sed -En '/^ID/s/ID=//p' /etc/os-release)"
+    DISTRO="$(sed -En '/^ID/s/ID=//p' /etc/os-release)"
+    export DISTRO
 fi
 
-# ????
-#better colors for man
+# better colors for man
 export LESS_TERMCAP_md=$'\e[01;31m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
@@ -16,10 +16,6 @@ export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;32m'
 
-# ?
-#bind  '"\C-\\":"fzf"'
-# export LESS='--save-marks --status-column --incsearch --ignore-case --status-col-width=1'
-# :<
 export LESS='--save-marks --incsearch --ignore-case'
 export PAGER='less -r'
 export MANPAGER=less
@@ -29,6 +25,7 @@ if [ "$__PATH_HOME_SOURCED" != "$UID" ]; then
     export __PATH_HOME_SOURCED="$UID"
 fi
 
+# fuck
 #if [ "$(uname)" = "Linux" ]
 #then
 #    export TERMINFO=/usr/share/terminfo
