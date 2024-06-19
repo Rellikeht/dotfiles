@@ -3,7 +3,7 @@
 map <Space> <C-w>
 map <Space><Space> <C-w><C-w>
 
-" Nope
+" TODO make this work
 noremap gy "*y
 noremap gY "+y
 " noremap gy "*gP
@@ -158,7 +158,6 @@ set encoding=utf-8
 set nomodeline
 set modelines=5
 
-" ???
 if v:progname =~? "vim.*"
     set background=dark
 endif

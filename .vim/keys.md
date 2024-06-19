@@ -11,16 +11,16 @@ combinations
 
 # <Tab> combinations
 
-They are general purpose, mainly for tab management
+- They are general purpose, mainly for tab management
+- List is incomplete
 
 ## TODO
 
 - make this better
 
-<!-- - <Tab> - :tab<Space> -->
-
 ## Tabs
 
+- <Tab> - :tab<Space>
 - e - :tab<Space>sb<Space>
 - E - :-tab<Space>sb<Space>
 - d - :tabclose<CR>
@@ -50,7 +50,6 @@ They are general purpose, mainly for tab management
 - p - :bprevious<CR>
 - P - :bprevious!<CR>
 - U - :bunload<CR>
-- TODO
 
 ## Miscelanous
 

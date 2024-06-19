@@ -22,6 +22,7 @@ source ~/.vim/keys.vim
 source ~/.vim/files.vim
 source ~/.vim/syntax.vim
 
+" ??
 if has('win32')
     set shell=powershell.exe
     set shellxquote=

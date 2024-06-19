@@ -54,9 +54,8 @@ run_ssh_agent() {
     if [ -n "$XDG_RUNTIME_DIR" ]; then
         DIR="$XDG_RUNTIME_DIR"
     else
-        if [ -d "/run/user" ]; then
-            DIR="/run/user/$UID"
-        else
+        DIR="/run/user/$UID"
+        if ! [ -d "/run/user/$UID" ]; then
             return 1
         fi
     fi
