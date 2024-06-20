@@ -52,9 +52,8 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 conditional_source ~/.p10k.zsh
 
-if [ -n "$FZF_STARTUP_LOCATION" ]; then
-    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.zsh"
-    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.zsh"
+if fzf --zsh &>/dev/null; then
+    eval "$(fzf --zsh)"
 fi
 
 # Compatibility between tmux and direnv
@@ -64,7 +63,7 @@ fi
 
 eval "$(direnv hook zsh)"
 
-if whichp opam >/dev/null 2>/dev/null && [ -f "$HOME/.opam" ]; then
+if opam &>/dev/null && [ -f "$HOME/.opam" ]; then
     eval "$(opam env --shell zsh)"
 fi
 

@@ -9,7 +9,7 @@ if [ -f "$HOME/.commonrc" ]; then
     source "$HOME/.commonrc"
 fi
 
-if ! conditional_source ~/.prompt.bash >/dev/null 2>/dev/null; then
+if ! conditional_source ~/.prompt.bash &>/dev/null; then
     PSC='$'
     [ "$(id -u)" -eq 0 ] && PSC='#'
     PS1='\[\033[34m\][\[\033[1;34m\]\u\[\033[1;36m\]@\[\033[1;31m\]\h\[\033[0;34m\]]\[\033[1;36m\]:\[\033[1;35m\]\w\[\033[1;33m\]$PSC\[\033[0m\] '
@@ -23,9 +23,8 @@ conditional_source ~/.aliasrc.bash
 conditional_source ~/.funcrc.bash
 conditional_source "$HOME/.local/.bashrc"
 
-if [ -n "$FZF_STARTUP_LOCATION" ]; then
-    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/completion.bash"
-    conditional_source "$FZF_STARTUP_LOCATION/share/fzf/key-bindings.bash"
+if fzf --bash &>/dev/null; then
+    eval "$(fzf --bash)"
 fi
 
 # Compatibility between tmux and direnv
@@ -36,7 +35,7 @@ fi
 
 eval "$(direnv hook bash)"
 
-if whichp opam >/dev/null 2>/dev/null && [ -f "$HOME/.opam" ]; then
+if whichp opam &>/dev/null && [ -f "$HOME/.opam" ]; then
     eval "$(opam env --shell bash)"
 fi
 

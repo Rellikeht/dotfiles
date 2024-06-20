@@ -5,14 +5,6 @@ alias whichp='/usr/bin/env which'
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
-if [ -z "$FZF_STARTUP_LOCATION" ]; then
-    find_fzf() {
-        readlink -f "$(whichp fzf 2>/dev/null)" |
-            sed 's#/[^/]*/[^/]*$##'
-    }
-    export FZF_STARTUP_LOCATION="$(find_fzf)"
-fi
-
 conditional_source() {
     [ -f "$1" ] && source "$1"
 }
@@ -66,12 +58,12 @@ run_ssh_agent() {
     fi
 
     if [ ! -f "$SSH_AUTH_SOCK" ]; then
-        source "$DIR/ssh-agent.env" >/dev/null
+        source "$AGENT_ENV" >/dev/null
     fi
 }
 
 # Should be good
-if ! pgrep -u "$USER" ssh-agent >/dev/null 2>/dev/null; then
+if ! pgrep -u "$USER" ssh-agent &>/dev/null; then
     run_ssh_agent
 fi
 

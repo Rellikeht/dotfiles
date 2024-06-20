@@ -510,6 +510,14 @@ alias npf='nix profile'
 alias nfl='nix flake'
 alias nre='nix repl'
 
+alias nfu='nix flake update'
+alias nfa='nix flake archive'
+alias nfs='nix flake show'
+
+alias npu='nix profile upgrade'
+alias npa='nix profile upgrade" ".*"'
+alias npl='nix profile list'
+
 alias npr="nix repl --expr 'import <nixpkgs> {}'"
 alias nur="nix repl --expr 'import <unstable> {}'"
 
