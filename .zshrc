@@ -61,11 +61,18 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset ${$(typeset -m "DIRENV_*")%%=*}
 fi
 
-eval "$(direnv hook zsh)"
-
-if opam &>/dev/null && [ -f "$HOME/.opam" ]; then
-    eval "$(opam env --shell zsh)"
+if direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
 fi
+
+opam() {
+    if [ -z "$OPAM_SWITCH_PREFIX" ] &&
+        whichp opam &>/dev/null &&
+        [ -f "$HOME/.opam" ]; then
+        eval "$(/usr/bin/env opam env --shell bash)"
+    fi
+    /usr/bin/env opam $@
+}
 
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
