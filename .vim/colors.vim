@@ -2,8 +2,7 @@
 "   syntax reset
 " endif
 
-if v:progname =~? ".*svi.*"
-    " colorscheme default
+if v:progname =~? "^s\\?v\\(im\\?\\)\\?"
     colorscheme industry
 endif
 

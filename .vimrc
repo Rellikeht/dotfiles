@@ -1,13 +1,9 @@
 source ~/.vim/tiny-compatible.vim
 
-" I have probably the most minimalistic vim possible
-" from Herecura unofficial Arch repository (vim-tiny package),
-" vim compiled with only features i need (binary is
-" called svim for distinction) and neovim (also from repos)
-" as small ide. This config is read by all of them, because
-" some parts are common, so i needed to do this:
+" Configration suited for beeing shared between neovim (nvim), custom compiled 
+" vim / standard vim from repos (vim) and vim-tiny (tvim / vi)
 
-if v:progname !~? "^vi"
+if v:progname =~? "^[sn]\\?v\\(im\\?\\)\\?"
     " and it works, at least now
     source ~/.vim/additional.vim
 
@@ -19,7 +15,7 @@ if v:progname !~? "^vi"
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 
-    if v:progname =~? ".*svi.*"
+    if v:progname =~? "^s?v(im?)?.*"
         call plug#begin('~/.vim/plugged')
         source ~/.vim/svimrc.vim
         source ~/.vim/common-plugins.vim

@@ -158,6 +158,6 @@ set encoding=utf-8
 set nomodeline
 set modelines=5
 
-if v:progname =~? "vim.*"
+if v:progname =~? "^tv\\(im\\?\\)\\?"
     set background=dark
 endif
