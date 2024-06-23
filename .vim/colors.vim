@@ -1,6 +1,5 @@
-
 " if exists("syntax_on")
-" 	syntax reset
+"   syntax reset
 " endif
 
 if v:progname =~? ".*svi.*"
@@ -8,5 +7,5 @@ if v:progname =~? ".*svi.*"
     colorscheme industry
 endif
 
-hi CursorLine ctermbg=237 guibg=#505050 cterm=none gui=none
+hi CursorLine ctermbg=237 guibg=#4a4a4a cterm=none gui=none
 hi CursorLineNr ctermbg=237 guibg=#404040 cterm=none gui=none

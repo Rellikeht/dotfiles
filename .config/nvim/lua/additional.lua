@@ -24,4 +24,4 @@ vim.keymap.set(
   {"n", "v"}, "<Leader>qer", "<Leader>qeb<Leader>qeb"
 )
 
-vim.cmd.highlight("CursorLine", "guibg=#525252")
+vim.cmd.highlight("CursorLine", "guibg=#404040")
