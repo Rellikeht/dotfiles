@@ -15,7 +15,7 @@ if v:progname =~? "^[sn]\\?v\\(im\\?\\)\\?"
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 
-    if v:progname =~? "^s?v(im?)?.*"
+    if v:progname =~? "^s\\?v\\(im\\?\\)\\?"
         call plug#begin('~/.vim/plugged')
         source ~/.vim/svimrc.vim
         source ~/.vim/common-plugins.vim

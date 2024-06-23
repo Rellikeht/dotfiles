@@ -54,6 +54,9 @@ Plug("mfussenegger/nvim-lint") -- TODO this is bad
 Plug("windwp/nvim-autopairs") -- TODO B
 Plug("nvim-treesitter/nvim-treesitter-refactor") -- TODO C
 
+Plug("3rd/image.nvim") -- TODO B
+Plug("benlubas/molten-nvim") -- TODO B
+
 -- :(
 Plug("puremourning/vimspector") -- TODO B
 
@@ -72,6 +75,7 @@ local modconfigs = {
   "cmp",
   "lspconfig",
   "colors",
+  "image",
   "treesitter",
   "other",
 }
