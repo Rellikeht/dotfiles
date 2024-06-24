@@ -1,9 +1,9 @@
 {pkgs ? (import <nixpkgs> {}), ...}: let
-  packages = with pkgs; [
+  nativeBuildInputs = with pkgs; [
   ];
 in
   pkgs.mkShell {
-    inherit packages;
+    packages = nativeBuildInputs;
     phases = [];
     shellHook = ''
     '';
