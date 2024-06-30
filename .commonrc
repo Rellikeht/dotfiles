@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# {{{ HELPERS
+# {{{ helpers
 alias whichp='/usr/bin/env which'
 export HISTSIZE=5000
 export HISTFILESIZE=10000
@@ -10,7 +10,7 @@ conditional_source() {
 }
 # }}}
 
-# {{{ SOURCING
+# {{{ sourcing
 conditional_source "/etc/.commonrc"
 
 #aliases
@@ -40,7 +40,7 @@ if [ "$__VARRC_LOCAL_SOURCED" != "$UID" ]; then
 fi
 # }}}
 
-# {{{ SSH AGENT
+# {{{ ssh agent
 if [ -z "$SSH_AGENT_TIME" ]; then
     export SSH_AGENT_TIME="90m"
 fi
@@ -72,13 +72,7 @@ if ! pgrep -u "$USER" ssh-agent &>/dev/null; then
 fi
 # }}}
 
-# {{{ HOOKS
-if whichp z &>/dev/null; then
-    . "$(whichp z)"
-fi
-# }}}
-
-# {{{ NIX
+# {{{ nix
 if [ "$__NIX_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
     export __NIX_SOURCED="$UID"
@@ -89,4 +83,7 @@ if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     export __HM_SESS_SOURCED="$UID"
 fi
+# }}}
+
+# {{{ other hooks
 # }}}

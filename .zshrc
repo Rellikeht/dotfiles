@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+# {{{ settings
 HISTFILE=~/.histfile
 WORDCHARS='%~!?+'
 
@@ -16,28 +17,20 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt AUTO_CD
 setopt COMPLETE_ALIASES
+# }}}
 
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-
-# # Yeah, because zsh is fucked
-# # there are vicmd and viins, but I don't use them
-# bindkey -M emacs "^[[A" up-line-or-beginning-search
-# bindkey -M emacs "^[[B" down-line-or-beginning-search
-# bindkey -M emacs "^P" up-line-or-beginning-search
-# bindkey -M emacs "^N" down-line-or-beginning-search
+# {{{ bindings
+bindkey -e
+bindkey \^U backward-kill-line
 
 # Ok, zsh is fucked, but multiline commands are also
 bindkey -M emacs "^[[A" history-beginning-search-backward
 bindkey -M emacs "^[[B" history-beginning-search-forward
 bindkey -M emacs "^P" history-beginning-search-backward
 bindkey -M emacs "^N" history-beginning-search-forward
+# }}}
 
-bindkey -e
-bindkey \^U backward-kill-line
-
+# {{{ completion
 # This probably does nothing
 zstyle :compinstall filename '~/.zshrc'
 # zstyle :compinstall filename '/etc/zshrc'
@@ -51,7 +44,9 @@ if [ -z "$__COMPINIT_RUN" ]; then
     compinit
     __COMPINIT_RUN=1
 fi
+# }}}
 
+# {{{ sourcing
 if [ -f "$HOME/.commonrc" ]; then
     source "$HOME/.commonrc"
 fi
@@ -71,18 +66,29 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 conditional_source ~/.p10k.zsh
+# }}}
 
+# {{{ hooks
 if fzf --zsh &>/dev/null; then
     eval "$(fzf --zsh)"
 fi
 
+if direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
+if whichp z.lua &>/dev/null; then
+    eval "$(z.lua --init zsh enhanced once)"
+elif whichp z &>/dev/null; then
+    . "$(whichp z)"
+fi
+# }}}
+
+# {{{ other
+
 # Compatibility between tmux and direnv
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset ${$(typeset -m "DIRENV_*")%%=*}
-fi
-
-if direnv &>/dev/null; then
-    eval "$(direnv hook zsh)"
 fi
 
 opam() {
@@ -94,6 +100,9 @@ opam() {
     /usr/bin/env opam $@
 }
 
+# }}}
+
+# {{{ shit
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
     if [ $? -eq 0 ]; then
@@ -108,3 +117,4 @@ if [ -z "$__CONDA_SETUP" ]; then
     unset __conda_setup
     export __CONDA_SETUP=1
 fi
+# }}}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#
-# ~/.bashrc
-#
+
+# {{{ intro
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -9,19 +9,28 @@ if [ -f "$HOME/.commonrc" ]; then
     source "$HOME/.commonrc"
 fi
 
+# }}}
+
+# {{{ settings
 HISTFILE=~/.bash_history
 HISTCONTROL=ignoredups:erasedups
+
 shopt -s histappend
 shopt -s autocd
 
-bind 'set show-all-if-ambiguous on'
+set show-all-if-ambiguous on
+# }}}
+
+# {{{ bindings
 bind 'TAB:menu-complete'
 
 bind '"[A" history-search-backward'
 bind '"[B" history-search-forward'
 bind '"" history-search-backward'
 bind '"" history-search-forward'
+# }}}
 
+# {{{ sourcing
 if ! conditional_source ~/.prompt.bash &>/dev/null; then
     PSC='$'
     [ "$(id -u)" -eq 0 ] && PSC='#'
@@ -35,19 +44,30 @@ fi
 conditional_source ~/.aliasrc.bash
 conditional_source ~/.funcrc.bash
 conditional_source "$HOME/.local/.bashrc"
+# }}}
 
+# {{{ hooks
 if fzf --bash &>/dev/null; then
     eval "$(fzf --bash)"
 fi
+
+if direnv &>/dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
+if whichp z.lua &>/dev/null; then
+    eval "$(z.lua --init bash enhanced once)"
+elif whichp z &>/dev/null; then
+    . "$(whichp z)"
+fi
+# }}}
+
+# {{{ other
 
 # Compatibility between tmux and direnv
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     # unset env vars starting with DIRENV_
     unset "${!DIRENV_@}"
-fi
-
-if direnv &>/dev/null; then
-    eval "$(direnv hook bash)"
 fi
 
 opam() {
@@ -59,6 +79,9 @@ opam() {
     /usr/bin/env opam $@
 }
 
+# }}}
+
+# {{{ shit
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup=$("$HOME/.conda/bin/conda" 'shell.bash' 'hook' 2>/dev/null)
     if [ $? -eq 0 ]; then
@@ -73,3 +96,4 @@ if [ -z "$__CONDA_SETUP" ]; then
     unset __conda_setup
     export __CONDA_SETUP=1
 fi
+# }}}
