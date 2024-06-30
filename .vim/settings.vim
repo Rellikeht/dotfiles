@@ -46,6 +46,11 @@ noremap <Leader>qv4 :echo b:vautowrite<CR>
 set cursorline
 noremap <Leader>qec :set cursorline!<CR>
 
+let g:autochdir = 0
+" autocmd BufNewFile * let b:autochdir = g:autochdir
+noremap <Leader>qca :call ToggleAutochdir()<CR>
+" noremap <Leader>qcA :let g:autochdir=!g:autochdir<CR>
+
 " TODO
 " let g:autoupdate = 0
 " autocmd FileType * let b:autoupdate = g:autoupdate

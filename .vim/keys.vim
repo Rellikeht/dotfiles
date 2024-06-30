@@ -32,10 +32,15 @@ noremap <silent> <Tab>Y :call Xpaste('primary')<CR>
 nnoremap <silent> <Tab>w :We<CR>
 
 " General purpose leader mappings
-noremap <Leader>;C :!clear<CR><CR>
 noremap <Leader>;l :!ls<CR>
 noremap <Leader>;m :make<CR>
 noremap <Leader>;M :make<Space>
+
+" pwd
+noremap <Leader>;c :silent! lcd %:p:h<CR>
+noremap <Leader>;p :silent! cd %:p:h<CR>
+noremap <Leader>;C :lcd<Space>
+noremap <Leader>;P :cd<Space>
 
 noremap <silent> <C-j> :<C-u>execute 'cn '.v:count1<CR>
 noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
@@ -78,7 +83,7 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<TAB>"
 
 " Not the best, but should work
-noremap <silent> <Leader>;c mCggvG$:w !wc<CR>
+noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
 " TODO B running command under cursor
 " TODO C running command in given register (???)

@@ -45,6 +45,16 @@ vim.keymap.set(
   {noremap = true}
 )
 
+-- WTF IS THAT SHIT
+-- vim.keymap.set(
+--   "i", "<C-g>d", function()
+--     vim.cmd.stopinsert()
+--     vim.lsp.buf.signature_help()
+--     vim.defer_fn(function() vim.cmd.wincmd("w") end, 100)
+--     vim.keymap.set("n", "q", ":close<CR>", {buffer = true})
+--   end
+-- )
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd(
@@ -141,7 +151,8 @@ vim.api.nvim_create_autocmd(
       )
 
       vim.keymap.set(
-        "i", "<C-Space>", vim.lsp.buf.completion, opts
+        -- "i", "<C-Space>", vim.lsp.buf.completion, opts
+        "i", "<C-Space>", vim.lsp.omnifunc, opts
       )
     end,
   }

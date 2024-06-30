@@ -44,8 +44,10 @@ Plug("mfussenegger/nvim-jdtls") -- :(
 -- TODO B (let this not interrupt normal work)
 Plug("dcampos/nvim-snippy")
 
+-- TODO more cmps ?
 Plug("hrsh7th/nvim-cmp")
 Plug("hrsh7th/cmp-nvim-lsp")
+Plug("hrsh7th/cmp-nvim-lsp-signature-help") -- rly?
 Plug("hrsh7th/cmp-nvim-lua")
 
 -- OTHER CODING HELP

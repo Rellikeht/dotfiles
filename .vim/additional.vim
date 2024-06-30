@@ -21,6 +21,7 @@ source ~/.vim/settings.vim
 source ~/.vim/keys.vim
 source ~/.vim/files.vim
 source ~/.vim/syntax.vim
+source ~/.vim/ssh.vim
 
 " ??
 if has('win32')

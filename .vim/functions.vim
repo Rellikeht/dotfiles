@@ -165,6 +165,21 @@ function ToggleBuffer(name)
     endif
 endfunction
 
+function ToggleAutochdir()
+    " let b:autochdir = !b:autochdir
+    let g:autochdir = !g:autochdir
+    if g:autochdir
+        augroup AutoChdir
+            autocmd BufEnter * exe "lcd %:p:h"
+                        " \ exe "lcd %:p:h" | exe "pwd"
+        augroup END
+        echo 'AutoChdir enabled'
+    else
+        augroup! AutoChdir
+        echo 'AutoChdir disabled'
+    endif
+endfunction
+
 " TODO
 function ToggleAutoupdate()
     let g:autoupdate = !g:autoupdate

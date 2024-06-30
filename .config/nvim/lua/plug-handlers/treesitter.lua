@@ -17,6 +17,8 @@ tsconfig.setup(
       "gomod",
       "gowork",
       "scheme",
+      "nim",
+      "nim_format_string",
       "nix",
       "dhall",
       "git_config",

@@ -11,7 +11,10 @@
 # Documentation:
 #   qute://help/configuring.html
 #   qute://help/settings.html
+
 # from typing import Any
+
+# THIS IS FUCKED
 from qutebrowser.config.configfiles import ConfigAPI  # type: ignore
 from qutebrowser.config.config import ConfigContainer  # type: ignore
 
@@ -31,7 +34,7 @@ config.set(
         "enable-vulkan",
         "enable-native-gpu-memory-buffers",
         "disable-gpu-driver-bug-workarounds",
-        "use-gl=egl",
+        # "use-gl=egl",
         "num-raster-threads=4",
         "enable-features=VaapiVideoDecoder",
         "enable-features=VaapiIgnoreDriverChecks",
@@ -39,9 +42,7 @@ config.set(
     ],  # }}}
 )
 
-# ============================================================
-# OTHER SETTINGS
-# ============================================================
+# {{{ OTHER SETTINGS
 
 # Load images automatically in web pages.
 config.set("content.images", True)
@@ -62,6 +63,7 @@ config.set("tabs.background", True)
 config.set("tabs.show", "multiple")
 
 config.set("content.cache.size", 67108864)
+# }}}
 
 # config.set('editor.command',
 #           ['gsvim', '-c', 'normal {line}G{column0}1',
