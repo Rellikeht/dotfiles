@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# vim: set syn=bash ft=bash:
 
+# {{{ HELPERS
 alias whichp='/usr/bin/env which'
 export HISTSIZE=5000
 export HISTFILESIZE=10000
@@ -8,7 +8,9 @@ export HISTFILESIZE=10000
 conditional_source() {
     [ -f "$1" ] && source "$1"
 }
+# }}}
 
+# {{{ SOURCING
 conditional_source "/etc/.commonrc"
 
 #aliases
@@ -36,7 +38,9 @@ if [ "$__VARRC_LOCAL_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.local/.varrc"
     export __VARRC_LOCAL_SOURCED="$UID"
 fi
+# }}}
 
+# {{{ SSH AGENT
 if [ -z "$SSH_AGENT_TIME" ]; then
     export SSH_AGENT_TIME="90m"
 fi
@@ -66,7 +70,15 @@ run_ssh_agent() {
 if ! pgrep -u "$USER" ssh-agent &>/dev/null; then
     run_ssh_agent
 fi
+# }}}
 
+# {{{ HOOKS
+if whichp z &>/dev/null; then
+    . "$(whichp z)"
+fi
+# }}}
+
+# {{{ NIX
 if [ "$__NIX_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
     export __NIX_SOURCED="$UID"
@@ -77,3 +89,4 @@ if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     export __HM_SESS_SOURCED="$UID"
 fi
+# }}}

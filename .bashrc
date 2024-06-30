@@ -1,4 +1,4 @@
-# vim: set syn=bash ft=bash:
+#!/usr/bin/env bash
 #
 # ~/.bashrc
 #
@@ -8,6 +8,19 @@
 if [ -f "$HOME/.commonrc" ]; then
     source "$HOME/.commonrc"
 fi
+
+HISTFILE=~/.bash_history
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+shopt -s autocd
+
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
+bind '"[A" history-search-backward'
+bind '"[B" history-search-forward'
+bind '"" history-search-backward'
+bind '"" history-search-forward'
 
 if ! conditional_source ~/.prompt.bash &>/dev/null; then
     PSC='$'

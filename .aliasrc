@@ -1,13 +1,6 @@
 #!/usr/bin/env sh
 
-# {{{ Some start
-alias b1='cd ..'
-alias b2='cd ../..'
-alias b3='cd ../../..'
-alias b4='cd ../../../..'
-# }}}
-
-## {{{ Get all possible programs
+# {{{ helpers
 alias progp=' \
     echo $PATH | \
     xargs -d ":" -I{} \
@@ -23,9 +16,20 @@ alias progs=' \
     '
 
 alias prgs='progs | sort | uniq'
+
 # }}}
 
-# {{{ Coreutils
+# {{{ some neat things
+alias b1='cd ..'
+alias b2='cd ../..'
+alias b3='cd ../../..'
+alias b4='cd ../../../..'
+
+alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
+alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
+# }}}
+
+# {{{ basic utils
 alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
 alias ll='lf -la'
@@ -48,23 +52,19 @@ alias rgh='rg --hidden'
 alias egrep='grep -E'
 alias eg='egrep'
 
-alias rlf='readlink -f'
-# }}}
+alias zl='z -l | sort -nr'
+alias zr='z -l'
 
-# {{{ ## Coleagues
-export BAT_LESS_FLAGS='--save-marks --incsearch --ignore-case --wordwrap'
 alias bat='LESS="$BAT_LESS_FLAGS" bat --color always'
 alias batl='bat --language lisp'
 alias less='less --ignore-case' # --raw-control-chars
 alias les='less --quit-if-one-screen --raw-control-chars'
 
-alias sb=sbase-box
-alias bb=busybox
 alias dash='dash -E'
 
+alias rlf='readlink -f'
 alias dh='du -sh'
 alias ddate='date "+%d.%m.%Y"'
-alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
 
 ## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
@@ -73,13 +73,18 @@ alias grepWgrep='its_just_grep --invert-match its_just_grep'
 alias tbg='tbd | grepWgrep | its_just_grep -E'
 alias tbgm='tbd -e m | grepWgrep | its_just_grep -E'
 
+# }}}
+
+# {{{ mounts
 alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
 alias um=umount
 alias rum='doas umount'
+alias amm='aft-mtp-mount'
+
 # }}}
 
-# {{{ Session
+# {{{ session
 alias sns=sensors
 alias lcs='loginctl suspend'
 alias rb=reboot
@@ -114,7 +119,7 @@ alias ssh8='ssh "$(cat ~/.ssh/h8)"'
 alias ssh9='ssh "$(cat ~/.ssh/h9)"'
 # }}}
 
-# {{{ Text Editors
+# {{{ editors
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
 alias mvim='svim -f'
@@ -144,19 +149,21 @@ alias fkc='fe kak'
 alias fk='fed kak'
 # }}}
 
-# {{{ Settings
+# {{{ settings
 alias als='alias | grep'
 alias wb='bins | grep'
 
-_ALIASRC="$HOME/.aliasrc"
-_FUNCRC="$HOME/.funcrc"
-alias sal='source "$_ALIASRC"'
-alias sfn='source "$_FUNCRC"'
-alias bal='bat "$_ALIASRC"'
-alias bfn='bat "$_FUNCRC"'
+_aliasrc="$home/.aliasrc"
+_funcrc="$home/.funcrc"
+alias sal='source "$_aliasrc"'
+alias sfn='source "$_funcrc"'
+alias bal='bat "$_aliasrc"'
+alias bfn='bat "$_funcrc"'
 # }}}
 
-# {{{ Fuzzy
+# {{{ fuzzy
+# TODO clean this section
+
 ## single
 alias fzs='fzf +m -e'
 alias fzsp="fzs --preview 'bls {}'"
@@ -205,12 +212,17 @@ alias ffx='fzf | xargs'
 alias fze='prgs | deffuz | sh -s'
 ## fuzzy select program to run
 alias fzr='$(prgs | deffuz)'
+
+# TODO more of that maybe
+alias hfz="z -l | sort | awk '{print \$2}' | fzs"
+alias hcd='cd "$(hfz)"'
+
 # }}}
 
-# {{{ Tools
+# {{{ tooling
 alias vifh='vifm -c history'
 
-# Maybe with stty will be better
+# maybe with stty will be better
 # alias gth='glow -w $(($(tput cols)-4))'
 alias gth='glow -w $(($(tput cols)-2))'
 
@@ -220,20 +232,20 @@ alias de='dc -e 8k -e'
 alias sa='screen attach'
 
 alias tmc='/usr/bin/env tmux'
-alias tm='tmux -L "$TMUX_SOCKET"'
+alias tm='tmux -l "$tmux_socket"'
 alias tma='tm attach'
 alias etma='etm attach'
 
 alias tms='tm list-sessions'
 alias tmq='tm kill-session'
-alias tmQ='tm kill-server'
+alias tmq='tm kill-server'
 alias tss='tm split-window'
 alias tsd='tm split-window -d'
 
 alias tsw='tsd -h'
-alias tsW='tsd -v'
-alias tsi='tsw -I'
-alias tsI='tsW -I'
+alias tsw='tsd -v'
+alias tsi='tsw -i'
+alias tsi='tsw -i'
 
 alias tsp='tm select-pane'
 alias tpl='tm select-pane -l'
@@ -241,10 +253,10 @@ alias tpl='tm select-pane -l'
 alias tt2d='tm split-window -c "$(pwd)"'
 alias tt2s='tt2d -h'
 alias tt2='tt2d -h;tpl'
-alias tt3='tt2d -h;tt2d -v;tsp -L'
+alias tt3='tt2d -h;tt2d -v;tsp -l'
 alias ttw='tm new-window -c "$(pwd)"'
 
-alias bm='BEMENU_BACKEND=curses bemenu'
+alias bm='bemenu_backend=curses bemenu'
 alias nnn='nnn -d'
 
 alias xcc='xclip -i -selection clipboard'
@@ -255,7 +267,7 @@ alias plci='plocate -i'
 alias rlc='plocate -r'
 alias rlci='plocate -ir'
 alias prr='prime-run'
-alias prg='progress -M -W 1'
+alias prg='progress -m -w 1'
 alias prgc='prg \
     -a ffmpeg -a ebook-convert \
     -a yt-dlp -a youtube-dl -a you-get \
@@ -274,7 +286,7 @@ alias prgc='prg \
     '
 # }}}
 
-# {{{ Multimedia and web
+# {{{ multimedia and web
 alias ffmpeg='ffmpeg -hide_banner'
 alias pm=pulsemixer
 alias am=alsamixer
@@ -328,22 +340,22 @@ alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'
 # }}}
 
-# {{{ Languages
+# {{{ programming
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
 
-alias jlE='julia -e'
+alias jle='julia -e'
 alias juliac='julia --startup-file=no'
 alias jle='juliac -e'
-alias jldaemon="juliac -t auto -O3 -e 'using DaemonMode;serve(async=true)'"
-alias jlfast="juliac -O0 -g0 --compile=min --check-bounds=no --color=no --banner=no"
-alias jlfclient="jlfast -e 'using DaemonMode;runargs()'"
-alias jlclient="jlfast -e 'using DaemonMode;runexpr.(ARGS)'"
+alias jldaemon="juliac -t auto -o3 -e 'using daemonmode;serve(async=true)'"
+alias jlfast="juliac -o0 -g0 --compile=min --check-bounds=no --color=no --banner=no"
+alias jlfclient="jlfast -e 'using daemonmode;runargs()'"
+alias jlclient="jlfast -e 'using daemonmode;runexpr.(args)'"
 alias jld=jldaemon
 alias jlf=jlfclient
 alias jlc=jlclient
 
-alias jlservdaemon="juliac -t auto -O3 -e 'using DaemonMode;serve(3210,async=true)'"
+alias jlservdaemon="juliac -t auto -o3 -e 'using daemonmode;serve(3210,async=true)'"
 
 alias nimm='hm nim --fullhelp'
 alias nimh='nim --fullhelp | less'
@@ -367,9 +379,9 @@ alias pybp="pypy -m bpython"
 alias pypip="pypy -m pip"
 alias pypm="pypy -m"
 
-alias R="R --no-save --no-restore"
-alias Re="R -s -e"
-alias Rc="/usr/bin/env R"
+alias r="r --no-save --no-restore"
+alias re="r -s -e"
+alias rc="/usr/bin/env r"
 
 alias gpe='gnuplot -p -e'
 # }}}
@@ -423,18 +435,18 @@ alias gsg='git stash pop'
 alias gsl='git stash list'
 # }}}
 
-# {{{ Other
+# {{{ other
 alias kbp="~/.kb-plug.sh"
-alias help2man='help2man -N'
+alias help2man='help2man -n'
 
 ## groff
 alias groff='groff -ktep'
 alias grs='groff -ms'
-alias gsf='grs -Tpdf'
+alias gsf='grs -tpdf'
 
 ## syncthing client
 alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
-alias stL='stc --homedir ~/.config/syncthing/'
+alias stl='stc --homedir ~/.config/syncthing/'
 
 ## pacman
 alias pc=pcurses
@@ -443,12 +455,11 @@ alias pacman='pacman --color=always'
 alias paru='paru --color=always'
 
 if eval type pacman >/dev/null 2>/dev/null; then
-    alias pkgf="pacman -Ql"
+    alias pkgf="pacman -ql"
 fi
 # }}}
 
-if [ "$(uname)" = "FreeBSD" ]; then
-    # {{{
+if [ "$(uname)" = "FreeBSD" ]; then # {{{
     alias lsf='lsn -F --almost-all \
         --dereference-command-line-symlink-to-dir'
     alias lf='ls -F'
@@ -471,8 +482,8 @@ if [ "$(uname)" = "FreeBSD" ]; then
 
     alias pkgf="pkg list"
     # }}}
-else
-    # {{{
+
+else # {{{
     alias lsf='lsn --classify --almost-all \
         --dereference-command-line-symlink-to-dir'
     alias lf='ls --classify'
@@ -496,8 +507,8 @@ else
     if eval type apk >/dev/null 2>/dev/null; then
         alias pkgf="apk show"
     fi
-# }}}
 fi
+# }}}
 
 # {{{ ~shitx~ nix
 alias ncg='nix-collect-garbage -d'
@@ -533,11 +544,11 @@ alias dal='direnv allow'
 alias dde='direnv deny'
 alias dre='direnv reload'
 alias ded='direnv edit'
-alias dhook='eval "$(direnv hook $SHELL)"'
+alias dhook='eval "$(direnv hook $shell)"'
 # }}}
 
 # {{{ other
-alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
+alias sb=sbase-box
+alias bb=busybox
 
-alias amm='aft-mtp-mount'
 # }}}

@@ -1,10 +1,6 @@
-#!/bin/bash
-# vim: set syn=bash ft=bash:
+#!/usr/bin/env bash
 
-# ============================================================
-# 						HELPERS
-# ============================================================
-
+# {{{ helpers
 dir_arg() {
     if [ -z "$1" ]; then
         echo "."
@@ -42,24 +38,9 @@ noerr() {
 silent() {
     noerr "$@" >/dev/null
 }
+# }}}
 
-# TODO ??
-#dirf () {
-#	local D
-#	D=$(dir_arg "$1")
-#	noerr find_system_special "$D" -maxdepth 2 -type d -a \
-#		-regex "${D%/}(/[^.][^/]*)*" | \
-#		fzy
-#}
-#
-#alias dirfp='dirf ..'
-
-#alias cf='cd $(dirf)'
-#alias cfp='cd $(dirfp)'
-
-# ============================================================
-# 						MAIN
-# ============================================================
+# {{{ important stuff
 
 lh() {
     if [ -n "$1" ]; then
@@ -89,24 +70,14 @@ cdll() {
     ll
 }
 
-maxe() {
-    if [ -n "$2" ]; then
-        cmds="$2"
-        prec="$1"
-    else
-        cmds="$1"
-        prec=20
-    fi
-    str=$(echo -n "$cmds" | sed -z 's/[^;$\n]$/\0;/')
-    maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" |
-        sed -z 's/load[^\n]*\n[^\n]*\n//g' |
-        grep -E '^[ 	]|\$|b0$|]$'
+dis() {
+    silent "$@" &
+    disown
 }
 
-gple() {
-    gpe "plot '$1' using $2 w l"
-}
+# }}}
 
+# {{{ editors
 edt() {
     if [ -n "$2" ]; then
         $1 "$@"
@@ -150,18 +121,9 @@ fe() {
 fed() {
     fec "$1"
 }
+# }}}
 
-dis() {
-    silent "$@" &
-    disown
-}
-
-bins() {
-    pkgf "$@" | grep -E $(echo "$PATH" | sed 's/:/|/g')
-}
-
-if [ $(uname) = "FreeBSD" ]; then
-
+if [ $(uname) = "FreeBSD" ]; then # {{{
     find_system_special() {
         find -E "$@" # TODO
     }
@@ -183,8 +145,8 @@ if [ $(uname) = "FreeBSD" ]; then
         #rm "$F"
         help2man $@ | mandoc | less
     }
-
-else
+    # }}}
+    else# {{{
 
     find_system_special() {
         local D
@@ -215,17 +177,10 @@ else
     hm() {
         help2man $@ | man /dev/stdin
     }
-
 fi
+# }}}
 
-hms() {
-    hm --no-discard-stderr $@
-}
-
-rlw() {
-    readlink -f "$(/usr/bin/env which "$1")"
-}
-
+# {{{ find
 fnd() {
     find_command -name '*' $@
 }
@@ -257,18 +212,23 @@ fndse() {
 fndre() {
     find_command -regex '' $@
 }
+# }}}
 
-ariad() {
-    local FILE
-
-    if [ -f "$1" ]; then
-        FILE="$(pwd)/$1"
-    else
-        FILE="$1"
-    fi
-
-    aria -D -d "$(pwd)" "$FILE" $@
+# {{{ nice additions
+hms() {
+    hm --no-discard-stderr $@
 }
+
+rlw() {
+    readlink -f "$(/usr/bin/env which "$1")"
+}
+
+bins() {
+    pkgf "$@" | grep -E $(echo "$PATH" | sed 's/:/|/g')
+}
+# }}}
+
+# {{{ fzf
 
 # Basically find piped to fzf with history
 fzh() {
@@ -296,6 +256,23 @@ fzh() {
     echo "$FFC"
 }
 
+# TODO ??
+#dirf () {
+#	local D
+#	D=$(dir_arg "$1")
+#	noerr find_system_special "$D" -maxdepth 2 -type d -a \
+#		-regex "${D%/}(/[^.][^/]*)*" | \
+#		fzy
+#}
+#
+#alias dirfp='dirf ..'
+
+#alias cf='cd $(dirf)'
+#alias cfp='cd $(dirfp)'
+
+# }}}
+
+# {{{ multimedia
 mps() {
     local START="$1"
     shift
@@ -337,3 +314,36 @@ ytda() {
     fi
     yts -f "ba[language=$LANG]+bv[height>=$1]/best[height>=$1]$FORM" $@
 }
+# }}}
+
+# {{{ random stuff
+maxe() {
+    if [ -n "$2" ]; then
+        cmds="$2"
+        prec="$1"
+    else
+        cmds="$1"
+        prec=20
+    fi
+    str=$(echo -n "$cmds" | sed -z 's/[^;$\n]$/\0;/')
+    maxima --very-quiet --batch-string="fpprec:$prec \$ fpprintprec:$prec \$ $str quit();" |
+        sed -z 's/load[^\n]*\n[^\n]*\n//g' |
+        grep -E '^[ 	]|\$|b0$|]$'
+}
+
+gple() {
+    gpe "plot '$1' using $2 w l"
+}
+
+ariad() {
+    local FILE
+
+    if [ -f "$1" ]; then
+        FILE="$(pwd)/$1"
+    else
+        FILE="$1"
+    fi
+
+    aria -D -d "$(pwd)" "$FILE" $@
+}
+# }}}

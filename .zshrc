@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
-export HISTFILE=~/.histfile
-export WORDCHARS='%~!?+'
+HISTFILE=~/.histfile
+WORDCHARS='%~!?+'
 
-export DISABLE_AUTO_UPDATE='true'
-export ZSH_AUTOSUGGEST_USE_ASYNC='true'
+DISABLE_AUTO_UPDATE='true'
+ZSH_AUTOSUGGEST_USE_ASYNC='true'
 export POWERLEVEL9K_INSTANT_PROMPT=quiet
-export SAVEHIST=$HISTFILESIZE
+SAVEHIST=$HISTFILESIZE
 
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
@@ -14,6 +14,26 @@ setopt HIST_FCNTL_LOCK
 
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
+setopt AUTO_CD
+setopt COMPLETE_ALIASES
+
+# autoload -U up-line-or-beginning-search
+# autoload -U down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+
+# # Yeah, because zsh is fucked
+# # there are vicmd and viins, but I don't use them
+# bindkey -M emacs "^[[A" up-line-or-beginning-search
+# bindkey -M emacs "^[[B" down-line-or-beginning-search
+# bindkey -M emacs "^P" up-line-or-beginning-search
+# bindkey -M emacs "^N" down-line-or-beginning-search
+
+# Ok, zsh is fucked, but multiline commands are also
+bindkey -M emacs "^[[A" history-beginning-search-backward
+bindkey -M emacs "^[[B" history-beginning-search-forward
+bindkey -M emacs "^P" history-beginning-search-backward
+bindkey -M emacs "^N" history-beginning-search-forward
 
 bindkey -e
 bindkey \^U backward-kill-line
