@@ -1,25 +1,36 @@
 #!/usr/bin/env zsh
 
 # {{{ settings
-HISTFILE=~/.histfile
-WORDCHARS='%~!?+'
 
-DISABLE_AUTO_UPDATE='true'
-ZSH_AUTOSUGGEST_USE_ASYNC='true'
-export POWERLEVEL9K_INSTANT_PROMPT=quiet
+HISTFILE=~/.histfile
 SAVEHIST=$HISTFILESIZE
 
+# For deleting words to work acceptably
+WORDCHARS='%~!?+'
+
+# Perf improvement I guess
+DISABLE_AUTO_UPDATE='true'
+ZSH_AUTOSUGGEST_USE_ASYNC='true'
+
+# For p10k to complain less
+export POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+# History options
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_FCNTL_LOCK
-
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
-setopt AUTO_CD
+
+# For z.sh completion to work properly
 setopt COMPLETE_ALIASES
+
+setopt AUTO_CD
+
 # }}}
 
 # {{{ bindings
+
 bindkey -e
 bindkey \^U backward-kill-line
 
@@ -28,6 +39,7 @@ bindkey -M emacs "^[[A" history-beginning-search-backward
 bindkey -M emacs "^[[B" history-beginning-search-forward
 bindkey -M emacs "^P" history-beginning-search-backward
 bindkey -M emacs "^N" history-beginning-search-forward
+
 # }}}
 
 # {{{ completion
@@ -47,6 +59,7 @@ fi
 # }}}
 
 # {{{ sourcing
+
 if [ -f "$HOME/.commonrc" ]; then
     source "$HOME/.commonrc"
 fi
@@ -64,7 +77,7 @@ conditional_source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%
 conditional_source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# p10k config
 conditional_source ~/.p10k.zsh
 # }}}
 
@@ -77,6 +90,7 @@ if direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
+# z.lua or plain old z as fallback
 if whichp z.lua &>/dev/null; then
     eval "$(z.lua --init zsh enhanced once)"
 elif whichp z &>/dev/null; then
@@ -86,11 +100,12 @@ fi
 
 # {{{ other
 
-# Compatibility between tmux and direnv
+# Compatibility between tmux and direnv (?)
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset ${$(typeset -m "DIRENV_*")%%=*}
 fi
 
+# Because opam env is expansive at some places
 opam() {
     if [ -z "$OPAM_SWITCH_PREFIX" ] &&
         whichp opam &>/dev/null &&
@@ -103,6 +118,7 @@ opam() {
 # }}}
 
 # {{{ shit
+# yeah
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
     if [ $? -eq 0 ]; then

@@ -13,24 +13,36 @@ fi
 
 # {{{ settings
 HISTFILE=~/.bash_history
+
+# nice history settings
 HISTCONTROL=ignoredups:erasedups
 
+# shared history
 shopt -s histappend
+
+# type dir to cd
 shopt -s autocd
 
+# no idea
 set show-all-if-ambiguous on
 # }}}
 
 # {{{ bindings
+
+# zsh like tab
 bind 'TAB:menu-complete'
 
+# better up and down
 bind '"[A" history-search-backward'
 bind '"[B" history-search-forward'
 bind '"" history-search-backward'
 bind '"" history-search-forward'
+
 # }}}
 
 # {{{ sourcing
+
+# prompt file, something like p10k but simpler
 if ! conditional_source ~/.prompt.bash &>/dev/null; then
     PSC='$'
     [ "$(id -u)" -eq 0 ] && PSC='#'
@@ -55,6 +67,7 @@ if direnv &>/dev/null; then
     eval "$(direnv hook bash)"
 fi
 
+# z.lua or plain old z as fallback
 if whichp z.lua &>/dev/null; then
     eval "$(z.lua --init bash enhanced once)"
 elif whichp z &>/dev/null; then
@@ -70,6 +83,7 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset "${!DIRENV_@}"
 fi
 
+# Because opam env is expansive at some places
 opam() {
     if [ -z "$OPAM_SWITCH_PREFIX" ] &&
         whichp opam &>/dev/null &&

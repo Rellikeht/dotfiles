@@ -153,12 +153,12 @@ alias fk='fed kak'
 alias als='alias | grep'
 alias wb='bins | grep'
 
-_aliasrc="$home/.aliasrc"
-_funcrc="$home/.funcrc"
-alias sal='source "$_aliasrc"'
-alias sfn='source "$_funcrc"'
-alias bal='bat "$_aliasrc"'
-alias bfn='bat "$_funcrc"'
+_ALIASRC="$HOME/.aliasrc"
+_FUNCRC="$HOME/.funcrc"
+alias sal='source "$_ALIASRC"'
+alias sfn='source "$_FUNCRC"'
+alias bal='bat "$_ALIASRC"'
+alias bfn='bat "$_FUNCRC"'
 # }}}
 
 # {{{ fuzzy
@@ -214,8 +214,8 @@ alias fze='prgs | deffuz | sh -s'
 alias fzr='$(prgs | deffuz)'
 
 # TODO more of that maybe
-alias hfz="z -l | sort | awk '{print \$2}' | fzs"
-alias hcd='cd "$(hfz)"'
+alias zh="z -l | sort | awk '{print \$2}' | fzs"
+alias zc='cd "$(hfz)"'
 
 # }}}
 
@@ -232,20 +232,20 @@ alias de='dc -e 8k -e'
 alias sa='screen attach'
 
 alias tmc='/usr/bin/env tmux'
-alias tm='tmux -l "$tmux_socket"'
+alias tm='tmux -L "$TMUX_SOCKET"'
 alias tma='tm attach'
 alias etma='etm attach'
 
 alias tms='tm list-sessions'
 alias tmq='tm kill-session'
-alias tmq='tm kill-server'
+alias tmQ='tm kill-server'
 alias tss='tm split-window'
 alias tsd='tm split-window -d'
 
 alias tsw='tsd -h'
-alias tsw='tsd -v'
-alias tsi='tsw -i'
-alias tsi='tsw -i'
+alias tsW='tsd -v'
+alias tsi='tsw -I'
+alias tsI='tsW -I'
 
 alias tsp='tm select-pane'
 alias tpl='tm select-pane -l'
@@ -253,10 +253,10 @@ alias tpl='tm select-pane -l'
 alias tt2d='tm split-window -c "$(pwd)"'
 alias tt2s='tt2d -h'
 alias tt2='tt2d -h;tpl'
-alias tt3='tt2d -h;tt2d -v;tsp -l'
+alias tt3='tt2d -h;tt2d -v;tsp -L'
 alias ttw='tm new-window -c "$(pwd)"'
 
-alias bm='bemenu_backend=curses bemenu'
+alias bm='BEMENU_BACKEND=curses bemenu'
 alias nnn='nnn -d'
 
 alias xcc='xclip -i -selection clipboard'
@@ -267,7 +267,7 @@ alias plci='plocate -i'
 alias rlc='plocate -r'
 alias rlci='plocate -ir'
 alias prr='prime-run'
-alias prg='progress -m -w 1'
+alias prg='progress -M -W 1'
 alias prgc='prg \
     -a ffmpeg -a ebook-convert \
     -a yt-dlp -a youtube-dl -a you-get \
@@ -344,18 +344,18 @@ alias w3h='w3m -T text/html'
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
 
-alias jle='julia -e'
+alias jlE='julia -e'
 alias juliac='julia --startup-file=no'
 alias jle='juliac -e'
-alias jldaemon="juliac -t auto -o3 -e 'using daemonmode;serve(async=true)'"
-alias jlfast="juliac -o0 -g0 --compile=min --check-bounds=no --color=no --banner=no"
-alias jlfclient="jlfast -e 'using daemonmode;runargs()'"
-alias jlclient="jlfast -e 'using daemonmode;runexpr.(args)'"
+alias jldaemon="juliac -t auto -O3 -e 'using DaemonMode;serve(async=true)'"
+alias jlfast="juliac -O0 -g0 --compile=min --check-bounds=no --color=no --banner=no"
+alias jlfclient="jlfast -e 'using DaemonMode;runargs()'"
+alias jlclient="jlfast -e 'using DaemonMode;runexpr.(ARGS)'"
 alias jld=jldaemon
 alias jlf=jlfclient
 alias jlc=jlclient
 
-alias jlservdaemon="juliac -t auto -o3 -e 'using daemonmode;serve(3210,async=true)'"
+alias jlservdaemon="juliac -t auto -O3 -e 'using DaemonMode;serve(3210,async=true)'"
 
 alias nimm='hm nim --fullhelp'
 alias nimh='nim --fullhelp | less'
@@ -379,9 +379,9 @@ alias pybp="pypy -m bpython"
 alias pypip="pypy -m pip"
 alias pypm="pypy -m"
 
-alias r="r --no-save --no-restore"
-alias re="r -s -e"
-alias rc="/usr/bin/env r"
+alias R="R --no-save --no-restore"
+alias Re="R -s -e"
+alias Rc="/usr/bin/env R"
 
 alias gpe='gnuplot -p -e'
 # }}}
@@ -437,16 +437,16 @@ alias gsl='git stash list'
 
 # {{{ other
 alias kbp="~/.kb-plug.sh"
-alias help2man='help2man -n'
+alias help2man='help2man -N'
 
 ## groff
 alias groff='groff -ktep'
 alias grs='groff -ms'
-alias gsf='grs -tpdf'
+alias gsf='grs -Tpdf'
 
 ## syncthing client
 alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
-alias stl='stc --homedir ~/.config/syncthing/'
+alias stL='stc --homedir ~/.config/syncthing/'
 
 ## pacman
 alias pc=pcurses
@@ -455,7 +455,7 @@ alias pacman='pacman --color=always'
 alias paru='paru --color=always'
 
 if eval type pacman >/dev/null 2>/dev/null; then
-    alias pkgf="pacman -ql"
+    alias pkgf="pacman -Ql"
 fi
 # }}}
 
@@ -544,7 +544,7 @@ alias dal='direnv allow'
 alias dde='direnv deny'
 alias dre='direnv reload'
 alias ded='direnv edit'
-alias dhook='eval "$(direnv hook $shell)"'
+alias dhook='eval "$(direnv hook $SHELL)"'
 # }}}
 
 # {{{ other

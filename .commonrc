@@ -1,16 +1,21 @@
 #!/usr/bin/env bash
 
 # {{{ helpers
+
+# Because this is not obvious some time (zsh)
 alias whichp='/usr/bin/env which'
+
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
 conditional_source() {
     [ -f "$1" ] && source "$1"
 }
+
 # }}}
 
 # {{{ sourcing
+
 conditional_source "/etc/.commonrc"
 
 #aliases
@@ -27,6 +32,7 @@ conditional_source "$HOME/.local/.funcrc"
 
 conditional_source "$HOME/.local/.commonrc"
 
+# to stop duplication of entries in some variables
 if [ -z "$__VARRC_ETC_SOURCED" ]; then
     conditional_source "/etc/.varrc"
     export __VARRC_ETC_SOURCED=1
@@ -34,17 +40,22 @@ fi
 
 conditional_source "$HOME/.varrc"
 
+# same thing
 if [ "$__VARRC_LOCAL_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.local/.varrc"
     export __VARRC_LOCAL_SOURCED="$UID"
 fi
+
 # }}}
 
 # {{{ ssh agent
+
 if [ -z "$SSH_AGENT_TIME" ]; then
     export SSH_AGENT_TIME="90m"
 fi
 
+# Yeah, because this is hard, especially when having
+# one config for multiple environments
 run_ssh_agent() {
     local DIR
     if [ -n "$XDG_RUNTIME_DIR" ]; then
@@ -70,19 +81,24 @@ run_ssh_agent() {
 if ! pgrep -u "$USER" ssh-agent &>/dev/null; then
     run_ssh_agent
 fi
+
 # }}}
 
 # {{{ nix
+
+# they screwed up
 if [ "$__NIX_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
     export __NIX_SOURCED="$UID"
 fi
 
+# they fucked up
 export __HM_SESS_VARS_SOURCED= # fuck this
 if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
     conditional_source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     export __HM_SESS_SOURCED="$UID"
 fi
+
 # }}}
 
 # {{{ other hooks
