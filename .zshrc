@@ -73,12 +73,12 @@ if [ -z "$__COMPINIT_RUN" ]; then
 
     # smart case baby
     zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
-
-    # some loading of completion
-    autoload -Uz compinit
-    compinit
     __COMPINIT_RUN=1
 fi
+
+# some loading of completion
+autoload -Uz compinit
+compinit
 
 # }}}
 
