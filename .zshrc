@@ -37,6 +37,8 @@ setopt AUTO_CD
 
 # {{{ completion
 
+zmodload -i zsh/complist
+
 # why does this make things faster
 zstyle :compinstall filename '~/.zshrc'
 
@@ -47,6 +49,14 @@ zstyle :compinstall filename '~/.zshrc'
 if [ -z "$__COMPINIT_RUN" ]; then
     zstyle ':completion:*' use-cache on
     zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zscompcache"
+
+    if [ -d "$HOME/.nix-profile/share/zsh/site-functions" ]; then
+        fpath=($HOME/.nix-profile/share/zsh/site-functions $fpath)
+        local NIXFILE="$HOME/.nix-profile/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh"
+        if ! type prompt_nix_shell_setup &>/dev/null && [ -f "$NIXFILE" ]; then
+            source "$NIXFILE"
+        fi
+    fi
 
     # good stuff
     zstyle ':completion:*' menu select
@@ -60,6 +70,9 @@ if [ -z "$__COMPINIT_RUN" ]; then
 
     # colors files until they have common prefix
     zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==35=35;01}:${(s.:.)LS_COLORS}")';
+
+    # smart case baby
+    zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
 
     # some loading of completion
     autoload -Uz compinit
@@ -75,13 +88,25 @@ bindkey -e
 bindkey \^U backward-kill-line
 
 # Slightly better tab
-bindkey "^I" expand-or-complete-prefix
+bindkey -M emacs "^I" expand-or-complete-prefix
+# and shift tab
+bindkey -M emacs "^[[Z" reverse-menu-complete
 
 # Ok, zsh is fucked, but multiline commands are also
 bindkey -M emacs "^[[A" history-beginning-search-backward
 bindkey -M emacs "^[[B" history-beginning-search-forward
+
+# Just in case
+bindkey -M emacs "^[OA" history-beginning-search-backward
+bindkey -M emacs "^[OB" history-beginning-search-forward
+
+# Because I don't use arrows anyway
 bindkey -M emacs "^P" history-beginning-search-backward
 bindkey -M emacs "^N" history-beginning-search-forward
+
+# Selection in menu
+bindkey -M menuselect "^P" up-line-or-history
+bindkey -M menuselect "^N" down-line-or-history
 
 # }}}
 

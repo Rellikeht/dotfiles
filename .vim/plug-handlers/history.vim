@@ -1,15 +1,18 @@
-" TINYMRU
+
+"{{{ TINYMRU
 
 nnoremap <silent> ,ue :ME<Space>
 nnoremap <silent> ,us :MS<Space>
-nnoremap <silent> ,ul :MV<Space>
+nnoremap <silent> ,uh :MV<Space>
 nnoremap <silent> ,un :MT<Space>
 
 " TODO right and bottom split
 " Doesn't work
 " nnoremap <silent> ,ur :botright MV<Space>
 
-" UNDO TREE
+" }}}
+
+"{{{ UNDO TREE
 
 let g:undotree_WindowLayout = 1
 let g:undotree_ShortIndicators = 0
@@ -51,3 +54,23 @@ function g:Undotree_CustomMap()
 " let s:keymap += [['Enter','<cr>','Move to the current state']]
 
 endfunc
+
+"}}}
+
+"{{{ OBSESSION
+" Not good, not bad
+
+nnoremap ,usm :mksession<CR>
+nnoremap ,usM :mksession<Space>
+
+nnoremap ,usd :execute 'mksession '.g:data_dir.'/sessions/'.<CR>
+nnoremap ,usD :execute 'mksession '.g:data_dir.'/sessions/'.<Space>
+
+nnoremap ,uso :Obsession<CR>
+nnoremap ,usO :Obsession<Space>
+nnoremap ,usr :Obsession!<CR>
+
+nnoremap ,uss :execute 'Obsession '.g:data_dir.'/sessions/'.<CR>
+nnoremap ,usS :execute 'Obsession '.g:data_dir.'/sessions/'.<Space>
+
+"}}}

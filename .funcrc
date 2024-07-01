@@ -146,7 +146,8 @@ if [ $(uname) = "FreeBSD" ]; then # {{{
         help2man $@ | mandoc | less
     }
     # }}}
-    else# {{{
+
+else # {{{
 
     find_system_special() {
         local D

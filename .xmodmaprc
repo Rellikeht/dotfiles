@@ -21,4 +21,4 @@ clear lock
 !xmodmap -e 'keycode 23 = Mode_switch ISO_Left_Tab Tab ISO_Left_Tab Tab ISO_Left_Tab'
 ! clicks tab two times when has it set as above
 keycode 23 = Mode_switch
-keycode any = Tab
+keycode any = Tab ISO_Left_Tab

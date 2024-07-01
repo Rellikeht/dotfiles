@@ -128,7 +128,7 @@ nnoremap yae mcggvG$y`c
 
 " What happens here
 set wildchar=<Tab>
-set wildmode=list:full
+set wildmode=list:full,full
 set wildoptions=fuzzy,tagfile,pum
 set wildmenu
 

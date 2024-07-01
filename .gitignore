@@ -43,9 +43,11 @@ autoload
 .vim/plugged
 .vim/.netrwhist
 .vim/test
+.vim/sessions
 .vim/templates
 
 .config/nvim/plugins
+.config/nvim/sessions
 .config/nim/test
 .config/ocaml/local.ml
 .config/qalculate/qalc.history
@@ -80,6 +82,7 @@ groff/
 *~
 TODO
 highlight.css
+Session.vim
 
 Templates/**/*
 !Templates/**/*/

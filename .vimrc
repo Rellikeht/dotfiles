@@ -8,9 +8,9 @@ if v:progname =~? "^[sn]\\?v\\(im\\?\\)\\?"
     source ~/.vim/additional.vim
 
     let plug_src = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    let data_dir = has('nvim') ? stdpath('config') : '~/.vim'
-    if empty(glob(data_dir . '/autoload/plug.vim'))
-        silent execute '!curl -fLo '.data_dir.
+    let g:data_dir = has('nvim') ? stdpath('config') : '~/.vim'
+    if empty(glob(g:data_dir . '/autoload/plug.vim'))
+        silent execute '!curl -fLo '.g:data_dir.
                     \'/autoload/plug.vim --create-dirs '.plug_src
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif

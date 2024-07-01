@@ -107,7 +107,7 @@ combinations
 
 - n - unicode, nuuid
 
-- u - undo tree ; NOT IMPLEMENTED :(
+- u - undo tree, tinyMRU, obsession
 
 <!-- ?? -->
 

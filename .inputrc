@@ -5,6 +5,9 @@ set keymap emacs
 set show-all-if-ambiguous on
 TAB:menu-complete
 
+# shift tab
+"\e[Z":menu-complete-backward
+
 # colored completion
 set colored-stats on
 set colored-completion-prefix on
