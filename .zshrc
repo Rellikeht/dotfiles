@@ -25,7 +25,47 @@ setopt EXTENDED_HISTORY
 # For z.sh completion to work properly
 setopt COMPLETE_ALIASES
 
+# hidden files in completion yay
+setopt globdots
+
+# for colors in completion
+LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32'
+
 setopt AUTO_CD
+
+# }}}
+
+# {{{ completion
+
+# why does this make things faster
+zstyle :compinstall filename '~/.zshrc'
+
+# autoload -U colors
+# colors
+
+# Some completion settings and activation
+if [ -z "$__COMPINIT_RUN" ]; then
+    zstyle ':completion:*' use-cache on
+    zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zscompcache"
+
+    # good stuff
+    zstyle ':completion:*' menu select
+    zstyle ':completion:*' verbose yes
+
+    # overkill
+    # zstyle ':completion:*:*:kill:*:*' verbose no
+
+    # colors files
+    # zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+    # colors files until they have common prefix
+    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==35=35;01}:${(s.:.)LS_COLORS}")';
+
+    # some loading of completion
+    autoload -Uz compinit
+    compinit
+    __COMPINIT_RUN=1
+fi
 
 # }}}
 
@@ -34,28 +74,15 @@ setopt AUTO_CD
 bindkey -e
 bindkey \^U backward-kill-line
 
+# Slightly better tab
+bindkey "^I" expand-or-complete-prefix
+
 # Ok, zsh is fucked, but multiline commands are also
 bindkey -M emacs "^[[A" history-beginning-search-backward
 bindkey -M emacs "^[[B" history-beginning-search-forward
 bindkey -M emacs "^P" history-beginning-search-backward
 bindkey -M emacs "^N" history-beginning-search-forward
 
-# }}}
-
-# {{{ completion
-# This probably does nothing
-zstyle :compinstall filename '~/.zshrc'
-# zstyle :compinstall filename '/etc/zshrc'
-# zstyle ':completion:*' rehash true
-
-if [ -z "$__COMPINIT_RUN" ]; then
-    zstyle ':completion:*' use-cache on
-    zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zscompcache"
-
-    autoload -Uz compinit
-    compinit
-    __COMPINIT_RUN=1
-fi
 # }}}
 
 # {{{ sourcing
@@ -79,6 +106,7 @@ conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-hig
 
 # p10k config
 conditional_source ~/.p10k.zsh
+
 # }}}
 
 # {{{ hooks

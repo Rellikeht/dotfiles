@@ -11,35 +11,6 @@ fi
 
 # }}}
 
-# {{{ settings
-HISTFILE=~/.bash_history
-
-# nice history settings
-HISTCONTROL=ignoredups:erasedups
-
-# shared history
-shopt -s histappend
-
-# type dir to cd
-shopt -s autocd
-
-# no idea
-set show-all-if-ambiguous on
-# }}}
-
-# {{{ bindings
-
-# zsh like tab
-bind 'TAB:menu-complete'
-
-# better up and down
-bind '"[A" history-search-backward'
-bind '"[B" history-search-forward'
-bind '"" history-search-backward'
-bind '"" history-search-forward'
-
-# }}}
-
 # {{{ sourcing
 
 # prompt file, something like p10k but simpler
@@ -56,6 +27,33 @@ fi
 conditional_source ~/.aliasrc.bash
 conditional_source ~/.funcrc.bash
 conditional_source "$HOME/.local/.bashrc"
+# }}}
+
+# {{{ settings
+HISTFILE=~/.bash_history
+
+# nice history settings
+HISTCONTROL=ignoredups:erasedups
+
+# shared history
+shopt -s histappend
+
+# type dir to cd
+shopt -s autocd
+
+# for colors in completion to work better
+LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32'
+
+# }}}
+
+# {{{ bindings
+
+# better up and down
+bind '"[A" history-search-backward'
+bind '"[B" history-search-forward'
+bind '"" history-search-backward'
+bind '"" history-search-forward'
+
 # }}}
 
 # {{{ hooks

@@ -1,0 +1,20 @@
+# Works well
+set keymap emacs
+
+# zsh like tab
+set show-all-if-ambiguous on
+TAB:menu-complete
+
+# colored completion
+set colored-stats on
+set colored-completion-prefix on
+
+# prefix <3
+set completion-prefix-display-length 7
+set menu-complete-display-prefix on
+
+set mark-symlinked-directories on
+set visible-stats on
+
+# Probably useless
+# set mark-modified-lines on
