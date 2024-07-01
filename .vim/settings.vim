@@ -1,21 +1,30 @@
-let mapleader = ','
 
+" {{{ heavy stuff
+
+let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
 
-" Some simple settings
+" }}}
+
+" {{{ some simple settings
+
 nnoremap <Leader><Space> :set hls!<CR>
 noremap <Leader>qen :set relativenumber!<CR>
 noremap <Leader>qeN :set number!<CR>
 noremap <Leader>qeC :set cursorbind!<CR>
+
+set cursorline
+noremap <Leader>qec :set cursorline!<CR>
 
 " TODO confirmation maybe?
 noremap <Leader>qkw :call Wmt()<CR>
 noremap <silent> <Leader>qpm :call ToggleManProg()<CR>
 noremap <Leader>qpM :set makeprg=make<CR>
 
-" v in front of variables that have names similar to settings they control
+" }}}
 
-" Simple settings with variables
+"{{{ automatic formatting and compiling control
+
 let g:buffmt = 1
 let g:bufcomp = 0
 autocmd FileType * let b:buffmt = g:buffmt
@@ -29,7 +38,11 @@ noremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
 noremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
 noremap <Leader>qv2 :echo b:bufcomp<CR>
 
-" Nontrivial settings
+"}}}
+
+" {{{ nontrivial settings
+
+" v in front of variables that have names similar to settings they control
 let g:vautoread = 0
 let g:vautowrite = 0
 autocmd FileType * let b:vautoread = g:vautoread
@@ -43,14 +56,6 @@ noremap <Leader>qfw :call ToggleBuffer('autowrite')<CR>
 noremap <Leader>qfW :let g:vautowrite=!g:vautowrite<CR>
 noremap <Leader>qv4 :echo b:vautowrite<CR>
 
-set cursorline
-noremap <Leader>qec :set cursorline!<CR>
-
-let g:autochdir = 0
-" autocmd BufNewFile * let b:autochdir = g:autochdir
-noremap <Leader>qca :call ToggleAutochdir()<CR>
-" noremap <Leader>qcA :let g:autochdir=!g:autochdir<CR>
-
 " TODO
 " let g:autoupdate = 0
 " autocmd FileType * let b:autoupdate = g:autoupdate
@@ -58,3 +63,14 @@ noremap <Leader>qca :call ToggleAutochdir()<CR>
 " noremap <Leader>qfu :call ToggleAutoupdate()<CR>
 " noremap <Leader>qfU :let g:autoupdate=!g:autoupdate<CR>
 " noremap <Leader>qv5 :echo b:autoupdate<CR>
+
+" }}}
+
+" {{{ other
+
+let g:autochdir = 0
+" autocmd BufNewFile * let b:autochdir = g:autochdir
+noremap <Leader>qca :call ToggleAutochdir()<CR>
+" noremap <Leader>qcA :let g:autochdir=!g:autochdir<CR>
+
+" }}}

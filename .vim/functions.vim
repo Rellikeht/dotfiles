@@ -1,3 +1,5 @@
+"{{{ helpers
+
 function Xcopy(name)
     call system('echo -n '.shellescape(@").' | xclip -i -selection '.a:name)
 endfunction
@@ -13,6 +15,30 @@ command! -nargs=+ Silent
             \   | redraw!
 
 command! We write | sleep 500 m | edit
+
+function GetCompl(name)
+    for n in getcompletion('', a:name)
+        echo n
+    endfor
+endfunction
+
+function InsCompl(name)
+    for n in getcompletion('', a:name)
+        execute 'norm i' . n . ''
+    endfor
+endfunction
+
+function GetAvailFtypes()
+    call GetCompl('filetype')
+endfunction
+
+function InsAvailFtypes()
+    call InsCompl('filetype')
+endfunction
+
+"}}}
+
+"{{{ workman
 
 " Attempt to make vim easier to use
 " in workman layout, with preserving
@@ -35,6 +61,9 @@ function! Wmt()
     endif
 endfunction
 
+"}}}
+
+"{{{ hex editing
 " TODO C do that better
 
 " ex command for toggling hex mode - define mapping if desired
@@ -83,44 +112,9 @@ function ToggleHex()
     let &modifiable=l:oldmodifiable
 endfunction
 
-function GetCompl(name)
-    for n in getcompletion('', a:name)
-        echo n
-    endfor
-endfunction
+"}}}
 
-function InsCompl(name)
-    for n in getcompletion('', a:name)
-        execute 'norm i' . n . ''
-    endfor
-endfunction
-
-function GetAvailFtypes()
-    call GetCompl('filetype')
-endfunction
-
-function InsAvailFtypes()
-    call InsCompl('filetype')
-endfunction
-
-function ToggleManProg()
-    if &keywordprg == ':help'
-        set keywordprg=man
-    else
-        set keywordprg=:help
-    endif
-    echo &keywordprg
-endfunction
-
-function NixFmt()
-    " Everything hardcoded, because vim goes crazy when using
-    " variables and can't be or is very hard to get synchronous
-    if executable('alejandra') && b:buffmt
-        let pos = getpos('.')
-        0,$!alejandra -qq
-        call setpos('.', pos)
-    endif
-endfunction
+"{{{ programming stuff
 
 let g:groff_pdf = 'groff -ktep -T pdf '
 function CompileGroffMs()
@@ -129,6 +123,10 @@ function CompileGroffMs()
         call system(g:groff_pdf.' -ms '.expand('%').' > '.expand('%:r').'.pdf')
     endif
 endfunction
+
+"}}}
+
+"{{{ because vim got some things wrong
 
 " Simple wrapper because vim has working tabp, but
 " tabn is retarded and tabp won't work with negative counts
@@ -153,6 +151,10 @@ function GetVisualSelection()
     let lines[0] = lines[0][column_start - 1:]
     return join(lines, "\n")
 endfunction
+
+"}}}
+
+"{{{ some automatic stuff
 
 function ToggleBuffer(name)
     execute 'let b:v'.a:name.' = !b:v'.a:name
@@ -196,3 +198,18 @@ function ToggleAutoupdate()
         echo 'Autoupdate disabled'
     endif
 endfunction
+
+"}}}
+
+"{{{ random stuff
+
+function ToggleManProg()
+    if &keywordprg == ':help'
+        set keywordprg=man
+    else
+        set keywordprg=:help
+    endif
+    echo &keywordprg
+endfunction
+
+"}}}

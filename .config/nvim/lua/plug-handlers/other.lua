@@ -1,7 +1,10 @@
 -- TODO What a mess
+-- {{{ helpers
 local modes = {"n", "v"}
 
--- MDEVAL
+-- }}}
+
+-- {{{ MDEVAL
 
 vim.api.nvim_create_autocmd(
   {"BufRead", "BufNewFile"},
@@ -25,7 +28,7 @@ require("mdeval").setup(
       -- using namespace std;
       --   ]]
       -- }
-    }
+    },
   }
 )
 
@@ -34,7 +37,9 @@ vim.keymap.set(
 )
 vim.keymap.set(modes, "glc", ":MdEvalClean<CR>") -- ???
 
--- FEMACO
+-- }}}
+
+-- {{{ FEMACO
 
 local femacoUtils = require("femaco.utils")
 local clip_val = femacoUtils.clip_val
@@ -69,7 +74,7 @@ require("femaco").setup(
         col = 0,
         style = "minimal",
         border = "rounded",
-        zindex = 1
+        zindex = 1,
       }
     end,
 
@@ -102,13 +107,16 @@ require("femaco").setup(
     -- @param base_filetype: The filetype which FeMaco is called from, not the
     -- filetype of the injected language (this is the current buffer, so you can
     -- get it from vim.bo.filetype).
-    normalize_indent = function(base_filetype) return false end
+    normalize_indent = function(base_filetype) return false end,
   }
 )
 
 vim.keymap.set(modes, "glf", ":FeMaco<CR>", {noremap = true})
 
--- NVIM-LINT
+-- NVIM-LINT}}}
+
+-- {{{ NVIM_LINT
+
 local nvim_lint = require("lint")
 
 nvim_lint.linters_by_ft = {
@@ -120,7 +128,7 @@ nvim_lint.linters_by_ft = {
   vim = {"vint"},
   nix = {"nix"},
   ansible = {"ansible-lint"},
-  yaml = {"yamllint"}
+  yaml = {"yamllint"},
 }
 
 -- local lint_augroup = vim.api.nvim_create_augroup(
@@ -144,5 +152,31 @@ vim.keymap.set(
 -- nvim_lint.linters.pylint.cmd = "python"
 -- nvim_lint.linters.pylint.args = {"-m", "pylint", "-f", "json"}
 
--- TODO C
--- colorizer, zen-mode ??
+-- }}}
+
+-- {{{ TODO C COLORIZER
+-- }}}
+
+-- {{{ TODO D ZEN-MODE ??
+-- }}}
+
+-- {{{ neoformat
+
+-- TODO more formatting through language server
+
+vim.cmd("let g:neoformat_enabled_go = []")
+
+vim.api.nvim_create_autocmd(
+  "BufWritePre", {
+    pattern = {"*.go", "*.jl", "*.zig"},
+    command = "lua vim.lsp.buf.format()",
+  }
+)
+
+-- }}}
+
+-- {{{ others
+
+vim.cmd("let g:zig_fmt_autosave = 0")
+
+-- }}}

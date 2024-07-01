@@ -1,4 +1,4 @@
-" KEYS
+"{{{ basic mappings
 
 map <Space> <C-w>
 map <Space><Space> <C-w><C-w>
@@ -15,7 +15,10 @@ noremap g- v<C-x>
 vnoremap + <C-a>
 vnoremap - <C-x>
 
-" Tabs with <Tab>
+"}}}
+
+"{{{ tabs with <Tab>
+
 noremap <silent> <Tab>0 :tabfirst<CR>
 noremap <silent> <Tab>$ :tablast<CR>
 noremap <Tab>l gt
@@ -35,7 +38,10 @@ noremap <silent> <Tab>O :tabnew<CR>
 noremap <Tab><Tab> :tab<Space>
 noremap <Tab>: :-tab<Space>
 
-" Buffers with <Tab>
+"}}}
+
+"{{{ buffers with <Tab>
+
 noremap <Tab>b :buffer<Space>
 noremap <silent> <Tab>n :bnext<CR>
 noremap <silent> <Tab>p :bprevious<CR>
@@ -57,7 +63,10 @@ noremap <silent> <Tab>U :botright split<CR>
 noremap <silent> <Tab>g :botright vsplit<Space>
 noremap <silent> <Tab>G :botright vsplit<CR>
 
-" Windows
+"}}}
+
+"{{{ windows with <Tab>
+
 " TODO more
 
 noremap <Tab>>1 :vertical resize 10<CR>
@@ -92,8 +101,10 @@ noremap <Tab>^_ :resize -5<CR>
 noremap <Tab>^d :resize -10<CR>
 noremap <Tab>^D :resize -20<CR>
 
+"}}}
 
-" Others
+"{{{ other mappings
+
 noremap <Tab>W :set wrap!<CR>
 noremap <Tab>Q :source %<CR>
 noremap <Tab>M :setlocal modeline!<CR>
@@ -111,7 +122,9 @@ vnoremap ae <Esc>gg0vG$
 vnoremap ie <Esc>gg}{vG{}k$
 nnoremap yae mcggvG$y`c
 
-" SETTINGS
+" }}}
+
+" {{{ settings
 
 " What happens here
 set wildchar=<Tab>
@@ -120,7 +133,7 @@ set wildoptions=fuzzy,tagfile,pum
 set wildmenu
 
 set completeopt=menu,menuone,noselect,noinsert,preview
-set complete=w,b,d,s,i,d,t,.,k
+set complete=w,b,s,i,d,t,.,k
 
 set noterse
 set ruler
@@ -161,3 +174,5 @@ set modelines=5
 if v:progname =~? "^tv\\(im\\?\\)\\?"
     set background=dark
 endif
+
+" }}}

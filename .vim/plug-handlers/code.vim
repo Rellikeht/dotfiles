@@ -1,10 +1,12 @@
-" cosco
+"{{{ cosco
 
 "nmap <silent> ; <Plug>(cosco-commaOrSemiColon)
 map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
 " let g:cosco_ignore_comment_lines = 1
 
-" nix
+"}}}
+
+" {{{ nix
 
 autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 tabstop=2
@@ -12,11 +14,10 @@ autocmd FileType nix nnoremap <buffer> <Leader>nle :NixEdit<CR>
 autocmd FileType nix nnoremap <buffer> <Leader>nlE :NixEdit<CR>
 " autocmd FileType nix setlocal modeline
 
-" neoformat
+"}}}
 
-" This probably isn't needed, because of lsp
-"let g:neoformat_enabled_go = ['gofmt']
-let g:neoformat_enabled_go = []
+"{{{ neoformat formatters
+let g:neoformat_enabled_go = ['gofmt']
 
 " ???
 let g:neoformat_enabled_python = [
@@ -33,7 +34,9 @@ let g:neoformat_enabled_ocaml = ['ocamlformat', 'topiary']
 let g:neoformat_enabled_haskell = ['floskell']
 
 autocmd FileType dhall let b:buffmt=0 " :(((
+
 " done in zig plugin
+let g:neoformat_enabled_zig = []
 "let g:neoformat_enabled_zig = ['zig_fmt']
 
 let g:neoformat_enabled_nim = ['nimpretty']
@@ -93,6 +96,10 @@ let g:neoformat_typst_typstfmt = {
             \}
 let g:neoformat_enabled_typst = ["typstfmt"]
 
+"}}}
+
+"{{{ neoformat settings
+
 " ???
 "let b:neoformat_run_all_formatters = 1
 let b:neoformat_basic_format_retab = 1
@@ -113,25 +120,34 @@ augroup END
 
 noremap <silent> <Leader>nf :Neoformat<CR>
 noremap <Leader>nF :Neoformat<Space>
+"}}}
 
-" context
+"{{{ context
 
 " TODO B sane settings
 " :(
+" too annoying
 let g:context_enabled = 0
 
 nnoremap <Leader>qcp :ContextPeek<CR>
 nnoremap <Leader>qct :ContextToggle<CR>
 nnoremap <Leader>qcw :ContextToggleWindow<CR>
 
-" TODO D emmet
+"}}}
 
-" zig.vim
+"{{{ TODO D emmet
+"}}}
+
+" {{{ zig.vim
+
 " TODO C compiler
 
 let g:zig_fmt_autosave = 1
 
-" julia-vim
+"}}}
+
+"{{{ julia-vim
+
 let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_file_types = '.*'
@@ -139,7 +155,10 @@ noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 autocmd FileType julia nnoremap <buffer> <Leader>nld :JuliaDoc
 autocmd FileType julia vnoremap <silent> <buffer> <Leader>nld :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>
 
-" direnv.vim
+"}}}
+
+"{{{ direnv.vim
+
 " let g:direnv_auto = 0
 let g:direnv_edit_mode = 'split'
 
@@ -147,7 +166,9 @@ nnoremap <silent> <Leader>qde :EditEnvrc<CR>
 nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>
 nnoremap <silent> <Leader>qdl :DirenvExport<CR>
 
-" vim-simple-complete
+"}}}
+
+"{{{ vim-simple-complete
 
 let g:vsc_type_complete = 1
 let g:vsc_tab_complete = 0
@@ -156,7 +177,9 @@ let g:vsc_reverse_completion_command = "\<C-P>"
 let g:vsc_type_complete_length = 3
 let g:vsc_pattern = '\k'
 
-" others
+"}}}
+
+"{{{ others
 
 function GeneralUpgrade()
     PlugUpgrade
@@ -166,7 +189,9 @@ endfunction
 autocmd FileType zinc setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType zinc setlocal commentstring=%\ %s
 
-" Pluto.jl :)
+"}}}
+
+" {{{ Pluto.jl :)
 
 function PLR()
     if @" == '─'
@@ -204,3 +229,5 @@ nnoremap <Leader>npt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,npTnn
 "# ╠═╡ skip_as_script = true
 " Disabled:
 "# ╠═╡ disabled = true
+
+" }}}

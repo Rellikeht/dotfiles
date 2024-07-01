@@ -1,4 +1,25 @@
-" All of that starts with <Leader>
+"{{{ settings
+
+" :(
+autocmd FileType zig setlocal complete-=i,d
+
+autocmd BufWritePost *.ms call CompileGroffMs()
+
+" from opam installation
+set rtp^="~/.opam/default/share/ocp-indent/vim"
+
+" autocmd FileType vim,lua setlocal modeline
+
+"" For nim language server to work, dirty and not fully working
+"" workaround, but good enough
+"autocmd BufNewFile,BufRead *.nim silent! ! touch <afile>
+"autocmd BufNewFile,BufRead *.nim silent! e <afile>
+
+"}}}
+
+"{{{ some old shit
+" TODO make this sane, use :compiler and :make
+
 " General shortcuts
 " cc - simple compilation
 " starting with cd and cD - debug compilation
@@ -227,3 +248,5 @@ nnoremap ,igR !!python -c "from random import randint;
     \ [print(randint(-100,100),end=',') for _ in range(20)]"<A-b>
 
 " TODO templates
+
+" }}}
