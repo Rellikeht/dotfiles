@@ -1,4 +1,8 @@
-" Netrw
+"{{{ undo tree / undo branches
+" TODO
+"}}}
+
+"{{{ netrw settings
 " TODO C
 
 let g:netrw_banner = 0
@@ -22,63 +26,41 @@ let g:netrw_ignorenetrc = 0 " (default for linux, cygwin)
 "    you want it ignored, then set this variable as
 "    shown. (default for Windows + cmd.exe)
 
-let g:netrw_nogx = 1 " if this variable exists, then the "gx"
+" if this variable exists, then the "gx"
 " map will not be available (see |netrw-gx|)
+" let g:netrw_nogx = 1
+
+" }}}
+
+"{{{ netrw keymaps
 
 " TODO B file openinng
 
-noremap <silent> gxex :Explore<CR>
-noremap gxeX :Explore<Space>
-noremap <silent> gxet :Texplore<CR>
-noremap gxeT :Texplore<Space>
-noremap <silent> gxeh :Sexplore<CR>
-noremap gxeH :Sexplore<Space>
-noremap <silent> gxev :Vexplore<CR>
-noremap gxeV :Vexplore<Space>
-noremap <silent> gxen :Nexplore<CR>
-noremap gxeN :Nexplore<Space>
-noremap <silent> gxep :Pexplore<CR>
-noremap gxeP :Pexplore<Space>
-noremap <silent> gxer :Rexplore<CR>
-noremap gxeR :Rexplore<Space>
-noremap <silent> gxel :Lexplore<CR>
-noremap gxeL :Lexplore<Space>
-noremap <silent> gxeh :Hexplore<CR>
-noremap gxeH :Hexplore<Space>
+noremap <silent> ,xex :Explore<CR>
+noremap ,xeX :Explore<Space>
+noremap <silent> ,xet :Texplore<CR>
+noremap ,xeT :Texplore<Space>
+noremap <silent> ,xeh :Sexplore<CR>
+noremap ,xeH :Sexplore<Space>
+noremap <silent> ,xev :Vexplore<CR>
+noremap ,xeV :Vexplore<Space>
+noremap <silent> ,xen :Nexplore<CR>
+noremap ,xeN :Nexplore<Space>
+noremap <silent> ,xep :Pexplore<CR>
+noremap ,xeP :Pexplore<Space>
+noremap <silent> ,xer :Rexplore<CR>
+noremap ,xeR :Rexplore<Space>
+noremap <silent> ,xel :Lexplore<CR>
+noremap ,xeL :Lexplore<Space>
+noremap <silent> ,xeh :Hexplore<CR>
+noremap ,xeH :Hexplore<Space>
 
-" diff
+"}}}
 
-function DiffGet(pane)
-    execute 'diffget' a:pane
-    diffupdate
-endfunction
-
-function DiffPut(pane)
-    execute 'diffget' a:pane
-    diffupdate
-endfunction
-
-nnoremap <silent> <leader>fdp :diffput<CR>
-nnoremap <silent> <leader>fdg :diffget<CR>
-nnoremap <silent> <leader>fdu :diffupdate<CR>
-
-" TODO more
-nnoremap <silent> <leader>fg0 :call DiffGet('//0')<CR>
-nnoremap <silent> <leader>fg1 :call DiffGet('//1')<CR>
-nnoremap <silent> <leader>fg2 :call DiffGet('//2')<CR>
-nnoremap <silent> <leader>fg3 :call DiffGet('//3')<CR>
-
-nnoremap <silent> <leader>fp0 :call DiffPut('//0')<CR>
-nnoremap <silent> <leader>fp1 :call DiffPut('//1')<CR>
-nnoremap <silent> <leader>fp2 :call DiffPut('//2')<CR>
-nnoremap <silent> <leader>fp3 :call DiffPut('//3')<CR>
-
-nnoremap <silent> <leader>fpf :call DiffPut(expand('%:p'))<CR>
-nnoremap <silent> <leader>fpF :call DiffPut(expand('%:t'))<CR>
-nnoremap <silent> <leader>fgf :call DiffGet(expand('%:p'))<CR>
-nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
+"{{{ netrw network
 
 " TODO D ftp
+
 " TODO D
  " *g:netrw_preview*    =0 (default) preview window shown in a horizontally
                " split window
@@ -111,3 +93,38 @@ nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
 "                 messages don't always seem to show up this
 "                 way, but one doesn't have to quit the window.
 
+"}}}
+
+"{{{ diff
+
+function DiffGet(pane)
+    execute 'diffget' a:pane
+    diffupdate
+endfunction
+
+function DiffPut(pane)
+    execute 'diffget' a:pane
+    diffupdate
+endfunction
+
+nnoremap <silent> <leader>fdp :diffput<CR>
+nnoremap <silent> <leader>fdg :diffget<CR>
+nnoremap <silent> <leader>fdu :diffupdate<CR>
+
+" TODO more of that
+nnoremap <silent> <leader>fg0 :call DiffGet('//0')<CR>
+nnoremap <silent> <leader>fg1 :call DiffGet('//1')<CR>
+nnoremap <silent> <leader>fg2 :call DiffGet('//2')<CR>
+nnoremap <silent> <leader>fg3 :call DiffGet('//3')<CR>
+
+nnoremap <silent> <leader>fp0 :call DiffPut('//0')<CR>
+nnoremap <silent> <leader>fp1 :call DiffPut('//1')<CR>
+nnoremap <silent> <leader>fp2 :call DiffPut('//2')<CR>
+nnoremap <silent> <leader>fp3 :call DiffPut('//3')<CR>
+
+nnoremap <silent> <leader>fpf :call DiffPut(expand('%:p'))<CR>
+nnoremap <silent> <leader>fpF :call DiffPut(expand('%:t'))<CR>
+nnoremap <silent> <leader>fgf :call DiffGet(expand('%:p'))<CR>
+nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
+
+"}}}

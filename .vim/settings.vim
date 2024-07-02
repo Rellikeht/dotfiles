@@ -4,6 +4,11 @@
 let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
 
+autocmd BufNewFile,BufRead *
+    \    if !did_filetype() && empty(expand("<afile>:e")) || &ft is# "text" || &ft is# "markdown"
+    \ |      setlocal modeline
+    \ |  endif
+
 " }}}
 
 " {{{ some simple settings
@@ -69,6 +74,8 @@ noremap <Leader>qv4 :echo b:vautowrite<CR>
 " {{{ other
 
 let g:autochdir = 0
+silent! call ToggleAutochdir()
+
 " autocmd BufNewFile * let b:autochdir = g:autochdir
 noremap <Leader>qca :call ToggleAutochdir()<CR>
 " noremap <Leader>qcA :let g:autochdir=!g:autochdir<CR>

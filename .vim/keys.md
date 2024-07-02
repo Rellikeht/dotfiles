@@ -84,7 +84,9 @@ combinations
 
 - ; - commands
 
-- f - diffs and more in future probably
+- f - diff operations
+
+- x, X - netrw
 
 ## Code
 
@@ -146,7 +148,6 @@ Rather useful: J, M, N, V, m, n
 - S - vim-surround
 - a - unicode
 - A - radical.vim
-- x, X - netrw
 - y,Y - "\*y,"+y
 - s - vim-slime and similar
 - "+" - v<C-a>

@@ -140,6 +140,11 @@ set ruler
 set number
 set relativenumber
 
+set showcmd
+set showmatch
+set incsearch
+set hlsearch
+
 set ignorecase
 set smartcase
 set noautochdir
@@ -169,7 +174,7 @@ set termencoding=utf-8
 set encoding=utf-8
 
 set nomodeline
-set modelines=5
+set modelines=3
 
 if v:progname =~? "^tv\\(im\\?\\)\\?"
     set background=dark

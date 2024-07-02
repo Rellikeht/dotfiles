@@ -1,0 +1,199 @@
+" vim: filetype=vifm :
+
+"{{{ displaying
+
+" Try to leave some space from cursor to upper/lower border in lists
+set scrolloff=5
+
+" Natural sort of (version) numbers within text.
+set sortnumbers
+
+" Use Vim's format of help file (has highlighting and "hyperlinks").
+" If you would rather use a plain text help file set novimhelp.
+set vimhelp
+
+" List of color schemes to try (picks the first one supported by the terminal)
+colorscheme Default-256 Default
+
+" Set custom status line look
+" set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+
+" What should be saved automatically between vifm sessions.  Drop "savedirs"
+" value if you don't want vifm to remember last visited directories for you.
+set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+    \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
+" Not enough space on screen
+set nonumber
+set norelativenumber
+
+" Format for displaying time in file list. For example:
+" TIME_STAMP_FORMAT=%m/%d-%H:%M
+" See man date or man strftime for details.
+set timefmt=%d-%m-%y\ %H:%M:%S
+
+"{{{ FORMAT controls the output.  Interpreted sequences are:
+
+"        %%     a literal %
+"        %a     locale's abbreviated weekday name (e.g., Sun)
+"        %A     locale's full weekday name (e.g., Sunday)
+"        %b     locale's abbreviated month name (e.g., Jan)
+"        %B     locale's full month name (e.g., January)
+"        %c     locale's date and time (e.g., Thu Mar  3 23:05:25 2005)
+"        %C     century; like %Y, except omit last two digits (e.g., 20)
+"        %d     day of month (e.g., 01)
+"        %D     date; same as %m/%d/%y
+"        %e     day of month, space padded; same as %_d
+"        %F     full date; like %+4Y-%m-%d
+"        %g     last two digits of year of ISO week number (see %G)
+"        %G     year of ISO week number (see %V); normally useful only with %V
+"        %h     same as %b
+"        %H     hour (00..23)
+"        %I     hour (01..12)
+"        %j     day of year (001..366)
+"        %k     hour, space padded ( 0..23); same as %_H
+"        %l     hour, space padded ( 1..12); same as %_I
+"        %m     month (01..12)
+"        %M     minute (00..59)
+"        %n     a newline
+"        %N     nanoseconds (000000000..999999999)
+"        %p     locale's equivalent of either AM or PM; blank if not known
+"        %P     like %p, but lower case
+"        %q     quarter of year (1..4)
+"        %r     locale's 12-hour clock time (e.g., 11:11:04 PM)
+"        %R     24-hour hour and minute; same as %H:%M
+"        %s     seconds since the Epoch (1970-01-01 00:00 UTC)
+"        %S     second (00..60)
+"        %t     a tab
+"        %T     time; same as %H:%M:%S
+"        %u     day of week (1..7); 1 is Monday
+"        %U     week number of year, with Sunday as first day of week (00..53)
+"        %V     ISO week number, with Monday as first day of week (01..53)
+"        %w     day of week (0..6); 0 is Sunday
+"        %W     week number of year, with Monday as first day of week (00..53)
+"        %x     locale's date representation (e.g., 12/31/99)
+"        %X     locale's time representation (e.g., 23:13:48)
+"        %y     last two digits of year (00..99)
+"        %Y     year
+"        %z     +hhmm numeric time zone (e.g., -0400)
+"        %:z    +hh:mm numeric time zone (e.g., -04:00)
+"        %::z   +hh:mm:ss numeric time zone (e.g., -04:00:00)
+"        %:::z  numeric time zone with : to necessary precision (e.g., -04, +05:30)
+"        %Z     alphabetic time zone abbreviation (e.g., EDT)
+"        By  default,  date pads numeric fields with zeroes.  The following optional flags may
+"        follow '%':
+"        -      (hyphen) do not pad the field
+"        _      (underscore) pad with spaces
+"        0      (zero) pad with zeros
+"        +      pad with zeros, and put '+' before future years with >4 digits
+"        ^      use upper case if possible
+"        #      use opposite case if possible
+"        After any flags comes an optional field width, as a decimal number; then an  optional
+"        modifier,  which  is either E to use the locale's alternate representations if avail‐
+"        able, or O to use the locale's alternate numeric symbols if available.
+
+"}}}
+
+"}}}
+
+"{{{ interface
+
+" Show list of matches on tab completion in command-line mode
+set wildmenu
+
+" Display completions in a form of popup with descriptions of the matches
+set wildstyle=popup
+
+" Display suggestions in normal, visual and view modes for keys, marks and
+" registers (at most 5 files).  In other view, when available.
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+
+" Ignore case in search patterns unless it contains at least one uppercase
+" letter
+set ignorecase
+
+" <3
+set smartcase
+
+" Don't highlight search results automatically
+set nohlsearch
+
+" Use increment searching (search while typing)
+set incsearch
+
+" neat
+set mouse='a'
+
+" make vifm more responsive I guess
+set mintimeoutlen=50
+set timeoutlen=100000
+
+"}}}
+
+"{{{ basic
+
+" Maximum number of changes that can be undone.
+set undolevels=500
+
+" Trash Directory
+" The default is to move files that are deleted with dd or :d to
+" the trash directory.  If you change this you will not be able to move
+" files by deleting them and then using p to put the file in the new location.
+" I recommend not changing this until you are familiar with vifm.
+" This probably shouldn't be an option.
+set trash
+
+" This is how many directories to store in the directory history.
+set history=2000
+
+" Command used to edit files in various contexts.  The default is vim.
+" If you would like to use another vi clone such as Elvis or Vile
+" you will need to change this setting.
+set vicmd="svim -b"
+
+" If you would like to run an executable file when you
+" press Enter, l or Right Arrow, set this.
+set norunexec
+
+"}}}
+
+"{{{ filesystem
+
+" Automatically resolve symbolic links on l or Enter.
+set followlinks
+
+" This makes vifm perform file operations on its own instead of relying on
+" standard utilities like `cp`.  While using `cp` and alike is a more universal
+" solution, it's also much slower when processing large amounts of files and
+" doesn't support progress measuring.
+set syscalls
+
+" Don't do too many requests to slow file systems
+if !has('win')
+    set slowfs=curlftpfs
+endif
+
+"}}}
+
+"{{{ marks
+
+" :mark mark /full/directory/path [filename]
+
+mark b ~/bin/
+mark h ~/
+
+"}}}
+
+"{{{ examples
+
+" Examples of configuring both panels
+
+" Customize view columns a bit (enable ellipsis for truncated file names)
+"
+" set viewcolumns=-{name}..,6{}.
+
+" Filter-out build and temporary files
+"
+" filter! {*.lo,*.o,*.d,*.class,*.pyc,*.pyo,.*~}
+
+"}}}

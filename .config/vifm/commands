@@ -1,0 +1,84 @@
+" vim: filetype=vifm :
+
+" TODO tmux integration
+
+"{{{ basic commands
+
+command! df df -h %m 2> /dev/null
+command! diff vim -d %f %F
+command! zip zip -r %c.zip %f
+command! run !! ./%f
+command! make !!make %a
+command! mkcd :mkdir %a | cd %a
+command! vgrep vim "+grep %a"
+command! reload :write | restart full
+
+"}}}
+
+" TODO use that
+"{{{ fzf
+
+" TODO more fzf yay
+
+" Commands from wiki
+command! FZFlocate : set noquickview
+                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute 'goto' fnameescape($FZF_PICK)
+                  \| endif
+
+command! FZFfind : set noquickview
+                \| let $FZF_PICK = term('find | fzf --height 10 2>/dev/tty')
+                \| if $FZF_PICK != ''
+                \|     execute 'goto' fnameescape($FZF_PICK)
+                \| endif
+
+" variation that automatically enters directories
+command! FZFlocate : set noquickview
+                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+                  \| endif
+
+"}}}
+
+"{{{ docs
+
+" :com[mand][!] command_name action
+" The following macros can be used in a command
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %m run the command in a menu window
+
+"}}}
+
+"{{{ examples
+
+" Use ag (the silver searcher) instead of grep
+"
+" set grepprg='ag --line-numbers %i %a %s'
+
+" Add additional place to look for executables
+"
+" let $PATH = $HOME.'/bin/fuse:'.$PATH
+
+" Block particular shortcut
+"
+" nnoremap <left> <nop>
+
+" Export IPC name of current instance as environment variable and use it to
+" communicate with the instance later.
+"
+" It can be used in some shell script that gets run from inside vifm, for
+" example, like this:
+"     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
+"
+" let $VIFM_SERVER_NAME = v:servername
+
+"}}}

@@ -1,9 +1,20 @@
-" eunch
+"{{{ eunch
 " TODO
 
 nnoremap <silent> <Leader>;ws :SudoWrite<CR>
 
-" vifm
+"}}}
+
+"{{{ vifm
 " TODO
 
 " if nerdtree happens it will land here
+
+"}}}
+
+"{{{ others
+
+" if nerdtree happens it will land here
+" or nnn
+
+"}}}

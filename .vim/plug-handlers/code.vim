@@ -12,7 +12,6 @@ autocmd FileType nix setlocal commentstring=#\ %s
 autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType nix nnoremap <buffer> <Leader>nle :NixEdit<CR>
 autocmd FileType nix nnoremap <buffer> <Leader>nlE :NixEdit<CR>
-" autocmd FileType nix setlocal modeline
 
 "}}}
 
