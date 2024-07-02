@@ -15,30 +15,41 @@ command! reload :write | restart full
 
 "}}}
 
-" TODO use that
 "{{{ fzf
 
 " TODO more fzf yay
+" TODO also do that well
 
-" Commands from wiki
+" from wiki
 command! FZFlocate : set noquickview
                   \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
                   \| if $FZF_PICK != ''
                   \|     execute 'goto' fnameescape($FZF_PICK)
                   \| endif
 
-command! FZFfind : set noquickview
+" use fzf to fuzzy search and run file
+command! FZFrun : set noquickview
                 \| let $FZF_PICK = term('find | fzf --height 10 2>/dev/tty')
                 \| if $FZF_PICK != ''
                 \|     execute 'goto' fnameescape($FZF_PICK)
                 \| endif
 
 " variation that automatically enters directories
-command! FZFlocate : set noquickview
+command! FZFgo : set noquickview
                   \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
                   \| if $FZF_PICK != ''
                   \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
                   \| endif
+
+" multiselect
+command! fzff : set noquickview
+    \| let $FZF_PICK = system('fd --hidden -t f | fzf --multi --height 10 2>/dev/tty')
+    \| let $FZF_COUNT = system('echo "$FZF_PICK" | wc -l')
+    \| if $FZF_COUNT == 1
+    \|   execute 'goto' fnameescape($FZF_PICK)
+    \| elseif $FZF_COUNT > 1
+    \|   execute 'select! !echo "$FZF_PICK"'
+    \| keepsel endif
 
 "}}}
 

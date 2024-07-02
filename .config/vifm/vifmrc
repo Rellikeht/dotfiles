@@ -9,9 +9,12 @@ source $conf
 let $conf = $VIFM . '/maps'
 source $conf
 
-let $localConf = $VIFM . '/vifmrc-local'
+let $conf = $VIFM . '/vifmrc-additional'
+if filereadable($conf)
+    source $conf
+endif
 
+let $localConf = $VIFM . '/vifmrc-local'
 if filereadable($localConf)
     source $localConf
 endif
-

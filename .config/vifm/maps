@@ -148,3 +148,25 @@ map ,gf :history filter<CR>
 ""nnoremap <c-u> <c-w>x
 
 "}}}
+
+"{{{ FZF
+
+" TODO formalities
+
+" nnoremap / :FZFfind<cr>
+" nnoremap ,slf :FZFfind<cr>
+nnoremap ,sll :FZFlocate<cr>
+nnoremap ,slr :FZFrun<cr>
+nnoremap ,slg :FZFgo<cr>
+
+"}}}
+
+"{{{ TODO A tabs
+
+"}}}
+
+"{{{ command line
+
+cnoremap <a-h> <a-b><a-d>
+
+"}}}
