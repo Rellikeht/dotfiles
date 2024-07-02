@@ -26,6 +26,9 @@ map ,j :jobs<CR>
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
 
+" View like in ranger
+noremap ,qvm :set millerview!<CR>
+
 "}}}
 
 "{{{ TODO B preview

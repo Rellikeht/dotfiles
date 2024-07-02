@@ -9,7 +9,11 @@ filextype {*.pdf},<application/pdf>
     \ zathura %c %i &, 
     \ mupdf %c %i &,
 
-fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+fileviewer {*.pdf},<application/pdf>
+    \ pdftotext -nopgbrk %c -,
+    " \ vifmimg pdfpreview %px %py %pw %ph %c
+    " \ %pc
+    " \ vifmimg clear,
 
 filextype {*.epub},<application/epub>
     \ zathura %f %i &,
@@ -131,7 +135,8 @@ filetype ?*.exe,?*.dll
 
 "{{{ images
 
-filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
+        \<image/*>
         \ {View in sxiv}
         \ feh %f %i,
         \ {View in sxiv}
@@ -139,9 +144,15 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ pinta %f %i,
         \ gimp %f %i,
 
-fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ mediainfo %f
-         \ identify %f
+fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
+        \<image/*>
+        \ mediainfo %f,
+        \ identify %f,
+
+        " Of course this fucking shit won't work
+        " \ vifmimg draw %px %py %pw %ph %c
+        " \ %pc
+        " \ vifmimg clear,
 
 "}}}
 
@@ -244,6 +255,12 @@ fileviewer {*.docx},
 "}}}
 
 "{{{ Directories
+
+fileviewer {*/,.*/}
+    \ ls -F --color=always %c,
+    \ tree -C --gitignore -x -L 3 %c,
+    \ tree -C --gitignore -x -L 6 %c,
+    \ tree -C --gitignore -x %c,
 
 filextype */
         \ pcmanfm %f &,
