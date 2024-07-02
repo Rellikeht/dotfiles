@@ -37,6 +37,8 @@ setopt AUTO_CD
 
 # {{{ completion
 
+ZSH_AUTOSUGGEST_STRATEGY=(completion match_prev_cmd)
+
 zmodload -i zsh/complist
 
 # why does this make things faster
@@ -45,7 +47,7 @@ zstyle :compinstall filename '~/.zshrc'
 # autoload -U colors
 # colors
 
-# Some completion settings and activation
+# {{{ Some completion settings and activation
 if [ -z "$__COMPINIT_RUN" ]; then
     zstyle ':completion:*' use-cache on
     zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zscompcache"
@@ -71,10 +73,22 @@ if [ -z "$__COMPINIT_RUN" ]; then
     # colors files until they have common prefix
     zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==35=35;01}:${(s.:.)LS_COLORS}")';
 
+    zstyle ':completion:*' matcher-list '' \
+      'm:{a-z\-}={A-Z\_}' \
+      'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+      'r:|?=** m:{a-z\-}={A-Z\_}'
+
+    # {{{
+
     # smart case baby
-    zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
+    # zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
+
+    # zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
+
+    # }}}
     __COMPINIT_RUN=1
 fi
+# }}}
 
 # some loading of completion
 autoload -Uz compinit
@@ -107,6 +121,8 @@ bindkey -M emacs "^N" history-beginning-search-forward
 # Selection in menu
 bindkey -M menuselect "^P" up-line-or-history
 bindkey -M menuselect "^N" down-line-or-history
+
+bindkey -M emacs -s "^[i" "**	"
 
 # }}}
 

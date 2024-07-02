@@ -1,4 +1,6 @@
 # TODO
+# (root copy)
+
 # Config file for Powerlevel10k with the style of robbyrussell theme from Oh My Zsh.
 #
 # Original: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#robbyrussell.

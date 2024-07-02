@@ -11,22 +11,74 @@ fi
 
 # }}}
 
-# {{{ sourcing
+# {{{ prompt
+
+PSC='$'
+[ "$(id -u)" -eq 0 ] && PSC='#'
+PROMPT_COMMAND=__prompt_command
+PS2=">"
+PS3=""
+PS4="+"
 
 # prompt file, something like p10k but simpler
 if ! conditional_source ~/.prompt.bash &>/dev/null; then
-    PSC='$'
-    [ "$(id -u)" -eq 0 ] && PSC='#'
-    PS1='\[\033[34m\][\[\033[1;34m\]\u\[\033[1;36m\]@\[\033[1;31m\]\h\[\033[0;34m\]]\[\033[1;36m\]:\[\033[1;35m\]\w\[\033[1;33m\]$PSC\[\033[0m\] '
+    __prompt_command() {
+        # {{{
 
-    PS2=">"
-    PS3=""
-    PS4="+"
+        # this has to be first
+        local EXIT="$?"
+        PS1=""
+
+        # {{{ colors
+        local RESET='\[\e[0m\]'
+
+        local BLACK='\[\e[0;30m\]'
+        local RED='\[\e[0;31m\]'
+        local GREEN='\[\e[0;32m\]'
+        local YELLOW='\[\e[0;33m\]'
+        local BLUE='\[\e[0;34m\]'
+        local MAGENTA='\[\e[0;35m\]'
+        local CYAN='\[\e[0;36m\]'
+        local WHITE='\[\e[0;37m\]'
+
+        local LBLACK='\[\e[1;30m\]'
+        local LRED='\[\e[1;31m\]'
+        local LGREEN='\[\e[1;32m\]'
+        local LYELLOW='\[\e[1;33m\]'
+        local LBLUE='\[\e[1;34m\]'
+        local LMAGENTA='\[\e[1;35m\]'
+        local LCYAN='\[\e[1;36m\]'
+        local LWHITE='\[\e[1;37m\]'
+        # }}}
+
+        PS1+="${MAGENTA}[ ${RESET}"
+        PS1+="${CYANj}\u${RESET}"
+        PS1+="${LRED}@${RESET}"
+        PS1+="${LCYAN}\h${RESET}"
+        PS1+="${MAGENTA} ]${RESET}"
+        PS1+="${LBLUE}:${RESET}"
+        PS1+="${LMAGENTA}\w${RESET}"
+
+        if [ $EXIT != 0 ]; then
+            PS1+="${RED}"
+        else
+            PS1+="${GREEN}"
+        fi
+
+        PS1+="[$EXIT]${RESET}"
+        PS1+="${LCYAN}$PSC ${RESET}"
+    }
+# }}}
 fi
+
+# }}}
+
+# {{{ sourcing
 
 conditional_source ~/.aliasrc.bash
 conditional_source ~/.funcrc.bash
 conditional_source "$HOME/.local/.bashrc"
+
 # }}}
 
 # {{{ settings
@@ -53,6 +105,9 @@ bind '"[A" history-search-backward'
 bind '"[B" history-search-forward'
 bind '"" history-search-backward'
 bind '"" history-search-forward'
+
+# may be better, but is acceptable
+bind '"\ei":"**	"'
 
 # }}}
 

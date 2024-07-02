@@ -1,4 +1,3 @@
-
 " {{{ heavy stuff
 
 let mapleader = ','

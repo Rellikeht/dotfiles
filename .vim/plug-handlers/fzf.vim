@@ -1,10 +1,19 @@
-" :help fzf
-" :help fzf-vim
+" TODO which can be in visual
+
+"{{{ settings
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 let $FZF_DEFAULT_COMMAND='find .'
 let g:fzf_vim = {}
 
-" LAYOUT
+"}}}
+
+"{{{ layout
 
 " " Default fzf layout
 " " - Popup window (center of the screen)
@@ -45,15 +54,9 @@ let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-/']
 " let g:fzf_layout = { 'window': '-tabnew' }
 " let g:fzf_layout = { 'window': '10new' }
 
-" SETTINGS
+"}}}
 
-" Enable per-command history
-" - History files will be stored in the specified directory
-" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
-"   'previous-history' instead of 'down' and 'up'.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-" COLORS
+"{{{ colors
 
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
@@ -73,7 +76,9 @@ let g:fzf_colors = {
             \ 'header':  ['fg', 'Comment']
             \ }
 
-" KEYS
+"}}}
+
+"{{{ basic mappings
 
 " Insert mode completion
 imap <c-x>w <plug>(fzf-complete-word)
@@ -83,19 +88,36 @@ imap <c-x>l <plug>(fzf-complete-line)
 " Not needed really
 nnoremap <leader>sff :FZF<CR>
 
-nnoremap <leader>sph :Files ~<CR>
-nnoremap <leader>spT :Files ~/Templates<CR>
-nnoremap <leader>sp1 :Files ..<CR>
-nnoremap <leader>sp2 :Files ../..<CR>
-nnoremap <leader>sp3 :Files ../../..<CR>
-nnoremap <leader>sp4 :Files ../../../..<CR>
-nnoremap <leader>sp5 :Files ../../../../..<CR>
-
 nnoremap <leader>slf :Files<CR>
 nnoremap <leader>slF :Files<Space>
 nnoremap <leader>sls :Locate<Space>
 nnoremap <leader>sla :Ag<CR>
 nnoremap <leader>slA :Ag<Space>
+
+"}}}
+
+"{{{ file mappings
+
+nnoremap <leader>sp1 :Files ..<CR>
+nnoremap <leader>sp2 :Files ../..<CR>
+nnoremap <leader>sp3 :Files ../../..<CR>
+nnoremap <leader>sp4 :Files ../../../..<CR>
+nnoremap <leader>sp5 :Files ../../../../..<CR>
+nnoremap <leader>sp6 :Files ../../../../../..<CR>
+nnoremap <leader>sp7 :Files ../../../../../../..<CR>
+nnoremap <leader>sp8 :Files ../../../../../../../..<CR>
+nnoremap <leader>sp9 :Files ../../../../../../../../..<CR>
+
+nnoremap <leader>sph :Files ~<CR>
+nnoremap <leader>spt :Files ~/Templates<CR>
+nnoremap <leader>spd :Files ~/Dbackup<CR>
+nnoremap <leader>spf :Files ~/Documents<CR>
+nnoremap <leader>spe :Files /etc<CR>
+nnoremap <leader>spg :Files ~/gits<CR>
+
+"}}}
+
+"{{{ fzf-vim additional mappings
 
 nnoremap <leader>slb :BLines<CR>
 nnoremap <leader>slB :BLines<Space>
@@ -117,6 +139,10 @@ nnoremap <leader>svj :Jumps<CR>
 
 nnoremap <leader>gff :GFiles<CR>
 nnoremap <leader>gfs :GFiles?<CR>
+
+"}}}
+
+"{{{ custom commands
 
 " TODO preview like in other commands (probably impossible)
 command! -bang -nargs=? -complete=dir Fdiffs
@@ -170,6 +196,10 @@ command! -bang -nargs=* Ah
 command! -bang -nargs=* Au 
             \ call fzf#vim#ag(<q-args>, '--unrestricted', fzf#vim#with_preview(), <bang>0)
 
+"}}}
+
+"{{{ custom command mappings
+
 nnoremap <leader>sds :Fdiffs<CR>
 nnoremap <leader>sdS :Fdiffs<Space>
 nnoremap <leader>sdv :Fdiffv<CR>
@@ -184,10 +214,9 @@ nnoremap <leader>slH :Ah<Space>
 nnoremap <leader>slu :Au<CR>
 nnoremap <leader>slU :Au<Space>
 
-" TODO tmux
-" May be too painful or at least not worth
+"}}}
 
-" MORE KEYS
+"{{{ additional keys
 
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -208,3 +237,5 @@ let g:fzf_action = {
             \ 'ctrl-t': 'tab split',
             \ 'ctrl-x': 'split',
             \ 'ctrl-v': 'vsplit' }
+
+"}}}

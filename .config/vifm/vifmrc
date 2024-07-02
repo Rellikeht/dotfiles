@@ -1,5 +1,6 @@
 " vim: filetype=vifm :
 
+" This is ugly, but i couldn't do this in any other way
 let $conf = $VIFM . '/settings'
 source $conf
 let $conf = $VIFM . '/filetypes'
