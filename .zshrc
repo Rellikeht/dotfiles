@@ -153,6 +153,7 @@ conditional_source ~/.p10k.zsh
 # }}}
 
 # {{{ hooks
+
 if fzf --zsh &>/dev/null; then
     eval "$(fzf --zsh)"
 fi
@@ -163,10 +164,12 @@ fi
 
 # z.lua or plain old z as fallback
 if whichp z.lua &>/dev/null; then
-    eval "$(z.lua --init zsh enhanced once)"
+    # fzf doesn't do much and is fucked here
+    eval "$(z.lua --init zsh once enhanced echo)"
 elif whichp z &>/dev/null; then
     . "$(whichp z)"
 fi
+
 # }}}
 
 # {{{ other

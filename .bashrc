@@ -112,6 +112,7 @@ bind '"\ei":"**	"'
 # }}}
 
 # {{{ hooks
+
 if fzf --bash &>/dev/null; then
     eval "$(fzf --bash)"
 fi
@@ -122,10 +123,11 @@ fi
 
 # z.lua or plain old z as fallback
 if whichp z.lua &>/dev/null; then
-    eval "$(z.lua --init bash enhanced once)"
+    eval "$(z.lua --init bash once enhanced echo fzf)"
 elif whichp z &>/dev/null; then
     . "$(whichp z)"
 fi
+
 # }}}
 
 # {{{ other
