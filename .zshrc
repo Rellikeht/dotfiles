@@ -38,6 +38,11 @@ setopt AUTO_CD
 # {{{ completion
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion match_prev_cmd)
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
+    forward-char
+    forward-word
+    emacs-forward-word
+)
 
 zmodload -i zsh/complist
 

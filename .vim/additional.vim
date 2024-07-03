@@ -1,6 +1,5 @@
 "{{{ settings
 
-set nocompatible
 set termguicolors
 set foldmethod=marker
 

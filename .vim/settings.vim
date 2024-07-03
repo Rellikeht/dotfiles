@@ -16,6 +16,7 @@ nnoremap <Leader><Space> :set hls!<CR>
 noremap <Leader>qen :set relativenumber!<CR>
 noremap <Leader>qeN :set number!<CR>
 noremap <Leader>qeC :set cursorbind!<CR>
+noremap <Leader>qep :set paste!<CR>
 
 set cursorline
 noremap <Leader>qec :set cursorline!<CR>

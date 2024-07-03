@@ -3,19 +3,56 @@ local lspconfig = require("lspconfig")
 
 lspconfig.lua_ls.setup(
   {
+    -- {{{ boilerplate
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
     on_attach = lsp_attach,
     capabilities = Capabilities,
+    -- }}}
 
-    settings = {
+    on_init = function(client) -- {{{
+      local path = client.workspace_folders[1].name
+      if vim.loop.fs_stat(path .. "/.luarc.json") or
+        vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+        return
+      end
+
+      client.config.settings.Lua = vim.tbl_deep_extend(
+                                     "force", client.config
+                                       .settings.Lua, {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = "LuaJIT",
+          },
+
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME,
+              -- Depending on the usage, you might want to add additional paths here.
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            },
+
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          },
+        }
+                                   )
+    end, -- }}}
+
+    settings = { -- {{{
       Lua = {
         runtime = {
           version = "LuaJIT",
           -- Setup your lua path
           path = vim.split(package.path, ";"),
         },
+
+        hint = {enable = true},
 
         diagnostics = {
           -- Get the language server to recognize the `vim` global
@@ -24,26 +61,34 @@ lspconfig.lua_ls.setup(
 
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
+          -- library = vim.api.nvim_get_runtime_file("", true),
+        },
+
+        format = {
+          defaultConfig = {
+            indent_style = "space",
+            indent_size = 2,
+          },
         },
 
         telemetry = {enable = false},
       },
-    },
-
+    }, -- }}}
   }
 )
 
 lspconfig.julials.setup(
   {
+    -- {{{ boilerplate
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
     on_attach = lsp_attach,
     capabilities = Capabilities,
     settings = {telemetry = {enable = false}},
+    -- }}}
 
-    cmd = {
+    cmd = { -- {{{
       "julia",
       "-g0",
       "-O0",
@@ -88,8 +133,7 @@ lspconfig.julials.setup(
     server.runlinter = true
     run(server)
   ]],
-    },
-
+    }, -- }}}
   }
 )
 
@@ -99,13 +143,15 @@ lspconfig.julials.setup(
 -- No idea if all of that is really needed
 lspconfig.rust_analyzer.setup(
   {
+    -- {{{ boilerplate
     on_attach = lsp_attach,
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
     capabilities = Capabilities,
+    -- }}}
 
-    settings = {
+    settings = { -- {{{
       ["rust-analyzer"] = {
         standalone = true,
         workspaceFolders = false,
@@ -119,10 +165,11 @@ lspconfig.rust_analyzer.setup(
         cargo = {buildScripts = {enable = true}},
         procMacro = {enable = true},
       },
-    },
+    }, -- }}}
   }
 )
 
+-- {{{
 -- local util = require("lspconfig.util")
 -- lspconfig.pylyzer.setup({
 --   cmd = {"pylyzer", "--server"},
@@ -150,9 +197,19 @@ lspconfig.rust_analyzer.setup(
 --   }
 -- })
 
+-- }}}
+
 lspconfig.clangd.setup(
   {
-    cmd = {
+    -- {{{ boilerplate
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    -- }}}
+
+    cmd = { -- {{{
       "clangd",
       "-j=2",
       "--clang-tidy",
@@ -160,16 +217,14 @@ lspconfig.clangd.setup(
       "--header-insertion=never",
       "--completion-style=detailed",
       "--pch-storage=memory",
-    },
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
-    capabilities = Capabilities,
-    settings = {},
+    }, -- }}}
+
+    settings = { -- {{{
+    }, -- }}}
   }
 )
 
+-- {{{
 --   cmd = {
 --     'julia', '--startup-file=no', '--history-file=no', '-e', [[
 --       code = :(
@@ -256,3 +311,4 @@ lspconfig.clangd.setup(
 --   capabilities = Capabilities,
 --   -- settings = {}
 -- })
+-- }}}

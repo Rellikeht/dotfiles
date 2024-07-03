@@ -20,7 +20,7 @@ Plug("nvim-lua/plenary.nvim")
 
 -- {{{ look enchancing
 
-Plug("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"})
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("norcalli/nvim-colorizer.lua") -- TODO C
 -- Plug('folke/tokyonight.nvim') -- elflord is good enough
 
@@ -31,8 +31,8 @@ Plug("norcalli/nvim-colorizer.lua") -- TODO C
 
 -- {{{ motion enchancing
 
-Plug("easymotion/vim-easymotion") -- TODO A
-Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"}) -- TODO A
+Plug("easymotion/vim-easymotion")                       -- TODO A
+Plug("ThePrimeagen/harpoon", { ["branch"] = "harpoon2" }) -- TODO A
 -- Plug("nvim-telescope/telescope.nvim") -- TODO B
 -- Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO B
 
@@ -62,8 +62,8 @@ Plug("hrsh7th/cmp-nvim-lua")
 
 -- Plug('nvim-orgmode/orgmode') -- TODO B
 
-Plug("mfussenegger/nvim-lint") -- TODO this is bad
-Plug("windwp/nvim-autopairs") -- TODO B
+Plug("mfussenegger/nvim-lint")                   -- TODO this is bad
+Plug("windwp/nvim-autopairs")                    -- TODO B
 Plug("nvim-treesitter/nvim-treesitter-refactor") -- TODO C
 
 -- THIS IS ALL SHIT, IT CAN'T FIND ANYTHING IN SYSTEM
@@ -89,9 +89,9 @@ vim.call("plug#end")
 local modconfigs = {
   "motion",
   "cmp",
-  "lspconfig",
   "colors",
   "treesitter",
+  "lspconfig",
   "other",
 }
 

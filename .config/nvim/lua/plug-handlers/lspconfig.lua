@@ -149,11 +149,6 @@ vim.api.nvim_create_autocmd(
           )
         end, opts
       )
-
-      vim.keymap.set(
-        -- "i", "<C-Space>", vim.lsp.buf.completion, opts
-        "i", "<C-Space>", vim.lsp.omnifunc, opts
-      )
     end,
   }
 )

@@ -122,9 +122,7 @@ alias ssh9='ssh "$(cat ~/.ssh/h9)"'
 # {{{ editors
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
-alias mvim='svim -f'
-alias m=mvim
-alias svim='svim -f -X'
+alias svim='svim -f'
 alias s=svim
 alias gsv=gsvim
 alias se=exs

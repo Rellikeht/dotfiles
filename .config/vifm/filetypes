@@ -107,13 +107,13 @@ filetype {*.md}
 " TODO binaries
 
 " Object
-filetype {*.o},<application/x-object>
+filetype {[^.]*},{*.o},<application/x-object>
     \ ldd %f | less,
     \ nm %f | less,
     \ strings %f | less,
     \ file %f | less,
 
-fileviewer {*.o},<application/x-object>
+fileviewer {[^.]*},{*.o},<application/x-object>
     \ ldd %c,
     \ file %c,
     \ nm %c,
@@ -162,10 +162,8 @@ filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
     \<application/zip,application/java-archive>
     \ unzip %c,
     \ unzip %c | less
-
-    " Some day
-    " \ {Mount with fuse-zip}
-    " \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+    \ {Mount with fuse-zip}
+    \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
 
 " fileviewer *.zip,*.jar,*.war,*.ear,*.oxt
 fileviewer {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
@@ -175,10 +173,13 @@ fileviewer {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
 
 " ArchiveMount
 filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
-        \<application/x-tar>
-        \ tar xf %f,
-       \ {Mount with archivemount}
-       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+    \<application/x-tar>
+    \ {Mount with fuse-archive}
+    \ FUSE_MOUNT|fuse-archive %SOURCE_FILE %DESTINATION_DIR,
+    \ {Mount with archivemount}
+    \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+    \ {unpack}
+    \ tar xf %f,
 
 fileviewer *.tgz,*.tar.gz 
     \ tar -tzf %c | less
@@ -196,10 +197,12 @@ fileviewer {*.tar},<application/x-tar>
     \ tar -tf %c | less
 
 filetype {*.rar},<application/x-rar>
-    \ unrar x %c,
-    \ unrar-free -x %c,
     \ {Mount with rar2fs}
     \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+    \ {unpack},
+    \ unrar x %c,
+    \ {unpack},
+    \ unrar-free -x %c,
 
 fileviewer {*.rar},<application/x-rar> 
     \ unrar v %c,
@@ -320,7 +323,7 @@ fileviewer {*.[1-9]}
 
 " Hopefully this is correct
 fileviewer <text/troff>
-    \ highlight -O truecolor -s easter %c,
+    \ highlight -O truecolor -s vampire %c,
     \ man ./%c | col -b
 
 filetype <text/troff>
@@ -330,22 +333,22 @@ filetype <text/troff>
 
 "{{{ source files
 
-" TODO more languages
-fileviewer {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
+fileviewer {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
+    \?*.fth,?*.4th,?*.f70,?*.f99,
     \?*.rs,?*.hs,?*.go,?*.ml,?*.nim,?*.zig,?*.jl,
     \?*.java,?*.d,?*.clj,?*.scala,
-    \?*.py,?*.lua,?*.sh,?*.tcl,?*.vim,?*.vifm
+    \?*.py,?*.lua,?*.bash,?*.zsh,?*.sh,?*.tcl,
+    \?*.vim,?*.vifm
     \?*.cl,?*.lisp,?*.scm,?*.nix,?*.dhall,
     \?*.html,?*.htm,?*.css,
-    \?*.r,?*.js,?*rb,
-    \?*.mzn,?*.pl,
-    \?*.json,?*.toml,?*.yml,?*.xml,?*.conf,?*.ini,
-    \?*.md,?*.csv,?*.tsv,
-    \Makefile,?*.cmake,
-    \.git*,
-    \?*.url,
+    \?*.r,?*.js?,?*rb,?*.ts?,
+    \?*.mzn,?*.pl,?*.ncl,
+    \?*.json,?*.toml,?*.yaml,?*.yml,?*.xml,?*.conf,?*.ini,
+    \?*.md,?*.csv,?*.tsv,.*rc,
+    \Makefile,?*.cmake,?*.dhall,
+    \.git*,?*.url,
     \}
-    \ highlight -O truecolor -s easter %c,
+    \ highlight -O truecolor -s vampire %c,
     \ bat %c,
 
 " TODO cmake, dune, nimble
@@ -353,22 +356,21 @@ fileviewer {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
 " Doesn't automatically recognize :(
 " \?*rc,?*common,?*local,?*dump,?*history,?*resources,?*setup
 
-filetype {?*.c,?*.cpp,?*.s,?*.asm,?*.fth,?*.4th
+filetype {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
+    \?*.fth,?*.4th,?*.f70,?*.f99,
     \?*.rs,?*.hs,?*.go,?*.ml,?*.nim,?*.zig,?*.jl,
     \?*.java,?*.d,?*.clj,?*.scala,
-    \?*.py,?*.lua,?*.sh,?*.tcl,?*.vim,?*.vifm
+    \?*.py,?*.lua,?*.bash,?*.zsh,?*.sh,?*.tcl,
+    \?*.vim,?*.vifm
     \?*.cl,?*.lisp,?*.scm,?*.nix,?*.dhall,
     \?*.html,?*.htm,?*.css,
-    \?*.r,?*.js,?*rb,
-    \?*.mzn,?*.pl,
-    \?*.json,?*.toml,?*.yml,?*.xml,?*.conf,?*.ini,
-    \?*.json,?*.toml,?*.yml,?*.xml,?*.conf,?*.ini,
-    \?*.md,?*.csv,?*.tsv,?*.txt,
-    \Makefile,?*.cmake,
-    \?*rc,?*common,?*local,?*dump,?*history,?*resources,?*setup
-    \.git*,
-    \?*.url,
-    \},<text/troff>
+    \?*.r,?*.js?,?*rb,?*.ts?,
+    \?*.mzn,?*.pl,?*.ncl,
+    \?*.json,?*.toml,?*.yaml,?*.yml,?*.xml,?*.conf,?*.ini,
+    \?*.md,?*.csv,?*.tsv,.*rc,
+    \Makefile,?*.cmake,?*.dhall,
+    \.git*,?*.url,
+    \}
     \ svim %f,
     \ nvim %f,
     \ vim %f,

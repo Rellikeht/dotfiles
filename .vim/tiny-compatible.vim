@@ -162,10 +162,14 @@ set nowrap
 set breakindent
 set showbreak=\\>>
 
-set mouse=a
 set notimeout
 set ttimeout
 set ttimeoutlen=100
+
+set mouse=a
+
+" Not really needed
+" set clipboard=unnamed
 
 " Neovim default setting at time of writing this
 set backspace=indent,eol,start

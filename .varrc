@@ -49,3 +49,5 @@ export FZF_ALT_C_COMMAND='find . -mindepth 1 -type d -o -type l'
 
 export JULIA_SHELL='zsh -i'
 export JULIA_EDITOR='ssvim'
+
+export NIXPKGS_ALLOW_UNFREE=1

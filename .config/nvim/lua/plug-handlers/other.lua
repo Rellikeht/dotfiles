@@ -162,14 +162,18 @@ vim.keymap.set(
 
 -- {{{ neoformat
 
--- TODO more formatting through language server
-
-vim.cmd("let g:neoformat_enabled_go = []")
+local lfiles = {"*.go", "*.jl", "*.zig", "*.lua", "*.sh"}
 
 vim.api.nvim_create_autocmd(
-  "BufWritePre", {
-    pattern = {"*.go", "*.jl", "*.zig"},
-    command = "lua vim.lsp.buf.format()",
+  {"LspAttach"}, {
+    pattern = lfiles,
+    command = [[
+      let b:buffmt = 0
+      luado vim.api.nvim_create_autocmd(
+        "BufWritePre",
+        {pattern = lfiles, command = "lua vim.lsp.buf.format()"}
+      )
+    ]],
   }
 )
 
