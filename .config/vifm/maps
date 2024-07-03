@@ -106,7 +106,7 @@ map gcr :!rsync %f %D &<CR>
 map gcR :!rsync -a %f %D &<CR>
 
 " Holy shit, this works
-map gcc :!cp %f %D &<A-b><A-b><A-b>
+map gcc :!cp %f %D &<M-b><M-b><M-b>
 
 " TODO adb
 " TODO more rsyncs
@@ -141,9 +141,9 @@ map ,gf :history filter<CR>
 
 "" Midnight commander alike mappings
 "" Open current directory in the other pane
-"nnoremap <a-i> :sync<cr>
+"nnoremap <M-i> :sync<cr>
 "" Open directory under cursor in the other pane
-"nnoremap <a-o> :sync %c<cr>
+"nnoremap <M-o> :sync %c<cr>
 "" Swap panes
 ""nnoremap <c-u> <c-w>x
 
@@ -167,6 +167,7 @@ nnoremap ,slg :FZFgo<cr>
 
 "{{{ command line
 
-cnoremap <a-h> <a-b><a-d>
+" alt backspace won't work
+cnoremap <M-h> <M-b><M-d>
 
 "}}}

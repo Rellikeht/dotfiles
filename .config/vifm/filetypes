@@ -104,16 +104,17 @@ filetype {*.md}
 "}}}
 
 "{{{ binary
-" TODO binaries
+
+" TODO binaries / executables, especially linux
 
 " Object
-filetype {[^.]*},{*.o},<application/x-object>
+filetype {*.o},<application/x-object>
     \ ldd %f | less,
     \ nm %f | less,
     \ strings %f | less,
     \ file %f | less,
 
-fileviewer {[^.]*},{*.o},<application/x-object>
+fileviewer {*.o},<application/x-object>
     \ ldd %c,
     \ file %c,
     \ nm %c,

@@ -1,9 +1,12 @@
+-- {{{
 ---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
 
 local diag_modes = {"n", "v"}
 local buf_modes = {"n", "v"}
+-- }}}
 
+-- {{{
 vim.keymap.set(
   buf_modes, "<Leader>dqi", ":LspInfo<CR>", {noremap = true}
 )
@@ -22,7 +25,9 @@ vim.keymap.set(
 vim.keymap.set(
   buf_modes, "<Leader>dqE", ":LspStop<CR>", {noremap = true}
 )
+-- }}}
 
+-- {{{
 vim.keymap.set(
   diag_modes, "<Leader>df", vim.diagnostic.open_float,
   {noremap = true}
@@ -44,30 +49,25 @@ vim.keymap.set(
   diag_modes, "<Leader>dL", vim.diagnostic.setqflist,
   {noremap = true}
 )
-
--- WTF IS THAT SHIT
--- vim.keymap.set(
---   "i", "<C-g>d", function()
---     vim.cmd.stopinsert()
---     vim.lsp.buf.signature_help()
---     vim.defer_fn(function() vim.cmd.wincmd("w") end, 100)
---     vim.keymap.set("n", "q", ":close<CR>", {buffer = true})
---   end
--- )
+-- }}}
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd(
-  "LspAttach", {
+  "LspAttach", { -- {{{
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
+
+      -- {{{
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
       -- :help vim.lsp.*
       local opts = {buffer = ev.buf, noremap = true}
       local tab_mod = "<C-w>"
+      -- }}}
 
+      -- {{{
       vim.keymap.set(
         buf_modes, "<Leader>dd", vim.lsp.buf.definition, opts
       )
@@ -97,16 +97,6 @@ vim.api.nvim_create_autocmd(
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>ds", vim.lsp.buf.signature_help,
-        opts
-      )
-      vim.keymap.set(
-        buf_modes, tab_mod .. "<Leader>ds",
-        "<cmd>tab split | lua vim.lsp.buf.signature_help()<CR>",
-        opts
-      )
-
-      vim.keymap.set(
         buf_modes, "<Leader>dt", vim.lsp.buf.type_definition,
         opts
       )
@@ -116,6 +106,18 @@ vim.api.nvim_create_autocmd(
         opts
       )
 
+      vim.keymap.set(
+        buf_modes, "<Leader>ds", vim.lsp.buf.signature_help,
+        opts
+      )
+      vim.keymap.set(
+        buf_modes, tab_mod .. "<Leader>ds",
+        "<cmd>tab split | lua vim.lsp.buf.signature_help()<CR>",
+        opts
+      )
+      -- }}}
+
+      -- {{{
       vim.keymap.set(
         buf_modes, "<Leader>dR", vim.lsp.buf.rename, opts
       )
@@ -133,7 +135,9 @@ vim.api.nvim_create_autocmd(
       vim.keymap.set(
         buf_modes, "<Leader>da", vim.lsp.buf.code_action, opts
       )
+      -- }}}
 
+      -- {{{
       vim.keymap.set(
         buf_modes, "<Leader>dwa",
         vim.lsp.buf.add_workspace_folder, opts
@@ -149,29 +153,32 @@ vim.api.nvim_create_autocmd(
           )
         end, opts
       )
+      -- }}}
+
     end,
-  }
+  } -- }}}
 )
 
-local function ssetup(server)
+local function ssetup(server) -- {{{
   local config = lspconfig[server]
   if vim.fn.executable(
     config.document_config.default_config.cmd[1]
   ) == 0 then return end
 
   config.setup(
-    {
+    { -- {{{
       preselectSupport = false,
       preselect = false,
       single_file_support = true,
       on_attach = lsp_attach,
       capabilities = Capabilities,
       settings = {telemetry = {enable = false}},
-    }
+    } -- }}}
   )
 end
+-- }}}
 
-local servers = {
+local servers = { -- {{{
   -- "pylyzer",
   "pylsp",
   "gopls",
@@ -188,8 +195,10 @@ local servers = {
   "typst_lsp",
   "scheme_langserver",
   "tsserver",
-}
+} -- }}}
 
+-- {{{
 for _, s in ipairs(servers) do ssetup(s) end
 local plug_dir = "plug-handlers/"
 require(plug_dir .. "servers")
+-- }}}

@@ -49,9 +49,6 @@ zmodload -i zsh/complist
 # why does this make things faster
 zstyle :compinstall filename '~/.zshrc'
 
-# autoload -U colors
-# colors
-
 # {{{ Some completion settings and activation
 if [ -z "$__COMPINIT_RUN" ]; then
     zstyle ':completion:*' use-cache on

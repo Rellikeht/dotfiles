@@ -15,9 +15,9 @@ set sortnumbers
 " If you would rather use a plain text help file set novimhelp.
 set vimhelp
 
-" List of color schemes to try (picks the first one supported by the terminal)
-" colorscheme Default-256 Default
-colorscheme palenight
+" some elements aren't visible
+" colorscheme palenight
+colorscheme nord
 
 " good for now
 highlight User1 ctermbg=lightblack ctermfg=lightgreen cterm=none

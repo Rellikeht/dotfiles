@@ -52,7 +52,7 @@ cmp.setup(
               cmp.select_next_item(
                 {
                   --
-                  -- behavior = cmp.SelectBehavior,
+                  behavior = cmp.SelectBehavior,
                   count = 1,
                 }
               )
@@ -68,7 +68,7 @@ cmp.setup(
               cmp.select_prev_item(
                 {
                   --
-                  -- behavior = cmp.SelectBehavior,
+                  behavior = cmp.SelectBehavior,
                   count = 1,
                 }
               )
