@@ -37,6 +37,8 @@ alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
 alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
 
 alias j='jobs'
+alias uc='ucopy'
+alias uc='ucopys'
 
 # }}}
 
@@ -452,7 +454,15 @@ alias gsg='git stash pop'
 alias gsl='git stash list'
 # }}}
 
+# {{{ graphical helpers
+
+# TODO more of that
+alias dg=dragon
+
+# }}}
+
 # {{{ other
+
 alias kbp="~/.kb-plug.sh"
 alias help2man='help2man -N'
 
@@ -465,8 +475,11 @@ alias gsf='grs -Tpdf'
 alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
 alias stL='stc --homedir ~/.config/syncthing/'
 
-## pacman
-alias pc=pcurses
+# }}}
+
+# {{{ pacman
+
+# alias pc=pcurses
 alias pa=pacman
 alias pacman='pacman --color=always'
 alias paru='paru --color=always'
@@ -474,6 +487,7 @@ alias paru='paru --color=always'
 if eval type pacman >/dev/null 2>/dev/null; then
     alias pkgf="pacman -Ql"
 fi
+
 # }}}
 
 if [ "$(uname)" = "FreeBSD" ]; then # {{{
@@ -564,7 +578,8 @@ alias ded='direnv edit'
 alias dhook='eval "$(direnv hook $SHELL)"'
 # }}}
 
-# {{{ other
+# {{{ random
+
 alias sb=sbase-box
 alias bb=busybox
 

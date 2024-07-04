@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+[ -n "$1" ] && [ -d "$1" ] && ! cd "$1" && exit 1
+
+xargs -d '\n' -I {} sh -c '
+    if echo "{}" |
+        grep -E "^(https?|[ts]?ftps?|dav)://" >/dev/null; then
+        curl -sfLZO "{}"
+    else
+        rsync -qau "{}" .
+    fi
+'

@@ -51,6 +51,8 @@ nnoremap ,qw :set wrap!<cr>
 " View like in ranger
 noremap ,qv :set millerview!<CR>
 
+nnoremap ,qs :set slowfs!<cr>
+
 "}}}
 
 "{{{ preview
@@ -118,8 +120,10 @@ map go :file %i<CR>
 map gO :file<CR>
 
 " Sometimes may be needed for gui operations
-map gm :!pcmanfm %i &<CR>
-map gM :!pcmanfm &<CR>
+map gms :!pcmanfm %i &<CR>
+map gmS :!pcmanfm &<CR>
+map gmd :!pcmanfm %d %D %i &<CR>
+map gmD :!pcmanfm %d %D &<CR>
 
 map gcb :!cp -n %f %D &<CR>
 map gcB :!cp %f %D &<CR>
@@ -129,7 +133,7 @@ map gcR :!rsync -a %f %D &<CR>
 map gcc :!cp %f %D &<M-b><M-b><M-b>
 
 " ga exists, but whatever
-map ,qs :echo system("du -sh ".expand("%f"))<CR>
+map ,qd :echo system("du -sh ".expand("%f"))<CR>
 
 " TODO more rsyncs I guess
 
@@ -222,8 +226,16 @@ endif
 nnoremap ,dy :exe '!dragon --on-top --and-exit %c & ontop'<CR>
 nnoremap ,dY :exe '!dragon --on-top %c & ontop'<CR>
 
-vnoremap ,dy :exe '!dragon --all --on-top --and-exit %f & ontop'<CR>
-vnoremap ,dY :exe '!dragon --all --on-top %f & ontop'<CR>
+vnoremap ,dy :exe '!dragon --all-compact --on-top --and-exit %f & ontop'<CR>
+vnoremap ,dY :exe '!dragon --all-compact --on-top %f & ontop'<CR>
+
+noremap ,dp :exe '!dragon --target --on-top --and-exit 2>/dev/null | ucopy %d & ontop'<CR>
+noremap ,dP :exe '!dragon --target --on-top 2>/dev/null | ucopy %d & ontop'<CR>
+noremap ,dc :exe '!dragon --target --on-top --keep 2>/dev/null | ucopy %d & ontop'<CR>
+
+noremap ,ds :exe '!dragon --target --on-top --and-exit 2>/dev/null | ucopys %d & ontop'<CR>
+noremap ,dS :exe '!dragon --target --on-top 2>/dev/null | ucopys %d & ontop'<CR>
+noremap ,dC :exe '!dragon --target --on-top --keep 2>/dev/null | ucopys %d & ontop'<CR>
 
 "}}}
 

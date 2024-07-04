@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+[ -n "$1" ] && [ -d "$1" ] && ! cd "$1" && exit 1
+
+xargs -d '\n' -I {} sh -c '
+    if echo "{}" |
+        grep -E "^(https?|[ts]?ftps?|dav|magnet)://" >/dev/null; then
+        aria2c -j 20 -c -q --seed-time=0 "{}"
+    else
+        rsync -qau "{}" .
+    fi
+'
