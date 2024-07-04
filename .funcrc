@@ -123,14 +123,14 @@ fed() {
 }
 # }}}
 
-if [ $(uname) = "FreeBSD" ]; then # {{{
+if [ "$(uname)" = "FreeBSD" ]; then # {{{
     find_system_special() {
         find -E "$@" # TODO
     }
 
     TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
     ttgl() {
-        if [ $(sysctl -n hw.psm.synaptics.touchpad_off) == 0 ]; then
+        if [ "$(sysctl -n hw.psm.synaptics.touchpad_off)" == 0 ]; then
             eval "$TOUCHPAD_CMD=1" >/dev/null
         else
             eval "$TOUCHPAD_CMD=0" >/dev/null
@@ -138,11 +138,6 @@ if [ $(uname) = "FreeBSD" ]; then # {{{
     }
 
     hm() {
-        #local F
-        #F=$(mktemp)
-        #help2man $@ > "$F"
-        #man "$F"
-        #rm "$F"
         help2man $@ | mandoc | less
     }
     # }}}

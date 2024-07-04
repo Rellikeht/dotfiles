@@ -20,13 +20,24 @@ alias prgs='progs | sort | uniq'
 # }}}
 
 # {{{ some neat things
+
 alias b1='cd ..'
 alias b2='cd ../..'
 alias b3='cd ../../..'
 alias b4='cd ../../../..'
+alias b5='cd ../../../../..'
+alias b6='cd ../../../../../..'
+alias b7='cd ../../../../../../..'
+alias b8='cd ../../../../../../../..'
+alias b9='cd ../../../../../../../../..'
+
+alias pcd='pushd && vcd'
 
 alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
 alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
+
+alias j='jobs'
+
 # }}}
 
 # {{{ basic utils
@@ -61,12 +72,15 @@ alias bat='LESS="$BAT_LESS_FLAGS" bat --color always'
 alias batl='bat --language lisp'
 alias less='less --ignore-case' # --raw-control-chars
 alias les='less --quit-if-one-screen --raw-control-chars'
+alias batp='bat $(!!)'
 
 alias dash='dash -E'
 
 alias rlf='readlink -f'
 alias dh='du -sh'
 alias ddate='date "+%d.%m.%Y"'
+alias rlp='rlf $(!!)'
+alias dhp='du -sh $(!!)'
 
 ## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
@@ -124,8 +138,9 @@ alias ssh9='ssh "$(cat ~/.ssh/h9)"'
 # {{{ editors
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
-alias svim='svim -f'
 alias s=svim
+alias v=vim
+alias t=tvim
 alias gsv=gsvim
 alias se=exs
 
@@ -220,7 +235,9 @@ alias zc='cd "$(hfz)"'
 # }}}
 
 # {{{ tooling
+
 alias vifh='vifm -c history'
+alias vsd='vifm --choose-dir -'
 
 # maybe with stty will be better
 # alias gth='glow -w $(($(tput cols)-4))'

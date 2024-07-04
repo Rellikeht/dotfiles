@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+sleep 0.1
+xdotool keydown Super keydown Shift_R key 0 keyup Shift_R keyup Super

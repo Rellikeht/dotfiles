@@ -191,9 +191,12 @@ endif
 
 " :mark mark /full/directory/path [filename]
 
+mark h ~/
+mark b ~/Backups
 mark d ~/Dbackup/
 mark f ~/Documents/
 mark g ~/gits/
+mark t ~/Templates/
 
 "}}}
 

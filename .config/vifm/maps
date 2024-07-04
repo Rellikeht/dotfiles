@@ -2,114 +2,23 @@
 
 "{{{ basic
 
-nmap ,<Space> :set hls!<CR>
-map ,qw :echo system("du -sh ".expand("%f"))<CR>
 map <Space> <C-w>
+nmap ,<Space> :set hls!<CR>
 
 " Display sorting dialog
-nnoremap s :sort<cr>
+nnoremap s :sort<CR>
+nnoremap S :invert o<CR>
 
 " Mappings for faster renaming
-nnoremap I cw<c-a>
-nnoremap cc cw<c-u>
+nnoremap I cw<C-a>
 nnoremap A cw
+nnoremap cc cw<C-u>
 
-nmap g! :shell<CR>
-map gpp :cd ..<CR>
-map gp2 :cd ../..<CR>
 map ,j :jobs<CR>
+nmap g! :shell<CR>
+nmap gr :!  %i &<C-b><M-b><C-b>
 
-"}}}
-
-"{{{ settings
-
-" Toggle wrap setting on ,w key
-nnoremap ,w :set wrap!<cr>
-
-" View like in ranger
-noremap ,qvm :set millerview!<CR>
-
-"}}}
-
-"{{{ TODO B preview
-
-" Toggle visibility of preview window
-nnoremap w :view<cr>
-vnoremap w :view<cr>gv
-map W <S-Tab>
-nmap ,W w<S-Tab>
-qmap ,W <S-Tab>w
-qmap w <S-Tab>
-
-"}}}
-
-"{{{ TODO A gvim
-
-" Open file in existing instance of gvim
-nnoremap o :!gvim --remote-tab-silent %f<cr>
-" Open file in new instance of gvim
-nnoremap O :!gvim %f<cr>
-
-" Open editor to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
-" Open gvim to edit vifmrc
-nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
-
-"}}}
-
-"{{{ TODO B DOES THIS WORK interaction with system clipboard
-
-if has('win')
-    " Yank current directory path to Windows clipboard with forward slashes
-    nnoremap yp :!echo %"d:gs!\!/! %i | clip<cr>
-    " Yank path to current file to Windows clipboard with forward slashes
-    nnoremap yf :!echo %"c:gs!\!/! %i | clip<cr>
-elseif executable('xclip')
-    " Yank current directory path into the clipboard
-    nnoremap yd :!echo %d | xclip %i<cr>
-    " Yank current file path into the clipboard
-    nnoremap yf :!echo %c:p | xclip %i<cr>
-elseif executable('xsel')
-    " Yank current directory path into primary and selection clipboards
-    nnoremap yd :!echo -n %d | xsel --input --primary %i &&
-                \ echo -n %d | xsel --clipboard --input %i<cr>
-    " Yank current file path into into primary and selection clipboards
-    nnoremap yf :!echo -n %c:p | xsel --input --primary %i &&
-                \ echo -n %c:p | xsel --clipboard --input %i<cr>
-endif
-
-"}}}
-
-"{{{ splits
-
-map <C-w>d :vsplit .<CR>
-map <C-w>D :split .<CR>
-
-"}}}
-
-"{{{ external
-
-" Open terminal in current directory
-nnoremap ,t :!st &<cr>
-" alacw is alacritty using client-server,
-" should be available in system
-nnoremap ,T :!alacw &<cr>
-
-" Open file in the background using its default program
-nnoremap gb :file &<cr>l
-
-map go :file<CR>
-
-map gcb :!cp -n %f %D &<CR>
-map gcB :!cp %f %D &<CR>
-map gcr :!rsync %f %D &<CR>
-map gcR :!rsync -a %f %D &<CR>
-
-" Holy shit, this works
-map gcc :!cp %f %D &<M-b><M-b><M-b>
-
-" TODO adb
-" TODO more rsyncs
+map ZX :qa<CR>
 
 "}}}
 
@@ -126,6 +35,220 @@ map ,gS :history bsearch<CR>
 map ,gi :history input<CR>
 map ,ge :history expreg<CR>
 map ,gf :history filter<CR>
+
+" Not very sophisticated
+map ,gu :pushd .<CR>
+map ,gg :pushd %c<CR>
+map ,gU :pushd<Space>
+map ,gp :popd<CR>
+
+"}}}
+
+"{{{ settings
+
+nnoremap ,qw :set wrap!<cr>
+
+" View like in ranger
+noremap ,qv :set millerview!<CR>
+
+"}}}
+
+"{{{ preview
+
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+
+nmap W w<S-Tab>
+vmap W w<S-Tab>
+
+qmap w q
+qmap W qw
+
+"}}}
+
+"{{{ splits
+
+map <C-w>d :vsplit .<CR>
+map <C-w>D :split .<CR>
+
+noremap <BS> <Tab>
+
+"}}}
+
+"{{{ tabs
+
+" Freeing tab
+map <Tab><ESC> <nop><ESC>
+
+map <Tab>o :tabnew<CR>
+map <Tab>d :tabclose<CR>
+map <Tab>x :tabonly<CR>
+map <Tab>n :tabname<Space>
+map <Tab>N :tabname<CR>
+
+noremap <silent> <Tab>h gT
+noremap <silent> <Tab>l gt
+map <silent> <Tab>m :tabmove<Space>
+
+"}}}
+
+"{{{ command line
+
+" alt backspace won't work
+cnoremap <M-h> <M-b><M-d>
+
+"}}}
+
+"{{{ external
+
+" Open terminal in current directory
+nnoremap ,t :!st %i &<cr>
+nnoremap ,T :!st &<cr>
+
+" alacw is alacritty using client-server,
+" should be available in system
+nnoremap ,a :!alacw %i &<cr>
+nnoremap ,A :!alacw &<cr>
+
+" Open file in the background using its default program
+map gb :file %i &<cr>l
+map gB :file &<cr>l
+
+map go :file %i<CR>
+map gO :file<CR>
+
+" Sometimes may be needed for gui operations
+map gm :!pcmanfm %i &<CR>
+map gM :!pcmanfm &<CR>
+
+map gcb :!cp -n %f %D &<CR>
+map gcB :!cp %f %D &<CR>
+map gcr :!rsync %f %D &<CR>
+map gcR :!rsync -a %f %D &<CR>
+
+map gcc :!cp %f %D &<M-b><M-b><M-b>
+
+" ga exists, but whatever
+map ,qs :echo system("du -sh ".expand("%f"))<CR>
+
+" TODO more rsyncs I guess
+
+"}}}
+
+"{{{ copying paths to system clipboard
+
+" Copying paths (copied from wiki)
+if has('win')
+"{{{
+
+    " yank current directory path to Windows clipboard with forward slashes
+    nnoremap ypp :!echo %"d:gs!\!/!%i| clip<cr>
+
+    " yank current directory path to Windows clipboard with backward slashes
+    nnoremap ypP :!echo %"d%i| clip<cr>
+
+    " yank path to current file to Windows clipboard with forward slashes
+    nnoremap ypf :!echo %"c:gs!\!/!%i| clip<cr>
+
+    " yank path to current directory to Windows clipboard with backward slashes
+    nnoremap ypF :!echo %"c%i| clip<cr>
+
+    " yank current filename without path to Windows clipboard
+    nnoremap ypn :!echo %"c%i| clip<cr>
+
+    " yank root of current file's name to Windows clipboard
+    nnoremap ypr :!echo %"c:r%i| clip<cr>
+
+"}}}
+elseif executable('xclip')
+"{{{
+
+    " yank current directory path into the clipboard
+    nnoremap ypd :!echo -n %d | xclip -selection clipboard %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
+
+    " yank current file path into the clipboard
+    nnoremap ypf :!echo -n %c:p | xclip -selection clipboard %i<cr>:echo expand('%"c:p') "is yanked to clipboard"<cr>
+
+    " yank current filename without path into the clipboard
+    nnoremap ypn :!echo -n %c | xclip -selection clipboard %i<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+
+    " yank root of current file's name into the clipboard
+    nnoremap ypr :!echo -n %c:r | xclip -selection clipboard %i<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
+
+"}}}
+elseif executable('xsel')
+"{{{
+
+    " yank current directory path into primary and selection clipboards
+    nnoremap ypd :!echo -n %d | xsel --input --primary %i &&
+                \ echo -n %d | xsel --clipboard --input %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
+
+    " yank current file path into primary and selection clipboards
+    nnoremap ypf :!echo -n %c:p | xsel --input --primary %i &&
+                \ echo -n %c:p | xsel --clipboard --input %i<cr>:echo expand('%"c:p') "is yanked to clipboard"<cr>
+
+    " yank current filename without path into primary and selection clipboards
+    nnoremap ypn :!echo -n %c | xsel --input --primary %i &&
+                \ echo -n %c | xsel --clipboard --input %i<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+
+    " yank root of current file's name into primary and selection clipboards
+    nnoremap ypr :!echo -n %c:r | xsel --input --primary %i &&
+                \ echo -n %c:r | xsel --clipboard --input %i<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
+
+"}}}
+elseif executable('pbcopy')
+"{{{
+
+    " yank current directory path into the clipboard
+    nnoremap ypd :!echo -n %d | pbcopy %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
+
+    " yank current file path into the clipboard
+    nnoremap ypf :!echo -n %c:p | pbcopy %i<cr>:echo expand('%"c:p') "is yanked to clipboard"<cr>
+
+    " yank current filename without path into the clipboard
+    nnoremap ypn :!echo -n %c | pbcopy %i<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+
+    " yank root of current file's name into the clipboard
+    nnoremap ypr :!echo -n %c:r | pbcopy %i<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
+
+"}}}
+endif
+
+"}}}
+
+"{{{ drag and drop
+" HOLY FUCK THIS IS TOO GOOD TO BE TRUE
+
+nnoremap ,dy :exe '!dragon --on-top --and-exit %c & ontop'<CR>
+nnoremap ,dY :exe '!dragon --on-top %c & ontop'<CR>
+
+vnoremap ,dy :exe '!dragon --all --on-top --and-exit %f & ontop'<CR>
+vnoremap ,dY :exe '!dragon --all --on-top %f & ontop'<CR>
+
+"}}}
+
+"{{{ TODO A FZF
+
+" nnoremap / :FZFfind<cr>
+" nnoremap ,slf :FZFfind<cr>
+
+" nnoremap ,sll :FZFlocate<cr>
+" nnoremap ,slr :FZFrun<cr>
+" nnoremap ,slg :FZFgo<cr>
+
+"}}}
+
+"{{{ paths
+
+map gpp :cd ..<CR>
+map gp2 :cd ../..<CR>
+map gp3 :cd ../../..<CR>
+map gp4 :cd ../../../..<CR>
+map gp5 :cd ../../../../..<CR>
+map gp6 :cd ../../../../../..<CR>
+map gp7 :cd ../../../../../../..<CR>
+map gp8 :cd ../../../../../../../..<CR>
+map gp9 :cd ../../../../../../../../..<CR>
 
 "}}}
 
@@ -149,25 +272,16 @@ map ,gf :history filter<CR>
 
 "}}}
 
-"{{{ FZF
+"{{{ TODO B gvim (i don't even have gvim lol)
 
-" TODO formalities
+" Open file in existing instance of gvim
+nnoremap o :!gvim --remote-tab-silent %f<cr>
+" Open file in new instance of gvim
+nnoremap O :!gvim %f<cr>
 
-" nnoremap / :FZFfind<cr>
-" nnoremap ,slf :FZFfind<cr>
-nnoremap ,sll :FZFlocate<cr>
-nnoremap ,slr :FZFrun<cr>
-nnoremap ,slg :FZFgo<cr>
-
-"}}}
-
-"{{{ TODO A tabs
-
-"}}}
-
-"{{{ command line
-
-" alt backspace won't work
-cnoremap <M-h> <M-b><M-d>
+" Open editor to edit vifmrc and apply settings after returning to vifm
+nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
+" Open gvim to edit vifmrc
+nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
 
 "}}}
