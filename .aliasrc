@@ -456,8 +456,16 @@ alias gsl='git stash list'
 
 # {{{ graphical helpers
 
-# TODO more of that
-alias dg=dragon
+alias dg='dragon -T'
+alias dgw='dragon'
+alias dgt='dg -t'
+
+alias dgg='dg -x'
+alias dgp='dgt -x'
+alias dgc='dgt -k'
+
+alias dga='dg -a *'
+alias dgA='dg -a * .*'
 
 # }}}
 
@@ -495,7 +503,8 @@ if [ "$(uname)" = "FreeBSD" ]; then # {{{
         --dereference-command-line-symlink-to-dir'
     alias lf='ls -F'
 
-    alias gdiff='gdiff --color=always'
+    alias gdif='gdiff --color=always --expand-tab'
+    alias gdiu='gdiff --color=never --unified'
 
     alias fpr='ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
     grepWgrep | its_just_grep -E'
@@ -519,7 +528,8 @@ else # {{{
         --dereference-command-line-symlink-to-dir'
     alias lf='ls --classify'
 
-    alias diff='diff --color=always'
+    alias dif='diff --color=always --expand-tab'
+    alias diu='diff --color=never --unified'
 
     alias fpr='ps axh o rss,pid,state,pcpu,user,cmd | \
     grepWgrep | its_just_grep -E'

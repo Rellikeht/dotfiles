@@ -23,7 +23,8 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
 # For z.sh completion to work properly
-setopt COMPLETE_ALIASES
+# but this is too valuable elsewhere
+# setopt COMPLETE_ALIASES
 
 # hidden files in completion yay
 setopt globdots
@@ -63,11 +64,11 @@ if [ -z "$__COMPINIT_RUN" ]; then
     fi
 
     # good stuff
-    zstyle ':completion:*' menu select
+    zstyle ':completion:*' menu select=long
     zstyle ':completion:*' verbose yes
 
-    # overkill
-    # zstyle ':completion:*:*:kill:*:*' verbose no
+    # ?
+    zstyle ':completion:*' completer _expand _complete _ignored _approximate
 
     # colors files
     # zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}

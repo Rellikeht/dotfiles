@@ -1,23 +1,45 @@
+
+# {{{ zsh like tab
+set show-all-if-ambiguous on
+# set show-all-if-unmodified on
+# }}}
+
+# {{{ binds
+
 # Works well
 set keymap emacs
 
-# zsh like tab
-set show-all-if-ambiguous on
+# Better tab
 TAB:menu-complete
 
 # shift tab
 "\e[Z":menu-complete-backward
 
-# colored completion
+# }}}
+
+# {{{ colored completion
 set colored-stats on
 set colored-completion-prefix on
+# }}}
 
-# prefix <3
+# {{{ prefix <3
 set completion-prefix-display-length 7
 set menu-complete-display-prefix on
+# }}}
 
+# {{{ neat things
 set mark-symlinked-directories on
 set visible-stats on
+# }}}
 
-# Probably useless
-# set mark-modified-lines on
+# {{{ Just in case
+set input-meta on
+set output-meta on
+
+set enable-keypad on
+set keyseq-timeout 350
+# }}}
+
+# {{{ history
+set history-size 5000
+# }}}

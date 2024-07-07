@@ -11,6 +11,32 @@ fi
 
 # }}}
 
+# {{{ sourcing
+
+conditional_source ~/.aliasrc.bash
+conditional_source ~/.funcrc.bash
+conditional_source "$HOME/.local/.bashrc"
+
+# }}}
+
+# {{{ settings
+
+HISTFILE=~/.bash_history
+
+# nice history settings
+HISTCONTROL=ignoredups:erasedups
+
+# shared history
+shopt -s histappend
+
+# type dir to cd
+shopt -s autocd
+
+# for colors in completion to work better
+LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32'
+
+# }}}
+
 # {{{ prompt
 
 PSC='$'
@@ -26,7 +52,7 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
         # {{{
 
         # this has to be first
-        local EXIT="$?"
+        # local EXIT="$?"
         PS1=""
 
         # {{{ colors
@@ -59,7 +85,7 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
         PS1+="${LBLUE}:${RESET}"
         PS1+="${LMAGENTA}\w${RESET}"
 
-        if [ $EXIT != 0 ]; then
+        if [ "$EXIT" != 0 ]; then
             PS1+="${RED}"
         else
             PS1+="${GREEN}"
@@ -70,31 +96,6 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
     }
 # }}}
 fi
-
-# }}}
-
-# {{{ sourcing
-
-conditional_source ~/.aliasrc.bash
-conditional_source ~/.funcrc.bash
-conditional_source "$HOME/.local/.bashrc"
-
-# }}}
-
-# {{{ settings
-HISTFILE=~/.bash_history
-
-# nice history settings
-HISTCONTROL=ignoredups:erasedups
-
-# shared history
-shopt -s histappend
-
-# type dir to cd
-shopt -s autocd
-
-# for colors in completion to work better
-LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32'
 
 # }}}
 
@@ -123,7 +124,15 @@ fi
 
 # z.lua or plain old z as fallback
 if whichp z.lua &>/dev/null; then
-    eval "$(z.lua --init bash once enhanced echo fzf)"
+    # {{{ Because doing this normal way messes $?
+    # It is exported as $EXIT
+    TEMP="$(mktemp)"
+    z.lua --init bash once enhanced echo fzf >"$TEMP"
+    patch "$TEMP" .bash_zlua_patch &>/dev/null
+    eval "$(cat $TEMP)"
+    rm "$TEMP"
+    TEMP=
+# }}}
 elif whichp z &>/dev/null; then
     . "$(whichp z)"
 fi

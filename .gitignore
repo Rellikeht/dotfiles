@@ -1,5 +1,22 @@
+# {{{ random
+
 !global/*
 !.config
+
+__pycache__/
+.*cache*
+autoload
+
+.*history*
+
+groff/
+
+TODO
+highlight.css
+
+# }}}
+
+# {{{ ftypes
 
 *.png
 *.jpg
@@ -7,52 +24,86 @@
 !.scrs/*.png
 *.swp
 *.swo
-__pycache__/
-.*cache*
-autoload
 
-.*history*
 *.o
 *.so
 *.out
 *.hi
 
+# }}}
+
+# {{{ qute
 .config/qutebrowser*/autoconfig.yml
 .config/qutebrowser*/bookmarks
 .config/qutebrowser*/dracula/*
 .config/qutebrowser*/qsettings
+# }}}
 
+# {{{ transmission
 .config/transmission*/resume/
 .config/transmission*/torrents/
 .config/transmission*/blocklists/
 .config/transmission*/dht.dat
 .config/transmission*/stats.json
+# }}}
+
+# {{{ mutlimedia
 
 .config/youtube-viewer/*.txt
 .config/youtube-viewer/instances.json
 .config/youtube-viewer/*/
+
 .config/mpv/local.conf
 .config/mpv/watch_later
 
+.moc/softmixer
+.moc/last_directory
+.moc/equalizer
+
+# }}}
+
+# {{{ vifm
 .config/vifm/vifminfo*
 .config/vifm/vifm-help.txt
 .config/vifm/*local*
+# }}}
+
+# {{{ editors
 
 .config/kak/autoload/autoload
 !.config/kak/autoload/*.*
+
 .vim/plugged
 .vim/.netrwhist
 .vim/test
 .vim/sessions
 .vim/templates
+*~
+Session.vim
 
 .config/nvim/plugins
 .config/nvim/sessions
+
+.emacs.d/recentf
+.emacs.d/elpa
+
+# }}}
+
+# {{{ langs
+
 .config/nim/test
+
 .config/ocaml/local.ml
 .config/qalculate/qalc.history
 
 .config/nix/registry.json
+
+.julia/*
+!.julia/config
+
+# }}}
+
+# {{{  w3m
 
 .w3m/cookie
 .w3m/history
@@ -63,26 +114,18 @@ autoload
 .w3m/w3msrc*
 .w3m/w3mcookie*
 
+# }}}
+
+# {{{ webkit browsers
 .config/vimb/*
 !.config/vimb/**/config
 !.config/vimb/**/script.js
 !.config/vimb/**/style.css
 
 .config/luakit/*.db
+# }}}
 
-.moc/softmixer
-.moc/last_directory
-.moc/equalizer
-
-.julia/*
-!.julia/config
-
-groff/
-
-*~
-TODO
-highlight.css
-Session.vim
+# {{{ templates
 
 Templates/**/*
 !Templates/**/*/
@@ -90,3 +133,5 @@ Templates/**/*
 Templates/**/*.o
 Templates/**/*.so
 !Templates/direnv/*envrc*
+
+# }}}

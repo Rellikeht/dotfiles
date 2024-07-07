@@ -159,6 +159,8 @@ fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
 
 "{{{ archives
 
+" TODO make commands for all that crap and use them here
+
 filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
     \<application/zip,application/java-archive>
     \ unzip %c,
@@ -259,6 +261,8 @@ fileviewer {*.docx},
 "}}}
 
 "{{{ Directories
+
+" TODO commands same as in archives
 
 fileviewer {*/,.*/}
     \ ls -F --color=always %c,

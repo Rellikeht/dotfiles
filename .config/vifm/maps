@@ -73,7 +73,9 @@ qmap W qw
 map <C-w>d :vsplit .<CR>
 map <C-w>D :split .<CR>
 
+" original tab is nice, but had to be sacrificed
 noremap <BS> <Tab>
+map <Tab><Tab> <BS>
 
 "}}}
 
@@ -103,27 +105,54 @@ cnoremap <M-h> <M-b><M-d>
 
 "{{{ external
 
-" Open terminal in current directory
-nnoremap ,t :!st %i &<cr>
-nnoremap ,T :!st &<cr>
+"{{{ Open terminal in current directory
+
+nnoremap ,tt :!st %i &<cr>
+nnoremap ,tT :!st &<cr>
+
+nnoremap ,ts :!st %i &<cr>
+nnoremap ,tS :!st &<cr>
 
 " alacw is alacritty using client-server,
 " should be available in system
-nnoremap ,a :!alacw %i &<cr>
-nnoremap ,A :!alacw &<cr>
+nnoremap ,ta :!alacw %i &<cr>
+nnoremap ,tA :!alacw &<cr>
 
-" Open file in the background using its default program
+nnoremap ,tb :!alacritty %i &<cr>
+nnoremap ,tb :!alacritty &<cr>
+
+nnoremap ,tu :!urxvt %i &<cr>
+nnoremap ,tU :!urxvt &<cr>
+
+nnoremap ,tx :!urxvt %i &<cr>
+nnoremap ,tX :!urxvt &<cr>
+
+nnoremap ,tx :!qterminal %i &<cr>
+nnoremap ,tX :!qterminal &<cr>
+
+"}}}
+
+"{{{ Open file in the background using its default program
+
 map gb :file %i &<cr>l
 map gB :file &<cr>l
 
 map go :file %i<CR>
 map gO :file<CR>
 
+"}}}
+
+"{{{ gui fm
+
 " Sometimes may be needed for gui operations
 map gms :!pcmanfm %i &<CR>
 map gmS :!pcmanfm &<CR>
 map gmd :!pcmanfm %d %D %i &<CR>
 map gmD :!pcmanfm %d %D &<CR>
+
+"}}}
+
+"{{{ copying
 
 map gcb :!cp -n %f %D &<CR>
 map gcB :!cp %f %D &<CR>
@@ -132,10 +161,22 @@ map gcR :!rsync -a %f %D &<CR>
 
 map gcc :!cp %f %D &<M-b><M-b><M-b>
 
+" TODO more rsyncs I guess
+
+"}}}
+
+"{{{ other
+
 " ga exists, but whatever
 map ,qd :echo system("du -sh ".expand("%f"))<CR>
 
-" TODO more rsyncs I guess
+"}}}
+
+"}}}
+
+"{{{ commands
+
+map ,qf :df<CR>
 
 "}}}
 
@@ -221,13 +262,14 @@ endif
 "}}}
 
 "{{{ drag and drop
-" HOLY FUCK THIS IS TOO GOOD TO BE TRUE
 
 nnoremap ,dy :exe '!dragon --on-top --and-exit %c & ontop'<CR>
 nnoremap ,dY :exe '!dragon --on-top %c & ontop'<CR>
 
 vnoremap ,dy :exe '!dragon --all-compact --on-top --and-exit %f & ontop'<CR>
 vnoremap ,dY :exe '!dragon --all-compact --on-top %f & ontop'<CR>
+
+noremap ,da :exe '!dragon --on-top * .* & ontop'<CR>
 
 noremap ,dp :exe '!dragon --target --on-top --and-exit 2>/dev/null | ucopy %d & ontop'<CR>
 noremap ,dP :exe '!dragon --target --on-top 2>/dev/null | ucopy %d & ontop'<CR>
