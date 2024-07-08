@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# TODO
 
 __prompt_command() {
     # {{{
@@ -38,14 +37,14 @@ __prompt_command() {
     # }}}
 
     PS1+="${BLUE}[${RESET}"
-    PS1+="${LBLUE}\u${RESET}"
+    PS1+="${LYELLOW}\u${RESET}"
     PS1+="${LCYAN}@${RESET}"
     PS1+="${LRED}\h${RESET}"
     PS1+="${BLUE}]${RESET}"
-    PS1+="${LCYAN}:${RESET}"
-    PS1+="${LMAGENTA}\w${RESET}"
+    PS1+="${LMAGENTA}:${RESET}"
+    PS1+="${LCYAN}\w${RESET}"
 
-    if [ $EXT != 0 ]; then
+    if [ "$EXT" != 0 ]; then
         PS1+="${RED}"
     else
         PS1+="${GREEN}"
@@ -53,5 +52,5 @@ __prompt_command() {
 
     PS1+="[$EXT]${RESET}"
     PS1+="${LYELLOW}$PSC ${RESET}"
-}
-# }}}
+
+} # }}}

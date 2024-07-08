@@ -48,7 +48,7 @@
   # Cyan current directory.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=cyan
   # Show only the last segment of the current directory.
-  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Bold directory.
   typeset -g POWERLEVEL9K_DIR_CONTENT_EXPANSION='%B$P9K_CONTENT'
 

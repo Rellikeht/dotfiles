@@ -168,7 +168,6 @@ function ToggleBuffer(name)
 endfunction
 
 function ToggleAutochdir()
-    " let b:autochdir = !b:autochdir
     let g:autochdir = !g:autochdir
     if g:autochdir
         augroup AutoChdir

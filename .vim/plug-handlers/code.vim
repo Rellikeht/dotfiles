@@ -150,6 +150,7 @@ let g:zig_fmt_autosave = 1
 let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_file_types = '.*'
+
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 autocmd FileType julia nnoremap <buffer> <Leader>nld :JuliaDoc
 autocmd FileType julia vnoremap <silent> <buffer> <Leader>nld :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>

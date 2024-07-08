@@ -1,10 +1,10 @@
-" Repeat:
+"{{{ Repeat
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 " https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 " https://vi.stackexchange.com/questions/20760/how-to-add-a-count-to-a-binding
+"}}}
 
-" Tags
-" TODO
+"{{{ TODO Tags
 
 noremap <Leader>jf <C-]>
 nnoremap <Leader>jb <C-t>
@@ -13,7 +13,12 @@ noremap <silent> <Leader>jth :sts<CR>
 noremap <silent> <Leader>jtv :vert sts<CR>
 noremap <silent> <Leader>jtl :tags<CR>
 
-" Better tab
+" }}}
+
+"{{{ Better tab
+
+noremap <silent> <Tab>k K<C-w>T
+
 noremap <silent> <Tab>l :<C-u>call SwitchTab(v:count1)<CR>
 " noremap <silent> <Tab>h :<C-u>call SwitchTab(-v:count1)<CR>
 noremap <silent> <Tab>H :<C-u>execute 'tabm -'.v:count1<CR>
@@ -31,6 +36,10 @@ noremap <silent> <Tab>y :call Xpaste('clipboard')<CR>
 noremap <silent> <Tab>Y :call Xpaste('primary')<CR>
 nnoremap <silent> <Tab>w :We<CR>
 
+"}}}
+
+"{{{ leader stuff
+
 " General purpose leader mappings
 noremap <Leader>;l :!ls<CR>
 noremap <Leader>;m :make<CR>
@@ -41,6 +50,16 @@ noremap <Leader>;c :silent! lcd %:p:h<CR>
 noremap <Leader>;p :silent! cd %:p:h<CR>
 noremap <Leader>;C :lcd<Space>
 noremap <Leader>;P :cd<Space>
+
+" Not the best, but should work
+noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
+
+" ???
+" map <Leader>;r :!%<CR>
+
+"}}}
+
+"{{{ TODO quickfix
 
 noremap <silent> <C-j> :<C-u>execute 'cn '.v:count1<CR>
 noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
@@ -64,12 +83,16 @@ noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
 " map <silent> <Tab>r :crewind<CR>
 " map <silent> <Tab>R :lrewind<CR>
 
-" ???
-" map <Leader>;r :!%<CR>
+"}}}
 
-" Matchit
+"{{{ Matchit
+
 map <Leader>{ [%
 map <Leader>} ]%
+
+"}}}
+
+"{{{ completion
 
 " Yeah, copying from wiki works
 inoremap <expr> <Cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -82,8 +105,9 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 
 inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<TAB>"
 
-" Not the best, but should work
-noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
+"}}}
+
+"{{{ TODO
 
 " TODO B running command under cursor
 " TODO C running command in given register (???)
@@ -93,3 +117,5 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 " map <silent> <Leader>;E 'cyy:execute '!' . getreg('c')<CR>
 " map <silent> <Leader>;D 'cyydd:execute '!' . getreg('c')<CR>
 "nmap <silent> <Leader>W bvw"cy:execute "!" . getreg('c')<CR>
+
+"}}}
