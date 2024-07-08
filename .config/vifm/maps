@@ -177,6 +177,7 @@ map ,qd :echo system("du -sh ".expand("%f"))<CR>
 "{{{ commands
 
 map ,qf :df<CR>
+map ,qi :fi<CR>
 
 "}}}
 
@@ -281,14 +282,11 @@ noremap ,dC :exe '!dragon --target --on-top --keep 2>/dev/null | ucopys %d & ont
 
 "}}}
 
-"{{{ TODO A FZF
+"{{{ FZF
 
-" nnoremap / :FZFfind<cr>
-" nnoremap ,slf :FZFfind<cr>
-
-" nnoremap ,sll :FZFlocate<cr>
-" nnoremap ,slr :FZFrun<cr>
-" nnoremap ,slg :FZFgo<cr>
+nnoremap ,sll :FZFlocate<CR>
+nnoremap ,slr :FZFrun<CR>
+nnoremap ,slg :FZFgo<CR>
 
 "}}}
 

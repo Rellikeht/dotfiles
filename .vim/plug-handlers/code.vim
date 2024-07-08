@@ -158,8 +158,7 @@ autocmd FileType julia vnoremap <silent> <buffer> <Leader>nld :<C-u>execute 'Jul
 
 "{{{ direnv.vim
 
-" let g:direnv_auto = 0
-let g:direnv_edit_mode = 'split'
+autocmd User DirenvLoaded :echo 'loaded local vimrc'
 
 nnoremap <silent> <Leader>qde :EditEnvrc<CR>
 nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>

@@ -2,6 +2,8 @@
 
 "{{{ documents
 
+" TODO pdf to text and other goodies
+
 filextype {*.pdf},<application/pdf>
     \ zathura %f %i &, 
     \ tzathura %f &, 
@@ -124,7 +126,7 @@ fileviewer ?*.exe,?*.dll
     \ file %c,
     \ strings %c,
 
-filetype ?*.exe
+filextype ?*.exe
     \ proton %c &,
     \ wine %c &
 
@@ -260,7 +262,7 @@ fileviewer {*.docx},
 
 "}}}
 
-"{{{ Directories
+"{{{ directories
 
 " TODO commands same as in archives
 
@@ -273,10 +275,8 @@ fileviewer {*/,.*/}
 filextype */
         \ pcmanfm %f &,
         \ pcmanfm %c &,
-        \ ranger %f &,
-        \ ranger %c &,
 
-filextype */
+filetype */
         \ tar cJf %c.tar.xz %c,
         \ tar czf %c.tar.gz %c,
         \ tar cjf %c.tar.bz2 %c,
@@ -296,7 +296,7 @@ filextype */
         \ tar cf - %c | xz -T0 -3 > %c.tar.xz,
         \ tar cf - %c | xz -T0 -0 > %c.tar.xz,
 
-filextype */
+filetype */
         \ tar cJf %c.tar.xz %c &,
         \ tar czf %c.tar.gz %c &,
         \ tar cjf %c.tar.bz2 %c &,
@@ -386,15 +386,36 @@ filetype {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
     \ vi %f,
     \ bat %f,
 
+filextype {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
+    \?*.fth,?*.4th,?*.f70,?*.f99,
+    \?*.rs,?*.hs,?*.go,?*.ml,?*.nim,?*.zig,?*.jl,
+    \?*.java,?*.d,?*.clj,?*.scala,
+    \?*.py,?*.lua,?*.bash,?*.zsh,?*.sh,?*.tcl,
+    \?*.vim,?*.vifm
+    \?*.cl,?*.lisp,?*.scm,?*.nix,?*.dhall,
+    \?*.html,?*.htm,?*.css,
+    \?*.r,?*.js?,?*rb,?*.ts?,
+    \?*.mzn,?*.pl,?*.ncl,
+    \?*.json,?*.toml,?*.yaml,?*.yml,?*.xml,?*.conf,?*.ini,
+    \?*.md,?*.csv,?*.tsv,.*rc,
+    \Makefile,?*.cmake,?*.dhall,
+    \.git*,?*.url,
+    \}
+    \ nvim-qt %f,
+    \ emacs %f,
+    \ code %f,
+
 "}}}
 
 "{{{ Torrent
 
 " TODO filetype, that will be tricky
 
-filextype {*.torrent},<application/x-bittorrent>
+filetype {*.torrent},<application/x-bittorrent>
     \ dumptorrent -v %c | less,
     \ transmission-remote -a %c,
+
+filextype {*.torrent},<application/x-bittorrent>
     \ qbittorrent %f &
 
 fileviewer {*.torrent},<application/x-bittorrent>
@@ -488,22 +509,6 @@ filetype {*.asc},<application/pgp-signature>
 
 " }}}
 
-"{{{ some default files that I won't use
-
-" OpenRaster
-filextype *.ora
-        \ {Edit in MyPaint}
-        \ mypaint %f,
-
-" Mindmap
-filextype *.vym
-        \ {Open with VYM}
-        \ vym %f &,
-
-" TuDu files
-filetype *.tudu tudu -f %c
-
-" Qt projects
-filextype *.pro qtcreator %f &
+"{{{ other
 
 "}}}

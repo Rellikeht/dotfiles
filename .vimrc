@@ -17,6 +17,7 @@ if v:progname =~? "^[sn]\\?v\\(im\\?\\)\\?"
 
     if v:progname =~? "^s\\?v\\(im\\?\\)\\?"
         call plug#begin('~/.vim/plugged')
+        source ~/.vim/preplug.vim
         source ~/.vim/svimrc.vim
         source ~/.vim/common-plugins.vim
         source ~/.vim/svim-plugins.vim

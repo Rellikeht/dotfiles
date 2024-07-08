@@ -3,10 +3,23 @@
 let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
 
-autocmd BufNewFile,BufRead *
-    \    if !did_filetype() && empty(expand("<afile>:e")) || &ft is# "text" || &ft is# "markdown"
-    \ |      setlocal modeline
-    \ |  endif
+set secure
+" TODO What the fuck is wrong with that shit
+
+" autocmd BufNewFile,BufRead *
+"     \    if !did_filetype() && empty(expand("<afile>:e")) || &ft is# "text" || &ft is# "markdown"
+"     \ |      setlocal modeline
+"     \ |  endif
+
+" " autocmd BufNewFile,BufRead *
+
+" autocmd BufReadPost *
+"     \ setlocal nomodeline
+"     \ | if &ft == ""
+"     \ |     setlocal modeline
+"     \ | endif
+
+    " \ filetype detect
 
 " }}}
 
@@ -46,6 +59,8 @@ noremap <Leader>qv2 :echo b:bufcomp<CR>
 "}}}
 
 " {{{ nontrivial settings
+
+autocmd BufRead * let b:vautowrite = g:vautowrite
 
 " v in front of variables that have names similar to settings they control
 let g:vautoread = 0

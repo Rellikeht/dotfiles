@@ -177,8 +177,8 @@ set backspace=indent,eol,start
 set termencoding=utf-8
 set encoding=utf-8
 
-set nomodeline
 set modelines=3
+set nomodeline
 
 if v:progname =~? "^tv\\(im\\?\\)\\?"
     set background=dark

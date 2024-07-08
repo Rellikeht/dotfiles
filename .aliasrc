@@ -291,7 +291,8 @@ alias prgc='prg \
     -a ffmpeg -a ebook-convert \
     -a yt-dlp -a youtube-dl -a you-get \
     -a mpv -a vlc \
-    -a vifm -a ranger -a nnn -a pcmanfm -a pcmanfm-qt \
+    -a vifm -a ranger -a nnn -a lf \
+    -a pcmanfm -a pcmanfm-qt \
     -a wget -a curl -a aria2 -a rsync -a gdown -a megatools \
     -a rar -a unrar -a 7z -a 7za -a 7zr \
     -a zipgrep -a zipcloak -a zipsplit \
@@ -301,8 +302,11 @@ alias prgc='prg \
     -a less -a tail -a tac -a gpart \
     -a sed -a awk -a pdfgrep -a agrep -a ag -a pcregrep \
     -a diff -a diff3 \
-    -a cadaver -a ftp -a ssh -a chezdav -a nmap -a nc \
+    -a cadaver -a ftp -a ssh -a chezdav \
+    -a nmap -a nc -a iperf3 -a iperf \
+    -a adb \
     '
+
 # }}}
 
 # {{{ multimedia and web
@@ -467,6 +471,11 @@ alias dgc='dgt -k'
 alias dga='dg -a *'
 alias dgA='dg -a * .*'
 
+alias pmf='pcmanfm'
+alias pmF='pcmanfm-qt'
+alias pmc='pcmanfm "$(pwd)"'
+alias pmC='pcmanfm-qt "$(pwd)"'
+
 # }}}
 
 # {{{ other
@@ -586,6 +595,16 @@ alias dde='direnv deny'
 alias dre='direnv reload'
 alias ded='direnv edit'
 alias dhook='eval "$(direnv hook $SHELL)"'
+# }}}
+
+# {{{ adb
+
+alias ash='adb push'
+alias all='adb push'
+alias asl='adb shell'
+alias afl='adb ls'
+alias adv='adb devices'
+
 # }}}
 
 # {{{ random
