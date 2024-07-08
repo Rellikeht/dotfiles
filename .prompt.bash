@@ -44,7 +44,7 @@ __prompt_command() {
     PS1+="${LCYAN}:${RESET}"
     PS1+="${LMAGENTA}\w${RESET}"
 
-    if [ $EXT != 0 ]; then
+    if [ "$EXT" != 0 ]; then
         PS1+="${RED}"
     else
         PS1+="${GREEN}"
@@ -52,5 +52,5 @@ __prompt_command() {
 
     PS1+="[$EXT]${RESET}"
     PS1+="${LYELLOW}$PSC ${RESET}"
-}
-# }}}
+
+} # }}}

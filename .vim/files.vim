@@ -1,5 +1,35 @@
-"{{{ undo tree / undo branches
-" TODO
+"{{{ diff
+
+function DiffGet(pane)
+    execute 'diffget' a:pane
+    diffupdate
+endfunction
+
+function DiffPut(pane)
+    execute 'diffget' a:pane
+    diffupdate
+endfunction
+
+nnoremap <silent> <leader>fdp :diffput<CR>
+nnoremap <silent> <leader>fdg :diffget<CR>
+nnoremap <silent> <leader>fdu :diffupdate<CR>
+
+" TODO more of that
+nnoremap <silent> <leader>fg0 :call DiffGet('//0')<CR>
+nnoremap <silent> <leader>fg1 :call DiffGet('//1')<CR>
+nnoremap <silent> <leader>fg2 :call DiffGet('//2')<CR>
+nnoremap <silent> <leader>fg3 :call DiffGet('//3')<CR>
+
+nnoremap <silent> <leader>fp0 :call DiffPut('//0')<CR>
+nnoremap <silent> <leader>fp1 :call DiffPut('//1')<CR>
+nnoremap <silent> <leader>fp2 :call DiffPut('//2')<CR>
+nnoremap <silent> <leader>fp3 :call DiffPut('//3')<CR>
+
+nnoremap <silent> <leader>fpf :call DiffPut(expand('%:p'))<CR>
+nnoremap <silent> <leader>fpF :call DiffPut(expand('%:t'))<CR>
+nnoremap <silent> <leader>fgf :call DiffGet(expand('%:p'))<CR>
+nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
+
 "}}}
 
 "{{{ netrw settings
@@ -92,39 +122,5 @@ noremap ,xeH :Hexplore<Space>
 "            =0 : messages from netrw will use echoerr ;
 "                 messages don't always seem to show up this
 "                 way, but one doesn't have to quit the window.
-
-"}}}
-
-"{{{ diff
-
-function DiffGet(pane)
-    execute 'diffget' a:pane
-    diffupdate
-endfunction
-
-function DiffPut(pane)
-    execute 'diffget' a:pane
-    diffupdate
-endfunction
-
-nnoremap <silent> <leader>fdp :diffput<CR>
-nnoremap <silent> <leader>fdg :diffget<CR>
-nnoremap <silent> <leader>fdu :diffupdate<CR>
-
-" TODO more of that
-nnoremap <silent> <leader>fg0 :call DiffGet('//0')<CR>
-nnoremap <silent> <leader>fg1 :call DiffGet('//1')<CR>
-nnoremap <silent> <leader>fg2 :call DiffGet('//2')<CR>
-nnoremap <silent> <leader>fg3 :call DiffGet('//3')<CR>
-
-nnoremap <silent> <leader>fp0 :call DiffPut('//0')<CR>
-nnoremap <silent> <leader>fp1 :call DiffPut('//1')<CR>
-nnoremap <silent> <leader>fp2 :call DiffPut('//2')<CR>
-nnoremap <silent> <leader>fp3 :call DiffPut('//3')<CR>
-
-nnoremap <silent> <leader>fpf :call DiffPut(expand('%:p'))<CR>
-nnoremap <silent> <leader>fpF :call DiffPut(expand('%:t'))<CR>
-nnoremap <silent> <leader>fgf :call DiffGet(expand('%:p'))<CR>
-nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
 
 "}}}
