@@ -4,8 +4,14 @@
 __prompt_command() {
     # {{{
 
-    # this has to be first
-    local EXIT="$?"
+    # Because sometimes z.lua fucks up
+    local EX="$?"
+    local EXT
+    if [ -z "$EXIT" ]; then
+        EXT="$EX"
+    else
+        EXT="$EXIT"
+    fi
     PS1=""
 
     # {{{ colors
@@ -38,13 +44,13 @@ __prompt_command() {
     PS1+="${LBLUE}:${RESET}"
     PS1+="${LMAGENTA}\w${RESET}"
 
-    if [ $EXIT != 0 ]; then
+    if [ $EXT != 0 ]; then
         PS1+="${RED}"
     else
         PS1+="${GREEN}"
     fi
 
-    PS1+="[$EXIT]${RESET}"
+    PS1+="[$EXT]${RESET}"
     PS1+="${LCYAN}$PSC ${RESET}"
 }
 # }}}

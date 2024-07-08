@@ -51,9 +51,13 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
     __prompt_command() {
         # {{{
 
-        # this has to be first
+        # Because sometimes z.lua fucks up
+        local EX="$?"
+        local EXT
         if [ -z "$EXIT" ]; then
-            EXIT="$?"
+            EXT="$EX"
+        else
+            EXT="$EXIT"
         fi
         PS1=""
 
@@ -87,13 +91,13 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
         PS1+="${LBLUE}:${RESET}"
         PS1+="${LMAGENTA}\w${RESET}"
 
-        if [ "$EXIT" != 0 ]; then
+        if [ "$EXT" != 0 ]; then
             PS1+="${RED}"
         else
             PS1+="${GREEN}"
         fi
 
-        PS1+="[$EXIT]${RESET}"
+        PS1+="[$EXT]${RESET}"
         PS1+="${LCYAN}$PSC ${RESET}"
     }
 # }}}
@@ -124,22 +128,14 @@ if direnv &>/dev/null; then
     eval "$(direnv hook bash)"
 fi
 
-# z.lua or plain old z as fallback
-if whichp z.lua &>/dev/null; then
-    # {{{ Because doing this normal way messes $?
-
-    eval "$(z.lua --init bash once enhanced echo fzf)"
-    # It is exported as $EXIT
-    # TEMP="$(mktemp)"
-    # z.lua --init bash once enhanced echo fzf >"$TEMP"
-    # patch "$TEMP" .bash_zlua_patch &>/dev/null
-    # eval "$(cat $TEMP)"
-    # rm "$TEMP"
-    # TEMP=
-
-# }}}
-elif whichp z &>/dev/null; then
-    . "$(whichp z)"
+if [ -z "$__Z_INITIALIZED" ]; then
+    # z.lua or plain old z as fallback
+    if whichp z.lua &>/dev/null; then
+        eval "$(z.lua --init bash once enhanced echo fzf)"
+    elif whichp z &>/dev/null; then
+        . "$(whichp z)"
+    fi
+    __Z_INITIALIZED=1
 fi
 
 # }}}
