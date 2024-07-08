@@ -52,7 +52,9 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
         # {{{
 
         # this has to be first
-        # local EXIT="$?"
+        if [ -z "$EXIT" ]; then
+            EXIT="$?"
+        fi
         PS1=""
 
         # {{{ colors
@@ -125,13 +127,16 @@ fi
 # z.lua or plain old z as fallback
 if whichp z.lua &>/dev/null; then
     # {{{ Because doing this normal way messes $?
+
+    eval "$(z.lua --init bash once enhanced echo fzf)"
     # It is exported as $EXIT
-    TEMP="$(mktemp)"
-    z.lua --init bash once enhanced echo fzf >"$TEMP"
-    patch "$TEMP" .bash_zlua_patch &>/dev/null
-    eval "$(cat $TEMP)"
-    rm "$TEMP"
-    TEMP=
+    # TEMP="$(mktemp)"
+    # z.lua --init bash once enhanced echo fzf >"$TEMP"
+    # patch "$TEMP" .bash_zlua_patch &>/dev/null
+    # eval "$(cat $TEMP)"
+    # rm "$TEMP"
+    # TEMP=
+
 # }}}
 elif whichp z &>/dev/null; then
     . "$(whichp z)"
