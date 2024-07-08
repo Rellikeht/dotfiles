@@ -21,7 +21,7 @@ nnoremap <silent> <leader>gom :G mergetool<CR>
 
 nnoremap <silent> <leader>goi :G status<CR>
 nnoremap <silent> <leader>goo :G log<CR>
-nnoremap <silent> <leader>gor :G reflog<CR>
+nnoremap <silent> <leader>goI :G reflog<CR>
 
 nnoremap <silent> <leader>gob :G blame<CR>
 nnoremap <leader>goB :G blame<Space>
@@ -42,6 +42,7 @@ nnoremap <leader>goL :G pull<Space>
 nnoremap <leader>goR :G revert<Space>
 nnoremap <leader>gon :G reset<Space>
 nnoremap <leader>goN :G reset --hard<Space>
+nnoremap <leader>gor :G rebase<Space>
 
 "}}}
 
@@ -83,7 +84,7 @@ nnoremap <silent> <leader>g;v :vert Git --paginate<CR>
 
 nnoremap <silent> <leader>gti :tab G status<CR>
 nnoremap <silent> <leader>gto :tab G log<CR>
-nnoremap <silent> <leader>gtr :tab G reflog<CR>
+nnoremap <silent> <leader>gtI :tab G reflog<CR>
 nnoremap <silent> <leader>gtd :tab G diff<CR>
 nnoremap <leader>gtD :tab G diff<Space>
 

@@ -103,7 +103,17 @@ cnoremap <M-h> <M-b><M-d>
 
 "}}}
 
-"{{{ external
+"{{{ gui fm
+
+" Sometimes may be needed for gui operations
+map gms :!pcmanfm %i &<CR>
+map gmS :!pcmanfm &<CR>
+map gmd :!pcmanfm %d %D %i &<CR>
+map gmD :!pcmanfm %d %D &<CR>
+
+"}}}
+
+"{{{ external commands
 
 "{{{ Open terminal in current directory
 
@@ -142,16 +152,6 @@ map gO :file<CR>
 
 "}}}
 
-"{{{ gui fm
-
-" Sometimes may be needed for gui operations
-map gms :!pcmanfm %i &<CR>
-map gmS :!pcmanfm &<CR>
-map gmd :!pcmanfm %d %D %i &<CR>
-map gmD :!pcmanfm %d %D &<CR>
-
-"}}}
-
 "{{{ copying
 
 map gcb :!cp -n %f %D &<CR>
@@ -174,7 +174,7 @@ map ,qd :echo system("du -sh ".expand("%f"))<CR>
 
 "}}}
 
-"{{{ commands
+"{{{ custom commands
 
 map ,qf :df<CR>
 map ,qi :fi<CR>

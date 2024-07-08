@@ -600,7 +600,7 @@ alias dhook='eval "$(direnv hook $SHELL)"'
 # {{{ adb
 
 alias ash='adb push'
-alias all='adb push'
+alias all='adb pull'
 alias asl='adb shell'
 alias afl='adb ls'
 alias adv='adb devices'

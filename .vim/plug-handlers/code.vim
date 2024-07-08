@@ -158,7 +158,7 @@ autocmd FileType julia vnoremap <silent> <buffer> <Leader>nld :<C-u>execute 'Jul
 
 "{{{ direnv.vim
 
-autocmd User DirenvLoaded :echo 'loaded local vimrc'
+" autocmd User DirenvLoaded :echo 'loaded local vimrc'
 
 nnoremap <silent> <Leader>qde :EditEnvrc<CR>
 nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>

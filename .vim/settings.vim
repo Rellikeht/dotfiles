@@ -4,22 +4,15 @@ let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
 
 set secure
-" TODO What the fuck is wrong with that shit
 
-" autocmd BufNewFile,BufRead *
-"     \    if !did_filetype() && empty(expand("<afile>:e")) || &ft is# "text" || &ft is# "markdown"
-"     \ |      setlocal modeline
-"     \ |  endif
-
-" " autocmd BufNewFile,BufRead *
-
-" autocmd BufReadPost *
-"     \ setlocal nomodeline
-"     \ | if &ft == ""
-"     \ |     setlocal modeline
-"     \ | endif
-
-    " \ filetype detect
+" shitty, but works somehow
+autocmd BufReadPost *
+    \ if &ft == ""
+    \ | filetype detect
+    \ | endif
+    \ | if &ft == ""
+    \ | setlocal modeline
+    \ | endif
 
 " }}}
 
@@ -38,6 +31,9 @@ noremap <Leader>qec :set cursorline!<CR>
 noremap <Leader>qkw :call Wmt()<CR>
 noremap <silent> <Leader>qpm :call ToggleManProg()<CR>
 noremap <Leader>qpM :set makeprg=make<CR>
+
+noremap <Leader>qet :filetype detect<CR>
+noremap <Leader>qeT :set filetype=
 
 " }}}
 

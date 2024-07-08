@@ -105,9 +105,10 @@ noremap <Tab>^D :resize -20<CR>
 
 "{{{ other mappings
 
-noremap <Tab>W :set wrap!<CR>
-noremap <Tab>Q :source %<CR>
-noremap <Tab>M :setlocal modeline!<CR>
+noremap <Tab>qw :set wrap!<CR>
+noremap <Tab>qs :source %<CR>
+noremap <Tab>qm :setlocal modeline!<CR>:e<CR>
+noremap <Tab>qM :setlocal modeline!<CR>
 
 nnoremap <tab>ir :registers<CR>
 nnoremap <tab>ib :buffers<CR>

@@ -172,8 +172,10 @@ function ToggleAutochdir()
     let g:autochdir = !g:autochdir
     if g:autochdir
         augroup AutoChdir
-            autocmd BufEnter * exe "lcd %:p:h"
-                        " \ exe "lcd %:p:h" | exe "pwd"
+            autocmd BufEnter *
+                \ if &buftype == ""
+                \ | exe "lcd %:p:h"
+                \ | endif
         augroup END
         echo 'AutoChdir enabled'
     else

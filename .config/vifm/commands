@@ -1,7 +1,5 @@
 " vim: filetype=vifm :
 
-" TODO tmux integration
-
 "{{{ basic commands
 
 command! df df -h %m 2> /dev/null

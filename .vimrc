@@ -3,7 +3,7 @@ source ~/.vim/tiny-compatible.vim
 " Configration suited for beeing shared between neovim (nvim), custom compiled 
 " vim / standard vim from repos (vim) and vim-tiny (tvim / vi)
 
-if v:progname =~? "^[sn]\\?v\\(im\\?\\)\\?"
+if v:progname !~? "tv\\?\\(im\\?\\)\\?"
     " and it works, at least now
     source ~/.vim/additional.vim
 
