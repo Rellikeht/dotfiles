@@ -66,24 +66,24 @@ let g:netrw_ignorenetrc = 0 " (default for linux, cygwin)
 
 " TODO B file openinng
 
-noremap <silent> ,xex :Explore<CR>
-noremap ,xeX :Explore<Space>
-noremap <silent> ,xet :Texplore<CR>
-noremap ,xeT :Texplore<Space>
-noremap <silent> ,xeh :Sexplore<CR>
-noremap ,xeH :Sexplore<Space>
-noremap <silent> ,xev :Vexplore<CR>
-noremap ,xeV :Vexplore<Space>
-noremap <silent> ,xen :Nexplore<CR>
-noremap ,xeN :Nexplore<Space>
-noremap <silent> ,xep :Pexplore<CR>
-noremap ,xeP :Pexplore<Space>
-noremap <silent> ,xer :Rexplore<CR>
-noremap ,xeR :Rexplore<Space>
-noremap <silent> ,xel :Lexplore<CR>
-noremap ,xeL :Lexplore<Space>
-noremap <silent> ,xeh :Hexplore<CR>
-noremap ,xeH :Hexplore<Space>
+noremap <silent> <Leader>xex :Explore<CR>
+noremap <Leader>xeX :Explore<Space>
+noremap <silent> <Leader>xet :Texplore<CR>
+noremap <Leader>xeT :Texplore<Space>
+noremap <silent> <Leader>xeh :Sexplore<CR>
+noremap <Leader>xeH :Sexplore<Space>
+noremap <silent> <Leader>xev :Vexplore<CR>
+noremap <Leader>xeV :Vexplore<Space>
+noremap <silent> <Leader>xen :Nexplore<CR>
+noremap <Leader>xeN :Nexplore<Space>
+noremap <silent> <Leader>xep :Pexplore<CR>
+noremap <Leader>xeP :Pexplore<Space>
+noremap <silent> <Leader>xer :Rexplore<CR>
+noremap <Leader>xeR :Rexplore<Space>
+noremap <silent> <Leader>xel :Lexplore<CR>
+noremap <Leader>xeL :Lexplore<Space>
+noremap <silent> <Leader>xeh :Hexplore<CR>
+noremap <Leader>xeH :Hexplore<Space>
 
 "}}}
 

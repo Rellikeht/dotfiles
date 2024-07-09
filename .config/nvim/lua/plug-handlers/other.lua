@@ -119,7 +119,7 @@ vim.keymap.set(modes, "glf", ":FeMaco<CR>", {noremap = true})
 
 local nvim_lint = require("lint")
 
-nvim_lint.linters_by_ft = {
+nvim_lint.linters_by_ft = { -- {{{
   markdown = {"vale"},
   python = {"pylint", "flake8", "mypy", "ruff"},
   shell = {"dash", "shellcheck"},
@@ -129,9 +129,13 @@ nvim_lint.linters_by_ft = {
   nix = {"nix"},
   ansible = {"ansible-lint"},
   yaml = {"yamllint"},
-  -- javascript = { "eslint", "eslint_d", "prettier", },
-  javascript = {"eslint"},
+  -- javascript = {"eslint_d"},
+  -- typescript = {"eslint_d"},
 }
+
+-- }}}
+
+-- {{{ autocmd
 
 vim.g["buflint"] = false
 vim.api.nvim_create_autocmd(
@@ -164,6 +168,10 @@ local function toggleNvimLInt()
   vim.b["buflint"] = not vim.b["buflint"]
 end
 
+-- }}}
+
+-- {{{ maps
+
 vim.keymap.set(
   "n", "<leader>dc", function() nvim_lint.try_lint() end,
   {desc = "Trigger linting for current file"}
@@ -174,10 +182,29 @@ vim.keymap.set(
   {desc = "Toggle linting on events for current file"}
 )
 
+-- }}}
+
+-- {{{ configurations
+
+-- eslint_d is shit
+-- eslint too
+-- local eslint_d = require "lint.linters.eslint_d"
+-- eslint_d.args = vim.tbl_extend(
+--                   "force", {
+--     "--config",
+--     -- function() return vim.fn.getcwd() .. "/eslint.config.js" end,
+--     function()
+--       return vim.fn.getenv("HOME") .. "/eslint.config.js"
+--     end,
+--   }, eslint_d.args
+--                 )
+
 -- TODO
 -- Set pylint to work in virtualenv
 -- nvim_lint.linters.pylint.cmd = "python"
 -- nvim_lint.linters.pylint.args = {"-m", "pylint", "-f", "json"}
+
+-- }}}
 
 -- }}}
 

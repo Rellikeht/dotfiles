@@ -1,5 +1,11 @@
+-- {{{ helpers
 ---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
+
+---@diagnostic disable: unused-local
+local util = require("lspconfig.util")
+
+-- }}}
 
 lspconfig.lua_ls.setup(
   {
@@ -171,7 +177,6 @@ lspconfig.rust_analyzer.setup(
 
 -- {{{
 
--- local util = require("lspconfig.util")
 -- lspconfig.pylyzer.setup(
 --   {
 --     cmd = {"pylyzer", "--server"},

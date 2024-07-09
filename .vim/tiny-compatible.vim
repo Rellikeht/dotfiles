@@ -117,6 +117,11 @@ nnoremap <Tab>it :tabs<CR>
 nnoremap <Tab>ih :history<CR>
 nnoremap <Tab>im :marks<CR>
 
+nnoremap <Tab>ig :map<Space>
+nnoremap <Tab>in :nmap<Space>
+nnoremap <Tab>iv :vmap<Space>
+nnoremap <Tab>ii :imap<Space>
+
 " Select whole buffer without plugins
 vnoremap ae <Esc>gg0vG$
 " Not exact vie

@@ -243,7 +243,6 @@ local servers = { -- {{{
   "typst_lsp",
   "scheme_langserver",
   "tsserver",
-  "eslint",
 } -- }}}
 
 -- {{{
