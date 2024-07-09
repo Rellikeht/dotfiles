@@ -170,32 +170,35 @@ lspconfig.rust_analyzer.setup(
 )
 
 -- {{{
+
 -- local util = require("lspconfig.util")
--- lspconfig.pylyzer.setup({
---   cmd = {"pylyzer", "--server"},
+-- lspconfig.pylyzer.setup(
+--   {
+--     cmd = {"pylyzer", "--server"},
 
---   --   root_dir = function(fname)
---   --     local root_files = {
---   --       "setup.py",
---   --       "tox.ini",
---   --       "requirements.txt",
---   --       "Pipfile",
---   --       "pyproject.toml"
---   --     }
---   --     return util.root_pattern(unpack(root_files))(fname) or
---   --              util.find_git_ancestor(fname)
---   --   end,
+--     --   root_dir = function(fname)
+--     --     local root_files = {
+--     --       "setup.py",
+--     --       "tox.ini",
+--     --       "requirements.txt",
+--     --       "Pipfile",
+--     --       "pyproject.toml"
+--     --     }
+--     --     return util.root_pattern(unpack(root_files))(fname) or
+--     --              util.find_git_ancestor(fname)
+--     --   end,
 
---   single_file_support = true,
---   settings = {
---     python = {
---       diagnostics = true,
---       inlayHints = true,
---       smartCompletion = true,
---       checkOnType = true
---     }
+--     single_file_support = true,
+--     settings = {
+--       python = {
+--         diagnostics = true,
+--         inlayHints = true,
+--         smartCompletion = true,
+--         checkOnType = true,
+--       },
+--     },
 --   }
--- })
+-- )
 
 -- }}}
 

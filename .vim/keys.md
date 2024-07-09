@@ -80,7 +80,7 @@ combinations
   - kw - toggle workman layout help
   - m - man/help opening location
 
-- <Space> - set hls!
+- <Space> - setlocal hls!
 
 - ; - commands
 

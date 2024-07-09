@@ -18,7 +18,7 @@ autocmd BufReadPost *
 
 " {{{ some simple settings
 
-nnoremap <Leader><Space> :set hls!<CR>
+nnoremap <Leader><Space> :setlocal hls!<CR>
 noremap <Leader>qen :set relativenumber!<CR>
 noremap <Leader>qeN :set number!<CR>
 noremap <Leader>qeC :set cursorbind!<CR>
@@ -34,6 +34,7 @@ noremap <Leader>qpM :set makeprg=make<CR>
 
 noremap <Leader>qet :filetype detect<CR>
 noremap <Leader>qeT :set filetype=
+noremap <Leader>qeh :set hls!<CR>
 
 " }}}
 

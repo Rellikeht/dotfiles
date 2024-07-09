@@ -110,12 +110,12 @@ noremap <Tab>qs :source %<CR>
 noremap <Tab>qm :setlocal modeline!<CR>:e<CR>
 noremap <Tab>qM :setlocal modeline!<CR>
 
-nnoremap <tab>ir :registers<CR>
-nnoremap <tab>ib :buffers<CR>
-nnoremap <tab>if :files<CR>
-nnoremap <tab>it :tabs<CR>
-nnoremap <tab>ih :history<CR>
-nnoremap <tab>im :marks<CR>
+nnoremap <Tab>ir :registers<CR>
+nnoremap <Tab>ib :buffers<CR>
+nnoremap <Tab>if :files<CR>
+nnoremap <Tab>it :tabs<CR>
+nnoremap <Tab>ih :history<CR>
+nnoremap <Tab>im :marks<CR>
 
 " Select whole buffer without plugins
 vnoremap ae <Esc>gg0vG$
@@ -144,7 +144,7 @@ set relativenumber
 set showcmd
 set showmatch
 set incsearch
-set hlsearch
+set nohlsearch
 
 set ignorecase
 set smartcase
@@ -183,6 +183,9 @@ set nomodeline
 
 if v:progname =~? "^tv\\(im\\?\\)\\?"
     set background=dark
+    set hlsearch
+    noremap <Tab><Space> :setlocal hls!<CR>
+    noremap <Tab>qh :set hls!<CR>
 endif
 
 " }}}

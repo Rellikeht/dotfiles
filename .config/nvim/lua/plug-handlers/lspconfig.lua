@@ -1,12 +1,17 @@
--- {{{
+-- {{{ helpers
 ---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
 
 local diag_modes = {"n", "v"}
 local buf_modes = {"n", "v"}
+
+-- lua isn't that good
+Lfiles = {"*.go", "*.jl", "*.zig", "*.sh"}
+
 -- }}}
 
--- {{{
+-- {{{ commands
+
 vim.keymap.set(
   buf_modes, "<Leader>dqi", ":LspInfo<CR>", {noremap = true}
 )
@@ -23,11 +28,13 @@ vim.keymap.set(
   buf_modes, "<Leader>dqe", ":LspStop ", {noremap = true}
 )
 vim.keymap.set(
-  buf_modes, "<Leader>dqE", ":LspStop<CR>", {noremap = true}
+  buf_modes, "<Leader>dqE", ":LspStop *<CR>", {noremap = true}
 )
+
 -- }}}
 
--- {{{
+-- {{{ general maps
+
 vim.keymap.set(
   diag_modes, "<Leader>df", vim.diagnostic.open_float,
   {noremap = true}
@@ -49,6 +56,7 @@ vim.keymap.set(
   diag_modes, "<Leader>dL", vim.diagnostic.setqflist,
   {noremap = true}
 )
+
 -- }}}
 
 -- Use LspAttach autocommand to only map the following keys
@@ -57,17 +65,21 @@ vim.api.nvim_create_autocmd(
   "LspAttach", { -- {{{
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
+      -- {{{ helpers
 
-      -- {{{
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
       -- :help vim.lsp.*
       local opts = {buffer = ev.buf, noremap = true}
       local tab_mod = "<C-w>"
+
+      -- local lfiles = {"*.go", "*.jl", "*.zig", "*.sh", "*.lua"}
+
       -- }}}
 
-      -- {{{
+      -- {{{ basic maps
+
       vim.keymap.set(
         buf_modes, "<Leader>dd", vim.lsp.buf.definition, opts
       )
@@ -115,9 +127,10 @@ vim.api.nvim_create_autocmd(
         "<cmd>tab split | lua vim.lsp.buf.signature_help()<CR>",
         opts
       )
+
       -- }}}
 
-      -- {{{
+      -- {{{ advanced maps
       vim.keymap.set(
         buf_modes, "<Leader>dR", vim.lsp.buf.rename, opts
       )
@@ -137,7 +150,7 @@ vim.api.nvim_create_autocmd(
       )
       -- }}}
 
-      -- {{{
+      -- {{{ workspaces
       vim.keymap.set(
         buf_modes, "<Leader>dwa",
         vim.lsp.buf.add_workspace_folder, opts
@@ -155,6 +168,41 @@ vim.api.nvim_create_autocmd(
       )
       -- }}}
 
+      -- {{{ formatting
+
+      -- when attaching first lsp define variable that will control
+      -- formating on saving using lsp(s)
+      local ftype = vim.api.nvim_get_option_value(
+                      "filetype", {scope = "local"}
+                    )
+      if #vim.lsp.get_clients() == 1 and Lfiles[ftype] ~= nil then
+        vim.cmd(
+          [[
+        let b:lspfmt = b:buffmt
+        let b:buffmt = 0
+
+        noremap <Leader>dqf :let b:lspfmt = !b:lspfmt<CR>:echo b:lspfmt<CR>
+        ]]
+        )
+
+        local lspformat = vim.api.nvim_create_augroup(
+                            "lspformat", {clear = true}
+                          )
+
+        vim.api.nvim_create_autocmd(
+          "BufWritePre", {
+            buffer = 0,
+            callback = function(ev)
+              if vim.b["lspfmt"] == 1 then
+                vim.lsp.buf.format()
+              end
+            end,
+            group = lspformat,
+          }
+        )
+      end
+
+      -- }}}
     end,
   } -- }}}
 )
@@ -195,6 +243,7 @@ local servers = { -- {{{
   "typst_lsp",
   "scheme_langserver",
   "tsserver",
+  "eslint",
 } -- }}}
 
 -- {{{

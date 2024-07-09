@@ -129,22 +129,49 @@ nvim_lint.linters_by_ft = {
   nix = {"nix"},
   ansible = {"ansible-lint"},
   yaml = {"yamllint"},
+  -- javascript = { "eslint", "eslint_d", "prettier", },
+  javascript = {"eslint"},
 }
 
--- local lint_augroup = vim.api.nvim_create_augroup(
---                        "lint", {clear = true}
---                      )
+vim.g["buflint"] = false
+vim.api.nvim_create_autocmd(
+  {"FileType"}, {
+    pattern = "*",
+    callback = function() vim.b["buflint"] = vim.g["buflint"] end,
+  }
+)
 
--- vim.api.nvim_create_autocmd(
---   {"BufEnter", "BufWritePost", "InsertLeave"}, {
---     group = lint_augroup,
---     callback = function() nvim_lint.try_lint() end
---   }
--- )
+local nvim_lint_augroup = "nvim_lint_augroup"
+
+local function toggleNvimLInt()
+  if vim.b["buflint"] then
+    vim.api.nvim_del_augroup_by_name(nvim_lint_augroup)
+  else
+    local lint_augroup = vim.api.nvim_create_augroup(
+                           nvim_lint_augroup, {clear = true}
+                         )
+    vim.api.nvim_create_autocmd(
+      {"BufWritePost", "InsertLeave"}, {
+        group = lint_augroup,
+        buffer = 0,
+        callback = function() nvim_lint.try_lint() end,
+      }
+    )
+  end
+
+  -- This doesn't work properly :(
+  nvim_lint.try_lint()
+  vim.b["buflint"] = not vim.b["buflint"]
+end
 
 vim.keymap.set(
   "n", "<leader>dc", function() nvim_lint.try_lint() end,
   {desc = "Trigger linting for current file"}
+)
+
+vim.keymap.set(
+  "n", "<leader>dC", toggleNvimLInt,
+  {desc = "Toggle linting on events for current file"}
 )
 
 -- TODO
@@ -160,20 +187,28 @@ vim.keymap.set(
 -- {{{ TODO D ZEN-MODE ??
 -- }}}
 
--- {{{ neoformat
+-- {{{ formatting
 
-Lfiles = {"*.go", "*.jl", "*.zig", "*.lua", "*.sh"}
-
+-- turn off formatting enabled in lspconfig
+-- when lsp exits
 vim.api.nvim_create_autocmd(
-  {"LspAttach"}, {
-    pattern = Lfiles,
-    command = [[
-      let b:buffmt = 0
-      luado vim.api.nvim_create_autocmd(
-        "BufWritePre",
-        {pattern = Lfiles, command = "lua vim.lsp.buf.format()"}
-      )
-    ]],
+  {"LspDetach"}, {
+    buffer = 0,
+    callback = function()
+      local ftype = vim.api.nvim_get_option_value(
+                      "filetype", {scope = "local"}
+                    )
+      if #vim.lsp.get_clients() == 1 and Lfiles[ftype] ~= nil then
+        vim.cmd(
+          [[
+          let b:buffmt = b:lspfmt
+          let b:lspfmt = 0
+          unmap <Leader>dqf
+          augroup! lspformat
+        ]]
+        )
+      end
+    end,
   }
 )
 
