@@ -1,8 +1,9 @@
 " {{{ basic mappings
 
-" Works (as map too)
-map <Space> <C-w>
-map <Space><Space> <C-w><C-w>
+" Because <C-w> is uncomfortable to press
+
+map _ <C-w>
+map __ <C-w><C-w>
 
 " Has to be that way
 noremap <C-m> <Tab>
@@ -31,6 +32,7 @@ noremap <Tab>qM :setlocal modeline!<CR>
 "}}}
 
 " {{{ tabs with <Tab>
+" TODO
 
 noremap <silent> <Tab>0 :tabfirst<CR>
 noremap <silent> <Tab>$ :tablast<CR>
@@ -53,7 +55,16 @@ noremap <Tab>: :-tab<Space>
 
 " }}}
 
-" {{{ windows with <Tab>
+" {{{ TODO windows with <Tab> ?
+
+noremap <silent> <Tab>v :vsplit<Space>
+noremap <silent> <Tab>V :vsplit<CR>
+noremap <silent> <Tab>s :split<Space>
+noremap <silent> <Tab>S :split<CR>
+noremap <silent> <Tab>u :botright split<Space>
+noremap <silent> <Tab>U :botright split<CR>
+noremap <silent> <Tab>g :botright vsplit<Space>
+noremap <silent> <Tab>G :botright vsplit<CR>
 
 " TODO more resizing
 
@@ -91,96 +102,136 @@ noremap <Tab>^D :resize -20<CR>
 
 " }}}
 
-" {{{ buffers with <Tab> TODO ctrl
+" TODO splits with <CR>
 
-noremap <Tab>b :buffer<Space>
-noremap <silent> <Tab>n :bnext<CR>
-noremap <silent> <Tab>p :bprevious<CR>
-noremap <silent> <Tab>N :bnext!<CR>
-noremap <silent> <Tab>P :bprevious!<CR>
-noremap <silent> <Tab>D :bdelete<CR>
-noremap <silent> <Tab>U :bunload<CR>
-noremap <Tab>a :badd<Space>
-noremap <Tab>A :balt<Space>
-noremap <silent> <Tab>c :bmodified<CR>
-noremap <silent> <Tab>C :bmodified!<CR>
+" {{{ buffers with <Space>
 
-noremap <silent> <Tab>v :vsplit<Space>
-noremap <silent> <Tab>V :vsplit<CR>
-noremap <silent> <Tab>s :split<Space>
-noremap <silent> <Tab>S :split<CR>
-noremap <silent> <Tab>u :botright split<Space>
-noremap <silent> <Tab>U :botright split<CR>
-noremap <silent> <Tab>g :botright vsplit<Space>
-noremap <silent> <Tab>G :botright vsplit<CR>
+noremap <Space>b :buffer<Space>
+noremap <Space>B :buffer!<Space>
+noremap <Space>l :buffers<CR>
+noremap <Space>L :buffers!<CR>
+noremap <Space>f :filter  buffers<C-Left><C-b>
+noremap <Space>s :filter // buffers<C-Left><C-b><C-b>
 
-noremap <Tab>o :bufdo<Space>
+noremap <silent> <Space>n :bnext<CR>
+noremap <silent> <Space>p :bprevious<CR>
+noremap <silent> <Space>N :bnext!<CR>
+noremap <silent> <Space>P :bprevious!<CR>
+noremap <silent> <Space>m :bmodified<CR>
+noremap <silent> <Space>M :bmodified!<CR>
+
+noremap <silent> <Space>d :bdelete<CR>
+noremap <silent> <Space>D :bdelete!<CR>
+noremap <silent> <Space>u :bunload<CR>
+noremap <silent> <Space>U :bunload!<CR>
+noremap <silent> <Space>w :bwipeout<CR>
+noremap <silent> <Space>W :bwipeout!<CR>
+
+noremap <silent> <Space><Space>n :bnext<Space>
+noremap <silent> <Space><Space>p :bprevious<Space>
+noremap <silent> <Space><Space>N :bnext!<Space>
+noremap <silent> <Space><Space>P :bprevious!<Space>
+noremap <silent> <Space><Space>m :bmodified<Space>
+noremap <silent> <Space><Space>M :bmodified!<Space>
+
+noremap <silent> <Space><Space>d :bdelete<Space>
+noremap <silent> <Space><Space>D :bdelete!<Space>
+noremap <silent> <Space><Space>u :bunload<Space>
+noremap <silent> <Space><Space>U :bunload!<Space>
+noremap <silent> <Space><Space>w :bwipeout<Space>
+noremap <silent> <Space><Space>W :bwipeout!<Space>
+
+noremap <Space>a :badd<Space>
+noremap <Space>A :balt<Space>
+noremap <Space>t :bufdo<Space>
+noremap <Space>T :bufdo!<Space>
 
 " }}}
 
-"{{{ args with <tab> TODO ;
+"{{{ args with ;
 
-noremap <Tab>;a :argadd<CR>
-noremap <Tab>;A :argadd<Space>
-noremap <Tab>;d :argdelete<CR>
-noremap <Tab>;D :argdelete<Space>
+noremap ;l :args<CR>
+noremap ;L :args!<CR>
+noremap ;;l :args<Space>
+noremap ;;L :args!<Space>
+noremap ;f :filter  args<C-Left><C-b>
+noremap ;F :filter // args<C-Left><C-b><C-b>
 
-noremap <Tab>;n :next<CR>
-noremap <Tab>;N :next<Space>
-noremap <Tab>;p :previous<CR>
-noremap <Tab>;P :previous<Space>
-noremap <Tab>;h :first<CR>
-noremap <Tab>;l :last<CR>
+noremap ;a :argadd<Space>
+noremap ;d :argdelete<Space>
+noremap ;e :argedit<Space>
+noremap ;E :argedit!<Space>
+noremap ;o :argument<Space>
+noremap ;O :argument!<Space>
 
-noremap <Tab>;. :wnext<CR>
-noremap <Tab>;> :wnext!<CR>
-noremap <Tab>;, :wprevious<CR>
-noremap <Tab>;< :wprevious!<CR>
+noremap ;n :next<CR>
+noremap ;N :next!<CR>
+noremap ;;n :next<Space>
+noremap ;;N :next!<CR>
+noremap ;p :previous<CR>
+noremap ;P :previous!<CR>
+noremap ;;p :previous<Space>
+noremap ;;P :previous!<Space>
 
-noremap <Tab>;r :argdedupe<CR>
-noremap <Tab>;e :argument<Space>
-noremap <Tab>;E :argument!<Space>
-noremap <Tab>;o :argedit<Space>
-nnoremap <Tab>;O :args<Space>
+noremap ;. :wnext<CR>
+noremap ;> :wnext!<CR>
+noremap ;;. :wnext<Space>
+noremap ;;> :wnext!<Space>
+noremap ;, :wprevious<CR>
+noremap ;< :wprevious!<CR>
+noremap ;;, :wprevious<Space>
+noremap ;;< :wprevious!<Space>
+
+noremap ;0 :last<CR>
+noremap ;0 :last!<CR>
+noremap ;;0 :last<Space>
+noremap ;;0 :last!<Space>
+noremap ;$ :last<CR>
+noremap ;$ :last!<CR>
+noremap ;;$ :last<Space>
+noremap ;;$ :last!<Space>
+
+noremap ;= :argdedupe<CR>
+noremap ;t :argdo<Space>
+noremap ;T :argdo!<Space>
+
+" TODO local args
 
 "}}}
 
-"{{{ TODO local args with ???
+" {{{ <Space> list and help
 
-"}}}
+nnoremap <Space>ir :registers<CR>
+nnoremap <Space>ip :history<CR>
+nnoremap <Space>im :marks<CR>
+nnoremap <Space>ic :changes<CR>
+nnoremap <Space>ij :jumps<CR>
+nnoremap <Space>if :files<CR>
+nnoremap <Space>it :tabs<CR>
 
-" {{{ other tab mappings
+nnoremap <Space><Space>ir :filter  registers<C-Left><C-b>
+nnoremap <Space><Space>ip :filter  history<C-Left><C-b>
+nnoremap <Space><Space>im :filter  marks<C-Left><C-b>
+nnoremap <Space><Space>ic :filter  changes<C-Left><C-b>
+nnoremap <Space><Space>ij :filter  jumps<C-Left><C-b>
+nnoremap <Space><Space>if :filter  files<C-Left><C-b>
+nnoremap <Space><Space>it :filter  tabs<C-Left><C-b>
 
-nnoremap <Tab>ir :registers<CR>
-nnoremap <Tab>ih :history<CR>
-nnoremap <Tab>im :marks<CR>
-nnoremap <Tab>ic :changes<CR>
-nnoremap <Tab>ij :jumps<CR>
-nnoremap <Tab>ia :args<CR>
+nnoremap <Space>;ir :filter // registers<C-Left><C-b><C-b>
+nnoremap <Space>;ip :filter // history<C-Left><C-b><C-b>
+nnoremap <Space>;im :filter // marks<C-Left><C-b><C-b>
+nnoremap <Space>;ic :filter // changes<C-Left><C-b><C-b>
+nnoremap <Space>;ij :filter // jumps<C-Left><C-b><C-b>
+nnoremap <Space>;if :filter // files<C-Left><C-b><C-b>
+nnoremap <Space>;it :filter // tabs<C-Left><C-b><C-b>
 
-nnoremap <Tab>if :files<CR>
-nnoremap <Tab>ib :buffers<CR>
-nnoremap <Tab>it :tabs<CR>
+nnoremap <Space>ik :map<Space>
+nnoremap <Space>in :nmap<Space>
+nnoremap <Space>iv :vmap<Space>
+nnoremap <Space>ii :imap<Space>
 
-nnoremap <Tab>fr :filter  registers<C-Left><C-b>
-nnoremap <Tab>fh :filter  history<C-Left><C-b>
-nnoremap <Tab>fm :filter  marks<C-Left><C-b>
-nnoremap <Tab>fc :filter  changes<C-Left><C-b>
-nnoremap <Tab>fj :filter  jumps<C-Left><C-b>
-nnoremap <Tab>fa :filter  args<C-Left><C-b>
-
-nnoremap <Tab>ff :filter  files<C-Left><C-b>
-nnoremap <Tab>fb :filter  buffers<C-Left><C-b>
-nnoremap <Tab>ft :filter  tabs<C-Left><C-b>
-nnoremap <Tab>f<Space> :filter<Space>
-
-nnoremap <Tab>ik :map<Space>
-nnoremap <Tab>in :nmap<Space>
-nnoremap <Tab>iv :vmap<Space>
-nnoremap <Tab>ii :imap<Space>
-
-nnoremap <Tab>id :help<Space>
-nnoremap <C-w><Tab>id :tab help<Space>
+nnoremap <Space>ih :help<Space>
+nnoremap <C-w><Space>ih :tab help<Space>
 
 " }}}
 
@@ -290,3 +341,21 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
     noremap <Tab>qh :set hls!<CR>
 endif
 " }}}
+
+"{{{ free control combinations
+
+"|<BS>|		<BS>		1  same as "h"
+"|CTRL-H|	CTRL-H		1  same as "h"
+"|CTRL-J|	CTRL-J		1  same as "j"
+"		CTRL-K		   not used
+"|<CR>|		<CR>		1  cursor to the first CHAR N lines lower
+"|CTRL-M|	CTRL-M		1  same as <CR>
+"|CTRL-N|	CTRL-N		1  same as "j"
+"|CTRL-P|	CTRL-P		1  same as "k"
+"|CTRL-R|	CTRL-R		2  redo changes which were undone with 'u'
+"|CTRL-\_CTRL-N|	CTRL-\ CTRL-N	   go to Normal mode (no-op)
+"|CTRL-\_CTRL-G|	CTRL-\ CTRL-G	   go to mode specified with 'insertmode'
+"		CTRL-\ others	   not used
+"		CTRL-_		   not used
+
+"		}}}

@@ -5,62 +5,19 @@ keys in one place. With hundreds of mappings it is necessary
 
 # Unused keys
 
-\\ | ~ ^ (hard to reach on some keyboards) _ (painful in greater
-amounts) There may be more, but there are already enough
-combinations
+\\ | ~ ^ (hard to reach on some keyboards)
+
+There may be more, but there are already enough combinations
+
+# Remappings
+
+- \_ - <C-w>
+- <C-m> - (old) <Tab>
 
 # <Tab> combinations
 
 - They are general purpose, mainly for tab management
-- List is incomplete
-
-## TODO
-
-- make this better
-
-## Tabs
-
-- <Tab> - :tab<Space>
-- e - :tab<Space>sb<Space>
-- E - :-tab<Space>sb<Space>
-- d - :tabclose<CR>
-- h - gT
-- H - :tabm -1<CR>
-- j - :tablast<CR>
-- J - :tabm $<CR>
-- k - :tabfirst<CR>
-- K - :tabm 0<CR>
-- l - gt
-- L - :tabm +1<CR>
-- m - :tabm<Space>
-- t - :tabedit<Space>
-- T - :-tabedit<Space>
-- O - :tabnew<CR>
-
-## Buffers
-
-- a - :bad<Space>
-- A - :balt<Space>
-- b - :buffer<Space>
-- c - :bmodified<CR>
-- C - :bmodified!<CR>
-- D - :bdelete<CR>
-- n - :bnext<CR>
-- N - :bnext!<CR>
-- p - :bprevious<CR>
-- P - :bprevious!<CR>
-- U - :bunload<CR>
-
-## Miscelanous
-
-- r - redraw command
-- w - toggle wrap
-- y - in normal paste, in visual copy to X11 clipboard
-- Y - like ;y, but using X11 primary
-- Q - source %
-- M - setlocal modeline!
-- i - some info
-- ^, > - resizing windows
+- TODO
 
 # Leader (,) combinations
 
