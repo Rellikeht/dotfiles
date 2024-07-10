@@ -16,6 +16,8 @@ autocmd BufReadPost *
 
 " }}}
 
+" TODO tabline
+
 " {{{ some simple settings
 
 nnoremap <Leader><Space> :setlocal hls!<CR>

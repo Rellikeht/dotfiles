@@ -19,10 +19,11 @@ noremap <silent> <Leader>jtl :tags<CR>
 
 noremap <silent> <Tab>k K<C-w>T
 
-noremap <silent> <Tab>l :<C-u>call SwitchTab(v:count1)<CR>
-" noremap <silent> <Tab>h :<C-u>call SwitchTab(-v:count1)<CR>
+noremap <silent> <Tab>n :<C-u>call SwitchTab(v:count1)<CR>
 noremap <silent> <Tab>H :<C-u>execute 'tabm -'.v:count1<CR>
 noremap <silent> <Tab>L :<C-u>execute 'tabm +'.v:count1<CR>
+
+" TODO
 
 noremap <silent> <Tab>n :<C-u>execute 'bnext '.v:count1<CR>
 noremap <silent> <Tab>p :<C-u>execute 'bprevious '.v:count1<CR>

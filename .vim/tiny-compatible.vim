@@ -31,31 +31,42 @@ noremap <Tab>qM :setlocal modeline!<CR>
 
 "}}}
 
+" TODO counts
+
 " {{{ tabs with <Tab>
-" TODO
+
+noremap <Tab>e :tabedit<Space>
+noremap <Tab>E :-tabedit<Space>
+noremap <Tab>o :tab<Space>
+noremap <Tab>O :-tab<Space>
+
+nnoremap <Tab>l :tabs<CR>
+nnoremap <Tab><Space>l :filter  tabs<C-Left><C-b>
+nnoremap <Tab>;l :filter // tabs<C-Left><C-b><C-b>
+
+noremap <silent> <Tab>+ :tabnew<CR>
+noremap <silent> <Tab>- :tabclose<CR>
+noremap <silent> <Tab>! :tabonly<CR>
+
+noremap <Tab>b :tab<Space>sb<Space>
+noremap <Tab>B :-tab<Space>sb<Space>
 
 noremap <silent> <Tab>0 :tabfirst<CR>
 noremap <silent> <Tab>$ :tablast<CR>
-noremap <Tab>l gt
-noremap <Tab>h gT
-noremap <Tab>t :tabedit<Space>
-noremap <Tab>T :-tabedit<Space>
+noremap <Tab>n gt
+noremap <Tab>p gT
+
 noremap <Tab>m :tabm<Space>
-noremap <silent> <Tab>d :tabclose<CR>
 noremap <silent> <Tab>L :tabm +1<CR>
 noremap <silent> <Tab>H :tabm -1<CR>
 noremap <silent> <Tab>J :tabm $<CR>
 noremap <silent> <Tab>K :tabm 0<CR>
-noremap <Tab>e :tab<Space>sb<Space>
-noremap <Tab>E :-tab<Space>sb<Space>
-noremap <silent> <Tab>O :tabnew<CR>
 
-noremap <Tab><Tab> :tab<Space>
-noremap <Tab>: :-tab<Space>
+noremap <Tab>t :tabdo<Space>
 
 " }}}
 
-" {{{ TODO windows with <Tab> ?
+" {{{ TODO windows with <Tab>
 
 noremap <silent> <Tab>v :vsplit<Space>
 noremap <silent> <Tab>V :vsplit<CR>
@@ -102,16 +113,19 @@ noremap <Tab>^D :resize -20<CR>
 
 " }}}
 
-" TODO splits with <CR>
+" TODO splits with <CR> ?
 
 " {{{ buffers with <Space>
 
 noremap <Space>b :buffer<Space>
 noremap <Space>B :buffer!<Space>
+
 noremap <Space>l :buffers<CR>
-noremap <Space>L :buffers!<CR>
-noremap <Space>f :filter  buffers<C-Left><C-b>
-noremap <Space>s :filter // buffers<C-Left><C-b><C-b>
+noremap <Space><Space>l :filter  buffers<C-Left><C-b>
+noremap <Space>;l :filter // buffers<C-Left><C-b><C-b>
+noremap <Space>L :buffers<CR>
+noremap <Space><Space>L :filter  buffers<C-Left><C-b>
+noremap <Space>;L :filter // buffers<C-Left><C-b><C-b>
 
 noremap <silent> <Space>n :bnext<CR>
 noremap <silent> <Space>p :bprevious<CR>
@@ -151,11 +165,9 @@ noremap <Space>T :bufdo!<Space>
 "{{{ args with ;
 
 noremap ;l :args<CR>
-noremap ;L :args!<CR>
-noremap ;;l :args<Space>
-noremap ;;L :args!<Space>
-noremap ;f :filter  args<C-Left><C-b>
-noremap ;F :filter // args<C-Left><C-b><C-b>
+noremap ;<Space>l :filter  args<C-Left><C-b>
+noremap ;;l :filter // args<C-Left><C-b><C-b>
+noremap ;L :args!<Space>
 
 noremap ;a :argadd<Space>
 noremap ;d :argdelete<Space>
@@ -207,7 +219,6 @@ nnoremap <Space>im :marks<CR>
 nnoremap <Space>ic :changes<CR>
 nnoremap <Space>ij :jumps<CR>
 nnoremap <Space>if :files<CR>
-nnoremap <Space>it :tabs<CR>
 
 nnoremap <Space><Space>ir :filter  registers<C-Left><C-b>
 nnoremap <Space><Space>ip :filter  history<C-Left><C-b>
@@ -215,7 +226,6 @@ nnoremap <Space><Space>im :filter  marks<C-Left><C-b>
 nnoremap <Space><Space>ic :filter  changes<C-Left><C-b>
 nnoremap <Space><Space>ij :filter  jumps<C-Left><C-b>
 nnoremap <Space><Space>if :filter  files<C-Left><C-b>
-nnoremap <Space><Space>it :filter  tabs<C-Left><C-b>
 
 nnoremap <Space>;ir :filter // registers<C-Left><C-b><C-b>
 nnoremap <Space>;ip :filter // history<C-Left><C-b><C-b>
@@ -223,7 +233,6 @@ nnoremap <Space>;im :filter // marks<C-Left><C-b><C-b>
 nnoremap <Space>;ic :filter // changes<C-Left><C-b><C-b>
 nnoremap <Space>;ij :filter // jumps<C-Left><C-b><C-b>
 nnoremap <Space>;if :filter // files<C-Left><C-b><C-b>
-nnoremap <Space>;it :filter // tabs<C-Left><C-b><C-b>
 
 nnoremap <Space>ik :map<Space>
 nnoremap <Space>in :nmap<Space>
