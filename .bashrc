@@ -134,7 +134,16 @@ fi
 if [ -z "$__Z_INITIALIZED" ]; then
     # z.lua or plain old z as fallback
     if whichp z.lua &>/dev/null; then
-        eval "$(z.lua --init bash once enhanced echo fzf)"
+        # eval "$(z.lua --init bash once enhanced echo fzf)"
+        # {{{ Because doing this normal way messes $?
+        # It is exported as $EXIT
+        TEMP="$(mktemp)"
+        z.lua --init bash once enhanced echo fzf >"$TEMP"
+        patch "$TEMP" .bash_zlua_patch &>/dev/null
+        eval "$(cat $TEMP)"
+        rm "$TEMP"
+        TEMP=
+        # }}}
     elif whichp z &>/dev/null; then
         . "$(whichp z)"
     fi
