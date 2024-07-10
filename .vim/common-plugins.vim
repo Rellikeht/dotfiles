@@ -57,6 +57,7 @@ Plug 'wellle/context.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
+Plug 'rhysd/git-messenger.vim' " TODO
 
 "}}}
 

@@ -1,4 +1,6 @@
-" TODO which can be in visual
+" TODO A arguments, local arguments
+" TODO C which can be in visual
+" TODO C <C-w> (tab) versions
 
 "{{{ settings
 
@@ -16,22 +18,12 @@ let g:fzf_vim = {}
 "{{{ layout
 
 " " Default fzf layout
-" " - Popup window (center of the screen)
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-" " - Popup window (center of the current window)
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+" let g:fzf_percent = '55%'
+let g:fzf_percent = '100%'
 
-" " - Popup window (anchored to the bottom of the current window)
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
-
-" - down / up / left / right
-" let g:fzf_layout = { 'down': '40%' }
-
-" TODO change position in case of unusal layout
-" Simple yet powerful amount
-let g:fzf_percent = '55%'
 let g:fzf_layout = { 'down': g:fzf_percent }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " if exists('$TMUX')
 "     " let g:fzf_layout = { 'tmux': '-p90%,60%' }
@@ -46,6 +38,7 @@ let g:fzf_layout = { 'down': g:fzf_percent }
 " than 70 columns, it will show above the candidate list
 " let fzf_preview_default = 'right,64%,<70(up,40%)'
 " let fzf_preview_default = 'right,64%'
+
 let fzf_preview_default = 'right,55%'
 let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-/']
 
@@ -111,6 +104,7 @@ nnoremap <leader>sp9 :Files ../../../../../../../../..<CR>
 nnoremap <leader>sph :Files ~<CR>
 nnoremap <leader>spt :Files ~/Templates<CR>
 nnoremap <leader>spd :Files ~/Dbackup<CR>
+nnoremap <leader>spD :Files ~/Downloads<CR>
 nnoremap <leader>spf :Files ~/Documents<CR>
 nnoremap <leader>spe :Files /etc<CR>
 nnoremap <leader>spg :Files ~/gits<CR>
@@ -131,11 +125,11 @@ nnoremap <leader>sh: :History:<CR>
 nnoremap <leader>shC :Commits<CR>
 nnoremap <leader>shm :Marks<CR>
 
-nnoremap <leader>svb :Buffers<CR>
-nnoremap <leader>svm :Maps<CR>
-nnoremap <leader>svH :Helptags<CR>
-nnoremap <leader>svw :Windows<CR>
-nnoremap <leader>svj :Jumps<CR>
+nnoremap <leader>s;f :Buffers<CR>
+nnoremap <leader>s;m :Maps<CR>
+nnoremap <leader>s;H :Helptags<CR>
+nnoremap <leader>s;w :Windows<CR>
+nnoremap <leader>s;j :Jumps<CR>
 
 nnoremap <leader>gff :GFiles<CR>
 nnoremap <leader>gfs :GFiles?<CR>

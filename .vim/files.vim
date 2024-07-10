@@ -32,6 +32,14 @@ nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
 
 "}}}
 
+"{{{ drag and drop
+
+noremap <silent> ,xc :exe '!dragon --on-top --and-exit '.expand("%").' 2>/dev/null'<CR>:redraw!<CR>
+noremap ,xo :exe 'edit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
+noremap <C-w>,xo :exe 'tabedit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
+
+"}}}
+
 "{{{ netrw settings
 " TODO C
 

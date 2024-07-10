@@ -149,6 +149,9 @@ alias se=exs
 alias nvl='nvim --listen'
 alias nvt='nvim --listen'
 
+alias sp='s -p'
+alias np='n -p'
+
 alias emg=emacs
 alias em='emacs -nw'
 alias emc='emacsclient -nw'
