@@ -194,6 +194,7 @@ opam() {
 
 # {{{ shit
 # yeah
+
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
     if [ $? -eq 0 ]; then
@@ -202,10 +203,11 @@ if [ -z "$__CONDA_SETUP" ]; then
         if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
             . "$HOME/.conda/etc/profile.d/conda.sh"
         else
-            export PATH="$HOME/.conda/bin:$PATH"
+            pathinsert "$HOME/.conda/bin:$PATH"
         fi
     fi
     unset __conda_setup
     export __CONDA_SETUP=1
 fi
+
 # }}}

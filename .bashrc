@@ -32,6 +32,9 @@ shopt -s histappend
 # type dir to cd
 shopt -s autocd
 
+# just in case
+shopt -s expand_aliases
+
 # for colors in completion to work better
 LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32'
 
@@ -161,6 +164,7 @@ opam() {
 # }}}
 
 # {{{ shit
+
 if [ -z "$__CONDA_SETUP" ]; then
     __conda_setup=$("$HOME/.conda/bin/conda" 'shell.bash' 'hook' 2>/dev/null)
     if [ $? -eq 0 ]; then
@@ -169,10 +173,11 @@ if [ -z "$__CONDA_SETUP" ]; then
         if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
             . "$HOME/.conda/etc/profile.d/conda.sh"
         else
-            export PATH="$HOME/.conda/bin:$PATH"
+            pathinsert "$HOME/.conda/bin:$PATH"
         fi
     fi
     unset __conda_setup
     export __CONDA_SETUP=1
 fi
+
 # }}}

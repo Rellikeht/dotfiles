@@ -1,13 +1,9 @@
-"{{{ Repeat
-" silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
-" https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
-" https://vi.stackexchange.com/questions/20760/how-to-add-a-count-to-a-binding
-"}}}
-
 "{{{ TODO Tags
 
-noremap <Leader>jf <C-]>
-nnoremap <Leader>jb <C-t>
+" noremap <Leader>jf <C-]>
+" nnoremap <Leader>jb <C-t>
+noremap <C-j> <C-]>
+
 noremap <silent> <Leader>jts :ts<CR>
 noremap <silent> <Leader>jth :sts<CR>
 noremap <silent> <Leader>jtv :vert sts<CR>
@@ -23,19 +19,73 @@ noremap <silent> <Tab>n :<C-u>call SwitchTab(v:count1)<CR>
 noremap <silent> <Tab>H :<C-u>execute 'tabm -'.v:count1<CR>
 noremap <silent> <Tab>L :<C-u>execute 'tabm +'.v:count1<CR>
 
-" TODO
+nnoremap <silent> <Tab>w :<C-u>We<CR>
 
-noremap <silent> <Tab>n :<C-u>execute 'bnext '.v:count1<CR>
-noremap <silent> <Tab>p :<C-u>execute 'bprevious '.v:count1<CR>
-noremap <silent> <Tab>N :<C-u>execute 'bnext! '.v:count1<CR>
-noremap <silent> <Tab>P :<C-u>execute 'bprevious! '.v:count1<CR>
+"}}}
 
-" TODO do this better
+" TODO counts
 
-" Other <silent> <Tab>
-noremap <silent> <Tab>y :call Xpaste('clipboard')<CR>
-noremap <silent> <Tab>Y :call Xpaste('primary')<CR>
-nnoremap <silent> <Tab>w :We<CR>
+" {{{ resizing with <Tab>
+" TODO counts
+" TODO better
+" TODO more
+
+noremap <Tab>>1 :vertical resize 10<CR>
+noremap <Tab>>2 :vertical resize 20<CR>
+noremap <Tab>>3 :vertical resize 30<CR>
+noremap <Tab>>4 :vertical resize 40<CR>
+noremap <Tab>>5 :vertical resize 50<CR>
+noremap <Tab>>r :vertical resize <Space>
+
+noremap <Tab>>= :vertical resize +1<CR>
+noremap <Tab>>+ :vertical resize +5<CR>
+noremap <Tab>>a :vertical resize +10<CR>
+noremap <Tab>>A :vertical resize +20<CR>
+noremap <Tab>>- :vertical resize -1<CR>
+noremap <Tab>>_ :vertical resize -5<CR>
+noremap <Tab>>d :vertical resize -10<CR>
+noremap <Tab>>D :vertical resize -20<CR>
+
+noremap <Tab>^1 :resize 10<CR>
+noremap <Tab>^2 :resize 20<CR>
+noremap <Tab>^3 :resize 30<CR>
+noremap <Tab>^4 :resize 40<CR>
+noremap <Tab>^5 :resize 50<CR>
+noremap <Tab>^r :resize <Space>
+
+noremap <Tab>^= :resize +1<CR>
+noremap <Tab>^+ :resize +5<CR>
+noremap <Tab>^a :resize +10<CR>
+noremap <Tab>^A :resize +20<CR>
+noremap <Tab>^- :resize -1<CR>
+noremap <Tab>^_ :resize -5<CR>
+noremap <Tab>^d :resize -10<CR>
+noremap <Tab>^D :resize -20<CR>
+
+" }}}
+
+" {{{ buffers with <Space>
+
+noremap <silent> <Space>n :<C-u>exe v:count1.'bnext'<CR>
+noremap <silent> <Space>p :<C-u>exe v:count1.'bprevious'<CR>
+noremap <silent> <Space>N :<C-u>exe v:count1.'bnext!'<CR>
+noremap <silent> <Space>P :<C-u>exe v:count1.'bprevious!'<CR>
+noremap <silent> <Space>m :<C-u>exe v:count1.'bmodified'<CR>
+noremap <silent> <Space>M :<C-u>exe v:count1.'bmodified!'<CR>
+
+" }}}
+
+"{{{ args with _
+
+noremap <silent> _n :<C-u>exe v:count1.'next'<CR>
+noremap <silent> _N :<C-u>exe v:count1.'next!'<CR>
+noremap <silent> _p :<C-u>exe v:count1.'previous'<CR>
+noremap <silent> _P :<C-u>exe v:count1.'previous!'<CR>
+
+noremap <silent> _. :<C-u>exe v:count1.'wnext'<CR>
+noremap <silent> _> :<C-u>exe v:count1.'wnext!'<CR>
+noremap <silent> _, :<C-u>exe v:count1.'wprevious'<CR>
+noremap <silent> _< :<C-u>exe v:count1.'wprevious!'<CR>
 
 "}}}
 
@@ -88,8 +138,8 @@ noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
 
 "{{{ Matchit
 
-map <Leader>{ [%
-map <Leader>} ]%
+noremap <Leader>{ [%
+noremap <Leader>} ]%
 
 "}}}
 

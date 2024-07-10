@@ -1,6 +1,29 @@
 #!/usr/bin/env bash
 
+# {{{ helpers
+
+inpath() {
+    echo "$PATH" |
+        sed 's/:/\n/g' |
+        grep -E "^$1/?$" >/dev/null
+}
+
+pathadd() {
+    if ! inpath "$1"; then
+        export PATH="$PATH:$1"
+    fi
+}
+
+pathinsert() {
+    if ! inpath "$1"; then
+        export PATH="$1:$PATH"
+    fi
+}
+
+# }}}
+
 # {{{ important stuff
+
 export EDITOR='vim'
 export VISUAL='svim'
 
@@ -8,31 +31,38 @@ if [ "$(uname)" = "Linux" ] && [ -f /etc/os-release ]; then
     DISTRO="$(sed -En '/^ID/s/ID=//p' /etc/os-release)"
     export DISTRO
 fi
+
 # }}}
 
 # {{{ better colors for man
+
 export LESS_TERMCAP_md=$'\e[01;31m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;32m'
+
 # }}}
 
 # {{{ pagers
+
 export LESS='--save-marks --incsearch --ignore-case'
 export PAGER='less -r'
 export MANPAGER=less
 export BAT_LESS_FLAGS='--save-marks --incsearch --ignore-case --wordwrap'
+
 # }}}
 
-if [ "$__PATH_HOME_SOURCED" != "$UID" ]; then # {{{
-    export PATH="$PATH:$HOME/bin"
-    export __PATH_HOME_SOURCED="$UID"
-fi
+# {{{ bins from home in path
+
+pathadd "$HOME/.local/bin"
+pathadd "$HOME/bin"
+
 # }}}
 
 # {{{ fuck
+
 #if [ "$(uname)" = "Linux" ]
 #then
 #    export TERMINFO=/usr/share/terminfo
@@ -46,9 +76,11 @@ fi
 #   TERM=st-24bit
 #   #TERM=xterm-24bit
 #fi
+
 # }}}
 
 # {{{ random helpers
+
 export TMUX_SOCKET='sock'
 
 export FZF_DEFAULT_COMMAND='find . -mindepth 1 -type f -o -type l'
@@ -59,4 +91,5 @@ export JULIA_SHELL='zsh -i'
 export JULIA_EDITOR='ssvim'
 
 export NIXPKGS_ALLOW_UNFREE=1
+
 # }}}
