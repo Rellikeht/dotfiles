@@ -9,7 +9,7 @@
 
 nnoremap <silent> <leader>gg :Git<CR>
 nnoremap <silent> <leader>gG :Git<CR><C-w>T
-nnoremap <silent> <c-w><leader>gg :tab Git<CR>
+nnoremap <silent> <C-w><leader>gg :tab Git<CR>
 
 nnoremap <leader>goc :G checkout<CR>
 nnoremap <leader>goC :G checkout<Space>
