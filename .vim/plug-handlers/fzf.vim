@@ -1,6 +1,7 @@
 " TODO A arguments, local arguments
+" TODO B multiple selections
 " TODO C which can be in visual
-" TODO C <C-w> (tab) versions
+" TODO D <C-w> (tab) versions
 
 "{{{ settings
 

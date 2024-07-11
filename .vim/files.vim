@@ -34,9 +34,33 @@ nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
 
 "{{{ drag and drop
 
-noremap <silent> ,xc :exe '!dragon --on-top --and-exit '.expand("%").' 2>/dev/null'<CR>:redraw!<CR>
-noremap ,xo :exe 'edit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
-noremap <C-w>,xo :exe 'tabedit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
+" TODO C visual maybe
+" TODO C more ?
+
+nnoremap <silent> ,xy :exe '!dragon --on-top --and-exit '.expand("%").' 2>/dev/null'<CR>:redraw!<CR>
+nnoremap ,xo :exe 'edit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
+nnoremap <C-w>,xo :exe 'tabedit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
+
+"}}}
+
+"{{{ grep
+
+" TODO make this work
+
+nnoremap ,xcf :<C-u>vimgrep //jg<C-left><Right>
+nnoremap ,xcF :<C-u>vimgrep //fjg<C-left><Right>
+nnoremap ,xce :<C-u>vimgrep<Space>
+nnoremap ,xcE :<C-u>exe v:count.'vimgrep '<Left>
+
+nnoremap ,xcd :<C-u>vimgrep //jg ** \| copen<C-left><C-left><C-left><C-Left><Right>
+nnoremap ,xcD :<C-u>vimgrep //fjg ** \| copen<C-left><C-left><C-Left><Right>
+nnoremap ,xch :<C-u>vimgrep //jg **<C-left><C-Left><Right>
+nnoremap ,xcH :<C-u>vimgrep //fjg **<C-left><C-Left><Right>
+
+" nnoremap ,xcc :<C-u>exe v:count.'vimgrep //j **'<C-left><C-Left><Right>
+" nnoremap ,xcC :<C-u>exe v:count.'vimgrep //jf **'<C-left><C-Left><Right>
+" nnoremap ,xcl :<C-u>exe v:count.'vimgrep //j'<C-left><Right>
+" nnoremap ,xcL :<C-u>exe v:count.'vimgrep //jf'<C-left><Right>
 
 "}}}
 

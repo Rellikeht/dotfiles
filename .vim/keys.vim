@@ -1,7 +1,5 @@
 "{{{ TODO Tags
 
-" noremap <Leader>jf <C-]>
-" nnoremap <Leader>jb <C-t>
 noremap <C-j> <C-]>
 
 noremap <silent> <Leader>jts :ts<CR>
@@ -75,21 +73,23 @@ noremap <silent> <Space>M :<C-u>exe v:count1.'bmodified!'<CR>
 
 " }}}
 
-"{{{ args with _
+"{{{ args with <BS>
 
-noremap <silent> _n :<C-u>exe v:count1.'next'<CR>
-noremap <silent> _N :<C-u>exe v:count1.'next!'<CR>
-noremap <silent> _p :<C-u>exe v:count1.'previous'<CR>
-noremap <silent> _P :<C-u>exe v:count1.'previous!'<CR>
+noremap <silent> <BS>n :<C-u>exe v:count1.'next'<CR>
+noremap <silent> <BS>N :<C-u>exe v:count1.'next!'<CR>
+noremap <silent> <BS>p :<C-u>exe v:count1.'previous'<CR>
+noremap <silent> <BS>P :<C-u>exe v:count1.'previous!'<CR>
 
-noremap <silent> _. :<C-u>exe v:count1.'wnext'<CR>
-noremap <silent> _> :<C-u>exe v:count1.'wnext!'<CR>
-noremap <silent> _, :<C-u>exe v:count1.'wprevious'<CR>
-noremap <silent> _< :<C-u>exe v:count1.'wprevious!'<CR>
+noremap <silent> <BS>. :<C-u>exe v:count1.'wnext'<CR>
+noremap <silent> <BS>> :<C-u>exe v:count1.'wnext!'<CR>
+noremap <silent> <BS>, :<C-u>exe v:count1.'wprevious'<CR>
+noremap <silent> <BS>< :<C-u>exe v:count1.'wprevious!'<CR>
 
 "}}}
 
 "{{{ leader stuff
+
+" TODO add more commands
 
 " General purpose leader mappings
 noremap <Leader>;l :!ls<CR>
@@ -110,22 +110,50 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
 "}}}
 
+"{{{ free keys
+
+"}}}
+
+"{{{ free control maps
+
+CTRL-@		   not used
+
+|CTRL-H|	CTRL-H		1  same as "h"
+|<NL>|		<NL>		1  same as "j"
+|CTRL-J|	CTRL-J		1  same as "j"
+		CTRL-K		   not used
+|CTRL-N|	CTRL-N		1  same as "j"
+|CTRL-P|	CTRL-P		1  same as "k"
+CTRL-Q		   not used, or used for terminal control flow
+CTRL-S		   not used, or used for terminal control flow
+
+|CTRL-\_CTRL-G|	CTRL-\ CTRL-G	   go to Normal mode (no-op)
+CTRL-\ a - z	   reserved for extensions
+CTRL-\ others	   not used
+|CTRL-<Tab>|	CTRL-<Tab>	   same as `g<Tab>` : go to last accessed tab
+CTRL-_		   not used
+
+"}}}
+
 "{{{ TODO quickfix
 
-noremap <silent> <C-j> :<C-u>execute 'cn '.v:count1<CR>
-noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
+" noremap <silent> <C-j> :<C-u>execute v:count1.'cn'<CR>
+" noremap <silent> <C-k> :<C-u>execute v:count1.'cp'<CR>
+" noremap <silent> <C-n> :<C-u>execute v:count1.'cnf'<CR>
+" noremap <silent> <C-p> :<C-u>execute v:count1.'cpf'<CR>
+" noremap <silent> <C-_> :<C-u>execute v:count1.'cc'<CR>
 
-" TODO what is l the fuck
+noremap <silent> <C-j> :<C-u>execute v:count1.'cn'<CR>
+noremap <silent> <C-k> :<C-u>execute v:count1.'cp'<CR>
+noremap <silent> <C-n> :<C-u>execute v:count1.'cnf'<CR>
+noremap <silent> <C-p> :<C-u>execute v:count1.'cpf'<CR>
+noremap <silent> <C-_> :<C-u>execute v:count1.'cc'<CR>
+
 " TODO proper bindings
-" map <silent> <Tab>j :<C-u>execute 'cn '.v:count1<CR>
-" map <silent> <Tab>k :<C-u>execute 'cp '.v:count1<CR>
 " map <silent> <Tab>J :<C-u>execute 'ln '.v:count1<CR>
 " map <silent> <Tab>K :<C-u>execute 'lp '.v:count1<CR>
 " map <silent> <Tab>c :<C-u>execute 'cc '.v:count1<CR>
 " map <silent> <Tab>C :<C-u>execute 'll '.v:count1<CR>
-
-" map <silent> <Tab>J :<C-u>execute 'cnf '.v:count1<CR>
-" map <silent> <Tab>K :<C-u>execute 'cpf '.v:count1<CR>
 
 " map <Tab>d :cdo<Space>
 " map <Tab>D :ldo<Space>
@@ -133,6 +161,10 @@ noremap <silent> <C-k> :<C-u>execute 'cp '.v:count1<CR>
 " map <silent> <Tab>O :lopen<CR>
 " map <silent> <Tab>r :crewind<CR>
 " map <silent> <Tab>R :lrewind<CR>
+
+"}}}
+
+"{{{ TODO loclist
 
 "}}}
 

@@ -163,59 +163,59 @@ noremap <Space>T :<C-u>bufdo!<Space>
 
 " }}}
 
-"{{{ args with _
+"{{{ args with <BS>
 
-noremap _i :<C-u>args<CR>
-noremap _<Space>i :<C-u>filter  args<C-Left><C-b>
-noremap _;i :<C-u>filter // args<C-Left><C-b><C-b>
-noremap _i :<C-u>args!<Space>
+noremap <BS>i :<C-u>args<CR>
+noremap <BS><Space>i :<C-u>filter  args<C-Left><C-b>
+noremap <BS>;i :<C-u>filter // args<C-Left><C-b><C-b>
+noremap <BS>i :<C-u>args!<Space>
 
-noremap _a :<C-u>argadd<Space>
-noremap _d :<C-u>argdelete<Space>
-noremap _e :<C-u>argedit<Space>
-noremap _E :<C-u>argedit!<Space>
-noremap _o :<C-u>argument<Space>
-noremap _O :<C-u>argument!<Space>
+noremap <BS>a :<C-u>argadd<Space>
+noremap <BS>d :<C-u>argdelete<Space>
+noremap <BS>e :<C-u>argedit<Space>
+noremap <BS>E :<C-u>argedit!<Space>
+noremap <BS>o :<C-u>argument<Space>
+noremap <BS>O :<C-u>argument!<Space>
 
-noremap <silent> _n :<C-u>next<CR>
-noremap <silent> _N :<C-u>next!<CR>
-noremap _;n :<C-u>next<Space>
-noremap _;N :<C-u>next!<Space>
-noremap <silent> _p :<C-u>previous<CR>
-noremap <silent> _P :<C-u>previous!<CR>
-noremap _;p :<C-u>previous<Space>
-noremap _;P :<C-u>previous!<Space>
+noremap <silent> <BS>n :<C-u>next<CR>
+noremap <silent> <BS>N :<C-u>next!<CR>
+noremap <BS>;n :<C-u>next<Space>
+noremap <BS>;N :<C-u>next!<Space>
+noremap <silent> <BS>p :<C-u>previous<CR>
+noremap <silent> <BS>P :<C-u>previous!<CR>
+noremap <BS>;p :<C-u>previous<Space>
+noremap <BS>;P :<C-u>previous!<Space>
 
-noremap <silent> _. :<C-u>wnext<CR>
-noremap <silent> _> :<C-u>wnext!<CR>
-noremap _;. :<C-u>wnext<Space>
-noremap _;> :<C-u>wnext!<Space>
-noremap <silent> _, :<C-u>wprevious<CR>
-noremap <silent> _< :<C-u>wprevious!<CR>
-noremap _;, :<C-u>wprevious<Space>
-noremap _;< :<C-u>wprevious!<Space>
+noremap <silent> <BS>. :<C-u>wnext<CR>
+noremap <silent> <BS>> :<C-u>wnext!<CR>
+noremap <BS>;. :<C-u>wnext<Space>
+noremap <BS>;> :<C-u>wnext!<Space>
+noremap <silent> <BS>, :<C-u>wprevious<CR>
+noremap <silent> <BS>< :<C-u>wprevious!<CR>
+noremap <BS>;, :<C-u>wprevious<Space>
+noremap <BS>;< :<C-u>wprevious!<Space>
 
-noremap <silent> _0 :<C-u>first<CR>
-noremap <silent> _0 :<C-u>first!<CR>
-noremap _;0 :<C-u>first<Space>
-noremap _;0 :<C-u>first!<Space>
-noremap <silent> _$ :<C-u>last<CR>
-noremap <silent> _$ :<C-u>last!<CR>
-noremap _;$ :<C-u>last<Space>
-noremap _;$ :<C-u>last!<Space>
+noremap <silent> <BS>0 :<C-u>first<CR>
+noremap <silent> <BS>0 :<C-u>first!<CR>
+noremap <BS>;0 :<C-u>first<Space>
+noremap <BS>;0 :<C-u>first!<Space>
+noremap <silent> <BS>$ :<C-u>last<CR>
+noremap <silent> <BS>$ :<C-u>last!<CR>
+noremap <BS>;$ :<C-u>last<Space>
+noremap <BS>;$ :<C-u>last!<Space>
 
-noremap _= :<C-u>argdedupe<CR>
-noremap _t :<C-u>argdo<Space>
-noremap _T :<C-u>argdo!<Space>
+noremap <BS>= :<C-u>argdedupe<CR>
+noremap <BS>t :<C-u>argdo<Space>
+noremap <BS>T :<C-u>argdo!<Space>
 
-noremap <silent> _l :<C-u>argglobal<CR>
-noremap <silent> _L :<C-u>argglobal!<CR>
-noremap _l :<C-u>;argglobal<Space>
-noremap _L :<C-u>;argglobal!<Space>
-noremap <silent> _g :<C-u>argglobal<CR>
-noremap <silent> _G :<C-u>argglobal!<CR>
-noremap _g :<C-u>;argglobal<Space>
-noremap _G :<C-u>;argglobal!<Space>
+noremap <silent> <BS>l :<C-u>argglobal<CR>
+noremap <silent> <BS>L :<C-u>argglobal!<CR>
+noremap <BS>l :<C-u>;argglobal<Space>
+noremap <BS>L :<C-u>;argglobal!<Space>
+noremap <silent> <BS>g :<C-u>argglobal<CR>
+noremap <silent> <BS>G :<C-u>argglobal!<CR>
+noremap <BS>g :<C-u>;argglobal<Space>
+noremap <BS>G :<C-u>;argglobal!<Space>
 
 "}}}
 
@@ -358,20 +358,3 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
     noremap <Tab>qh :set hls!<CR>
 endif
 " }}}
-
-"{{{ free control combinations
-
-"|<BS>|     <BS>        1  same as "h"
-"|CTRL-H|   CTRL-H      1  same as "h"
-"       CTRL-K         not used
-"|<CR>|     <CR>        1  cursor to the first CHAR N lines lower
-"|CTRL-M|   CTRL-M      1  same as <CR>
-"|CTRL-N|   CTRL-N      1  same as "j"
-"|CTRL-P|   CTRL-P      1  same as "k"
-"|CTRL-R|   CTRL-R      2  redo changes which were undone with 'u'
-"|CTRL-\_CTRL-N|    CTRL-\ CTRL-N      go to Normal mode (no-op)
-"|CTRL-\_CTRL-G|    CTRL-\ CTRL-G      go to mode specified with 'insertmode'
-"       CTRL-\ others      not used
-"       CTRL-_         not used
-
-"       }}}

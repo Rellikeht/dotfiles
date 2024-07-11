@@ -1,37 +1,35 @@
 "{{{ eunch
 " TODO
 
-nnoremap <silent> <Leader>;ws :SudoWrite<CR>
+noremap <silent> <Leader>;ws :<C-u>SudoWrite<CR>
 
 "}}}
 
 "{{{ vifm
 
-noremap <Leader>xf :EditVifm<CR>
-noremap <Leader>xs :VsplitVifm<CR>
-noremap <Leader>xh :SplitVifm<CR>
-noremap <Leader>xt :TabVifm<CR>
-noremap <Leader>xd :DiffVifm<CR>
-noremap <Leader>xp :PeditVifm<CR>
+noremap <Leader>xf :<C-u>EditVifm<CR>
+noremap <Leader>xs :<C-u>VsplitVifm<CR>
+noremap <Leader>xh :<C-u>SplitVifm<CR>
+noremap <Leader>xt :<C-u>TabVifm<CR>
+noremap <Leader>xd :<C-u>DiffVifm<CR>
+noremap <Leader>xp :<C-u>PeditVifm<CR>
 
-noremap <Leader>xF :EditVifm<Space>
-noremap <Leader>xS :VsplitVifm<Space>
-noremap <Leader>xH :SplitVifm<Space>
-noremap <Leader>xT :TabVifm<Space>
-noremap <Leader>xD :DiffVifm<Space>
-noremap <Leader>xP :PeditVifm<Space>
+noremap <Leader>xF :<C-u>EditVifm<Space>
+noremap <Leader>xS :<C-u>VsplitVifm<Space>
+noremap <Leader>xH :<C-u>SplitVifm<Space>
+noremap <Leader>xT :<C-u>TabVifm<Space>
+noremap <Leader>xD :<C-u>DiffVifm<Space>
+noremap <Leader>xP :<C-u>PeditVifm<Space>
 
-noremap <C-w><Leader>xf :tabnew<CR>:EditVifm<CR>
-noremap <C-w><Leader>xd :tabnew<CR>:DiffVifm<CR>
-noremap <C-w><Leader>xp :tabnew<CR>:PeditVifm<CR>
+noremap <C-w><Leader>xf :<C-u>tabnew<CR>:EditVifm<CR>
+noremap <C-w><Leader>xd :<C-u>tabnew<CR>:DiffVifm<CR>
+noremap <C-w><Leader>xp :<C-u>tabnew<CR>:PeditVifm<CR>
 
-noremap <C-w><Leader>xF :tabnew<CR>:EditVifm<Space>
-noremap <C-w><Leader>xD :tabnew<CR>:DiffVifm<Space>
-noremap <C-w><Leader>xP :tabnew<CR>:PeditVifm<Space>
+noremap <C-w><Leader>xF :<C-u>tabnew<CR>:EditVifm<Space>
+noremap <C-w><Leader>xD :<C-u>tabnew<CR>:DiffVifm<Space>
+noremap <C-w><Leader>xP :<C-u>tabnew<CR>:PeditVifm<Space>
 
 "}}}
-
-" if nerdtree happens it will land here
 
 "{{{ others
 
