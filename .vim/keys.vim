@@ -116,22 +116,22 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
 "{{{ free control maps
 
-CTRL-@		   not used
-
-|CTRL-H|	CTRL-H		1  same as "h"
-|<NL>|		<NL>		1  same as "j"
-|CTRL-J|	CTRL-J		1  same as "j"
-		CTRL-K		   not used
-|CTRL-N|	CTRL-N		1  same as "j"
-|CTRL-P|	CTRL-P		1  same as "k"
-CTRL-Q		   not used, or used for terminal control flow
-CTRL-S		   not used, or used for terminal control flow
-
-|CTRL-\_CTRL-G|	CTRL-\ CTRL-G	   go to Normal mode (no-op)
-CTRL-\ a - z	   reserved for extensions
-CTRL-\ others	   not used
-|CTRL-<Tab>|	CTRL-<Tab>	   same as `g<Tab>` : go to last accessed tab
-CTRL-_		   not used
+" CTRL-@           not used
+" 
+" |CTRL-H|  CTRL-H      1  same as "h"
+" |<NL>|        <NL>        1  same as "j"
+" |CTRL-J|  CTRL-J      1  same as "j"
+"       CTRL-K         not used
+" |CTRL-N|  CTRL-N      1  same as "j"
+" |CTRL-P|  CTRL-P      1  same as "k"
+" CTRL-Q           not used, or used for terminal control flow
+" CTRL-S           not used, or used for terminal control flow
+" 
+" |CTRL-\_CTRL-G|   CTRL-\ CTRL-G      go to Normal mode (no-op)
+" CTRL-\ a - z     reserved for extensions
+" CTRL-\ others    not used
+" |CTRL-<Tab>|  CTRL-<Tab>     same as `g<Tab>` : go to last accessed tab
+" CTRL-_           not used
 
 "}}}
 
