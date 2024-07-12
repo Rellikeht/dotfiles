@@ -34,10 +34,10 @@ nnoremap <Space>qM :setlocal modeline!<CR>
 
 " {{{ tabs with <Tab>
 
-noremap <Tab>e :<C-u>tabedit<Space>
-noremap <Tab>E :<C-u>-tabedit<Space>
-noremap <Tab>o :<C-u>tab<Space>
-noremap <Tab>O :<C-u>-tab<Space>
+noremap <Tab>o :<C-u>tabedit<Space>
+noremap <Tab>O :<C-u>-tabedit<Space>
+noremap <Tab><Tab> :<C-u>tab<Space>
+noremap <Tab>; :<C-u>-tab<Space>
 
 noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
 noremap <Tab>A :<C-u>tabnew\|arglocal!<CR>
@@ -168,10 +168,10 @@ noremap <Space><Space>T :<C-u>bufdo!<Space>
 noremap <Space>l :<C-u>args<CR>
 nnoremap <Space>;l :<C-u>filter  args<C-Left><C-b>
 
-noremap <Space>o :<C-u>argument<Space>
-noremap <Space>O :<C-u>argument!<Space>
-noremap <Space>e :<C-u>argedit<Space>
-noremap <Space>E :<C-u>argedit!<Space>
+noremap <Space>e :<C-u>argument<Space>
+noremap <Space>E :<C-u>argument!<Space>
+noremap <Space>o :<C-u>argedit<Space>
+noremap <Space>O :<C-u>argedit!<Space>
 noremap <Space>a :<C-u>argadd<Space>
 noremap <Space>d :<C-u>argdelete<Space>
 

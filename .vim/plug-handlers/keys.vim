@@ -1,25 +1,33 @@
+"{{{ Repeat
 
-" Repeat
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
-" vim-sneak
-" TODO more
+"}}}
+
+"{{{ vim-sneak
+" TODO colors
 
 let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
+let g:sneak#prompt = '  < sneak > '
+
+" risky
+let g:sneak#s_next = 1
+
 noremap f <Plug>Sneak_f
 noremap F <Plug>Sneak_F
 noremap t <Plug>Sneak_t
 noremap T <Plug>Sneak_T
-noremap - <Plug>Sneak_,
-noremap + <Plug>Sneak_;
+noremap s <Plug>Sneak_s
+noremap S <Plug>Sneak_S
+noremap <C-p> <Plug>Sneak_,
+noremap <C-n> <Plug>Sneak_;
 
-" tinyMRU
-nnoremap <silent> <Leader>E :ME<Space>
-nnoremap <silent> <Leader>S :MS<Space>
-nnoremap <silent> <Leader>V :MV<Space>
-nnoremap <silent> <Leader>T :MT<Space>
+"}}}
 
-" others
+"{{{ others
 
 nnoremap <silent> <Leader>qu :silent! call GeneralUpgrade()<CR>
 nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>
+
+"}}}

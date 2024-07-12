@@ -155,43 +155,6 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
 "}}}
 
-"{{{ free keys
-
-"}}}
-
-"{{{ used control maps
-
-" CTRL-M
-" |CTRL-J|  CTRL-J      1  same as "j"
-
-"}}}
-
-"{{{ free control maps
-
-" |CTRL-H|  CTRL-H      1  same as "h"
-"       CTRL-K         not used
-" |CTRL-N|  CTRL-N      1  same as "j"
-" |CTRL-P|  CTRL-P      1  same as "k"
-
-" ???
-" |CTRL-<Tab>|  CTRL-<Tab>     same as `g<Tab>` : go to last accessed tab
-
-" CTRL-Q           not used, or used for terminal control flow
-" CTRL-S           not used, or used for terminal control flow
-
-"}}}
-
-"{{{ not so useful control maps
-
-" CTRL-@           not used
-" CTRL-_           not used
-
-" |CTRL-\_CTRL-G|   CTRL-\ CTRL-G      go to Normal mode (no-op)
-" CTRL-\ a - z     reserved for extensions
-" CTRL-\ others    not used
-
-"}}}
-
 "{{{ TODO quickfix
 
 " noremap <silent> <C-j> :<C-u>execute v:count1.'cn'<CR>

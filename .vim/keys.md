@@ -5,24 +5,71 @@ keys in one place.
 
 With hundreds of mappings it may be necessary.
 
-Currently in half baked state as I haven't even finish
-rebuilding maps.
+Not very accurate, at least for now.
 
 # Unused keys
 
-\\ | ~ ^ (hard to reach)
+## good
 
-There may be more, but there are already enough combinations
+- \_
+- <CR>
+
+## hard to reach in some cases
+
+- \\
+- |
+- <BS>
+
+## always hard to reach
+
+- ~
+- ^
+
+## good control maps
+
+- <C-h>
+- <C-k>
+- <C-n>
+- <C-p>
+
+## ???
+
+- CTRL-<Tab>
+
+## not used, or used for terminal control flow
+
+- <C-q>
+- <C-s>
+
+## not so useful control maps
+
+- CTRL-@ not used
+- CTRL-\_ not used
+- CTRL-\\ CTRL-G
+- CTRL-\\ a - z reserved for extensions, others not used
 
 # Remappings
 
-- \_ - <C-w>
-- <C-m> - (old) <Tab>
+- ; - <C-w>
+- <C-m> - <Tab>
+- <C-j> - \<C-\]>
+
+# <Space><Space> combinations
+
+- navigation between buffers (:b commands)
+
+# Other <Space> combinations
+
+- navigation between arguments in argument lists
+- manipulation of those lists
+- listings, help
+- simple settings
 
 # <Tab> combinations
 
-- They are general purpose, mainly for tab management
-- TODO
+- tab management
+- splits
+- windows resizing
 
 # Leader (,) combinations
 

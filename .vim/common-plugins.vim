@@ -33,9 +33,11 @@ Plug 'glts/vim-radical'
 Plug 'tpope/vim-eunuch' " TODO C maybe some shortcuts
 Plug 'tpope/vim-speeddating' " TODO D add more formats
 
-Plug 'luochen1990/rainbow' " TODO D better colors :(
 Plug 'chrisbra/unicode.vim', {'do': ':UnicodeDownload!'} " TODO C keys ?
 Plug 'kburdett/vim-nuuid'
+
+Plug 'luochen1990/rainbow' " TODO D better colors :(
+Plug 'kshenoy/vim-signature'
 
 "}}}
 

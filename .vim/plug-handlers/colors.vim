@@ -1,4 +1,5 @@
-" rainbow
+"{{{ rainbow
+" TODO C clean this
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -55,7 +56,10 @@ let g:rainbow_conf = {
 \	}
 \}
 
-" quick-scope
+" }}}
+
+"{{{ quick-scope
+
 let g:qs_hi_priority = 2
 
 let g:qs_lazy_highlight = 1
@@ -65,3 +69,21 @@ let g:qs_delay = 30
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+"}}}
+
+"{{{ signature
+
+noremap <silent> <Leader>qst
+            \ :<C-u>SignatureToggleSigns<CR>
+noremap <silent> <Leader>qsr 
+            \ :<C-u>SignatureRefresh<CR>
+
+noremap <silent> <Leader>qsl
+            \ :<C-u>exe 'SignatureListBufferMarks '
+            \ .v:count1<CR>
+noremap <silent> <Leader>qsg
+            \ :<C-u>exe 'SignatureListGlobalMarks '
+            \ .v:count1<CR>
+
+"}}}

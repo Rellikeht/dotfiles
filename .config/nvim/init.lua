@@ -4,6 +4,7 @@ require("functions")
 
 local Plug = vim.fn["plug#"]
 local nvim_dir = vim.call("stdpath", "config")
+local lua_dir = nvim_dir .. "/lua"
 local vim_dir = "~/.vim"
 local plug_dir = "plug-handlers/"
 
@@ -20,7 +21,7 @@ Plug("nvim-lua/plenary.nvim")
 
 -- {{{ look enchancing
 
-Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"})
 Plug("norcalli/nvim-colorizer.lua") -- TODO C
 -- Plug('folke/tokyonight.nvim') -- elflord is good enough
 
@@ -31,8 +32,8 @@ Plug("norcalli/nvim-colorizer.lua") -- TODO C
 
 -- {{{ motion enchancing
 
-Plug("easymotion/vim-easymotion")                       -- TODO A
-Plug("ThePrimeagen/harpoon", { ["branch"] = "harpoon2" }) -- TODO A
+Plug("easymotion/vim-easymotion") -- TODO A
+Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"}) -- TODO A
 -- Plug("nvim-telescope/telescope.nvim") -- TODO B
 -- Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO B
 
@@ -62,8 +63,8 @@ Plug("hrsh7th/cmp-nvim-lua")
 
 -- Plug('nvim-orgmode/orgmode') -- TODO B
 
-Plug("mfussenegger/nvim-lint")                   -- TODO this is bad
-Plug("windwp/nvim-autopairs")                    -- TODO B
+Plug("mfussenegger/nvim-lint") -- TODO this is bad
+Plug("windwp/nvim-autopairs") -- TODO B
 Plug("nvim-treesitter/nvim-treesitter-refactor") -- TODO C
 
 -- THIS IS ALL SHIT, IT CAN'T FIND ANYTHING IN SYSTEM
@@ -86,7 +87,7 @@ vim.call("plug#end")
 
 -- {{{ loading rest of config
 
-local modconfigs = {
+local confMods = {
   "motion",
   "cmp",
   "colors",
@@ -95,7 +96,12 @@ local modconfigs = {
   "other",
 }
 
-for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
+local confVimMods = {"motion"}
+
+for _, i in ipairs(confMods) do require(plug_dir .. i) end
+for _, i in ipairs(confVimMods) do
+  vim.cmd("source " .. lua_dir .. "/" .. plug_dir .. i .. ".vim")
+end
 require("additional")
 
 -- }}}

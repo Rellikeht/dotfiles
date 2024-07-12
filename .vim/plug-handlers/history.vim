@@ -6,10 +6,6 @@ nnoremap <silent> ,us :MS<Space>
 nnoremap <silent> ,uh :MV<Space>
 nnoremap <silent> ,un :MT<Space>
 
-" TODO right and bottom split
-" Doesn't work
-" nnoremap <silent> ,ur :botright MV<Space>
-
 " }}}
 
 "{{{ UNDO TREE

@@ -47,20 +47,20 @@ nnoremap <C-w>,xo :exe 'tabedit '.system('dragon --on-top --target --and-exit 2>
 
 " TODO make this work
 
-nnoremap ,xcf :<C-u>vimgrep //jg<C-left><Right>
-nnoremap ,xcF :<C-u>vimgrep //fjg<C-left><Right>
-nnoremap ,xce :<C-u>vimgrep<Space>
-nnoremap ,xcE :<C-u>exe v:count.'vimgrep '<Left>
+nnoremap ,xgf :<C-u>vimgrep //jg<C-left><Right>
+nnoremap ,xgF :<C-u>vimgrep //fjg<C-left><Right>
+nnoremap ,xge :<C-u>vimgrep<Space>
+nnoremap ,xgE :<C-u>exe v:count.'vimgrep '<Left>
 
-nnoremap ,xcd :<C-u>vimgrep //jg ** \| copen<C-left><C-left><C-left><C-Left><Right>
-nnoremap ,xcD :<C-u>vimgrep //fjg ** \| copen<C-left><C-left><C-Left><Right>
-nnoremap ,xch :<C-u>vimgrep //jg **<C-left><C-Left><Right>
-nnoremap ,xcH :<C-u>vimgrep //fjg **<C-left><C-Left><Right>
+nnoremap ,xgd :<C-u>vimgrep //jg ** \| copen<C-left><C-left><C-left><C-Left><Right>
+nnoremap ,xgD :<C-u>vimgrep //fjg ** \| copen<C-left><C-left><C-Left><Right>
+nnoremap ,xgh :<C-u>vimgrep //jg **<C-left><C-Left><Right>
+nnoremap ,xgH :<C-u>vimgrep //fjg **<C-left><C-Left><Right>
 
-" nnoremap ,xcc :<C-u>exe v:count.'vimgrep //j **'<C-left><C-Left><Right>
-" nnoremap ,xcC :<C-u>exe v:count.'vimgrep //jf **'<C-left><C-Left><Right>
-" nnoremap ,xcl :<C-u>exe v:count.'vimgrep //j'<C-left><Right>
-" nnoremap ,xcL :<C-u>exe v:count.'vimgrep //jf'<C-left><Right>
+" nnoremap ,xgc :<C-u>exe v:count.'vimgrep //j **'<C-left><C-Left><Right>
+" nnoremap ,xgC :<C-u>exe v:count.'vimgrep //jf **'<C-left><C-Left><Right>
+" nnoremap ,xgl :<C-u>exe v:count.'vimgrep //j'<C-left><Right>
+" nnoremap ,xgL :<C-u>exe v:count.'vimgrep //jf'<C-left><Right>
 
 "}}}
 
@@ -98,28 +98,28 @@ let g:netrw_ignorenetrc = 0 " (default for linux, cygwin)
 
 " TODO B file openinng
 
-noremap <silent> <Leader>xex :Explore<CR>
-noremap <Leader>xeX :Explore<Space>
-noremap <silent> <Leader>xet :Texplore<CR>
-noremap <Leader>xeT :Texplore<Space>
-noremap <silent> <Leader>xeh :Sexplore<CR>
-noremap <Leader>xeH :Sexplore<Space>
-noremap <silent> <Leader>xev :Vexplore<CR>
-noremap <Leader>xeV :Vexplore<Space>
-noremap <silent> <Leader>xen :Nexplore<CR>
-noremap <Leader>xeN :Nexplore<Space>
-noremap <silent> <Leader>xep :Pexplore<CR>
-noremap <Leader>xeP :Pexplore<Space>
-noremap <silent> <Leader>xer :Rexplore<CR>
-noremap <Leader>xeR :Rexplore<Space>
-noremap <silent> <Leader>xel :Lexplore<CR>
-noremap <Leader>xeL :Lexplore<Space>
-noremap <silent> <Leader>xeh :Hexplore<CR>
-noremap <Leader>xeH :Hexplore<Space>
+noremap <silent> <Leader>x;x :Explore<CR>
+noremap <Leader>x;X :Explore<Space>
+noremap <silent> <Leader>x;t :Texplore<CR>
+noremap <Leader>x;T :Texplore<Space>
+noremap <silent> <Leader>x;h :Sexplore<CR>
+noremap <Leader>x;H :Sexplore<Space>
+noremap <silent> <Leader>x;v :Vexplore<CR>
+noremap <Leader>x;V :Vexplore<Space>
+noremap <silent> <Leader>x;n :Nexplore<CR>
+noremap <Leader>x;N :Nexplore<Space>
+noremap <silent> <Leader>x;p :Pexplore<CR>
+noremap <Leader>x;P :Pexplore<Space>
+noremap <silent> <Leader>x;r :Rexplore<CR>
+noremap <Leader>x;R :Rexplore<Space>
+noremap <silent> <Leader>x;l :Lexplore<CR>
+noremap <Leader>x;L :Lexplore<Space>
+noremap <silent> <Leader>x;h :Hexplore<CR>
+noremap <Leader>x;H :Hexplore<Space>
 
 "}}}
 
-"{{{ netrw network
+"{{{ netrw network things
 
 " TODO D ftp
 
@@ -156,3 +156,4 @@ noremap <Leader>xeH :Hexplore<Space>
 "                 way, but one doesn't have to quit the window.
 
 "}}}
+
