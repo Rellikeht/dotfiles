@@ -24,8 +24,6 @@ nnoremap <silent> <Tab>w :<C-u>We<CR>
 
 "}}}
 
-" TODO counts
-
 " {{{ resizing with <Tab>
 " TODO counts
 " TODO better
@@ -65,42 +63,72 @@ noremap <Tab>^D :resize -20<CR>
 
 " }}}
 
-" {{{ buffers with <Space>
+" {{{ buffers with <Space><Space>
 
-noremap <silent> <Space>n 
+vnoremap <Space><Space>;l 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' buffers'<CR>
+vnoremap <Space><Space>;L 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' buffers!'<CR>
+
+noremap <silent> <Space><Space>n 
             \ :<C-u>exe v:count1.'bnext'<CR>
-noremap <silent> <Space>p 
+noremap <silent> <Space><Space>p 
             \ :<C-u>exe v:count1.'bprevious'<CR>
-noremap <silent> <Space>N 
+noremap <silent> <Space><Space>N 
             \ :<C-u>exe v:count1.'bnext!'<CR>
-noremap <silent> <Space>P 
+noremap <silent> <Space><Space>P 
             \ :<C-u>exe v:count1.'bprevious!'<CR>
-noremap <silent> <Space>m 
+noremap <silent> <Space><Space>m 
             \ :<C-u>exe v:count1.'bmodified'<CR>
-noremap <silent> <Space>M 
+noremap <silent> <Space><Space>M 
             \ :<C-u>exe v:count1.'bmodified!'<CR>
 
 " }}}
 
-"{{{ args with <Space><Space>
+"{{{ args with <Space>
 
-noremap <silent> <Space><Space>n 
-            \ :<C-u>exe v:count1.'next'<CR>
-noremap <silent> <Space><Space>N 
-            \ :<C-u>exe v:count1.'next!'<CR>
-noremap <silent> <Space><Space>p 
-            \ :<C-u>exe v:count1.'previous'<CR>
-noremap <silent> <Space><Space>P 
-            \ :<C-u>exe v:count1.'previous!'<CR>
+vnoremap <Space>;l 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' args'<CR>
 
-noremap <silent> <Space><Space>. 
-            \ :<C-u>exe v:count1.'wnext'<CR>
-noremap <silent> <Space><Space>> 
-            \ :<C-u>exe v:count1.'wnext!'<CR>
-noremap <silent> <Space><Space>, 
-            \ :<C-u>exe v:count1.'wprevious'<CR>
-noremap <silent> <Space><Space>< 
-            \ :<C-u>exe v:count1.'wprevious!'<CR>
+noremap <silent> <Space>n :<C-u>call NextArg(1, 'argument')<CR>
+noremap <silent> <Space>N :<C-u>call NextArg(1, 'argument!')<CR>
+noremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
+noremap <silent> <Space>P :<C-u>call NextArg(0, 'argument!')<CR>
+
+noremap <silent> <Space>. 
+            \ :<C-u>call NextArg(1, 'argument', 'w')<CR>
+noremap <silent> <Space>> 
+            \ :<C-u>call NextArg(1, 'argument!', 'w')<CR>
+noremap <silent> <Space>, 
+            \ :<C-u>call NextArg(0, 'argument', 'w')<CR>
+noremap <silent> <Space>< 
+            \ :<C-u>call NextArg(0, 'argument!', 'w')<CR>
+
+"}}}
+
+" {{{ <Space> list and help
+
+vnoremap <Space>i<Space>r 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' registers'<C-Left><C-b>
+vnoremap <Space>i<Space>p 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' history'<C-Left><C-b>
+vnoremap <Space>i<Space>c 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' changes'<C-Left><C-b>
+vnoremap <Space>i<Space>j 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' jumps'<C-Left><C-b>
+vnoremap <Space>i<Space>o 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' files'<C-Left><C-b>
+vnoremap <Space>i<Space>m 
+            \ :<C-u>exe 'filter '.
+            \ GetVisualSelection().' marks'<C-Left><C-b>
 
 "}}}
 
@@ -131,24 +159,36 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
 "}}}
 
+"{{{ used control maps
+
+" CTRL-M
+" |CTRL-J|  CTRL-J      1  same as "j"
+
+"}}}
+
 "{{{ free control maps
 
-" CTRL-@           not used
-" 
 " |CTRL-H|  CTRL-H      1  same as "h"
-" |<NL>|        <NL>        1  same as "j"
-" |CTRL-J|  CTRL-J      1  same as "j"
 "       CTRL-K         not used
 " |CTRL-N|  CTRL-N      1  same as "j"
 " |CTRL-P|  CTRL-P      1  same as "k"
+
+" ???
+" |CTRL-<Tab>|  CTRL-<Tab>     same as `g<Tab>` : go to last accessed tab
+
 " CTRL-Q           not used, or used for terminal control flow
 " CTRL-S           not used, or used for terminal control flow
-" 
+
+"}}}
+
+"{{{ not so useful control maps
+
+" CTRL-@           not used
+" CTRL-_           not used
+
 " |CTRL-\_CTRL-G|   CTRL-\ CTRL-G      go to Normal mode (no-op)
 " CTRL-\ a - z     reserved for extensions
 " CTRL-\ others    not used
-" |CTRL-<Tab>|  CTRL-<Tab>     same as `g<Tab>` : go to last accessed tab
-" CTRL-_           not used
 
 "}}}
 
@@ -160,16 +200,16 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 " noremap <silent> <C-p> :<C-u>execute v:count1.'cpf'<CR>
 " noremap <silent> <C-_> :<C-u>execute v:count1.'cc'<CR>
 
-noremap <silent> <C-j> 
-            \ :<C-u>execute v:count1.'cn'<CR>
-noremap <silent> <C-k> 
-            \ :<C-u>execute v:count1.'cp'<CR>
-noremap <silent> <C-n> 
-            \ :<C-u>execute v:count1.'cnf'<CR>
-noremap <silent> <C-p> 
-            \ :<C-u>execute v:count1.'cpf'<CR>
-noremap <silent> <C-_> 
-            \ :<C-u>execute v:count1.'cc'<CR>
+" noremap <silent> <C-j> 
+"             \ :<C-u>execute v:count1.'cn'<CR>
+" noremap <silent> <C-k> 
+"             \ :<C-u>execute v:count1.'cp'<CR>
+" noremap <silent> <C-n> 
+"             \ :<C-u>execute v:count1.'cnf'<CR>
+" noremap <silent> <C-p> 
+"             \ :<C-u>execute v:count1.'cpf'<CR>
+" noremap <silent> <C-_> 
+"             \ :<C-u>execute v:count1.'cc'<CR>
 
 " TODO proper bindings
 " map <silent> <Tab>J :<C-u>execute 'ln '.v:count1<CR>

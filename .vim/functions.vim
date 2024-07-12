@@ -152,6 +152,24 @@ function GetVisualSelection()
     return join(lines, "\n")
 endfunction
 
+" Because :next, :prev and similar don't wrap around
+function NextArg(pos, cmd, before = '', after = '')
+    if a:pos
+        let ind = ((argidx()+v:count1)%argc()+1)
+    else
+        let ind = ((argc()+argidx()-v:count1)%argc()+1)
+    endif
+    if a:before != ''
+        exe 'silent! '.a:before
+    endif
+    exe 'silent! '.a:cmd.' '.ind
+    if a:after != ''
+        exe 'silent! '.a:after
+    endif
+    " TODO D filename, press enter attacks here
+    echo 'Current Arg Num: '.(argidx()+1)
+endfunction
+
 "}}}
 
 "{{{ some automatic stuff

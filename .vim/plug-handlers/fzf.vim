@@ -1,4 +1,5 @@
 " TODO A arguments, local arguments
+" TODO A make this help with new setup
 " TODO B multiple selections
 " TODO C which can be in visual
 " TODO D <C-w> (tab) versions
