@@ -9,12 +9,12 @@ keycode  13 = 4 dollar F16 F16 Greek_xi Greek_XI
 keycode  14 = 5 percent 5 percent periodcentered U2022
 
 ! Row moved, former six populated with symbols
-keycode  16 = 6	    ampersand       6 asciicircum union intersection
-keycode  17 = 7	    asterisk        F17 F17 Greek_epsilon Greek_rho
-keycode  18 = 8	    parenleft       F18 F18 Greek_alpha Greek_beta
-keycode  19 = 9	    parenright      Undo Undo includedin Greek_chi
-keycode  20 = 0	    asciicircum	    Redo Redo includes degree
-keycode  21 = minus underscore	    XF86ScrollUp underscore integral radical
+keycode  16 = 6     ampersand       6 asciicircum union intersection
+keycode  17 = 7     asterisk        F17 F17 Greek_epsilon Greek_rho
+keycode  18 = 8     parenleft       F18 F18 Greek_alpha Greek_beta
+keycode  19 = 9     parenright      Undo Undo includedin Greek_chi
+keycode  20 = 0     asciicircum     Redo Redo includes degree
+keycode  21 = minus underscore      XF86ScrollUp underscore integral radical
 keycode  15 = Greek_iota emptyset XF86Tools XF86MonBrightnessUp U2286 U2287
 
 !keycode  15 = 6 asciicircum 6 asciicircum emptyset section
@@ -33,9 +33,9 @@ keycode  15 = Greek_iota emptyset XF86Tools XF86MonBrightnessUp U2286 U2287
 
 keycode  24 = q Q F19 F19 Greek_pi Greek_PI
 keycode  25 = w W F20 F20 Greek_omega Greek_OMEGA
-!keycode  26 = e E F21 F21 eogonek Eogonek
-keycode  27 = r R F22 F22 apostrophe infinity
-keycode  28 = t T F23 F23 quotedbl Greek_tau
+keycode  26 = e E F21 F21 eogonek Eogonek
+keycode  27 = r R F22 F22 Greek_gamma Greek_GAMMA
+keycode  28 = t T F23 F23 Greek_lambda Greek_LAMBDA
 
 keycode  29 = y Y F24 F24 leftarrow U0FD5
 keycode  30 = u U Home Home downarrow uparrow
@@ -58,9 +58,9 @@ keycode  40 = d D F27 F27 braceleft backslash
 keycode  41 = f F F28 F28 braceright bar
 keycode  42 = g G F29 F29 Greek_delta Greek_DELTA
 
-keycode  43 = h H Left Left Greek_gamma Greek_GAMMA
-keycode  44 = j J Down Down Greek_lambda Greek_LAMBDA
-keycode  45 = k K Up Up Greek_sigma Greek_SIGMA
+keycode  43 = h H Left Left Greek_sigma Greek_SIGMA
+keycode  44 = j J Down Down quotedbl Greek_tau
+keycode  45 = k K Up Up apostrophe infinity
 keycode  46 = l L Right Right lstroke Lstroke
 keycode  47 = semicolon colon Insert Insert Greek_kappa Greek_eta
 keycode  48 = BackSpace BackSpace Delete Delete U2206 nabla

@@ -20,7 +20,7 @@ autocmd BufReadPost *
 
 " {{{ some simple settings
 
-nnoremap <Leader><Space> :setlocal hls!<CR>
+nnoremap <Leader><Space><Space> :setlocal hls!<CR>
 noremap <Leader>qen :set relativenumber!<CR>
 noremap <Leader>qeN :set number!<CR>
 noremap <Leader>qeC :set cursorbind!<CR>

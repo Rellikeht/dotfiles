@@ -13,9 +13,12 @@ noremap <silent> <Leader>jtl :tags<CR>
 
 noremap <silent> <Tab>k K<C-w>T
 
-noremap <silent> <Tab>n :<C-u>call SwitchTab(v:count1)<CR>
-noremap <silent> <Tab>H :<C-u>execute 'tabm -'.v:count1<CR>
-noremap <silent> <Tab>L :<C-u>execute 'tabm +'.v:count1<CR>
+noremap <silent> <Tab>n 
+            \ :<C-u>call SwitchTab(v:count1)<CR>
+noremap <silent> <Tab>N 
+            \ :<C-u>execute 'tabm +'.v:count1<CR>
+noremap <silent> <Tab>P 
+            \ :<C-u>execute 'tabm -'.v:count1<CR>
 
 nnoremap <silent> <Tab>w :<C-u>We<CR>
 
@@ -64,26 +67,40 @@ noremap <Tab>^D :resize -20<CR>
 
 " {{{ buffers with <Space>
 
-noremap <silent> <Space>n :<C-u>exe v:count1.'bnext'<CR>
-noremap <silent> <Space>p :<C-u>exe v:count1.'bprevious'<CR>
-noremap <silent> <Space>N :<C-u>exe v:count1.'bnext!'<CR>
-noremap <silent> <Space>P :<C-u>exe v:count1.'bprevious!'<CR>
-noremap <silent> <Space>m :<C-u>exe v:count1.'bmodified'<CR>
-noremap <silent> <Space>M :<C-u>exe v:count1.'bmodified!'<CR>
+noremap <silent> <Space>n 
+            \ :<C-u>exe v:count1.'bnext'<CR>
+noremap <silent> <Space>p 
+            \ :<C-u>exe v:count1.'bprevious'<CR>
+noremap <silent> <Space>N 
+            \ :<C-u>exe v:count1.'bnext!'<CR>
+noremap <silent> <Space>P 
+            \ :<C-u>exe v:count1.'bprevious!'<CR>
+noremap <silent> <Space>m 
+            \ :<C-u>exe v:count1.'bmodified'<CR>
+noremap <silent> <Space>M 
+            \ :<C-u>exe v:count1.'bmodified!'<CR>
 
 " }}}
 
-"{{{ args with <BS>
+"{{{ args with <Space><Space>
 
-noremap <silent> <BS>n :<C-u>exe v:count1.'next'<CR>
-noremap <silent> <BS>N :<C-u>exe v:count1.'next!'<CR>
-noremap <silent> <BS>p :<C-u>exe v:count1.'previous'<CR>
-noremap <silent> <BS>P :<C-u>exe v:count1.'previous!'<CR>
+noremap <silent> <Space><Space>n 
+            \ :<C-u>exe v:count1.'next'<CR>
+noremap <silent> <Space><Space>N 
+            \ :<C-u>exe v:count1.'next!'<CR>
+noremap <silent> <Space><Space>p 
+            \ :<C-u>exe v:count1.'previous'<CR>
+noremap <silent> <Space><Space>P 
+            \ :<C-u>exe v:count1.'previous!'<CR>
 
-noremap <silent> <BS>. :<C-u>exe v:count1.'wnext'<CR>
-noremap <silent> <BS>> :<C-u>exe v:count1.'wnext!'<CR>
-noremap <silent> <BS>, :<C-u>exe v:count1.'wprevious'<CR>
-noremap <silent> <BS>< :<C-u>exe v:count1.'wprevious!'<CR>
+noremap <silent> <Space><Space>. 
+            \ :<C-u>exe v:count1.'wnext'<CR>
+noremap <silent> <Space><Space>> 
+            \ :<C-u>exe v:count1.'wnext!'<CR>
+noremap <silent> <Space><Space>, 
+            \ :<C-u>exe v:count1.'wprevious'<CR>
+noremap <silent> <Space><Space>< 
+            \ :<C-u>exe v:count1.'wprevious!'<CR>
 
 "}}}
 
@@ -143,11 +160,16 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 " noremap <silent> <C-p> :<C-u>execute v:count1.'cpf'<CR>
 " noremap <silent> <C-_> :<C-u>execute v:count1.'cc'<CR>
 
-noremap <silent> <C-j> :<C-u>execute v:count1.'cn'<CR>
-noremap <silent> <C-k> :<C-u>execute v:count1.'cp'<CR>
-noremap <silent> <C-n> :<C-u>execute v:count1.'cnf'<CR>
-noremap <silent> <C-p> :<C-u>execute v:count1.'cpf'<CR>
-noremap <silent> <C-_> :<C-u>execute v:count1.'cc'<CR>
+noremap <silent> <C-j> 
+            \ :<C-u>execute v:count1.'cn'<CR>
+noremap <silent> <C-k> 
+            \ :<C-u>execute v:count1.'cp'<CR>
+noremap <silent> <C-n> 
+            \ :<C-u>execute v:count1.'cnf'<CR>
+noremap <silent> <C-p> 
+            \ :<C-u>execute v:count1.'cpf'<CR>
+noremap <silent> <C-_> 
+            \ :<C-u>execute v:count1.'cc'<CR>
 
 " TODO proper bindings
 " map <silent> <Tab>J :<C-u>execute 'ln '.v:count1<CR>

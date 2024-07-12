@@ -1,11 +1,16 @@
 # About
 
 This file is trial to describe all mappings and keep available
-keys in one place. With hundreds of mappings it is necessary
+keys in one place.
+
+With hundreds of mappings it may be necessary.
+
+Currently in half baked state as I haven't even finish
+rebuilding maps.
 
 # Unused keys
 
-\\ | ~ ^ (hard to reach on some keyboards)
+\\ | ~ ^ (hard to reach)
 
 There may be more, but there are already enough combinations
 
@@ -37,7 +42,9 @@ There may be more, but there are already enough combinations
   - kw - toggle workman layout help
   - m - man/help opening location
 
-- <Space> - setlocal hls!
+- <Space> - no idea yet:
+
+  - <Space> - setlocal hls!
 
 - ; - commands
 

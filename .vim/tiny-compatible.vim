@@ -41,7 +41,7 @@ noremap <Tab>O :<C-u>-tab<Space>
 
 noremap <Tab>l :<C-u>tabs<CR>
 nnoremap <Tab><Space>l :filter  tabs<C-Left><C-b>
-nnoremap <Tab>;l :filter // tabs<C-Left><C-b><C-b>
+" nnoremap <Tab><Space>L :filter!  tabs<C-Left><C-b>
 
 noremap <silent> <Tab>+ :<C-u>tabnew<CR>
 noremap <silent> <Tab>- :<C-u>tabclose<CR>
@@ -56,8 +56,8 @@ noremap <Tab>n gt
 noremap <Tab>p gT
 
 noremap <Tab>m :<C-u>tabm<Space>
-noremap <silent> <Tab>L :<C-u>tabm +1<CR>
-noremap <silent> <Tab>H :<C-u>tabm -1<CR>
+noremap <silent> <Tab>N :<C-u>tabm +1<CR>
+noremap <silent> <Tab>P :<C-u>tabm -1<CR>
 noremap <silent> <Tab>J :<C-u>tabm $<CR>
 noremap <silent> <Tab>K :<C-u>tabm 0<CR>
 
@@ -118,15 +118,12 @@ noremap <silent> <Tab>^D :<C-u>resize -20<CR>
 
 " {{{ buffers with <Space>
 
-noremap <Space>b :<C-u>buffer<Space>
-noremap <Space>B :<C-u>buffer!<Space>
+noremap <Space>o :<C-u>buffer<Space>
+noremap <Space>O :<C-u>buffer!<Space>
 
 noremap <Space>l :<C-u>buffers<CR>
-noremap <Space><Space>l :<C-u>filter  buffers<C-Left><C-b>
-noremap <Space>;l :<C-u>filter // buffers<C-Left><C-b><C-b>
-noremap <Space>L :<C-u>buffers<CR>
-noremap <Space><Space>L :<C-u>filter  buffers<C-Left><C-b>
-noremap <Space>;L :<C-u>filter // buffers<C-Left><C-b><C-b>
+noremap <Space>;l :<C-u>filter  buffers<C-Left><C-b>
+noremap <Space>;L :<C-u>filter  buffers!<C-Left><C-b>
 
 noremap <silent> <Space>n :<C-u>bnext<CR>
 noremap <silent> <Space>p :<C-u>bprevious<CR>
@@ -142,19 +139,19 @@ noremap <silent> <Space>U :<C-u>bunload!<CR>
 noremap <silent> <Space>w :<C-u>bwipeout<CR>
 noremap <silent> <Space>W :<C-u>bwipeout!<CR>
 
-noremap <Space><Space>n :<C-u>bnext<Space>
-noremap <Space><Space>p :<C-u>bprevious<Space>
-noremap <Space><Space>N :<C-u>bnext!<Space>
-noremap <Space><Space>P :<C-u>bprevious!<Space>
-noremap <Space><Space>m :<C-u>bmodified<Space>
-noremap <Space><Space>M :<C-u>bmodified!<Space>
+noremap <Space>;n :<C-u>bnext<Space>
+noremap <Space>;p :<C-u>bprevious<Space>
+noremap <Space>;N :<C-u>bnext!<Space>
+noremap <Space>;P :<C-u>bprevious!<Space>
+noremap <Space>;m :<C-u>bmodified<Space>
+noremap <Space>;M :<C-u>bmodified!<Space>
 
-noremap <Space><Space>d :<C-u>bdelete<Space>
-noremap <Space><Space>D :<C-u>bdelete!<Space>
-noremap <Space><Space>u :<C-u>bunload<Space>
-noremap <Space><Space>U :<C-u>bunload!<Space>
-noremap <Space><Space>w :<C-u>bwipeout<Space>
-noremap <Space><Space>W :<C-u>bwipeout!<Space>
+noremap <Space>;d :<C-u>bdelete<Space>
+noremap <Space>;D :<C-u>bdelete!<Space>
+noremap <Space>;u :<C-u>bunload<Space>
+noremap <Space>;U :<C-u>bunload!<Space>
+noremap <Space>;w :<C-u>bwipeout<Space>
+noremap <Space>;W :<C-u>bwipeout!<Space>
 
 noremap <Space>a :<C-u>badd<Space>
 noremap <Space>A :<C-u>balt<Space>
@@ -163,59 +160,58 @@ noremap <Space>T :<C-u>bufdo!<Space>
 
 " }}}
 
-"{{{ args with <BS>
+"{{{ args with <Space><Space>
 
-noremap <BS>i :<C-u>args<CR>
-noremap <BS><Space>i :<C-u>filter  args<C-Left><C-b>
-noremap <BS>;i :<C-u>filter // args<C-Left><C-b><C-b>
-noremap <BS>i :<C-u>args!<Space>
+noremap <Space><Space>l :<C-u>args<CR>
+noremap <Space><Space><Space>l :<C-u>filter  args<C-Left><C-b>
 
-noremap <BS>a :<C-u>argadd<Space>
-noremap <BS>d :<C-u>argdelete<Space>
-noremap <BS>e :<C-u>argedit<Space>
-noremap <BS>E :<C-u>argedit!<Space>
-noremap <BS>o :<C-u>argument<Space>
-noremap <BS>O :<C-u>argument!<Space>
+noremap <Space><Space>c :<C-u>args!<Space>
+noremap <Space><Space>a :<C-u>argadd<Space>
+noremap <Space><Space>d :<C-u>argdelete<Space>
+noremap <Space><Space>e :<C-u>argedit<Space>
+noremap <Space><Space>E :<C-u>argedit!<Space>
+noremap <Space><Space>o :<C-u>argument<Space>
+noremap <Space><Space>O :<C-u>argument!<Space>
 
-noremap <silent> <BS>n :<C-u>next<CR>
-noremap <silent> <BS>N :<C-u>next!<CR>
-noremap <BS>;n :<C-u>next<Space>
-noremap <BS>;N :<C-u>next!<Space>
-noremap <silent> <BS>p :<C-u>previous<CR>
-noremap <silent> <BS>P :<C-u>previous!<CR>
-noremap <BS>;p :<C-u>previous<Space>
-noremap <BS>;P :<C-u>previous!<Space>
+noremap <silent> <Space><Space>n :<C-u>next<CR>
+noremap <silent> <Space><Space>N :<C-u>next!<CR>
+noremap <Space><Space><Space>n :<C-u>next<Space>
+noremap <Space><Space><Space>N :<C-u>next!<Space>
+noremap <silent> <Space><Space>p :<C-u>previous<CR>
+noremap <silent> <Space><Space>P :<C-u>previous!<CR>
+noremap <Space><Space><Space>p :<C-u>previous<Space>
+noremap <Space><Space><Space>P :<C-u>previous!<Space>
 
-noremap <silent> <BS>. :<C-u>wnext<CR>
-noremap <silent> <BS>> :<C-u>wnext!<CR>
-noremap <BS>;. :<C-u>wnext<Space>
-noremap <BS>;> :<C-u>wnext!<Space>
-noremap <silent> <BS>, :<C-u>wprevious<CR>
-noremap <silent> <BS>< :<C-u>wprevious!<CR>
-noremap <BS>;, :<C-u>wprevious<Space>
-noremap <BS>;< :<C-u>wprevious!<Space>
+noremap <silent> <Space><Space>. :<C-u>wnext<CR>
+noremap <silent> <Space><Space>> :<C-u>wnext!<CR>
+noremap <Space><Space><Space>. :<C-u>wnext<Space>
+noremap <Space><Space><Space>> :<C-u>wnext!<Space>
+noremap <silent> <Space><Space>, :<C-u>wprevious<CR>
+noremap <silent> <Space><Space>< :<C-u>wprevious!<CR>
+noremap <Space><Space><Space>, :<C-u>wprevious<Space>
+noremap <Space><Space><Space>< :<C-u>wprevious!<Space>
 
-noremap <silent> <BS>0 :<C-u>first<CR>
-noremap <silent> <BS>0 :<C-u>first!<CR>
-noremap <BS>;0 :<C-u>first<Space>
-noremap <BS>;0 :<C-u>first!<Space>
-noremap <silent> <BS>$ :<C-u>last<CR>
-noremap <silent> <BS>$ :<C-u>last!<CR>
-noremap <BS>;$ :<C-u>last<Space>
-noremap <BS>;$ :<C-u>last!<Space>
+noremap <silent> <Space><Space>0 :<C-u>first<CR>
+noremap <silent> <Space><Space>0 :<C-u>first!<CR>
+noremap <Space><Space><Space>0 :<C-u>first<Space>
+noremap <Space><Space><Space>0 :<C-u>first!<Space>
+noremap <silent> <Space><Space>$ :<C-u>last<CR>
+noremap <silent> <Space><Space>$ :<C-u>last!<CR>
+noremap <Space><Space><Space>$ :<C-u>last<Space>
+noremap <Space><Space><Space>$ :<C-u>last!<Space>
 
-noremap <BS>= :<C-u>argdedupe<CR>
-noremap <BS>t :<C-u>argdo<Space>
-noremap <BS>T :<C-u>argdo!<Space>
+noremap <Space><Space>= :<C-u>argdedupe<CR>
+noremap <Space><Space>t :<C-u>argdo<Space>
+noremap <Space><Space>T :<C-u>argdo!<Space>
 
-noremap <silent> <BS>l :<C-u>argglobal<CR>
-noremap <silent> <BS>L :<C-u>argglobal!<CR>
-noremap <BS>l :<C-u>;argglobal<Space>
-noremap <BS>L :<C-u>;argglobal!<Space>
-noremap <silent> <BS>g :<C-u>argglobal<CR>
-noremap <silent> <BS>G :<C-u>argglobal!<CR>
-noremap <BS>g :<C-u>;argglobal<Space>
-noremap <BS>G :<C-u>;argglobal!<Space>
+noremap <silent> <Space><Space>w :<C-u>arglocal<CR>
+noremap <silent> <Space><Space>W :<C-u>arglocal!<CR>
+noremap <Space><Space><Space>w :<C-u>arglocal<Space>
+noremap <Space><Space><Space>W :<C-u>arglocal!<Space>
+noremap <silent> <Space><Space>g :<C-u>argglobal<CR>
+noremap <silent> <Space><Space>G :<C-u>argglobal!<CR>
+noremap <Space><Space><Space>g :<C-u>argglobal<Space>
+noremap <Space><Space><Space>G :<C-u>argglobal!<Space>
 
 "}}}
 
@@ -223,24 +219,24 @@ noremap <BS>G :<C-u>;argglobal!<Space>
 
 noremap <Space>ir :<C-u>registers<CR>
 noremap <Space>ip :<C-u>history<CR>
-noremap <Space>im :<C-u>marks<CR>
 noremap <Space>ic :<C-u>changes<CR>
 noremap <Space>ij :<C-u>jumps<CR>
-noremap <Space>if :<C-u>files<CR>
+noremap <Space>io :<C-u>files<CR>
+noremap <Space>im :<C-u>marks<CR>
+noremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
 
-noremap <Space><Space>ir :<C-u>filter  registers<C-Left><C-b>
-noremap <Space><Space>ip :<C-u>filter  history<C-Left><C-b>
-noremap <Space><Space>im :<C-u>filter  marks<C-Left><C-b>
-noremap <Space><Space>ic :<C-u>filter  changes<C-Left><C-b>
-noremap <Space><Space>ij :<C-u>filter  jumps<C-Left><C-b>
-noremap <Space><Space>if :<C-u>filter  files<C-Left><C-b>
-
-noremap <Space>;ir :<C-u>filter // registers<C-Left><C-b><C-b>
-noremap <Space>;ip :<C-u>filter // history<C-Left><C-b><C-b>
-noremap <Space>;im :<C-u>filter // marks<C-Left><C-b><C-b>
-noremap <Space>;ic :<C-u>filter // changes<C-Left><C-b><C-b>
-noremap <Space>;ij :<C-u>filter // jumps<C-Left><C-b><C-b>
-noremap <Space>;if :<C-u>filter // files<C-Left><C-b><C-b>
+noremap <Space>i<Space>r 
+            \ :<C-u>filter  registers<C-Left><C-b>
+noremap <Space>i<Space>p 
+            \ :<C-u>filter  history<C-Left><C-b>
+noremap <Space>i<Space>c 
+            \ :<C-u>filter  changes<C-Left><C-b>
+noremap <Space>i<Space>j 
+            \ :<C-u>filter  jumps<C-Left><C-b>
+noremap <Space>i<Space>o 
+            \ :<C-u>filter  files<C-Left><C-b>
+noremap <Space>i<Space>m 
+            \ :<C-u>filter  marks<C-Left><C-b>
 
 noremap <Space>ik :<C-u>map<Space>
 noremap <Space>in :<C-u>nmap<Space>
@@ -314,7 +310,7 @@ set breakindent
 set linebreak
 
 set nowrap
-set showbreak=\\>>
+set showbreak=\\>\ 
 
 set notimeout
 set ttimeout
