@@ -1,11 +1,15 @@
-"{{{ TODO Tags
+"{{{ remaps
 
-noremap <C-j> <C-]>
+noremap .. .
+noremap <C-h> <C-]>
+
+"}}}
+
+"{{{ TODO Tags
 
 noremap <silent> <Leader>jts :ts<CR>
 noremap <silent> <Leader>jth :sts<CR>
 noremap <silent> <Leader>jtv :vert sts<CR>
-noremap <silent> <Leader>jtl :tags<CR>
 
 " }}}
 
@@ -155,30 +159,33 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
 "}}}
 
-"{{{ TODO quickfix
+"{{{ quickfix and loclist
 
-" noremap <silent> <C-j> :<C-u>execute v:count1.'cn'<CR>
-" noremap <silent> <C-k> :<C-u>execute v:count1.'cp'<CR>
-" noremap <silent> <C-n> :<C-u>execute v:count1.'cnf'<CR>
-" noremap <silent> <C-p> :<C-u>execute v:count1.'cpf'<CR>
-" noremap <silent> <C-_> :<C-u>execute v:count1.'cc'<CR>
+noremap <silent> .l
+            \ :<C-u>execute v:count1.'cn'<CR>
+noremap <silent> .h
+            \ :<C-u>execute v:count1.'cp'<CR>
+noremap <silent> .j
+            \ :<C-u>execute v:count1.'cnf'<CR>
+noremap <silent> .k
+            \ :<C-u>execute v:count1.'cpf'<CR>
+noremap <silent> .c
+            \ :<C-u>execute v:count1.'cc'<CR>
 
-" noremap <silent> <C-j> 
-"             \ :<C-u>execute v:count1.'cn'<CR>
-" noremap <silent> <C-k> 
-"             \ :<C-u>execute v:count1.'cp'<CR>
-" noremap <silent> <C-n> 
-"             \ :<C-u>execute v:count1.'cnf'<CR>
-" noremap <silent> <C-p> 
-"             \ :<C-u>execute v:count1.'cpf'<CR>
-" noremap <silent> <C-_> 
-"             \ :<C-u>execute v:count1.'cc'<CR>
+noremap <silent> .L :<C-u>cn<Space>
+noremap <silent> .H :<C-u>cp<Space>
+noremap <silent> .J :<C-u>cnf<Space>
+noremap <silent> .K :<C-u>cpf<Space>
+noremap <silent> .C :<C-u>cc<Space>
 
-" TODO proper bindings
-" map <silent> <Tab>J :<C-u>execute 'ln '.v:count1<CR>
-" map <silent> <Tab>K :<C-u>execute 'lp '.v:count1<CR>
-" map <silent> <Tab>c :<C-u>execute 'cc '.v:count1<CR>
-" map <silent> <Tab>C :<C-u>execute 'll '.v:count1<CR>
+noremap .<Space> :copen<CR>
+
+noremap <silent> .0
+            \ :<C-u>cfirst<CR>
+noremap <silent> .$
+            \ :<C-u>clast<CR>
+
+noremap .; :lopen<CR>
 
 " map <Tab>d :cdo<Space>
 " map <Tab>D :ldo<Space>
@@ -187,9 +194,12 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 " map <silent> <Tab>r :crewind<CR>
 " map <silent> <Tab>R :lrewind<CR>
 
-"}}}
-
-"{{{ TODO loclist
+autocmd BufReadPost quickfix 
+            \ noremap <buffer> <silent> q :q<CR>
+            \ | noremap <buffer> < :call QFHistory(0)<CR>
+            \ | noremap <buffer> > :call QFHistory(1)<CR>
+            \ | noremap <buffer> K :call QFMove(0)<CR>
+            \ | noremap <buffer> J :call QFMove(1)<CR>
 
 "}}}
 

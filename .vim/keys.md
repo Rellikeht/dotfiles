@@ -25,23 +25,21 @@ Not very accurate, at least for now.
 - ~
 - ^
 
-## good control maps
+## (control) good
 
-- <C-h>
+- <C-j>
 - <C-k>
-- <C-n>
-- <C-p>
 
-## ???
+## (control) ???
 
 - CTRL-<Tab>
 
-## not used, or used for terminal control flow
+## (control) not used, or used for terminal control flow
 
 - <C-q>
 - <C-s>
 
-## not so useful control maps
+## (control) not so useful
 
 - CTRL-@ not used
 - CTRL-\_ not used
@@ -50,9 +48,17 @@ Not very accurate, at least for now.
 
 # Remappings
 
+## vanilla
+
 - ; - <C-w>
 - <C-m> - <Tab>
-- <C-j> - \<C-\]>
+- <C-h> - \<C-\]>
+- .. - .
+- . - TODO quick and loc lists
+
+## with plugins
+
+- <C-n>, <C-p> - sneak
 
 # <Space><Space> combinations
 
@@ -148,11 +154,9 @@ Not very accurate, at least for now.
 
 # g combinations
 
-Available (useless otherwise): C, G, K, L, z
+Available (useless otherwise): G, K, L, z
 
 Rather useless: I, Q, H, h, r, w
-
-Rather useful: J, M, N, V, m, n
 
 - c - vim-commentary
 - C - toggle colorizer
@@ -188,10 +192,6 @@ Only Z and Q is used
 ## TODO
 
 - r\[dxob\] - radical.vim
-
-# "\[" and "\]"
-
-## TODO
 
 # Miscelanous
 

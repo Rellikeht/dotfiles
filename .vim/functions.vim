@@ -167,7 +167,10 @@ function NextArg(pos, cmd, before = '', after = '')
         exe 'silent! '.a:after
     endif
     " TODO D filename, press enter attacks here
-    echo 'Current Arg Num: '.(argidx()+1)
+    " echo 'Current Arg Num: '.(argidx()+1)
+    echo pathshorten(expand('%:p'))
+    " echo fnamemodify(expand('%:p'), ':~:.gs%\(\.\?[^/]\)[^/]*/%\1/%')
+    " echo expand('%:p')
 endfunction
 
 "}}}
@@ -221,6 +224,25 @@ endfunction
 "}}}
 
 "{{{ random stuff
+
+" https://vimways.org/2018/colder-quickfix-lists/
+function! QFHistory(goNewer)
+  " Get dictionary of properties of the current window
+  let wininfo = filter(getwininfo(), {i,v -> v.winnr == winnr()})[0]
+  let isloc = wininfo.loclist
+  " Build the command: one of colder/cnewer/lolder/lnewer
+  let cmd = (isloc ? 'l' : 'c') . (a:goNewer ? 'newer' : 'older')
+  execute cmd
+endfunction
+
+function! QFMove(down)
+  " Get dictionary of properties of the current window
+  let wininfo = filter(getwininfo(), {i,v -> v.winnr == winnr()})[0]
+  let isloc = wininfo.loclist
+  " Build the command: one of colder/cnewer/lolder/lnewer
+  let cmd = (a:down ? '+' : '-') .'\|'. (isloc ? 'l' : 'c') . (a:down ? 'n' : 'p') execute cmd
+  execute cmd
+endfunction
 
 function ToggleManProg()
     if &keywordprg == ':help'

@@ -43,19 +43,20 @@ nnoremap <C-w>,xo :exe 'tabedit '.system('dragon --on-top --target --and-exit 2>
 
 "}}}
 
-"{{{ grep
+"{{{ TODO grep
 
 " TODO make this work
 
-nnoremap ,xgf :<C-u>vimgrep //jg<C-left><Right>
-nnoremap ,xgF :<C-u>vimgrep //fjg<C-left><Right>
-nnoremap ,xge :<C-u>vimgrep<Space>
-nnoremap ,xgE :<C-u>exe v:count.'vimgrep '<Left>
+" nnoremap ,xgf :<C-u>vimgrep //jg<C-left><Right>
+" nnoremap ,xgF :<C-u>vimgrep //fjg<C-left><Right>
+" nnoremap ,xge :<C-u>vimgrep<Space>
+" nnoremap ,xgE :<C-u>exe v:count.'vimgrep '<Left>
 
-nnoremap ,xgd :<C-u>vimgrep //jg ** \| copen<C-left><C-left><C-left><C-Left><Right>
-nnoremap ,xgD :<C-u>vimgrep //fjg ** \| copen<C-left><C-left><C-Left><Right>
-nnoremap ,xgh :<C-u>vimgrep //jg **<C-left><C-Left><Right>
-nnoremap ,xgH :<C-u>vimgrep //fjg **<C-left><C-Left><Right>
+" ** doesn't work
+" nnoremap ,xgd :<C-u>vimgrep //jg ** \| copen<C-left><C-left><C-left><C-Left><Right>
+" nnoremap ,xgD :<C-u>vimgrep //fjg ** \| copen<C-left><C-left><C-Left><Right>
+" nnoremap ,xgh :<C-u>vimgrep //jg **<C-left><C-Left><Right>
+" nnoremap ,xgH :<C-u>vimgrep //fjg **<C-left><C-Left><Right>
 
 " nnoremap ,xgc :<C-u>exe v:count.'vimgrep //j **'<C-left><C-Left><Right>
 " nnoremap ,xgC :<C-u>exe v:count.'vimgrep //jf **'<C-left><C-Left><Right>
@@ -156,4 +157,3 @@ noremap <Leader>x;H :Hexplore<Space>
 "                 way, but one doesn't have to quit the window.
 
 "}}}
-

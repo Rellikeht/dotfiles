@@ -225,21 +225,24 @@ noremap <Space>ip :<C-u>history<CR>
 noremap <Space>ic :<C-u>changes<CR>
 noremap <Space>ij :<C-u>jumps<CR>
 noremap <Space>io :<C-u>files<CR>
+noremap <Space>it :<C-u>tags<CR>
 noremap <Space>im :<C-u>marks<CR>
 noremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
 
-nnoremap <Space>i<Space>r 
-            \ :<C-u>filter  registers<C-Left><C-b>
-nnoremap <Space>i<Space>p 
-            \ :<C-u>filter  history<C-Left><C-b>
-nnoremap <Space>i<Space>c 
-            \ :<C-u>filter  changes<C-Left><C-b>
-nnoremap <Space>i<Space>j 
-            \ :<C-u>filter  jumps<C-Left><C-b>
-nnoremap <Space>i<Space>o 
-            \ :<C-u>filter  files<C-Left><C-b>
-nnoremap <Space>i<Space>m 
-            \ :<C-u>filter  marks<C-Left><C-b>
+nnoremap <Space>i<Space>r
+            \ :<C-u>filter  registers<C-Left><Left>
+nnoremap <Space>i<Space>p
+            \ :<C-u>filter  history<C-Left><Left>
+nnoremap <Space>i<Space>c
+            \ :<C-u>filter  changes<C-Left><Left>
+nnoremap <Space>i<Space>j
+            \ :<C-u>filter  jumps<C-Left><Left>
+nnoremap <Space>i<Space>o
+            \ :<C-u>filter  files<C-Left><Left>
+nnoremap <Space>i<Space>t
+            \ :<C-u>filter  tags<C-Left><Left>
+nnoremap <Space>i<Space>m
+            \ :<C-u>filter  marks<C-Left><Left>
 
 noremap <Space>ik :<C-u>map<Space>
 noremap <Space>in :<C-u>nmap<Space>
@@ -247,10 +250,10 @@ noremap <Space>iv :<C-u>vmap<Space>
 noremap <Space>ii :<C-u>imap<Space>
 
 noremap <Space>ih :<C-u>help<Space>
-noremap <Space>it :<C-u>tab help<Space>
+noremap <Space>i<Tab> :<C-u>tab help<Space>
 
 " retarded 'more' kicks in
-" noremap <Space>m :<C-u>marks<CR>:normal `
+noremap <Space>m :<C-u>marks<CR>:normal `
 
 " }}}
 
