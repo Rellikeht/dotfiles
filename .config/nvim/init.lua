@@ -23,7 +23,7 @@ Plug("nvim-lua/plenary.nvim")
 
 Plug("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"})
 Plug("norcalli/nvim-colorizer.lua") -- TODO C
--- Plug('folke/tokyonight.nvim') -- elflord is good enough
+-- Plug('folke/tokyonight.nvim') -- elflord is good enough probably
 
 -- might not work
 -- Plug("3rd/image.nvim") -- TODO B
@@ -32,7 +32,7 @@ Plug("norcalli/nvim-colorizer.lua") -- TODO C
 
 -- {{{ motion enchancing
 
-Plug("easymotion/vim-easymotion") -- TODO A
+-- Plug("easymotion/vim-easymotion")
 Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"}) -- TODO A
 -- Plug("nvim-telescope/telescope.nvim") -- TODO B
 -- Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO B
@@ -47,8 +47,6 @@ Plug("nvim-treesitter/nvim-treesitter-textobjects")
 Plug("neovim/nvim-lspconfig")
 Plug("mfussenegger/nvim-jdtls")
 
--- This is probably done:
--- TODO B (let this not interrupt normal work)
 Plug("dcampos/nvim-snippy")
 
 -- TODO more cmps ?
@@ -63,7 +61,7 @@ Plug("hrsh7th/cmp-nvim-lua")
 
 -- Plug('nvim-orgmode/orgmode') -- TODO B
 
-Plug("mfussenegger/nvim-lint") -- TODO this is bad
+Plug("mfussenegger/nvim-lint")
 Plug("windwp/nvim-autopairs") -- TODO B
 Plug("nvim-treesitter/nvim-treesitter-refactor") -- TODO C
 
@@ -72,7 +70,7 @@ Plug("nvim-treesitter/nvim-treesitter-refactor") -- TODO C
 -- Plug("vhyrro/luarocks.nvim")
 -- Plug("benlubas/molten-nvim") -- TODO B
 
-Plug("puremourning/vimspector") -- TODO C
+-- Plug("puremourning/vimspector") -- TODO C
 
 -- }}}
 

@@ -16,29 +16,44 @@ autocmd BufReadPost *
     \ | setlocal modeline
     \ | endif
 
+set shortmess=at
+set cmdheight=2
+
 " }}}
 
-" TODO tabline
+" TODO tabline, statusline
 
 " {{{ some simple settings
 
 nnoremap <Leader><Space><Space> :setlocal hls!<CR>
-noremap <Leader>qen :set relativenumber!<CR>
-noremap <Leader>qeN :set number!<CR>
-noremap <Leader>qeC :set cursorbind!<CR>
-noremap <Leader>qep :set paste!<CR>
+vnoremap <Leader><Space><Space> :setlocal hls!\|norm gv<CR>
+nnoremap <Leader>qen :set relativenumber!<CR>
+vnoremap <Leader>qen :set relativenumber!\|norm gv<CR>
+nnoremap <Leader>qeN :set number!<CR>
+vnoremap <Leader>qeN :set number!\|norm gv<CR>
+nnoremap <Leader>qeC :set cursorbind!<CR>
+vnoremap <Leader>qeC :set cursorbind!\|norm gv<CR>
+nnoremap <Leader>qep :set paste!<CR>
+vnoremap <Leader>qep :set paste!\|norm gv<CR>
 
 set cursorline
-noremap <Leader>qec :set cursorline!<CR>
+
+nnoremap <Leader>qec :set cursorline!<CR>
+vnoremap <Leader>qec :set cursorline!\|norm gv<CR>
 
 " TODO confirmation maybe?
-noremap <Leader>qkw :call Wmt()<CR>
-noremap <silent> <Leader>qpm :call ToggleManProg()<CR>
-noremap <Leader>qpM :set makeprg=make<CR>
+nnoremap <Leader>qkw :call Wmt()<CR>
+vnoremap <Leader>qkw :call Wmt()\|norm gv<CR>
+nnoremap <silent> <Leader>qpm :call ToggleManProg()<CR>
+vnoremap <silent> <Leader>qpm :call ToggleManProg()\|norm gv<CR>
+nnoremap <Leader>qpM :set makeprg=make<CR>
+vnoremap <Leader>qpM :set makeprg=make\|norm gv<CR>
 
-noremap <Leader>qet :filetype detect<CR>
+nnoremap <Leader>qet :filetype detect<CR>
+vnoremap <Leader>qet :filetype detect\|norm gv<CR>
 noremap <Leader>qeT :set filetype=
-noremap <Leader>qeh :set hls!<CR>
+nnoremap <Leader>qeh :set hls!<CR>
+vnoremap <Leader>qeh :set hls!\|norm gv<CR>
 
 " }}}
 
@@ -49,13 +64,19 @@ let g:bufcomp = 0
 autocmd FileType * let b:buffmt = g:buffmt
 autocmd FileType * let b:bufcomp = g:bufcomp
 
-noremap <Leader>qff :let b:buffmt=!b:buffmt<CR>
-noremap <Leader>qfF :let g:buffmt=!g:buffmt<CR>
-noremap <Leader>qv1 :echo b:buffmt<CR>
+nnoremap <Leader>qff :let b:buffmt=!b:buffmt<CR>
+vnoremap <Leader>qff :let b:buffmt=!b:buffmt\|norm gv<CR>
+nnoremap <Leader>qfF :let g:buffmt=!g:buffmt<CR>
+vnoremap <Leader>qfF :let g:buffmt=!g:buffmt\|norm gv<CR>
+nnoremap <Leader>qv1 :echo b:buffmt<CR>
+vnoremap <Leader>qv1 :echo b:buffmt\|norm gv<CR>
 
-noremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
-noremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
-noremap <Leader>qv2 :echo b:bufcomp<CR>
+nnoremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
+vnoremap <Leader>qfc :let b:bufcomp=!b:bufcomp\|norm gv<CR>
+nnoremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
+vnoremap <Leader>qfC :let g:bufcomp=!g:bufcomp\|norm gv<CR>
+nnoremap <Leader>qv2 :echo b:bufcomp<CR>
+vnoremap <Leader>qv2 :echo b:bufcomp\|norm gv<CR>
 
 "}}}
 
@@ -69,13 +90,19 @@ let g:vautowrite = 0
 autocmd FileType * let b:vautoread = g:vautoread
 autocmd FileType * let b:vautowrite = g:vautowrite
 
-noremap <Leader>qfr :call ToggleBuffer('autoread')<CR>
-noremap <Leader>qfR :let g:vautoread=!g:vautoread<CR>
-noremap <Leader>qv3 :echo b:vautoread<CR>
+nnoremap <Leader>qfr :call ToggleBuffer('autoread')<CR>
+vnoremap <Leader>qfr :call ToggleBuffer('autoread')\|norm gv<CR>
+nnoremap <Leader>qfR :let g:vautoread=!g:vautoread<CR>
+vnoremap <Leader>qfR :let g:vautoread=!g:vautoread\|norm gv<CR>
+nnoremap <Leader>qv3 :echo b:vautoread<CR>
+vnoremap <Leader>qv3 :echo b:vautoread\|norm gv<CR>
 
-noremap <Leader>qfw :call ToggleBuffer('autowrite')<CR>
-noremap <Leader>qfW :let g:vautowrite=!g:vautowrite<CR>
-noremap <Leader>qv4 :echo b:vautowrite<CR>
+nnoremap <Leader>qfw :call ToggleBuffer('autowrite')<CR>
+vnoremap <Leader>qfw :call ToggleBuffer('autowrite')\|norm gv<CR>
+nnoremap <Leader>qfW :let g:vautowrite=!g:vautowrite<CR>
+vnoremap <Leader>qfW :let g:vautowrite=!g:vautowrite\|norm gv<CR>
+nnoremap <Leader>qv4 :echo b:vautowrite<CR>
+vnoremap <Leader>qv4 :echo b:vautowrite\|norm gv<CR>
 
 " TODO
 " let g:autoupdate = 0
@@ -92,8 +119,7 @@ noremap <Leader>qv4 :echo b:vautowrite<CR>
 let g:autochdir = 0
 silent! call ToggleAutochdir()
 
-" autocmd BufNewFile * let b:autochdir = g:autochdir
-noremap <Leader>qca :call ToggleAutochdir()<CR>
-" noremap <Leader>qcA :let g:autochdir=!g:autochdir<CR>
+nnoremap <Leader>qca :call ToggleAutochdir()<CR>
+vnoremap <Leader>qca :call ToggleAutochdir()\|norm gv<CR>
 
 " }}}

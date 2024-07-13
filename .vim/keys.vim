@@ -46,6 +46,8 @@ vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
 " {{{ buffers with <Space><Space>
 
+noremap <silent> <Space><Space>d <Plug>Kwbd
+
 vnoremap <Space><Space>;l 
             \ :<C-u>exe 'filter '.
             \ GetVisualSelection().' buffers'<CR>

@@ -35,8 +35,6 @@ vnoremap <Space>qM :<C-u>setlocal modeline!\|norm gv<CR>
 
 "}}}
 
-" TODO D more and better visual mappings
-
 " {{{ tabs with <Tab>
 
 noremap <Tab>o :<C-u>tabedit<Space>
@@ -49,9 +47,10 @@ noremap <Tab>A :<C-u>tabnew\|arglocal!<CR>
 
 nnoremap <Tab>l :<C-u>tabs<CR>
 vnoremap <Tab>l :<C-u>tabs\|norm gv<CR>
-" v map doesn't work
 noremap <Tab><Space>l :filter  tabs<C-Left><Left>
 
+noremap <silent> <Tab>+ :<C-u>tabnew<CR>
+noremap <silent> <Tab>- :<C-u>tabclose<CR>
 nnoremap <silent> <Tab>! :<C-u>tabonly<CR>
 vnoremap <silent> <Tab>! :<C-u>tabonly\|norm gv<CR>
 
@@ -219,6 +218,7 @@ nnoremap <Space>a :<C-u>argadd<Space>
 vnoremap <Space>a :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>d :<C-u>argdelete<Space>
 vnoremap <Space>d :<C-u>argdelete  \|norm gv<C-Left><C-Left><Left>
+noremap <Space>D :<C-u>argdelete\|next<CR>
 
 noremap <silent> <Space>n :<C-u>next<CR>
 noremap <silent> <Space>N :<C-u>next!<CR>
@@ -420,3 +420,5 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
     noremap <Tab>qh :set hls!<CR>
 endif
 " }}}
+
+" TODO D more and better visual mappings
