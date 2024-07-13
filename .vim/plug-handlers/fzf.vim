@@ -15,6 +15,9 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let $FZF_DEFAULT_COMMAND='find .'
 let g:fzf_vim = {}
 
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 "}}}
 
 "{{{ layout
@@ -192,6 +195,9 @@ command! -bang -nargs=* Ah
 command! -bang -nargs=* Au 
             \ call fzf#vim#ag(<q-args>, '--unrestricted', fzf#vim#with_preview(), <bang>0)
 
+command! -bang Args call fzf#run(fzf#wrap('args',
+    \ {'source': map([argidx()]+(argidx()==0?[]:range(argc())[0:argidx()-1])+range(argc())[argidx()+1:], 'argv(v:val)')}, <bang>0))
+
 "}}}
 
 "{{{ custom command mappings
@@ -210,28 +216,40 @@ nnoremap <leader>slH :Ah<Space>
 nnoremap <leader>slu :Au<CR>
 nnoremap <leader>slU :Au<Space>
 
+nnoremap <leader>sfa :Args<CR>
+nnoremap <leader>sfA :Args<Space>
+
 "}}}
 
 "{{{ additional keys
 
-" This is the default extra key bindings
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit',
-            \ }
-
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
     call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
-    copen
-    cc
+    call QFcmd('open')
+    call QFsel('cc', 'll')
 endfunction
 
+func s:fnameescape(key, val)
+  return fnameescape(a:val)
+endfunc
+
+function! s:populate_arg_list(lines)
+  execute 'args ' . join(map(a:lines, function('s:fnameescape')), ' ')
+endfunction
+
+function! s:add_arg_list(lines)
+  execute 'argadd ' . join(map(a:lines, function('s:fnameescape')), ' ')
+endfunction
+
+" TODO this is so bad
 let g:fzf_action = {
             \ 'ctrl-q': function('s:build_quickfix_list'),
             \ 'ctrl-t': 'tab split',
             \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-v': 'vsplit',
+            \ 'ctrl-l': function('s:populate_arg_list'),
+            \ 'ctrl-a': function('s:add_arg_list'),
+            \ }
 
 "}}}
