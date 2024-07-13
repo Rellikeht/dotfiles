@@ -3,8 +3,10 @@
 let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
 
-set secure
+" ?
+autocmd VimEnter * arglocal!
 
+set secure
 " shitty, but works somehow
 autocmd BufReadPost *
     \ if &ft == ""

@@ -1,5 +1,21 @@
 "{{{ helpers
 
+function VNmap(map, key, cmd, end = "")
+    if a:end == ""
+        exe 'n'.a:map.' '.a:key.' '.a:cmd.'<CR>'
+        exe 'v'.a:map.' '.a:key.' '.a:cmd.' \| normal gv<CR>'
+    else
+        exe 'n'.a:map.' '.a:key.' '.a:cmd.a:end
+        exe 'v'.a:map.' '.a:key.' '.a:cmd.
+                    \ ' \| normal gv'
+                    \ '<C-Left><C-Left><C-left><Left>'.a:end
+    endif
+endfunction
+
+"}}}
+
+"{{{ clipboard
+
 function Xcopy(name)
     call system('echo -n '.shellescape(@").' | xclip -i -selection '.a:name)
 endfunction
@@ -10,11 +26,19 @@ function Xpaste(name)
     execute 'normal a'.system('xclip -o -selection '.a:name)
 endfunction
 
+"}}}
+
+"{{{ commands
+
 command! -nargs=+ Silent
             \   execute 'silent! <args>'
             \   | redraw!
 
 command! We write | sleep 500 m | edit
+
+"}}}
+
+"{{{ completion
 
 function GetCompl(name)
     for n in getcompletion('', a:name)
@@ -34,6 +58,39 @@ endfunction
 
 function InsAvailFtypes()
     call InsCompl('filetype')
+endfunction
+
+"}}}
+
+"{{{ quickfix
+
+function! QFsel(ccmd, lcmd, before = '', after = '')
+    " Get dictionary of properties of the current window
+    let wininfo = filter(getwininfo(), {i,v -> v.winnr == winnr()})[0]
+    let isloc = wininfo.loclist
+    execute a:before . (isloc ? a:lcmd : a:ccmd) . a:after
+endfunction
+
+function! QFcmd(cmd, before = '')
+    call QFsel('c', 'l', a:before, a:cmd)
+endfunction
+
+function! NToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        call QFcmd('open')
+    else
+        call QFcmd('close')
+    endif
+endfunction
+
+function! VToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        call QFcmd('open')
+        wincmd p
+    else
+        call QFcmd('close')
+    endif
+    normal gv
 endfunction
 
 "}}}
@@ -175,7 +232,7 @@ endfunction
 
 "}}}
 
-"{{{ some automatic stuff
+"{{{ toggling
 
 function ToggleBuffer(name)
     execute 'let b:v'.a:name.' = !b:v'.a:name
@@ -224,25 +281,6 @@ endfunction
 "}}}
 
 "{{{ random stuff
-
-" https://vimways.org/2018/colder-quickfix-lists/
-function! QFHistory(goNewer)
-  " Get dictionary of properties of the current window
-  let wininfo = filter(getwininfo(), {i,v -> v.winnr == winnr()})[0]
-  let isloc = wininfo.loclist
-  " Build the command: one of colder/cnewer/lolder/lnewer
-  let cmd = (isloc ? 'l' : 'c') . (a:goNewer ? 'newer' : 'older')
-  execute cmd
-endfunction
-
-function! QFMove(down)
-  " Get dictionary of properties of the current window
-  let wininfo = filter(getwininfo(), {i,v -> v.winnr == winnr()})[0]
-  let isloc = wininfo.loclist
-  " Build the command: one of colder/cnewer/lolder/lnewer
-  let cmd = (a:down ? '+' : '-') .'\|'. (isloc ? 'l' : 'c') . (a:down ? 'n' : 'p') execute cmd
-  execute cmd
-endfunction
 
 function ToggleManProg()
     if &keywordprg == ':help'

@@ -1,3 +1,10 @@
+"{{{ help
+
+" copy simple mappings from normal to visual
+" 0yyprv$F<i\|norm gv
+
+"}}}
+
 "{{{ remaps
 
 noremap .. .
@@ -19,51 +26,21 @@ noremap <silent> <Tab>k K<C-w>T
 
 noremap <silent> <Tab>n 
             \ :<C-u>call SwitchTab(v:count1)<CR>
-noremap <silent> <Tab>N 
+nnoremap <silent> <Tab>N 
             \ :<C-u>execute 'tabm +'.v:count1<CR>
-noremap <silent> <Tab>P 
+vnoremap <silent> <Tab>N 
+            \ :<C-u>execute 'tabm +'.v:count1\|norm gv<CR>
+nnoremap <silent> <Tab>P 
             \ :<C-u>execute 'tabm -'.v:count1<CR>
+vnoremap <silent> <Tab>P 
+            \ :<C-u>execute 'tabm -'.v:count1\|norm gv<CR>
 
 nnoremap <silent> <Tab>w :<C-u>We<CR>
+vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
 "}}}
 
-" {{{ resizing with <Tab>
-" TODO counts
-" TODO better
-" TODO more
-
-noremap <Tab>>1 :vertical resize 10<CR>
-noremap <Tab>>2 :vertical resize 20<CR>
-noremap <Tab>>3 :vertical resize 30<CR>
-noremap <Tab>>4 :vertical resize 40<CR>
-noremap <Tab>>5 :vertical resize 50<CR>
-noremap <Tab>>r :vertical resize <Space>
-
-noremap <Tab>>= :vertical resize +1<CR>
-noremap <Tab>>+ :vertical resize +5<CR>
-noremap <Tab>>a :vertical resize +10<CR>
-noremap <Tab>>A :vertical resize +20<CR>
-noremap <Tab>>- :vertical resize -1<CR>
-noremap <Tab>>_ :vertical resize -5<CR>
-noremap <Tab>>d :vertical resize -10<CR>
-noremap <Tab>>D :vertical resize -20<CR>
-
-noremap <Tab>^1 :resize 10<CR>
-noremap <Tab>^2 :resize 20<CR>
-noremap <Tab>^3 :resize 30<CR>
-noremap <Tab>^4 :resize 40<CR>
-noremap <Tab>^5 :resize 50<CR>
-noremap <Tab>^r :resize <Space>
-
-noremap <Tab>^= :resize +1<CR>
-noremap <Tab>^+ :resize +5<CR>
-noremap <Tab>^a :resize +10<CR>
-noremap <Tab>^A :resize +20<CR>
-noremap <Tab>^- :resize -1<CR>
-noremap <Tab>^_ :resize -5<CR>
-noremap <Tab>^d :resize -10<CR>
-noremap <Tab>^D :resize -20<CR>
+" {{{ TODO resizing with <Tab>
 
 " }}}
 
@@ -146,8 +123,10 @@ noremap <Leader>;m :make<CR>
 noremap <Leader>;M :make<Space>
 
 " pwd
-noremap <Leader>;c :silent! lcd %:p:h<CR>
-noremap <Leader>;p :silent! cd %:p:h<CR>
+nnoremap <Leader>;c :silent! lcd %:p:h<CR>
+vnoremap <Leader>;c :silent! lcd %:p:h\|norm gv<CR>
+nnoremap <Leader>;p :silent! cd %:p:h<CR>
+vnoremap <Leader>;p :silent! cd %:p:h\|norm gv<CR>
 noremap <Leader>;C :lcd<Space>
 noremap <Leader>;P :cd<Space>
 
@@ -161,45 +140,91 @@ noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
 "{{{ quickfix and loclist
 
-noremap <silent> .l
-            \ :<C-u>execute v:count1.'cn'<CR>
-noremap <silent> .h
-            \ :<C-u>execute v:count1.'cp'<CR>
+"{{{ settings
+
+let g:qfloc = 0
+
+" TODO better messages
+nnoremap .t :<C-u>let g:qfloc = !g:qfloc
+            \ \| echo 'Quickfix is now ' . 
+            \ (g:qfloc ? 'local' : 'global')<CR>
+nnoremap .q :<C-u> echo 'Quickfix is now ' . 
+            \ (g:qfloc ? 'local' : 'global')<CR>
+
+vnoremap .t :<C-u>let g:qfloc = !g:qfloc
+            \ \| echo 'Quickfix is now ' . 
+            \ (g:qfloc ? 'local' : 'global')
+            \ \| normal gv<CR>
+vnoremap .q :<C-u> echo 'Quickfix is now ' . 
+            \ (g:qfloc ? 'local' : 'global')
+            \ \| normal gv<CR>
+
+"}}}
+
+"{{{ movement
+
 noremap <silent> .j
-            \ :<C-u>execute v:count1.'cnf'<CR>
+            \ :<C-u>call QFcmd('n', v:count1)<CR>
 noremap <silent> .k
-            \ :<C-u>execute v:count1.'cpf'<CR>
-noremap <silent> .c
-            \ :<C-u>execute v:count1.'cc'<CR>
+            \ :<C-u>call QFcmd('p', v:count1)<CR>
+nnoremap <silent> .n
+            \ :<C-u>call QFcmd('nf', v:count1)<CR>
+nnoremap <silent> .p
+            \ :<C-u>call QFcmd('pf', v:count1)<CR>
+nnoremap <silent> .c
+            \ :<C-u>call QFsel('cc', 'll', v:count1)<CR>
 
-noremap <silent> .L :<C-u>cn<Space>
-noremap <silent> .H :<C-u>cp<Space>
-noremap <silent> .J :<C-u>cnf<Space>
-noremap <silent> .K :<C-u>cpf<Space>
-noremap <silent> .C :<C-u>cc<Space>
+nnoremap <silent> .0 :<C-u>call QFcmd('first')<CR>
+nnoremap <silent> .$ :<C-u>call QFcmd('last')<CR>
 
-noremap .<Space> :copen<CR>
+nnoremap <silent> .<
+            \ :<C-u>call QFcmd('older '.v:count1)<CR>
+nnoremap <silent> .>
+            \ :<C-u>call QFcmd('newer '.v:count1)<CR>
+nnoremap <silent> .b :<C-u>call QFcmd('bottom')<CR>
+nnoremap <silent> .r :<C-u>call QFcmd('rewind '.v:count1)<CR>
 
-noremap <silent> .0
-            \ :<C-u>cfirst<CR>
-noremap <silent> .$
-            \ :<C-u>clast<CR>
+vnoremap <silent> .<
+            \ :<C-u>call QFcmd('older '.v:count1)
+            \ \| normal gv<CR>
+vnoremap <silent> .>
+            \ :<C-u>call QFcmd('newer '.v:count1)
+            \ \| normal gv<CR>
+vnoremap <silent> .b :<C-u>call QFcmd('bottom')
+            \ \| normal gv<CR>
+vnoremap <silent> .r :<C-u>call QFcmd('rewind '.v:count1)
+            \ \| normal gv<CR>
 
-noremap .; :lopen<CR>
+"}}}
 
-" map <Tab>d :cdo<Space>
-" map <Tab>D :ldo<Space>
-" map <silent> <Tab>o :copen<CR>
-" map <silent> <Tab>O :lopen<CR>
-" map <silent> <Tab>r :crewind<CR>
-" map <silent> <Tab>R :lrewind<CR>
+"{{{  actions
 
-autocmd BufReadPost quickfix 
-            \ noremap <buffer> <silent> q :q<CR>
-            \ | noremap <buffer> < :call QFHistory(0)<CR>
-            \ | noremap <buffer> > :call QFHistory(1)<CR>
-            \ | noremap <buffer> K :call QFMove(0)<CR>
-            \ | noremap <buffer> J :call QFMove(1)<CR>
+nnoremap <silent> .<Space> :<C-u>call NToggleQuickFix()<CR>
+vnoremap <silent> .<Space> :<C-u>call VToggleQuickFix()<CR>
+noremap <silent> .w :<C-u>call QFcmd('window')<CR>
+noremap <silent> .o :<C-u>call QFcmd('do')<CR>
+noremap <silent> .f :<C-u>call QFcmd('do')<CR>
+
+"}}}
+
+augroup Quickfix "{{{
+
+    " TODO C use something more friendly than <cr> and <c-h>
+    " this is hard, it probably needs unmapping bunch of things
+    autocmd FileType qf 
+                \ noremap <buffer> <silent> q :q<CR>
+                \ | noremap <buffer> < :<C-u>call QFcmd('older')<CR>
+                \ | nnoremap <buffer> > :<C-u>call QFcmd('newer')<CR>
+                \ | nnoremap <buffer> J :<C-u>call 
+                \ QFcmd('n', '+'.v:count1.' \| '.v:count1)
+                \ \| wincmd p<CR>
+                \ | noremap <buffer> K :<C-u>call
+                \ QFcmd('p', '-'.v:count1.' \| '.v:count1)
+                \ \| wincmd p<CR>
+                \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR>
+                \ | nnoremap <buffer> <silent> <C-h> <CR>:call QFcmd('close')<CR>
+
+augroup END "}}}
 
 "}}}
 

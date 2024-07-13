@@ -12,7 +12,6 @@ Not very accurate, at least for now.
 ## good
 
 - \_
-- <CR>
 
 ## hard to reach in some cases
 
@@ -30,15 +29,6 @@ Not very accurate, at least for now.
 - <C-j>
 - <C-k>
 
-## (control) ???
-
-- CTRL-<Tab>
-
-## (control) not used, or used for terminal control flow
-
-- <C-q>
-- <C-s>
-
 ## (control) not so useful
 
 - CTRL-@ not used
@@ -51,7 +41,7 @@ Not very accurate, at least for now.
 ## vanilla
 
 - ; - <C-w>
-- <C-m> - <Tab>
+- <C-m> (<cr>) - <Tab>
 - <C-h> - \<C-\]>
 - .. - .
 - . - TODO quick and loc lists
