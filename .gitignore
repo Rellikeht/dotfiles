@@ -130,6 +130,7 @@ Session.vim
 Templates/**/*
 !Templates/**/*/
 !Templates/**/*.*
+Templates/**/*.swp
 Templates/**/*.o
 Templates/**/*.so
 !Templates/direnv/*envrc*

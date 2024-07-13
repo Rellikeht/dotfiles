@@ -20,8 +20,9 @@ autocmd BufReadPost *
     \ | setlocal modeline
     \ | endif
 
-set shortmess=at
-set cmdheight=2
+set shortmess=atsO
+" 2 is ugly and takes too much space
+set cmdheight=1
 
 " }}}
 
