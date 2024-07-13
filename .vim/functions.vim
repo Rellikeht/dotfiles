@@ -233,12 +233,8 @@ function NextArg(pos, cmd, before = '', after = '')
     endif
 
     " This is hard to do properly with custom autochdir
-    " echo 'Current Arg Num: '.(argidx()+1)
-    " echo pathshorten(expand('%:p'))
-    " echo fnamemodify(expand('%:p'), ':~:.gs%\(\.\?[^/]\)[^/]*/%\1/%')
-    " echo expand('%:p')
-    " echo expand('#:.')
-    echo fnamemodify(expand('#:.'), ':~:.gs%\(\.\?[^/]\)[^/]*/%\1/%')
+    " echo g:cur_name
+    echo pathshorten(g:cur_name, g:pathshorten)
 endfunction
 
 "}}}
@@ -336,6 +332,7 @@ function ToggleAutochdir()
         augroup AutoChdir
             autocmd BufEnter *
                 \ if &buftype == ""
+                \ | let g:cur_name = expand('%:~')
                 \ | exe "lcd %:p:h"
                 \ | endif
         augroup END

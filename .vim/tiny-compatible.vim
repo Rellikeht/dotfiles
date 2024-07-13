@@ -214,8 +214,10 @@ noremap <Space>e :<C-u>argument<Space>
 noremap <Space>E :<C-u>argument!<Space>
 noremap <Space>o :<C-u>argedit<Space>
 noremap <Space>O :<C-u>argedit!<Space>
-nnoremap <Space>a :<C-u>argadd<Space>
-vnoremap <Space>a :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>a :<C-u>argadd<CR>
+vnoremap <Space>a :<C-u>argadd\|norm gv<CR>
+nnoremap <Space>A :<C-u>argadd<Space>
+vnoremap <Space>A :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>d :<C-u>argdelete<Space>
 vnoremap <Space>d :<C-u>argdelete  \|norm gv<C-Left><C-Left><Left>
 noremap <Space>D :<C-u>argdelete\|next<CR>

@@ -5,6 +5,10 @@ autocmd FileType * let b:match_ignorecase = 0
 
 " ?
 autocmd VimEnter * arglocal!
+" TabNew ?
+
+let g:cur_name = expand('%:~')
+let g:pathshorten = 4
 
 set secure
 " shitty, but works somehow
