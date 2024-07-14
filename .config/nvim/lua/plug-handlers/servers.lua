@@ -225,6 +225,8 @@ lspconfig.clangd.setup(
       "--header-insertion=never",
       "--completion-style=detailed",
       "--pch-storage=memory",
+      "--background-index",
+      "--background-index-priority=low",
     }, -- }}}
 
     settings = { -- {{{

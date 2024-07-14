@@ -220,7 +220,17 @@ nnoremap <Space>A :<C-u>argadd<Space>
 vnoremap <Space>A :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>d :<C-u>argdelete<Space>
 vnoremap <Space>d :<C-u>argdelete  \|norm gv<C-Left><C-Left><Left>
-noremap <Space>D :<C-u>argdelete\|next<CR>
+noremap <silent> <Space>D :<C-u>if argc() == 1 
+            \ \| q
+            \ \| elseif argc() == 2
+            \ \| argdelete
+            \ \| first
+            \ \| else
+            \ \| argdelete
+            \ \| if argidx() == argc() - 1
+            \ \| argument 1
+            \ \| endif
+            \ \| endif<CR>
 
 noremap <silent> <Space>n :<C-u>next<CR>
 noremap <silent> <Space>N :<C-u>next!<CR>
@@ -250,7 +260,8 @@ noremap <Space><Space>$ :<C-u>last<Space>
 noremap <Space><Space>$ :<C-u>last!<Space>
 
 noremap <Space>= :<C-u>args!<Space>
-noremap <Space>_ :<C-u>argdedupe<CR>
+nnoremap <Space>_ :<C-u>argdedupe<CR>
+vnoremap <Space>_ :<C-u>argdedupe\|norm gv<CR>
 noremap <Space>t :<C-u>argdo<Space>
 noremap <Space>T :<C-u>argdo!<Space>
 
@@ -258,14 +269,23 @@ nnoremap <silent> <Space>w :<C-u>arglocal<CR>
 vnoremap <silent> <Space>w :<C-u>arglocal\|norm gv<CR>
 nnoremap <silent> <Space>W :<C-u>arglocal!<CR>
 vnoremap <silent> <Space>W :<C-u>arglocal!\|norm gv<CR>
-noremap <Space><Space>w :<C-u>arglocal<Space>
-noremap <Space><Space>W :<C-u>arglocal!<Space>
+nnoremap <Space><Space>w :<C-u>arglocal<Space>
+vnoremap <Space><Space>w :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space><Space>W :<C-u>arglocal!<Space>
+vnoremap <Space><Space>W :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>;w :<C-u>arglocal %<CR>
+vnoremap <Space>;w :<C-u>arglocal %\|norm gv<CR>
+nnoremap <Space>;W :<C-u>arglocal! %<CR>
+vnoremap <Space>;W :<C-u>arglocal! %\|norm gv<CR>
+
 nnoremap <silent> <Space>g :<C-u>argglobal<CR>
 vnoremap <silent> <Space>g :<C-u>argglobal\|norm gv<CR>
 nnoremap <silent> <Space>G :<C-u>argglobal!<CR>
 vnoremap <silent> <Space>G :<C-u>argglobal!\|norm gv<CR>
-noremap <Space><Space>g :<C-u>argglobal<Space>
-noremap <Space><Space>G :<C-u>argglobal!<Space>
+nnoremap <Space><Space>g :<C-u>argglobal<Space>
+vnoremap <Space><Space>g :<C-u>argglobal  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space><Space>G :<C-u>argglobal!<Space>
+vnoremap <Space><Space>G :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
 
 "}}}
 

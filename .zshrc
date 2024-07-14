@@ -159,16 +159,16 @@ if fzf --zsh &>/dev/null; then
     eval "$(fzf --zsh)"
 fi
 
-if direnv &>/dev/null; then
-    eval "$(direnv hook zsh)"
-fi
-
 # z.lua or plain old z as fallback
 if whichp z.lua &>/dev/null; then
     # fzf doesn't do much and is fucked here
     eval "$(z.lua --init zsh once enhanced echo)"
 elif whichp z &>/dev/null; then
     . "$(whichp z)"
+fi
+
+if direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
 fi
 
 # }}}
@@ -193,20 +193,21 @@ opam() {
 # }}}
 
 # {{{ shit
-# yeah
 
 if [ -z "$__CONDA_SETUP" ]; then
-    __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
-            . "$HOME/.conda/etc/profile.d/conda.sh"
+    if [ -d "$HOME/.conda" ]; then
+        __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
         else
-            pathinsert "$HOME/.conda/bin:$PATH"
+            if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
+                . "$HOME/.conda/etc/profile.d/conda.sh"
+            else
+                pathinsert "$HOME/.conda/bin:$PATH"
+            fi
         fi
+        unset __conda_setup
     fi
-    unset __conda_setup
     export __CONDA_SETUP=1
 fi
 
