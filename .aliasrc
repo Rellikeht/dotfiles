@@ -251,7 +251,9 @@ alias gth='glow -w $(($(tput cols)-2))'
 alias qc="qalc -s 'decimal comma off'"
 alias de='dc -e 8k -e'
 
-alias sa='screen attach'
+alias scr='screen -URa'
+alias sca='screen -R'
+alias scl='screen -list'
 
 alias tmc='/usr/bin/env tmux'
 alias tm='tmux -L "$TMUX_SOCKET"'
@@ -410,6 +412,8 @@ alias Re="R -s -e"
 alias Rc="/usr/bin/env R"
 
 alias gpe='gnuplot -p -e'
+
+alias cmc='mkdir -p build && cmake -B build .'
 # }}}
 
 # {{{ git

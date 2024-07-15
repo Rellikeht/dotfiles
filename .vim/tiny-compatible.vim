@@ -157,8 +157,10 @@ vnoremap <silent> <Tab>^D :<C-u>resize -20\|norm gv<CR>
 
 " {{{ buffers with <Space><Space>
 
-noremap <Space><Space>o :<C-u>buffer<Space>
-noremap <Space><Space>O :<C-u>buffer!<Space>
+noremap <Space><Space>e :<C-u>buffer<Space>
+noremap <Space><Space>E :<C-u>buffer!<Space>
+noremap <Space><Space>o :<C-u>edit<Space>
+noremap <Space><Space>O :<C-u>edit!<Space>
 
 nnoremap <Space><Space>l :<C-u>buffers<CR>
 vnoremap <Space><Space>l :<C-u>buffers\|norm gv<CR>

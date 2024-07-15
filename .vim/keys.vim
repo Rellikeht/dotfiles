@@ -135,6 +135,9 @@ noremap <Leader>;P :cd<Space>
 " Not the best, but should work
 noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
 
+nnoremap <Leader>;d :pwd<CR>
+vnoremap <Leader>;d :pwd\|norm gv<CR>
+
 " ???
 " map <Leader>;r :!%<CR>
 

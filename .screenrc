@@ -1,6 +1,60 @@
+# https://aperiodic.net/screen/quick_reference
+
+# {{{ command
+
 escape ^||
-bindkey "^[ " command
+# this conflicts with my tmux setup and
+# I sometimes need both at the same time :(
+# bindkey "^[ " command
+bindkey "^[k" command
 
 # Also works
 # register S ^|
 # bindkey "^[ " process S
+
+# }}}
+
+# {{{ from arch wiki
+
+term screen-256color
+startup_message off
+altscreen on
+windowlist string "%4n %h%=%f"
+
+# }}}
+
+# {{{ other from internet
+
+nethack on
+defscrollback 131072
+ignorecase on
+maptimeout 0
+vbell on
+defutf8 on
+defencoding utf8
+uft8 on
+
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+# nope
+# terminfo xterm* ti=:te=
+termcapinfo xterm* ti@:te@
+
+# }}}
+
+# {{{ my findings
+
+mousetrack on
+defmousetrack on
+nonblock on
+encoding UTF-8
+msgwait 2
+
+# }}}
+
+# {{{ bindings
+
+bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded!'"
+
+# }}}

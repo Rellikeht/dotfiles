@@ -228,11 +228,14 @@ end
 -- }}}
 
 local servers = { -- {{{
+  "nimls",
+
+  -- :(
   -- "pylyzer",
   "pylsp",
+
   "gopls",
   "ocamllsp",
-  "nimls",
   "nil_ls",
   "nickel_ls",
   "zls",

@@ -11,8 +11,8 @@
       url = "github:numtide/flake-utils";
     };
 
-    builds = {
-      url = "github:Rellikeht/nix-builds";
+    sdk = {
+      url = "github:Rellikeht/nix-builds?dir=pico-sdk";
     };
   }; # }}}
 
@@ -21,24 +21,25 @@
     self,
     nixpkgs,
     flake-utils,
-    builds,
+    sdk,
     # }}}
-  } @ inputs:
+  }:
     flake-utils.lib.eachDefaultSystem (
       system: let
         # {{{
         pkgs = nixpkgs.legacyPackages.${system};
-        sdk-pkg = builds.packages.${system}.pico-sdk;
+        sdk-pkg = sdk.packages.${system}.default;
         cc = pkgs.gcc-arm-embedded;
         # }}}
-      in rec {
+      in {
         packages.default = pkgs.stdenv.mkDerivation {
           # {{{
 
           # {{{
-          name = "pico-examples";
-          src = examples;
+          name = "pico-hello-world";
+          src = self;
           PICO_SDK_PATH = "${sdk-pkg}/lib/pico-sdk";
+          PICO_SDK_BIN = "${sdk-pkg}/bin";
           # }}}
 
           phases = [
@@ -53,6 +54,7 @@
             [
               # {{{
               cmake
+              python3
             ] # }}}
             ++ [
               # {{{
@@ -69,6 +71,7 @@
             # {{{
             ''
               mkdir -p $out
+              cp -r *.uf2 $out
             ''; # }}}
 
           # }}}
