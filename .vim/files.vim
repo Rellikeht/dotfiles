@@ -10,36 +10,67 @@ function DiffPut(pane)
     diffupdate
 endfunction
 
-nnoremap <silent> <leader>fdp :diffput<CR>
-nnoremap <silent> <leader>fdg :diffget<CR>
-nnoremap <silent> <leader>fdu :diffupdate<CR>
+nnoremap <silent> <leader>fdp :<C-u>diffput<CR>
+nnoremap <silent> <leader>fdg :<C-u>diffget<CR>
+nnoremap <silent> <leader>fdu :<C-u>diffupdate<CR>
 
 " TODO more of that
-nnoremap <silent> <leader>fg0 :call DiffGet('//0')<CR>
-nnoremap <silent> <leader>fg1 :call DiffGet('//1')<CR>
-nnoremap <silent> <leader>fg2 :call DiffGet('//2')<CR>
-nnoremap <silent> <leader>fg3 :call DiffGet('//3')<CR>
+nnoremap <silent> <leader>fg0 :<C-u>call DiffGet('//0')<CR>
+nnoremap <silent> <leader>fg1 :<C-u>call DiffGet('//1')<CR>
+nnoremap <silent> <leader>fg2 :<C-u>call DiffGet('//2')<CR>
+nnoremap <silent> <leader>fg3 :<C-u>call DiffGet('//3')<CR>
 
-nnoremap <silent> <leader>fp0 :call DiffPut('//0')<CR>
-nnoremap <silent> <leader>fp1 :call DiffPut('//1')<CR>
-nnoremap <silent> <leader>fp2 :call DiffPut('//2')<CR>
-nnoremap <silent> <leader>fp3 :call DiffPut('//3')<CR>
+nnoremap <silent> <leader>fp0 :<C-u>call DiffPut('//0')<CR>
+nnoremap <silent> <leader>fp1 :<C-u>call DiffPut('//1')<CR>
+nnoremap <silent> <leader>fp2 :<C-u>call DiffPut('//2')<CR>
+nnoremap <silent> <leader>fp3 :<C-u>call DiffPut('//3')<CR>
 
-nnoremap <silent> <leader>fpf :call DiffPut(expand('%:p'))<CR>
-nnoremap <silent> <leader>fpF :call DiffPut(expand('%:t'))<CR>
-nnoremap <silent> <leader>fgf :call DiffGet(expand('%:p'))<CR>
-nnoremap <silent> <leader>fgF :call DiffGet(expand('%:t'))<CR>
+nnoremap <silent> <leader>fpf :<C-u>call DiffPut(expand('%:p'))<CR>
+nnoremap <silent> <leader>fpF :<C-u>call DiffPut(expand('%:t'))<CR>
+nnoremap <silent> <leader>fgf :<C-u>call DiffGet(expand('%:p'))<CR>
+nnoremap <silent> <leader>fgF :<C-u>call DiffGet(expand('%:t'))<CR>
 
 "}}}
 
 "{{{ drag and drop
 
-" TODO C visual maybe
 " TODO C more ?
 
-nnoremap <silent> ,xy :exe '!dragon --on-top --and-exit '.expand("%").' 2>/dev/null'<CR>:redraw!<CR>
-nnoremap ,xo :exe 'edit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
-nnoremap <C-w>,xo :exe 'tabedit '.system('dragon --on-top --target --and-exit 2>/dev/null')<CR>
+nnoremap <silent> <Leader>xy
+            \ :<C-u>exe '!dragon --on-top --and-exit '.
+            \ expand("%").' 2>/dev/null &'<CR>
+            \ :redraw!<CR>
+vnoremap <silent> <Leader>xy
+            \ :<C-u>exe '!dragon --on-top --and-exit '.
+            \ expand("%").' 2>/dev/null &'<CR>
+            \ :redraw!<CR>
+            \ :norm gv<CR>
+
+nnoremap <silent> <Leader>xY
+            \ :<C-u>exe '!dragon --on-top --and-exit '.
+            \ expand("<cfile>").' 2>/dev/null &'<CR>
+            \ :redraw!<CR>
+vnoremap <silent> <Leader>xY
+            \ :<C-u>exe '!dragon --on-top --and-exit '.
+            \ expand("<cfile>").' 2>/dev/null &'<CR>
+            \ :redraw!<CR>
+            \ :norm gv<CR>
+
+noremap <Space><Leader>xo
+            \ :<C-u>exe 'argedit '.
+            \ system('dragon --on-top --target --and-exit '.
+            \ '2>/dev/null')<CR>
+            \ :redraw<CR>
+noremap <C-w><Leader>xo
+            \ :<C-u>exe 'tabedit '.
+            \ system('dragon --on-top --target --and-exit '.
+            \ '2>/dev/null')<CR>
+            \ :redraw<CR>
+noremap <Leader>xo
+            \ :<C-u>exe 'edit '.
+            \ system('dragon --on-top --target --and-exit '.
+            \ '2>/dev/null')<CR>
+            \ :redraw<CR>
 
 "}}}
 

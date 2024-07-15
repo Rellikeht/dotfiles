@@ -19,5 +19,7 @@ function PrevFtManOpenMode()
     echo g:ft_man_open_mode
 endfunction
 
-nnoremap <silent> <Leader>qmn :call NextFtManOpenMode()<CR>
-nnoremap <silent> <Leader>qmp :call PrevFtManOpenMode()<CR>
+nnoremap <silent> <Leader>qmn 
+            \ :<C-u>call NextFtManOpenMode()<CR>
+nnoremap <silent> <Leader>qmp 
+            \ :<C-u>call PrevFtManOpenMode()<CR>

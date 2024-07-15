@@ -21,29 +21,29 @@ autocmd BufNewFile *.nim
 " TODO A polish that
 " TODO A auto
 
-nnoremap ,m<Space> :make<CR>
-vnoremap ,m<Space> :make\|norm gv<CR>
-nnoremap ,m; :make<Space>
-vnoremap ,m; :make  \|norm gv<C-Left><C-Left><Left>
+nnoremap ,m<Space> :<C-u>make<CR>
+vnoremap ,m<Space> :<C-u>make\|norm gv<CR>
+nnoremap ,m; :<C-u>make<Space>
+vnoremap ,m; :<C-u>make  \|norm gv<C-Left><C-Left><Left>
 
-nnoremap ,mpf :set makeprg=nix\ build<CR>
-vnoremap ,mpf :set makeprg=nix\ build\|norm gv<CR>
-nnoremap ,mpn :set makeprg=nix-build<CR>
-vnoremap ,mpn :set makeprg=nix-build\|norm gv<CR>
+nnoremap ,mpf :<C-u>set makeprg=nix\ build<CR>
+vnoremap ,mpf :<C-u>set makeprg=nix\ build\|norm gv<CR>
+nnoremap ,mpn :<C-u>set makeprg=nix-build<CR>
+vnoremap ,mpn :<C-u>set makeprg=nix-build\|norm gv<CR>
 
-nnoremap ,mpm :set makeprg=make<CR>
-vnoremap ,mpm :set makeprg=make\|norm gv<CR>
-
-" nnoremap ,mpp :set makeprg=make<CR>
-" nnoremap ,mpc :set makeprg=make<CR>
+nnoremap ,mpm :<C-u>set makeprg=make<CR>
+vnoremap ,mpm :<C-u>set makeprg=make\|norm gv<CR>
+nnoremap ,mP :<C-u>set makeprg=
+vnoremap ,mP :<C-u>set makeprg= \|norm gv
+            \ <C-Left><C-Left><Left>
 
 "}}}
 
 "{{{ compiler
 " TODO B what is this even doing
 
-nnoremap ,co; :compiler<Space>
-vnoremap ,co; :compiler  \|norm gv<C-Left><C-Left><Left>
+nnoremap ,co; :<C-u>compiler<Space>
+vnoremap ,co; :<C-u>compiler  \|norm gv<C-Left><C-Left><Left>
 
 " nnoremap ,c<Space> :compiler<CR>
 " vnoremap ,c<Space> :compiler\|norm gv<CR>

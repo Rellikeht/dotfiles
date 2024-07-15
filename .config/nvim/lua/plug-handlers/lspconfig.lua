@@ -13,22 +13,29 @@ Lfiles = {"*.go", "*.jl", "*.zig", "*.sh"}
 -- {{{ commands
 
 vim.keymap.set(
-  buf_modes, "<Leader>dqi", ":LspInfo<CR>", {noremap = true}
+  buf_modes, "<Leader>dqi", ":<C-u>LspInfo<CR>",
+  {noremap = true}
+)
+
+vim.keymap.set(
+  buf_modes, "<Leader>dql", ":<C-u>LspLog<CR>", {noremap = true}
+)
+
+vim.keymap.set(
+  buf_modes, "<Leader>dqr", ":<C-u>LspRestart<CR>",
+  {noremap = true}
+)
+
+vim.keymap.set(
+  buf_modes, "<Leader>dqs", ":<C-u>LspStart<CR>",
+  {noremap = true}
 )
 vim.keymap.set(
-  buf_modes, "<Leader>dql", ":LspLog<CR>", {noremap = true}
+  buf_modes, "<Leader>dqe", ":<C-u>LspStop ", {noremap = true}
 )
 vim.keymap.set(
-  buf_modes, "<Leader>dqr", ":LspRestart<CR>", {noremap = true}
-)
-vim.keymap.set(
-  buf_modes, "<Leader>dqs", ":LspStart<CR>", {noremap = true}
-)
-vim.keymap.set(
-  buf_modes, "<Leader>dqe", ":LspStop ", {noremap = true}
-)
-vim.keymap.set(
-  buf_modes, "<Leader>dqE", ":LspStop *<CR>", {noremap = true}
+  buf_modes, "<Leader>dqE", ":<C-u>LspStop *<CR>",
+  {noremap = true}
 )
 
 -- }}}
@@ -49,11 +56,11 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  diag_modes, "<Leader>dl", vim.diagnostic.setloclist,
+  diag_modes, "<Leader>dl", vim.diagnostic.setqflist,
   {noremap = true}
 )
 vim.keymap.set(
-  diag_modes, "<Leader>dL", vim.diagnostic.setqflist,
+  diag_modes, "<Leader>dL", vim.diagnostic.setloclist,
   {noremap = true}
 )
 

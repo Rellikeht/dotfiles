@@ -1,3 +1,13 @@
+"{{{ helpers
+
+command! -nargs=1 -complete=arglist Argument 
+            \ argument <args> | argdedupe
+
+command! -nargs=1 -complete=arglist ArgumentE
+            \ argument! <args> | argdedupe
+
+"}}}
+
 " {{{ basic mappings
 
 " Because <C-w> is uncomfortable to press
@@ -8,11 +18,15 @@ map ;; <C-w><C-w>
 " <CR> is equal to <C-m> !!
 noremap <C-m> <Tab>
 
-" TODO make this work
 noremap gy "*y
-noremap gY "+y
-" noremap gy "*gP
-" noremap gY "+gP
+noremap gY "*Y
+noremap gp "*gp
+noremap gP "*gP
+
+noremap <Tab>gy "+y
+noremap <Tab>gY "+Y
+noremap <Tab>gp "+gp
+noremap <Tab>gP "+gP
 
 " TODO this is harder than it should be
 noremap g+ v<C-a>
@@ -75,19 +89,6 @@ vnoremap <silent> <Tab>K :<C-u>tabm 0\|norm gv<CR>
 
 nnoremap <Tab>t :<C-u>tabdo<Space>
 vnoremap <Tab>t :<C-u>tabdo\|norm gv<Space>
-
-" }}}
-
-" {{{ splits with <Tab>
-
-noremap <Tab>v :<C-u>vsplit<Space>
-noremap <silent> <Tab>V :<C-u>vsplit<CR>
-noremap <Tab>s :<C-u>split<Space>
-noremap <silent> <Tab>S :<C-u>split<CR>
-noremap <Tab>u :<C-u>botright split<Space>
-noremap <silent> <Tab>U :<C-u>botright split<CR>
-noremap <Tab>g :<C-u>botright vsplit<Space>
-noremap <silent> <Tab>G :<C-u>botright vsplit<CR>
 
 " }}}
 
@@ -212,8 +213,8 @@ nnoremap <Space>l :<C-u>args<CR>
 vnoremap <Space>l :<C-u>args\|norm gv<CR>
 noremap <Space>;l :<C-u>filter  args<C-Left><C-b>
 
-noremap <Space>e :<C-u>argument<Space>
-noremap <Space>E :<C-u>argument!<Space>
+noremap <Space>e :<C-u>Argument<Space>
+noremap <Space>E :<C-u>ArgumentE<Space>
 noremap <Space>o :<C-u>argedit<Space>
 noremap <Space>O :<C-u>argedit!<Space>
 nnoremap <Space>a :<C-u>argadd<CR>
@@ -231,6 +232,8 @@ noremap <silent> <Space>D :<C-u>if argc() == 1
             \ \| argdelete
             \ \| if argidx() == argc() - 1
             \ \| argument 1
+            \ \| else
+            \ \| next
             \ \| endif
             \ \| endif<CR>
 
@@ -291,6 +294,20 @@ vnoremap <Space><Space>G :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
 
 "}}}
 
+" {{{ splits with <Tab>
+" TODO B arg splits
+
+noremap <Tab>v :<C-u>vsplit<Space>
+noremap <silent> <Tab>V :<C-u>vsplit<CR>
+noremap <Tab>s :<C-u>split<Space>
+noremap <silent> <Tab>S :<C-u>split<CR>
+noremap <Tab>d :<C-u>botright split<Space>
+noremap <silent> <Tab>D :<C-u>botright split<CR>
+noremap <Tab>r :<C-u>botright vsplit<Space>
+noremap <silent> <Tab>R :<C-u>botright vsplit<CR>
+
+" }}}
+
 " {{{ <Space> list and help
 
 nnoremap <Space>ir :<C-u>registers<CR>
@@ -341,10 +358,11 @@ noremap <Space>m :<C-u>marks<CR>:normal `
 " {{{ other mappings
 
 " Select whole buffer without plugins
-vnoremap ae <Esc>gg0vG$
+" vnoremap ae <Esc>gg0vG$
+vnoremap ae gg0oG$
 " Not exact vie
-vnoremap ie <Esc>gg}{vG{}k$
-nnoremap yae mcggvG$y`c
+" vnoremap ie <Esc>gg}{vG{}k$
+nnoremap yae gg0vG$y`'
 
 " }}}
 
@@ -440,9 +458,9 @@ set hidden
 if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{ 
     set background=dark
     set hlsearch
-    noremap <Tab><Space> :setlocal hls!<CR>
-    noremap <Tab>qh :set hls!<CR>
+    nnoremap <Tab><Space> :setlocal hls!<CR>
+    vnoremap <Tab><Space> :setlocal hls!\|norm gv<CR>
+    nnoremap <Tab>qh :<C-u>set hls!<CR>
+    vnoremap <Tab>qh :<C-u>set hls!\|norm gv<CR>
 endif
 " }}}
-
-" TODO D more and better visual mappings

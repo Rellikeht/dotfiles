@@ -108,6 +108,7 @@ endfunction
 " and h j k l are e y n o
 
 let s:lay='qwe'
+" TODO confirmation / information 
 function! Wmt()
     if s:lay =~? 'wkm'
         source ~/.vim/qwerty.vim

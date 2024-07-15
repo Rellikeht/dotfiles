@@ -20,7 +20,7 @@ autocmd BufReadPost *
     \ | setlocal modeline
     \ | endif
 
-set shortmess=atsO
+set shortmess=atsOF
 " 2 is ugly and takes too much space
 set cmdheight=1
 
@@ -30,35 +30,37 @@ set cmdheight=1
 
 " {{{ some simple settings
 
-nnoremap <Leader><Space><Space> :setlocal hls!<CR>
-vnoremap <Leader><Space><Space> :setlocal hls!\|norm gv<CR>
-nnoremap <Leader>qen :set relativenumber!<CR>
-vnoremap <Leader>qen :set relativenumber!\|norm gv<CR>
-nnoremap <Leader>qeN :set number!<CR>
-vnoremap <Leader>qeN :set number!\|norm gv<CR>
-nnoremap <Leader>qeC :set cursorbind!<CR>
-vnoremap <Leader>qeC :set cursorbind!\|norm gv<CR>
-nnoremap <Leader>qep :set paste!<CR>
-vnoremap <Leader>qep :set paste!\|norm gv<CR>
+nnoremap <Leader><Space><Space> :<C-u>setlocal hls!<CR>
+vnoremap <Leader><Space><Space> :<C-u>setlocal hls!\|norm gv<CR>
+nnoremap <Leader>qen :<C-u>set relativenumber!<CR>
+vnoremap <Leader>qen :<C-u>set relativenumber!\|norm gv<CR>
+nnoremap <Leader>qeN :<C-u>set number!<CR>
+vnoremap <Leader>qeN :<C-u>set number!\|norm gv<CR>
+nnoremap <Leader>qeC :<C-u>set cursorbind!<CR>
+vnoremap <Leader>qeC :<C-u>set cursorbind!\|norm gv<CR>
+nnoremap <Leader>qep :<C-u>set paste!<CR>
+vnoremap <Leader>qep :<C-u>set paste!\|norm gv<CR>
 
 set cursorline
 
-nnoremap <Leader>qec :set cursorline!<CR>
-vnoremap <Leader>qec :set cursorline!\|norm gv<CR>
+nnoremap <Leader>qec :<C-u>set cursorline!<CR>
+vnoremap <Leader>qec :<C-u>set cursorline!\|norm gv<CR>
 
-" TODO confirmation maybe?
-nnoremap <Leader>qkw :call Wmt()<CR>
-vnoremap <Leader>qkw :call Wmt()\|norm gv<CR>
-nnoremap <silent> <Leader>qpm :call ToggleManProg()<CR>
-vnoremap <silent> <Leader>qpm :call ToggleManProg()\|norm gv<CR>
-nnoremap <Leader>qpM :set makeprg=make<CR>
-vnoremap <Leader>qpM :set makeprg=make\|norm gv<CR>
+nnoremap <Leader>qkw :<C-u>call Wmt()<CR>
+vnoremap <Leader>qkw :<C-u>call Wmt()\|norm gv<CR>
+nnoremap <silent> <Leader>qpm :<C-u>call ToggleManProg()<CR>
+vnoremap <silent> <Leader>qpm :<C-u>call ToggleManProg()\|norm gv<CR>
+nnoremap <Leader>qpM :<C-u>set makeprg=make<CR>
+vnoremap <Leader>qpM :<C-u>set makeprg=make\|norm gv<CR>
 
-nnoremap <Leader>qet :filetype detect<CR>
-vnoremap <Leader>qet :filetype detect\|norm gv<CR>
-noremap <Leader>qeT :set filetype=
-nnoremap <Leader>qeh :set hls!<CR>
-vnoremap <Leader>qeh :set hls!\|norm gv<CR>
+nnoremap <Leader>qet :<C-u>filetype detect<CR>
+vnoremap <Leader>qet :<C-u>filetype detect\|norm gv<CR>
+nnoremap <Leader>qeT :<C-u>set filetype=
+vnoremap <Leader>qeT 
+            \ :<C-u>set filetype= \|norm gv
+            \ <C-Left><C-Left><Left>
+nnoremap <Leader>qeh :<C-u>set hls!<CR>
+vnoremap <Leader>qeh :<C-u>set hls!\|norm gv<CR>
 
 " }}}
 
@@ -69,19 +71,19 @@ let g:bufcomp = 0
 autocmd FileType * let b:buffmt = g:buffmt
 autocmd FileType * let b:bufcomp = g:bufcomp
 
-nnoremap <Leader>qff :let b:buffmt=!b:buffmt<CR>
-vnoremap <Leader>qff :let b:buffmt=!b:buffmt\|norm gv<CR>
-nnoremap <Leader>qfF :let g:buffmt=!g:buffmt<CR>
-vnoremap <Leader>qfF :let g:buffmt=!g:buffmt\|norm gv<CR>
-nnoremap <Leader>qv1 :echo b:buffmt<CR>
-vnoremap <Leader>qv1 :echo b:buffmt\|norm gv<CR>
+nnoremap <Leader>qff :<C-u>let b:buffmt=!b:buffmt<CR>
+vnoremap <Leader>qff :<C-u>let b:buffmt=!b:buffmt\|norm gv<CR>
+nnoremap <Leader>qfF :<C-u>let g:buffmt=!g:buffmt<CR>
+vnoremap <Leader>qfF :<C-u>let g:buffmt=!g:buffmt\|norm gv<CR>
+nnoremap <Leader>qv1 :<C-u>echo b:buffmt<CR>
+vnoremap <Leader>qv1 :<C-u>echo b:buffmt\|norm gv<CR>
 
-nnoremap <Leader>qfc :let b:bufcomp=!b:bufcomp<CR>
-vnoremap <Leader>qfc :let b:bufcomp=!b:bufcomp\|norm gv<CR>
-nnoremap <Leader>qfC :let g:bufcomp=!g:bufcomp<CR>
-vnoremap <Leader>qfC :let g:bufcomp=!g:bufcomp\|norm gv<CR>
-nnoremap <Leader>qv2 :echo b:bufcomp<CR>
-vnoremap <Leader>qv2 :echo b:bufcomp\|norm gv<CR>
+nnoremap <Leader>qfc :<C-u>let b:bufcomp=!b:bufcomp<CR>
+vnoremap <Leader>qfc :<C-u>let b:bufcomp=!b:bufcomp\|norm gv<CR>
+nnoremap <Leader>qfC :<C-u>let g:bufcomp=!g:bufcomp<CR>
+vnoremap <Leader>qfC :<C-u>let g:bufcomp=!g:bufcomp\|norm gv<CR>
+nnoremap <Leader>qv2 :<C-u>echo b:bufcomp<CR>
+vnoremap <Leader>qv2 :<C-u>echo b:bufcomp\|norm gv<CR>
 
 "}}}
 
@@ -95,19 +97,19 @@ let g:vautowrite = 0
 autocmd FileType * let b:vautoread = g:vautoread
 autocmd FileType * let b:vautowrite = g:vautowrite
 
-nnoremap <Leader>qfr :call ToggleBuffer('autoread')<CR>
-vnoremap <Leader>qfr :call ToggleBuffer('autoread')\|norm gv<CR>
-nnoremap <Leader>qfR :let g:vautoread=!g:vautoread<CR>
-vnoremap <Leader>qfR :let g:vautoread=!g:vautoread\|norm gv<CR>
-nnoremap <Leader>qv3 :echo b:vautoread<CR>
-vnoremap <Leader>qv3 :echo b:vautoread\|norm gv<CR>
+nnoremap <Leader>qfr :<C-u>call ToggleBuffer('autoread')<CR>
+vnoremap <Leader>qfr :<C-u>call ToggleBuffer('autoread')\|norm gv<CR>
+nnoremap <Leader>qfR :<C-u>let g:vautoread=!g:vautoread<CR>
+vnoremap <Leader>qfR :<C-u>let g:vautoread=!g:vautoread\|norm gv<CR>
+nnoremap <Leader>qv3 :<C-u>echo b:vautoread<CR>
+vnoremap <Leader>qv3 :<C-u>echo b:vautoread\|norm gv<CR>
 
-nnoremap <Leader>qfw :call ToggleBuffer('autowrite')<CR>
-vnoremap <Leader>qfw :call ToggleBuffer('autowrite')\|norm gv<CR>
-nnoremap <Leader>qfW :let g:vautowrite=!g:vautowrite<CR>
-vnoremap <Leader>qfW :let g:vautowrite=!g:vautowrite\|norm gv<CR>
-nnoremap <Leader>qv4 :echo b:vautowrite<CR>
-vnoremap <Leader>qv4 :echo b:vautowrite\|norm gv<CR>
+nnoremap <Leader>qfw :<C-u>call ToggleBuffer('autowrite')<CR>
+vnoremap <Leader>qfw :<C-u>call ToggleBuffer('autowrite')\|norm gv<CR>
+nnoremap <Leader>qfW :<C-u>let g:vautowrite=!g:vautowrite<CR>
+vnoremap <Leader>qfW :<C-u>let g:vautowrite=!g:vautowrite\|norm gv<CR>
+nnoremap <Leader>qv4 :<C-u>echo b:vautowrite<CR>
+vnoremap <Leader>qv4 :<C-u>echo b:vautowrite\|norm gv<CR>
 
 " TODO
 " let g:autoupdate = 0
@@ -124,7 +126,7 @@ vnoremap <Leader>qv4 :echo b:vautowrite\|norm gv<CR>
 let g:autochdir = 0
 silent! call ToggleAutochdir()
 
-nnoremap <Leader>qca :call ToggleAutochdir()<CR>
-vnoremap <Leader>qca :call ToggleAutochdir()\|norm gv<CR>
+nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
+vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 
 " }}}

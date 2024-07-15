@@ -13,10 +13,15 @@ noremap <C-h> <C-]>
 "}}}
 
 "{{{ TODO Tags
+" TODO What the fuck is happening here
 
-noremap <silent> <Leader>jts :ts<CR>
-noremap <silent> <Leader>jth :sts<CR>
-noremap <silent> <Leader>jtv :vert sts<CR>
+noremap <silent> <Space>jj :<C-u>tjump<CR>
+noremap <silent> <Space>js :<C-u>stjump<CR>
+noremap <silent> <Space>jv :<C-u>vert stjump<CR>
+
+noremap <silent> <Space><Space>jj :<C-u>tjump<Space>
+noremap <silent> <Space><Space>js :<C-u>stjump<Space>
+noremap <silent> <Space><Space>jv :<C-u>vert stjump<Space>
 
 " }}}
 
@@ -120,23 +125,25 @@ vnoremap <Space>i<Space>m
 " TODO add more commands
 
 " General purpose leader mappings
-noremap <Leader>;l :!ls<CR>
-noremap <Leader>;m :make<CR>
-noremap <Leader>;M :make<Space>
+noremap <Leader>;l :<C-u>!ls<CR>
 
 " pwd
-nnoremap <Leader>;c :silent! lcd %:p:h<CR>
-vnoremap <Leader>;c :silent! lcd %:p:h\|norm gv<CR>
-nnoremap <Leader>;p :silent! cd %:p:h<CR>
-vnoremap <Leader>;p :silent! cd %:p:h\|norm gv<CR>
-noremap <Leader>;C :lcd<Space>
-noremap <Leader>;P :cd<Space>
+nnoremap <Leader>;c :<C-u>silent! lcd %:p:h<CR>
+vnoremap <Leader>;c :<C-u>silent! lcd %:p:h\|norm gv<CR>
+nnoremap <Leader>;p :<C-u>silent! cd %:p:h<CR>
+vnoremap <Leader>;p :<C-u>silent! cd %:p:h\|norm gv<CR>
+nnoremap <Leader>;C :<C-u>lcd<Space>
+vnoremap <Leader>;C :<C-u>lcd \|norm gv
+            \ <C-Left><C-Left><Left>
+nnoremap <Leader>;P :<C-u>cd<Space>
+vnoremap <Leader>;P :<C-u>cd \|norm gv
+            \ <C-Left><C-Left><Left>
 
 " Not the best, but should work
-noremap <silent> <Leader>;wc mCggvG$:w !wc<CR>
+noremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
 
-nnoremap <Leader>;d :pwd<CR>
-vnoremap <Leader>;d :pwd\|norm gv<CR>
+nnoremap <Leader>;d :<C-u>pwd<CR>
+vnoremap <Leader>;d :<C-u>pwd\|norm gv<CR>
 
 " ???
 " map <Leader>;r :!%<CR>
