@@ -45,9 +45,9 @@ __prompt_command() {
     PS1+="${LMAGENTA}\w${RESET}"
 
     if [ "$EXT" != 0 ]; then
-        PS1+="${RED}"
+        PS1+="${LRED}"
     else
-        PS1+="${GREEN}"
+        PS1+="${LGREEN}"
     fi
 
     PS1+="[$EXT]${RESET}"

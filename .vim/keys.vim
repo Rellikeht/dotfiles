@@ -156,7 +156,6 @@ vnoremap <Leader>;d :<C-u>pwd\|norm gv<CR>
 
 let g:qfloc = 0
 
-" TODO better messages
 nnoremap .t :<C-u>let g:qfloc = !g:qfloc
             \ \| echo 'Quickfix is now ' . 
             \ (g:qfloc ? 'local' : 'global')<CR>
@@ -173,49 +172,90 @@ vnoremap .q :<C-u> echo 'Quickfix is now ' .
 
 "}}}
 
+"{{{ helpers
+
+function QuickFixToggle()
+    let g:qfloc = !g:qfloc
+    echo 'Quickfix is now ' . (g:qfloc ? 'local' : 'global')
+    if q:qfloc
+        nnoremap <silent> .d :<C-u>ldo<Space>
+        vnoremap <silent> .d :<C-u>ldo  \|norm gv
+                    \ <C-Left><C-Left><Left>
+        nnoremap <silent> .a :<C-u>lfdo<Space>
+        vnoremap <silent> .a :<C-u>lfdo  \|norm gv
+                    \ <C-Left><C-Left><Left>
+        nnoremap <silent> .D :<C-u>ldo!<Space>
+        vnoremap <silent> .D :<C-u>ldo!  \|norm gv
+                    \ <C-Left><C-Left><Left>
+        nnoremap <silent> .A :<C-u>lfdo!<Space>
+        vnoremap <silent> .A :<C-u>lfdo!  \|norm gv
+                    \ <C-Left><C-Left><Left>
+
+        noremap .f :<C-u>Lfilter //<Left>
+        noremap .F :<C-u>Lfilter! //<Left>
+    else
+
+        nnoremap <silent> .d :<C-u>cdo<Space>
+        vnoremap <silent> .d :<C-u>cdo  \|norm gv
+                    \ <C-Left><C-Left><Left>
+        nnoremap <silent> .a :<C-u>cfdo<Space>
+        vnoremap <silent> .a :<C-u>cfdo  \|norm gv
+                    \ <C-Left><C-Left><Left>
+        nnoremap <silent> .D :<C-u>cdo!<Space>
+        vnoremap <silent> .D :<C-u>cdo!  \|norm gv
+                    \ <C-Left><C-Left><Left>
+        nnoremap <silent> .A :<C-u>cfdo!<Space>
+        vnoremap <silent> .A :<C-u>cfdo!  \|norm gv
+                    \ <C-Left><C-Left><Left>
+
+        noremap .f :<C-u>Cfilter //<Left>
+        noremap .F :<C-u>Cfilter! //<Left>
+    endif
+endfunction
+
+"}}}
+
 "{{{ movement
 
 noremap <silent> .j
             \ :<C-u>call QFcmd('n', v:count1)<CR>
 noremap <silent> .k
             \ :<C-u>call QFcmd('p', v:count1)<CR>
-nnoremap <silent> .n
+noremap <silent> .n
             \ :<C-u>call QFcmd('nf', v:count1)<CR>
-nnoremap <silent> .p
+noremap <silent> .p
             \ :<C-u>call QFcmd('pf', v:count1)<CR>
-nnoremap <silent> .c
+noremap <silent> .g
             \ :<C-u>call QFsel('cc', 'll', v:count1)<CR>
 
-nnoremap <silent> .0 :<C-u>call QFcmd('first')<CR>
-nnoremap <silent> .$ :<C-u>call QFcmd('last')<CR>
+noremap <silent> .0 :<C-u>call QFcmd('first')<CR>
+noremap <silent> .$ :<C-u>call QFcmd('last')<CR>
+noremap <silent> .G :<C-u>call QFcmd('bottom')<CR>
 
 nnoremap <silent> .<
             \ :<C-u>call QFcmd('older '.v:count1)<CR>
 nnoremap <silent> .>
             \ :<C-u>call QFcmd('newer '.v:count1)<CR>
-nnoremap <silent> .b :<C-u>call QFcmd('bottom')<CR>
-nnoremap <silent> .r :<C-u>call QFcmd('rewind '.v:count1)<CR>
-
 vnoremap <silent> .<
             \ :<C-u>call QFcmd('older '.v:count1)
             \ \| normal gv<CR>
 vnoremap <silent> .>
             \ :<C-u>call QFcmd('newer '.v:count1)
             \ \| normal gv<CR>
-vnoremap <silent> .b :<C-u>call QFcmd('bottom')
-            \ \| normal gv<CR>
-vnoremap <silent> .r :<C-u>call QFcmd('rewind '.v:count1)
-            \ \| normal gv<CR>
 
 "}}}
 
 "{{{  actions
 
+" noremap <silent> .w :<C-u>call QFcmd('window')<CR>
+noremap <silent> .e :<C-u>call QFcmd('window')<CR>
+noremap <silent> <C-w>.<Space>
+            \ :<C-u>call QFcmd('open')<CR><C-w>T
+
+noremap .l :<C-u>call QFcmd('history')<CR>
+
 nnoremap <silent> .<Space> :<C-u>call NToggleQuickFix()<CR>
 vnoremap <silent> .<Space> :<C-u>call VToggleQuickFix()<CR>
-noremap <silent> .w :<C-u>call QFcmd('window')<CR>
-noremap <silent> .o :<C-u>call QFcmd('do')<CR>
-noremap <silent> .f :<C-u>call QFcmd('do')<CR>
 
 "}}}
 
@@ -234,7 +274,7 @@ augroup Quickfix "{{{
                 \ QFcmd('p', '-'.v:count1.' \| '.v:count1)
                 \ \| wincmd p<CR>
                 \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR>
-                \ | nnoremap <buffer> <silent> <C-h> <CR>:call QFcmd('close')<CR>
+                " \ | nnoremap <buffer> <silent> <C-h> <CR>:call QFcmd('close')<CR>
 
 augroup END "}}}
 
@@ -242,8 +282,8 @@ augroup END "}}}
 
 "{{{ Matchit
 
-noremap <Leader>{ [%
-noremap <Leader>} ]%
+noremap <Space>{ [%
+noremap <Space>} ]%
 
 "}}}
 

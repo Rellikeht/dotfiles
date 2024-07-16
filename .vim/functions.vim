@@ -30,10 +30,6 @@ endfunction
 
 "{{{ commands
 
-command! -nargs=+ Silent
-            \   execute 'silent! <args>'
-            \   | redraw!
-
 command! We write | sleep 500 m | edit
 
 "}}}

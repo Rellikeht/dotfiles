@@ -132,6 +132,8 @@ nnoremap <Leader>qcp :ContextPeek<CR>
 nnoremap <Leader>qct :ContextToggle<CR>
 nnoremap <Leader>qcw :ContextToggleWindow<CR>
 
+autocmd FileType qf ContextDisableWindow
+
 "}}}
 
 "{{{ TODO D emmet

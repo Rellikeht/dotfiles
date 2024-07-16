@@ -13,6 +13,8 @@ syntax on
 syntax reset
 
 packadd! matchit
+packadd! cfilter
+
 runtime macros/matchit.vim
 runtime! ftplugin/man.vim
 

@@ -6,6 +6,10 @@ command! -nargs=1 -complete=arglist Argument
 command! -nargs=1 -complete=arglist ArgumentE
             \ argument! <args> | argdedupe
 
+command! -nargs=+ Silent
+            \   execute 'silent! <args>'
+            \   | redraw!
+
 "}}}
 
 " {{{ basic mappings
@@ -33,6 +37,9 @@ noremap g+ v<C-a>
 noremap g- v<C-x>
 vnoremap + <C-a>
 vnoremap - <C-x>
+
+noremap <Space><Esc> <Nop>
+noremap .<Esc> <Nop>
 
 " }}}
 
