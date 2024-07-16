@@ -121,20 +121,20 @@ noremap <silent> <Leader>nf :Neoformat<CR>
 noremap <Leader>nF :Neoformat<Space>
 "}}}
 
-"{{{ context
-
-" TODO B sane settings
-" :(
-" too annoying
-let g:context_enabled = 0
-
-nnoremap <Leader>qcp :ContextPeek<CR>
-nnoremap <Leader>qct :ContextToggle<CR>
-nnoremap <Leader>qcw :ContextToggleWindow<CR>
-
-autocmd FileType qf ContextDisableWindow
-
-"}}}
+""{{{ context
+"
+"" TODO B sane settings
+"" :(
+"" too annoying
+"let g:context_enabled = 0
+"
+"nnoremap <Leader>qcp :ContextPeek<CR>
+"nnoremap <Leader>qct :ContextToggle<CR>
+"nnoremap <Leader>qcw :ContextToggleWindow<CR>
+"
+"autocmd FileType qf ContextDisableWindow
+"
+""}}}
 
 "{{{ TODO D emmet
 "}}}

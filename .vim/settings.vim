@@ -10,7 +10,7 @@ autocmd VimEnter * arglocal!
 let g:cur_name = expand('%:~')
 let g:pathshorten = 4
 
-set secure
+" set secure
 " shitty, but works somehow
 autocmd BufReadPost *
     \ if &ft == ""

@@ -365,11 +365,11 @@ noremap <Space>m :<C-u>marks<CR>:normal `
 " {{{ other mappings
 
 " Select whole buffer without plugins
-" vnoremap ae <Esc>gg0vG$
-vnoremap ae gg0oG$
+" vnoremap a% <Esc>gg0vG$
+vnoremap a% gg0oG$
 " Not exact vie
-" vnoremap ie <Esc>gg}{vG{}k$
-nnoremap yae gg0vG$y`'
+" vnoremap i% <Esc>gg}{vG{}k$
+nnoremap ya% gg0vG$y`'
 
 " }}}
 

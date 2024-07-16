@@ -1,8 +1,10 @@
 ---@diagnostic disable: undefined-global, missing-fields
 local tsconfig = require("nvim-treesitter.configs")
+-- TODO there is so much of that shit
+
 tsconfig.setup(
   {
-    ensure_installed = {
+    ensure_installed = { -- {{{
       "lua",
       "vim",
       "vimdoc",
@@ -62,7 +64,9 @@ tsconfig.setup(
       "fortran",
       "perl",
       "asm",
-    },
+    }, -- }}}
+
+    -- {{{ some settings
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -80,7 +84,9 @@ tsconfig.setup(
 
     indent = {enable = true},
 
-    highlight = {
+    -- }}}
+
+    highlight = { -- {{{
       enable = true,
 
       -- ????
@@ -104,28 +110,69 @@ tsconfig.setup(
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
       -- Instead of true it can also be a list of languages
       additional_vim_regex_highlighting = false,
-    },
+    }, -- }}}
 
     textobjects = {
 
-      lsp_interop = {
+      lsp_interop = { -- {{{
         enable = true,
         border = "none",
         floating_preview_opts = {},
-        peek_definition_code = {
+
+        peek_definition_code = { -- {{{
+          -- TODO ??
           ["<leader>Df"] = "@function.outer",
           ["<leader>DF"] = "@class.outer",
-        },
-      },
+        }, -- }}}
+      }, -- }}}
 
-      select = {
+      select = { -- {{{
+        -- {{{
         enable = true,
         lookahead = true,
+        -- }}}
 
-        keymaps = {
+        keymaps = { -- {{{
           -- You can use the capture groups defined in textobjects.scm
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
+          ["aF"] = "@method.outer",
+          ["iF"] = "@method.inner",
+
+          ["ai"] = "@conditional.outer",
+          ["ii"] = "@conditional.inner",
+
+          ["aa"] = "@parameter.outer",
+          ["ia"] = "@parameter.inner",
+
+          ["am"] = "@macro.outer",
+          ["im"] = "@macro.inner",
+          ["aM"] = "@define.outer",
+          ["iM"] = "@define.inner",
+
+          ["a#"] = "@comment.outer",
+          ["i#"] = "@comment.inner",
+          ["a\""] = "@string.outer",
+          ["i\""] = "@string.inner",
+
+          ["al"] = "@loop.outer",
+          ["il"] = "@loop.inner",
+          ["aL"] = "@repeat.outer",
+          ["iL"] = "@repeat.inner",
+
+          ["ae"] = "@exception.outer",
+          ["ie"] = "@exception.inner",
+
+          ["an"] = "@namespace.outer",
+          ["in"] = "@namespace.inner",
+          ["aN"] = "@include.outer",
+          ["iN"] = "@include.inner",
+
+          ["aj"] = "@type.outer",
+          ["ij"] = "@type.inner",
+          ["aJ"] = "@type.definition.outer",
+          ["iJ"] = "@type.definition.inner",
+
           ["ac"] = "@class.outer",
           -- You can optionally set descriptions to the mappings (used in the desc parameter of
           -- nvim_buf_set_keymap) which plugins like which-key display
@@ -133,14 +180,18 @@ tsconfig.setup(
             query = "@class.inner",
             desc = "Select inner part of a class region",
           },
+          ["aC"] = "@constructor.outer",
+          ["iC"] = "@constructor.inner",
+
           -- You can also use captures from other query groups like `locals.scm`
-          ["as"] = {
+          ["a;"] = {
             query = "@scope",
             query_group = "locals",
             desc = "Select language scope",
           },
-        },
+        }, -- }}}
 
+        -- {{{
         -- You can choose the select mode (default is charwise 'v')
         --
         -- Can also be a function which gets passed a table with the keys
@@ -148,12 +199,15 @@ tsconfig.setup(
         -- * method: eg 'v' or 'o'
         -- and should return the mode ('v', 'V', or '<c-v>') or a table
         -- mapping query_strings to modes.
-        selection_modes = {
+        -- }}}
+
+        selection_modes = { -- {{{
           ["@parameter.outer"] = "v", -- charwise
           ["@function.outer"] = "V", -- linewise
           ["@class.outer"] = "<c-v>", -- blockwise
-        },
+        }, -- }}}
 
+        -- {{{
         -- If you set this to `true` (default is `false`) then any textobject is
         -- extended to include preceding or succeeding whitespace. Succeeding
         -- whitespace has priority in order to act similarly to eg the built-in
@@ -164,21 +218,37 @@ tsconfig.setup(
         -- * selection_mode: eg 'v'
         -- and should return true or false
         include_surrounding_whitespace = true,
-      },
-      move = {
+        -- }}}
+      }, -- }}}
+
+      move = { -- {{{
+
+        -- {{{
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
+        -- }}}
+
         goto_next_start = {
+          -- {{{
+
           ["]m"] = "@function.outer",
           ["]]"] = {
             query = "@class.outer",
             desc = "Next class start",
           },
-          --
+
+          -- }}}
+
+          -- {{{
+
           -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
           ["]o"] = "@loop.*",
           -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
-          --
+
+          -- }}}
+
+          -- {{{
+
           -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
           -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
           ["]s"] = {
@@ -186,34 +256,52 @@ tsconfig.setup(
             query_group = "locals",
             desc = "Next scope",
           },
+
           ["]z"] = {
             query = "@fold",
             query_group = "folds",
             desc = "Next fold",
           },
+
+          -- }}}
         },
-        goto_next_end = {
+
+        goto_next_end = { -- {{{
           ["]M"] = "@function.outer",
           ["]["] = "@class.outer",
-        },
-        goto_previous_start = {
+        }, -- }}}
+
+        goto_previous_start = { -- {{{
           ["[m"] = "@function.outer",
           ["[["] = "@class.outer",
-        },
-        goto_previous_end = {
+        }, -- }}}
+
+        goto_previous_end = { -- {{{
           ["[M"] = "@function.outer",
           ["[]"] = "@class.outer",
-        },
+        }, -- }}}
+
+        -- {{{
         -- Below will go to either the start or the end, whichever is closer.
         -- Use if you want more granular movements
         -- Make it even more gradual by adding multiple queries and regex.
         goto_next = {["]d"] = "@conditional.outer"},
         goto_previous = {["[d"] = "@conditional.outer"},
-      },
+      }, -- }}}}}}
     },
   }
 )
 
+-- {{{ setting maps
+-- TODO more
+
 vim.keymap.set(
-  {"n", "v"}, "<Leader>DQ", ":TSToggle highlight<CR>"
+  {"n"}, "<Leader>dqt", ":<C-u>TSToggle highlight<CR>",
+  {noremap = true}
 )
+vim.keymap.set(
+  {"v"}, "<Leader>dqt", ":<C-u>TSToggle highlight|norm gv<CR>",
+  {noremap = true}
+)
+
+-- }}}

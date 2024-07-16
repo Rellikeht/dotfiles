@@ -49,8 +49,11 @@ Plug 'lfilho/cosco.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch' " TODO A incorporate this into programming.vim
 
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-scripts/argtextobj.vim'
+
 " Do I need this ?
-Plug 'wellle/context.vim'
+" Plug 'wellle/context.vim'
 
 "}}}
 
