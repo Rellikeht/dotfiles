@@ -1,14 +1,24 @@
 "{{{ helpers
 
 command! -nargs=1 -complete=arglist Argument 
-            \ argument <args> | argdedupe
+            \ argument <args>
 
 command! -nargs=1 -complete=arglist ArgumentE
-            \ argument! <args> | argdedupe
+            \ argument! <args>
 
 command! -nargs=+ Silent
             \   execute 'silent! <args>'
             \   | redraw!
+
+" Nope
+" command! -nargs=1 -complete=arglist Vargument
+"             \ vertical argument <args>
+" command! -nargs=1 -complete=arglist Hargument
+"             \ horizontal argument <args>
+" command! -nargs=1 -complete=arglist Dargument
+"             \ botright vertical argument <args>
+" command! -nargs=1 -complete=arglist Rargument
+"             \ botright horizontal argument <args>
 
 "}}}
 
@@ -302,7 +312,6 @@ vnoremap <Space><Space>G :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
 "}}}
 
 " {{{ splits with <Tab>
-" TODO B arg splits
 
 noremap <Tab>v :<C-u>vsplit<Space>
 noremap <silent> <Tab>V :<C-u>vsplit<CR>
@@ -312,6 +321,12 @@ noremap <Tab>d :<C-u>botright split<Space>
 noremap <silent> <Tab>D :<C-u>botright split<CR>
 noremap <Tab>r :<C-u>botright vsplit<Space>
 noremap <silent> <Tab>R :<C-u>botright vsplit<CR>
+
+" Doesn't work
+" noremap <Space>sv :<C-u>Vargument<Space>
+" noremap <Space>ss :<C-u>Hargument<Space>
+" noremap <Space>sd :<C-u>Dargument<Space>
+" noremap <Space>sr :<C-u>Rargument<Space>
 
 " }}}
 
@@ -365,10 +380,7 @@ noremap <Space>m :<C-u>marks<CR>:normal `
 " {{{ other mappings
 
 " Select whole buffer without plugins
-" vnoremap a% <Esc>gg0vG$
 vnoremap a% gg0oG$
-" Not exact vie
-" vnoremap i% <Esc>gg}{vG{}k$
 nnoremap ya% gg0vG$y`'
 
 " }}}
@@ -377,11 +389,11 @@ nnoremap ya% gg0vG$y`'
 
 " {{{ completion
 
-" What happens here
 set wildchar=<Tab>
 set wildmode=list:longest,full
 set wildoptions=fuzzy,tagfile,pum
 set wildmenu
+set wildignore+=*.o,*.elf,*.bin,*.dll,*.so
 
 set completeopt=menu,menuone,noselect,noinsert,preview
 set complete=w,b,s,i,d,t,.,k

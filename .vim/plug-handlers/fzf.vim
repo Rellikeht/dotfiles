@@ -1,8 +1,5 @@
-" TODO A arguments, local arguments
 " TODO A make this help with new setup
 " TODO B multiple selections
-" TODO C which can be in visual
-" TODO D <C-w> (tab) versions
 
 "{{{ settings
 
@@ -17,6 +14,8 @@ let g:fzf_vim = {}
 
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
 
 "}}}
 
@@ -84,64 +83,79 @@ imap <c-x>p <plug>(fzf-complete-path)
 imap <c-x>l <plug>(fzf-complete-line)
 
 " Not needed really
-nnoremap <leader>sff :FZF<CR>
+noremap <leader>sff :<C-u>FZF<CR>
 
-nnoremap <leader>slf :Files<CR>
-nnoremap <leader>slF :Files<Space>
-nnoremap <leader>sls :Locate<Space>
-nnoremap <leader>sla :Ag<CR>
-nnoremap <leader>slA :Ag<Space>
-
-"}}}
-
-"{{{ file mappings
-
-nnoremap <leader>sp1 :Files ..<CR>
-nnoremap <leader>sp2 :Files ../..<CR>
-nnoremap <leader>sp3 :Files ../../..<CR>
-nnoremap <leader>sp4 :Files ../../../..<CR>
-nnoremap <leader>sp5 :Files ../../../../..<CR>
-nnoremap <leader>sp6 :Files ../../../../../..<CR>
-nnoremap <leader>sp7 :Files ../../../../../../..<CR>
-nnoremap <leader>sp8 :Files ../../../../../../../..<CR>
-nnoremap <leader>sp9 :Files ../../../../../../../../..<CR>
-
-nnoremap <leader>sph :Files ~<CR>
-nnoremap <leader>spt :Files ~/Templates<CR>
-nnoremap <leader>spd :Files ~/Dbackup<CR>
-nnoremap <leader>spD :Files ~/Downloads<CR>
-nnoremap <leader>spf :Files ~/Documents<CR>
-nnoremap <leader>spe :Files /etc<CR>
-nnoremap <leader>spg :Files ~/gits<CR>
+noremap <leader>slf :<C-u>Files<CR>
+noremap <leader>sl<Space>f :<C-u>Files<Space>
+noremap <leader>sls :<C-u>Locate<Space>
+noremap <leader>sla :<C-u>Ag<CR>
+noremap <leader>sl<Space>a :<C-u>Ag<Space>
 
 "}}}
 
 "{{{ fzf-vim additional mappings
 
-nnoremap <leader>slb :BLines<CR>
-nnoremap <leader>slB :BLines<Space>
-nnoremap <leader>sll :Lines<CR>
-nnoremap <leader>slL :Lines<Space>
+nnoremap <leader>slb :<C-u>BLines<CR>
+nnoremap <leader>sl<Space>b :<C-u>BLines<Space>
+nnoremap <leader>sll :<C-u>Lines<CR>
+nnoremap <leader>sl<Space>l :<C-u>Lines<Space>
 
-nnoremap <leader>shh :History<CR>
-nnoremap <leader>shc :Changes<CR>
-nnoremap <leader>sh/ :History/<CR>
-nnoremap <leader>sh: :History:<CR>
-nnoremap <leader>shC :Commits<CR>
-nnoremap <leader>shm :Marks<CR>
+nnoremap <leader>shh :<C-u>History<CR>
+nnoremap <leader>sh/ :<C-u>History/<CR>
+nnoremap <leader>sh: :<C-u>History:<CR>
+nnoremap <leader>shf :<C-u>Changes<CR>
+nnoremap <leader>shc :<C-u>Commits<CR>
+nnoremap <leader>shm :<C-u>Marks<CR>
 
-nnoremap <leader>s;f :Buffers<CR>
-nnoremap <leader>s;m :Maps<CR>
-nnoremap <leader>s;H :Helptags<CR>
-nnoremap <leader>s;w :Windows<CR>
-nnoremap <leader>s;j :Jumps<CR>
+nnoremap <leader>s;f :<C-u>Buffers<CR>
+nnoremap <leader>s;m :<C-u>Maps<CR>
+nnoremap <leader>s;H :<C-u>Helptags<CR>
+nnoremap <leader>s;w :<C-u>Windows<CR>
+nnoremap <leader>s;j :<C-u>Jumps<CR>
 
-nnoremap <leader>gff :GFiles<CR>
-nnoremap <leader>gfs :GFiles?<CR>
+nnoremap <leader>gff :<C-u>GFiles<CR>
+nnoremap <leader>gfs :<C-u>GFiles?<CR>
 
 "}}}
 
-"{{{ custom commands
+"{{{ custom greps
+
+let grep_args = '-EI --line-number'
+
+command! -bang -nargs=* Fgrep
+            \ call fzf#vim#grep(
+            \ "grep ".grep_args."  --dereference-recursive -- "
+            \ .fzf#shellescape(<q-args>),
+            \ fzf#vim#with_preview(),
+            \ <bang>0
+            \ )
+
+" From official instructions
+command! -bang -nargs=* GGrep
+            \ call fzf#vim#grep(
+            \   'git grep '.grep_args.' --recursive -- '.fzf#shellescape(<q-args>),
+            \   fzf#vim#with_preview(
+            \      {'dir': systemlist('git rev-parse --show-toplevel')[0]}
+            \   ), <bang>0)
+
+command! -bang -nargs=* Ah 
+            \ call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=* Au 
+            \ call fzf#vim#ag(<q-args>, '--unrestricted', fzf#vim#with_preview(), <bang>0)
+
+nnoremap <leader>slp :Fgrep<CR>
+nnoremap <leader>sl<Space>p :Fgrep<Space>
+nnoremap <leader>slg :GGrep<CR>
+nnoremap <leader>sl<Space>g :GGrep<Space>
+nnoremap <leader>slh :Ah<CR>
+nnoremap <leader>sl<Space>h :Ah<Space>
+nnoremap <leader>slu :Au<CR>
+nnoremap <leader>sl<Space>u :Au<Space>
+
+"}}}
+
+"{{{ custom diffs
 
 " TODO preview like in other commands (probably impossible)
 command! -bang -nargs=? -complete=dir Fdiffs
@@ -171,53 +185,89 @@ command! -bang -nargs=? -complete=dir Fdiffv
             \ <bang>0)
             \ )
 
-let grep_args = '-EI --line-number'
-
-command! -bang -nargs=* Fgrep
-            \ call fzf#vim#grep(
-            \ "grep ".grep_args."  --dereference-recursive -- "
-            \ .fzf#shellescape(<q-args>),
-            \ fzf#vim#with_preview(),
-            \ <bang>0
-            \ )
-
-" From official instructions
-command! -bang -nargs=* GGrep
-            \ call fzf#vim#grep(
-            \   'git grep '.grep_args.' --recursive -- '.fzf#shellescape(<q-args>),
-            \   fzf#vim#with_preview(
-            \      {'dir': systemlist('git rev-parse --show-toplevel')[0]}
-            \   ), <bang>0)
-
-command! -bang -nargs=* Ah 
-            \ call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
-
-command! -bang -nargs=* Au 
-            \ call fzf#vim#ag(<q-args>, '--unrestricted', fzf#vim#with_preview(), <bang>0)
-
-command! -bang Args call fzf#run(fzf#wrap('args',
-    \ {'source': map([argidx()]+(argidx()==0?[]:range(argc())[0:argidx()-1])+range(argc())[argidx()+1:], 'argv(v:val)')}, <bang>0))
+nnoremap <leader>sds :Fdiffs<CR>
+nnoremap <leader>sd<Space>s :Fdiffs<Space>
+nnoremap <leader>sdv :Fdiffv<CR>
+nnoremap <leader>sd<Space>v :Fdiffv<Space>
 
 "}}}
 
-"{{{ custom command mappings
+"{{{ arglist
 
-nnoremap <leader>sds :Fdiffs<CR>
-nnoremap <leader>sdS :Fdiffs<Space>
-nnoremap <leader>sdv :Fdiffv<CR>
-nnoremap <leader>sdV :Fdiffv<Space>
+"{{{ select from arglist
 
-nnoremap <leader>slp :Fgrep<CR>
-nnoremap <leader>slP :Fgrep<Space>
-nnoremap <leader>slg :GGrep<CR>
-nnoremap <leader>slG :GGrep<Space>
-nnoremap <leader>slh :Ah<CR>
-nnoremap <leader>slH :Ah<Space>
-nnoremap <leader>slu :Au<CR>
-nnoremap <leader>slU :Au<Space>
+command! -bang Args call fzf#run(fzf#wrap('args',
+    \ {'source': map(
+    \ [argidx()]+
+    \ (argidx()==0?[]:range(argc())[0:argidx()-1])+
+    \ range(argc())[argidx()+1:], 'argv(v:val)')}, <bang>0))
 
 nnoremap <leader>sfa :Args<CR>
-nnoremap <leader>sfA :Args<Space>
+nnoremap <leader>sf<Space>a :Args<Space>
+
+"}}}
+
+"{{{ arglist single
+
+command! -bang -nargs=? -complete=dir ArgeditFzf 
+            \ call fzf#run({
+            \ 'sink': 'argedit',
+            \ })
+
+nnoremap <leader>slo :ArgeditFzf<CR>
+nnoremap <leader>sl<Space>o :ArgeditFzf<Space>
+
+"}}}
+
+"{{{
+" Not ideal, but should be good enough
+
+command! -bang -nargs=? -complete=dir MArgeditFzf 
+            \ call fzf#run({
+            \ 'sink': 'argedit',
+            \ 'options': '--multi',
+            \ })
+
+nnoremap <leader>slm :MArgeditFzf<CR>
+nnoremap <leader>sl<Space>m :MArgeditFzf<Space>
+
+"}}}
+
+"}}}
+
+"{{{ dirs mappings
+
+function PathMap(key, path)
+    exe 'noremap <leader>sp'.a:key.
+                \ ' :<C-u>Files '.a:path.'<CR>'
+    exe 'noremap <leader>sa'.a:key.
+                \ ' :<C-u>Args '.a:path.'<CR>'
+    exe 'noremap <leader>sm'.a:key.
+                \ ' :<C-u>MArgs '.a:path.'<CR>'
+endfunction
+
+let paths = {
+            \ '1':'..',
+            \ '2':'../..',
+            \ '3':'../../..',
+            \ '4':'../../../..',
+            \ '5':'../../../../..',
+            \ '6':'../../../../../..',
+            \ '7':'../../../../../../..',
+            \ '8':'../../../../../../../..',
+            \ '9':'../../../../../../../../..',
+            \ 'h':'~',
+            \ 't':'~/Templates',
+            \ 'd':'~/Dbackup',
+            \ 'D':'~/Downloads',
+            \ 'f':'~/Documents',
+            \ 'e':'/etc',
+            \ 'g':'~/gits',
+            \ }
+
+for key in keys(paths)
+    call PathMap(key, paths[key])
+endfor
 
 "}}}
 
@@ -253,3 +303,4 @@ let g:fzf_action = {
             \ }
 
 "}}}
+

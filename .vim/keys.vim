@@ -12,7 +12,8 @@ noremap <C-h> <C-]>
 
 "}}}
 
-"{{{ TODO Tags
+"{{{ tags
+" TODO polish that
 " TODO What the fuck is happening here
 
 noremap <silent> <Space>jj :<C-u>tjump<CR>
@@ -23,9 +24,32 @@ noremap <silent> <Space><Space>jj :<C-u>tjump<Space>
 noremap <silent> <Space><Space>js :<C-u>stjump<Space>
 noremap <silent> <Space><Space>jv :<C-u>vert stjump<Space>
 
+noremap <silent> <Space>j<Space>t :<C-u>tag<Space>
+noremap <silent> <Space>jt :<C-u>exe v:count1.'tag'<CR>
+noremap <silent> <Space>j;t :<C-u>exe v:count1.'tag!'<CR>
+noremap <silent> <Space>jp :<C-u>exe v:count1.'pop'<CR>
+noremap <silent> <Space>j;p :<C-u>exe v:count1.'pop!'<CR>
+
+noremap <silent> <Space>jn :<C-u>exe v:count1.'tnext'<CR>
+noremap <silent> <Space>j;n :<C-u>exe v:count1.'tnext!'<CR>
+noremap <silent> <Space>jp :<C-u>exe v:count1.'tprevious'<CR>
+noremap <silent> <Space>j;p :<C-u>exe v:count1.'tprevious!'<CR>
+
+noremap <silent> <Space>j0 :<C-u>tfirst<CR>
+noremap <silent> <Space>j;0 :<C-u>tfirst!<CR>
+noremap <silent> <Space>j$ :<C-u>tlast<CR>
+noremap <silent> <Space>j;$ :<C-u>tlast!<CR>
+
+noremap <silent> <Space>ja :<C-u>ltag<Space>
+noremap <silent> <Space>j;a :<C-u>ltag!<Space>
+
 " }}}
 
-"{{{ Better tab
+"{{{ TODO preview window
+
+"}}}
+
+"{{{ better tab
 
 noremap <silent> <Tab>k K<C-w>T
 
@@ -280,7 +304,7 @@ augroup END "}}}
 
 "}}}
 
-"{{{ Matchit
+"{{{ matchit
 
 noremap <Space>{ [%
 noremap <Space>} ]%
@@ -314,3 +338,4 @@ inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<TAB>"
 "nmap <silent> <Leader>W bvw"cy:execute "!" . getreg('c')<CR>
 
 "}}}
+
