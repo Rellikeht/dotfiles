@@ -55,7 +55,7 @@ noremap <silent> <Space>t<Space>A :<C-u>ltag!<Space>
 
 " }}}
 
-"{{{ preview window
+"{{{ TODO C preview window
 
 "}}}
 
