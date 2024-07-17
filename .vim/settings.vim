@@ -14,10 +14,14 @@ let g:pathshorten = 4
 " shitty, but works somehow
 autocmd BufReadPost *
     \ if &ft == ""
-    \ | filetype detect
+    \ |     filetype detect
     \ | endif
     \ | if &ft == ""
-    \ | setlocal modeline
+    \ |     if getline(1) =~ "^!"
+    \ |         set filetype=xmodmap
+    \ |     else
+    \ |         setlocal modeline
+    \ |     endif
     \ | endif
 
 set shortmess=atsOF

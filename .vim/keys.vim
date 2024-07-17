@@ -1,4 +1,4 @@
-"{{{ help
+"{{{ helpers
 
 " copy simple mappings from normal to visual
 " 0yyprv$F<i\|norm gv
@@ -13,39 +13,49 @@ noremap <C-h> <C-]>
 "}}}
 
 "{{{ tags
-" TODO polish that
-" TODO What the fuck is happening here
+" TODO C polish that
 
-noremap <silent> <Space>jj :<C-u>tjump<CR>
-noremap <silent> <Space>js :<C-u>stjump<CR>
-noremap <silent> <Space>jv :<C-u>vert stjump<CR>
+nnoremap <Space>tl :<C-u>tags<CR>
+vnoremap <Space>tl :<C-u>tags\|norm gv<CR>
 
-noremap <silent> <Space><Space>jj :<C-u>tjump<Space>
-noremap <silent> <Space><Space>js :<C-u>stjump<Space>
-noremap <silent> <Space><Space>jv :<C-u>vert stjump<Space>
+noremap <silent> <Space>tj :<C-u>tjump<CR>
+noremap <silent> <Space>ts :<C-u>stjump<CR>
+noremap <silent> <Space>tv :<C-u>vert stjump<CR>
 
-noremap <silent> <Space>j<Space>t :<C-u>tag<Space>
-noremap <silent> <Space>jt :<C-u>exe v:count1.'tag'<CR>
-noremap <silent> <Space>j;t :<C-u>exe v:count1.'tag!'<CR>
-noremap <silent> <Space>jp :<C-u>exe v:count1.'pop'<CR>
-noremap <silent> <Space>j;p :<C-u>exe v:count1.'pop!'<CR>
+noremap <silent> <Space><Space>tj :<C-u>tjump<Space>
+noremap <silent> <Space><Space>ts :<C-u>stjump<Space>
+noremap <silent> <Space><Space>tv :<C-u>vert stjump<Space>
 
-noremap <silent> <Space>jn :<C-u>exe v:count1.'tnext'<CR>
-noremap <silent> <Space>j;n :<C-u>exe v:count1.'tnext!'<CR>
-noremap <silent> <Space>jp :<C-u>exe v:count1.'tprevious'<CR>
-noremap <silent> <Space>j;p :<C-u>exe v:count1.'tprevious!'<CR>
+noremap <silent> <Space>t<Space>t :<C-u>tag<Space>
+noremap <silent> <Space>t<Space>T :<C-u>tag!<Space>
+noremap <silent> <Space>t<Space>g :<C-u>tselect<Space>
+noremap <silent> <Space>t<Space>G :<C-u>tselect!<Space>
 
-noremap <silent> <Space>j0 :<C-u>tfirst<CR>
-noremap <silent> <Space>j;0 :<C-u>tfirst!<CR>
-noremap <silent> <Space>j$ :<C-u>tlast<CR>
-noremap <silent> <Space>j;$ :<C-u>tlast!<CR>
+noremap <silent> <Space>tt :<C-u>exe v:count1.'tag'<CR>
+noremap <silent> <Space>tT :<C-u>exe v:count1.'tag!'<CR>
+noremap <silent> <Space>tp :<C-u>exe v:count1.'pop'<CR>
+noremap <silent> <Space>t;p :<C-u>exe v:count1.'pop!'<CR>
+noremap <silent> <Space>tg :<C-u>exe v:count1.'tselect'<CR>
+noremap <silent> <Space>tG :<C-u>exe v:count1.'tselect!'<CR>
 
-noremap <silent> <Space>ja :<C-u>ltag<Space>
-noremap <silent> <Space>j;a :<C-u>ltag!<Space>
+noremap <silent> <Space>tn :<C-u>exe v:count1.'tnext'<CR>
+noremap <silent> <Space>t;n :<C-u>exe v:count1.'tnext!'<CR>
+noremap <silent> <Space>tp :<C-u>exe v:count1.'tprevious'<CR>
+noremap <silent> <Space>t;p :<C-u>exe v:count1.'tprevious!'<CR>
+
+noremap <silent> <Space>t0 :<C-u>tfirst<CR>
+noremap <silent> <Space>t;0 :<C-u>tfirst!<CR>
+noremap <silent> <Space>t$ :<C-u>tlast<CR>
+noremap <silent> <Space>t;$ :<C-u>tlast!<CR>
+
+noremap <silent> <Space>ta :<C-u>ltag<CR>
+noremap <silent> <Space>t<Space>a :<C-u>ltag<Space>
+noremap <silent> <Space>tA :<C-u>ltag!<Space>
+noremap <silent> <Space>t<Space>A :<C-u>ltag!<Space>
 
 " }}}
 
-"{{{ TODO preview window
+"{{{ preview window
 
 "}}}
 

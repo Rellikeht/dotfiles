@@ -1,4 +1,4 @@
-" Editor Config
+"{{{ Editor Config
 
 packadd editorconfig
 let g:EditorConfig_disable = 0
@@ -24,18 +24,24 @@ nnoremap <silent> <Leader>qer
 vnoremap <silent> <Leader>qer 
             \ :<C-u>EditorConfigReload\|norm gv<CR>
 
-" Colorizer
+"}}}
+
+"{{{ Colorizer
 
 let g:colorizer_maxlines = 500
 nnoremap <silent> gC :ColorToggle<CR>
 vnoremap <silent> gC :ColorToggle\|norm gv<CR>
 
-" Inline edit
+"}}}
+
+"{{{ Inline edit
 
 nnoremap <silent> glf :InlineEdit<CR>
 vnoremap <silent> glf :InlineEdit\|norm gv<CR>
 
-" nim
+"}}}
+
+"{{{ nim
 
 function! JumpToDef()
     if exists("*GotoDefinition_" . &filetype)
@@ -46,3 +52,5 @@ function! JumpToDef()
 endfunction
 
 noremap <silent> <Leader>dd :call JumpToDef()<CR>
+
+"}}}

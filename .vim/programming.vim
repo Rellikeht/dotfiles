@@ -21,10 +21,11 @@ autocmd BufNewFile *.nim
 " TODO A polish that
 " TODO A auto
 
-nnoremap ,m<Space> :<C-u>make<CR>
-vnoremap ,m<Space> :<C-u>make\|norm gv<CR>
-nnoremap ,m; :<C-u>make<Space>
-vnoremap ,m; :<C-u>make  \|norm gv<C-Left><C-Left><Left>
+nnoremap ,mm :<C-u>make<CR>
+vnoremap ,mm :<C-u>make\|norm gv<CR>
+nnoremap ,m<Space>m :<C-u>make<Space>
+vnoremap ,m<Space>m :<C-u>make  \|norm gv
+            \ <C-Left><C-Left><Left>
 
 nnoremap ,mpf :<C-u>set makeprg=nix\ build<CR>
 vnoremap ,mpf :<C-u>set makeprg=nix\ build\|norm gv<CR>
@@ -33,8 +34,8 @@ vnoremap ,mpn :<C-u>set makeprg=nix-build\|norm gv<CR>
 
 nnoremap ,mpm :<C-u>set makeprg=make<CR>
 vnoremap ,mpm :<C-u>set makeprg=make\|norm gv<CR>
-nnoremap ,mP :<C-u>set makeprg=
-vnoremap ,mP :<C-u>set makeprg= \|norm gv
+nnoremap ,m<Space>p :<C-u>set makeprg=
+vnoremap ,m<Space>p :<C-u>set makeprg= \|norm gv
             \ <C-Left><C-Left><Left>
 
 "}}}

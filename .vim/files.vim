@@ -10,25 +10,26 @@ function DiffPut(pane)
     diffupdate
 endfunction
 
-nnoremap <silent> <leader>fdp :<C-u>diffput<CR>
-nnoremap <silent> <leader>fdg :<C-u>diffget<CR>
+noremap <silent> <leader>fdp :<C-u>diffput<CR>
+noremap <silent> <leader>fdg :<C-u>diffget<CR>
 nnoremap <silent> <leader>fdu :<C-u>diffupdate<CR>
+vnoremap <silent> <leader>fdu :<C-u>diffupdate\|norm gv<CR>
 
 " TODO more of that
-nnoremap <silent> <leader>fg0 :<C-u>call DiffGet('//0')<CR>
-nnoremap <silent> <leader>fg1 :<C-u>call DiffGet('//1')<CR>
-nnoremap <silent> <leader>fg2 :<C-u>call DiffGet('//2')<CR>
-nnoremap <silent> <leader>fg3 :<C-u>call DiffGet('//3')<CR>
+noremap <silent> <leader>fg0 :<C-u>call DiffGet('//0')<CR>
+noremap <silent> <leader>fg1 :<C-u>call DiffGet('//1')<CR>
+noremap <silent> <leader>fg2 :<C-u>call DiffGet('//2')<CR>
+noremap <silent> <leader>fg3 :<C-u>call DiffGet('//3')<CR>
 
-nnoremap <silent> <leader>fp0 :<C-u>call DiffPut('//0')<CR>
-nnoremap <silent> <leader>fp1 :<C-u>call DiffPut('//1')<CR>
-nnoremap <silent> <leader>fp2 :<C-u>call DiffPut('//2')<CR>
-nnoremap <silent> <leader>fp3 :<C-u>call DiffPut('//3')<CR>
+noremap <silent> <leader>fp0 :<C-u>call DiffPut('//0')<CR>
+noremap <silent> <leader>fp1 :<C-u>call DiffPut('//1')<CR>
+noremap <silent> <leader>fp2 :<C-u>call DiffPut('//2')<CR>
+noremap <silent> <leader>fp3 :<C-u>call DiffPut('//3')<CR>
 
-nnoremap <silent> <leader>fpf :<C-u>call DiffPut(expand('%:p'))<CR>
-nnoremap <silent> <leader>fpF :<C-u>call DiffPut(expand('%:t'))<CR>
-nnoremap <silent> <leader>fgf :<C-u>call DiffGet(expand('%:p'))<CR>
-nnoremap <silent> <leader>fgF :<C-u>call DiffGet(expand('%:t'))<CR>
+noremap <silent> <leader>fpf :<C-u>call DiffPut(expand('%:p'))<CR>
+noremap <silent> <leader>fp;f :<C-u>call DiffPut(expand('%:t'))<CR>
+noremap <silent> <leader>fgf :<C-u>call DiffGet(expand('%:p'))<CR>
+noremap <silent> <leader>fg;f :<C-u>call DiffGet(expand('%:t'))<CR>
 
 "}}}
 

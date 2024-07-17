@@ -1,5 +1,5 @@
-" TODO A make this help with new setup
-" TODO B multiple selections
+"{{{ TODO
+"}}}
 
 "{{{ settings
 
@@ -144,10 +144,10 @@ command! -bang -nargs=* Ah
 command! -bang -nargs=* Au 
             \ call fzf#vim#ag(<q-args>, '--unrestricted', fzf#vim#with_preview(), <bang>0)
 
-nnoremap <leader>slp :Fgrep<CR>
-nnoremap <leader>sl<Space>p :Fgrep<Space>
-nnoremap <leader>slg :GGrep<CR>
-nnoremap <leader>sl<Space>g :GGrep<Space>
+nnoremap <leader>slg :Fgrep<CR>
+nnoremap <leader>sl<Space>g :Fgrep<Space>
+nnoremap <leader>slc :GGrep<CR>
+nnoremap <leader>sl<Space>c :GGrep<Space>
 nnoremap <leader>slh :Ah<CR>
 nnoremap <leader>sl<Space>h :Ah<Space>
 nnoremap <leader>slu :Au<CR>

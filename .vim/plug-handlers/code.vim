@@ -6,15 +6,6 @@ map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
 
 "}}}
 
-" {{{ nix
-
-autocmd FileType nix setlocal commentstring=#\ %s
-autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd FileType nix nnoremap <buffer> <Leader>nle :NixEdit<CR>
-autocmd FileType nix nnoremap <buffer> <Leader>nlE :NixEdit<CR>
-
-"}}}
-
 "{{{ neoformat formatters
 let g:neoformat_enabled_go = ['gofmt']
 
@@ -118,7 +109,8 @@ augroup fmt
 augroup END
 
 noremap <silent> <Leader>nf :Neoformat<CR>
-noremap <Leader>nF :Neoformat<Space>
+noremap <Leader>n<Space>f :Neoformat<Space>
+
 "}}}
 
 ""{{{ context
@@ -154,15 +146,15 @@ let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_file_types = '.*'
 
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
-autocmd FileType julia nnoremap <buffer> <Leader>nld :JuliaDoc
-autocmd FileType julia vnoremap <silent> <buffer> <Leader>nld :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>
+autocmd FileType julia 
+            \ nnoremap <buffer> <Leader>nld :JuliaDoc
+            \ | vnoremap <silent> <buffer> <Leader>nld
+            \ :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>
 
 "}}}
 
 "{{{ direnv.vim
 " TODO C this plugin is too shallow, it needs to be done better way
-
-" autocmd User DirenvLoaded :echo 'loaded local vimrc'
 
 nnoremap <silent> <Leader>qde :EditEnvrc<CR>
 nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>
@@ -181,15 +173,28 @@ let g:vsc_pattern = '\k'
 
 "}}}
 
+"{{{ other filetypes
+
+autocmd FileType nix 
+            \ setlocal commentstring=#\ %s
+            \ | setlocal shiftwidth=2 softtabstop=2 tabstop=2
+            \ | nnoremap <buffer> <silent> <Leader>nle
+            \ :NixEdit<CR>
+            \ | nnoremap <buffer> <Leader>nl<Space>
+            \ :NixEdit<Space>
+
+autocmd FileType zinc 
+            \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
+            \ | setlocal commentstring=%\ %s
+
+"}}}
+
 "{{{ others
 
 function GeneralUpgrade()
     PlugUpgrade
     PlugUpdate --sync
 endfunction
-
-autocmd FileType zinc setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd FileType zinc setlocal commentstring=%\ %s
 
 "}}}
 
@@ -214,12 +219,13 @@ endfunction
 
 nnoremap <silent> <Leader>npc :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>
 nnoremap <silent> <Leader>npa :call PlutoAdd()<CR>
-nnoremap <silent> <Leader>npA :call PlutoAdd(1)<CR>
+nnoremap <silent> <Leader>np;a :call PlutoAdd(1)<CR>
 
-" Toggle visibility when in cell list
-nnoremap <Leader>npT 03lx:call PLR()<CR>P
 " Toggle visibility when in cell
 nnoremap <Leader>npt 0wwv$hy<Esc>/<C-r>=@<CR><CR>,npTnn
+
+" Toggle visibility when in cell list
+nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 
 " TODO disable
 " Start:

@@ -1,5 +1,4 @@
-
-" speeddating
+"{{{ TODO speeddating
 
 " au VimEnter * SpeedDatingFormat %d %b %Y
 " au VimEnter * SpeedDatingFormat %d-%m-%Y%[ T_-]%H:%M:%S %z
@@ -23,9 +22,9 @@
 " execute "SpeedDatingFormat %_d %h %H:%M:%S"
 " execute "SpeedDatingFormat %d %b, %Y"
 
-" TODO
+"}}}
 
-" unicode
+"{{{ unicode
 
 let g:Unicode_no_default_mappings = 1
 
@@ -38,10 +37,15 @@ inoremap <C-x>u <Plug>(UnicodeFuzzy)
 noremap <Leader>nm <Plug>(MakeDigraph)
 nnoremap ga <Plug>(UnicodeGA)
 
-" vim-nuuid
+"}}}
+
+"{{{ vim-nuuid
 
 let g:nuuid_no_mappings = 1
+
 " map <Leader>nu <Plug>Nuuid
-noremap <silent> <Leader>nN :NuuidAll<CR>
-noremap <silent> <Leader>nu :exe 'norm a'.NuuidNewUuid()<CR>
-noremap <silent> <Leader>nU :NuuidToggleAbbrev<CR>
+noremap <silent> <Leader>nn :NuuidAll<CR>
+noremap <silent> <Leader>ng :exe 'norm a'.NuuidNewUuid()<CR>
+noremap <silent> <Leader>nt :NuuidToggleAbbrev<CR>
+
+"}}}

@@ -1,16 +1,18 @@
 "{{{ helpers
 
 command! -nargs=1 -complete=arglist Argument 
-            \ argument <args>
+            \ argedit <args>
+            \ | argdedupe
 
 command! -nargs=1 -complete=arglist ArgumentE
-            \ argument! <args>
+            \ argedit! <args>
+            \ | argdedupe
 
 command! -nargs=+ Silent
             \   execute 'silent! <args>'
             \   | redraw!
 
-" Nope
+" Nope
 " command! -nargs=1 -complete=arglist Vargument
 "             \ vertical argument <args>
 " command! -nargs=1 -complete=arglist Hargument
@@ -42,7 +44,7 @@ noremap <Tab>gY "+Y
 noremap <Tab>gp "+gp
 noremap <Tab>gP "+gP
 
-" TODO this is harder than it should be
+" TODO D this is harder than it should be
 noremap g+ v<C-a>
 noremap g- v<C-x>
 vnoremap + <C-a>
@@ -110,8 +112,8 @@ vnoremap <Tab>t :<C-u>tabdo\|norm gv<Space>
 " }}}
 
 " {{{ resizing with <Tab>
-" TODO better
-" TODO more
+" TODO C better
+" TODO C more
 
 nnoremap <silent> <Tab>>1 :<C-u>vertical resize 10<CR>
 vnoremap <silent> <Tab>>1 :<C-u>vertical resize 10\|norm gv<CR>
@@ -284,8 +286,8 @@ noremap <Space><Space>$ :<C-u>last!<Space>
 noremap <Space>= :<C-u>args!<Space>
 nnoremap <Space>_ :<C-u>argdedupe<CR>
 vnoremap <Space>_ :<C-u>argdedupe\|norm gv<CR>
-noremap <Space>t :<C-u>argdo<Space>
-noremap <Space>T :<C-u>argdo!<Space>
+noremap <Space>: :<C-u>argdo<Space>
+noremap <Space>;: :<C-u>argdo!<Space>
 
 nnoremap <silent> <Space>w :<C-u>arglocal<CR>
 vnoremap <silent> <Space>w :<C-u>arglocal\|norm gv<CR>
@@ -342,8 +344,6 @@ nnoremap <Space>ij :<C-u>jumps<CR>
 vnoremap <Space>ij :<C-u>jumps\|norm gv<CR>
 nnoremap <Space>io :<C-u>files<CR>
 vnoremap <Space>io :<C-u>files\|norm gv<CR>
-nnoremap <Space>it :<C-u>tags<CR>
-vnoremap <Space>it :<C-u>tags\|norm gv<CR>
 nnoremap <Space>im :<C-u>marks<CR>
 vnoremap <Space>im :<C-u>marks\|norm gv<CR>
 nnoremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
