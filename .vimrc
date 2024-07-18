@@ -12,7 +12,8 @@ if v:progname !~? "tv\\?\\(im\\?\\)\\?"
     if empty(glob(g:data_dir . '/autoload/plug.vim'))
         silent execute '!curl -fLo '.g:data_dir.
                     \'/autoload/plug.vim --create-dirs '.plug_src
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+        autocmd VimEnter * 
+                    \ PlugInstall --sync | source $MYVIMRC
     endif
 
     if v:progname =~? "^s\\?v\\(im\\?\\)\\?"

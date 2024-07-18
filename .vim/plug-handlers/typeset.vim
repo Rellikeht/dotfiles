@@ -38,6 +38,7 @@ nnoremap <silent> <Leader>nts
 "}}}
 
 "{{{ vimtex
+" TODO C make this complete
 
 " Viewer options: One may configure the viewer either by specifying a built-in
 let g:vimtex_view_method = g:pdf_viewers[0]
@@ -83,6 +84,16 @@ let g:vim_markdown_auto_insert_bullets = 0
 
 " Format strike-through text (wrapped in `~~`).
 let g:vim_markdown_strikethrough = 1
+
+"}}}
+
+"{{{ TODO C vimwiki
+
+let g:vimwiki_global_ext = 0
+
+"}}}
+
+"{{{ TODO B pandoc
 
 "}}}
 

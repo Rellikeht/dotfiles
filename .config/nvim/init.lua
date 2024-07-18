@@ -59,7 +59,8 @@ Plug("hrsh7th/cmp-nvim-lua")
 
 -- {{{ other coding help
 
--- Plug('nvim-orgmode/orgmode') -- TODO B
+Plug("Vimjas/vint")
+Plug("nvim-orgmode/orgmode") -- TODO B
 
 Plug("mfussenegger/nvim-lint")
 Plug("windwp/nvim-autopairs") -- TODO B

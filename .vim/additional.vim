@@ -33,8 +33,7 @@ source ~/.vim/ssh.vim
 "}}}
 
 " ??
-if has('win32')
-"{{{
+if has('win32') "{{{
 
     set shell=powershell.exe
     set shellxquote=
@@ -43,5 +42,4 @@ if has('win32')
     let &shellpipe='| Out-File -Encoding UTF8 %s'
     let &shellredir='| Out-File -Encoding UTF8 %s'
 
-"}}}
-endif
+endif "}}}

@@ -189,6 +189,26 @@ autocmd FileType zinc
 
 "}}}
 
+"{{{ haskell-vim
+
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+let g:haskell_disable_HT = 0              " disable template haskell
+let g:haskell_classic_highlighting = 0
+let g:haskell_indent_disable = 0
+
+"}}}
+
+"{{{ TODO D ansible-vim
+
+"}}}
+
 "{{{ others
 
 function GeneralUpgrade()

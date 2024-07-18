@@ -408,6 +408,7 @@ set number
 set relativenumber
 
 set showcmd
+set showmode
 set showmatch
 set nohlsearch
 

@@ -1,0 +1,19 @@
+#vim: ft=yaml:
+
+cmdargs:
+  error-limit: 100
+  json: true
+
+  verbose: true
+  stat: true
+  color: true
+
+  # Checking more strictly
+  severity: style_problem
+
+  # Enable coloring
+  color: true
+
+  # Enable Neovim syntax
+  env:
+    neovim: true

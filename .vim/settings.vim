@@ -1,5 +1,8 @@
 " {{{ heavy stuff
 
+set path+=**
+set path+=../**
+
 let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
 
@@ -32,7 +35,7 @@ set cmdheight=1
 
 " TODO tabline, statusline
 
-" {{{ some simple settings
+" {{{ some simple toggling
 
 nnoremap <Leader><Space><Space> :<C-u>setlocal hls!<CR>
 vnoremap <Leader><Space><Space> :<C-u>setlocal hls!\|norm gv<CR>

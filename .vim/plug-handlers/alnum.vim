@@ -1,4 +1,4 @@
-"{{{ TODO speeddating
+"{{{ TODO C speeddating
 
 " au VimEnter * SpeedDatingFormat %d %b %Y
 " au VimEnter * SpeedDatingFormat %d-%m-%Y%[ T_-]%H:%M:%S %z
@@ -24,7 +24,12 @@
 
 "}}}
 
+"{{{ TODO B tabular
+
+"}}}
+
 "{{{ unicode
+" TODO B is this complete ?
 
 let g:Unicode_no_default_mappings = 1
 

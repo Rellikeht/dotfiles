@@ -1,6 +1,7 @@
--- {{{ harpoon
--- TODO
+-- {{{ TODO harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
+
 -- }}}
--- {{{ telescope
--- TODO
+-- {{{ TODO telescope
 -- }}}
