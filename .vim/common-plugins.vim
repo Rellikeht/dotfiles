@@ -76,7 +76,6 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'vifm/vifm.vim'
 Plug 'kmonad/kmonad-vim'
 Plug 'nickel-lang/vim-nickel'
-Plug 'vimwiki/vimwiki'
 
 "}}}
 
@@ -97,8 +96,9 @@ Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim'
 Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'vimwiki/vimwiki'
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
-" Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Maybe...
 " Plug 'dbridges/vim-markdown-runner'

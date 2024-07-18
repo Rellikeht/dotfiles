@@ -27,6 +27,10 @@ autocmd BufReadPost *
     \ |     endif
     \ | endif
 
+" autocmd FileType markdown
+"             \ setlocal secure modeline
+"             \ | e
+
 set shortmess=atsOF
 " 2 is ugly and takes too much space
 set cmdheight=1

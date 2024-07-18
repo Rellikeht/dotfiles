@@ -1,10 +1,10 @@
 
 "{{{ TINYMRU
 
-nnoremap <silent> ,ue :ME<Space>
-nnoremap <silent> ,us :MS<Space>
-nnoremap <silent> ,uh :MV<Space>
-nnoremap <silent> ,un :MT<Space>
+noremap <silent> ,ue :<C-u>ME<Space>
+noremap <silent> ,uv :<C-u>MS<Space>
+noremap <silent> ,uh :<C-u>MV<Space>
+noremap <silent> ,un :<C-u>MT<Space>
 
 " }}}
 
@@ -14,7 +14,7 @@ let g:undotree_WindowLayout = 1
 let g:undotree_ShortIndicators = 0
 let g:undotree_CursorLine = 1
 
-nnoremap <silent> ,ut :UndotreeToggle<CR>
+noremap <silent> ,ut :<C-u>UndotreeToggle<CR>
 
 function g:Undotree_CustomMap()
     nnoremap <buffer> ,d <Plug>UndotreeDiffToggle
@@ -56,17 +56,39 @@ endfunc
 "{{{ OBSESSION
 " Not good, not bad
 
-nnoremap ,usm :mksession<CR>
-nnoremap ,usM :mksession<Space>
+autocmd VimEnter * execute 'silent! Mkdir '.g:data_dir.'/sessions'
+" execute 'Mkdir '.g:data_dir.'/sessions'
 
-nnoremap ,usd :execute 'mksession '.g:data_dir.'/sessions/'.<CR>
-nnoremap ,usD :execute 'mksession '.g:data_dir.'/sessions/'.<Space>
+nnoremap ,usm :<C-u>mksession<CR>
+vnoremap ,usm :<C-u>mksession\|norm gv<CR>
+nnoremap ,usM :<C-u>mksession<Space>
+vnoremap ,usM :<C-u>mksession  \|norm gv<C-Left><C-Left><Left>
 
-nnoremap ,uso :Obsession<CR>
-nnoremap ,usO :Obsession<Space>
-nnoremap ,usr :Obsession!<CR>
+nnoremap ,usd :<C-u>execute 'mksession '.g:data_dir.
+            \ '/sessions/'.localtime().'.vim'<CR>
+vnoremap ,usd :<C-u>execute 'mksession '.g:data_dir.
+            \ '/sessions/'.localtime().'.vim'\|norm gv<CR>
+nnoremap ,usD :<C-u>execute 'mksession '.
+            \ g:data_dir.'/sessions/'.<Space>
+vnoremap ,usD :<C-u>execute 'mksession '.
+            \ g:data_dir.'/sessions/'.
+            \ <Space>\|norm gv<C-Left><C-Left><Left>
 
-nnoremap ,uss :execute 'Obsession '.g:data_dir.'/sessions/'.<CR>
-nnoremap ,usS :execute 'Obsession '.g:data_dir.'/sessions/'.<Space>
+nnoremap ,uso :<C-u>Obsession<CR>
+vnoremap ,uso :<C-u>Obsession\|norm gv<CR>
+nnoremap ,usO :<C-u>Obsession<Space>
+vnoremap ,usO :<C-u>Obsession  \|norm gv<C-Left><C-Left><Left>
+nnoremap ,usr :<C-u>Obsession!<CR>
+vnoremap ,usr :<C-u>Obsession!\|norm gv<CR>
+
+nnoremap ,uss :<C-u>execute 'Obsession '.g:data_dir.
+            \ '/sessions/'.localtime().'.vim'<CR>
+vnoremap ,uss :<C-u>execute 'Obsession '.g:data_dir.
+            \ '/sessions/'.localtime()\|norm gv<CR>
+nnoremap ,usS :<C-u>execute 'Obsession '.
+            \ g:data_dir.'/sessions/'.<Space>
+vnoremap ,usS :<C-u>execute 'Obsession '.
+            \ g:data_dir.'/sessions/'.<Space>
+            \ <Space>\|norm gv<C-Left><C-Left><Left>
 
 "}}}

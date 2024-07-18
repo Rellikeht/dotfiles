@@ -33,7 +33,6 @@
 
 let g:Unicode_no_default_mappings = 1
 
-" Alt/meta doesn't cooperate
 inoremap <C-x>g <Plug>(DigraphComplete)
 inoremap <C-x>c <Plug>(UnicodeComplete)
 inoremap <C-x>h <Plug>(HTMLEntityComplete)
@@ -51,6 +50,65 @@ let g:nuuid_no_mappings = 1
 " map <Leader>nu <Plug>Nuuid
 noremap <silent> <Leader>nn :NuuidAll<CR>
 noremap <silent> <Leader>ng :exe 'norm a'.NuuidNewUuid()<CR>
-noremap <silent> <Leader>nt :NuuidToggleAbbrev<CR>
+noremap <silent> <Leader>na :NuuidToggleAbbrev<CR>
+
+"}}}
+
+"{{{ tabularize
+
+nnoremap <Leader>.t :<C-u>Tabularize /
+vnoremap <Leader>.t :Tabularize /
+nnoremap <Leader>.p :<C-u>Tabularize //<Left>
+vnoremap <Leader>.p :Tabularize //<Left>
+
+nnoremap <Leader>.= :<C-u>Tabularize /=<CR>
+vnoremap <Leader>.= :Tabularize /=<CR>
+nnoremap <Leader>.: :<C-u>Tabularize /:<CR>
+vnoremap <Leader>.: :Tabularize /:<CR>
+nnoremap <Leader>.; :<C-u>Tabularize /;<CR>
+vnoremap <Leader>.; :Tabularize /;<CR>
+nnoremap <Leader>.& :<C-u>Tabularize /&<CR>
+vnoremap <Leader>.& :Tabularize /&<CR>
+nnoremap <Leader>.@ :<C-u>Tabularize /@<CR>
+vnoremap <Leader>.@ :Tabularize /@<CR>
+
+nnoremap <Leader>.;= :<C-u>Tabularize /=zs<CR>
+vnoremap <Leader>.;= :Tabularize /=zs<CR>
+nnoremap <Leader>.;: :<C-u>Tabularize /:zs<CR>
+vnoremap <Leader>.;: :Tabularize /:zs<CR>
+nnoremap <Leader>.;; :<C-u>Tabularize /;zs<CR>
+vnoremap <Leader>.;; :Tabularize /;zs<CR>
+nnoremap <Leader>.;& :<C-u>Tabularize /&zs<CR>
+vnoremap <Leader>.;& :Tabularize /&zs<CR>
+nnoremap <Leader>.;@ :<C-u>Tabularize /@zs<CR>
+vnoremap <Leader>.;@ :Tabularize /@zs<CR>
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
+function InsertAlignToggle()
+    if get(b:, 'insert_align', v:null) == v:null || 
+                \ b:insert_align == 0
+        let b:insert_align = 1
+        inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+    else
+        let b:insert_align = 0
+        iunmap <Bar>
+    endif
+endfunction
+
+autocmd FileType markdown
+            \ call InsertAlignToggle()
+
+nnoremap <Leader>.i :<C-u>call InsertAlignToggle()<CR>
+vnoremap <Leader>.i :<C-u>call InsertAlignToggle()\|norm gv<CR>
 
 "}}}

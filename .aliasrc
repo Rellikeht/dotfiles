@@ -138,6 +138,7 @@ alias ssh9='ssh "$(cat ~/.ssh/h9)"'
 # }}}
 
 # {{{ editors
+
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
 alias s=svim
@@ -167,6 +168,7 @@ alias fvc='fe svim'
 alias fv='fed svim'
 alias fkc='fe kak'
 alias fk='fed kak'
+
 # }}}
 
 # {{{ settings
@@ -181,7 +183,7 @@ alias bal='bat "$_ALIASRC"'
 alias bfn='bat "$_FUNCRC"'
 # }}}
 
-# {{{ fuzzy
+# {{{ fuzzy dirs and files
 # TODO clean this section
 
 ## single
@@ -223,19 +225,26 @@ alias cdf='cd "$(fzd)"'
 alias cdf2='cd "$(fzd2)"'
 alias cdp='cd "$(fzp)"'
 
-## TODO piping
-#alias fff="fzf | sed 's/^.*$/\"\0\"/g'"
-#alias ffx='fff | xargs'
-alias ffx='fzf | xargs'
+alias fmx='fzf --print0 | xargs -0'
+alias fsx='fzs --print0 | xargs -0'
 
 ## fuzzy select program to run on separate shell
 alias fze='prgs | deffuz | sh -s'
 ## fuzzy select program to run
 alias fzr='$(prgs | deffuz)'
 
-# TODO more of that maybe
 alias zh="z -l | sort | awk '{print \$2}' | fzs"
-alias zc='cd "$(hfz)"'
+alias zc='cd "$(zh)"'
+
+# }}}
+
+# {{{ fuzzy programs
+
+alias sf='fmx -o "$(whence s)"'
+alias nf='fmx -o "$(whence nv)"'
+
+alias bsf='fsx bat'
+alias bmf='fmx bat'
 
 # }}}
 
@@ -585,6 +594,7 @@ alias nfs='nix flake show'
 alias npu='nix profile upgrade'
 alias npa='nix profile upgrade" ".*"'
 alias npl='nix profile list'
+alias npi='nix profile install'
 
 alias npr="nix repl --expr 'import <nixpkgs> {}'"
 alias nur="nix repl --expr 'import <unstable> {}'"

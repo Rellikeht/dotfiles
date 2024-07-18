@@ -93,14 +93,11 @@ Not very accurate, at least for now.
 
 - f - diff operations
 
-- x, X - netrw
-
 ## Code
 
 - c, C - compiling
+- m, M - make
 - r, R - running
-- b, B - building
-- i, I - running interpreted versions of compiled languages
 
 ## With plugins
 
@@ -114,15 +111,22 @@ Not very accurate, at least for now.
 
 - s - fzf
 
-- n - unicode, nuuid
+- n:
+
+  - v - pdf viewer
+  - m - unicode
+  - p - pluto.jl :)
+  - l - latex to unicode
+  - f, <Space>f - neoformat
+  - others used - nuuid
 
 - u - undo tree, tinyMRU, obsession
+
+- w - vim wiki
 
 <!-- ?? -->
 
 <!-- - F - code formatting -->
-
-- E,T,S,V - tinyMRU
 
 - q misc again:
 
@@ -134,6 +138,10 @@ Not very accurate, at least for now.
   - de - edit envrc
   - dE - edit direnvrc
   - dl - direnv load
+
+- x, X - netrw, vifm, l?(vim)?grep, drag and drop
+
+- . - tabularize
 
 ## Nvim only
 
@@ -157,6 +165,7 @@ Rather useless: I, Q, H, h, r, w
 - s - vim-slime and similar
 - "+" - v<C-a>
 - "-" - v<C-x>
+- l - (markdown) inline edit
 
 ## Nvim only
 

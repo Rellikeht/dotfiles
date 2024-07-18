@@ -416,6 +416,7 @@ set nohlsearch
 
 " {{{ search
 
+set history=2000
 set incsearch
 set ignorecase
 set smartcase
@@ -470,6 +471,9 @@ set encoding=utf-8
 set modelines=3
 set nomodeline
 set hidden
+
+set cedit=<C-j>
+set cmdwinheight=30
 
 " }}}
 

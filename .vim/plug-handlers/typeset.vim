@@ -28,11 +28,11 @@ function DocView(ext)
     redraw!
 endfunction
 
-nnoremap <silent> <Leader>ntn
+nnoremap <silent> <Leader>nvn
             \ :call PdfViewerToggle('NextPdfViewer')<CR>
-nnoremap <silent> <Leader>ntp
+nnoremap <silent> <Leader>nvp
             \ :call PdfViewerToggle('PrevPdfViewer')<CR>
-nnoremap <silent> <Leader>nts
+nnoremap <silent> <Leader>nvs
             \ :call DocView('pdf')<CR>
 
 "}}}
@@ -76,7 +76,7 @@ let g:vim_markdown_toc_autofit = 1
 " nicely with `gq` formatting. It relies on a hack of treating bullets
 " as comment characters.
 " See https://github.com/plasticboy/vim-markdown/issues/232
-let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_new_list_item_indent = 0 " 2 ?
 let g:vim_markdown_auto_insert_bullets = 0
 
 " Filetype names and aliases for fenced code blocks.
@@ -84,6 +84,14 @@ let g:vim_markdown_auto_insert_bullets = 0
 
 " Format strike-through text (wrapped in `~~`).
 let g:vim_markdown_strikethrough = 1
+
+let g:vim_markdown_follow_anchor = 1
+
+let g:vim_markdown_math = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_no_extensions_in_markdown = 1
 
 "}}}
 
@@ -94,6 +102,11 @@ let g:vimwiki_global_ext = 0
 "}}}
 
 "{{{ TODO B pandoc
+
+" doesn't cooperate with neovim ?
+let g:pandoc#modules#disabled = [
+            \ 'bibliographies'
+            \ ]
 
 "}}}
 
