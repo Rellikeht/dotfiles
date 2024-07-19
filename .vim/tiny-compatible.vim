@@ -380,8 +380,8 @@ noremap <Space>m :<C-u>marks<CR>:normal `
 " {{{ other mappings
 
 " Select whole buffer without plugins
-vnoremap a% gg0oG$
-nnoremap ya% gg0vG$y`'
+vnoremap ae gg0oG$
+nnoremap yae gg0vG$y`'
 
 " }}}
 

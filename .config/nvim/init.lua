@@ -33,11 +33,8 @@ Plug("norcalli/nvim-colorizer.lua") -- TODO C
 -- {{{ motion enchancing
 
 -- Plug("easymotion/vim-easymotion")
-Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"}) -- TODO A
--- Plug("nvim-telescope/telescope.nvim") -- TODO B
--- Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'}) -- TODO B
+Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"})
 
--- TODO C test that
 Plug("nvim-treesitter/nvim-treesitter-textobjects")
 
 -- }}}

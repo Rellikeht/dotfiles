@@ -250,8 +250,9 @@ alias bmf='fmx bat'
 
 # {{{ tooling
 
-alias vifh='vifm -c history'
-alias vsd='vifm --choose-dir -'
+alias vf='vifm'
+alias vh='vifm -c history'
+alias vd='vifm --choose-dir -'
 
 # maybe with stty will be better
 # alias gth='glow -w $(($(tput cols)-4))'

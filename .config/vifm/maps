@@ -284,15 +284,24 @@ noremap ,dC :exe '!dragon --target --on-top --keep 2>/dev/null | ucopys %d & ont
 
 "{{{ FZF
 
-nnoremap ,sll :FZFlocate<CR>
-nnoremap ,slr :FZFrun<CR>
-nnoremap ,slg :FZFgo<CR>
+noremap ,sl :FZFlocate<CR>
+noremap ,sr :FZFrun<CR>
+noremap ,sg :FZFgo<CR>
+noremap ,sd :FZFdir<CR>
+noremap ,sf :FZFfind<CR>
+
+noremap ,s<Space>l :FZFlocate<Space>
+noremap ,s<Space>r :FZFrun<Space>
+noremap ,s<Space>g :FZFgo<Space>
+noremap ,s<Space>d :FZFdir<Space>
+noremap ,s<Space>f :FZFfind<Space>
 
 "}}}
 
 "{{{ paths
 
 map gpp :cd ..<CR>
+map gp1 :cd ..<CR>
 map gp2 :cd ../..<CR>
 map gp3 :cd ../../..<CR>
 map gp4 :cd ../../../..<CR>

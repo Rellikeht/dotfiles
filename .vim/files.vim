@@ -37,6 +37,7 @@ noremap <silent> <leader>fg;f :<C-u>call DiffGet(expand('%:t'))<CR>
 
 " TODO C more ?
 
+" Pushing to dragon
 nnoremap <silent> <Leader>xy
             \ :<C-u>exe '!dragon --on-top --and-exit '.
             \ expand("%").' 2>/dev/null &'<CR>
@@ -57,7 +58,8 @@ vnoremap <silent> <Leader>xY
             \ :redraw!<CR>
             \ :norm gv<CR>
 
-noremap <Space><Leader>xo
+" Editing from dragon
+noremap <Leader>x<space>o
             \ :<C-u>exe 'argedit '.
             \ system('dragon --on-top --target --and-exit '.
             \ '2>/dev/null')<CR>

@@ -10,8 +10,9 @@ vim.call("plug#begin", nvim_dir .. "/plugins")
 vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
 
 Plug("norcalli/nvim-colorizer.lua")
-Plug("easymotion/vim-easymotion")
+-- Plug("easymotion/vim-easymotion")
 Plug("windwp/nvim-autopairs")
+Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"})
 
 vim.call("plug#end")
 

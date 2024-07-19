@@ -26,9 +26,6 @@ Not very accurate, at least for now.
 
 ## (control) good
 
-- <C-j>
-- <C-k>
-
 ## (control) not so useful
 
 - CTRL-@ not used
@@ -60,6 +57,10 @@ Not very accurate, at least for now.
 - manipulation of those lists
 - listings, help
 - simple settings
+
+## Plugins
+
+- j - harpoon
 
 # <Tab> combinations
 
@@ -148,7 +149,6 @@ Not very accurate, at least for now.
 - d - lspconfig diagnostics and lsp actions
 - <Leader> - easymotion ; TODO
 - e, E, D - code plugins ; NOT IMPLEMENTED
-- h - harpoon ; NOT IMPLEMENTED
 
 # g combinations
 

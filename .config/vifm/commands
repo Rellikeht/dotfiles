@@ -20,23 +20,40 @@ command! fi file %c %m
 
 " from wiki
 command! FZFlocate : set noquickview
-                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+                  \| let $FZF_PICK = term('locate %a | fzf 2>/dev/tty')
                   \| if $FZF_PICK != ''
                   \|     execute 'goto' fnameescape($FZF_PICK)
                   \| endif
 
 " use fzf to fuzzy search and run file
 command! FZFrun : set noquickview
-                \| let $FZF_PICK = term('find | fzf --height 10 2>/dev/tty')
+                \| let $FZF_PICK = term('find -xtype f %a | fzf 2>/dev/tty')
                 \| if $FZF_PICK != ''
                 \|     execute 'goto' fnameescape($FZF_PICK)
                 \| endif
 
 " variation that automatically enters directories
 command! FZFgo : set noquickview
-                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+                  \| let $FZF_PICK = term('find -mindepth 1 %a | fzf 2>/dev/tty')
                   \| if $FZF_PICK != ''
                   \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+                  \| endif
+
+" variation that automatically enters directories
+command! FZFdir : set noquickview
+                  \| let $FZF_PICK = 
+                  \ term('find -mindepth 1 -xtype d %a | fzf 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute 
+                  \ system('[ -f "$FZF_PICK" ] && echo goto || echo cd')
+                  \ fnameescape($FZF_PICK)
+                  \| endif
+
+" Simple find with fzf
+command! FZFfind : set noquickview
+                  \| let $FZF_PICK = term('find -mindepth 1 %a | fzf 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute 'goto' fnameescape($FZF_PICK)
                   \| endif
 
 "}}}
