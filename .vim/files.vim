@@ -77,9 +77,87 @@ noremap <Leader>xo
 
 "}}}
 
-"{{{ TODO grep
+"{{{ find
 
-" TODO make this work
+nnoremap <Space><Space>f<Space> :find<Space>
+nnoremap <Space><Space>fa :find *
+nnoremap <Space><Space>fr :find **
+nnoremap <Space><Space>f;a :find *<Tab>
+nnoremap <Space><Space>f;r :find **<Tab>
+
+nnoremap <Space><Space>f;<Space> :find!<Space>
+nnoremap <Space><Space>fA :find! *
+nnoremap <Space><Space>fR :find! **
+nnoremap <Space><Space>f;A :find! *<Tab>
+nnoremap <Space><Space>f;R :find! **<Tab>
+
+nnoremap <C-w><Space><Space>f<Space> :tabfind<Space>
+nnoremap <C-w><Space><Space>fa :tabfind *
+nnoremap <C-w><Space><Space>fr :tabfind **
+nnoremap <C-w><Space><Space>f;a :tabfind *<Tab>
+nnoremap <C-w><Space><Space>f;r :tabfind **<Tab>
+
+nnoremap <C-w><Space><Space>f;<Space> :tabfind!<Space>
+nnoremap <C-w><Space><Space>fA :tabfind! *
+nnoremap <C-w><Space><Space>fR :tabfind! **
+nnoremap <C-w><Space><Space>f;A :tabfind! *<Tab>
+nnoremap <C-w><Space><Space>f;R :tabfind! **<Tab>
+
+"}}}
+
+"{{{ grep
+
+"{{{ helpers
+
+function! Grep(...)
+    let cmd = join([&grepprg] + [join(a:000, ' ')], ' ')
+    return system(cmd)
+endfunction
+
+command! -nargs=+ -complete=file_in_path Grep cexpr Grep(<f-args>)
+
+"}}}
+
+"{{{ ripgrep
+" TODO more programs and settings
+" TODO maybe even quickfix list to select
+
+let g:ripgrep = 0
+set grepprg=grep\ -EIn\ $*\ /dev/null
+
+function ToggleRG()
+    let g:ripgrep = !g:ripgrep
+    if g:ripgrep
+        set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+        set grepformat=%f:%l:%c:%m
+        echo "Ripgrep on"
+    else
+        set grepprg=grep\ -EIn\ $*\ /dev/null
+        set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+        echo "Ripgrep off"
+    endif
+endfunction
+
+nnoremap <Leader>xgt :<C-u>call ToggleRG()<CR>
+vnoremap <Leader>xgt :<C-u>call ToggleRG()\|norm gv<CR>
+
+"}}}
+
+"{{{
+
+nnoremap <expr> <Leader>xgw g:qfloc ? 
+            \ ':<C-u>lgrep -rI <cword> . <CR>'
+            \ : ':<C-u>grep -rI <cword> . <CR>'
+
+" TODO visual selection
+" vnoremap <expr> <Leader>xgw 
+"             \ g:qfloc ? 
+"             \ ":<C-u>exe 'lgrep -rI '.GetVisualSelection()<CR>\|norm gv"
+"             \ : ":<C-u>exe 'grep -rI '.GetVisualSelection()<CR>\|norm gv"
+
+"}}}
+
+"{{{ TODO make this work
 
 " nnoremap ,xgf :<C-u>vimgrep //jg<C-left><Right>
 " nnoremap ,xgF :<C-u>vimgrep //fjg<C-left><Right>
@@ -96,6 +174,14 @@ noremap <Leader>xo
 " nnoremap ,xgC :<C-u>exe v:count.'vimgrep //jf **'<C-left><C-Left><Right>
 " nnoremap ,xgl :<C-u>exe v:count.'vimgrep //j'<C-left><Right>
 " nnoremap ,xgL :<C-u>exe v:count.'vimgrep //jf'<C-left><Right>
+"}}}
+
+"{{{ TODO
+
+" greps from
+" https://codeinthehole.com/tips/vim-lists/#tip-use-mappings-for-faster-browsing
+
+"}}}
 
 "}}}
 

@@ -186,6 +186,7 @@ vnoremap <silent> <Tab>^D :<C-u>resize -20\|norm gv<CR>
 
 noremap <Space><Space>e :<C-u>buffer<Space>
 noremap <Space><Space>E :<C-u>buffer!<Space>
+noremap <Space><Space>s <C-^>
 noremap <Space><Space>o :<C-u>edit<Space>
 noremap <Space><Space>O :<C-u>edit!<Space>
 
@@ -381,7 +382,10 @@ noremap <Space>iv :<C-u>vmap<Space>
 noremap <Space>ii :<C-u>imap<Space>
 
 noremap <Space>ih :<C-u>help<Space>
-noremap <Space>i<Tab> :<C-u>tab help<Space>
+noremap <C-w><Space>ih :<C-u>tab help<Space>
+
+nnoremap <Space>iJ :<C-u>clearjumps<CR>
+vnoremap <Space>iJ :<C-u>clearjumps\|norm gv<CR>
 
 " retarded 'more' kicks in
 noremap <Space>m :<C-u>marks<CR>:normal `

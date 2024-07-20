@@ -49,7 +49,7 @@ Plug 'sbdchd/neoformat'
 Plug 'lfilho/cosco.vim'
 
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch' " TODO A incorporate this into programming.vim
+Plug 'tpope/vim-dispatch'
 
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/argtextobj.vim'

@@ -22,14 +22,14 @@ noremap <silent> <Space>tj :<C-u>tjump<CR>
 noremap <silent> <Space>ts :<C-u>stjump<CR>
 noremap <silent> <Space>tv :<C-u>vert stjump<CR>
 
-noremap <silent> <Space><Space>tj :<C-u>tjump<Space>
-noremap <silent> <Space><Space>ts :<C-u>stjump<Space>
-noremap <silent> <Space><Space>tv :<C-u>vert stjump<Space>
+noremap <Space><Space>tj :<C-u>tjump<Space>
+noremap <Space><Space>ts :<C-u>stjump<Space>
+noremap <Space><Space>tv :<C-u>vert stjump<Space>
 
-noremap <silent> <Space>t<Space>t :<C-u>tag<Space>
-noremap <silent> <Space>t<Space>T :<C-u>tag!<Space>
-noremap <silent> <Space>t<Space>g :<C-u>tselect<Space>
-noremap <silent> <Space>t<Space>G :<C-u>tselect!<Space>
+noremap <Space>t<Space>t :<C-u>tag<Space>
+noremap <Space>t<Space>T :<C-u>tag!<Space>
+noremap <Space>t<Space>g :<C-u>tselect<Space>
+noremap <Space>t<Space>G :<C-u>tselect!<Space>
 
 noremap <silent> <Space>tt :<C-u>exe v:count1.'tag'<CR>
 noremap <silent> <Space>tT :<C-u>exe v:count1.'tag!'<CR>
@@ -49,9 +49,9 @@ noremap <silent> <Space>t$ :<C-u>tlast<CR>
 noremap <silent> <Space>t;$ :<C-u>tlast!<CR>
 
 noremap <silent> <Space>ta :<C-u>ltag<CR>
-noremap <silent> <Space>t<Space>a :<C-u>ltag<Space>
+noremap <Space>t<Space>a :<C-u>ltag<Space>
 noremap <silent> <Space>tA :<C-u>ltag!<Space>
-noremap <silent> <Space>t<Space>A :<C-u>ltag!<Space>
+noremap <Space>t<Space>A :<C-u>ltag!<Space>
 
 " }}}
 
@@ -186,6 +186,15 @@ vnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
 
 "{{{ quickfix and loclist
 
+"{{{ helpers
+
+function QuickFixToggle()
+    let g:qfloc = !g:qfloc
+    echo 'Quickfix is now ' . (g:qfloc ? 'local' : 'global')
+endfunction
+
+"}}}
+
 "{{{ settings
 
 let g:qfloc = 0
@@ -206,46 +215,39 @@ vnoremap .q :<C-u> echo 'Quickfix is now ' .
 
 "}}}
 
-"{{{ helpers
+"{{{ basic
 
-function QuickFixToggle()
-    let g:qfloc = !g:qfloc
-    echo 'Quickfix is now ' . (g:qfloc ? 'local' : 'global')
-    if q:qfloc
-        nnoremap <silent> .d :<C-u>ldo<Space>
-        vnoremap <silent> .d :<C-u>ldo  \|norm gv
-                    \ <C-Left><C-Left><Left>
-        nnoremap <silent> .a :<C-u>lfdo<Space>
-        vnoremap <silent> .a :<C-u>lfdo  \|norm gv
-                    \ <C-Left><C-Left><Left>
-        nnoremap <silent> .D :<C-u>ldo!<Space>
-        vnoremap <silent> .D :<C-u>ldo!  \|norm gv
-                    \ <C-Left><C-Left><Left>
-        nnoremap <silent> .A :<C-u>lfdo!<Space>
-        vnoremap <silent> .A :<C-u>lfdo!  \|norm gv
-                    \ <C-Left><C-Left><Left>
+nnoremap <expr> .d
+            \ g:qfloc ? ':<C-u>ldo<Space>'
+            \ : ':<C-u>cdo<Space>'
+vnoremap <expr> .d
+            \ g:qfloc ? 
+            \ ':<C-u>ldo  \|norm gv<C-Left><C-Left><Left>'
+            \ : ':<C-u>cdo  \|norm gv<C-Left><C-Left><Left>'
+nnoremap <expr> .a
+            \ g:qfloc ? ':<C-u>lfdo<Space>'
+            \ : ':<C-u>cfdo<Space>'
+vnoremap <expr> .a
+            \ g:qfloc ? 
+            \ ':<C-u>lfdo  \|norm gv<C-Left><C-Left><Left>'
+            \ : ':<C-u>cfdo  \|norm gv<C-Left><C-Left><Left>'
+nnoremap <expr> .D
+            \ g:qfloc ? ':<C-u>ldo!<Space>'
+            \ : ':<C-u>cdo!<Space>'
+vnoremap <expr> .D
+            \ g:qfloc ? 
+            \ ':<C-u>ldo!  \|norm gv<C-Left><C-Left><Left>'
+            \ : ':<C-u>cdo!  \|norm gv<C-Left><C-Left><Left>'
+nnoremap <expr> .A
+            \ g:qfloc ? ':<C-u>lfdo!<Space>'
+            \ : ':<C-u>cfdo!<Space>'
+vnoremap <expr> .A
+            \ g:qfloc ? 
+            \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
+            \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
 
-        noremap .f :<C-u>Lfilter //<Left>
-        noremap .F :<C-u>Lfilter! //<Left>
-    else
-
-        nnoremap <silent> .d :<C-u>cdo<Space>
-        vnoremap <silent> .d :<C-u>cdo  \|norm gv
-                    \ <C-Left><C-Left><Left>
-        nnoremap <silent> .a :<C-u>cfdo<Space>
-        vnoremap <silent> .a :<C-u>cfdo  \|norm gv
-                    \ <C-Left><C-Left><Left>
-        nnoremap <silent> .D :<C-u>cdo!<Space>
-        vnoremap <silent> .D :<C-u>cdo!  \|norm gv
-                    \ <C-Left><C-Left><Left>
-        nnoremap <silent> .A :<C-u>cfdo!<Space>
-        vnoremap <silent> .A :<C-u>cfdo!  \|norm gv
-                    \ <C-Left><C-Left><Left>
-
-        noremap .f :<C-u>Cfilter //<Left>
-        noremap .F :<C-u>Cfilter! //<Left>
-    endif
-endfunction
+noremap <expr> .f g:qfloc ? :<C-u>Lfilter //<Left>
+noremap <expr> .F g:qfloc ? :<C-u>Lfilter! //<Left>
 
 "}}}
 
@@ -281,8 +283,8 @@ vnoremap <silent> .>
 
 "{{{  actions
 
-" noremap <silent> .w :<C-u>call QFcmd('window')<CR>
-noremap <silent> .e :<C-u>call QFcmd('window')<CR>
+noremap <silent> .w :<C-u>call QFcmd('window')<CR>
+noremap <silent> .W :<C-u>call QFcmd('open')<CR>
 noremap <silent> <C-w>.<Space>
             \ :<C-u>call QFcmd('open')<CR><C-w>T
 
@@ -291,12 +293,16 @@ noremap .l :<C-u>call QFcmd('history')<CR>
 nnoremap <silent> .<Space> :<C-u>call NToggleQuickFix()<CR>
 vnoremap <silent> .<Space> :<C-u>call VToggleQuickFix()<CR>
 
+nnoremap <silent> .c :<C-u>call QFcmd('expr []')<CR>
+vnoremap <silent> .c :<C-u>call QFcmd('expr []')\|norm gv<CR>
+nnoremap <expr> .e
+            \ g:qfloc ? ':<C-u>lexpr<Space>'
+            \ : ':<C-u>cexpr<Space>'
+
 "}}}
 
 augroup Quickfix "{{{
 
-    " TODO C use something more friendly than <cr> and <c-h>
-    " this is hard, it probably needs unmapping bunch of things
     autocmd FileType qf 
                 \ noremap <buffer> <silent> q :q<CR>
                 \ | noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
@@ -313,34 +319,6 @@ augroup Quickfix "{{{
                 \ <CR>:call WQFcmd('close')<CR>
 
 augroup END "}}}
-
-"}}}
-
-"{{{ other <Space>
-
-nnoremap <Space><Space>f<Space> :find<Space>
-nnoremap <Space><Space>fa :find *
-nnoremap <Space><Space>fr :find **
-nnoremap <Space><Space>f;a :find *<Tab>
-nnoremap <Space><Space>f;r :find **<Tab>
-
-nnoremap <Space><Space>f;<Space> :find!<Space>
-nnoremap <Space><Space>fA :find! *
-nnoremap <Space><Space>fR :find! **
-nnoremap <Space><Space>f;A :find! *<Tab>
-nnoremap <Space><Space>f;R :find! **<Tab>
-
-nnoremap <C-w><Space><Space>f<Space> :tabfind<Space>
-nnoremap <C-w><Space><Space>fa :tabfind *
-nnoremap <C-w><Space><Space>fr :tabfind **
-nnoremap <C-w><Space><Space>f;a :tabfind *<Tab>
-nnoremap <C-w><Space><Space>f;r :tabfind **<Tab>
-
-nnoremap <C-w><Space><Space>f;<Space> :tabfind!<Space>
-nnoremap <C-w><Space><Space>fA :tabfind! *
-nnoremap <C-w><Space><Space>fR :tabfind! **
-nnoremap <C-w><Space><Space>f;A :tabfind! *<Tab>
-nnoremap <C-w><Space><Space>f;R :tabfind! **<Tab>
 
 "}}}
 
@@ -364,6 +342,8 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 
 inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<TAB>"
 
+inoremap <C-x>t <C-x><C-]>
+
 "}}}
 
 "{{{ TODO
@@ -378,4 +358,3 @@ inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<TAB>"
 "nmap <silent> <Leader>W bvw"cy:execute "!" . getreg('c')<CR>
 
 "}}}
-

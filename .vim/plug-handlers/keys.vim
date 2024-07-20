@@ -1,6 +1,8 @@
 "{{{ Repeat
 
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+nunmap .
+nmap .. <Plug>(RepeatDot)
 
 "}}}
 
