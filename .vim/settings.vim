@@ -1,7 +1,8 @@
 " {{{ heavy stuff
 
+" ??
 set path+=**
-set path+=../**
+" set path+=../**
 
 let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
@@ -23,16 +24,14 @@ autocmd BufReadPost *
     \ |     if getline(1) =~ "^!"
     \ |         set filetype=xmodmap
     \ |     else
-    \ |         setlocal modeline
+    \ |         setlocal secure modeline
+    \ |         e
     \ |     endif
     \ | endif
 
-" autocmd FileType markdown
-"             \ setlocal secure modeline
-"             \ | e
-
 set shortmess=atsOF
 " 2 is ugly and takes too much space
+" but would make life easier sometimes
 set cmdheight=1
 
 " }}}

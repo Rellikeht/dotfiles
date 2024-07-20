@@ -60,11 +60,19 @@ endfunction
 
 "{{{ quickfix
 
-function! QFsel(ccmd, lcmd, before = '', after = '')
+function! WQFsel(ccmd, lcmd, before = '', after = '')
     " Get dictionary of properties of the current window
     let wininfo = filter(getwininfo(), {i,v -> v.winnr == winnr()})[0]
     let isloc = wininfo.loclist
     execute a:before . (isloc ? a:lcmd : a:ccmd) . a:after
+endfunction
+
+function! WQFcmd(cmd, before = '')
+    call WQFsel('c', 'l', a:before, a:cmd)
+endfunction
+
+function! QFsel(ccmd, lcmd, before = '', after = '')
+    execute a:before . (g:qfloc ? a:lcmd : a:ccmd) . a:after
 endfunction
 
 function! QFcmd(cmd, before = '')

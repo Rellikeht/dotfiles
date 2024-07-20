@@ -75,6 +75,13 @@ noremap <Tab>O :<C-u>-tabedit<Space>
 noremap <Tab><Tab> :<C-u>tab<Space>
 noremap <Tab>; :<C-u>-tab<Space>
 
+noremap <Tab><Space>o :<C-u>tabedit  \|
+            \ exe 'arglocal! '.expand('%')
+            \ <C-Left><C-Left><C-Left><C-Left><Left>
+noremap <Tab><Space>O :<C-u>-tabedit  \|
+            \ exe 'arglocal! '.expand('%')
+            \ <C-Left><C-Left><C-Left><C-Left><Left>
+
 noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
 noremap <Tab>A :<C-u>tabnew\|arglocal!<CR>
 
@@ -297,10 +304,10 @@ nnoremap <Space><Space>w :<C-u>arglocal<Space>
 vnoremap <Space><Space>w :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space><Space>W :<C-u>arglocal!<Space>
 vnoremap <Space><Space>W :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>;w :<C-u>arglocal %<CR>
-vnoremap <Space>;w :<C-u>arglocal %\|norm gv<CR>
-nnoremap <Space>;W :<C-u>arglocal! %<CR>
-vnoremap <Space>;W :<C-u>arglocal! %\|norm gv<CR>
+nnoremap <Space>;w :<C-u>exe 'arglocal'.expand('%')<CR>
+vnoremap <Space>;w :<C-u>exe 'arglocal'.expand('%')\|norm gv<CR>
+nnoremap <Space>;W :<C-u>exe 'arglocal!'.expand('%')<CR>
+vnoremap <Space>;W :<C-u>exe 'arglocal!'.expand('%')\|norm gv<CR>
 
 nnoremap <silent> <Space>g :<C-u>argglobal<CR>
 vnoremap <silent> <Space>g :<C-u>argglobal\|norm gv<CR>
@@ -310,6 +317,10 @@ nnoremap <Space><Space>g :<C-u>argglobal<Space>
 vnoremap <Space><Space>g :<C-u>argglobal  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space><Space>G :<C-u>argglobal!<Space>
 vnoremap <Space><Space>G :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>;g :<C-u>exe 'argglobal'.expand('%')<CR>
+vnoremap <Space>;g :<C-u>exe 'argglobal'.expand('%')\|norm gv<CR>
+nnoremap <Space>;G :<C-u>exe 'argglobal!'.expand('%')<CR>
+vnoremap <Space>;G :<C-u>exe 'argglobal!'.expand('%')\|norm gv<CR>
 
 "}}}
 
@@ -482,6 +493,9 @@ set cmdwinheight=30
 if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{ 
     set background=dark
     set hlsearch
+    set secure
+    set modeline
+
     nnoremap <Tab><Space> :setlocal hls!<CR>
     vnoremap <Tab><Space> :setlocal hls!\|norm gv<CR>
     nnoremap <Tab>qh :<C-u>set hls!<CR>

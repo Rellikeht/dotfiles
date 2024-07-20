@@ -162,22 +162,22 @@ vnoremap <Space>i<Space>m
 noremap <Leader>;l :<C-u>!ls<CR>
 
 " pwd
-nnoremap <Leader>;c :<C-u>silent! lcd %:p:h<CR>
-vnoremap <Leader>;c :<C-u>silent! lcd %:p:h\|norm gv<CR>
-nnoremap <Leader>;p :<C-u>silent! cd %:p:h<CR>
-vnoremap <Leader>;p :<C-u>silent! cd %:p:h\|norm gv<CR>
-nnoremap <Leader>;C :<C-u>lcd<Space>
-vnoremap <Leader>;C :<C-u>lcd \|norm gv
+nnoremap <Leader>;cl :<C-u>silent! lcd %:p:h<CR>
+vnoremap <Leader>;cl :<C-u>silent! lcd %:p:h\|norm gv<CR>
+nnoremap <Leader>;cc :<C-u>silent! cd %:p:h<CR>
+vnoremap <Leader>;cc :<C-u>silent! cd %:p:h\|norm gv<CR>
+nnoremap <Leader>;c<Space>l :<C-u>lcd<Space>
+vnoremap <Leader>;c<Space>l :<C-u>lcd \|norm gv
             \ <C-Left><C-Left><Left>
-nnoremap <Leader>;P :<C-u>cd<Space>
-vnoremap <Leader>;P :<C-u>cd \|norm gv
+nnoremap <Leader>;c<Space>c :<C-u>lcd<Space>
+vnoremap <Leader>;c<Space>c :<C-u>lcd \|norm gv
             \ <C-Left><C-Left><Left>
 
 " Not the best, but should work
 noremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
 
-nnoremap <Leader>;d :<C-u>pwd<CR>
-vnoremap <Leader>;d :<C-u>pwd\|norm gv<CR>
+nnoremap <Leader>;cp :<C-u>pwd<CR>
+vnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
 
 " ???
 " map <Leader>;r :!%<CR>
@@ -299,20 +299,48 @@ augroup Quickfix "{{{
     " this is hard, it probably needs unmapping bunch of things
     autocmd FileType qf 
                 \ noremap <buffer> <silent> q :q<CR>
-                \ | noremap <buffer> < :<C-u>call QFcmd('older')<CR>
-                \ | nnoremap <buffer> > :<C-u>call QFcmd('newer')<CR>
+                \ | noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
+                \ | nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
                 \ | nnoremap <buffer> J :<C-u>call 
-                \ QFcmd('n', '+'.v:count1.' \| '.v:count1)
+                \ WQFcmd('n', '+'.v:count1.' \| '.v:count1)
                 \ \| wincmd p<CR>
                 \ | noremap <buffer> K :<C-u>call
-                \ QFcmd('p', '-'.v:count1.' \| '.v:count1)
+                \ WQFcmd('p', '-'.v:count1.' \| '.v:count1)
                 \ \| wincmd p<CR>
                 \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR>
                 \ | nnoremap <buffer> <silent> <BS> <CR>
                 \ | nnoremap <buffer> <silent> <C-h> 
-                \ <CR>:call QFcmd('close')<CR>
+                \ <CR>:call WQFcmd('close')<CR>
 
 augroup END "}}}
+
+"}}}
+
+"{{{ other <Space>
+
+nnoremap <Space><Space>f<Space> :find<Space>
+nnoremap <Space><Space>fa :find *
+nnoremap <Space><Space>fr :find **
+nnoremap <Space><Space>f;a :find *<Tab>
+nnoremap <Space><Space>f;r :find **<Tab>
+
+nnoremap <Space><Space>f;<Space> :find!<Space>
+nnoremap <Space><Space>fA :find! *
+nnoremap <Space><Space>fR :find! **
+nnoremap <Space><Space>f;A :find! *<Tab>
+nnoremap <Space><Space>f;R :find! **<Tab>
+
+nnoremap <C-w><Space><Space>f<Space> :tabfind<Space>
+nnoremap <C-w><Space><Space>fa :tabfind *
+nnoremap <C-w><Space><Space>fr :tabfind **
+nnoremap <C-w><Space><Space>f;a :tabfind *<Tab>
+nnoremap <C-w><Space><Space>f;r :tabfind **<Tab>
+
+nnoremap <C-w><Space><Space>f;<Space> :tabfind!<Space>
+nnoremap <C-w><Space><Space>fA :tabfind! *
+nnoremap <C-w><Space><Space>fR :tabfind! **
+nnoremap <C-w><Space><Space>f;A :tabfind! *<Tab>
+nnoremap <C-w><Space><Space>f;R :tabfind! **<Tab>
 
 "}}}
 
