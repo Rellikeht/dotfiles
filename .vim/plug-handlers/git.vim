@@ -204,6 +204,12 @@ nnoremap <silent> <leader>g;w :Gwrite<CR>
 nnoremap <silent> <leader>g;W :Gwrite<Space>
 nnoremap <silent> <leader>g;s :Git --paginate<CR>
 
+nnoremap <silent> <leader>g;b :GBrowse<CR>
+nnoremap <silent> <leader>g;<Space>b :GBrowse<Space>
+" TODO more GBrowses
+
+" TODO sourceforge
+
 " }}}
 
 "{{{ diff split

@@ -23,6 +23,8 @@ Plug("nvim-lua/plenary.nvim")
 
 Plug("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"})
 Plug("norcalli/nvim-colorizer.lua") -- TODO C
+
+Plug("nvim-lualine/lualine.nvim")
 -- Plug('folke/tokyonight.nvim') -- elflord is good enough probably
 
 -- might not work
@@ -68,7 +70,10 @@ Plug("nvim-treesitter/nvim-treesitter-refactor") -- TODO C
 -- Plug("vhyrro/luarocks.nvim")
 -- Plug("benlubas/molten-nvim") -- TODO B
 
--- Plug("puremourning/vimspector") -- TODO C
+Plug("puremourning/vimspector") -- TODO C
+Plug("vim-test/vim-test") -- TODO A
+
+Plug("hedyhli/outline.nvim")
 
 -- }}}
 
@@ -89,10 +94,11 @@ local confMods = {
   "colors",
   "treesitter",
   "lspconfig",
+  "coding",
   "other",
 }
 
-local confVimMods = {"motion"}
+local confVimMods = {"motion", "testing"}
 
 for _, i in ipairs(confMods) do require(plug_dir .. i) end
 for _, i in ipairs(confVimMods) do

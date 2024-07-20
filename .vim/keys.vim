@@ -308,7 +308,9 @@ augroup Quickfix "{{{
                 \ QFcmd('p', '-'.v:count1.' \| '.v:count1)
                 \ \| wincmd p<CR>
                 \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR>
-                " \ | nnoremap <buffer> <silent> <C-h> <CR>:call QFcmd('close')<CR>
+                \ | nnoremap <buffer> <silent> <BS> <CR>
+                \ | nnoremap <buffer> <silent> <C-h> 
+                \ <CR>:call QFcmd('close')<CR>
 
 augroup END "}}}
 

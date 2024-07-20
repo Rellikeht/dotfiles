@@ -81,8 +81,8 @@ highlight.css
 *~
 Session.vim
 
-.config/nvim/plugins
-.config/nvim/sessions
+.config/nvim*/plugins
+.config/nvim*/sessions
 
 .emacs.d/recentf
 .emacs.d/elpa

@@ -66,6 +66,10 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'rhysd/git-messenger.vim' " TODO
 
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
+
 "}}}
 
 "{{{ config help

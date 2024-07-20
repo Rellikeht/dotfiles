@@ -212,8 +212,8 @@ let g:haskell_indent_disable = 0
 "{{{ others
 
 function GeneralUpgrade()
-    PlugUpgrade
-    PlugUpdate --sync
+    silent! PlugUpgrade
+    silent! PlugUpdate --sync
 endfunction
 
 "}}}
