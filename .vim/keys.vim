@@ -179,9 +179,7 @@ noremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
 nnoremap <Leader>;cp :<C-u>pwd<CR>
 vnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
 
-" TODO D better mapping
-nnoremap <Leader>;u :<C-u>update<CR>
-vnoremap <Leader>;u :<C-u>update\|norm gv<CR>
+noremap <Leader>;m :<C-u>messages<CR>
 
 " ???
 " map <Leader>;r :!%<CR>

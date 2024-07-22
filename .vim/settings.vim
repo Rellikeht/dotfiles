@@ -29,14 +29,45 @@ autocmd BufReadPost *
     \ |     endif
     \ | endif
 
+" }}}
+
+"{{{ good looking
+
 set shortmess=atsOF
 " 2 is ugly and takes too much space
 " but would make life easier sometimes
 set cmdheight=1
 
-" }}}
+" TODO C tabline
 
-" TODO tabline, statusline
+" TODO B
+set laststatus=2
+
+" set statusline+=\ 
+" set statusline+=%f
+" set statusline+=\ 
+" set statusline+=%h
+" set statusline+=%w
+" set statusline+=%m
+" set statusline+=%r
+" set statusline+=%=
+" set statusline+=%-14.(%l,%c%V%)
+" set statusline+=\ 
+" set statusline+=%P
+" set statusline+=\ 
+
+set statusline+=%<
+set statusline+=%f
+set statusline+=\ 
+set statusline+=%h
+set statusline+=%m
+set statusline+=%r
+set statusline+=%=
+set statusline+=%-14.(%l,%c%V%)
+set statusline+=\ 
+set statusline+=%P
+
+"}}}
 
 " {{{ some simple toggling
 

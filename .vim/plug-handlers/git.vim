@@ -7,9 +7,9 @@
 
 "{{{ basic commands
 
-nnoremap <silent> <leader>gg :Git<CR>
-nnoremap <silent> <leader>g;g :Git<CR><C-w>T
-nnoremap <silent> <C-w><leader>gg :tab Git<CR>
+nnoremap <silent> <leader>gg :Git\|e<CR>
+nnoremap <silent> <leader>g;g :Git\|e<CR><C-w>T
+nnoremap <silent> <C-w><leader>gg :tab Git\|e<CR>
 
 nnoremap <leader>goc :G checkout<CR>
 nnoremap <leader>goC :G checkout<Space>

@@ -2,6 +2,7 @@ source ~/.vim/plug-handlers/colors.vim
 source ~/.vim/plug-handlers/alnum.vim
 source ~/.vim/plug-handlers/files.vim
 source ~/.vim/plug-handlers/typeset.vim
+source ~/.vim/plug-handlers/markdown.vim
 
 source ~/.vim/plug-handlers/tmux.vim
 source ~/.vim/plug-handlers/code.vim

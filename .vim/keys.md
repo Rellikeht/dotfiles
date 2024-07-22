@@ -142,7 +142,7 @@ Not very accurate, at least for now.
 
 - x, X - netrw, vifm, l?(vim)?grep, drag and drop
 
-- . - tabularize, vis
+- . - tabularize, vis, bullets.vim
 
 ## Nvim only
 
