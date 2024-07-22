@@ -84,7 +84,8 @@ endfunction
 
 function! NToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
-        call QFcmd('open')
+        call QFcmd("open '.g:qfheight", "exe '")
+        wincmd p
     else
         call QFcmd('close')
     endif
@@ -92,7 +93,7 @@ endfunction
 
 function! VToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
-        call QFcmd('open')
+        call QFcmd("open '.g:qfheight", "exe '")
         wincmd p
     else
         call QFcmd('close')

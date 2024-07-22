@@ -21,6 +21,7 @@ Plug 'dbakker/vim-paragraph-motion'
 
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround' " TODO B write shortcuts somewhere
+Plug 'tpope/abolish'
 
 "}}}
 
@@ -51,6 +52,7 @@ Plug 'lfilho/cosco.vim'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
+" Plug 'neomake/neomake' ?
 
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/argtextobj.vim'
@@ -101,9 +103,11 @@ Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim'
 Plug 'mattn/emmet-vim', {'for': 'html'}
+
 Plug 'vimwiki/vimwiki'
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'bullets-vim/bullets.vim'
 
 " Maybe...
 " Plug 'dbridges/vim-markdown-runner'

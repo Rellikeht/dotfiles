@@ -192,6 +192,8 @@ noremap <Space><Space>O :<C-u>edit!<Space>
 
 nnoremap <Space><Space>l :<C-u>buffers<CR>
 vnoremap <Space><Space>l :<C-u>buffers\|norm gv<CR>
+nnoremap <Space><Space>L :<C-u>buffers!<CR>
+vnoremap <Space><Space>L :<C-u>buffers!\|norm gv<CR>
 noremap <Space><Space>;l :<C-u>filter  buffers<C-Left><C-b>
 noremap <Space><Space>;L :<C-u>filter  buffers!<C-Left><C-b>
 

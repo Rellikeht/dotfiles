@@ -119,27 +119,31 @@ command! -nargs=+ -complete=file_in_path Grep cexpr Grep(<f-args>)
 "}}}
 
 "{{{ external providers
-" TODO more programs and settings
-" TODO maybe even quickfix list to select
 
-let g:ripgrep = 0
+" TODO more
+let g:grepprgs = [
+            \ 'grep\ -EIn\ $*\ /dev/null',
+            \ 'rg\ --vimgrep\ --smart-case\ --hidden',
+                \ ]
+
+" let g:ripgrep = 0
 set grepprg=grep\ -EIn\ $*\ /dev/null
 
-function ToggleRG()
-    let g:ripgrep = !g:ripgrep
-    if g:ripgrep
-        set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
-        set grepformat=%f:%l:%c:%m
-        echo "Ripgrep on"
-    else
-        set grepprg=grep\ -EIn\ $*\ /dev/null
-        set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
-        echo "Ripgrep off"
-    endif
-endfunction
+" function ToggleRG()
+"     let g:ripgrep = !g:ripgrep
+"     if g:ripgrep
+"         set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+"         set grepformat=%f:%l:%c:%m
+"         echo "Ripgrep on"
+"     else
+"         set grepprg=grep\ -EIn\ $*\ /dev/null
+"         set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+"         echo "Ripgrep off"
+"     endif
+" endfunction
 
-nnoremap <Leader>xlt :<C-u>call ToggleRG()<CR>
-vnoremap <Leader>xlt :<C-u>call ToggleRG()\|norm gv<CR>
+" nnoremap <Leader>xlt :<C-u>call ToggleRG()<CR>
+" vnoremap <Leader>xlt :<C-u>call ToggleRG()\|norm gv<CR>
 
 "}}}
 
@@ -303,6 +307,8 @@ noremap <expr> <Leader>x/F g:qfloc ?
             \ : ':<C-u>vimgrep //g %<C-Left><C-Left><Right>'
 
 "}}}
+
+" TODO grepadd
 
 "{{{ TODO A
 

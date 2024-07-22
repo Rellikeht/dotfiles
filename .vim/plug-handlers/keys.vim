@@ -27,6 +27,10 @@ noremap <C-n> <Plug>Sneak_;
 
 "}}}
 
+"{{{ TODO A abolish
+
+"}}}
+
 "{{{ vis
 
 noremap <Leader>.s :S

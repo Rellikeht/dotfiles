@@ -179,6 +179,10 @@ noremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
 nnoremap <Leader>;cp :<C-u>pwd<CR>
 vnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
 
+" TODO D better mapping
+nnoremap <Leader>;u :<C-u>update<CR>
+vnoremap <Leader>;u :<C-u>update\|norm gv<CR>
+
 " ???
 " map <Leader>;r :!%<CR>
 
@@ -197,6 +201,7 @@ endfunction
 
 "{{{ settings
 
+let g:qfheight = 20
 let g:qfloc = 0
 
 nnoremap .t :<C-u>let g:qfloc = !g:qfloc
@@ -283,10 +288,12 @@ vnoremap <silent> .>
 
 "{{{  actions
 
-noremap <silent> .w :<C-u>call QFcmd('window')<CR>
-noremap <silent> .W :<C-u>call QFcmd('open')<CR>
+noremap <silent> .w 
+            \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR>
+noremap <silent> .W 
+            \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
 noremap <silent> <C-w>.<Space>
-            \ :<C-u>call QFcmd('open')<CR><C-w>T
+            \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR><C-w>T
 
 noremap .l :<C-u>call QFcmd('list')<CR>
 noremap .L :<C-u>call QFcmd('history')<CR>
@@ -294,11 +301,28 @@ noremap .L :<C-u>call QFcmd('history')<CR>
 nnoremap <silent> .<Space> :<C-u>call NToggleQuickFix()<CR>
 vnoremap <silent> .<Space> :<C-u>call VToggleQuickFix()<CR>
 
+" clearing
 nnoremap <silent> .c :<C-u>call QFcmd('expr []')<CR>
 vnoremap <silent> .c :<C-u>call QFcmd('expr []')\|norm gv<CR>
-nnoremap <expr> .e
-            \ g:qfloc ? ':<C-u>lexpr<Space>'
+
+nnoremap <expr> .e g:qfloc ?
+            \ ':<C-u>lexpr<Space>'
             \ : ':<C-u>cexpr<Space>'
+
+" search into quickfix list
+nnoremap <expr> ./ g:qfloc ? 
+            \ ':<C-u>g//lexpr expand("%").":".line(".").":".getline(".")
+            \ <Home><Right><Right>'
+            \ : ':<C-u>g//cexpr expand("%").":".line(".").":".getline(".")
+            \ <Home><Right><Right>'
+
+" search into quickfix list
+nnoremap <expr> .? g:qfloc ? 
+            \ ':<C-u>g//laddexpr expand("%").":".line(".").":".getline(".")
+            \ <Home><Right><Right>'
+            \ : ':<C-u>g//caddexpr expand("%").":".line(".").":".getline(".")
+            \ <Home><Right><Right>'
+
 
 "}}}
 
@@ -318,6 +342,18 @@ augroup Quickfix "{{{
                 \ | nnoremap <buffer> <silent> <BS> <CR>
                 \ | nnoremap <buffer> <silent> <C-h> 
                 \ <CR>:call WQFcmd('close')<CR>
+                \ | noremap <buffer> <expr> a g:qfloc ?
+                \ ':<C-u>laddexpr<Space>'
+                \ : ':<C-u>caddexpr<Space>'
+                \ | noremap <buffer> <expr> i g:qfloc ?
+                \ ':<C-u>laddfile<Space>'
+                \ : ':<C-u>caddfile<Space>'
+                \ | noremap <buffer> <expr> I g:qfloc ?
+                \ ':<C-u>laddbuffer<Space>'
+                \ : ':<C-u>caddbuffer<Space>'
+
+"TODO C modifications
+" some dd and undo
 
 augroup END "}}}
 

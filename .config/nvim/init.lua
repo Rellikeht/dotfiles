@@ -21,7 +21,10 @@ Plug("nvim-lua/plenary.nvim")
 
 -- {{{ look enchancing
 
-Plug("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"})
+Plug(
+  "nvim-treesitter/nvim-treesitter",
+  {["do"] = ":silent! TSUpdate"}
+)
 Plug("norcalli/nvim-colorizer.lua")
 
 -- might not work

@@ -56,12 +56,23 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  diag_modes, "<Leader>dl", vim.diagnostic.setqflist,
-  {noremap = true}
+  buf_modes, "<Leader>dl", function(ev)
+    if vim.g["qfloc"] == 1 then
+      vim.diagnostic.setloclist({open = false})
+    else
+      vim.diagnostic.setqflist({open = false})
+    end
+  end, {noremap = true}
 )
+
 vim.keymap.set(
-  diag_modes, "<Leader>dL", vim.diagnostic.setloclist,
-  {noremap = true}
+  diag_modes, "<Leader>dL", function(ev)
+    if vim.g["qfloc"] == 1 then
+      vim.diagnostic.setloclist({open = true})
+    else
+      vim.diagnostic.setqflist({open = true})
+    end
+  end, {noremap = true}
 )
 
 -- }}}
