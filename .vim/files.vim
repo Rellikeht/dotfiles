@@ -120,34 +120,40 @@ command! -nargs=+ -complete=file_in_path Grep cexpr Grep(<f-args>)
 
 "{{{ external providers
 
-" TODO more
-let g:grepprgs = [
+" TODO A more
+let g:grepprgs = 
+            \ [
             \ 'grep\ -EIn\ $*\ /dev/null',
             \ 'rg\ --vimgrep\ --smart-case\ --hidden',
-                \ ]
+            \ ]
+
+" https://vi.stackexchange.com/questions/35139/custom-arguments-to-user-command
+function Grepprgs(current_arg, command_line, cursor_position)
+    let l = len(a:current_arg) - 1
+    if l >= 0
+        let filtered_args = copy(g:grepprgs)
+        call filter(
+                    \ filtered_args,
+                    \ {_, v -> v[:l] ==# a:current_arg})
+        if !empty(filtered_args)
+            return filtered_args
+        endif
+    endif
+    return g:grepprgs
+endfunction
 
 " let g:ripgrep = 0
 set grepprg=grep\ -EIn\ $*\ /dev/null
 
-" function ToggleRG()
-"     let g:ripgrep = !g:ripgrep
-"     if g:ripgrep
-"         set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
-"         set grepformat=%f:%l:%c:%m
-"         echo "Ripgrep on"
-"     else
-"         set grepprg=grep\ -EIn\ $*\ /dev/null
-"         set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
-"         echo "Ripgrep off"
-"     endif
-" endfunction
+command! -nargs=1 -complete=customlist,Grepprgs ExtGrep 
+            \ set grepprg=<args>
 
-" nnoremap <Leader>xlt :<C-u>call ToggleRG()<CR>
-" vnoremap <Leader>xlt :<C-u>call ToggleRG()\|norm gv<CR>
+" TODO C more interesting way to switch
+nnoremap <Leader>xl<Tab> :<C-u>ExtGrep<Space>
+vnoremap <Leader>xl<Tab> :<C-u>ExtGrep  \|norm gv
+            \ <C-Left><C-Left><Left>
 
 "}}}
-
-" TODO C more visual mappings
 
 "{{{ external
 
@@ -320,7 +326,7 @@ noremap <expr> <Leader>x/F g:qfloc ?
 "}}}
 
 "{{{ netrw settings
-" TODO C
+" TODO D
 
 let g:netrw_banner = 0
 let g:netrw_menu = 1
@@ -371,43 +377,5 @@ noremap <silent> <Leader>x;l :Lexplore<CR>
 noremap <Leader>x;L :Lexplore<Space>
 noremap <silent> <Leader>x;h :Hexplore<CR>
 noremap <Leader>x;H :Hexplore<Space>
-
-"}}}
-
-"{{{ netrw network things
-
-" TODO D ftp
-
-" TODO D
- " *g:netrw_preview*    =0 (default) preview window shown in a horizontally
-               " split window
-            " =1 preview window shown in a vertically split window.
-               " Also affects the "previous window" (see |netrw-P|)
-               " in the same way.
-            " The |g:netrw_alto| variable may be used to provide
-            " additional splitting control:
-                " g:netrw_preview g:netrw_alto result
-                         " 0             0     |:aboveleft|
-                         " 0             1     |:belowright|
-                         " 1             0     |:topleft|
-                         " 1             1     |:botright|
-            " To control sizing, see |g:netrw_winsize|
-
-"  *g:netrw_scpport*    = "-P" : option to use to set port for scp
-"  *g:netrw_sshport*    = "-p" : option to use to set port for ssh
-
-"   *g:netrw_silent*    =0 : transfers done normally
-"           =1 : transfers done silently
-
-"  *g:netrw_use_errorwindow* =2: messages from netrw will use a popup window
-"                Move the mouse and pause to remove the popup window.
-"                (default value if popup windows are available)
-"            =1 : messages from netrw will use a separate one
-"                 line window.  This window provides reliable
-"                 delivery of messages.
-"                (default value if popup windows are not available)
-"            =0 : messages from netrw will use echoerr ;
-"                 messages don't always seem to show up this
-"                 way, but one doesn't have to quit the window.
 
 "}}}

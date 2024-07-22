@@ -57,8 +57,10 @@ noremap .<Esc> <Nop>
 
 "{{{ settings with <Space>
 
-nnoremap <Space>qw :<C-u>set wrap!<CR>
-vnoremap <Space>qw :<C-u>set wrap!\|norm gv<CR>
+nnoremap <Space>qw :<C-u>setlocal wrap!<CR>
+vnoremap <Space>qw :<C-u>setlocal wrap!\|norm gv<CR>
+nnoremap <Space>qW :<C-u>set wrap!<CR>
+vnoremap <Space>qW :<C-u>set wrap!\|norm gv<CR>
 nnoremap <Space>qs :<C-u>source %<CR>
 vnoremap <Space>qs :<C-u>source %\|norm gv<CR>
 nnoremap <Space>qm :<C-u>setlocal modeline!<CR>:e<CR>
@@ -241,6 +243,11 @@ vnoremap <Space><Space>T :<C-u>bufdo!  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>l :<C-u>args<CR>
 vnoremap <Space>l :<C-u>args\|norm gv<CR>
 noremap <Space>;l :<C-u>filter  args<C-Left><C-b>
+
+" c-g is good enough probably
+" nnoremap <expr> <Space>ia (argc() == 0) ?
+"             \ ':<C-u>echo "Argument list is empty"<CR>'
+"             \ : ':<C-u>echo "Argument ".(argidx()+1)." of ".argc()<CR>'
 
 noremap <Space>e :<C-u>Argument<Space>
 noremap <Space>E :<C-u>ArgumentE<Space>

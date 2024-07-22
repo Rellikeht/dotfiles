@@ -254,6 +254,28 @@ vnoremap <expr> .A
 noremap <expr> .f g:qfloc ? :<C-u>Lfilter //<Left>
 noremap <expr> .F g:qfloc ? :<C-u>Lfilter! //<Left>
 
+nnoremap <silent> .b :<C-u>call QFcmd('getbuffer')<CR>
+vnoremap <silent> .b :<C-u>call QFcmd('getbuffer')\|norm gv<CR>
+nnoremap <silent> .B 
+            \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")<CR>
+vnoremap <silent> .B 
+            \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")\|norm gv<CR>
+nnoremap <expr> .<Space>b g:qfloc ? 
+            \ ':<C-u>lgetbuffer <Space>'
+            \ : ':<C-u>cgetbuffer <Space>'
+vnoremap <expr> .<Space>b g:qfloc ? 
+            \ ':<C-u>lgetbuffer  \|norm gv<C-Left><C-Left><Left>'
+            \ : ':<C-u>cgetbuffer  \|norm gv<C-Left><C-Left><Left>'
+
+nnoremap <silent> .<Tab> :<C-u>call QFcmd('getfile')<CR>
+vnoremap <silent> .<Tab> :<C-u>call QFcmd('getfile')\|norm gv<CR>
+nnoremap <expr> .<Space><Tab> g:qfloc ? 
+            \ ':<C-u>lgetfile <Space>'
+            \ : ':<C-u>cgetfile <Space>'
+vnoremap <expr> .<Space><Tab> g:qfloc ? 
+            \ ':<C-u>lgetfile  \|norm gv<C-Left><C-Left><Left>'
+            \ : ':<C-u>cgetfile  \|norm gv<C-Left><C-Left><Left>'
+
 "}}}
 
 "{{{ movement
@@ -289,17 +311,19 @@ vnoremap <silent> .>
 "{{{  actions
 
 noremap <silent> .w 
-            \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR>
-noremap <silent> .W 
             \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
-noremap <silent> <C-w>.<Space>
+noremap <silent> .W
+            \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR>
+noremap <silent> <C-w>.w
             \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR><C-w>T
+noremap <silent> <C-w>.W
+            \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR><C-w>T
 
 noremap .l :<C-u>call QFcmd('list')<CR>
 noremap .L :<C-u>call QFcmd('history')<CR>
 
-nnoremap <silent> .<Space> :<C-u>call NToggleQuickFix()<CR>
-vnoremap <silent> .<Space> :<C-u>call VToggleQuickFix()<CR>
+nnoremap <silent> .; :<C-u>call NToggleQuickFix()<CR>
+vnoremap <silent> .; :<C-u>call VToggleQuickFix()<CR>
 
 " clearing
 nnoremap <silent> .c :<C-u>call QFcmd('expr []')<CR>
@@ -308,6 +332,9 @@ vnoremap <silent> .c :<C-u>call QFcmd('expr []')\|norm gv<CR>
 nnoremap <expr> .e g:qfloc ?
             \ ':<C-u>lexpr<Space>'
             \ : ':<C-u>cexpr<Space>'
+vnoremap <expr> .e g:qfloc ?
+            \ ':<C-u>lexpr  \|norm gv<C-Left><C-Left><Left>'
+            \ : ':<C-u>cexpr  \|norm gv<C-Left><C-Left><Left>'
 
 " search into quickfix list
 nnoremap <expr> ./ g:qfloc ? 
@@ -322,7 +349,6 @@ nnoremap <expr> .? g:qfloc ?
             \ <Home><Right><Right>'
             \ : ':<C-u>g//caddexpr expand("%").":".line(".").":".getline(".")
             \ <Home><Right><Right>'
-
 
 "}}}
 
