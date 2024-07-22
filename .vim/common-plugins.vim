@@ -18,6 +18,7 @@ Plug 'ryvnf/readline.vim'
 Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak' " TODO A shortcuts
 Plug 'dbakker/vim-paragraph-motion'
+Plug 'wellle/targets.vim'
 
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround' " TODO B write shortcuts somewhere
@@ -57,7 +58,10 @@ Plug 'tpope/vim-dispatch'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/argtextobj.vim'
 
-" Do I need this ?
+Plug 'wellle/tmux-complete.vim'
+
+" folds should be enough
+" or something
 " Plug 'wellle/context.vim'
 
 "}}}
@@ -81,8 +85,10 @@ Plug 'direnv/direnv.vim'
 
 Plug 'tmux-plugins/vim-tmux'
 Plug 'vifm/vifm.vim'
-Plug 'kmonad/kmonad-vim'
 Plug 'nickel-lang/vim-nickel'
+
+Plug 'kmonad/kmonad-vim'
+Plug 'mmikeww/autohotkey.vim'
 
 "}}}
 
@@ -106,6 +112,7 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 
 Plug 'vimwiki/vimwiki'
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
+Plug 'vim-pandoc/vim-markdownfootnotes'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'bullets-vim/bullets.vim'
 

@@ -6,6 +6,7 @@ set path+=**
 
 let mapleader = ','
 autocmd FileType * let b:match_ignorecase = 0
+" TODO B maplocalleader 
 
 " ?
 autocmd VimEnter * arglocal!

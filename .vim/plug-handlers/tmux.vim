@@ -1,7 +1,4 @@
-" ============================================================
-" Main
-" ============================================================
-
+"{{{ tmux integration
 " I don't know if it is doable
 " cd under vim
 " probably not
@@ -106,11 +103,9 @@ nnoremap <silent> <Leader>tV :call MakeThirdVertical()<CR>
 nnoremap <silent> <Leader>tC :call Ccd()<CR>
 nnoremap <Leader>tL :Tmux list-panes<CR>
 nnoremap <silent> <Leader>tq :Tmux kill-pane -t {last} <CR>
+"}}}
 
-" ============================================================
-" vim-slime
-" ============================================================
-
+"{{{ vim-slime
 let g:slime_target = 'tmux'
 let g:slime_paste_file = tempname()
 let g:slime_default_config = {
@@ -214,3 +209,8 @@ nnoremap <silent> gsB :call SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
 " so here should be kept list of them :(
 
 " map gsP :call SendKeys('b '.line('.'))
+"}}}
+
+"{{{ tmux complete
+let g:tmuxcomplete#trigger = 'omnifunc'
+"}}}

@@ -419,13 +419,23 @@ vnoremap <Space>ii :<C-u>imap  \|norm gv
 noremap <Space>ih :<C-u>help<Space>
 noremap <C-w><Space>ih :<C-u>tab help<Space>
 
+" }}}
+
+"{{{ <Space> operations
+
 nnoremap <Space>iJ :<C-u>clearjumps<CR>
 vnoremap <Space>iJ :<C-u>clearjumps\|norm gv<CR>
 
-" retarded 'more' kicks in
-noremap <Space>m :<C-u>marks<CR>:normal `
+nnoremap <Space>;m :move<Space>
 
-" }}}
+"}}}
+
+"{{{ because escape doesn't work sometimes
+
+noremap <Space>;<Esc> <Nop>
+noremap <Space>i<Esc> <Nop>
+
+"}}}
 
 " {{{ other mappings
 
