@@ -376,10 +376,18 @@ noremap <Space>i<Space>t
 noremap <Space>i<Space>m
            \ :<C-u>filter  marks<C-Left><Left>
 
-noremap <Space>ik :<C-u>map<Space>
-noremap <Space>in :<C-u>nmap<Space>
-noremap <Space>iv :<C-u>vmap<Space>
-noremap <Space>ii :<C-u>imap<Space>
+nnoremap <Space>ik :<C-u>map<Space>
+vnoremap <Space>ik :<C-u>map  \|norm gv
+            \ <C-Left><C-Left><Left>
+nnoremap <Space>in :<C-u>nmap<Space>
+vnoremap <Space>in :<C-u>nmap  \|norm gv
+            \ <C-Left><C-Left><Left>
+nnoremap <Space>iv :<C-u>vmap<Space>
+vnoremap <Space>iv :<C-u>vmap  \|norm gv
+            \ <C-Left><C-Left><Left>
+nnoremap <Space>ii :<C-u>imap<Space>
+vnoremap <Space>ii :<C-u>imap  \|norm gv
+            \ <C-Left><C-Left><Left>
 
 noremap <Space>ih :<C-u>help<Space>
 noremap <C-w><Space>ih :<C-u>tab help<Space>

@@ -20,7 +20,9 @@
 #   - never: Don't accept cookies at all.
 
 config.set("content.cookies.accept", "never", "*")
-config.set("content.cookies.accept", "no-unknown-3rdparty", "chrome-devtools://*")
+config.set(
+    "content.cookies.accept", "no-unknown-3rdparty", "chrome-devtools://*"
+)
 config.set("content.cookies.store", True)
 config.set("content.cookies.accept", "no-unknown-3rdparty", "devtools://*")
 
@@ -46,7 +48,9 @@ JSENABLE = [
     "*://*.paulgo.io/*",
     "*://paulgo.io/*",
     "*://*.odysee.com/*",
+    "*://odysee.com/*",
     "*://*.youtube.com/*",
+    "*://youtube.com/*",
     # Dunno if that is necessary
     "*://github.com/*",
     "*://gitlab.com/*",

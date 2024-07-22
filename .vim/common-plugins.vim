@@ -40,6 +40,7 @@ Plug 'luochen1990/rainbow'
 Plug 'kshenoy/vim-signature'
 
 Plug 'godlygeek/tabular'
+Plug 'vim-scripts/vis'
 
 "}}}
 

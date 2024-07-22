@@ -27,6 +27,13 @@ noremap <C-n> <Plug>Sneak_;
 
 "}}}
 
+"{{{ vis
+
+noremap <Leader>.s :S
+noremap <Leader>.b :B
+
+"}}}
+
 "{{{ others
 
 nnoremap <silent> <Leader>qu :silent! call GeneralUpgrade()<CR>

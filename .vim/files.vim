@@ -169,9 +169,6 @@ noremap <expr> <Leader>xlf g:qfloc ?
             \ 'lgrep  %<Left><Left>'
             \ : ':<C-u>'.v:count1.
             \ 'lgrep  %<Left><Left>'
-noremap <expr> <Leader>xlF g:qfloc ?
-            \ ':<C-u>lvimgrep  %<Left><Left>'
-            \ : ':<C-u>vimgrep  %<Left><Left>'
 
 nnoremap <expr> <Leader>xll g:qfloc ? 
             \ ':<C-u>lgrep '.expand('<cword>').' ## <CR>'
@@ -226,9 +223,6 @@ nnoremap <expr> <Leader>xl<Space>l g:qfloc ?
 
 "{{{ vimgrep
 
-noremap <expr> <Leader>x/<Space> g:qfloc ?
-            \ ':<C-u>lvimgrep<Space>'
-            \ : ':<C-u>vimgrep<Space>'
 nnoremap <expr> <Leader>x/. g:qfloc ?
             \ ':<C-u>'.v:count1.'lvimgrep<Space>'
             \ : ':<C-u>'.v:count1.'vimgrep<Space>'
@@ -272,23 +266,23 @@ vnoremap <expr> <Leader>x/L g:qfloc ?
             \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
             \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
 
-nnoremap <expr> <Leader>xl<Space>a g:qfloc ? 
+nnoremap <expr> <Leader>x/<Space>a g:qfloc ? 
             \ ':<C-u>lvimgrep //gj *<C-Left><C-Left><Right>'
             \ : ':<C-u>vimgrep //gj *<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>xl<Space>r g:qfloc ? 
+nnoremap <expr> <Leader>x/<Space>r g:qfloc ? 
             \ ':<C-u>lvimgrep //gj **/*<C-Left><C-Left><Right>'
             \ : ':<C-u>vimgrep //gj **/*<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>xl<Space>l g:qfloc ? 
+nnoremap <expr> <Leader>x/<Space>l g:qfloc ? 
             \ ':<C-u>lvimgrep //gj ##<C-Left><C-Left><Right>'
             \ : ':<C-u>vimgrep //gj ##<C-Left><C-Left><Right>'
 
-nnoremap <expr> <Leader>xl<Space>A g:qfloc ? 
+nnoremap <expr> <Leader>x/<Space>A g:qfloc ? 
             \ ':<C-u>lvimgrep //fgj *<C-Left><C-Left><Right>'
             \ : ':<C-u>vimgrep //fgj *<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>xl<Space>R g:qfloc ? 
+nnoremap <expr> <Leader>x/<Space>R g:qfloc ? 
             \ ':<C-u>lvimgrep //fgj **/*<C-Left><C-Left><Right>'
             \ : ':<C-u>vimgrep //fgj **/*<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>xl<Space>L g:qfloc ? 
+nnoremap <expr> <Leader>x/<Space>L g:qfloc ? 
             \ ':<C-u>lvimgrep //fgj ##<C-Left><C-Left><Right>'
             \ : ':<C-u>vimgrep //fgj ##<C-Left><C-Left><Right>'
 

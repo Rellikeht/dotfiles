@@ -121,7 +121,7 @@ Not very accurate, at least for now.
   - f, <Space>f - neoformat
   - others used - nuuid
 
-- u - undo tree, tinyMRU, obsession
+- u - undotree, tinyMRU, obsession
 
 - w - vim wiki
 
@@ -142,7 +142,7 @@ Not very accurate, at least for now.
 
 - x, X - netrw, vifm, l?(vim)?grep, drag and drop
 
-- . - tabularize
+- . - tabularize, vis
 
 ## Nvim only
 

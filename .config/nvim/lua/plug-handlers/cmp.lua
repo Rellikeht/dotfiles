@@ -1,7 +1,10 @@
--- {{{ 
-local cmp = require("cmp")
+local autopairs = require("nvim-autopairs") -- {{{ TODO C
+autopairs.setup({})
+-- }}}
+
+local cmp = require("cmp") -- {{{ 
 ---@diagnostic disable-next-line: unused-local
-local autopairs = require("nvim-autopairs").setup {}
+
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local snippy = require("snippy")
 

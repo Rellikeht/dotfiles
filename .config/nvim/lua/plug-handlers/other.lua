@@ -208,12 +208,6 @@ vim.keymap.set(
 
 -- }}}
 
--- {{{ TODO C COLORIZER
--- }}}
-
--- {{{ TODO D ZEN-MODE ??
--- }}}
-
 -- {{{ formatting
 
 -- turn off formatting enabled in lspconfig

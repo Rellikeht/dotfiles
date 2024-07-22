@@ -1,9 +1,6 @@
--- {{{ lualine
-require("lualine").setup({options = {theme = "nightfly"}})
-
+-- {{{ TODO C COLORIZER
 -- }}}
-
--- {{{ todo colors
+-- {{{ TODO C colors
 -- vim.cmd('hi Todo		guifg=#ffcf2f	guibg=#0e1224	gui=bold')
 -- TODO fucking todo can't change it's color
 -- easy to use plugin they say

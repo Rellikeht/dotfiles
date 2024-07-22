@@ -288,7 +288,8 @@ noremap <silent> .W :<C-u>call QFcmd('open')<CR>
 noremap <silent> <C-w>.<Space>
             \ :<C-u>call QFcmd('open')<CR><C-w>T
 
-noremap .l :<C-u>call QFcmd('history')<CR>
+noremap .l :<C-u>call QFcmd('list')<CR>
+noremap .L :<C-u>call QFcmd('history')<CR>
 
 nnoremap <silent> .<Space> :<C-u>call NToggleQuickFix()<CR>
 vnoremap <silent> .<Space> :<C-u>call VToggleQuickFix()<CR>

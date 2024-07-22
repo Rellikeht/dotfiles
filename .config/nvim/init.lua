@@ -22,10 +22,7 @@ Plug("nvim-lua/plenary.nvim")
 -- {{{ look enchancing
 
 Plug("nvim-treesitter/nvim-treesitter", {["do"] = ":TSUpdate"})
-Plug("norcalli/nvim-colorizer.lua") -- TODO C
-
-Plug("nvim-lualine/lualine.nvim")
--- Plug('folke/tokyonight.nvim') -- elflord is good enough probably
+Plug("norcalli/nvim-colorizer.lua")
 
 -- might not work
 -- Plug("3rd/image.nvim") -- TODO B
@@ -62,18 +59,16 @@ Plug("Vimjas/vint")
 Plug("nvim-orgmode/orgmode") -- TODO B
 
 Plug("mfussenegger/nvim-lint")
-Plug("windwp/nvim-autopairs") -- TODO B
-Plug("nvim-treesitter/nvim-treesitter-refactor") -- TODO C
+Plug("windwp/nvim-autopairs")
+Plug("nvim-treesitter/nvim-treesitter-refactor")
 
 -- THIS IS ALL SHIT, IT CAN'T FIND ANYTHING IN SYSTEM
 -- DEPENDENCIES CAN'T BE FOUND, WHY THIS HAS TO BE SO FUCKED
 -- Plug("vhyrro/luarocks.nvim")
 -- Plug("benlubas/molten-nvim") -- TODO B
 
-Plug("puremourning/vimspector") -- TODO C
-Plug("vim-test/vim-test") -- TODO A
-
-Plug("hedyhli/outline.nvim")
+Plug("puremourning/vimspector")
+Plug("vim-test/vim-test")
 
 -- }}}
 
