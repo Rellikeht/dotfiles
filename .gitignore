@@ -80,6 +80,7 @@ highlight.css
 .vim/templates
 *~
 Session.vim
+tags
 
 .config/nvim*/plugins
 .config/nvim*/sessions

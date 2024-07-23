@@ -212,5 +212,5 @@ nnoremap <silent> gsB :call SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
 "}}}
 
 "{{{ tmux complete
-let g:tmuxcomplete#trigger = 'omnifunc'
+" let g:tmuxcomplete#trigger = 'omnifunc'
 "}}}

@@ -9,6 +9,8 @@
 
 noremap .. .
 noremap <C-h> <C-]>
+noremap <C-w><C-h> 
+            \ :<C-u>exe 'tab tag '.expand('<cword>')<CR>
 
 "}}}
 

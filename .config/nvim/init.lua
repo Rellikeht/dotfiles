@@ -70,6 +70,8 @@ Plug("nvim-treesitter/nvim-treesitter-refactor")
 -- Plug("vhyrro/luarocks.nvim")
 -- Plug("benlubas/molten-nvim") -- TODO B
 
+Plug("hedyhli/outline.nvim")
+
 Plug("puremourning/vimspector")
 Plug("vim-test/vim-test")
 

@@ -1,4 +1,3 @@
-
 "{{{ TINYMRU
 
 noremap <silent> ,ue :<C-u>ME<Space>
@@ -57,22 +56,14 @@ endfunc
 " Not good, not bad
 
 autocmd VimEnter * execute 'silent! Mkdir '.g:data_dir.'/sessions'
-" execute 'Mkdir '.g:data_dir.'/sessions'
-
-nnoremap ,usm :<C-u>mksession<CR>
-vnoremap ,usm :<C-u>mksession\|norm gv<CR>
-nnoremap ,usM :<C-u>mksession<Space>
-vnoremap ,usM :<C-u>mksession  \|norm gv<C-Left><C-Left><Left>
 
 nnoremap ,usd :<C-u>execute 'mksession '.g:data_dir.
             \ '/sessions/'.localtime().'.vim'<CR>
 vnoremap ,usd :<C-u>execute 'mksession '.g:data_dir.
             \ '/sessions/'.localtime().'.vim'\|norm gv<CR>
-nnoremap ,usD :<C-u>execute 'mksession '.
-            \ g:data_dir.'/sessions/'.<Space>
-vnoremap ,usD :<C-u>execute 'mksession '.
-            \ g:data_dir.'/sessions/'.
-            \ <Space>\|norm gv<C-Left><C-Left><Left>
+nnoremap <expr> ,usD ':<C-u>mksession '.g:data_dir.'/sessions/'
+vnoremap <expr> ,usD ':<C-u>mksession '.g:data_dir.'/sessions/'.
+            \ '<Space>\|norm gv<C-Left><C-Left><Left>'
 
 nnoremap ,uso :<C-u>Obsession<CR>
 vnoremap ,uso :<C-u>Obsession\|norm gv<CR>
@@ -85,10 +76,8 @@ nnoremap ,uss :<C-u>execute 'Obsession '.g:data_dir.
             \ '/sessions/'.localtime().'.vim'<CR>
 vnoremap ,uss :<C-u>execute 'Obsession '.g:data_dir.
             \ '/sessions/'.localtime()\|norm gv<CR>
-nnoremap ,usS :<C-u>execute 'Obsession '.
-            \ g:data_dir.'/sessions/'.<Space>
-vnoremap ,usS :<C-u>execute 'Obsession '.
-            \ g:data_dir.'/sessions/'.<Space>
-            \ <Space>\|norm gv<C-Left><C-Left><Left>
+nnoremap <expr> ,usS ':<C-u>Obsession '.g:data_dir.'/sessions/'
+vnoremap <expr> ,usS ':<C-u>Obsession '.g:data_dir.'/sessions/'.
+            \ '<Space>\|norm gv<C-Left><C-Left><Left>'
 
 "}}}

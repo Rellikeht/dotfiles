@@ -455,7 +455,6 @@ set wildoptions=fuzzy,tagfile,pum
 set wildmenu
 set wildignore+=*.o,*.elf,*.bin,*.dll,*.so
 
-set completeopt=menu,menuone,noselect,noinsert,preview
 set complete=w,b,s,i,d,t,.,k
 
 " }}}
@@ -471,6 +470,7 @@ set showcmd
 set showmode
 set showmatch
 set nohlsearch
+" set textwidth=72
 
 " }}}
 
@@ -500,6 +500,7 @@ set linebreak
 
 set nowrap
 set showbreak=\\>\ 
+set wrapmargin=1
 
 set notimeout
 set ttimeout
@@ -549,5 +550,12 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
     vnoremap <Tab><Space> :setlocal hls!\|norm gv<CR>
     nnoremap <Tab>qh :<C-u>set hls!<CR>
     vnoremap <Tab>qh :<C-u>set hls!\|norm gv<CR>
+endif
+" }}}
+
+if v:progname =~? "^nv\\(im\\?\\)\\?" " {{{
+    set completeopt=menu,menuone,noselect,noinsert,preview
+else
+    set completeopt=menu,menuone,noselect,noinsert,preview,fuzzy,fuzzycollect
 endif
 " }}}

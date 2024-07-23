@@ -163,6 +163,12 @@ vnoremap <Leader>qv4 :<C-u>echo b:vautowrite\|norm gv<CR>
 
 " }}}
 
+"{{{ completion
+
+set omnifunc=syntaxcomplete#Complete
+
+"}}}
+
 " {{{ other
 
 let g:autochdir = 0

@@ -64,6 +64,8 @@ Plug 'wellle/tmux-complete.vim'
 " or something
 " Plug 'wellle/context.vim'
 
+Plug 'yegappan/taglist'
+
 "}}}
 
 "{{{ version control

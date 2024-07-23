@@ -13,8 +13,7 @@ let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 let g:sneak#prompt = '  < sneak > '
 
-" risky
-let g:sneak#s_next = 1
+let g:sneak#s_next = 0
 
 noremap f <Plug>Sneak_f
 noremap F <Plug>Sneak_F
