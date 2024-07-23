@@ -12,6 +12,12 @@ noremap <C-h> <C-]>
 noremap <C-w><C-h> 
             \ :<C-u>exe 'tab tag '.expand('<cword>')<CR>
 
+" Command line window
+autocmd FileType vim
+            \ if &buftype == "nofile" && bufname() == ""
+            \ | noremap <buffer> <C-m> <CR>
+            \ | endif
+
 "}}}
 
 "{{{ tags
@@ -394,18 +400,44 @@ noremap <Space>} ]%
 
 "{{{ completion
 
-" Yeah, copying from wiki works
-inoremap <expr> <Cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <Esc> pumvisible() ? "<C-e>" : "<Esc>"
+inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<Tab>"
 
+" ?
+" CTRL-X CTRL-E	scroll up
+" CTRL-X CTRL-Y	scroll down
+
+" CTRL-X CTRL-N	next completion
+" CTRL-X CTRL-P	previous completion
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<TAB>"
+" CTRL-X CTRL-Z	stop completion, keeping the text as-is
+" inoremap <C-z> <C-x><C-z>
 
-inoremap <C-x>t <C-x><C-]>
+" CTRL-X CTRL-D	complete defined identifiers
+" CTRL-X CTRL-F	complete file names
+" CTRL-X CTRL-I	complete identifiers
+" CTRL-X CTRL-K	complete identifiers from dictionary
+" CTRL-X CTRL-L	complete whole lines
+" CTRL-X CTRL-O	omni completion
+" CTRL-X CTRL-T	complete identifiers from thesaurus
+" CTRL-X CTRL-U	complete with 'completefunc'
+" CTRL-X CTRL-V	complete like in : command line
+" CTRL-X CTRL-]	complete tags
+inoremap <C-x>d <C-x><C-d>
+inoremap <C-x>f <C-x><C-f>
+inoremap <C-x>i <C-x><C-i>
+inoremap <C-x>k <C-x><C-k>
+inoremap <C-x>l <C-x><C-l>
+inoremap <C-x>o <C-x><C-o>
+inoremap <C-x>t <C-x><C-t>
+inoremap <C-x>u <C-x><C-u>
+inoremap <C-x>v <C-x><C-v>
+inoremap <C-x>c <C-x><C-]>
 
 "}}}
 

@@ -29,10 +29,18 @@
 
 let g:Unicode_no_default_mappings = 1
 
-inoremap <C-x>g <Plug>(DigraphComplete)
-inoremap <C-x>c <Plug>(UnicodeComplete)
-inoremap <C-x>h <Plug>(HTMLEntityComplete)
-inoremap <C-x>u <Plug>(UnicodeFuzzy)
+inoremap <C-x><C-g> <Plug>(DigraphComplete)
+inoremap <C-x><C-a> <Plug>(UnicodeComplete)
+inoremap <C-x><C-h> <Plug>(HTMLEntityComplete)
+inoremap <C-x><C-s> <Plug>(UnicodeFuzzy)
+
+imap <C-x>g <C-x><C-g>
+imap <C-x>a <C-x><C-a>
+imap <C-x>h <C-x><C-h>
+imap <C-x>s <C-x><C-s>
+
+inoremap <expr> <C-a> pumvisible() ? '<C-n>' : '<C-a>'
+inoremap <expr> <C-h> pumvisible() ? '<C-n>' : '<C-h>'
 
 noremap <Leader>nm <Plug>(MakeDigraph)
 nnoremap ga <Plug>(UnicodeGA)

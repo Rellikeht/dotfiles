@@ -476,7 +476,7 @@ set nohlsearch
 
 " {{{ search
 
-set history=2000
+set history=10000
 set incsearch
 set ignorecase
 set smartcase
@@ -509,6 +509,8 @@ set mouse=a
 
 " Not really needed
 " set clipboard=unnamed
+
+set switchbuf+=usetab
 
 " }}}
 
@@ -546,16 +548,16 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
     set secure
     set modeline
 
-    nnoremap <Tab><Space> :setlocal hls!<CR>
-    vnoremap <Tab><Space> :setlocal hls!\|norm gv<CR>
-    nnoremap <Tab>qh :<C-u>set hls!<CR>
-    vnoremap <Tab>qh :<C-u>set hls!\|norm gv<CR>
+    nnoremap ,<Space><Space> :setlocal hls!<CR>
+    vnoremap ,<Space><Space> :setlocal hls!\|norm gv<CR>
+    nnoremap ,qeh :<C-u>set hls!<CR>
+    vnoremap ,qeh :<C-u>set hls!\|norm gv<CR>
 endif
 " }}}
 
-if v:progname =~? "^nv\\(im\\?\\)\\?" " {{{
-    set completeopt=menu,menuone,noselect,noinsert,preview
-else
+if v:progname =~? "^sv\\(im\\?\\)\\?" " {{{
     set completeopt=menu,menuone,noselect,noinsert,preview,fuzzy,fuzzycollect
+else
+    set completeopt=menu,menuone,noselect,noinsert,preview
 endif
 " }}}

@@ -180,18 +180,19 @@ noremap <expr> <Leader>xlf g:qfloc ?
             \ : ':<C-u>'.v:count1.
             \ 'lgrep  %<Left><Left>'
 
-nnoremap <expr> <Leader>xll g:qfloc ? 
-            \ ':<C-u>lgrep '.expand('<cword>').' ## <CR>'
-            \ : ':<C-u>grep '.expand('<cword>').' ## <CR>'
-vnoremap <expr> <Leader>xll g:qfloc ? 
-            \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
-            \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
-nnoremap <expr> <Leader>xlL g:qfloc ? 
-            \ ':<C-u>lgrep '.expand('<cword>').' ## <CR>'
-            \ : ':<C-u>grep '.expand('<cword>').' ## <CR>'
-vnoremap <expr> <Leader>xlL g:qfloc ? 
-            \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
-            \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
+" arglist doesn't work with external commands
+" nnoremap <expr> <Leader>xll g:qfloc ? 
+"             \ ':<C-u>lgrep '.shellescape(expand('<cword>')).' ## <CR>'
+"             \ : ':<C-u>grep '.shellescape(expand('<cword>')).' ## <CR>'
+" vnoremap <expr> <Leader>xll g:qfloc ? 
+"             \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
+"             \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
+" nnoremap <expr> <Leader>xlL g:qfloc ? 
+"             \ ':<C-u>lgrep '.shellescape(expand('<cword>')).' ## <CR>'
+"             \ : ':<C-u>grep '.shellescape(expand('<cword>')).' ## <CR>'
+" vnoremap <expr> <Leader>xlL g:qfloc ? 
+"             \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
+"             \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
 
 nnoremap <expr> <Leader>xla g:qfloc ? 
             \ ':<C-u>lgrep '.expand('<cword>').' * <CR>'
@@ -225,9 +226,10 @@ nnoremap <expr> <Leader>xl<Space>a g:qfloc ?
 nnoremap <expr> <Leader>xl<Space>r g:qfloc ? 
             \ ':<C-u>lgrep  **/*<C-Left><Left>'
             \ : ':<C-u>grep  **/*<C-Left><Left>'
-nnoremap <expr> <Leader>xl<Space>l g:qfloc ? 
-            \ ':<C-u>lgrep  ##<C-Left><Left>'
-            \ : ':<C-u>grep  ##<C-Left><Left>'
+
+" nnoremap <expr> <Leader>xl<Space>l g:qfloc ? 
+"             \ ':<C-u>lgrep  ##<C-Left><Left>'
+"             \ : ':<C-u>grep  ##<C-Left><Left>'
 
 "}}}
 

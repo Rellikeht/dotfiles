@@ -77,11 +77,6 @@ let g:fzf_colors = {
 
 "{{{ basic mappings
 
-" Insert mode completion
-imap <c-x>w <plug>(fzf-complete-word)
-imap <c-x>p <plug>(fzf-complete-path)
-imap <c-x>l <plug>(fzf-complete-line)
-
 " Not needed really
 noremap <leader>sff :<C-u>FZF<CR>
 
@@ -90,6 +85,21 @@ noremap <leader>sl<Space>f :<C-u>Files<Space>
 noremap <leader>sls :<C-u>Locate<Space>
 noremap <leader>sla :<C-u>Ag<CR>
 noremap <leader>sl<Space>a :<C-u>Ag<Space>
+
+"}}}
+
+"{{{ insert mode
+
+" Insert mode completion
+imap <c-X><C-w> <Plug>(fzf-complete-word)
+imap <c-X>w <C-x><C-w>
+imap <c-X>l <Plug>(fzf-complete-line)
+
+" TODO B paths
+imap <C-X><C-p> <Plug>(fzf-complete-path)
+imap <C-X>p <C-x><C-p>
+
+" TODO C dictionary
 
 "}}}
 
