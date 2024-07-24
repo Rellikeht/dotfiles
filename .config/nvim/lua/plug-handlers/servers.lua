@@ -87,6 +87,26 @@ lspconfig.lua_ls.setup(
   }
 )
 
+lspconfig.gopls.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    -- }}}
+
+    settings = { -- {{{
+      gopls = {
+        experimentalPostfixCompletions = true,
+        analyses = {unusedparams = true, shadow = true},
+        staticcheck = true,
+      },
+    }, -- }}}
+  }
+)
+
 lspconfig.julials.setup(
   {
     -- {{{ boilerplate

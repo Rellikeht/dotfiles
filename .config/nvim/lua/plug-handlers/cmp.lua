@@ -45,6 +45,7 @@ Snippy.setup( -- {{{
   }
 ) -- }}}
 
+local cmp_beh = {behavior = cmp.SelectBehavior, count = 1}
 cmp.setup(
   { -- {{{
     preselect = cmp.PreselectMode.None,
@@ -71,13 +72,84 @@ cmp.setup(
 
     mapping = cmp.mapping.preset.insert( -- {{{
       {
-        -- {{{
+        -- {{{ basic
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<Tab>"] = cmp.mapping.confirm({select = true}),
-        ["<C-Space>"] = cmp.mapping.complete(),
         -- }}}
 
-        -- ["<CR>"] = cmp.mapping.confirm({select = false}),
+        ["<Tab>"] = { -- {{{
+          i = function(_)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_next_item(cmp_beh)
+              end
+            else
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes(
+                  "<Tab>", true, false, true
+                ), "tn", false
+              )
+            end
+          end,
+        }, -- }}}
+
+        ["<C-Space>"] = { -- {{{
+          i = function(_)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_next_item(cmp_beh)
+              end
+            else
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              end
+            end
+          end,
+        }, -- }}}
+
+        ["<S-Tab>"] = { -- {{{
+          i = function(_)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_prev_item(cmp_beh)
+              end
+            else
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_prev_item(cmp_beh)
+              end
+            end
+          end,
+        }, -- }}}
+
+        ["<C-n>"] = { -- {{{
+          i = function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item(cmp_beh)
+            else
+              fallback()
+            end
+          end,
+        }, -- }}}
+
+        ["<C-p>"] = { -- {{{
+          i = function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item(cmp_beh)
+            else
+              fallback()
+            end
+          end,
+        }, -- }}}
+
         ["<CR>"] = cmp.mapping( -- {{{
           {
             i = function(fallback)
@@ -102,31 +174,7 @@ cmp.setup(
           }
         ), -- }}}
 
-        ["<C-n>"] = cmp.mapping( -- {{{
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item(
-                {behavior = cmp.SelectBehavior, count = 1}
-              )
-            else
-              fallback()
-            end
-          end, {"i", "s"}
-        ), -- }}}
-
-        ["<C-p>"] = cmp.mapping( -- {{{
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item(
-                {behavior = cmp.SelectBehavior, count = 1}
-              )
-            else
-              fallback()
-            end
-          end, {"i", "s"}
-        ), -- }}}
-
-        -- {{{
+        -- {{{ docs
         ["<C-j>"] = cmp.mapping.scroll_docs(1),
         ["<C-k>"] = cmp.mapping.scroll_docs(-1),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -284,16 +332,6 @@ cmp.setup.cmdline(
             end
           end,
         }, -- }}}
-
-        -- ["<Tab>"] = { -- {{{
-        --   c = function()
-        --     vim.api.nvim_feedkeys(
-        --       vim.api.nvim_replace_termcodes(
-        --         "<Tab>", true, false, true
-        --       ), "tn", false
-        --     )
-        --   end,
-        -- }, -- }}}
       }
     ),
 
