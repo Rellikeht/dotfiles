@@ -55,7 +55,11 @@ lspconfig.lua_ls.setup(
         runtime = {
           version = "LuaJIT",
           -- Setup your lua path
-          path = vim.split(package.path, ";"),
+          path = {
+            "?.lua",
+            "?/init.lua",
+            unpack(vim.split(package.path, ";")),
+          },
         },
 
         hint = {enable = true},

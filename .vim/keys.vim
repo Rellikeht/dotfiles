@@ -331,7 +331,7 @@ noremap .L :<C-u>call QFcmd('history')<CR>
 nnoremap <silent> .; :<C-u>call NToggleQuickFix()<CR>
 vnoremap <silent> .; :<C-u>call VToggleQuickFix()<CR>
 
-" clearing
+" clearing
 nnoremap <silent> .c :<C-u>call QFcmd('expr []')<CR>
 vnoremap <silent> .c :<C-u>call QFcmd('expr []')\|norm gv<CR>
 
@@ -342,14 +342,14 @@ vnoremap <expr> .e g:qfloc ?
             \ ':<C-u>lexpr  \|norm gv<C-Left><C-Left><Left>'
             \ : ':<C-u>cexpr  \|norm gv<C-Left><C-Left><Left>'
 
-" search into quickfix list
+" search into quickfix list
 nnoremap <expr> ./ g:qfloc ? 
             \ ':<C-u>g//lexpr expand("%").":".line(".").":".getline(".")
             \ <Home><Right><Right>'
             \ : ':<C-u>g//cexpr expand("%").":".line(".").":".getline(".")
             \ <Home><Right><Right>'
 
-" search into quickfix list
+" search into quickfix list
 nnoremap <expr> .? g:qfloc ? 
             \ ':<C-u>g//laddexpr expand("%").":".line(".").":".getline(".")
             \ <Home><Right><Right>'
@@ -384,8 +384,8 @@ augroup Quickfix "{{{
                 \ ':<C-u>laddbuffer<Space>'
                 \ : ':<C-u>caddbuffer<Space>'
 
-"TODO C modifications
-" some dd and undo
+    "TODO C modifications
+    " some dd and undo
 
 augroup END "}}}
 
@@ -401,33 +401,48 @@ noremap <Space>} ]%
 "{{{ completion
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <Esc> pumvisible() ? "<C-e>" : "<Esc>"
+" inoremap <expr> <Esc> pumvisible() ? "<C-e>" : "<Esc>"
 inoremap <expr> <Tab> pumvisible() ? "<C-y>" : "<Tab>"
+" ??
+inoremap <expr> <S-Tab> pumvisible() ? "<C-p><C-y>" : "<S-Tab>"
+
+" <C-Space> in terminal
+inoremap <C-Space> <C-@>
+inoremap <expr> <C-@> pumvisible() ?
+            \ '<C-n>' : (&omnifunc == '') ? '<C-n>' : '<C-x><C-o>'
 
 " ?
-" CTRL-X CTRL-E	scroll up
-" CTRL-X CTRL-Y	scroll down
+" CTRL-X CTRL-E scroll up
+" CTRL-X CTRL-Y scroll down
 
-" CTRL-X CTRL-N	next completion
-" CTRL-X CTRL-P	previous completion
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" CTRL-X CTRL-N next completion
+" CTRL-X CTRL-P previous completion
 
-" CTRL-X CTRL-Z	stop completion, keeping the text as-is
-" inoremap <C-z> <C-x><C-z>
+" From viki, good stuff
+" inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+"   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
+"   \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
 
-" CTRL-X CTRL-D	complete defined identifiers
-" CTRL-X CTRL-F	complete file names
-" CTRL-X CTRL-I	complete identifiers
-" CTRL-X CTRL-K	complete identifiers from dictionary
-" CTRL-X CTRL-L	complete whole lines
-" CTRL-X CTRL-O	omni completion
-" CTRL-X CTRL-T	complete identifiers from thesaurus
-" CTRL-X CTRL-U	complete with 'completefunc'
-" CTRL-X CTRL-V	complete like in : command line
-" CTRL-X CTRL-]	complete tags
+" PageUp and PageDown don't work
+" inoremap <expr> <C-d> pumvisible() ? '<PageDown><C-p><C-n>' : '<C-d>'
+" inoremap <expr> <C-u> pumvisible() ? '<PageUp><C-p><C-n>' : '<C-u>'
+inoremap <expr> <C-d> pumvisible() ? '<C-n><C-n><C-n><C-n><C-n>' : '<C-d>'
+inoremap <expr> <C-u> pumvisible() ? '<C-p><C-p><C-p><C-p><C-p>' : '<C-u>'
+
+" CTRL-X CTRL-Z stop completion, keeping the text as-is
+inoremap <C-z> <C-x><C-z>
+
+" CTRL-X CTRL-D complete defined identifiers
+" CTRL-X CTRL-F complete file names
+" CTRL-X CTRL-I complete identifiers
+" CTRL-X CTRL-K complete identifiers from dictionary
+" CTRL-X CTRL-L complete whole lines
+" CTRL-X CTRL-O omni completion
+" CTRL-X CTRL-T complete identifiers from thesaurus
+" CTRL-X CTRL-U complete with 'completefunc'
+" CTRL-X CTRL-V complete like in : command line
+" CTRL-X CTRL-] complete tags
 inoremap <C-x>d <C-x><C-d>
 inoremap <C-x>f <C-x><C-f>
 inoremap <C-x>i <C-x><C-i>

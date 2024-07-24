@@ -552,6 +552,9 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
     vnoremap ,<Space><Space> :setlocal hls!\|norm gv<CR>
     nnoremap ,qeh :<C-u>set hls!<CR>
     vnoremap ,qeh :<C-u>set hls!\|norm gv<CR>
+
+    map <C-p> ,
+    map <C-n> ;
 endif
 " }}}
 

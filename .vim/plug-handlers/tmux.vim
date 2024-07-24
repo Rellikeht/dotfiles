@@ -212,14 +212,16 @@ nnoremap <silent> gsB :call SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
 "}}}
 
 "{{{ tmux complete
-" let g:tmuxcomplete#trigger = 'omnifunc'
-" let g:tmuxcomplete#trigger = ''
-let g:tmuxcomplete#trigger = 'completefunc'
+let g:tmuxcomplete#trigger = ''
 
-" inoremap <C-x><C-m>
-"             \ <C-r>=tmuxcomplete#complete(1, '')<CR>
-            " \ <C-r>=complete(col('.')-1,tmuxcomplete#complete(1, ''))<CR>
-" imap <C-x>m <C-x><C-m>
-" inoremap <expr> <C-m> pumvisible() ? '<C-n>' : '<C-w>'
+" Because that wasn't suppled by plugin creator
+function TmuxComplete()
+    let l:start = tmuxcomplete#complete(1, '')
+    let l:base = getline('.')[l:start:col('.')-1]
+    call complete(l:start+1, tmuxcomplete#complete(0, l:base))
+    return ''
+endfunction
 
+inoremap <expr> <C-x><C-m> '<C-r>=TmuxComplete()<CR>'
+imap <C-x>m <C-x><C-m>
 "}}}

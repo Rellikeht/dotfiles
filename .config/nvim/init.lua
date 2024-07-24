@@ -54,6 +54,10 @@ Plug("hrsh7th/cmp-nvim-lsp")
 Plug("hrsh7th/cmp-nvim-lsp-signature-help") -- rly?
 Plug("hrsh7th/cmp-nvim-lua")
 
+Plug("hrsh7th/cmp-buffer")
+Plug("hrsh7th/cmp-omni")
+Plug("hrsh7th/cmp-path")
+
 -- }}}
 
 -- {{{ other coding help

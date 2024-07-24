@@ -27,7 +27,7 @@ snippy.setup(
 cmp.setup(
   {
     preselect = cmp.PreselectMode.None,
-    completeopt = "menu,menuone,noselect,noinsert",
+    completeopt = "menu,menuone,preview,noselect,noinsert",
 
     enabled = function() -- {{{
       local context = require("cmp.config.context")
@@ -53,11 +53,7 @@ cmp.setup(
           function(fallback)
             if cmp.visible() then
               cmp.select_next_item(
-                {
-                  --
-                  behavior = cmp.SelectBehavior,
-                  count = 1,
-                }
+                {behavior = cmp.SelectBehavior, count = 1}
               )
             else
               fallback()
@@ -69,11 +65,7 @@ cmp.setup(
           function(fallback)
             if cmp.visible() then
               cmp.select_prev_item(
-                {
-                  --
-                  behavior = cmp.SelectBehavior,
-                  count = 1,
-                }
+                {behavior = cmp.SelectBehavior, count = 1}
               )
             else
               fallback()
@@ -103,8 +95,21 @@ cmp.setup(
       {name = "nvim_lua"},
       {name = "nvim_lsp"},
       {name = "nvim_lsp_signature_help"},
-      {name = "buffer"},
       {name = "snippy"},
+
+      {
+        name = "buffer",
+        option = {
+          -- TODO C 'iskeyword'
+          -- keyword_pattern = [[̨̨\̨k\+]],
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end,
+        },
+      },
+      {name = "omni"},
+      {name = "path"},
+      -- {name = "cmdline"},
     }, -- }}}
   }
 )

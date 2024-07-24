@@ -95,7 +95,6 @@ imap <c-X><C-w> <Plug>(fzf-complete-word)
 imap <c-X>w <C-x><C-w>
 imap <c-X>l <Plug>(fzf-complete-line)
 
-" TODO B paths
 imap <C-X><C-p> <Plug>(fzf-complete-path)
 imap <C-X>p <C-x><C-p>
 
