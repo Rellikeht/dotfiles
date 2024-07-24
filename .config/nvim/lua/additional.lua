@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd(
     end,
   }
 )
+
 vim.keymap.set(
   {"n", "v"}, "<Leader>qeg",
   ":let g:editorconfig=!g:editorconfig<CR>"
@@ -25,3 +26,13 @@ vim.keymap.set(
 )
 
 vim.cmd.highlight("CursorLine", "guibg=#404040")
+
+vim.api.nvim_create_autocmd(
+  {"BufEnter"}, {
+    pattern = {"*/.config/nvim*/*.lua"},
+    ---@diagnostic disable-next-line: unused-local
+    callback = function(ev)
+      vim.cmd("setlocal keywordprg=':help'")
+    end,
+  }
+)

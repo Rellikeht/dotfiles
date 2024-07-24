@@ -48,7 +48,6 @@ Snippy.setup( -- {{{
 cmp.setup(
   { -- {{{
     preselect = cmp.PreselectMode.None,
-    completeopt = "menu,menuone,preview,noselect,noinsert",
 
     enabled = function() -- {{{
       local context = require("cmp.config.context")
@@ -61,14 +60,47 @@ cmp.setup(
       end
     end, -- }}}
 
+    performance = { -- {{{
+      async_budget = 10,
+      debounce = 50,
+      throttle = 10,
+      fetching_timeout = 300,
+      max_view_entries = 1000,
+      confirm_resolve_timeout = 50,
+    }, -- }}}
+
     mapping = cmp.mapping.preset.insert( -- {{{
       {
         -- {{{
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({select = false}),
         ["<Tab>"] = cmp.mapping.confirm({select = true}),
         ["<C-Space>"] = cmp.mapping.complete(),
         -- }}}
+
+        -- ["<CR>"] = cmp.mapping.confirm({select = false}),
+        ["<CR>"] = cmp.mapping( -- {{{
+          {
+            i = function(fallback)
+              if cmp.visible() and cmp.get_active_entry() then
+                cmp.confirm(
+                  {
+                    behavior = cmp.ConfirmBehavior.Replace,
+                    select = false,
+                  }
+                )
+              else
+                fallback()
+              end
+            end,
+            s = cmp.mapping.confirm({select = true}),
+            c = cmp.mapping.confirm(
+              {
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+              }
+            ),
+          }
+        ), -- }}}
 
         ["<C-n>"] = cmp.mapping( -- {{{
           function(fallback)
@@ -106,6 +138,11 @@ cmp.setup(
       }
     ), -- }}}
 
+    completion = { -- {{{
+      keyword_length = 2,
+      completeopt = "menu,menuone,preview,noselect,noinsert",
+    }, -- }}}
+
     snippet = { -- {{{
       expand = function(args)
         Snippy.expand_snippet(args.body)
@@ -118,7 +155,7 @@ cmp.setup(
       {name = "nvim_lsp_signature_help"},
       {name = "snippy"},
 
-      {
+      { -- {{{
         name = "buffer",
         option = {
           -- TODO C 'iskeyword'
@@ -127,35 +164,153 @@ cmp.setup(
             return vim.api.nvim_list_bufs()
           end,
         },
-      },
+      }, -- }}}
       {name = "omni"},
       {name = "path"},
       {name = "vimtex"},
     }, -- }}}
   }
-) -- }}}
+)
+
+-- }}}
 
 -- questionable thing
-cmp.setup.cmdline( -- {{{
-  ":", {
+cmp.setup.cmdline(
+  ":", { -- {{{
     preselect = cmp.PreselectMode.None,
-    completeopt = "menu,preview,noselect,noinsert",
 
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources(
+    performance = { -- {{{
+      async_budget = 10,
+      debounce = 50,
+      throttle = 10,
+      fetching_timeout = 300,
+      max_view_entries = 1000,
+      confirm_resolve_timeout = 50,
+    }, -- }}}
+
+    completion = { -- {{{
+      -- keyword_length = 2,
+      autocomplete = false,
+      completeopt = "menu,preview,noselect,noinsert",
+    }, -- }}}
+
+    mapping = cmp.mapping.preset.cmdline( -- {{{
+      {
+        ["<C-Space>"] = { -- {{{
+          c = function(_)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_next_item()
+              end
+            else
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              end
+            end
+          end,
+        }, -- }}}
+
+        ["<Tab>"] = cmp.config.disable,
+        ["<S-Tab>"] = cmp.config.disable,
+      }
+    ), -- }}}
+
+    sources = cmp.config.sources( -- {{{
       {{name = "path"}}, {{name = "cmdline"}},
       {{name = "bufname"}}
-    ),
+    ), -- }}}
   }
 ) -- }}}
 
 -- very questionable
-cmp.setup.cmdline( -- {{{
-  "/", {
+cmp.setup.cmdline(
+  "/", { -- {{{
     preselect = cmp.PreselectMode.None,
-    completeopt = "menu,preview,noselect,noinsert",
+    -- view = {entries = {name = "wildmenu", separator = " | "}},
 
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {{name = "buffer"}},
+    completion = { -- {{{
+      -- keyword_length = 2,
+      autocomplete = false,
+      completeopt = "menu,preview,noselect,noinsert",
+    }, -- }}}
+
+    performance = { -- {{{
+      -- TODO C this is slow
+      async_budget = 5,
+      debounce = 20,
+      throttle = 20,
+      fetching_timeout = 50,
+      max_view_entries = 400,
+      confirm_resolve_timeout = 50,
+    }, -- }}}
+
+    mapping = cmp.mapping.preset.cmdline(
+      {
+        ["<Tab>"] = { -- {{{
+          c = function(_)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_next_item()
+              end
+            else
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              end
+            end
+          end,
+        }, -- }}}
+
+        ["<S-Tab>"] = { -- {{{
+          c = function(_)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_prev_item()
+              end
+            else
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({select = true})
+              else
+                cmp.select_prev_item()
+              end
+            end
+          end,
+        }, -- }}}
+
+        -- ["<Tab>"] = { -- {{{
+        --   c = function()
+        --     vim.api.nvim_feedkeys(
+        --       vim.api.nvim_replace_termcodes(
+        --         "<Tab>", true, false, true
+        --       ), "tn", false
+        --     )
+        --   end,
+        -- }, -- }}}
+      }
+    ),
+
+    sources = { -- {{{
+      { -- {{{
+        name = "buffer",
+        -- only visible buffers
+        option = {
+          get_bufnrs = function()
+            local bufs = {}
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              bufs[vim.api.nvim_win_get_buf(win)] = true
+            end
+            return vim.tbl_keys(bufs)
+          end,
+        },
+      }, -- }}}
+    }, -- }}}
   }
 ) -- }}}
