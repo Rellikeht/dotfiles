@@ -5,7 +5,7 @@
 
 "}}}
 
-"{{{ remaps
+"{{{ repams
 
 noremap .. .
 noremap <C-h> <C-]>
@@ -103,17 +103,17 @@ vnoremap <Space><Space>;L
             \ GetVisualSelection().' buffers!'<CR>
 
 noremap <silent> <Space><Space>n 
-            \ :<C-u>exe v:count1.'bnext'<CR>
+            \ :<C-u>exe v:count1.'bnext\|echo RelCurFile()'<CR>
 noremap <silent> <Space><Space>p 
-            \ :<C-u>exe v:count1.'bprevious'<CR>
+            \ :<C-u>exe v:count1.'bprevious\|echo RelCurFile()'<CR>
 noremap <silent> <Space><Space>N 
-            \ :<C-u>exe v:count1.'bnext!'<CR>
+            \ :<C-u>exe v:count1.'bnext!\|echo RelCurFile()'<CR>
 noremap <silent> <Space><Space>P 
-            \ :<C-u>exe v:count1.'bprevious!'<CR>
+            \ :<C-u>exe v:count1.'bprevious!\|echo RelCurFile()'<CR>
 noremap <silent> <Space><Space>m 
-            \ :<C-u>exe v:count1.'bmodified'<CR>
+            \ :<C-u>exe v:count1.'bmodified\|echo RelCurFile()'<CR>
 noremap <silent> <Space><Space>M 
-            \ :<C-u>exe v:count1.'bmodified!'<CR>
+            \ :<C-u>exe v:count1.'bmodified!\|echo RelCurFile()'<CR>
 
 " }}}
 
@@ -208,7 +208,7 @@ endfunction
 "{{{ settings
 
 let g:qfheight = 20
-let g:qfloc = 0
+let g:qfloc = 1
 
 nnoremap .t :<C-u>let g:qfloc = !g:qfloc
             \ \| echo 'Quickfix is now ' . 

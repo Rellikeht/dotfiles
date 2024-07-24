@@ -3,14 +3,15 @@ vim.cmd("source ~/.vimrc")
 require("functions")
 
 local Plug = vim.fn["plug#"]
-local nvim_dir = vim.call("stdpath", "config")
-local lua_dir = nvim_dir .. "/lua"
+NVIM_DIR = vim.call("stdpath", "config")
+local lua_dir = NVIM_DIR .. "/lua"
 local vim_dir = "~/.vim"
 local plug_dir = "plug-handlers/"
 
 -- }}}
 
-vim.call("plug#begin", nvim_dir .. "/plugins")
+-- TODO other manager
+vim.call("plug#begin", NVIM_DIR .. "/plugins")
 vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
 
 -- {{{ dependencies
@@ -47,16 +48,23 @@ Plug("neovim/nvim-lspconfig")
 Plug("mfussenegger/nvim-jdtls")
 
 Plug("dcampos/nvim-snippy")
+Plug("dcampos/cmp-snippy")
+Plug("honza/vim-snippets")
 
 -- TODO more cmps ?
 Plug("hrsh7th/nvim-cmp")
 Plug("hrsh7th/cmp-nvim-lsp")
-Plug("hrsh7th/cmp-nvim-lsp-signature-help") -- rly?
+Plug("hrsh7th/cmp-nvim-lsp-signature-help")
 Plug("hrsh7th/cmp-nvim-lua")
 
 Plug("hrsh7th/cmp-buffer")
 Plug("hrsh7th/cmp-omni")
 Plug("hrsh7th/cmp-path")
+-- TODO C async path
+
+Plug("hrsh7th/cmp-cmdline")
+Plug("rasulomaroff/cmp-bufname")
+Plug("micangl/cmp-vimtex")
 
 -- }}}
 

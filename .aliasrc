@@ -456,6 +456,7 @@ alias gad='git add'
 alias gad.='gad .'
 alias gcm='git commit -m'
 alias gcs='git commit'
+alias gcam='git commit --amend'
 
 alias gsh='git push'
 alias gsm='git push --recurse-submodules'

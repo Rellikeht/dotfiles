@@ -1,8 +1,9 @@
 "{{{ Repeat
 
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
-nunmap .
-nmap .. <Plug>(RepeatDot)
+" Because that does't work with cgn and
+" probably some other mappings
+nmap ., <Plug>(RepeatDot)
 
 "}}}
 

@@ -227,6 +227,41 @@ endfunction
 
 "{{{ Because :next, :prev and similar don't wrap around
 
+" Simplest implementation, hopefully
+" won't be too slow
+function! WithoutCommonSubstring(first, second)
+    for i in range(strlen(a:first))
+        if i >= strlen(a:second) || a:first[i] != a:second[i]
+            return a:first[i:]
+        endif
+    endfor
+    return ''
+endfun
+
+" Path cur relative to path rel
+function RelPath(cur, rel)
+    let pardirs = WithoutCommonSubstring(
+                \ a:rel,
+                \ a:cur.'/'
+                \ )
+    let parpat = '\([^/]\+\)'
+    return (pardirs == '' ? '' :
+                \ substitute(pardirs, parpat , '..', 'g')).
+                \ pathshorten(
+                \ WithoutCommonSubstring(a:cur, a:rel.'/'),
+                \ g:pathshorten
+                \ )
+endfunction
+
+" Path of current file relative to previously visited dir
+" (set by autocmd on bufenter)
+function RelCurFile()
+    if exists(expand('%:p'))
+        return RelPath(expand('%:p:h'), g:prev_dir).'/'.expand('%:t')
+    endif
+    return ''
+endfunction
+
 function NextArg(pos, cmd, before = '', after = '')
     if a:pos
         let ind = ((argidx()+v:count1)%argc()+1)
@@ -240,10 +275,7 @@ function NextArg(pos, cmd, before = '', after = '')
     if a:after != ''
         exe 'silent! '.a:after
     endif
-
-    " This is hard to do properly with custom autochdir
-    " echo g:cur_name
-    echo pathshorten(g:cur_name, g:pathshorten)
+    echo RelCurFile()
 endfunction
 
 "}}}
@@ -339,11 +371,14 @@ function ToggleAutochdir()
     let g:autochdir = !g:autochdir
     if g:autochdir
         augroup AutoChdir
+            autocmd BufLeave *
+                        \ if &buftype == ''
+                        \ | let g:prev_dir = expand('%:p:h')
+                        \ | endif
             autocmd BufEnter *
-                \ if &buftype == ""
-                \ | let g:cur_name = expand('%:~')
-                \ | exe "lcd %:p:h"
-                \ | endif
+                        \ if &buftype == ''
+                        \ | exe 'lcd %:p:h'
+                        \ | endif
         augroup END
         echo 'AutoChdir enabled'
     else

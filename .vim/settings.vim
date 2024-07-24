@@ -5,14 +5,14 @@ set path+=**
 " set path+=../**
 
 let mapleader = ','
+" TODO 
+let maplocalleader = '-'
+
 autocmd FileType * let b:match_ignorecase = 0
-" TODO B maplocalleader 
-
-" ?
-autocmd VimEnter * arglocal!
 " TabNew ?
-
-let g:cur_name = expand('%:~')
+autocmd VimEnter *
+            \ arglocal!
+            \ | let g:prev_dir = expand('%:p:h')
 let g:pathshorten = 4
 
 " set secure

@@ -6,7 +6,7 @@ local cmp = require("cmp") -- {{{
 ---@diagnostic disable-next-line: unused-local
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-local snippy = require("snippy")
+Snippy = require("snippy")
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 Capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -16,16 +16,37 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 -- }}}
 
-snippy.setup(
-  { -- {{{
-    -- Because of (shit) cmp
-    mappings = {is = {}, nx = {}},
+Snippy.setup( -- {{{
+  {
+    hl_group = "Comment",
+
+    snippet_dirs = (function()
+      local dirs = {}
+      -- local snipdirs = vim.api.nvim_list_runtime_paths()
+      local snipdirs = {
+        NVIM_DIR,
+        NVIM_DIR .. "/plugins/vim-snippets",
+      }
+      for i, e in ipairs(snipdirs) do
+        dirs[i] = e .. "/snippets"
+        -- print(dirs[i])
+      end
+      return dirs
+    end)(),
+
+    mappings = {
+      is = {
+        ["<C-j>"] = "expand_or_advance",
+        ["<C-k>"] = "previous",
+      },
+      -- nx = {["<leader>d;"] = "cut_text"},
+      nx = {},
+    },
   }
-)
--- }}}
+) -- }}}
 
 cmp.setup(
-  {
+  { -- {{{
     preselect = cmp.PreselectMode.None,
     completeopt = "menu,menuone,preview,noselect,noinsert",
 
@@ -87,7 +108,7 @@ cmp.setup(
 
     snippet = { -- {{{
       expand = function(args)
-        snippy.expand_snippet(args.body)
+        Snippy.expand_snippet(args.body)
       end,
     }, -- }}}
 
@@ -109,7 +130,32 @@ cmp.setup(
       },
       {name = "omni"},
       {name = "path"},
-      -- {name = "cmdline"},
+      {name = "vimtex"},
     }, -- }}}
   }
-)
+) -- }}}
+
+-- questionable thing
+cmp.setup.cmdline( -- {{{
+  ":", {
+    preselect = cmp.PreselectMode.None,
+    completeopt = "menu,preview,noselect,noinsert",
+
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources(
+      {{name = "path"}}, {{name = "cmdline"}},
+      {{name = "bufname"}}
+    ),
+  }
+) -- }}}
+
+-- very questionable
+cmp.setup.cmdline( -- {{{
+  "/", {
+    preselect = cmp.PreselectMode.None,
+    completeopt = "menu,preview,noselect,noinsert",
+
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {{name = "buffer"}},
+  }
+) -- }}}
