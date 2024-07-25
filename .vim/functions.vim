@@ -262,10 +262,11 @@ function RelCurFile()
         let relpath = relpath.'/'
     endif
     let relpath = relpath.expand('%:t')
-    if filereadable(expand('%:p'))
+    let fpath = expand('%:p')
+    if filereadable(fpath) || isdirectory(fpath)
         return relpath
     endif
-    return '{{{ '.relpath.' }}}'
+    return '--- '.relpath.' ---'
 endfunction
 
 function NextArg(pos, cmd, before = '', after = '')

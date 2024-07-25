@@ -25,7 +25,7 @@ runtime! ftplugin/man.vim
 silent! source ~/.vim/vars.vim
 source ~/.vim/functions.vim
 source ~/.vim/settings.vim
-" source ~/.vim/arglists.vim
+source ~/.vim/arglists.vim
 source ~/.vim/keys.vim
 source ~/.vim/files.vim
 source ~/.vim/syntax.vim

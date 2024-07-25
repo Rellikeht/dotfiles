@@ -1,7 +1,7 @@
 "{{{ helpers
 
 function Fpath(file)
-    return fnameescape(fnamemodify(resolve(a:file), ':p'))
+    return fnamemodify(resolve(a:file), ':p')
 endfunction
 
 function ArglistFiles(alist)
@@ -12,26 +12,41 @@ endfunction
 
 "{{{ operations
 
-function ApplyArglist(list)
-    let idx = a:list[0]
-    let list = a:list[1:]
-    exe 'arglocal! '.join(ArglistFiles(list) ' ')
-    exe 'argument '.(argidx()+1)
-endfunction
+"{{{ create
 
-function AddList(list)
-    let w:arglists = add(w:arglists, a:list)
-endfunction
-
-function MakeArglist(alist, index)
+function MakeArglist(alist, index = 0)
     return [a:index] + ArglistFiles(a:alist)
 endfunction
 
-function AddArglist(alist, index)
-    call AddList(MakeArglist(a:alist, a:index))
+function NewArglist(files, index = 0)
+    if type(a:files) == v:t_string
+        return MakeArglist(Fpath(a:files), a:index)
+    endif
+    return MakeArglist(a:files, a:index)
+endfunction
+
+"}}}
+
+"{{{ modify state
+
+function ApplyArglist(list)
+    let idx = a:list[0]
+    let list = a:list[1:]
+    exe 'arglocal! '.join(ArglistFiles(list), ' ')
+    exe 'argument '.(idx+1)
+endfunction
+
+function UpdateArglist()
+    let fname = Fpath(expand('%'))
+    if index(w:arglists[w:cur_arglist][1:], fname) >= 0
+        let w:arglists[w:cur_arglist] = NewArglist(argv(), argidx())
+    endif
+    let w:arglists[w:cur_arglist] = 
+                \ NewArglist(argv(), w:arglists[w:cur_arglist][0])
 endfunction
 
 function NextArglist()
+    call UpdateArglist()
     let w:cur_arglist = w:cur_arglist + 1
     if w:cur_arglist >= len(w:arglists)
         let w:cur_arglist = 0
@@ -39,19 +54,70 @@ function NextArglist()
     call ApplyArglist(w:arglists[w:cur_arglist])
 endfunction
 
-function ListArglists()
-    echo join(map(w:arglists, {i, e ->
-                \ '['.e[0].']: '.pathshorten(e[1], g:pathshorten).
-                \ (len(e) > 2 ? ', ...' : '')
-                \ }), "\n")
+"}}}
+
+"{{{ add
+
+function AddList(list)
+    let w:arglists = add(w:arglists, a:list)
 endfunction
 
-function NewArglist(files)
-    if type(a:files) == v:t_list
-        return [0, Fpath(a:files)]
-    endif
-    return [0] + map(a:files, {i, e -> Fpath(e)})]
+function AddArglist(alist, index)
+    call AddList(MakeArglist(a:alist, a:index))
 endfunction
+
+function AddArgs(...)
+    let list = []
+    for arg in a:000
+        let list = add(list, Fpath(fnameescape(arg)))
+    endfor
+    call AddArglist(list, 0)
+    let w:cur_arglist = len(w:arglists)-1
+    call ApplyArglist(w:arglists[w:cur_arglist])
+endfunction
+
+"}}}
+
+"{{{ info
+
+function ArglistShort(list)
+    return '['.a:list[0].']: '.
+                \ pathshorten(a:list[1], g:pathshorten).
+                \ (len(a:list) > 2 ? ', ...' : '')
+endfunction
+
+function ListArglists()
+    call UpdateArglist()
+    let lst = ""
+    for l in w:arglists
+        let lst = lst.ArglistShort(l)."\n"
+    endfor
+    return lst[:len(lst)-2]
+endfunction
+
+function ArglistInfo()
+    call UpdateArglist()
+    let lst = ArglistShort(w:arglists[w:cur_arglist]).":\n\n"
+    let i = 0
+    for f in w:arglists[w:cur_arglist][1:]
+        if i == argidx()
+            let lst = lst."[".pathshorten(f, g:pathshorten)."]\n"
+        else
+            let lst = lst.pathshorten(f, g:pathshorten)."\n"
+        endif
+        let i = i+1
+    endfor
+    return lst[:len(lst)-2]
+endfunction
+
+" TODO
+function CompleteArglist()
+    call UpdateArglist()
+endfunction
+
+"}}}
+
+"{{{ delete
 
 function DeleteArglist(index)
     call remove(w:arglists, a:index)
@@ -71,9 +137,7 @@ function PurgeArglist(index)
     call DeleteArglist(index)
 endfunction
 
-" TODO
-function CompleteArglist()
-endfunction
+" }}}
 
 "}}}
 
@@ -88,6 +152,12 @@ autocmd WinNew,VimEnter *
 
 "{{{ commands
 
+command -nargs=+ -complete=file AddList
+            \ call AddArgs(<f-args>)
+
+command -nargs=0 ListArglists echo ListArglists()
+command -nargs=0 ArglistInfo echo ArglistInfo()
+
 " TODO
 command -nargs=1 -complete=customlist,CompleteArglist()
             \ OpenArglist
@@ -95,8 +165,6 @@ command -nargs=1 -complete=customlist,CompleteArglist()
 " TODO something more
 command -nargs=0 DelArglist
             \ call DelArglist()
-
-command -nargs=0 ListArglists call ListArglists()
 
 " TODO D will be painfully tough
 " command ArglistsDo
@@ -106,12 +174,12 @@ command -nargs=0 ListArglists call ListArglists()
 "{{{ maps
 
 " ???
-" map <Leader><Space>o :<C-u><CR>
-map <silent> <Leader><Space>o :<C-u>call AddList(NewArglist(expand('%')))<CR>
-" map <Leader><Space>o :<C-u>call NewArglist()<CR>
+map <Leader><Space>o :<C-u>AddList<Space>
 map <Leader><Space>e :<C-u>OpenArglist<Space>
 map <Leader><Space>l :<C-u>ListArglists<CR>
+map <Leader><Space>i :<C-u>ArglistInfo<CR>
 
+" TODO
 map <silent> <Leader><Space>a :<C-u>call AddArglist()<CR>
 map <Leader><Space>d :<C-u>DelArglist<CR>
 map <silent> Leader><Space>+ :<C-u>call AddList(NewArglist(''))<CR>
