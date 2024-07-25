@@ -3,11 +3,14 @@
 "{{{ helpers
 
 function Fpath(file)
-    return fnamemodify(resolve(a:file), ':p')
+    if exists(a:file)
+        return fnamemodify(resolve(a:file), ':p')
+    endif
+    return a:file
 endfunction
 
 function ArglistFiles(alist)
-    return map(a:alist, {i, e -> Fpath(e)})
+    return map(a:alist, {_, e -> Fpath(e)})
 endfunction
 
 function ListNumFromRepr(repr)
@@ -49,7 +52,7 @@ function ApplyArglist(list)
     let list = a:list[1:]
     exe 'arglocal! '.join(map(
                 \ ArglistFiles(list),
-                \ {i, e -> fnameescape(e)}),
+                \ {_, e -> fnameescape(e)}),
                 \ ' ')
     exe 'argument '.(idx+1)
 endfunction
@@ -57,7 +60,8 @@ endfunction
 function UpdateArglist()
     let fname = Fpath(expand('%'))
     if index(w:arglists[w:cur_arglist][1:], fname) >= 0
-        let w:arglists[w:cur_arglist] = NewArglist(argv(), argidx())
+        let w:arglists[w:cur_arglist] =
+                    \ NewArglist(argv(), argidx())
     else
         let w:arglists[w:cur_arglist] = 
                     \ NewArglist(argv(), w:arglists[w:cur_arglist][0])
@@ -105,6 +109,9 @@ endfunction
 "{{{ completion
 
 function ArglistComp(list, idx)
+    if len(a:list) <= 1
+        return "[]"
+    endif
     return a:idx.': ('.a:list[0].') - '.
                 \ pathshorten(a:list[1], 2).
                 \ (len(a:list) > 2 ? ', ...' : ' -')
@@ -132,6 +139,9 @@ endfunction
 "{{{ info
 
 function ArglistShort(list)
+    if len(a:list) <= 1
+        return "[]"
+    endif
     return '['.a:list[0].']: '.
                 \ pathshorten(a:list[1], g:pathshorten).
                 \ (len(a:list) > 2 ? ', ...' : '')

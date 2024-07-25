@@ -19,7 +19,9 @@ vim.keymap.set(
   {"n", "v"}, "<Space>jl",
   function() harpoon.ui:toggle_quick_menu(harpoon:list()) end
 )
--- TODO B quickfix
+
+-- TODO B visual mode
+-- TODO C quickfix
 
 -- {{{ select nth
 vim.keymap.set(
@@ -62,13 +64,19 @@ vim.keymap.set(
 
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set(
-  {"n", "v"}, "<C-k>", function() harpoon:list():prev() end
+  {"n", "v"}, "<Space>jp", function()
+    commandRep((function() harpoon:list():prev() end)())
+  end
 )
 vim.keymap.set(
-  {"n", "v"}, "<C-j>", function() harpoon:list():next() end
+  {"n", "v"}, "<Space>jn", function() harpoon:list():next() end
 )
 
 -- {{{ TODO A stack operations
+
+vim.keymap.set(
+  {"n", "v"}, "<C-j>", function() harpoon:list():next() end
+)
 
 -- }}}
 

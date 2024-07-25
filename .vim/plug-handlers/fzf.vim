@@ -43,7 +43,8 @@ let g:fzf_layout = { 'down': g:fzf_percent }
 " let fzf_preview_default = 'right,64%,<70(up,40%)'
 " let fzf_preview_default = 'right,64%'
 
-let fzf_preview_default = 'right,55%'
+" let fzf_preview_default = 'right,55%'
+let fzf_preview_default = 'up,50%'
 let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-/']
 
 " " - Window using a Vim command
@@ -121,6 +122,7 @@ nnoremap <leader>s;m :<C-u>Maps<CR>
 nnoremap <leader>s;H :<C-u>Helptags<CR>
 nnoremap <leader>s;w :<C-u>Windows<CR>
 nnoremap <leader>s;j :<C-u>Jumps<CR>
+nnoremap <leader>s;t :<C-u>Tags<CR>
 
 nnoremap <leader>gff :<C-u>GFiles<CR>
 nnoremap <leader>gfs :<C-u>GFiles?<CR>
@@ -147,20 +149,58 @@ command! -bang -nargs=* GGrep
             \      {'dir': systemlist('git rev-parse --show-toplevel')[0]}
             \   ), <bang>0)
 
-command! -bang -nargs=* Ah 
-            \ call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
-
-command! -bang -nargs=* Au 
-            \ call fzf#vim#ag(<q-args>, '--unrestricted', fzf#vim#with_preview(), <bang>0)
-
 nnoremap <leader>slg :Fgrep<CR>
 nnoremap <leader>sl<Space>g :Fgrep<Space>
 nnoremap <leader>slc :GGrep<CR>
 nnoremap <leader>sl<Space>c :GGrep<Space>
+
+"}}}
+
+"{{{ custom ag
+
+command! -bang -nargs=* Ah 
+            \ call fzf#vim#ag(<q-args>,
+            \ '--hidden',
+            \ fzf#vim#with_preview(),
+            \ <bang>0)
+
+command! -bang -nargs=* Au 
+            \ call fzf#vim#ag(<q-args>,
+            \ '--unrestricted',
+            \ fzf#vim#with_preview(),
+            \ <bang>0)
+
+function! s:with_git_root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  return v:shell_error ? {} : {'dir': root}
+endfunction
+
+" Ag from git root
+command! -nargs=* Rag
+            \ call fzf#vim#ag(<q-args>,
+            \ extend(
+            \ s:with_git_root(),
+            \ extend(g:fzf_layout, fzf#vim#with_preview())
+            \ ),
+            \ )
+
+command! -nargs=* Rau
+            \ call fzf#vim#ag(<q-args>,
+            \ '--unrestricted',
+            \ extend(
+            \ s:with_git_root(),
+            \ extend(g:fzf_layout, fzf#vim#with_preview())
+            \ ),
+            \ )
+
 nnoremap <leader>slh :Ah<CR>
 nnoremap <leader>sl<Space>h :Ah<Space>
 nnoremap <leader>slu :Au<CR>
 nnoremap <leader>sl<Space>u :Au<Space>
+nnoremap <leader>slr :Rag<CR>
+nnoremap <leader>sl<Space>r :Rag<Space>
+nnoremap <leader>slR :Rau<CR>
+nnoremap <leader>sl<Space>R :Rau<Space>
 
 "}}}
 
@@ -312,4 +352,3 @@ let g:fzf_action = {
             \ }
 
 "}}}
-
