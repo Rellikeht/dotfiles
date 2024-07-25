@@ -10,6 +10,9 @@ let maplocalleader = '-'
 
 autocmd FileType * let b:match_ignorecase = 0
 let g:pathshorten = 4
+autocmd WinNew,VimEnter *
+            \ arglocal!
+            \ | let w:prev_dir = expand('%:p:h')
 
 " set secure
 " shitty, but works somehow
