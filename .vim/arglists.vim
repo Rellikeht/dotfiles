@@ -1,3 +1,5 @@
+"{{{ operations
+
 "{{{ helpers
 
 function Fpath(file)
@@ -8,9 +10,22 @@ function ArglistFiles(alist)
     return map(a:alist, {i, e -> Fpath(e)})
 endfunction
 
-"}}}
+function ListNumFromRepr(repr)
+    let npart = split(a:repr, ':')[0]
+    if a:repr =~ '^[0-9]\+$'
+        let num = str2nr(a:repr)
+    elseif npart =~ '^[0-9]\+$'
+        let num = str2nr(npart)
+    else
+        throw 'Given index of arglist list is not a number'
+    endif
+    if num < 0 || num >= len(w:arglists)
+        throw 'Invalid index of arglist list'
+    endif
+    return num
+endfunction
 
-"{{{ operations
+"}}}
 
 "{{{ create
 
@@ -20,7 +35,7 @@ endfunction
 
 function NewArglist(files, index = 0)
     if type(a:files) == v:t_string
-        return MakeArglist(Fpath(a:files), a:index)
+        return MakeArglist([Fpath(a:files)], a:index)
     endif
     return MakeArglist(a:files, a:index)
 endfunction
@@ -32,7 +47,10 @@ endfunction
 function ApplyArglist(list)
     let idx = a:list[0]
     let list = a:list[1:]
-    exe 'arglocal! '.join(ArglistFiles(list), ' ')
+    exe 'arglocal! '.join(map(
+                \ ArglistFiles(list),
+                \ {i, e -> fnameescape(e)}),
+                \ ' ')
     exe 'argument '.(idx+1)
 endfunction
 
@@ -40,17 +58,23 @@ function UpdateArglist()
     let fname = Fpath(expand('%'))
     if index(w:arglists[w:cur_arglist][1:], fname) >= 0
         let w:arglists[w:cur_arglist] = NewArglist(argv(), argidx())
+    else
+        let w:arglists[w:cur_arglist] = 
+                    \ NewArglist(argv(), w:arglists[w:cur_arglist][0])
     endif
-    let w:arglists[w:cur_arglist] = 
-                \ NewArglist(argv(), w:arglists[w:cur_arglist][0])
 endfunction
 
-function NextArglist()
+function NextArglist(amount = 1)
     call UpdateArglist()
-    let w:cur_arglist = w:cur_arglist + 1
+    let w:cur_arglist = w:cur_arglist + a:amount
     if w:cur_arglist >= len(w:arglists)
         let w:cur_arglist = 0
     endif
+    call ApplyArglist(w:arglists[w:cur_arglist])
+endfunction
+
+function SelectArglist(repr)
+    let w:cur_arglist = ListNumFromRepr(a:repr)
     call ApplyArglist(w:arglists[w:cur_arglist])
 endfunction
 
@@ -69,11 +93,38 @@ endfunction
 function AddArgs(...)
     let list = []
     for arg in a:000
-        let list = add(list, Fpath(fnameescape(arg)))
+        let list = add(list, Fpath(arg))
     endfor
     call AddArglist(list, 0)
     let w:cur_arglist = len(w:arglists)-1
     call ApplyArglist(w:arglists[w:cur_arglist])
+endfunction
+
+"}}}
+
+"{{{ completion
+
+function ArglistComp(list, idx)
+    return a:idx.': ('.a:list[0].') - '.
+                \ pathshorten(a:list[1], 2).
+                \ (len(a:list) > 2 ? ', ...' : ' -')
+endfunction
+
+function CompleteArglist(lead, cmdline, curpos)
+    call UpdateArglist()
+    if a:lead == '...' || a:lead == '-'
+        return []
+    endif
+    let arglists = []
+    let i = 0
+    for e in w:arglists
+        let argrep = ArglistComp(e, i)
+        if argrep =~ '^'.a:lead
+            let arglists = add(arglists, argrep)
+        endif
+        let i = i+1
+    endfor
+    return arglists
 endfunction
 
 "}}}
@@ -97,7 +148,7 @@ endfunction
 
 function ArglistInfo()
     call UpdateArglist()
-    let lst = ArglistShort(w:arglists[w:cur_arglist]).":\n\n"
+    let lst = ArglistComp(w:arglists[w:cur_arglist], w:cur_arglist).":\n\n"
     let i = 0
     for f in w:arglists[w:cur_arglist][1:]
         if i == argidx()
@@ -108,11 +159,6 @@ function ArglistInfo()
         let i = i+1
     endfor
     return lst[:len(lst)-2]
-endfunction
-
-" TODO
-function CompleteArglist()
-    call UpdateArglist()
 endfunction
 
 "}}}
@@ -129,7 +175,22 @@ function DeleteCurArglist()
     call remove(w:arglists, idx)
 endfunction
 
-" TODO is this doable at all
+function DelArglist(repr)
+    let arg = ListNumFromRepr(a:repr)
+    if arg == w:cur_arglist
+        if len(w:arglists) == 1
+            arglocal!
+        else
+            call NextArglist()
+            if w:cur_arglist >= arg
+                let w:cur_arglist = w:cur_arglist - 1
+            endif
+        endif
+    endif
+    call remove(w:arglists, arg)
+endfunction
+
+" TODO C is this doable at all
 function PurgeArglist(index)
     for f in w:arglists[index][1:]
         exe 'bdelete '.f
@@ -152,19 +213,16 @@ autocmd WinNew,VimEnter *
 
 "{{{ commands
 
-command -nargs=+ -complete=file AddList
-            \ call AddArgs(<f-args>)
-
 command -nargs=0 ListArglists echo ListArglists()
 command -nargs=0 ArglistInfo echo ArglistInfo()
-
-" TODO
-command -nargs=1 -complete=customlist,CompleteArglist()
-            \ OpenArglist
-
-" TODO something more
-command -nargs=0 DelArglist
-            \ call DelArglist()
+command -nargs=+ -complete=file OpenArglist
+            \ call AddArgs(<f-args>)
+command -nargs=1 -complete=customlist,CompleteArglist
+            \ SelectArglist
+            \ call SelectArglist(<f-args>)
+command -nargs=1 -complete=customlist,CompleteArglist
+            \ DelArglist
+            \ call DelArglist(<f-args>)
 
 " TODO D will be painfully tough
 " command ArglistsDo
@@ -173,21 +231,20 @@ command -nargs=0 DelArglist
 
 "{{{ maps
 
-" ???
-map <Leader><Space>o :<C-u>AddList<Space>
-map <Leader><Space>e :<C-u>OpenArglist<Space>
+map <Leader><Space>o :<C-u>OpenArglist<Space>
+map <Leader><Space>e :<C-u>SelectArglist<Space>
 map <Leader><Space>l :<C-u>ListArglists<CR>
 map <Leader><Space>i :<C-u>ArglistInfo<CR>
 
-" TODO
-map <silent> <Leader><Space>a :<C-u>call AddArglist()<CR>
-map <Leader><Space>d :<C-u>DelArglist<CR>
-map <silent> Leader><Space>+ :<C-u>call AddList(NewArglist(''))<CR>
+" TODO C what to do here if anything
+" map <Leader><Space>a :<C-u>AddArglist<Space>
+map <silent> <Leader><Space>A :<C-u>call AddList(NewArglist(''))<CR>
+map <Leader><Space>d :<C-u>DelArglist<Space>
+map <silent> <Leader><Space>D :<C-u>exe 'DelArglist '.w:cur_arglist.':'<CR>
 
 map <Leader><Space>n :<C-u>call NextArglist(v:count1)<CR>
 map <Leader><Space>p :<C-u>call NextArglist(-v:count1)<CR>
 
-" TODO D
 " map <Leader><Space>: :<C-u>ArglistsDo<Space>
 
 "}}}

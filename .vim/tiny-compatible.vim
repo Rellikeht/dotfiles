@@ -259,10 +259,10 @@ noremap <Space>e :<C-u>Argument<Space>
 noremap <Space>E :<C-u>ArgumentE<Space>
 noremap <Space>o :<C-u>argedit<Space>
 noremap <Space>O :<C-u>argedit!<Space>
-nnoremap <Space>a :<C-u>argadd<CR>
-vnoremap <Space>a :<C-u>argadd\|norm gv<CR>
-nnoremap <Space>A :<C-u>argadd<Space>
-vnoremap <Space>A :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>a :<C-u>argadd<Space>
+vnoremap <Space>a :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>A :<C-u>argadd<CR>
+vnoremap <Space>A :<C-u>argadd\|norm gv<CR>
 nnoremap <Space>d :<C-u>argdelete<Space>
 vnoremap <Space>d :<C-u>argdelete  \|norm gv<C-Left><C-Left><Left>
 noremap <silent> <Space>D :<C-u>if argc() == 1 
