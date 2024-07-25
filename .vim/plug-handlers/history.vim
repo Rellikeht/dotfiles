@@ -1,3 +1,9 @@
+"{{{ helpers
+
+map <Leader>u<Esc> <Nop>
+
+"}}}
+
 "{{{ TINYMRU
 
 noremap <silent> ,ue :<C-u>ME<Space>

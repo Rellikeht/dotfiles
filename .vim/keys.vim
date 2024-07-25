@@ -74,13 +74,16 @@ noremap <silent> <Tab>k K<C-w>T
 noremap <silent> <Tab>n 
             \ :<C-u>call SwitchTab(v:count1)<CR>
 nnoremap <silent> <Tab>N 
-            \ :<C-u>execute 'tabm +'.v:count1<CR>
+            \ :<C-u>execute 'tabmove +'.v:count1<CR>
 vnoremap <silent> <Tab>N 
-            \ :<C-u>execute 'tabm +'.v:count1\|norm gv<CR>
+            \ :<C-u>execute 'tabmove +'.v:count1\|norm gv<CR>
 nnoremap <silent> <Tab>P 
-            \ :<C-u>execute 'tabm -'.v:count1<CR>
+            \ :<C-u>execute 'tabmove -'.v:count1<CR>
 vnoremap <silent> <Tab>P 
-            \ :<C-u>execute 'tabm -'.v:count1\|norm gv<CR>
+            \ :<C-u>execute 'tabmove -'.v:count1\|norm gv<CR>
+
+nnoremap <expr> <Tab>f ':<C-u>'.v:count1.'tabfind '
+nnoremap <expr> <Tab>F ':<C-u>-'.v:count1.'tabfind '
 
 nnoremap <silent> <Tab>w :<C-u>We<CR>
 vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>

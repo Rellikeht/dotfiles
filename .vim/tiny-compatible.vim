@@ -51,6 +51,7 @@ vnoremap + <C-a>
 vnoremap - <C-x>
 
 noremap <Space><Esc> <Nop>
+noremap <Space><Space><Esc> <Nop>
 noremap .<Esc> <Nop>
 
 " }}}
@@ -76,6 +77,8 @@ noremap <Tab>o :<C-u>tabedit<Space>
 noremap <Tab>O :<C-u>-tabedit<Space>
 noremap <Tab><Tab> :<C-u>tab<Space>
 noremap <Tab>; :<C-u>-tab<Space>
+noremap <Tab>f :<C-u>tabfind<Space>
+noremap <Tab>F :<C-u>-tabfind<Space>
 
 noremap <Tab><Space>o :<C-u>tabedit  \|
             \ exe 'arglocal! '.expand('%')
@@ -115,8 +118,9 @@ vnoremap <silent> <Tab>J :<C-u>tabm $\|norm gv<CR>
 nnoremap <silent> <Tab>K :<C-u>tabm 0<CR>
 vnoremap <silent> <Tab>K :<C-u>tabm 0\|norm gv<CR>
 
-nnoremap <Tab>t :<C-u>tabdo<Space>
-vnoremap <Tab>t :<C-u>tabdo\|norm gv<Space>
+nnoremap <Tab>: :<C-u>tabdo<Space>
+vnoremap <Tab>: :<C-u>tabdo  \|norm gv
+            \ <C-Left><C-Left><Left>
 
 " }}}
 
@@ -192,6 +196,10 @@ noremap <Space><Space>s <C-^>
 noremap <Space><Space>o :<C-u>edit<Space>
 noremap <Space><Space>O :<C-u>edit!<Space>
 
+noremap <silent> <Space><Space>+ :<C-u>enew<CR>
+noremap <silent> <Space><Space>- :<C-u>bdelete<CR>
+noremap <silent> <Space><Space>;- :<C-u>bdelete!<CR>
+
 nnoremap <Space><Space>l :<C-u>buffers<CR>
 vnoremap <Space><Space>l :<C-u>buffers\|norm gv<CR>
 nnoremap <Space><Space>L :<C-u>buffers!<CR>
@@ -206,10 +214,8 @@ noremap <silent> <Space><Space>P :<C-u>bprevious!<CR>
 noremap <silent> <Space><Space>m :<C-u>bmodified<CR>
 noremap <silent> <Space><Space>M :<C-u>bmodified!<CR>
 
-noremap <silent> <Space><Space>d :<C-u>bdelete<CR>
-noremap <silent> <Space><Space>D :<C-u>bdelete!<CR>
-noremap <silent> <Space><Space>u :<C-u>bunload<CR>
-noremap <silent> <Space><Space>U :<C-u>bunload!<CR>
+noremap <silent> <Space><Space>d :<C-u>bunload<CR>
+noremap <silent> <Space><Space>D :<C-u>bunload!<CR>
 noremap <silent> <Space><Space>w :<C-u>bwipeout<CR>
 noremap <silent> <Space><Space>W :<C-u>bwipeout!<CR>
 
@@ -231,10 +237,10 @@ nnoremap <Space><Space>A :<C-u>balt<Space>
 vnoremap <Space><Space>A :<C-u>balt  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space><Space>a :<C-u>badd<Space>
 vnoremap <Space><Space>a :<C-u>badd  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space><Space>t :<C-u>bufdo<Space>
-vnoremap <Space><Space>t :<C-u>bufdo<Space> \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space><Space>T :<C-u>bufdo!<Space>
-vnoremap <Space><Space>T :<C-u>bufdo!  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space><Space>: :<C-u>bufdo<Space>
+vnoremap <Space><Space>: :<C-u>bufdo<Space> \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space><Space>;: :<C-u>bufdo!<Space>
+vnoremap <Space><Space>;: :<C-u>bufdo!  \|norm gv<C-Left><C-Left><Left>
 
 " }}}
 
@@ -510,7 +516,7 @@ set mouse=a
 " Not really needed
 " set clipboard=unnamed
 
-set switchbuf+=usetab
+set switchbuf+=usetab,useopen
 
 " }}}
 
@@ -527,9 +533,7 @@ set backspace=indent,eol,start
 
 set noautochdir
 set autoread
-
 set termencoding=utf-8
-set encoding=utf-8
 
 set modelines=3
 set nomodeline
@@ -539,6 +543,13 @@ set cedit=<C-j>
 set cmdwinheight=30
 
 " }}}
+
+"{{{ files
+
+set encoding=utf-8
+set fileformat=unix
+
+"}}}
 
 " }}}
 

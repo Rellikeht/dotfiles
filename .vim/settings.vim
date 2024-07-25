@@ -9,10 +9,6 @@ let mapleader = ','
 let maplocalleader = '-'
 
 autocmd FileType * let b:match_ignorecase = 0
-" TabNew ?
-autocmd VimEnter *
-            \ arglocal!
-            \ | let g:prev_dir = expand('%:p:h')
 let g:pathshorten = 4
 
 " set secure

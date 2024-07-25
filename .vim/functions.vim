@@ -245,21 +245,27 @@ function RelPath(cur, rel)
                 \ a:cur.'/'
                 \ )
     let parpat = '\([^/]\+\)'
-    return (pardirs == '' ? '' :
-                \ substitute(pardirs, parpat , '..', 'g')).
-                \ pathshorten(
-                \ WithoutCommonSubstring(a:cur, a:rel.'/'),
-                \ g:pathshorten
-                \ )
+    let subst = substitute(pardirs, parpat , '..', 'g')
+    let relpath = WithoutCommonSubstring(a:cur, a:rel.'/')
+    if subst =~ '[^/]$' && parpat[0] != '/'
+        let subst = subst.'/'
+    endif
+    return (pardirs == '' ? '' : subst).
+                \ pathshorten(relpath, g:pathshorten)
 endfunction
 
 " Path of current file relative to previously visited dir
 " (set by autocmd on bufenter)
 function RelCurFile()
-    if exists(expand('%:p'))
-        return RelPath(expand('%:p:h'), g:prev_dir).'/'.expand('%:t')
+    let relpath = RelPath(expand('%:p:h'), w:prev_dir)
+    if relpath != '' && relpath =~ '[^/]$'
+        let relpath = relpath.'/'
     endif
-    return ''
+    let relpath = relpath.expand('%:t')
+    if filereadable(expand('%:p'))
+        return relpath
+    endif
+    return '{{{ '.relpath.' }}}'
 endfunction
 
 function NextArg(pos, cmd, before = '', after = '')
@@ -372,11 +378,11 @@ function ToggleAutochdir()
     if g:autochdir
         augroup AutoChdir
             autocmd BufLeave *
-                        \ if &buftype == ''
-                        \ | let g:prev_dir = expand('%:p:h')
+                        \ if &buftype == '' && isdirectory(expand('%:p:h'))
+                        \ | let w:prev_dir = expand('%:p:h')
                         \ | endif
             autocmd BufEnter *
-                        \ if &buftype == ''
+                        \ if &buftype == '' && isdirectory(expand('%:p:h'))
                         \ | exe 'lcd %:p:h'
                         \ | endif
         augroup END
