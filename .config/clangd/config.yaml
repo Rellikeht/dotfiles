@@ -1,6 +1,6 @@
 ---
 CompileFlags:
-  Add: [-Wall, -Wno-variadic-macros, -Wextra]
+  Add: [-Wall, -Wno-variadic-macros, -Wextra, -Wunused]
 If:
   PathMatch: [.*\.c, .*\.h]
   CompileFlags:
@@ -12,6 +12,7 @@ If:
 
 ---
 Diagnostics:
+  UnusedIncludes: Strict
   ClangTidy:
     Add: modernize*
     Remove: modernize-use-trailing-return-type

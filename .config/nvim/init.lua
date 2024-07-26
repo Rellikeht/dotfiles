@@ -87,6 +87,8 @@ Plug("hedyhli/outline.nvim")
 Plug("puremourning/vimspector")
 Plug("vim-test/vim-test")
 
+Plug("p00f/clangd_extensions.nvim")
+
 -- }}}
 
 -- {{{ nice to have
