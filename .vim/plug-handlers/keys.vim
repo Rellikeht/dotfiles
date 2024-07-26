@@ -33,8 +33,8 @@ noremap <C-n> <Plug>Sneak_;
 
 "{{{ vis
 
-noremap <Leader>.s :S
-noremap <Leader>.b :B
+noremap <Leader>is :S
+noremap <Leader>ib :B
 
 "}}}
 

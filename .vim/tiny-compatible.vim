@@ -511,10 +511,9 @@ set wrapmargin=1
 set notimeout
 set ttimeout
 set ttimeoutlen=100
-set mouse=a
 
-" Not really needed
-" set clipboard=unnamed
+set mouse=a
+set clipboard=unnamed
 
 set switchbuf+=usetab,useopen
 
@@ -526,6 +525,8 @@ set formatoptions=tcroqlwn
 
 " Neovim default setting at time of writing this
 set backspace=indent,eol,start
+
+set undolevels=10000
 
 "}}}
 

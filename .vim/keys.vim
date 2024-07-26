@@ -231,35 +231,6 @@ vnoremap .q :<C-u> echo 'Quickfix is now ' .
 
 "{{{ basic
 
-nnoremap <expr> .d
-      \ g:qfloc ? ':<C-u>ldo<Space>'
-      \ : ':<C-u>cdo<Space>'
-vnoremap <expr> .d
-      \ g:qfloc ? 
-      \ ':<C-u>ldo  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cdo  \|norm gv<C-Left><C-Left><Left>'
-nnoremap <expr> .a
-      \ g:qfloc ? ':<C-u>lfdo<Space>'
-      \ : ':<C-u>cfdo<Space>'
-vnoremap <expr> .a
-      \ g:qfloc ? 
-      \ ':<C-u>lfdo  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cfdo  \|norm gv<C-Left><C-Left><Left>'
-nnoremap <expr> .D
-      \ g:qfloc ? ':<C-u>ldo!<Space>'
-      \ : ':<C-u>cdo!<Space>'
-vnoremap <expr> .D
-      \ g:qfloc ? 
-      \ ':<C-u>ldo!  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cdo!  \|norm gv<C-Left><C-Left><Left>'
-nnoremap <expr> .A
-      \ g:qfloc ? ':<C-u>lfdo!<Space>'
-      \ : ':<C-u>cfdo!<Space>'
-vnoremap <expr> .A
-      \ g:qfloc ? 
-      \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
-
 noremap <expr> .f g:qfloc ? :<C-u>Lfilter //<Left>
 noremap <expr> .F g:qfloc ? :<C-u>Lfilter! //<Left>
 
@@ -287,6 +258,39 @@ vnoremap <expr> .<Space><Tab> g:qfloc ?
 
 "}}}
 
+"{{{ *do
+
+nnoremap <expr> .:
+      \ g:qfloc ? ':<C-u>ldo<Space>'
+      \ : ':<C-u>cdo<Space>'
+vnoremap <expr> .:
+      \ g:qfloc ? 
+      \ ':<C-u>ldo  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cdo  \|norm gv<C-Left><C-Left><Left>'
+nnoremap <expr> .<space>:
+      \ g:qfloc ? ':<C-u>lfdo<Space>'
+      \ : ':<C-u>cfdo<Space>'
+vnoremap <expr> .<space>:
+      \ g:qfloc ? 
+      \ ':<C-u>lfdo  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cfdo  \|norm gv<C-Left><C-Left><Left>'
+nnoremap <expr> .;:
+      \ g:qfloc ? ':<C-u>ldo!<Space>'
+      \ : ':<C-u>cdo!<Space>'
+vnoremap <expr> .;:
+      \ g:qfloc ? 
+      \ ':<C-u>ldo!  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cdo!  \|norm gv<C-Left><C-Left><Left>'
+nnoremap <expr> .<space>;
+      \ g:qfloc ? ':<C-u>lfdo!<Space>'
+      \ : ':<C-u>cfdo!<Space>'
+vnoremap <expr> .<space>;
+      \ g:qfloc ? 
+      \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
+
+"}}}
+
 "{{{ movement
 
 noremap <silent> .j
@@ -298,7 +302,7 @@ noremap <silent> .n
 noremap <silent> .p
       \ :<C-u>call QFcmd('pf', v:count1)<CR>
 noremap <silent> .g
-      \ :<C-u>call QFsel('cc', 'll', v:count1)<CR>
+      \ :<C-u>call QFsel('cc ', 'll ', '', v:count1)<CR>
 
 noremap <silent> .0 :<C-u>call QFcmd('first')<CR>
 noremap <silent> .$ :<C-u>call QFcmd('last')<CR>
@@ -331,8 +335,8 @@ noremap <silent> <C-w>.W
 noremap .l :<C-u>call QFcmd('list')<CR>
 noremap .L :<C-u>call QFcmd('history')<CR>
 
-nnoremap <silent> .; :<C-u>call NToggleQuickFix()<CR>
-vnoremap <silent> .; :<C-u>call VToggleQuickFix()<CR>
+nnoremap <silent> .h :<C-u>call NToggleQuickFix()<CR>
+vnoremap <silent> .h :<C-u>call VToggleQuickFix()<CR>
 
 " clearing
 nnoremap <silent> .c :<C-u>call QFcmd('expr []')<CR>
@@ -362,7 +366,6 @@ nnoremap <expr> .? g:qfloc ?
 "}}}
 
 augroup Quickfix "{{{
-
   autocmd FileType qf 
         \ noremap <buffer> <silent> q :q<CR>
         \ | noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
@@ -373,7 +376,7 @@ augroup Quickfix "{{{
         \ | noremap <buffer> K :<C-u>call
         \ WQFcmd('p', '-'.v:count1.' \| '.v:count1)
         \ \| wincmd p<CR>
-        \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR>
+        \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR><Left>
         \ | nnoremap <buffer> <silent> <BS> <CR>
         \ | nnoremap <buffer> <silent> <C-h> 
         \ <CR>:call WQFcmd('close')<CR>
@@ -386,10 +389,14 @@ augroup Quickfix "{{{
         \ | noremap <buffer> <expr> I g:qfloc ?
         \ ':<C-u>laddbuffer<Space>'
         \ : ':<C-u>caddbuffer<Space>'
-
-  "TODO C modifications
-  " some dd and undo
-
+        \ | nnoremap <buffer> <expr> <silent> dd g:qfloc ?
+        \ "m`:<C-u>call setloclist(0, filter(getloclist(0),
+        \ {idx -> idx < line('.') - 1 \|\|
+        \ idx > line('.') + v:count - 1}), 'r')<CR>'`"
+        \ : "m`:<C-u>call setqflist(filter(getqflist(),
+        \ {idx -> idx < line('.') - 1 \|\|
+        \ idx > line('.') + v:count - 1}), 'r')<CR>'`"
+        "TODO C undo (will be tough)
 augroup END "}}}
 
 "}}}

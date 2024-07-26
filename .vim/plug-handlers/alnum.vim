@@ -60,32 +60,32 @@ noremap <silent> <Leader>na :NuuidToggleAbbrev<CR>
 
 "{{{ tabularize
 
-nnoremap <Leader>.t :<C-u>Tabularize /
-vnoremap <Leader>.t :Tabularize /
-nnoremap <Leader>.p :<C-u>Tabularize //<Left>
-vnoremap <Leader>.p :Tabularize //<Left>
+nnoremap <Leader>it :<C-u>Tabularize /
+vnoremap <Leader>it :Tabularize /
+nnoremap <Leader>ip :<C-u>Tabularize //<Left>
+vnoremap <Leader>ip :Tabularize //<Left>
 
-nnoremap <Leader>.= :<C-u>Tabularize /=<CR>
-vnoremap <Leader>.= :Tabularize /=<CR>
-nnoremap <Leader>.: :<C-u>Tabularize /:<CR>
-vnoremap <Leader>.: :Tabularize /:<CR>
-nnoremap <Leader>.; :<C-u>Tabularize /;<CR>
-vnoremap <Leader>.; :Tabularize /;<CR>
-nnoremap <Leader>.& :<C-u>Tabularize /&<CR>
-vnoremap <Leader>.& :Tabularize /&<CR>
-nnoremap <Leader>.@ :<C-u>Tabularize /@<CR>
-vnoremap <Leader>.@ :Tabularize /@<CR>
+nnoremap <Leader>i= :<C-u>Tabularize /=<CR>
+vnoremap <Leader>i= :Tabularize /=<CR>
+nnoremap <Leader>i: :<C-u>Tabularize /:<CR>
+vnoremap <Leader>i: :Tabularize /:<CR>
+nnoremap <Leader>i; :<C-u>Tabularize /;<CR>
+vnoremap <Leader>i; :Tabularize /;<CR>
+nnoremap <Leader>i& :<C-u>Tabularize /&<CR>
+vnoremap <Leader>i& :Tabularize /&<CR>
+nnoremap <Leader>i@ :<C-u>Tabularize /@<CR>
+vnoremap <Leader>i@ :Tabularize /@<CR>
 
-nnoremap <Leader>.;= :<C-u>Tabularize /=zs<CR>
-vnoremap <Leader>.;= :Tabularize /=zs<CR>
-nnoremap <Leader>.;: :<C-u>Tabularize /:zs<CR>
-vnoremap <Leader>.;: :Tabularize /:zs<CR>
-nnoremap <Leader>.;; :<C-u>Tabularize /;zs<CR>
-vnoremap <Leader>.;; :Tabularize /;zs<CR>
-nnoremap <Leader>.;& :<C-u>Tabularize /&zs<CR>
-vnoremap <Leader>.;& :Tabularize /&zs<CR>
-nnoremap <Leader>.;@ :<C-u>Tabularize /@zs<CR>
-vnoremap <Leader>.;@ :Tabularize /@zs<CR>
+nnoremap <Leader>i;= :<C-u>Tabularize /=zs<CR>
+vnoremap <Leader>i;= :Tabularize /=zs<CR>
+nnoremap <Leader>i;: :<C-u>Tabularize /:zs<CR>
+vnoremap <Leader>i;: :Tabularize /:zs<CR>
+nnoremap <Leader>i;; :<C-u>Tabularize /;zs<CR>
+vnoremap <Leader>i;; :Tabularize /;zs<CR>
+nnoremap <Leader>i;& :<C-u>Tabularize /&zs<CR>
+vnoremap <Leader>i;& :Tabularize /&zs<CR>
+nnoremap <Leader>i;@ :<C-u>Tabularize /@zs<CR>
+vnoremap <Leader>i;@ :Tabularize /@zs<CR>
 
 function! s:align()
     let p = '^\s*|\s.*\s|\s*$'
@@ -112,7 +112,7 @@ endfunction
 autocmd FileType markdown
             \ call InsertAlignToggle()
 
-nnoremap <Leader>.i :<C-u>call InsertAlignToggle()<CR>
-vnoremap <Leader>.i :<C-u>call InsertAlignToggle()\|norm gv<CR>
+nnoremap <Leader>ii :<C-u>call InsertAlignToggle()<CR>
+vnoremap <Leader>ii :<C-u>call InsertAlignToggle()\|norm gv<CR>
 
 "}}}

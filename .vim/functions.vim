@@ -386,10 +386,12 @@ function ToggleAutochdir()
             \ | let w:prev_dir = expand('%:p:h')
             \ | endif
       autocmd BufEnter *
-            \ if &buftype == '' && isdirectory(expand('%:p:h'))
+            \ if &buftype == ''
+            \ | if isdirectory(expand('%:p:h'))
             \ | exe 'lcd %:p:h'
             \ | endif
             \ | echo RelCurFile()
+            \ | endif
     augroup END
     echo 'AutoChdir enabled'
     else
