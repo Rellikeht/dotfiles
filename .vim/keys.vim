@@ -191,6 +191,10 @@ nnoremap <Leader>;cp :<C-u>pwd<CR>
 vnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
 
 noremap <Leader>;m :<C-u>messages<CR>
+noremap <Leader>;cx :<C-u>mkexrc<CR>
+noremap <Leader>;c<Space>x :<C-u>mkexrc<Space>
+noremap <Leader>;cv :<C-u>mkvimrc<CR>
+noremap <Leader>;c<Space>v :<C-u>mkvimrc<Space>
 
 " ???
 " map <Leader>;r :!%<CR>

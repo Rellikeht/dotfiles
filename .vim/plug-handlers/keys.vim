@@ -1,3 +1,10 @@
+"{{{ plug
+
+nnoremap <silent> <Leader>qu :silent! call GeneralUpgrade()<CR>
+nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>
+
+"}}}
+
 "{{{ Repeat
 
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
@@ -38,9 +45,18 @@ noremap <Leader>ib :B
 
 "}}}
 
-"{{{ others
+"{{{ bbye
 
-nnoremap <silent> <Leader>qu :silent! call GeneralUpgrade()<CR>
-nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>
+noremap <silent> <Space><Space>- :<C-u>Bdelete<CR>
+noremap <silent> <Space><Space>;- :<C-u>Bdelete!<CR>
+noremap <silent> <Space><Space>w :<C-u>Bwipeout<CR>
+noremap <silent> <Space><Space>W :<C-u>Bwipeout!<CR>
+
+noremap <Space><Space>;d :<C-u>Bdelete<Space>
+noremap <Space><Space>;D :<C-u>Bdelete!<Space>
+noremap <Space><Space>;u :<C-u>Bunload<Space>
+noremap <Space><Space>;U :<C-u>Bunload!<Space>
+noremap <Space><Space>;w :<C-u>Bwipeout<Space>
+noremap <Space><Space>;W :<C-u>Bwipeout!<Space>
 
 "}}}

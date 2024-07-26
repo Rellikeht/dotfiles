@@ -65,7 +65,6 @@ endfunction
 function s:QstackCurAdd()
   let g:qstack = add(g:qstack, getpos('.'))
   let g:qstack[len(g:qstack)-1][0] = bufnr()
-  " let g:qstack = add(g:qstack, [bufnr(), line('.'), col('.'), 0])
 endfunction
 
 function s:QstackCurDel()
@@ -181,6 +180,8 @@ let g:qsind = 0
 
 "}}}
 
+"{{{ maps
+
 "{{{ basic commands
 
 noremap <silent> <Space>jw :<C-u>call <SID>QstackOpen(0)<CR>
@@ -241,5 +242,7 @@ nnoremap <silent> <Space>jo8 :<C-u>call <SID>QstackRot(8, v:count1)<CR>
 vnoremap <silent> <Space>jo8 :<C-u>call <SID>QstackRot(8, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo9 :<C-u>call <SID>QstackRot(9, v:count1)<CR>
 vnoremap <silent> <Space>jo9 :<C-u>call <SID>QstackRot(9, v:count1)\|norm gv<CR>
+
+"}}}
 
 "}}}

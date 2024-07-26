@@ -56,7 +56,7 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  buf_modes, "<Leader>dl", function(ev)
+  buf_modes, "<Leader>dl", function(_)
     if vim.g["qfloc"] == 1 then
       vim.diagnostic.setloclist({open = false})
     else
@@ -66,7 +66,7 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  diag_modes, "<Leader>dL", function(ev)
+  diag_modes, "<Leader>dL", function(_)
     if vim.g["qfloc"] == 1 then
       vim.diagnostic.setloclist({open = true})
     else
@@ -77,19 +77,25 @@ vim.keymap.set(
 
 -- }}}
 
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd(
-  "LspAttach", { -- {{{
+vim.api.nvim_create_autocmd( -- {{{
+  "LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
+    callback = function(args)
       -- {{{ helpers
 
-      -- Enable completion triggered by <c-x><c-o>
-      vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+      local bufnr = args.buf
+      local client = vim.lsp
+                       .get_client_by_id(args.data.client_id)
+      if client.server_capabilities.completionProvider then
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+      end
+      if client.server_capabilities.definitionProvider then
+        vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+      end
 
       -- :help vim.lsp.*
-      local opts = {buffer = ev.buf, noremap = true}
+      local opts = {buffer = bufnr, noremap = true}
       local tab_mod = "<C-w>"
 
       -- local lfiles = {"*.go", "*.jl", "*.zig", "*.sh", "*.lua"}
@@ -211,7 +217,7 @@ vim.api.nvim_create_autocmd(
         vim.api.nvim_create_autocmd(
           "BufWritePre", {
             buffer = 0,
-            callback = function(ev)
+            callback = function(_)
               if vim.b["lspfmt"] == 1 then
                 vim.lsp.buf.format()
               end
@@ -223,8 +229,8 @@ vim.api.nvim_create_autocmd(
 
       -- }}}
     end,
-  } -- }}}
-)
+  }
+) -- }}}
 
 local function ssetup(server) -- {{{
   local config = lspconfig[server]

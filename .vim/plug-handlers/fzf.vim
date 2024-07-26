@@ -1,4 +1,22 @@
-"{{{ TODO
+"{{{ helpers
+
+function! s:with_git_root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  return v:shell_error ? {} : {'dir': root}
+endfunction
+
+function! s:with_dir(dir)
+  return {'dir': a:dir}
+endfunction
+
+function! s:Empty(A, L, C)
+  return ''
+endfunction
+
+function! s:W0(...)
+  return join(a:000[1:], '')
+endfunction
+
 "}}}
 
 "{{{ settings
@@ -136,9 +154,20 @@ let grep_args = '-EI --line-number'
 
 command! -bang -nargs=* Fgrep
       \ call fzf#vim#grep(
-      \ "grep ".grep_args."  --dereference-recursive -- "
+      \ "grep ".grep_args." --dereference-recursive -- "
       \ .fzf#shellescape(<q-args>),
       \ fzf#vim#with_preview(),
+      \ <bang>0
+      \ )
+
+command! -bang -nargs=+ -complete=dir Dgrep
+      \ call fzf#vim#grep(
+      \ "grep ".grep_args." --dereference-recursive -- "
+      \ .fzf#shellescape(s:W0(<f-args>)),
+      \ extend(
+      \ fzf#vim#with_preview(),
+      \ s:with_dir([<f-args>][0]),
+      \ ),
       \ <bang>0
       \ )
 
@@ -151,7 +180,7 @@ command! -bang -nargs=* GGrep
       \   ), <bang>0)
 
 nnoremap <leader>slg :Fgrep<CR>
-nnoremap <leader>sl<Space>g :Fgrep<Space>
+nnoremap <leader>sl<Space>g :Dgrep<Space>
 nnoremap <leader>slc :GGrep<CR>
 nnoremap <leader>sl<Space>c :GGrep<Space>
 
@@ -171,11 +200,7 @@ command! -bang -nargs=* Au
       \ fzf#vim#with_preview(),
       \ <bang>0)
 
-function! s:with_git_root()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  return v:shell_error ? {} : {'dir': root}
-endfunction
-
+" TODO C reduce that and later commands
 " Ag from git root
 command! -bang -nargs=* Rag
       \ call fzf#vim#ag(<q-args>,
@@ -193,27 +218,16 @@ command! -bang -nargs=* Rau
       \ ),
       \ <bang>0)
 
-function! s:with_dir(dir)
-  return {'dir': a:dir}
-endfunction
-
-function! s:Empty(A, L, C)
-  return ''
-endfunction
-
-function! s:W0(...)
-  return join(a:000[1:], '')
-endfunction
-
 " Ag from given directory
-command! -bang -nargs=+ -complete=dir -complete=custom,s:Empty Dag
+command! -bang -nargs=+ -complete=dir Dag
       \ call fzf#vim#ag(s:W0(<f-args>),
       \ extend(
       \ s:with_dir([<f-args>][0]),
       \ extend(g:fzf_layout, fzf#vim#with_preview())
       \ ),
       \ <bang>0)
-command! -bang -nargs=+ -complete=dir -complete=custom,s:Empty Dau
+
+command! -bang -nargs=+ -complete=dir Dau
       \ call fzf#vim#ag(s:W0(<f-args>),
       \ '--unrestricted',
       \ extend(
@@ -237,7 +251,7 @@ nnoremap <leader>slD :Dau<Space>
 
 "{{{ custom diffs
 
-" TODO preview like in other commands (probably impossible)
+" TODO C preview like in other commands (probably impossible)
 command! -bang -nargs=? -complete=dir Fdiffs
       \ call fzf#run(fzf#wrap({
       \ 'sink': 'diffs',
@@ -265,10 +279,10 @@ command! -bang -nargs=? -complete=dir Fdiffv
       \ <bang>0)
       \ )
 
-nnoremap <leader>sds :Fdiffs<CR>
-nnoremap <leader>sd<Space>s :Fdiffs<Space>
-nnoremap <leader>sdv :Fdiffv<CR>
-nnoremap <leader>sd<Space>v :Fdiffv<Space>
+nnoremap <leader>sfd :Fdiffs<CR>
+nnoremap <leader>sf<Space>d :Fdiffs<Space>
+nnoremap <leader>sfv :Fdiffv<CR>
+nnoremap <leader>sf<Space>v :Fdiffv<Space>
 
 "}}}
 
@@ -328,6 +342,8 @@ function PathMap(key, path)
         \ ' :<C-u>Dag '.a:path.'<CR>'
   exe 'noremap <leader>su'.a:key.
         \ ' :<C-u>Dau '.a:path.'<CR>'
+  exe 'noremap <leader>sd'.a:key.
+        \ ' :<C-u>Dgrep '.a:path.'<CR>'
 endfunction
 
 let paths = {

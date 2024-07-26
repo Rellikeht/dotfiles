@@ -43,6 +43,7 @@ Plug 'kshenoy/vim-signature'
 
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/vis'
+Plug 'moll/vim-bbye'
 
 "}}}
 
