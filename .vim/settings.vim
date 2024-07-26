@@ -40,9 +40,9 @@ set cmdheight=1
 
 " TODO C tabline
 
-" TODO B
-set laststatus=2
+set laststatus=0
 
+" TODO B
 " set statusline+=\ 
 " set statusline+=%f
 " set statusline+=\ 
@@ -171,6 +171,7 @@ set omnifunc=syntaxcomplete#Complete
 " {{{ other
 
 let g:autochdir = 0
+let w:prev_dir = expand('%:p:h')
 silent! call ToggleAutochdir()
 
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>

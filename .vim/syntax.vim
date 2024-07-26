@@ -8,7 +8,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd syntax * syntax match Operator /[.]/
 
 "autocmd BufNewFile,BufRead *.ml 
-            \ setlocal shiftwidth=4 softtabstop=4
+      \ setlocal shiftwidth=4 softtabstop=4
 
-autocmd FileType haskell,lua,r,markdown,nim
-            \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType haskell,lua,r,markdown,nim,vim
+      \ setlocal shiftwidth=2 softtabstop=2 tabstop=2

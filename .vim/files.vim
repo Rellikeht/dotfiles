@@ -124,7 +124,7 @@ command! -nargs=+ -complete=file_in_path Grep cexpr Grep(<f-args>)
 let g:grepprgs = 
             \ [
             \ 'grep\ -EIn\ $*\ /dev/null',
-            \ 'rg\ --vimgrep\ --smart-case\ --hidden',
+            \ 'rg\ --vimgrep\ --smart-case\ --hidden',
             \ ]
 
 " https://vi.stackexchange.com/questions/35139/custom-arguments-to-user-command
@@ -320,7 +320,7 @@ noremap <expr> <Leader>x/F g:qfloc ?
 
 "{{{ TODO A
 
-" greps from
+" greps from
 " https://codeinthehole.com/tips/vim-lists/#tip-use-mappings-for-faster-browsing
 
 "}}}

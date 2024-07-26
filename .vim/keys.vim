@@ -10,13 +10,13 @@
 noremap .. .
 noremap <C-h> <C-]>
 noremap <C-w><C-h> 
-            \ :<C-u>exe 'tab tag '.expand('<cword>')<CR>
+      \ :<C-u>exe 'tab tag '.expand('<cword>')<CR>
 
 " Command line window
 autocmd FileType vim
-            \ if &buftype == "nofile" && bufname() == ""
-            \ | noremap <buffer> <C-m> <CR>
-            \ | endif
+      \ if &buftype == "nofile" && bufname() == ""
+      \ | noremap <buffer> <C-m> <CR>
+      \ | endif
 
 "}}}
 
@@ -72,15 +72,15 @@ noremap <Space>t<Space>A :<C-u>ltag!<Space>
 noremap <silent> <Tab>k K<C-w>T
 
 noremap <silent> <Tab>n 
-            \ :<C-u>call SwitchTab(v:count1)<CR>
+      \ :<C-u>call SwitchTab(v:count1)<CR>
 nnoremap <silent> <Tab>N 
-            \ :<C-u>execute 'tabmove +'.v:count1<CR>
+      \ :<C-u>execute 'tabmove +'.v:count1<CR>
 vnoremap <silent> <Tab>N 
-            \ :<C-u>execute 'tabmove +'.v:count1\|norm gv<CR>
+      \ :<C-u>execute 'tabmove +'.v:count1\|norm gv<CR>
 nnoremap <silent> <Tab>P 
-            \ :<C-u>execute 'tabmove -'.v:count1<CR>
+      \ :<C-u>execute 'tabmove -'.v:count1<CR>
 vnoremap <silent> <Tab>P 
-            \ :<C-u>execute 'tabmove -'.v:count1\|norm gv<CR>
+      \ :<C-u>execute 'tabmove -'.v:count1\|norm gv<CR>
 
 nnoremap <expr> <Tab>f ':<C-u>'.v:count1.'tabfind '
 nnoremap <expr> <Tab>F ':<C-u>-'.v:count1.'tabfind '
@@ -99,32 +99,32 @@ vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 noremap <silent> <Space><Space>d <Plug>Kwbd
 
 vnoremap <Space><Space>;l 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' buffers'<CR>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' buffers'<CR>
 vnoremap <Space><Space>;L 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' buffers!'<CR>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' buffers!'<CR>
 
 noremap <silent> <Space><Space>n 
-            \ :<C-u>exe v:count1.'bnext\|echo RelCurFile()'<CR>
+      \ :<C-u>exe v:count1.'bnext'<CR>
 noremap <silent> <Space><Space>p 
-            \ :<C-u>exe v:count1.'bprevious\|echo RelCurFile()'<CR>
+      \ :<C-u>exe v:count1.'bprevious'<CR>
 noremap <silent> <Space><Space>N 
-            \ :<C-u>exe v:count1.'bnext!\|echo RelCurFile()'<CR>
+      \ :<C-u>exe v:count1.'bnext!'<CR>
 noremap <silent> <Space><Space>P 
-            \ :<C-u>exe v:count1.'bprevious!\|echo RelCurFile()'<CR>
+      \ :<C-u>exe v:count1.'bprevious!'<CR>
 noremap <silent> <Space><Space>m 
-            \ :<C-u>exe v:count1.'bmodified\|echo RelCurFile()'<CR>
+      \ :<C-u>exe v:count1.'bmodified'<CR>
 noremap <silent> <Space><Space>M 
-            \ :<C-u>exe v:count1.'bmodified!\|echo RelCurFile()'<CR>
+      \ :<C-u>exe v:count1.'bmodified!'<CR>
 
 " }}}
 
 "{{{ args with <Space>
 
 vnoremap <Space>;l 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' args'<CR>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' args'<CR>
 
 noremap <silent> <Space>n :<C-u>call NextArg(1, 'argument')<CR>
 noremap <silent> <Space>N :<C-u>call NextArg(1, 'argument!')<CR>
@@ -132,36 +132,36 @@ noremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
 noremap <silent> <Space>P :<C-u>call NextArg(0, 'argument!')<CR>
 
 noremap <silent> <Space>. 
-            \ :<C-u>call NextArg(1, 'argument', 'w')<CR>
+      \ :<C-u>call NextArg(1, 'argument', 'w')<CR>
 noremap <silent> <Space>> 
-            \ :<C-u>call NextArg(1, 'argument!', 'w')<CR>
+      \ :<C-u>call NextArg(1, 'argument!', 'w')<CR>
 noremap <silent> <Space>, 
-            \ :<C-u>call NextArg(0, 'argument', 'w')<CR>
+      \ :<C-u>call NextArg(0, 'argument', 'w')<CR>
 noremap <silent> <Space>< 
-            \ :<C-u>call NextArg(0, 'argument!', 'w')<CR>
+      \ :<C-u>call NextArg(0, 'argument!', 'w')<CR>
 
 "}}}
 
 " {{{ <Space> list and help
 
 vnoremap <Space>i<Space>r 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' registers'<C-Left><C-b>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' registers'<C-Left><C-b>
 vnoremap <Space>i<Space>p 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' history'<C-Left><C-b>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' history'<C-Left><C-b>
 vnoremap <Space>i<Space>c 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' changes'<C-Left><C-b>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' changes'<C-Left><C-b>
 vnoremap <Space>i<Space>j 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' jumps'<C-Left><C-b>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' jumps'<C-Left><C-b>
 vnoremap <Space>i<Space>o 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' files'<C-Left><C-b>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' files'<C-Left><C-b>
 vnoremap <Space>i<Space>m 
-            \ :<C-u>exe 'filter '.
-            \ GetVisualSelection().' marks'<C-Left><C-b>
+      \ :<C-u>exe 'filter '.
+      \ GetVisualSelection().' marks'<C-Left><C-b>
 
 "}}}
 
@@ -179,10 +179,10 @@ nnoremap <Leader>;cc :<C-u>silent! cd %:p:h<CR>
 vnoremap <Leader>;cc :<C-u>silent! cd %:p:h\|norm gv<CR>
 nnoremap <Leader>;c<Space>l :<C-u>lcd<Space>
 vnoremap <Leader>;c<Space>l :<C-u>lcd \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 nnoremap <Leader>;c<Space>c :<C-u>lcd<Space>
 vnoremap <Leader>;c<Space>c :<C-u>lcd \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 
 " Not the best, but should work
 noremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
@@ -202,63 +202,63 @@ noremap <Leader>;m :<C-u>messages<CR>
 "{{{ helpers
 
 function QuickFixToggle()
-    let g:qfloc = !g:qfloc
-    echo 'Quickfix is now ' . (g:qfloc ? 'local' : 'global')
+  let g:qfloc = !g:qfloc
+  echo 'Quickfix is now ' . (g:qfloc ? 'local' : 'global')
 endfunction
 
 "}}}
 
 "{{{ settings
 
-let g:qfheight = 20
+let g:qfheight = 15
 let g:qfloc = 1
 
 nnoremap .t :<C-u>let g:qfloc = !g:qfloc
-            \ \| echo 'Quickfix is now ' . 
-            \ (g:qfloc ? 'local' : 'global')<CR>
+      \ \| echo 'Quickfix is now ' . 
+      \ (g:qfloc ? 'local' : 'global')<CR>
 nnoremap .q :<C-u> echo 'Quickfix is now ' . 
-            \ (g:qfloc ? 'local' : 'global')<CR>
+      \ (g:qfloc ? 'local' : 'global')<CR>
 
 vnoremap .t :<C-u>let g:qfloc = !g:qfloc
-            \ \| echo 'Quickfix is now ' . 
-            \ (g:qfloc ? 'local' : 'global')
-            \ \| normal gv<CR>
+      \ \| echo 'Quickfix is now ' . 
+      \ (g:qfloc ? 'local' : 'global')
+      \ \| normal gv<CR>
 vnoremap .q :<C-u> echo 'Quickfix is now ' . 
-            \ (g:qfloc ? 'local' : 'global')
-            \ \| normal gv<CR>
+      \ (g:qfloc ? 'local' : 'global')
+      \ \| normal gv<CR>
 
 "}}}
 
 "{{{ basic
 
 nnoremap <expr> .d
-            \ g:qfloc ? ':<C-u>ldo<Space>'
-            \ : ':<C-u>cdo<Space>'
+      \ g:qfloc ? ':<C-u>ldo<Space>'
+      \ : ':<C-u>cdo<Space>'
 vnoremap <expr> .d
-            \ g:qfloc ? 
-            \ ':<C-u>ldo  \|norm gv<C-Left><C-Left><Left>'
-            \ : ':<C-u>cdo  \|norm gv<C-Left><C-Left><Left>'
+      \ g:qfloc ? 
+      \ ':<C-u>ldo  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cdo  \|norm gv<C-Left><C-Left><Left>'
 nnoremap <expr> .a
-            \ g:qfloc ? ':<C-u>lfdo<Space>'
-            \ : ':<C-u>cfdo<Space>'
+      \ g:qfloc ? ':<C-u>lfdo<Space>'
+      \ : ':<C-u>cfdo<Space>'
 vnoremap <expr> .a
-            \ g:qfloc ? 
-            \ ':<C-u>lfdo  \|norm gv<C-Left><C-Left><Left>'
-            \ : ':<C-u>cfdo  \|norm gv<C-Left><C-Left><Left>'
+      \ g:qfloc ? 
+      \ ':<C-u>lfdo  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cfdo  \|norm gv<C-Left><C-Left><Left>'
 nnoremap <expr> .D
-            \ g:qfloc ? ':<C-u>ldo!<Space>'
-            \ : ':<C-u>cdo!<Space>'
+      \ g:qfloc ? ':<C-u>ldo!<Space>'
+      \ : ':<C-u>cdo!<Space>'
 vnoremap <expr> .D
-            \ g:qfloc ? 
-            \ ':<C-u>ldo!  \|norm gv<C-Left><C-Left><Left>'
-            \ : ':<C-u>cdo!  \|norm gv<C-Left><C-Left><Left>'
+      \ g:qfloc ? 
+      \ ':<C-u>ldo!  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cdo!  \|norm gv<C-Left><C-Left><Left>'
 nnoremap <expr> .A
-            \ g:qfloc ? ':<C-u>lfdo!<Space>'
-            \ : ':<C-u>cfdo!<Space>'
+      \ g:qfloc ? ':<C-u>lfdo!<Space>'
+      \ : ':<C-u>cfdo!<Space>'
 vnoremap <expr> .A
-            \ g:qfloc ? 
-            \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
-            \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
+      \ g:qfloc ? 
+      \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
 
 noremap <expr> .f g:qfloc ? :<C-u>Lfilter //<Left>
 noremap <expr> .F g:qfloc ? :<C-u>Lfilter! //<Left>
@@ -266,67 +266,67 @@ noremap <expr> .F g:qfloc ? :<C-u>Lfilter! //<Left>
 nnoremap <silent> .b :<C-u>call QFcmd('getbuffer')<CR>
 vnoremap <silent> .b :<C-u>call QFcmd('getbuffer')\|norm gv<CR>
 nnoremap <silent> .B 
-            \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")<CR>
+      \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")<CR>
 vnoremap <silent> .B 
-            \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")\|norm gv<CR>
+      \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")\|norm gv<CR>
 nnoremap <expr> .<Space>b g:qfloc ? 
-            \ ':<C-u>lgetbuffer <Space>'
-            \ : ':<C-u>cgetbuffer <Space>'
+      \ ':<C-u>lgetbuffer <Space>'
+      \ : ':<C-u>cgetbuffer <Space>'
 vnoremap <expr> .<Space>b g:qfloc ? 
-            \ ':<C-u>lgetbuffer  \|norm gv<C-Left><C-Left><Left>'
-            \ : ':<C-u>cgetbuffer  \|norm gv<C-Left><C-Left><Left>'
+      \ ':<C-u>lgetbuffer  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cgetbuffer  \|norm gv<C-Left><C-Left><Left>'
 
 nnoremap <silent> .<Tab> :<C-u>call QFcmd('getfile')<CR>
 vnoremap <silent> .<Tab> :<C-u>call QFcmd('getfile')\|norm gv<CR>
 nnoremap <expr> .<Space><Tab> g:qfloc ? 
-            \ ':<C-u>lgetfile <Space>'
-            \ : ':<C-u>cgetfile <Space>'
+      \ ':<C-u>lgetfile <Space>'
+      \ : ':<C-u>cgetfile <Space>'
 vnoremap <expr> .<Space><Tab> g:qfloc ? 
-            \ ':<C-u>lgetfile  \|norm gv<C-Left><C-Left><Left>'
-            \ : ':<C-u>cgetfile  \|norm gv<C-Left><C-Left><Left>'
+      \ ':<C-u>lgetfile  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cgetfile  \|norm gv<C-Left><C-Left><Left>'
 
 "}}}
 
 "{{{ movement
 
 noremap <silent> .j
-            \ :<C-u>call QFcmd('n', v:count1)<CR>
+      \ :<C-u>call QFcmd('n', v:count1)<CR>
 noremap <silent> .k
-            \ :<C-u>call QFcmd('p', v:count1)<CR>
+      \ :<C-u>call QFcmd('p', v:count1)<CR>
 noremap <silent> .n
-            \ :<C-u>call QFcmd('nf', v:count1)<CR>
+      \ :<C-u>call QFcmd('nf', v:count1)<CR>
 noremap <silent> .p
-            \ :<C-u>call QFcmd('pf', v:count1)<CR>
+      \ :<C-u>call QFcmd('pf', v:count1)<CR>
 noremap <silent> .g
-            \ :<C-u>call QFsel('cc', 'll', v:count1)<CR>
+      \ :<C-u>call QFsel('cc', 'll', v:count1)<CR>
 
 noremap <silent> .0 :<C-u>call QFcmd('first')<CR>
 noremap <silent> .$ :<C-u>call QFcmd('last')<CR>
 noremap <silent> .G :<C-u>call QFcmd('bottom')<CR>
 
 nnoremap <silent> .<
-            \ :<C-u>call QFcmd('older '.v:count1)<CR>
+      \ :<C-u>call QFcmd('older '.v:count1)<CR>
 nnoremap <silent> .>
-            \ :<C-u>call QFcmd('newer '.v:count1)<CR>
+      \ :<C-u>call QFcmd('newer '.v:count1)<CR>
 vnoremap <silent> .<
-            \ :<C-u>call QFcmd('older '.v:count1)
-            \ \| normal gv<CR>
+      \ :<C-u>call QFcmd('older '.v:count1)
+      \ \| normal gv<CR>
 vnoremap <silent> .>
-            \ :<C-u>call QFcmd('newer '.v:count1)
-            \ \| normal gv<CR>
+      \ :<C-u>call QFcmd('newer '.v:count1)
+      \ \| normal gv<CR>
 
 "}}}
 
 "{{{  actions
 
 noremap <silent> .w 
-            \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
+      \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
 noremap <silent> .W
-            \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR>
+      \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR>
 noremap <silent> <C-w>.w
-            \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR><C-w>T
+      \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR><C-w>T
 noremap <silent> <C-w>.W
-            \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR><C-w>T
+      \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR><C-w>T
 
 noremap .l :<C-u>call QFcmd('list')<CR>
 noremap .L :<C-u>call QFcmd('history')<CR>
@@ -339,56 +339,56 @@ nnoremap <silent> .c :<C-u>call QFcmd('expr []')<CR>
 vnoremap <silent> .c :<C-u>call QFcmd('expr []')\|norm gv<CR>
 
 nnoremap <expr> .e g:qfloc ?
-            \ ':<C-u>lexpr<Space>'
-            \ : ':<C-u>cexpr<Space>'
+      \ ':<C-u>lexpr<Space>'
+      \ : ':<C-u>cexpr<Space>'
 vnoremap <expr> .e g:qfloc ?
-            \ ':<C-u>lexpr  \|norm gv<C-Left><C-Left><Left>'
-            \ : ':<C-u>cexpr  \|norm gv<C-Left><C-Left><Left>'
+      \ ':<C-u>lexpr  \|norm gv<C-Left><C-Left><Left>'
+      \ : ':<C-u>cexpr  \|norm gv<C-Left><C-Left><Left>'
 
 " search into quickfix list
 nnoremap <expr> ./ g:qfloc ? 
-            \ ':<C-u>g//lexpr expand("%").":".line(".").":".getline(".")
-            \ <Home><Right><Right>'
-            \ : ':<C-u>g//cexpr expand("%").":".line(".").":".getline(".")
-            \ <Home><Right><Right>'
+      \ ':<C-u>g//lexpr expand("%").":".line(".").":".getline(".")
+      \ <Home><Right><Right>'
+      \ : ':<C-u>g//cexpr expand("%").":".line(".").":".getline(".")
+      \ <Home><Right><Right>'
 
 " search into quickfix list
 nnoremap <expr> .? g:qfloc ? 
-            \ ':<C-u>g//laddexpr expand("%").":".line(".").":".getline(".")
-            \ <Home><Right><Right>'
-            \ : ':<C-u>g//caddexpr expand("%").":".line(".").":".getline(".")
-            \ <Home><Right><Right>'
+      \ ':<C-u>g//laddexpr expand("%").":".line(".").":".getline(".")
+      \ <Home><Right><Right>'
+      \ : ':<C-u>g//caddexpr expand("%").":".line(".").":".getline(".")
+      \ <Home><Right><Right>'
 
 "}}}
 
 augroup Quickfix "{{{
 
-    autocmd FileType qf 
-                \ noremap <buffer> <silent> q :q<CR>
-                \ | noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
-                \ | nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
-                \ | nnoremap <buffer> J :<C-u>call 
-                \ WQFcmd('n', '+'.v:count1.' \| '.v:count1)
-                \ \| wincmd p<CR>
-                \ | noremap <buffer> K :<C-u>call
-                \ WQFcmd('p', '-'.v:count1.' \| '.v:count1)
-                \ \| wincmd p<CR>
-                \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR>
-                \ | nnoremap <buffer> <silent> <BS> <CR>
-                \ | nnoremap <buffer> <silent> <C-h> 
-                \ <CR>:call WQFcmd('close')<CR>
-                \ | noremap <buffer> <expr> a g:qfloc ?
-                \ ':<C-u>laddexpr<Space>'
-                \ : ':<C-u>caddexpr<Space>'
-                \ | noremap <buffer> <expr> i g:qfloc ?
-                \ ':<C-u>laddfile<Space>'
-                \ : ':<C-u>caddfile<Space>'
-                \ | noremap <buffer> <expr> I g:qfloc ?
-                \ ':<C-u>laddbuffer<Space>'
-                \ : ':<C-u>caddbuffer<Space>'
+  autocmd FileType qf 
+        \ noremap <buffer> <silent> q :q<CR>
+        \ | noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
+        \ | nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
+        \ | nnoremap <buffer> J :<C-u>call 
+        \ WQFcmd('n', '+'.v:count1.' \| '.v:count1)
+        \ \| wincmd p<CR>
+        \ | noremap <buffer> K :<C-u>call
+        \ WQFcmd('p', '-'.v:count1.' \| '.v:count1)
+        \ \| wincmd p<CR>
+        \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR>
+        \ | nnoremap <buffer> <silent> <BS> <CR>
+        \ | nnoremap <buffer> <silent> <C-h> 
+        \ <CR>:call WQFcmd('close')<CR>
+        \ | noremap <buffer> <expr> a g:qfloc ?
+        \ ':<C-u>laddexpr<Space>'
+        \ : ':<C-u>caddexpr<Space>'
+        \ | noremap <buffer> <expr> i g:qfloc ?
+        \ ':<C-u>laddfile<Space>'
+        \ : ':<C-u>caddfile<Space>'
+        \ | noremap <buffer> <expr> I g:qfloc ?
+        \ ':<C-u>laddbuffer<Space>'
+        \ : ':<C-u>caddbuffer<Space>'
 
-    "TODO C modifications
-    " some dd and undo
+  "TODO C modifications
+  " some dd and undo
 
 augroup END "}}}
 
@@ -412,7 +412,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "<C-p><C-y>" : "<S-Tab>"
 " <C-Space> in terminal
 inoremap <C-Space> <C-@>
 inoremap <expr> <C-@> pumvisible() ?
-            \ '<C-n>' : (&omnifunc == '') ? '<C-n>' : '<C-x><C-o>'
+      \ '<C-n>' : (&omnifunc == '') ? '<C-n>' : '<C-x><C-o>'
 
 " ?
 " CTRL-X CTRL-E scroll up

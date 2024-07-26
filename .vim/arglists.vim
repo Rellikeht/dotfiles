@@ -112,7 +112,7 @@ function ArglistComp(list, idx)
     if len(a:list) <= 1
         return "[]"
     endif
-    return a:idx.': ('.a:list[0].') - '.
+    return a:idx.': ('.a:list[0].'/'.(len(a:list)-1).') - '.
                 \ pathshorten(a:list[1], 2).
                 \ (len(a:list) > 2 ? ', ...' : ' -')
 endfunction
@@ -142,7 +142,7 @@ function ArglistShort(list)
     if len(a:list) <= 1
         return "[]"
     endif
-    return '['.a:list[0].']: '.
+    return '['.a:list[0].'/'.(len(a:list)-1).']: '.
                 \ pathshorten(a:list[1], g:pathshorten).
                 \ (len(a:list) > 2 ? ', ...' : '')
 endfunction

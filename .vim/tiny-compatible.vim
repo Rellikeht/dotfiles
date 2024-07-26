@@ -1,16 +1,16 @@
 "{{{ helpers
 
 command! -nargs=1 -complete=arglist Argument 
-            \ argedit <args>
-            \ | argdedupe
+      \ argedit <args>
+      \ | argdedupe
 
 command! -nargs=1 -complete=arglist ArgumentE
-            \ argedit! <args>
-            \ | argdedupe
+      \ argedit! <args>
+      \ | argdedupe
 
 command! -nargs=+ Silent
-            \   execute 'silent! <args>'
-            \   | redraw!
+      \   execute 'silent! <args>'
+      \   | redraw!
 
 " Nope
 " command! -nargs=1 -complete=arglist Vargument
@@ -81,11 +81,11 @@ noremap <Tab>f :<C-u>tabfind<Space>
 noremap <Tab>F :<C-u>-tabfind<Space>
 
 noremap <Tab><Space>o :<C-u>tabedit  \|
-            \ exe 'arglocal! '.expand('%')
-            \ <C-Left><C-Left><C-Left><C-Left><Left>
+      \ exe 'arglocal! '.expand('%')
+      \ <C-Left><C-Left><C-Left><C-Left><Left>
 noremap <Tab><Space>O :<C-u>-tabedit  \|
-            \ exe 'arglocal! '.expand('%')
-            \ <C-Left><C-Left><C-Left><C-Left><Left>
+      \ exe 'arglocal! '.expand('%')
+      \ <C-Left><C-Left><C-Left><C-Left><Left>
 
 noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
 noremap <Tab>A :<C-u>tabnew\|arglocal!<CR>
@@ -120,7 +120,7 @@ vnoremap <silent> <Tab>K :<C-u>tabm 0\|norm gv<CR>
 
 nnoremap <Tab>: :<C-u>tabdo<Space>
 vnoremap <Tab>: :<C-u>tabdo  \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 
 " }}}
 
@@ -266,18 +266,18 @@ vnoremap <Space>A :<C-u>argadd\|norm gv<CR>
 nnoremap <Space>d :<C-u>argdelete<Space>
 vnoremap <Space>d :<C-u>argdelete  \|norm gv<C-Left><C-Left><Left>
 noremap <silent> <Space>D :<C-u>if argc() == 1 
-            \ \| q
-            \ \| elseif argc() == 2
-            \ \| argdelete
-            \ \| first
-            \ \| else
-            \ \| argdelete
-            \ \| if argidx() == argc() - 1
-            \ \| argument 1
-            \ \| else
-            \ \| next
-            \ \| endif
-            \ \| endif<CR>
+      \ \| q
+      \ \| elseif argc() == 2
+      \ \| argdelete
+      \ \| first
+      \ \| else
+      \ \| argdelete
+      \ \| if argidx() == argc() - 1
+      \ \| argument 1
+      \ \| else
+      \ \| next
+      \ \| endif
+      \ \| endif<CR>
 
 noremap <silent> <Space>n :<C-u>next<CR>
 noremap <silent> <Space>N :<C-u>next!<CR>
@@ -331,10 +331,10 @@ nnoremap <silent> <Space>G :<C-u>argglobal!<CR>
 vnoremap <silent> <Space>G :<C-u>argglobal!\|norm gv<CR>
 nnoremap <Space><Space>g :<C-u>argglobal<Space>
 vnoremap <Space><Space>g
-            \ :<C-u>argglobal  \|norm gv<C-Left><C-Left><Left>
+      \ :<C-u>argglobal  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space><Space>G :<C-u>argglobal!<Space>
 vnoremap <Space><Space>G
-            \ :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
+      \ :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
 
 nnoremap <Space>;g :<C-u>exe 'argglobal '.expand('%')<CR>
 vnoremap <Space>;g :<C-u>exe 'argglobal '.expand('%')\|norm gv<CR>
@@ -347,10 +347,10 @@ nnoremap <Space>U :<C-u>update!<CR>
 vnoremap <Space>U :<C-u>update!\|norm gv<CR>
 nnoremap <Space>;u :<C-u>update<Space>
 vnoremap <Space>;u 
-            \ :<C-u>update  \|norm gv<C-Left><C-Left><Left>
+      \ :<C-u>update  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>;U :<C-u>update!<Space>
 vnoremap <Space>;U
-            \ :<C-u>update!  \|norm gv<C-Left><C-Left><Left>
+      \ :<C-u>update!  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>:u :<C-u>update ##<CR>
 vnoremap <Space>:u :<C-u>update ## \|norm gv<CR>
 nnoremap <Space>:U :<C-u>update! ##<CR>
@@ -395,32 +395,32 @@ nnoremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
 vnoremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ\|norm gv<CR>
 
 noremap <Space>i<Space>r
-           \ :<C-u>filter  registers<C-Left><Left>
+      \ :<C-u>filter  registers<C-Left><Left>
 noremap <Space>i<Space>p
-           \ :<C-u>filter  history<C-Left><Left>
+      \ :<C-u>filter  history<C-Left><Left>
 noremap <Space>i<Space>c
-           \ :<C-u>filter  changes<C-Left><Left>
+      \ :<C-u>filter  changes<C-Left><Left>
 noremap <Space>i<Space>j
-           \ :<C-u>filter  jumps<C-Left><Left>
+      \ :<C-u>filter  jumps<C-Left><Left>
 noremap <Space>i<Space>o
-           \ :<C-u>filter  files<C-Left><Left>
+      \ :<C-u>filter  files<C-Left><Left>
 noremap <Space>i<Space>t
-           \ :<C-u>filter  tags<C-Left><Left>
+      \ :<C-u>filter  tags<C-Left><Left>
 noremap <Space>i<Space>m
-           \ :<C-u>filter  marks<C-Left><Left>
+      \ :<C-u>filter  marks<C-Left><Left>
 
 nnoremap <Space>ik :<C-u>map<Space>
 vnoremap <Space>ik :<C-u>map  \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 nnoremap <Space>in :<C-u>nmap<Space>
 vnoremap <Space>in :<C-u>nmap  \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 nnoremap <Space>iv :<C-u>vmap<Space>
 vnoremap <Space>iv :<C-u>vmap  \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 nnoremap <Space>ii :<C-u>imap<Space>
 vnoremap <Space>ii :<C-u>imap  \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 
 noremap <Space>ih :<C-u>help<Space>
 noremap <C-w><Space>ih :<C-u>tab help<Space>
@@ -554,24 +554,24 @@ set fileformat=unix
 " }}}
 
 if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{ 
-    set background=dark
-    set hlsearch
-    set secure
-    set modeline
+  set background=dark
+  set hlsearch
+  set secure
+  set modeline
 
-    nnoremap ,<Space><Space> :setlocal hls!<CR>
-    vnoremap ,<Space><Space> :setlocal hls!\|norm gv<CR>
-    nnoremap ,qeh :<C-u>set hls!<CR>
-    vnoremap ,qeh :<C-u>set hls!\|norm gv<CR>
+  nnoremap ,<Space><Space> :setlocal hls!<CR>
+  vnoremap ,<Space><Space> :setlocal hls!\|norm gv<CR>
+  nnoremap ,qeh :<C-u>set hls!<CR>
+  vnoremap ,qeh :<C-u>set hls!\|norm gv<CR>
 
-    map <C-p> ,
+  map <C-p> ,
     map <C-n> ;
 endif
 " }}}
 
 if v:progname =~? "^sv\\(im\\?\\)\\?" " {{{
-    set completeopt=menu,menuone,noselect,noinsert,preview,fuzzy,fuzzycollect
+  set completeopt=menu,menuone,noselect,noinsert,preview,fuzzy,fuzzycollect
 else
-    set completeopt=menu,menuone,noselect,noinsert,preview
+  set completeopt=menu,menuone,noselect,noinsert,preview
 endif
 " }}}
