@@ -259,7 +259,6 @@ local servers = { -- {{{
   "pylsp",
 
   "ocamllsp",
-  "nil_ls",
   "nickel_ls",
   "zls",
   "hls",

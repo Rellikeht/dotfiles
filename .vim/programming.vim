@@ -12,8 +12,8 @@ set rtp^="~/.opam/default/share/ocp-indent/vim"
 
 " For nim language server to work :(
 autocmd BufNewFile *.nim 
-            \ silent! exe '!touch ' . expand('%f')
-            \ | argedit! <afile>
+      \ silent! exe '!touch ' . expand('%f')
+      \ | argedit! <afile>
 
 "}}}
 
@@ -25,7 +25,7 @@ nnoremap ,mm :<C-u>make<CR>
 vnoremap ,mm :<C-u>make\|norm gv<CR>
 nnoremap ,m<Space>m :<C-u>make<Space>
 vnoremap ,m<Space>m :<C-u>make  \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 
 nnoremap ,mpf :<C-u>set makeprg=nix\ build<CR>
 vnoremap ,mpf :<C-u>set makeprg=nix\ build\|norm gv<CR>
@@ -36,7 +36,7 @@ nnoremap ,mpm :<C-u>set makeprg=make<CR>
 vnoremap ,mpm :<C-u>set makeprg=make\|norm gv<CR>
 nnoremap ,m<Space>p :<C-u>set makeprg=
 vnoremap ,m<Space>p :<C-u>set makeprg= \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ <C-Left><C-Left><Left>
 
 "}}}
 

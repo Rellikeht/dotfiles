@@ -11,23 +11,23 @@ let maplocalleader = '-'
 autocmd FileType * let b:match_ignorecase = 0
 let g:pathshorten = 4
 autocmd WinNew,VimEnter *
-            \ arglocal!
-            \ | let w:prev_dir = expand('%:p:h')
+      \ arglocal!
+      \ | let w:prev_dir = expand('%:p:h')
 
 " set secure
 " shitty, but works somehow
 autocmd BufReadPost *
-    \ if &ft == ""
-    \ |     filetype detect
-    \ | endif
-    \ | if &ft == ""
-    \ |     if getline(1) =~ "^!"
-    \ |         set filetype=xmodmap
-    \ |     else
-    \ |         setlocal secure modeline
-    \ |         e
-    \ |     endif
-    \ | endif
+      \ if &ft == ""
+      \ |     filetype detect
+      \ | endif
+      \ | if &ft == ""
+      \ |     if getline(1) =~ "^!"
+      \ |         set filetype=xmodmap
+      \ |     else
+      \ |         setlocal secure modeline
+      \ |         e
+      \ |     endif
+      \ | endif
 
 " }}}
 
@@ -98,8 +98,8 @@ nnoremap <Leader>qet :<C-u>filetype detect<CR>
 vnoremap <Leader>qet :<C-u>filetype detect\|norm gv<CR>
 nnoremap <Leader>qeT :<C-u>set filetype=
 vnoremap <Leader>qeT 
-            \ :<C-u>set filetype= \|norm gv
-            \ <C-Left><C-Left><Left>
+      \ :<C-u>set filetype= \|norm gv
+      \ <C-Left><C-Left><Left>
 nnoremap <Leader>qeh :<C-u>set hls!<CR>
 vnoremap <Leader>qeh :<C-u>set hls!\|norm gv<CR>
 

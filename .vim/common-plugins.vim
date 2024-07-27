@@ -105,7 +105,7 @@ Plug 'LnL7/vim-nix' " TODO A what is going on
 Plug 'ziglang/zig.vim', {'for': 'zig'}
 Plug 'pearofducks/ansible-vim'
 Plug 'neovimhaskell/haskell-vim', 
-            \ {'for': ['haskell', 'cabal']}
+      \ {'for': ['haskell', 'cabal']}
 
 Plug 'jceb/vim-orgmode'
 Plug 'lervag/vimtex', {'for': 'latex'}

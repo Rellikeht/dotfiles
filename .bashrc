@@ -88,8 +88,8 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
 
         PS1+="${MAGENTA}[ ${RESET}"
         PS1+="${CYANj}\u${RESET}"
-        PS1+="${LRED}@${RESET}"
-        PS1+="${LCYAN}\h${RESET}"
+        # PS1+="${LRED}@${RESET}"
+        # PS1+="${LCYAN}\h${RESET}"
         PS1+="${MAGENTA} ]${RESET}"
         PS1+="${LBLUE}:${RESET}"
         PS1+="${LMAGENTA}\w${RESET}"
@@ -135,7 +135,7 @@ if [ -z "$__Z_INITIALIZED" ]; then
         # It is exported as $EXIT
         TEMP="$(mktemp)"
         z.lua --init bash once enhanced echo fzf >"$TEMP"
-        patch "$TEMP" .bash_zlua_patch &>/dev/null
+        patch "$TEMP" "~.bash/zlua_patch" &>/dev/null
         eval "$(cat $TEMP)"
         rm "$TEMP"
         TEMP=

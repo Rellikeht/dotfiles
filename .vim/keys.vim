@@ -400,7 +400,7 @@ augroup Quickfix "{{{
         \ : "m`:<C-u>call setqflist(filter(getqflist(),
         \ {idx -> idx < line('.') - 1 \|\|
         \ idx > line('.') + v:count - 1}), 'r')<CR>'`"
-        "TODO C undo (will be tough)
+  "TODO C undo (will be tough)
 augroup END "}}}
 
 "}}}

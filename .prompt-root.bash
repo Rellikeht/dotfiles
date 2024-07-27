@@ -38,8 +38,8 @@ __prompt_command() {
 
     PS1+="${BLUE}[${RESET}"
     PS1+="${LYELLOW}\u${RESET}"
-    PS1+="${LCYAN}@${RESET}"
-    PS1+="${LRED}\h${RESET}"
+    # PS1+="${LCYAN}@${RESET}"
+    # PS1+="${LRED}\h${RESET}"
     PS1+="${BLUE}]${RESET}"
     PS1+="${LMAGENTA}:${RESET}"
     PS1+="${LCYAN}\w${RESET}"

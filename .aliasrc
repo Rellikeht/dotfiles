@@ -103,12 +103,17 @@ alias amm='aft-mtp-mount'
 # }}}
 
 # {{{ session
+
+alias hn=hostname
+alias wi=whoami
+
 alias sns=sensors
 alias lcs='loginctl suspend'
 alias rb=reboot
 alias po=poweroff
 alias rrb='doas reboot'
 alias rpo='doas poweroff'
+
 # }}}
 
 # {{{ ssh

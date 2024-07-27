@@ -87,6 +87,39 @@ lspconfig.lua_ls.setup(
   }
 )
 
+lspconfig.nil_ls.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    -- }}}
+
+    settings = { -- {{{
+      ["nil"] = {
+        formatting = {command = {"alejandra"}},
+        diagnostics = {
+          ignored = {
+            -- "unused_rec",
+            -- "empty_let_in",
+            "unused_with",
+          },
+        },
+        nix = {
+          maxMemoryMB = 3072,
+          flake = {
+            --
+            autoArchive = nil, -- true
+            autoEvalInputs = true,
+          },
+        },
+      },
+    }, -- }}}
+  }
+)
+
 lspconfig.gopls.setup(
   {
     -- {{{ boilerplate

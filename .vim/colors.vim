@@ -3,7 +3,7 @@
 " endif
 
 if v:progname =~? "^s\\?v\\(im\\?\\)\\?"
-    colorscheme industry
+  colorscheme industry
 endif
 
 hi CursorLine ctermbg=237 guibg=#4a4a4a cterm=none gui=none

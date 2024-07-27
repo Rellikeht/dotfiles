@@ -12,9 +12,9 @@ let g:direnv_silent_load = 0
 
 let g:pandoc#filetypes#pandoc_markdown = 0
 let g:pandoc#filetypes#handled = [
-            \ 'markdown',
-            \ 'pandoc',
-            \ 'rst',
-            \ ]
+      \ 'markdown',
+      \ 'pandoc',
+      \ 'rst',
+      \ ]
 
 "}}}
