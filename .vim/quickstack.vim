@@ -103,8 +103,14 @@ function s:QstackOpen(force = 0)
   else
     cwindow
   endif
+
+  "{{{
+
+  " TODO B map cr and <c-h>
   nnoremap <buffer> <silent> dd :<C-u>call
         \ <SID>QstackDD(line('.')-1, v:count1)<CR>
+
+  "}}}
 endfunction
 
 function s:QstackDD(num, amount)

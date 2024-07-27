@@ -11,76 +11,76 @@
 let g:ret = 'C-m'
 let g:default_tmux_socket = 'default'
 if $TMUX_SOCKET == ""
-    let g:tmux_socket = g:default_tmux_socket
+  let g:tmux_socket = g:default_tmux_socket
 else
-    let g:tmux_socket = $TMUX_SOCKET
+  let g:tmux_socket = $TMUX_SOCKET
 endif
 
 function Tm(cmd)
-    execute 'Tmux '.a:cmd
+  execute 'Tmux '.a:cmd
 endfunction
 
 function Ccd()
-    let path = expand('%:h')
-    execute 'cd' path
+  let path = expand('%:h')
+  execute 'cd' path
 endfunction
 
 function Setup2Panes()
-    let path = expand('%:h')
-    execute 'cd' path
-    call Tm('split-window -h -c '.path)
-    call Tm('select-pane -R')
+  let path = expand('%:h')
+  execute 'cd' path
+  call Tm('split-window -h -c '.path)
+  call Tm('select-pane -R')
 endfunction
 
 function MakeThirdVertical()
-    let path = expand('%:h')
-    execute 'cd' path
-    call Tm('select-pane -R')
-    call Tm('split-window -v -c '.path)
-    call Tm('select-pane -R')
+  let path = expand('%:h')
+  execute 'cd' path
+  call Tm('select-pane -R')
+  call Tm('split-window -v -c '.path)
+  call Tm('select-pane -R')
 endfunction
 
 function Setup3Panes()
-    let path = expand('%:h')
-    call Tm('split-window -h -c '.path)
-    call Tm('split-window -v -c '.path)
-    call Tm('select-pane -U')
-    call Tm('select-pane -L')
-    execute 'cd' path
+  let path = expand('%:h')
+  call Tm('split-window -h -c '.path)
+  call Tm('split-window -v -c '.path)
+  call Tm('select-pane -U')
+  call Tm('select-pane -L')
+  execute 'cd' path
 endfunction
 
 function CdPanesDangerous(clear)
-    let path = expand('%:p:h')
-    execute 'Tmux send-keys Escape :'
-    execute 'Tmux setw synchronize-panes on'
-    execute 'Tmux send-keys \"cd '.shellescape(path).'\"'
-    execute 'Tmux setw synchronize-panes off'
-    execute 'Tmux send-keys Escape :'
-    execute 'Tmux setw synchronize-panes on'
-    execute 'Tmux send-keys Enter C-l'
-    execute 'Tmux setw synchronize-panes off'
+  let path = expand('%:p:h')
+  execute 'Tmux send-keys Escape :'
+  execute 'Tmux setw synchronize-panes on'
+  execute 'Tmux send-keys \"cd '.shellescape(path).'\"'
+  execute 'Tmux setw synchronize-panes off'
+  execute 'Tmux send-keys Escape :'
+  execute 'Tmux setw synchronize-panes on'
+  execute 'Tmux send-keys Enter C-l'
+  execute 'Tmux setw synchronize-panes off'
 endfunction
 
 function NewWindow(home)
-    call Tm('new-window')
-    if a:home
-        call Tm('send-keys cd ' . g:ret . ' C-l')
-    endif
-    call Tm('last-window')
+  call Tm('new-window')
+  if a:home
+    call Tm('send-keys cd ' . g:ret . ' C-l')
+  endif
+  call Tm('last-window')
 endfunction
 
 function ReplOnSecond()
-    let program = input('Type name of program for repl: ')
-    redraw
-    call Tm('split-window -v '.program)
+  let program = input('Type name of program for repl: ')
+  redraw
+  call Tm('split-window -v '.program)
 endfunction
 
 function ReplOnThird()
-    call Tm('select-pane -R')
-    call Tm('select-pane -t {last}')
-    let program = input("Type name of program for repl: ")
-    redraw
-    call Tm('split-window -v -t {last} '.program)
+  call Tm('select-pane -R')
+  call Tm('select-pane -t {last}')
+  let program = input("Type name of program for repl: ")
+  redraw
+  call Tm('split-window -v -t {last} '.program)
 endfunction
 
 nnoremap <Leader>tt :Tmux
@@ -109,9 +109,9 @@ nnoremap <silent> <Leader>tq :Tmux kill-pane -t {last} <CR>
 let g:slime_target = 'tmux'
 let g:slime_paste_file = tempname()
 let g:slime_default_config = {
-            \ 'socket_name':g:tmux_socket,
-            \ 'target_pane':'{top-right}'
-            \ }
+      \ 'socket_name':g:tmux_socket,
+      \ 'target_pane':'{top-right}'
+      \ }
 
 let g:slime_dont_ask_default = 1
 let g:slime_bracketed_paste = 1
@@ -119,47 +119,47 @@ let g:slime_no_mappings = 1
 set shell=sh
 
 function GetSlimePane()
-    return get(b:, 'slime_config', g:slime_default_config)['target_pane']
+  return get(b:, 'slime_config', g:slime_default_config)['target_pane']
 endfunction
 
 function SendKeys(keys)
-    execute 'Tmux send-keys -t ' . GetSlimePane() . ' ' . a:keys
+  execute 'Tmux send-keys -t ' . GetSlimePane() . ' ' . a:keys
 endfunction
 
 function ProgNameSlime()
-    let pname = &filetype
-    let langs = {
-                \ 'shell':'rlwrap bash',
-                \ 'python':'bpython',
-                \ 'tcl':'rlwrap tclsh',
-                \ 'lisp':'clisp',
-                \ 'scheme':'guile',
-                \ 'r':'R',
-                \ 'ocaml':'utop',
-                \ 'haskell':'ghci',
-                \ 'nim':'rlwrap nim secret',
-                \ 'forth':'gforth',
-                \ }
+  let pname = &filetype
+  let langs = {
+        \ 'shell':'rlwrap bash',
+        \ 'python':'bpython',
+        \ 'tcl':'rlwrap tclsh',
+        \ 'lisp':'clisp',
+        \ 'scheme':'guile',
+        \ 'r':'R',
+        \ 'ocaml':'utop',
+        \ 'haskell':'ghci',
+        \ 'nim':'rlwrap nim secret',
+        \ 'forth':'gforth',
+        \ }
 
-                " this is tricky
-                " ???
-                " \ 'forth':'fth',
+  " this is tricky
+  " ???
+  " \ 'forth':'fth',
 
-                " \ 'lua':'rlwrap luajit',
-                " \ 'scheme':'gambit',
-                " \ 'lisp':'rlwrap sbcl',
-                " \ 'lisp':'rlwrap ecl',
+  " \ 'lua':'rlwrap luajit',
+  " \ 'scheme':'gambit',
+  " \ 'lisp':'rlwrap sbcl',
+  " \ 'lisp':'rlwrap ecl',
 
-                " ???
-                " \ 'scheme':'rlwrap chez',
-                " \ 'ocaml':'rlwrap ocaml',
+  " ???
+  " \ 'scheme':'rlwrap chez',
+  " \ 'ocaml':'rlwrap ocaml',
 
-    if has_key(langs, pname)
-        " Only julia is almost ideal on it's own
-        let pname = langs[pname]
-    endif
+  if has_key(langs, pname)
+    " Only julia is almost ideal on it's own
+    let pname = langs[pname]
+  endif
 
-    return pname . ' ' . g:ret
+  return pname . ' ' . g:ret
 endfunction
 
 autocmd BufEnter,VimEnter * let b:slime_config = slime_default_config
@@ -216,10 +216,10 @@ let g:tmuxcomplete#trigger = ''
 
 " Because that wasn't suppled by plugin creator
 function TmuxComplete()
-    let l:start = tmuxcomplete#complete(1, '')
-    let l:base = getline('.')[l:start:col('.')-1]
-    call complete(l:start+1, tmuxcomplete#complete(0, l:base))
-    return ''
+  let l:start = tmuxcomplete#complete(1, '')
+  let l:base = getline('.')[l:start:col('.')-1]
+  call complete(l:start+1, tmuxcomplete#complete(0, l:base))
+  return ''
 endfunction
 
 inoremap <expr> <C-x><C-m> '<C-r>=TmuxComplete()<CR>'

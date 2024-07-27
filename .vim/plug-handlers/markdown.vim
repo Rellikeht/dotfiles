@@ -51,15 +51,15 @@ let g:vimwiki_global_ext = 0
 "{{{ file types
 " You can choose which file types this plugin will work on:
 let g:bullets_enabled_file_types = [
-            \ 'markdown',
-            \ 'text',
-            \ 'viminfo',
-            \ 'conf',
-            \ 'gitcommit',
-            \ 'org',
-            \ 'vimwiki',
-            \ 'pandoc',
-            \]
+      \ 'markdown',
+      \ 'text',
+      \ 'viminfo',
+      \ 'conf',
+      \ 'gitcommit',
+      \ 'org',
+      \ 'vimwiki',
+      \ 'pandoc',
+      \]
 
 " You can disable this plugin for empty buffers (no filetype):
 let g:bullets_enable_in_empty_buffers = 0
@@ -84,24 +84,24 @@ let g:bullets_set_mappings = 1
 " g:bullets_enabled_file_types, and also
 " g:bullets_enable_in_empty_buffers option.
 let g:bullets_custom_mappings = [
-            \ ['imap', '<cr>', '<Plug>(bullets-newline)'],
-            \ ['inoremap', '<C-cr>', '<cr>'],
-            \
-            \ ['nmap', 'o', '<Plug>(bullets-newline)'],
-            \
-            \ ['vmap', '<Leader>.n', '<Plug>(bullets-renumber)'],
-            \ ['nmap', '<Leader>.n', '<Plug>(bullets-renumber)'],
-            \
-            \ ['nmap', '<Leader>.x', '<Plug>(bullets-toggle-checkbox)'],
-            \
-            \ ['nmap', '>>', '<Plug>(bullets-demote)'],
-            \ ['vmap', '>', '<Plug>(bullets-demote)'],
-            \ ['nmap', '<<', '<Plug>(bullets-promote)'],
-            \ ['vmap', '<', '<Plug>(bullets-promote)'],
-            \
-            \ ['imap', '<C-t>', '<Plug>(bullets-demote)'],
-            \ ['imap', '<C-d>', '<Plug>(bullets-promote)'],
-            \ ]
+      \ ['imap', '<cr>', '<Plug>(bullets-newline)'],
+      \ ['inoremap', '<C-cr>', '<cr>'],
+      \
+      \ ['nmap', 'o', '<Plug>(bullets-newline)'],
+      \
+      \ ['vmap', '<Leader>.n', '<Plug>(bullets-renumber)'],
+      \ ['nmap', '<Leader>.n', '<Plug>(bullets-renumber)'],
+      \
+      \ ['nmap', '<Leader>.x', '<Plug>(bullets-toggle-checkbox)'],
+      \
+      \ ['nmap', '>>', '<Plug>(bullets-demote)'],
+      \ ['vmap', '>', '<Plug>(bullets-demote)'],
+      \ ['nmap', '<<', '<Plug>(bullets-promote)'],
+      \ ['vmap', '<', '<Plug>(bullets-promote)'],
+      \
+      \ ['imap', '<C-t>', '<Plug>(bullets-demote)'],
+      \ ['imap', '<C-d>', '<Plug>(bullets-promote)'],
+      \ ]
 
 "}}}
 
@@ -143,15 +143,15 @@ let g:bullets_max_alpha_characters = 3
 "{{{ levels
 " Nested outline bullet levels:
 let g:bullets_outline_levels = [
-            \ 'ROM',
-            \ 'ABC',
-            \ 'num',
-            \ 'abc',
-            \ 'rom',
-            \ 'std-',
-            \ 'std*',
-            \ 'std+'
-            \ ]
+      \ 'ROM',
+      \ 'ABC',
+      \ 'num',
+      \ 'abc',
+      \ 'rom',
+      \ 'std-',
+      \ 'std*',
+      \ 'std+'
+      \ ]
 
 " Ordered list containing the heirarchical bullet levels, starting from the 
 " outer most level.

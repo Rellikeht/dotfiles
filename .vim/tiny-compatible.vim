@@ -75,8 +75,10 @@ vnoremap <Space>qM :<C-u>setlocal modeline!\|norm gv<CR>
 
 noremap <Tab>o :<C-u>tabedit<Space>
 noremap <Tab>O :<C-u>-tabedit<Space>
+noremap <silent> <expr> <Tab>;e
+      \ (v:count ? ':<C-u>exe "tabnext "'.v:count.'<CR>' : '')
 noremap <Tab><Tab> :<C-u>tab<Space>
-noremap <Tab>; :<C-u>-tab<Space>
+noremap <Tab>;<Tab> :<C-u>-tab<Space>
 noremap <Tab>f :<C-u>tabfind<Space>
 noremap <Tab>F :<C-u>-tabfind<Space>
 
@@ -98,7 +100,6 @@ noremap <silent> <Tab>+ :<C-u>tabnew<CR>
 noremap <silent> <Tab>- :<C-u>tabclose<CR>
 nnoremap <silent> <Tab>! :<C-u>tabonly<CR>
 vnoremap <silent> <Tab>! :<C-u>tabonly\|norm gv<CR>
-
 noremap <Tab>b :<C-u>tab<Space>sb<Space>
 noremap <Tab>B :<C-u>-tab<Space>sb<Space>
 
@@ -192,6 +193,10 @@ vnoremap <silent> <Tab>^D :<C-u>resize -20\|norm gv<CR>
 
 noremap <Space><Space>e :<C-u>buffer<Space>
 noremap <Space><Space>E :<C-u>buffer!<Space>
+noremap <silent> <Space><Space>;e :<C-u>exe
+      \ 'buffer '.(v:count ? v:count : '')<CR>
+noremap <silent> <Space><Space>;E :<C-u>exe
+      \ 'buffer! '.(v:count ? v:count : '')<CR>
 noremap <Space><Space>s <C-^>
 noremap <Space><Space>o :<C-u>edit<Space>
 noremap <Space><Space>O :<C-u>edit!<Space>
@@ -214,6 +219,15 @@ noremap <silent> <Space><Space>P :<C-u>bprevious!<CR>
 noremap <silent> <Space><Space>m :<C-u>bmodified<CR>
 noremap <silent> <Space><Space>M :<C-u>bmodified!<CR>
 
+noremap <silent> <Space><Space>0 :<C-u>bfirst<CR>
+noremap <silent> <Space><Space>0 :<C-u>bfirst!<CR>
+noremap <Space><Space>;0 :<C-u>bfirst<Space>
+noremap <Space><Space>;0 :<C-u>bfirst!<Space>
+noremap <silent> <Space><Space>$ :<C-u>blast<CR>
+noremap <silent> <Space><Space>$ :<C-u>blast!<CR>
+noremap <Space><Space>;$ :<C-u>blast<Space>
+noremap <Space><Space>;$ :<C-u>blast!<Space>
+
 noremap <silent> <Space><Space>d :<C-u>bunload<CR>
 noremap <silent> <Space><Space>D :<C-u>bunload!<CR>
 noremap <silent> <Space><Space>w :<C-u>bwipeout<CR>
@@ -226,6 +240,10 @@ noremap <Space><Space>;P :<C-u>bprevious!<Space>
 noremap <Space><Space>;m :<C-u>bmodified<Space>
 noremap <Space><Space>;M :<C-u>bmodified!<Space>
 
+nnoremap <Space><Space>A :<C-u>balt<Space>
+vnoremap <Space><Space>A :<C-u>balt  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space><Space>a :<C-u>badd<Space>
+vnoremap <Space><Space>a :<C-u>badd  \|norm gv<C-Left><C-Left><Left>
 noremap <Space><Space>;d :<C-u>bdelete<Space>
 noremap <Space><Space>;D :<C-u>bdelete!<Space>
 noremap <Space><Space>;u :<C-u>bunload<Space>
@@ -233,10 +251,6 @@ noremap <Space><Space>;U :<C-u>bunload!<Space>
 noremap <Space><Space>;w :<C-u>bwipeout<Space>
 noremap <Space><Space>;W :<C-u>bwipeout!<Space>
 
-nnoremap <Space><Space>A :<C-u>balt<Space>
-vnoremap <Space><Space>A :<C-u>balt  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space><Space>a :<C-u>badd<Space>
-vnoremap <Space><Space>a :<C-u>badd  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space><Space>: :<C-u>bufdo<Space>
 vnoremap <Space><Space>: :<C-u>bufdo<Space> \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space><Space>;: :<C-u>bufdo!<Space>
@@ -250,15 +264,15 @@ nnoremap <Space>l :<C-u>args<CR>
 vnoremap <Space>l :<C-u>args\|norm gv<CR>
 noremap <Space>;l :<C-u>filter  args<C-Left><C-b>
 
-" c-g is good enough probably
-" nnoremap <expr> <Space>ia (argc() == 0) ?
-"             \ ':<C-u>echo "Argument list is empty"<CR>'
-"             \ : ':<C-u>echo "Argument ".(argidx()+1)." of ".argc()<CR>'
-
 noremap <Space>e :<C-u>Argument<Space>
 noremap <Space>E :<C-u>ArgumentE<Space>
+noremap <silent> <Space>;e :<C-u>exe
+      \ 'argument '.(v:count ? v:count : '')<CR>
+noremap <silent> <Space>;E :<C-u>exe
+      \ 'argumenE '.(v:count ? v:count : '')<CR>
 noremap <Space>o :<C-u>argedit<Space>
 noremap <Space>O :<C-u>argedit!<Space>
+
 nnoremap <Space>a :<C-u>argadd<Space>
 vnoremap <Space>a :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>A :<C-u>argadd<CR>
@@ -299,12 +313,12 @@ noremap <Space><Space>< :<C-u>wprevious!<Space>
 
 noremap <silent> <Space>0 :<C-u>first<CR>
 noremap <silent> <Space>0 :<C-u>first!<CR>
-noremap <Space><Space>0 :<C-u>first<Space>
-noremap <Space><Space>0 :<C-u>first!<Space>
+noremap <Space>;0 :<C-u>first<Space>
+noremap <Space>;0 :<C-u>first!<Space>
 noremap <silent> <Space>$ :<C-u>last<CR>
 noremap <silent> <Space>$ :<C-u>last!<CR>
-noremap <Space><Space>$ :<C-u>last<Space>
-noremap <Space><Space>$ :<C-u>last!<Space>
+noremap <Space>;$ :<C-u>last<Space>
+noremap <Space>;$ :<C-u>last!<Space>
 
 noremap <Space>= :<C-u>args!<Space>
 nnoremap <Space>_ :<C-u>argdedupe<CR>
@@ -312,49 +326,49 @@ vnoremap <Space>_ :<C-u>argdedupe\|norm gv<CR>
 noremap <Space>: :<C-u>argdo<Space>
 noremap <Space>;: :<C-u>argdo!<Space>
 
-nnoremap <silent> <Space>w :<C-u>arglocal<CR>
-vnoremap <silent> <Space>w :<C-u>arglocal\|norm gv<CR>
-nnoremap <silent> <Space>W :<C-u>arglocal!<CR>
-vnoremap <silent> <Space>W :<C-u>arglocal!\|norm gv<CR>
-nnoremap <Space><Space>w :<C-u>arglocal<Space>
-vnoremap <Space><Space>w :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space><Space>W :<C-u>arglocal!<Space>
-vnoremap <Space><Space>W :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>;w :<C-u>exe 'arglocal '.expand('%')<CR>
-vnoremap <Space>;w :<C-u>exe 'arglocal '.expand('%')\|norm gv<CR>
-nnoremap <Space>;W :<C-u>exe 'arglocal! '.expand('%')<CR>
-vnoremap <Space>;W :<C-u>exe 'arglocal! '.expand('%')\|norm gv<CR>
+nnoremap <silent> <Space>xw :<C-u>arglocal<CR>
+vnoremap <silent> <Space>xw :<C-u>arglocal\|norm gv<CR>
+nnoremap <silent> <Space>xW :<C-u>arglocal!<CR>
+vnoremap <silent> <Space>xW :<C-u>arglocal!\|norm gv<CR>
+nnoremap <Space>x<Space>w :<C-u>arglocal<Space>
+vnoremap <Space>x<Space>w :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>x<Space>W :<C-u>arglocal!<Space>
+vnoremap <Space>x<Space>W :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>x;w :<C-u>exe 'arglocal '.expand('%')<CR>
+vnoremap <Space>x;w :<C-u>exe 'arglocal '.expand('%')\|norm gv<CR>
+nnoremap <Space>x;W :<C-u>exe 'arglocal! '.expand('%')<CR>
+vnoremap <Space>x;W :<C-u>exe 'arglocal! '.expand('%')\|norm gv<CR>
 
-nnoremap <silent> <Space>g :<C-u>argglobal<CR>
-vnoremap <silent> <Space>g :<C-u>argglobal\|norm gv<CR>
-nnoremap <silent> <Space>G :<C-u>argglobal!<CR>
-vnoremap <silent> <Space>G :<C-u>argglobal!\|norm gv<CR>
-nnoremap <Space><Space>g :<C-u>argglobal<Space>
-vnoremap <Space><Space>g
+nnoremap <silent> <Space>xg :<C-u>argglobal<CR>
+vnoremap <silent> <Space>xg :<C-u>argglobal\|norm gv<CR>
+nnoremap <silent> <Space>xG :<C-u>argglobal!<CR>
+vnoremap <silent> <Space>xG :<C-u>argglobal!\|norm gv<CR>
+nnoremap <Space>x<Space>g :<C-u>argglobal<Space>
+vnoremap <Space>x<Space>g
       \ :<C-u>argglobal  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space><Space>G :<C-u>argglobal!<Space>
-vnoremap <Space><Space>G
+nnoremap <Space>x<Space>G :<C-u>argglobal!<Space>
+vnoremap <Space>x<Space>G
       \ :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
 
-nnoremap <Space>;g :<C-u>exe 'argglobal '.expand('%')<CR>
-vnoremap <Space>;g :<C-u>exe 'argglobal '.expand('%')\|norm gv<CR>
-nnoremap <Space>;G :<C-u>exe 'argglobal! '.expand('%')<CR>
-vnoremap <Space>;G :<C-u>exe 'argglobal! '.expand('%')\|norm gv<CR>
+nnoremap <Space>x;g :<C-u>exe 'argglobal '.expand('%')<CR>
+vnoremap <Space>x;g :<C-u>exe 'argglobal '.expand('%')\|norm gv<CR>
+nnoremap <Space>x;G :<C-u>exe 'argglobal! '.expand('%')<CR>
+vnoremap <Space>x;G :<C-u>exe 'argglobal! '.expand('%')\|norm gv<CR>
 
-nnoremap <Space>u :<C-u>update<CR>
-vnoremap <Space>u :<C-u>update\|norm gv<CR>
-nnoremap <Space>U :<C-u>update!<CR>
-vnoremap <Space>U :<C-u>update!\|norm gv<CR>
-nnoremap <Space>;u :<C-u>update<Space>
-vnoremap <Space>;u 
+nnoremap <Space>xu :<C-u>update<CR>
+vnoremap <Space>xu :<C-u>update\|norm gv<CR>
+nnoremap <Space>xU :<C-u>update!<CR>
+vnoremap <Space>xU :<C-u>update!\|norm gv<CR>
+nnoremap <Space><Space>xu :<C-u>update<Space>
+vnoremap <Space><Space>xu 
       \ :<C-u>update  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>;U :<C-u>update!<Space>
-vnoremap <Space>;U
+nnoremap <Space><Space>xU :<C-u>update!<Space>
+vnoremap <Space><Space>xU
       \ :<C-u>update!  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>:u :<C-u>update ##<CR>
-vnoremap <Space>:u :<C-u>update ## \|norm gv<CR>
-nnoremap <Space>:U :<C-u>update! ##<CR>
-vnoremap <Space>:U :<C-u>update! ## \|norm gv<CR>
+nnoremap <Space>x;u :<C-u>update ##<CR>
+vnoremap <Space>x;u :<C-u>update ## \|norm gv<CR>
+nnoremap <Space>x;U :<C-u>update! ##<CR>
+vnoremap <Space>x;U :<C-u>update! ## \|norm gv<CR>
 
 "}}}
 
@@ -467,7 +481,7 @@ set complete=w,b,s,i,d,t,.,k
 
 " {{{ display
 
-set noterse
+set terse
 set ruler
 set number
 set relativenumber

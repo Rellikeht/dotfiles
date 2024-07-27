@@ -10,9 +10,22 @@ let maplocalleader = '-'
 
 autocmd FileType * let b:match_ignorecase = 0
 let g:pathshorten = 4
+
 autocmd WinNew,VimEnter *
-      \ arglocal!
-      \ | let w:prev_dir = expand('%:p:h')
+      \ let w:prev_dir = expand('%:p:h')
+
+" arglocal with current file for all new tabs
+autocmd TabNew *
+      \ let t:make_list = 1
+
+" Has to use this because of order of events
+autocmd BufEnter *
+      \ if get(t:, 'make_list', 0)
+      \ | if exists('%')
+      \ | exe 'arglocal! %'
+      \ | endif
+      \ | let t:make_list = 0
+      \ | endif
 
 " set secure
 " shitty, but works somehow
@@ -37,24 +50,9 @@ set shortmess=atsOF
 " 2 is ugly and takes too much space
 " but would make life easier sometimes
 set cmdheight=1
-
-" TODO C tabline
-
 set laststatus=0
 
-" TODO B
-" set statusline+=\ 
-" set statusline+=%f
-" set statusline+=\ 
-" set statusline+=%h
-" set statusline+=%w
-" set statusline+=%m
-" set statusline+=%r
-" set statusline+=%=
-" set statusline+=%-14.(%l,%c%V%)
-" set statusline+=\ 
-" set statusline+=%P
-" set statusline+=\ 
+" TODO C tabline
 
 set statusline+=%<
 set statusline+=%f

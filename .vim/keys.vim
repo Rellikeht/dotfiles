@@ -20,8 +20,7 @@ autocmd FileType vim
 
 "}}}
 
-"{{{ tags
-" TODO C polish that
+"{{{ TODO C - polish - tags
 
 nnoremap <Space>tl :<C-u>tags<CR>
 vnoremap <Space>tl :<C-u>tags\|norm gv<CR>
@@ -90,7 +89,7 @@ vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
 "}}}
 
-" {{{ TODO resizing with <Tab>
+" {{{ TODO D resizing with <Tab>
 
 " }}}
 

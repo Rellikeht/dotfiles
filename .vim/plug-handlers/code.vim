@@ -11,11 +11,11 @@ let g:neoformat_enabled_go = ['gofmt']
 
 " ???
 let g:neoformat_enabled_python = [
-            \ 'ruff',
-            \ 'autopep8',
-            \ 'flake8',
-            \ 'docformatter'
-            \ ]
+      \ 'ruff',
+      \ 'autopep8',
+      \ 'flake8',
+      \ 'docformatter'
+      \ ]
 
 let g:neoformat_enabled_c = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
@@ -35,9 +35,9 @@ let g:neoformat_enabled_zsh = ['shfmt']
 let g:neoformat_enabled_markdown = ['mdformat', 'prettierd', 'prettier']
 
 let g:neoformat_enabled_lua = [
-            \ 'luaformat',
-            \ ]
-            " \ 'luaformatter',
+      \ 'luaformat',
+      \ ]
+" \ 'luaformatter',
 " let g:neoformat_lua_luaformat = {
 "             \ 'exe': 'lua-format'
 "             \ }
@@ -45,26 +45,26 @@ let g:neoformat_enabled_lua = [
 
 " FUCKING YAML
 let g:neoformat_enabled_yaml = [
-            \ 'google_yamlfmt',
-            \ 'yamlfix',
-            \ 'prettierd',
-            \ 'prettier'
-            \ ]
+      \ 'google_yamlfmt',
+      \ 'yamlfix',
+      \ 'prettierd',
+      \ 'prettier'
+      \ ]
 " \ 'pyaml'
 "
 " https://github.com/mikefarah/yq
 " https://github.com/opt-nc/yamlfixer
 
 let g:neoformat_markdown_mdformat = {
-            \ 'exe': 'mdformat',
-            \ 'args': ['--number', '--wrap', '64', '-'],
-            \ 'stdin': 1,
-            \ }
+      \ 'exe': 'mdformat',
+      \ 'args': ['--number', '--wrap', '64', '-'],
+      \ 'stdin': 1,
+      \ }
 let g:neoformat_yaml_yamlfix = {
-            \ 'exe': 'yamlfix',
-            \ 'args': ['-c', '~/.vim/plug-handlers/pyproject.toml', '-'],
-            \ 'stdin': 1,
-            \ }
+      \ 'exe': 'yamlfix',
+      \ 'args': ['-c', '~/.vim/plug-handlers/pyproject.toml', '-'],
+      \ 'stdin': 1,
+      \ }
 
 " prettier ???
 let g:neoformat_enabled_json = ['jq', 'clangformat', 'topiary', 'prettierd', 'prettier']
@@ -77,13 +77,13 @@ let g:neoformat_enabled_java = ['clangformat', 'astyle', 'uncrustify', 'prettier
 " from reading README, but somehow This
 " shit works
 let g:neoformat_typst_typstfmt = {
-            \'exe': 'typstfmt',
-            \'args': ['-o -'],
-            \'stdin': 1,
-            \'stderr': 1,
-            \'replace': 0,
-            \'no_append': 1,
-            \}
+      \'exe': 'typstfmt',
+      \'args': ['-o -'],
+      \'stdin': 1,
+      \'stderr': 1,
+      \'replace': 0,
+      \'no_append': 1,
+      \}
 let g:neoformat_enabled_typst = ["typstfmt"]
 
 "}}}
@@ -96,16 +96,16 @@ let b:neoformat_basic_format_retab = 1
 let g:neoformat_only_msg_on_error = 1
 
 augroup fmt
-    autocmd!
-    autocmd BufWritePre *
-                \ if get(b:, "buffmt", 0)
-                \| try
-                \| undojoin
-                \| Neoformat
-                \| catch /E790/
-                \| Neoformat
-                \| endtry
-                \| endif
+  autocmd!
+  autocmd BufWritePre *
+        \ if get(b:, "buffmt", 0)
+        \| try
+        \| undojoin
+        \| Neoformat
+        \| catch /E790/
+        \| Neoformat
+        \| endtry
+        \| endif
 augroup END
 
 noremap <silent> <Leader>nf :Neoformat<CR>
@@ -147,9 +147,9 @@ let g:latex_to_unicode_file_types = '.*'
 
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 autocmd FileType julia 
-            \ nnoremap <buffer> <Leader>nld :JuliaDoc
-            \ | vnoremap <silent> <buffer> <Leader>nld
-            \ :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>
+      \ nnoremap <buffer> <Leader>nld :JuliaDoc
+      \ | vnoremap <silent> <buffer> <Leader>nld
+      \ :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>
 
 "}}}
 
@@ -176,16 +176,16 @@ let g:vsc_pattern = '\k'
 "{{{ other filetypes
 
 autocmd FileType nix 
-            \ setlocal commentstring=#\ %s
-            \ | setlocal shiftwidth=2 softtabstop=2 tabstop=2
-            \ | nnoremap <buffer> <silent> <Leader>nle
-            \ :NixEdit<CR>
-            \ | nnoremap <buffer> <Leader>nl<Space>
-            \ :NixEdit<Space>
+      \ setlocal commentstring=#\ %s
+      \ | setlocal shiftwidth=2 softtabstop=2 tabstop=2
+      \ | nnoremap <buffer> <silent> <Leader>nle
+      \ :NixEdit<CR>
+      \ | nnoremap <buffer> <Leader>nl<Space>
+      \ :NixEdit<Space>
 
 autocmd FileType zinc 
-            \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
-            \ | setlocal commentstring=%\ %s
+      \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
+      \ | setlocal commentstring=%\ %s
 
 "}}}
 
@@ -212,8 +212,8 @@ let g:haskell_indent_disable = 0
 "{{{ others
 
 function GeneralUpgrade()
-    silent! PlugUpgrade
-    silent! PlugUpdate --sync
+  silent! PlugUpgrade
+  silent! PlugUpdate --sync
 endfunction
 
 "}}}
@@ -221,20 +221,20 @@ endfunction
 " {{{ Pluto.jl :)
 
 function PLR()
-    if @" == '─'
-        call setreg('"', '═')
-    else
-        call setreg('"', '─')
-    endif
+  if @" == '─'
+    call setreg('"', '═')
+  else
+    call setreg('"', '─')
+  endif
 endfunction
 
 " TODO make this more stable
 function PlutoAdd(hidden=0)
-    if a:hidden
-        norm mcyyGp02lr╟lr─lxx'c<CR>
-    else
-        norm mcyyGp02lr╟lr═lxx'c<CR>
-    endif
+  if a:hidden
+    norm mcyyGp02lr╟lr─lxx'c<CR>
+  else
+    norm mcyyGp02lr╟lr═lxx'c<CR>
+  endif
 endfunction
 
 nnoremap <silent> <Leader>npc :exe 'norm i# ╔═╡ '.NuuidNewUuid()<CR>

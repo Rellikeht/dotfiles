@@ -3,58 +3,58 @@
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\	'guifgs':
-\		['royalblue3',
-\		'darkorange3',
-\		'seagreen3',
-\		'firebrick'
-\		],
-\	'ctermfgs':
-\		['blue',
-\		'lightyellow',
-\		'lightcyan',
-\		'lightmagenta'
-\		],
-\	'guis': [''],
-\	'cterms': [''],
-\	'operators': '_,_',
-\	'parentheses':
-\		['start=/(/ end=/)/ fold',
-\		'start=/\[/ end=/\]/ fold',
-\		'start=/{/ end=/}/ fold'
-\		],
-\	'separately': {
-\		'*': {},
-\		'markdown': {
-\			'parentheses_options':
-\			'containedin=markdownCode contained',
-\		},
-\		'lisp': {
-\			'guifgs':
-\				['royalblue3',
-\				'darkorange3',
-\				'seagreen3',
-\				'firebrick',
-\				'darkorchid3'
-\				],
-\		},
-\		'haskell': {
-\			'parentheses':
-\				['start=/(/ end=/)/ fold',
-\				'start=/\[/ end=/\]/ fold',
-\				'start=/\v\{\ze[^-]/ end=/}/ fold'
-\				],
-\		},
-\		'vim': {
-\			'parentheses_options':
-\			'containedin=vimFuncBody',
-\		},
-\		'perl': {
-\			'syn_name_prefix':
-\			'perlBlockFoldRainbow',
-\		}
-\	}
-\}
+      \ 'guifgs':
+      \   ['royalblue3',
+      \   'darkorange3',
+      \   'seagreen3',
+      \   'firebrick'
+      \   ],
+      \ 'ctermfgs':
+      \   ['blue',
+      \   'lightyellow',
+      \   'lightcyan',
+      \   'lightmagenta'
+      \   ],
+      \ 'guis': [''],
+      \ 'cterms': [''],
+      \ 'operators': '_,_',
+      \ 'parentheses':
+      \   ['start=/(/ end=/)/ fold',
+      \   'start=/\[/ end=/\]/ fold',
+      \   'start=/{/ end=/}/ fold'
+      \   ],
+      \ 'separately': {
+      \   '*': {},
+      \   'markdown': {
+      \     'parentheses_options':
+      \     'containedin=markdownCode contained',
+      \   },
+      \   'lisp': {
+      \     'guifgs':
+      \       ['royalblue3',
+      \       'darkorange3',
+      \       'seagreen3',
+      \       'firebrick',
+      \       'darkorchid3'
+      \       ],
+      \   },
+      \   'haskell': {
+      \     'parentheses':
+      \       ['start=/(/ end=/)/ fold',
+      \       'start=/\[/ end=/\]/ fold',
+      \       'start=/\v\{\ze[^-]/ end=/}/ fold'
+      \       ],
+      \   },
+      \   'vim': {
+      \     'parentheses_options':
+      \     'containedin=vimFuncBody',
+      \   },
+      \   'perl': {
+      \     'syn_name_prefix':
+      \     'perlBlockFoldRainbow',
+      \   }
+      \ }
+      \}
 
 " }}}
 
@@ -77,22 +77,21 @@ let g:qs_delay = 30
 let g:SignatureEnabledAtStartup = 0
 let g:SignatureEnabled = 0
 autocmd VimEnter *
-      \ echo "a"
-      \ | if !g:SignatureEnabled
+      \ if !g:SignatureEnabled
       \ | let g:SignatureEnabled = 1
       \ | exe 'SignatureToggleSigns'
       \ | endif
 
 noremap <silent> <Leader>qst
-            \ :<C-u>SignatureToggleSigns<CR>
+      \ :<C-u>SignatureToggleSigns<CR>
 noremap <silent> <Leader>qsr 
-            \ :<C-u>SignatureRefresh<CR>
+      \ :<C-u>SignatureRefresh<CR>
 
 noremap <silent> <Leader>qsl
-            \ :<C-u>exe 'SignatureListBufferMarks '
-            \ .v:count1<CR>
+      \ :<C-u>exe 'SignatureListBufferMarks '
+      \ .v:count1<CR>
 noremap <silent> <Leader>qsg
-            \ :<C-u>exe 'SignatureListGlobalMarks '
-            \ .v:count1<CR>
+      \ :<C-u>exe 'SignatureListGlobalMarks '
+      \ .v:count1<CR>
 
 "}}}
