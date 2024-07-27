@@ -42,9 +42,13 @@ autocmd BufReadPost *
       \ |     endif
       \ | endif
 
+set foldmethod=marker
+
 " }}}
 
 "{{{ good looking
+
+set termguicolors
 
 set shortmess=atsOF
 " 2 is ugly and takes too much space

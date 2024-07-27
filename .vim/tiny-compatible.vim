@@ -476,12 +476,13 @@ set wildmenu
 set wildignore+=*.o,*.elf,*.bin,*.dll,*.so
 
 set complete=w,b,s,i,d,t,.,k
+set completeopt=menu,menuone,noselect,noinsert,preview
 
 " }}}
 
 " {{{ display
 
-set terse
+" set terse
 set ruler
 set number
 set relativenumber
@@ -581,12 +582,8 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
 
   map <C-p> ,
     map <C-n> ;
-endif
-" }}}
+endif " }}}
 
 if v:progname =~? "^sv\\(im\\?\\)\\?" " {{{
-  set completeopt=menu,menuone,noselect,noinsert,preview,fuzzy,fuzzycollect
-else
-  set completeopt=menu,menuone,noselect,noinsert,preview
-endif
-" }}}
+  silent! set completeopt+=fuzzy,fuzzycollect
+endif " }}}
