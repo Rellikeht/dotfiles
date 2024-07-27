@@ -170,6 +170,9 @@ set omnifunc=syntaxcomplete#Complete
 
 " {{{ other
 
+" default updatetime 4000ms is not good for async update
+set updatetime=50
+
 let g:autochdir = 0
 let w:prev_dir = expand('%:p:h')
 silent! call ToggleAutochdir()

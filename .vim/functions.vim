@@ -400,6 +400,10 @@ function ToggleAutochdir()
     endif
 endfunction
 
+autocmd VimResume *
+      \ checktime
+      \ | echo expand('%:p')
+
 " TODO
 function ToggleAutoupdate()
   let g:autoupdate = !g:autoupdate

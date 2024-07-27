@@ -269,9 +269,6 @@ function! s:show_current_hunk() abort
     endif
 endfunction
 
-" default updatetime 4000ms is not good for async update
-set updatetime=50
-
 "}}}
 
 "{{{ gv

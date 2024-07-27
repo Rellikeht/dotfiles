@@ -113,7 +113,9 @@ Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim'
 Plug 'mattn/emmet-vim', {'for': 'html'}
 
-Plug 'vimwiki/vimwiki'
+" TODO C and make this not slow vim down
+" Plug 'vimwiki/vimwiki'
+
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-markdownfootnotes'
 Plug 'vim-pandoc/vim-pandoc-syntax'
