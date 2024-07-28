@@ -44,6 +44,8 @@ autocmd BufReadPost *
 
 set foldmethod=marker
 
+set shell=sh
+
 " }}}
 
 "{{{ good looking

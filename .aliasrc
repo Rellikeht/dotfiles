@@ -2,14 +2,15 @@
 
 # {{{ helpers
 alias progp=' \
-    echo $PATH | \
+    echo -n $PATH | \
     xargs -d ":" -I{} \
     find -L "{}" -executable -a -type f \
     2>/dev/null
     '
 
+# sed "s/:/\n/g;/^$/d"
 alias progs=' \
-    echo $PATH | \
+    echo -n $PATH |\
     xargs -d ":" -I{} \
     find -L "{}" -executable -a -type f \
     -printf "%f\n" 2>/dev/null \
@@ -21,6 +22,7 @@ alias prgs='progs | sort | uniq'
 
 # {{{ some neat things
 
+alias bd='cd -'
 alias b1='cd ..'
 alias b2='cd ../..'
 alias b3='cd ../../..'
@@ -169,11 +171,6 @@ alias rsv='doas svim'
 alias rka='doas kak'
 alias rvi='doas vis'
 
-alias fvc='fe svim'
-alias fv='fed svim'
-alias fkc='fe kak'
-alias fk='fed kak'
-
 # }}}
 
 # {{{ settings
@@ -189,57 +186,73 @@ alias bfn='bat "$_FUNCRC"'
 # }}}
 
 # {{{ fuzzy dirs and files
-# TODO clean this section
 
 ## single
-alias fzs='fzf +m -e'
+alias fzs='fzf +m'
 alias fzsp="fzs --preview 'bls {}'"
 
 ## multi
-alias fzf='fzf -m -e'
+alias fzf='fzf -m'
 alias fzfp="fzf --preview 'bls {}'"
 
 ## fzy
 alias fzy='fzy -l 20'
 
-## default fuzzy finer with single match for dirs
-#alias deffuz=fzs
-alias dfuz=fzs
-alias dfuz2=fzs
-alias dfuzp=fzs
-
 ## files
-
-# alias fff='find -type f | fzf'
-# alias ffs='find -type f | fzs'
-# Doesn't work
-alias fff='fzh $fzf -type f'
-alias ffs='fzh $fzs -type f'
+alias fff='find -type f | fzf'
+alias ffs='find -type f | fzs'
 
 ## dirs
+alias fds='find -type d | fzs'
+alias fdp='find .. -type d | fzs'
+alias fdm='find -type d | fzm'
 
-# alias fzd='find -type d | deffuz'
-# alias fzd2='find -maxdepth 2 -type d | deffuz'
-# alias fzp='find .. -maxdepth 2 -type d | deffuz'
-alias fzd='fzh dfuz -type d'
-alias fzd2='fzh dfuz2 -maxdepth 2 -type d'
-alias fzp='fzh dfuzp .. -maxdepth 2 -type d'
+# with depth
+alias fdp2='find .. -maxdepth 2 -type d | fzs'
+alias fdp3='find .. -maxdepth 3 -type d | fzs'
+alias fdp4='find .. -maxdepth 5 -type d | fzs'
+alias fdp5='find .. -maxdepth 4 -type d | fzs'
+alias fdd2='find -maxdepth 2 -type d | fzs'
+alias fdd3='find -maxdepth 3 -type d | fzs'
+alias fdd4='find -maxdepth 4 -type d | fzs'
+alias fdd5='find -maxdepth 5 -type d | fzs'
 
 ## cd with fuzzy dirs
-alias cdf='cd "$(fzd)"'
-alias cdf2='cd "$(fzd2)"'
-alias cdp='cd "$(fzp)"'
+alias cdf='cd "$(fds)"'
+alias cdf2='cd "$(fds2)"'
+alias cdf3='cd "$(fds3)"'
+alias cdf4='cd "$(fds4)"'
+alias cdf5='cd "$(fds5)"'
+alias cdp='cd "$(fdp)"'
+alias cdp2='cd "$(fdp2)"'
+alias cdp3='cd "$(fdp3)"'
+alias cdp4='cd "$(fdp4)"'
+alias cdp5='cd "$(fdp5)"'
 
 alias fmx='fzf --print0 | xargs -0'
 alias fsx='fzs --print0 | xargs -0'
+alias fdx='fds --print0 | xargs -0'
+alias fbx='fdm --print0 | xargs -0'
 
 ## fuzzy select program to run on separate shell
-alias fze='prgs | deffuz | sh -s'
+alias fze='prgs | fzs | sh -s'
 ## fuzzy select program to run
-alias fzr='$(prgs | deffuz)'
+alias fzr='$(prgs | fzs)'
 
 alias zh="z -l | sort | awk '{print \$2}' | fzs"
 alias zc='cd "$(zh)"'
+
+# }}}
+
+# {{{ TODO B fzf with history
+
+# Doesn't work
+# alias fff='fzh $fzf -type f'
+# alias ffs='fzh $fzs -type f'
+
+# alias fzd='fzh dfuz -type d'
+# alias fzd2='fzh dfuz2 -maxdepth 2 -type d'
+# alias fzp='fzh dfuzp .. -maxdepth 2 -type d'
 
 # }}}
 
@@ -247,6 +260,8 @@ alias zc='cd "$(zh)"'
 
 alias sf='fmx -o "$(whence s)"'
 alias nf='fmx -o "$(whence nv)"'
+alias vf='fdx -o "$(whence vifm)"'
+alias v2='$(whence vifm) "$(fds)" "$(fds)"'
 
 alias bsf='fsx bat'
 alias bmf='fmx bat'
@@ -255,7 +270,7 @@ alias bmf='fmx bat'
 
 # {{{ tooling
 
-alias vf='vifm'
+alias vm='vifm'
 alias vh='vifm -c history'
 alias vd='vifm --choose-dir -'
 

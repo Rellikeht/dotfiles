@@ -78,6 +78,7 @@ dis() {
 # }}}
 
 # {{{ editors
+
 edt() {
     if [ -n "$2" ]; then
         $1 "$@"
@@ -98,29 +99,6 @@ evr() {
     edt $1 /etc/.varrc
 }
 
-fec() {
-    if [ -n "$1" ]; then
-        edt="$1"
-    else
-        edt='vim'
-    fi
-
-    if [ -n "$2" ]; then
-        comm="$2"
-    else
-        comm=$(lsn | fzf)
-    fi
-
-    $edt $comm
-}
-
-fe() {
-    fec "$1" "find -type f | fzf"
-}
-
-fed() {
-    fec "$1"
-}
 # }}}
 
 if [ "$(uname)" = "FreeBSD" ]; then # {{{
