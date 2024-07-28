@@ -69,6 +69,7 @@ noremap <Space>t<Space>A :<C-u>ltag!<Space>
 "{{{ better tab
 
 noremap <silent> <Tab>k K<C-w>T
+nnoremap <Tab>gf :<C-u>tabedit <cfile><CR>
 
 noremap <silent> <Tab>n 
       \ :<C-u>call SwitchTab(v:count1)<CR>
@@ -96,6 +97,7 @@ vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 " {{{ buffers with <Space><Space>
 
 noremap <silent> <Space><Space>d <Plug>Kwbd
+nnoremap <Space><Space>gf :<C-u>edit <cfile><CR>
 
 vnoremap <Space><Space>;l 
       \ :<C-u>exe 'filter '.
@@ -121,6 +123,7 @@ noremap <silent> <Space><Space>M
 
 "{{{ args with <Space>
 
+nnoremap <Space>gf :<C-u>argedit <cfile><CR>
 vnoremap <Space>;l 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' args'<CR>
@@ -370,29 +373,28 @@ nnoremap <expr> .? g:qfloc ?
 
 augroup Quickfix "{{{
   autocmd FileType qf 
-        \ noremap <buffer> <silent> q :q<CR>
-        \ | noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
-        \ | nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
-        \ | nnoremap <buffer> J :<C-u>call 
-        \ WQFcmd('n', '+'.v:count1.' \| '.v:count1)
-        \ \| wincmd p<CR>
-        \ | noremap <buffer> K :<C-u>call
-        \ WQFcmd('p', '-'.v:count1.' \| '.v:count1)
-        \ \| wincmd p<CR>
-        \ | nnoremap <buffer> <silent> <CR> <CR>:wincmd p<CR><Left>
-        \ | nnoremap <buffer> <silent> <BS> <CR>
-        \ | nnoremap <buffer> <silent> <C-h> 
+        \noremap <buffer> <silent> q :q<CR>
+        \| noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
+        \| nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
+        \| nnoremap <buffer> <silent> <BS> <CR>
+        \| nmap <buffer> <CR>
+        \ :<C-u>let qpos = getpos('.')<CR>
+        \<BS>:wincmd p<CR>:call setpos('.', qpos)<CR>
+        \<C-l><Right><Left>
+        \| nnoremap <buffer> <silent> <C-h>
         \ <CR>:call WQFcmd('close')<CR>
-        \ | noremap <buffer> <expr> a g:qfloc ?
+        \| nmap <buffer> <silent> J j<CR>
+        \| nmap <buffer> <silent> K k<CR>
+        \| noremap <buffer> <expr> a g:qfloc ?
         \ ':<C-u>laddexpr<Space>'
         \ : ':<C-u>caddexpr<Space>'
-        \ | noremap <buffer> <expr> i g:qfloc ?
+        \| noremap <buffer> <expr> i g:qfloc ?
         \ ':<C-u>laddfile<Space>'
         \ : ':<C-u>caddfile<Space>'
-        \ | noremap <buffer> <expr> I g:qfloc ?
+        \| noremap <buffer> <expr> I g:qfloc ?
         \ ':<C-u>laddbuffer<Space>'
         \ : ':<C-u>caddbuffer<Space>'
-        \ | nnoremap <buffer> <expr> <silent> dd g:qfloc ?
+        \| nnoremap <buffer> <expr> <silent> dd g:qfloc ?
         \ "m`:<C-u>call setloclist(0, filter(getloclist(0),
         \ {idx -> idx < line('.') - 1 \|\|
         \ idx > line('.') + v:count - 1}), 'r')<CR>'`"
@@ -422,7 +424,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "<C-p><C-y>" : "<S-Tab>"
 " <C-Space> in terminal
 inoremap <C-Space> <C-@>
 inoremap <expr> <C-@> pumvisible() ?
-      \ '<C-n>' : (&omnifunc == '') ? '<C-n>' : '<C-x><C-o>'
+      \'<C-n>' : (&omnifunc == '') ? '<C-n>' : '<C-x><C-o>'
 
 " ?
 " CTRL-X CTRL-E scroll up
@@ -438,8 +440,6 @@ inoremap <expr> <C-@> pumvisible() ?
 "   \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
 
 " PageUp and PageDown don't work
-" inoremap <expr> <C-d> pumvisible() ? '<PageDown><C-p><C-n>' : '<C-d>'
-" inoremap <expr> <C-u> pumvisible() ? '<PageUp><C-p><C-n>' : '<C-u>'
 inoremap <expr> <C-d> pumvisible() ? '<C-n><C-n><C-n><C-n><C-n>' : '<C-d>'
 inoremap <expr> <C-u> pumvisible() ? '<C-p><C-p><C-p><C-p><C-p>' : '<C-u>'
 

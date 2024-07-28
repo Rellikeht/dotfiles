@@ -1,25 +1,5 @@
 "{{{ functions
 
-"{{{ helpers
-
-function QSidx()
-  return get(getqflist({idx: 0}), 'idx', 0)
-endfunction
-
-function s:QstackPosMove(amount = 1)
-  if len(s:qstack) < 1
-    throw "There aren't any items on the stack"
-  endif
-  call s:QstackSet()
-  let s:qsind = (s:qsind + a:amount)%len(s:qstack)
-  if s:qsind < 0
-    let s:qsind = s:qsind + len(s:qstack)
-  endif
-  return 0
-endfunction
-
-"}}}
-
 "{{{ state
 
 function s:QstackSet()
@@ -37,6 +17,31 @@ function s:QstackPosSet()
   call setpos(".", pos)
 endfunction
 
+function QstackPosGet()
+  echo s:qsind
+  return 0
+endfunction
+
+"}}}
+
+"{{{ helpers
+
+function QSidx()
+  return get(getqflist({idx: 0}), 'idx', 0)
+endfunction
+
+function s:QstackPosMove(amount = 1)
+  if len(s:qstack) < 1
+    throw "There aren't any items on the stack"
+  endif
+  let s:qsind = (s:qsind + a:amount)%len(s:qstack)
+  if s:qsind < 0
+    let s:qsind = s:qsind + len(s:qstack)
+  endif
+  echo s:qsind
+  return 0
+endfunction
+
 "}}}
 
 "{{{ movement
@@ -47,7 +52,6 @@ function s:QstackNext(amount = 1)
 endfunction
 
 function s:QstackNth(nth = 0)
-  call s:QstackSet()
   if a:nth < 0
     throw "Invalid position in the stack"
   elseif a:nth >= len(s:qstack)
@@ -78,7 +82,7 @@ function s:QstackCurDel()
 endfunction
 
 function s:QstackDel(num)
-  if a:num >= len(s:qstack) || a:num < 0 
+  if a:num >= len(s:qstack) || a:num < 0
     throw "Invalid element to delete from the stack"
   endif
   if a:num == s:qsind
@@ -106,9 +110,15 @@ function s:QstackOpen(force = 0)
 
   "{{{
 
-  " TODO B map cr and <c-h>
   nnoremap <buffer> <silent> dd :<C-u>call
         \ <SID>QstackDD(line('.')-1, v:count1)<CR>
+  nnoremap <buffer> <silent> <BS>
+        \ :let qstackln = line('.')-1<CR>
+        \ :<C-u>wincmd p<CR>
+        \ :<C-u>call <SID>QstackNth(qstackln)<CR>
+  nmap <buffer> J j<CR>
+  nmap <buffer> K k<CR>
+  " CR done in keys.vim
 
   "}}}
 endfunction
@@ -117,7 +127,7 @@ function s:QstackDD(num, amount)
   let amount = a:amount
   if a:amount < 1
     throw "Invalid amount of items to remove"
-  elseif a:num+a:amount >= len(s:qstack) 
+  elseif a:num+a:amount >= len(s:qstack)
     let amount = len(s:qstack) - a:num
   endif
   norm m`
@@ -187,6 +197,12 @@ let s:qsind = 0
 "}}}
 
 "{{{ maps
+
+"{{{ :(
+
+map <Space>j<Esc> <Nop>
+
+"}}}
 
 "{{{ basic commands
 

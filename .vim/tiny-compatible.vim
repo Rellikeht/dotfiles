@@ -9,18 +9,18 @@ command! -nargs=1 -complete=arglist ArgumentE
       \ | argdedupe
 
 command! -nargs=+ Silent
-      \   execute 'silent! <args>'
-      \   | redraw!
+      \ execute 'silent! <args>'
+      \ | redraw!
 
 " Nope
 " command! -nargs=1 -complete=arglist Vargument
-"             \ vertical argument <args>
+"             \vertical argument <args>
 " command! -nargs=1 -complete=arglist Hargument
-"             \ horizontal argument <args>
+"             \horizontal argument <args>
 " command! -nargs=1 -complete=arglist Dargument
-"             \ botright vertical argument <args>
+"             \botright vertical argument <args>
 " command! -nargs=1 -complete=arglist Rargument
-"             \ botright horizontal argument <args>
+"             \botright horizontal argument <args>
 
 "}}}
 
@@ -34,15 +34,17 @@ map ;; <C-w><C-w>
 " <CR> is equal to <C-m> !!
 noremap <C-m> <Tab>
 
-noremap gy "*y
-noremap gY "*Y
-noremap gp "*gp
-noremap gP "*gP
+noremap <Space>y "+y
+noremap <Space>Y "+Y
+noremap <Tab>y "*y
+noremap <Tab>Y "*Y
+noremap <Space>u "+p
+noremap <Space>U "+P
+noremap <Tab>u "*p
+noremap <Tab>U "*P
 
-noremap <Tab>gy "+y
-noremap <Tab>gY "+Y
-noremap <Tab>gp "+gp
-noremap <Tab>gP "+gP
+" noremap <Space>;p "+gp
+" noremap <Space>;P "+gP
 
 " TODO D this is harder than it should be
 noremap g+ v<C-a>
@@ -76,18 +78,18 @@ vnoremap <Space>qM :<C-u>setlocal modeline!\|norm gv<CR>
 noremap <Tab>o :<C-u>tabedit<Space>
 noremap <Tab>O :<C-u>-tabedit<Space>
 noremap <silent> <expr> <Tab>;e
-      \ (v:count ? ':<C-u>exe "tabnext "'.v:count.'<CR>' : '')
+      \(v:count ? ':<C-u>exe "tabnext "'.v:count.'<CR>' : '')
 noremap <Tab><Tab> :<C-u>tab<Space>
 noremap <Tab>;<Tab> :<C-u>-tab<Space>
 noremap <Tab>f :<C-u>tabfind<Space>
 noremap <Tab>F :<C-u>-tabfind<Space>
 
 noremap <Tab><Space>o :<C-u>tabedit  \|
-      \ exe 'arglocal! '.expand('%')
-      \ <C-Left><C-Left><C-Left><C-Left><Left>
+      \exe 'arglocal! '.expand('%')
+      \<C-Left><C-Left><C-Left><C-Left><Left>
 noremap <Tab><Space>O :<C-u>-tabedit  \|
-      \ exe 'arglocal! '.expand('%')
-      \ <C-Left><C-Left><C-Left><C-Left><Left>
+      \exe 'arglocal! '.expand('%')
+      \<C-Left><C-Left><C-Left><C-Left><Left>
 
 noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
 noremap <Tab>A :<C-u>tabnew\|arglocal!<CR>
@@ -121,7 +123,7 @@ vnoremap <silent> <Tab>K :<C-u>tabm 0\|norm gv<CR>
 
 nnoremap <Tab>: :<C-u>tabdo<Space>
 vnoremap <Tab>: :<C-u>tabdo  \|norm gv
-      \ <C-Left><C-Left><Left>
+      \<C-Left><C-Left><Left>
 
 " }}}
 
@@ -194,9 +196,9 @@ vnoremap <silent> <Tab>^D :<C-u>resize -20\|norm gv<CR>
 noremap <Space><Space>e :<C-u>buffer<Space>
 noremap <Space><Space>E :<C-u>buffer!<Space>
 noremap <silent> <Space><Space>;e :<C-u>exe
-      \ 'buffer '.(v:count ? v:count : '')<CR>
+      \'buffer '.(v:count ? v:count : '')<CR>
 noremap <silent> <Space><Space>;E :<C-u>exe
-      \ 'buffer! '.(v:count ? v:count : '')<CR>
+      \'buffer! '.(v:count ? v:count : '')<CR>
 noremap <Space><Space>s <C-^>
 noremap <Space><Space>o :<C-u>edit<Space>
 noremap <Space><Space>O :<C-u>edit!<Space>
@@ -269,7 +271,7 @@ noremap <Space>E :<C-u>ArgumentE<Space>
 noremap <silent> <Space>;e :<C-u>exe
       \ 'argument '.(v:count ? v:count : '')<CR>
 noremap <silent> <Space>;E :<C-u>exe
-      \ 'argumenE '.(v:count ? v:count : '')<CR>
+      \ 'argument! '.(v:count ? v:count : '')<CR>
 noremap <Space>o :<C-u>argedit<Space>
 noremap <Space>O :<C-u>argedit!<Space>
 
@@ -409,32 +411,32 @@ nnoremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
 vnoremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ\|norm gv<CR>
 
 noremap <Space>i<Space>r
-      \ :<C-u>filter  registers<C-Left><Left>
+      \:<C-u>filter  registers<C-Left><Left>
 noremap <Space>i<Space>p
-      \ :<C-u>filter  history<C-Left><Left>
+      \:<C-u>filter  history<C-Left><Left>
 noremap <Space>i<Space>c
-      \ :<C-u>filter  changes<C-Left><Left>
+      \:<C-u>filter  changes<C-Left><Left>
 noremap <Space>i<Space>j
-      \ :<C-u>filter  jumps<C-Left><Left>
+      \:<C-u>filter  jumps<C-Left><Left>
 noremap <Space>i<Space>o
-      \ :<C-u>filter  files<C-Left><Left>
+      \:<C-u>filter  files<C-Left><Left>
 noremap <Space>i<Space>t
-      \ :<C-u>filter  tags<C-Left><Left>
+      \:<C-u>filter  tags<C-Left><Left>
 noremap <Space>i<Space>m
-      \ :<C-u>filter  marks<C-Left><Left>
+      \:<C-u>filter  marks<C-Left><Left>
 
 nnoremap <Space>ik :<C-u>map<Space>
 vnoremap <Space>ik :<C-u>map  \|norm gv
-      \ <C-Left><C-Left><Left>
+      \<C-Left><C-Left><Left>
 nnoremap <Space>in :<C-u>nmap<Space>
 vnoremap <Space>in :<C-u>nmap  \|norm gv
-      \ <C-Left><C-Left><Left>
+      \<C-Left><C-Left><Left>
 nnoremap <Space>iv :<C-u>vmap<Space>
 vnoremap <Space>iv :<C-u>vmap  \|norm gv
-      \ <C-Left><C-Left><Left>
+      \<C-Left><C-Left><Left>
 nnoremap <Space>ii :<C-u>imap<Space>
 vnoremap <Space>ii :<C-u>imap  \|norm gv
-      \ <C-Left><C-Left><Left>
+      \<C-Left><C-Left><Left>
 
 noremap <Space>ih :<C-u>help<Space>
 noremap <C-w><Space>ih :<C-u>tab help<Space>
@@ -569,7 +571,7 @@ set fileformat=unix
 
 " }}}
 
-if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{ 
+if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
   set background=dark
   set hlsearch
   set secure
