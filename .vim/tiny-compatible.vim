@@ -439,7 +439,8 @@ vnoremap <Space>ii :<C-u>imap  \|norm gv
       \<C-Left><C-Left><Left>
 
 noremap <Space>ih :<C-u>help<Space>
-noremap <C-w><Space>ih :<C-u>tab help<Space>
+" noremap <C-w><Space>ih :<C-u>tab help<Space>
+noremap <Tab>h :<C-u>tab help<Space>
 
 " }}}
 

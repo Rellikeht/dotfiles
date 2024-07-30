@@ -67,6 +67,8 @@ Plug 'wellle/tmux-complete.vim'
 
 Plug 'yegappan/taglist'
 
+Plug 'xuhdev/SingleCompile'
+
 "}}}
 
 "{{{ version control

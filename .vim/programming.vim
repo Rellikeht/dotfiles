@@ -1,19 +1,9 @@
 "{{{ settings
 
-" :(
-autocmd FileType zig setlocal complete-=i,d
-
 autocmd BufWritePost *.ms call CompileGroffMs()
 
 " from opam installation
 set rtp^="~/.opam/default/share/ocp-indent/vim"
-
-" autocmd FileType vim,lua setlocal modeline
-
-" For nim language server to work :(
-autocmd BufNewFile *.nim 
-      \ silent! exe '!touch ' . expand('%f')
-      \ | argedit! <afile>
 
 "}}}
 

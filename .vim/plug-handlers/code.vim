@@ -146,10 +146,6 @@ let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_file_types = '.*'
 
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
-autocmd FileType julia 
-      \ nnoremap <buffer> <Leader>nld :JuliaDoc
-      \ | vnoremap <silent> <buffer> <Leader>nld
-      \ :<C-u>execute 'JuliaDoc '.GetVisualSelection()<CR>
 
 "}}}
 

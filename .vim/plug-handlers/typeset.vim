@@ -80,9 +80,4 @@ function TypstConcealToggle()
   edit
 endfunction
 
-autocmd FileType typst 
-      \ nnoremap <buffer> <Leader>ntw :TypstWatch<CR>
-      \ | nnoremap <silent> <buffer> <Leader>ntt
-      \ :call TypstConcealToggle()<CR>
-
 "}}}

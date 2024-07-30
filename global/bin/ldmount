@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+if ! [ -d "$1" ]; then
+    echo "$1" is not a directory
+    exit 1
+fi
+
+find /dev/ -name 'sd?1' |
+    sort -r |
+    xargs -d '\n' -I{} mount "{}" "$1"

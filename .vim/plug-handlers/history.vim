@@ -6,10 +6,10 @@ map <Leader>u<Esc> <Nop>
 
 "{{{ TINYMRU
 
-noremap <silent> ,ue :<C-u>ME<Space>
-noremap <silent> ,uv :<C-u>MS<Space>
-noremap <silent> ,uh :<C-u>MV<Space>
-noremap <silent> ,un :<C-u>MT<Space>
+noremap ,ue :<C-u>ME<Space>
+noremap ,uv :<C-u>MS<Space>
+noremap ,uh :<C-u>MV<Space>
+noremap ,un :<C-u>MT<Space>
 
 " }}}
 

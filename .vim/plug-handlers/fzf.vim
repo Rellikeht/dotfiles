@@ -331,19 +331,25 @@ nnoremap <leader>sl<Space>m :MArgeditFzf<Space>
 
 "{{{ dirs mappings
 
-function PathMap(key, path)
+function PathMap(key, path, cr=1)
   exe 'noremap <leader>sp'.a:key.
-        \ ' :<C-u>Files '.a:path.'<CR>'
+        \ ' :<C-u>Files '.a:path.
+        \ (a:cr ? '<CR>' : '')
   exe 'noremap <leader>sa'.a:key.
-        \ ' :<C-u>Args '.a:path.'<CR>'
+        \ ' :<C-u>Args '.a:path.
+        \ (a:cr ? '<CR>' : '')
   exe 'noremap <leader>sm'.a:key.
-        \ ' :<C-u>MArgs '.a:path.'<CR>'
+        \ ' :<C-u>MArgs '.a:path.
+        \ (a:cr ? '<CR>' : '')
   exe 'noremap <leader>sg'.a:key.
-        \ ' :<C-u>Dag '.a:path.'<CR>'
+        \ ' :<C-u>Dag '.a:path.
+        \ (a:cr ? '<CR>' : '')
   exe 'noremap <leader>su'.a:key.
-        \ ' :<C-u>Dau '.a:path.'<CR>'
+        \ ' :<C-u>Dau '.a:path.
+        \ (a:cr ? '<CR>' : '')
   exe 'noremap <leader>sd'.a:key.
-        \ ' :<C-u>Dgrep '.a:path.'<CR>'
+        \ ' :<C-u>Dgrep '.a:path.
+        \ (a:cr ? '<CR>' : '')
 endfunction
 
 let paths = {
@@ -368,6 +374,7 @@ let paths = {
 for key in keys(paths)
   call PathMap(key, paths[key])
 endfor
+call PathMap('<Space>', '', 0)
 
 "}}}
 
