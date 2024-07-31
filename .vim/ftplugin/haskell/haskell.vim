@@ -4,9 +4,7 @@ endif
 
 setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-let if get(b:, 'compilers', 0) == 0
-  let b:compilers = []
-endif
-b:compilers += ['ghc', 'stack']
+let b:compilers = if get(b:, 'compilers', [])
+let b:compilers += ['ghc', 'stack']
 
 compiler ghc

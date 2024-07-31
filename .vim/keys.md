@@ -26,12 +26,14 @@ Not very accurate, at least for now.
 
 ## (control) good
 
+- C-j
+- C-k
+
 ## (control) not so useful
 
-- CTRL-@ not used
-- CTRL-\_ not used
-- CTRL-\\ CTRL-G
-- CTRL-\\ a - z reserved for extensions, others not used
+- `C-_` - not used
+- `C-\ C-G`
+- `C-\ a - z` - reserved for extensions, others not used
 
 # Remappings
 

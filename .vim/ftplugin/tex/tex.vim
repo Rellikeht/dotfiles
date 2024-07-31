@@ -4,10 +4,8 @@ endif
 
 setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-let if get(b:, 'compilers', 0) == 0
-  let b:compilers = []
-endif
-b:compilers += ['tex']
+let b:compilers = if get(b:, 'compilers', [])
+let b:compilers += ['tex']
 
 if &makeprg == 'make'
   compiler tex

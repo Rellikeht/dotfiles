@@ -10,9 +10,7 @@ nnoremap <buffer> <silent> <Leader>nle
 nnoremap <buffer> <Leader>nl<Space>
       \ :NixEdit<Space>
 
-if get(b:, 'compilers', 0) == 0
-  let b:compilers = []
-endif
+let b:compilers = get(b:, 'compilers', [])
 let b:compilers += ['nim']
 
 compiler nim

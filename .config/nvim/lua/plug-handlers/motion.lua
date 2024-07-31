@@ -75,9 +75,9 @@ vim.keymap.set(
 
 -- {{{ TODO A stack operations
 
-vim.keymap.set(
-  {"n", "v"}, "<C-j>", function() harpoon:list():next() end
-)
+-- vim.keymap.set(
+--   {"n", "v"}, "<C-j>", function() harpoon:list():next() end
+-- )
 
 -- }}}
 

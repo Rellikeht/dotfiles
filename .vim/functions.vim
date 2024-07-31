@@ -63,7 +63,6 @@ function! QFtype()
 endfunction
 
 function! WQFsel(ccmd, lcmd, before = '', after = '')
-  echo a:before . (QFtype() ? a:lcmd : a:ccmd) . a:after
   execute a:before . (QFtype() ? a:lcmd : a:ccmd) . a:after
 endfunction
 

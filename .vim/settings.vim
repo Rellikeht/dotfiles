@@ -174,6 +174,11 @@ set omnifunc=syntaxcomplete#Complete
 
 " {{{ other
 
+" Closing loclist when closing parent window
+if exists('##QuitPre')
+    autocmd QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
+endif
+
 " default updatetime 4000ms is not good for async update
 set updatetime=50
 

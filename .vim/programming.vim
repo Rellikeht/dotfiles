@@ -14,32 +14,37 @@ autocmd BufReadPre *
 
 "{{{ :make
 
-nnoremap expr <Space>mm g:qfloc ?
+nnoremap expr <Space>mr g:qfloc ?
       \ ':<C-u>lmake<CR>' : ':<C-u>make<CR>'
-vnoremap expr <Space>mm g:qfloc ?
+vnoremap expr <Space>mr g:qfloc ?
       \ ':<C-u>lmake\|norm gv<CR>' : ':<C-u>make\|norm gv<CR>'
-nnoremap expr <Space>m<Space>m g:qfloc ?
+nnoremap expr <Space>m<Space>r g:qfloc ?
       \ ':<C-u>lmake<Space>' : ':<C-u>make<Space>'
-vnoremap expr <Space>m<Space>m g:qfloc ?
+vnoremap expr <Space>m<Space>r g:qfloc ?
       \ ':<C-u>lmake  \|norm gv<C-Left><C-Left><Left>'
       \ ':<C-u>make  \|norm gv<C-Left><C-Left><Left>'
 
-nnoremap <Space>mp :<C-u>setlocal makeprg<CR>
-nnoremap <Space>m<Space>p :<C-u>setlocal makeprg=
-vnoremap <Space>m<Space>p :<C-u>setlocal makeprg= \|norm gv
+nnoremap <expr> <Space>me ':<C-u>setlocal makeprg='.&makeprg
+vnoremap <expr> <Space>me
+      \ ':<C-u>setlocal makeprg='.&makeprg.
+      \ ' \|norm gv<C-Left><C-Left><Left>'
+
+nnoremap <Space>mqp :<C-u>setlocal makeprg<CR>
+nnoremap <Space>mp :<C-u>setlocal makeprg=
+vnoremap <Space>mp :<C-u>setlocal makeprg= \|norm gv
       \ <C-Left><C-Left><Left>
-nnoremap <Space>mf :<C-u>setlocal errorformat<CR>
-nnoremap <Space>m<Space>f :<C-u>setlocal errorformat=<Space>
-vnoremap <Space>m<Space>p :<C-u>setlocal errorformat= \|norm gv
+nnoremap <Space>mqf :<C-u>setlocal errorformat<CR>
+nnoremap <Space>mf :<C-u>setlocal errorformat=<Space>
+vnoremap <Space>mf :<C-u>setlocal errorformat= \|norm gv
       \ <C-Left><C-Left><Left>
 
-nnoremap <Space>mP :<C-u>set makeprg<CR>
-nnoremap <Space>m<Space>P :<C-u>set makeprg=
-vnoremap <Space>m<Space>P :<C-u>set makeprg= \|norm gv
+nnoremap <Space>mqP :<C-u>set makeprg<CR>
+nnoremap <Space>mP :<C-u>set makeprg=
+vnoremap <Space>mP :<C-u>set makeprg= \|norm gv
       \ <C-Left><C-Left><Left>
-nnoremap <Space>mF :<C-u>set errorformat<CR>
-nnoremap <Space>m<Space>F :<C-u>set errorformat=<Space>
-vnoremap <Space>m<Space>P :<C-u>set errorformat= \|norm gv
+nnoremap <Space>mqF :<C-u>set errorformat<CR>
+nnoremap <Space>mF :<C-u>set errorformat=<Space>
+vnoremap <Space>mF :<C-u>set errorformat= \|norm gv
       \ <C-Left><C-Left><Left>
 
 "}}}

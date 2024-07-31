@@ -1,6 +1,6 @@
 "{{{ Editor Config
 
-packadd editorconfig
+packadd! editorconfig
 let g:EditorConfig_disable = 0
 let b:EditorConfig_disable = g:EditorConfig_disable
 autocmd BufNewFile,BufRead * let b:EditorConfig_disable = g:EditorConfig_disable
