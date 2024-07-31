@@ -272,7 +272,22 @@ local servers = { -- {{{
 } -- }}}
 
 -- {{{
+
 for _, s in ipairs(servers) do ssetup(s) end
 local plug_dir = "plug-handlers/"
 require(plug_dir .. "servers")
+
+-- }}}
+
+-- {{{
+
+-- Because nimlsp breaks on
+-- empty files
+vim.api.nvim_create_autocmd(
+  {"BufNewFile"}, {
+    pattern = "*.nim",
+    command = "call system('touch '.expand('%:p')) | read <afile>",
+  }
+)
+
 -- }}}

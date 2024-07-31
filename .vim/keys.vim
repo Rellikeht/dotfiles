@@ -14,7 +14,7 @@ noremap <C-w><C-h>
 
 "}}}
 
-"{{{ TODO C - polish - tags
+"{{{ TODO C - what the fuck is going on - tags
 
 nnoremap <Space>tl :<C-u>tags<CR>
 vnoremap <Space>tl :<C-u>tags\|norm gv<CR>

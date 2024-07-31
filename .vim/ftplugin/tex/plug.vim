@@ -5,6 +5,6 @@ endif
 let if get(b:, 'compilers', 0) == 0
   let b:compilers = []
 endif
-b:compilers += ['clang']
+b:compilers += ['latexmk', 'latexrun']
 
-compiler gcc
+compiler latexmk

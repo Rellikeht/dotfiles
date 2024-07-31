@@ -6,6 +6,10 @@ nnoremap <buffer> <Leader>ntw :TypstWatch<CR>
 nnoremap <silent> <buffer> <Leader>ntt
       \ :call TypstConcealToggle()<CR>
 
-let b:compilers += ['typst']
+let if get(b:, 'compilers', 0) == 0
+  let b:compilers = []
+endif
+b:compilers += ['typst']
 
-compiler typst
+" Plugin does this and here it breaks
+" compiler typst

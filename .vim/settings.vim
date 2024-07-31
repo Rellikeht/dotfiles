@@ -184,7 +184,4 @@ silent! call ToggleAutochdir()
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 
-" 
-autocmd BufNew,BufNewFile * let b:compilers = []
-
 " }}}

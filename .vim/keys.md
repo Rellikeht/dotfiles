@@ -47,6 +47,31 @@ Not very accurate, at least for now.
 
 - <C-n>, <C-p> - sneak
 
+# <Space> combinations
+
+- navigation in arglist
+
+## Special cases
+
+- q - settings
+- m - :make, :compiler and stuff
+- j - quickstack (my own mini harpoon inspired thing built
+  around quickfix list)
+- i - some info commands
+- t - tags
+- u - "+p
+- U - "+P
+- y - "+y
+- Y - "+Y
+
+## Free
+
+b,c,f,h,k,s,v,w,z
+
+<tab>,/,?,+,-
+
+1-9,\[,\]
+
 # <Space><Space> combinations
 
 - navigation between buffers (:b commands)
@@ -64,9 +89,21 @@ Not very accurate, at least for now.
 
 # <Tab> combinations
 
+## Typical
+
 - tab management
 - splits
 - windows resizing
+
+## Other
+
+- w - save and refresh with delay
+- h - help in tab
+- k - K in separate tab
+- u - "\*p
+- U - "\*P
+- y - "\*y
+- Y - "\*Y
 
 # Leader (,) combinations
 
@@ -86,19 +123,15 @@ Not very accurate, at least for now.
   - kw - toggle workman layout help
   - m - man/help opening location
 
-- <Space> - no idea yet:
+- <Space>:
 
   - <Space> - setlocal hls!
+  - other - list of arglists (jumping between different
+    arglists)
 
 - ; - commands
 
 - f - diff operations
-
-## Code
-
-- c, C - compiling
-- m, M - make
-- r, R - running
 
 ## With plugins
 
@@ -200,7 +233,3 @@ Only Z and Q is used
 - yae - copy whole buffer
 - ; - motions
 - TODO - cosco (inserting semicolons and colons)
-
-# Available (or safe for remapping)
-
-TODO

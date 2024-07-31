@@ -34,26 +34,22 @@ command! We write | sleep 500 m | edit
 
 "}}}
 
-"{{{ completion
+"{{{ completion generation
 
-function GetCompl(name)
-  for n in getcompletion('', a:name)
-    echo n
+function CompleteList(list, lead, cmdline, curpos)
+  let completions = []
+  for e in a:list
+    if e =~ '^'.a:lead
+      let completions = add(completions, e)
+    endif
   endfor
+  return completions
 endfunction
 
-function InsCompl(name)
-  for n in getcompletion('', a:name)
-    execute 'norm i' . n . ''
-  endfor
-endfunction
-
-function GetAvailFtypes()
-  call GetCompl('filetype')
-endfunction
-
-function InsAvailFtypes()
-  call InsCompl('filetype')
+function GetCompForList(list)
+  return {lead, cmdline, curpos ->
+        \ CompleteList(a:list, lead, cmdline, curpos)
+        \ }
 endfunction
 
 "}}}
@@ -177,18 +173,6 @@ function ToggleHex()
   let &modified=l:modified
   let &readonly=l:oldreadonly
   let &modifiable=l:oldmodifiable
-endfunction
-
-"}}}
-
-"{{{ programming stuff
-
-let g:groff_pdf = 'groff -ktep -T pdf '
-function CompileGroffMs()
-  if get(b:, "bufcomp", 0)
-    " TODO maybe another function or parameter, for expand('%:t:r') ↓
-    call system(g:groff_pdf.' -ms '.expand('%').' > '.expand('%:r').'.pdf')
-  endif
 endfunction
 
 "}}}

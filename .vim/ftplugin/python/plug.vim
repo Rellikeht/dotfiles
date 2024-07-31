@@ -2,6 +2,9 @@ if exists("b:did_ftplugin")
   finish
 endif
 
-let b:compilers += ['python']
+let if get(b:, 'compilers', 0) == 0
+  let b:compilers = []
+endif
+b:compilers += ['python']
 
 compiler python

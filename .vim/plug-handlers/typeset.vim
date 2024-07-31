@@ -50,13 +50,6 @@ let g:vimtex_compiler_method = 'latexmk'
 
 "}}}
 
-"{{{ troff
-
-autocmd FileType groff,troff,nroff 
-      \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
-
-"}}}
-
 "{{{ TODO B pandoc
 
 " doesn't cooperate with neovim ?

@@ -2,7 +2,10 @@ if exists("b:did_ftplugin")
   finish
 endif
 
-let b:compilers += ['nix-build', 'flake-build']
+let if get(b:, 'compilers', 0) == 0
+  let b:compilers = []
+endif
+b:compilers += ['nix-build', 'flake-build']
 
 if expand('%:t') == 'flake.nix'
   compiler flake-build

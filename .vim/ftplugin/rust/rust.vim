@@ -2,6 +2,9 @@ if exists("b:did_ftplugin")
   finish
 endif
 
-let b:compilers += ['rustc', 'cargo']
+let if get(b:, 'compilers', 0) == 0
+  let b:compilers = []
+endif
+b:compilers += ['rustc', 'cargo']
 
 compiler cargo
