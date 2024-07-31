@@ -261,7 +261,13 @@ function RelCurFile()
   if expand('%') == ''
     return ''
   endif
-  let relpath = RelPath(expand('%:p:h'), w:prev_dir)
+
+  if &filetype == 'netrw'
+    let cpath = expand('%:p:h:h')
+  else
+    let cpath = expand('%:p:h')
+  endif
+  let relpath = RelPath(cpath, w:prev_dir)
   if relpath != '' && relpath =~ '[^/]$'
     let relpath = relpath.'/'
   endif
@@ -383,8 +389,12 @@ function ToggleAutochdir()
   if g:autochdir
     augroup AutoChdir
       autocmd BufLeave *
-            \ if &buftype == '' && isdirectory(expand('%:p:h'))
+            \ if &buftype == '' 
+            \ | if &filetype == 'netrw'
+            \ | let w:prev_dir = expand('%:p:h:h')
+            \ | elseif isdirectory(expand('%:p:h'))
             \ | let w:prev_dir = expand('%:p:h')
+            \ | endif
             \ | endif
       autocmd BufEnter *
             \ if &buftype == ''

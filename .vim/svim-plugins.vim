@@ -7,6 +7,7 @@ Plug 'jeetsukumaran/vim-pythonsense'
 " B TODO ???
 Plug 'zah/nim.vim', {'for': 'nim'}
 Plug 'ocaml/vim-ocaml', {'for': 'ocaml'}
+Plug 'bfrg/vim-cpp-modern', {'for': 'cpp'}
 
 " TODO C
 " Plug 'fatih/vim-go'

@@ -89,6 +89,7 @@ Plug("jgdavey/tslime.vim")
 Plug("vim-test/vim-test")
 
 Plug("p00f/clangd_extensions.nvim")
+Plug("ilyachur/cmake4vim")
 
 -- }}}
 

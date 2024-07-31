@@ -109,9 +109,6 @@ function InsertAlignToggle()
   endif
 endfunction
 
-autocmd FileType markdown
-      \ call InsertAlignToggle()
-
 nnoremap <Leader>ii :<C-u>call InsertAlignToggle()<CR>
 vnoremap <Leader>ii :<C-u>call InsertAlignToggle()\|norm gv<CR>
 

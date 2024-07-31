@@ -12,12 +12,6 @@ noremap <C-h> <C-]>
 noremap <C-w><C-h> 
       \ :<C-u>exe 'tab tag '.expand('<cword>')<CR>
 
-" Command line window
-autocmd FileType vim
-      \ if &buftype == "nofile" && bufname() == ""
-      \ | noremap <buffer> <C-m> <CR>
-      \ | endif
-
 "}}}
 
 "{{{ TODO C - polish - tags

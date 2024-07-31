@@ -171,18 +171,6 @@ let g:vsc_pattern = '\k'
 
 "{{{ other filetypes
 
-autocmd FileType nix 
-      \ setlocal commentstring=#\ %s
-      \ | setlocal shiftwidth=2 softtabstop=2 tabstop=2
-      \ | nnoremap <buffer> <silent> <Leader>nle
-      \ :NixEdit<CR>
-      \ | nnoremap <buffer> <Leader>nl<Space>
-      \ :NixEdit<Space>
-
-autocmd FileType zinc 
-      \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
-      \ | setlocal commentstring=%\ %s
-
 "}}}
 
 "{{{ haskell-vim
