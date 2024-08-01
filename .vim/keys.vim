@@ -3,12 +3,20 @@
 " copy simple mappings from normal to visual
 " 0yyprv$F<i\|norm gv
 
+function Exfiles(...)
+  if type(a:000[0]) == v:t_list
+    let l:fs = deepcopy(a:000[0])
+  else
+    let l:fs = deepcopy(a:000)
+  endif
+  let l:fs = map(l:fs, {_, e -> Expand(e)})
+  return join(l:fs, ' ')
+endfunction
+
 function s:Tabe(...)
   tabnew
   if len(a:000) > 0
-    let l:fs = deepcopy(a:000)
-    let l:fs = map(l:fs, {_, e -> Expand(e)})
-    exe 'argedit '.join(l:fs, ' ')
+    exe 'argedit '.Exfiles(a:000)
   else
     arglocal!
   endif

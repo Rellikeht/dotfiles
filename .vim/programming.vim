@@ -14,13 +14,13 @@ autocmd BufReadPre *
 
 "{{{ :make
 
-nnoremap expr <Space>mr g:qfloc ?
+nnoremap <expr> <Space>mr g:qfloc ?
       \ ':<C-u>lmake<CR>' : ':<C-u>make<CR>'
-vnoremap expr <Space>mr g:qfloc ?
+vnoremap <expr> <Space>mr g:qfloc ?
       \ ':<C-u>lmake\|norm gv<CR>' : ':<C-u>make\|norm gv<CR>'
-nnoremap expr <Space>m<Space>r g:qfloc ?
+nnoremap <expr> <Space>m<Space>r g:qfloc ?
       \ ':<C-u>lmake<Space>' : ':<C-u>make<Space>'
-vnoremap expr <Space>m<Space>r g:qfloc ?
+vnoremap <expr> <Space>m<Space>r g:qfloc ?
       \ ':<C-u>lmake  \|norm gv<C-Left><C-Left><Left>'
       \ ':<C-u>make  \|norm gv<C-Left><C-Left><Left>'
 

@@ -95,3 +95,9 @@ noremap <silent> <Leader>qsg
       \ .v:count1<CR>
 
 "}}}
+
+"{{{ other
+
+let g:colorizer_nomap = 1
+
+"}}}
