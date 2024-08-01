@@ -24,7 +24,7 @@ endfunction
 
 function DocView(ext)
   " This doesn't trigger "Press ENTER or type command ..." message
-  execute 'silent !'.g:pdf_viewers[g:cur_pdf_viewer].' '.expand('%:p:r').'.'.a:ext.' &'
+  execute 'silent !'.g:pdf_viewers[g:cur_pdf_viewer].' '.Expand('%:p:r').'.'.a:ext.' &'
   redraw!
 endfunction
 

@@ -26,10 +26,10 @@ noremap <silent> <leader>fp1 :<C-u>call DiffPut('//1')<CR>
 noremap <silent> <leader>fp2 :<C-u>call DiffPut('//2')<CR>
 noremap <silent> <leader>fp3 :<C-u>call DiffPut('//3')<CR>
 
-noremap <silent> <leader>fpf :<C-u>call DiffPut(expand('%:p'))<CR>
-noremap <silent> <leader>fp;f :<C-u>call DiffPut(expand('%:t'))<CR>
-noremap <silent> <leader>fgf :<C-u>call DiffGet(expand('%:p'))<CR>
-noremap <silent> <leader>fg;f :<C-u>call DiffGet(expand('%:t'))<CR>
+noremap <silent> <leader>fpf :<C-u>call DiffPut(Expand('%:p'))<CR>
+noremap <silent> <leader>fp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
+noremap <silent> <leader>fgf :<C-u>call DiffGet(Expand('%:p'))<CR>
+noremap <silent> <leader>fg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
 
 "}}}
 
@@ -40,21 +40,21 @@ noremap <silent> <leader>fg;f :<C-u>call DiffGet(expand('%:t'))<CR>
 " Pushing to dragon
 nnoremap <silent> <Leader>xy
       \ :<C-u>exe '!dragon --on-top --and-exit '.
-      \ expand("%").' 2>/dev/null &'<CR>
+      \ Expand("%").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
 vnoremap <silent> <Leader>xy
       \ :<C-u>exe '!dragon --on-top --and-exit '.
-      \ expand("%").' 2>/dev/null &'<CR>
+      \ Expand("%").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
       \ :norm gv<CR>
 
 nnoremap <silent> <Leader>xY
       \ :<C-u>exe '!dragon --on-top --and-exit '.
-      \ expand("<cfile>").' 2>/dev/null &'<CR>
+      \ Expand("<cfile>").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
 vnoremap <silent> <Leader>xY
       \ :<C-u>exe '!dragon --on-top --and-exit '.
-      \ expand("<cfile>").' 2>/dev/null &'<CR>
+      \ Expand("<cfile>").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
       \ :norm gv<CR>
 
@@ -142,177 +142,252 @@ function Grepprgs(current_arg, command_line, cursor_position)
   return g:grepprgs
 endfunction
 
-" let g:ripgrep = 0
 set grepprg=grep\ -EIn\ $*\ /dev/null
 
 command! -nargs=1 -complete=customlist,Grepprgs ExtGrep 
       \ set grepprg=<args>
 
-" TODO C more interesting way to switch
-nnoremap <Leader>xl<Tab> :<C-u>ExtGrep<Space>
-vnoremap <Leader>xl<Tab> :<C-u>ExtGrep  \|norm gv
+nnoremap <Space>s: :<C-u>ExtGrep<Space>
+vnoremap <Space>s: :<C-u>ExtGrep  \|norm gv
       \ <C-Left><C-Left><Left>
 
 "}}}
 
 "{{{ external
 
-noremap <expr> <Leader>xl<Space> g:qfloc ?
+noremap <expr> <Space>s- g:qfloc ?
+      \ ':<C-u>Lfilter /^[^\|][^\|] /<CR>'
+      \ : ':<C-u>Cfilter /^[^\|][^\|] /<CR>'
+
+noremap <expr> <Space>s;r g:qfloc ?
       \ ':<C-u>lgrep<Space>'
       \ : ':<C-u>grep<Space>'
-nnoremap <expr> <Leader>xlw g:qfloc ? 
-      \ ':<C-u>lgrep <cword> . <CR>'
-      \ : ':<C-u>grep <cword> . <CR>'
-vnoremap <expr> <Leader>xlw g:qfloc ? 
-      \ ":<C-u>exe 'lgrep '.GetVisualSelection().' .'<CR>\|norm gv"
-      \ : ":<C-u>exe 'grep '.GetVisualSelection().' .'<CR>\|norm gv"
+noremap <expr> <Space>s;R g:qfloc ?
+      \ ':<C-u>lgrep!<Space>'
+      \ : ':<C-u>grep!<Space>'
 
-nnoremap <expr> <Leader>xl. g:qfloc ?
+noremap <expr> <Space>sr g:qfloc ?
       \ ':<C-u>'.v:count1.'lgrep<Space>'
       \ : ':<C-u>'.v:count1.'grep<Space>'
-noremap <expr> <Leader>xl<Space> g:qfloc ?
-      \ ':<C-u>lgrep<Space>'
-      \ : ':<C-u>grep<Space>'
-
-noremap <expr> <Leader>xlf g:qfloc ?
-      \ ':<C-u>'.v:count1.
-      \ 'lgrep  %<Left><Left>'
-      \ : ':<C-u>'.v:count1.
-      \ 'lgrep  %<Left><Left>'
-
-" arglist doesn't work with external commands
-" nnoremap <expr> <Leader>xll g:qfloc ? 
-"             \ ':<C-u>lgrep '.shellescape(expand('<cword>')).' ## <CR>'
-"             \ : ':<C-u>grep '.shellescape(expand('<cword>')).' ## <CR>'
-" vnoremap <expr> <Leader>xll g:qfloc ? 
-"             \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
-"             \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
-" nnoremap <expr> <Leader>xlL g:qfloc ? 
-"             \ ':<C-u>lgrep '.shellescape(expand('<cword>')).' ## <CR>'
-"             \ : ':<C-u>grep '.shellescape(expand('<cword>')).' ## <CR>'
-" vnoremap <expr> <Leader>xlL g:qfloc ? 
-"             \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
-"             \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
-
-nnoremap <expr> <Leader>xla g:qfloc ? 
-      \ ':<C-u>lgrep '.expand('<cword>').' * <CR>'
-      \ : ':<C-u>grep '.expand('<cword>').' * <CR>'
-vnoremap <expr> <Leader>xla g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
-nnoremap <expr> <Leader>xlA g:qfloc ? 
-      \ ':<C-u>lgrep '.expand('<cword>').' * <CR>'
-      \ : ':<C-u>grep '.expand('<cword>').' * <CR>'
-vnoremap <expr> <Leader>xlA g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
-
-nnoremap <expr> <Leader>xlr g:qfloc ? 
-      \ ':<C-u>lgrep '.expand('<cword>').' **/* <CR>'
-      \ : ':<C-u>grep '.expand('<cword>').' **/* <CR>'
-vnoremap <expr> <Leader>xlr g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
-nnoremap <expr> <Leader>xlR g:qfloc ? 
-      \ ':<C-u>lgrep '.expand('<cword>').' **/* <CR>'
-      \ : ':<C-u>grep '.expand('<cword>').' **/* <CR>'
-vnoremap <expr> <Leader>xlR g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
-
-nnoremap <expr> <Leader>xl<Space>a g:qfloc ? 
-      \ ':<C-u>lgrep  *<C-Left><Left>'
-      \ : ':<C-u>grep  *<C-Left><Left>'
-nnoremap <expr> <Leader>xl<Space>r g:qfloc ? 
-      \ ':<C-u>lgrep  **/*<C-Left><Left>'
-      \ : ':<C-u>grep  **/*<C-Left><Left>'
-
-" nnoremap <expr> <Leader>xl<Space>l g:qfloc ? 
-"             \ ':<C-u>lgrep  ##<C-Left><Left>'
-"             \ : ':<C-u>grep  ##<C-Left><Left>'
+noremap <expr> <Space>sR g:qfloc ?
+      \ ':<C-u>'.v:count1.'lgrep!<Space>'
+      \ : ':<C-u>'.v:count1.'grep!<Space>'
 
 "}}}
 
 "{{{ vimgrep
 
-nnoremap <expr> <Leader>x/. g:qfloc ?
+noremap <expr> <Space>fr g:qfloc ?
       \ ':<C-u>'.v:count1.'lvimgrep<Space>'
       \ : ':<C-u>'.v:count1.'vimgrep<Space>'
+noremap <expr> <Space>fR g:qfloc ?
+      \ ':<C-u>'.v:count1.'lvimgrep!<Space>'
+      \ : ':<C-u>'.v:count1.'vimgrep!<Space>'
 
-nnoremap <expr> <Leader>x/r g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/gj **/* <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/gj **/* <CR>'
-vnoremap <expr> <Leader>x/r g:qfloc ? 
+noremap <expr> <Space>f;r g:qfloc ?
+      \ ':<C-u>lgrep<Space>'
+      \ : ':<C-u>grep<Space>'
+noremap <expr> <Space>f;R g:qfloc ?
+      \ ':<C-u>lvimgrep!<Space>'
+      \ : ':<C-u>vimgrep!<Space>'
+
+"}}}
+
+"{{{ old grep
+
+nnoremap <expr> <Space>sc g:qfloc ? 
+      \ ':<C-u>lgrep <cword> . <CR>'
+      \ : ':<C-u>grep <cword> . <CR>'
+vnoremap <expr> <Space>sc g:qfloc ? 
+      \ ":<C-u>exe 'lgrep '.GetVisualSelection().' .'<CR>\|norm gv"
+      \ : ":<C-u>exe 'grep '.GetVisualSelection().' .'<CR>\|norm gv"
+
+noremap <expr> <Space>sf g:qfloc ?
+      \ ':<C-u>'.v:count1.
+      \ 'lgrep  %<Left><Left>'
+      \ : ':<C-u>'.v:count1.
+      \ 'grep  %<Left><Left>'
+
+" arglist doesn't work with external commands
+" nnoremap <expr> <Space>sll g:qfloc ? 
+"             \ ':<C-u>lgrep '.shellescape(Expand('<cword>')).' ## <CR>'
+"             \ : ':<C-u>grep '.shellescape(Expand('<cword>')).' ## <CR>'
+" vnoremap <expr> <Space>sll g:qfloc ? 
+"             \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
+"             \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
+" nnoremap <expr> <Space>slL g:qfloc ? 
+"             \ ':<C-u>lgrep '.shellescape(Expand('<cword>')).' ## <CR>'
+"             \ : ':<C-u>grep '.shellescape(Expand('<cword>')).' ## <CR>'
+" vnoremap <expr> <Space>slL g:qfloc ? 
+"             \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
+"             \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
+
+nnoremap <expr> <Space>sla g:qfloc ? 
+      \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
+      \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
+vnoremap <expr> <Space>sla g:qfloc ? 
+      \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
+      \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
+nnoremap <expr> <Space>slA g:qfloc ? 
+      \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
+      \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
+vnoremap <expr> <Space>slA g:qfloc ? 
+      \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
+      \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
+
+nnoremap <expr> <Space>slr g:qfloc ? 
+      \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
+      \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
+vnoremap <expr> <Space>slr g:qfloc ? 
+      \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
+      \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
+nnoremap <expr> <Space>slR g:qfloc ? 
+      \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
+      \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
+vnoremap <expr> <Space>slR g:qfloc ? 
+      \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
+      \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
+
+nnoremap <expr> <Space>sl<Space>a g:qfloc ? 
+      \ ':<C-u>lgrep  *<C-Left><Left>'
+      \ : ':<C-u>grep  *<C-Left><Left>'
+nnoremap <expr> <Space>sl<Space>r g:qfloc ? 
+      \ ':<C-u>lgrep  **/*<C-Left><Left>'
+      \ : ':<C-u>grep  **/*<C-Left><Left>'
+
+" nnoremap <expr> <Space>sl<Space>l g:qfloc ? 
+"             \ ':<C-u>lgrep  ##<C-Left><Left>'
+"             \ : ':<C-u>grep  ##<C-Left><Left>'
+
+
+"}}}
+
+"{{{ old vimgrep
+
+nnoremap <expr> <Space>s/r g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj **/* <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj **/* <CR>'
+vnoremap <expr> <Space>s/r g:qfloc ? 
       \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj **/* \| norm gv<CR>'
       \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj **/* \| norm gv<CR>'
-nnoremap <expr> <Leader>x/R g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/fgj **/* <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/fgj **/* <CR>'
-vnoremap <expr> <Leader>x/R g:qfloc ? 
+nnoremap <expr> <Space>s/R g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj **/* <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj **/* <CR>'
+vnoremap <expr> <Space>s/R g:qfloc ? 
       \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj **/* \| norm gv<CR>'
       \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj **/* \| norm gv<CR>'
 
-nnoremap <expr> <Leader>x/a g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/gj * <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/gj * <CR>'
-vnoremap <expr> <Leader>x/a g:qfloc ? 
+nnoremap <expr> <Space>s/a g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj * <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj * <CR>'
+vnoremap <expr> <Space>s/a g:qfloc ? 
       \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj * \| norm gv<CR>'
       \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj * \| norm gv<CR>'
-nnoremap <expr> <Leader>x/A g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/fgj * <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/fgj * <CR>'
-vnoremap <expr> <Leader>x/A g:qfloc ? 
+nnoremap <expr> <Space>s/A g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj * <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj * <CR>'
+vnoremap <expr> <Space>s/A g:qfloc ? 
       \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj * \| norm gv<CR>'
       \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj * \| norm gv<CR>'
 
-nnoremap <expr> <Leader>x/l g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/gj ## <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/gj ## <CR>'
-vnoremap <expr> <Leader>x/l g:qfloc ? 
+nnoremap <expr> <Space>s/l g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj ## <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj ## <CR>'
+vnoremap <expr> <Space>s/l g:qfloc ? 
       \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj ## \| norm gv<CR>'
       \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj ## \| norm gv<CR>'
-nnoremap <expr> <Leader>x/L g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/fgj ## <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/fgj ## <CR>'
-vnoremap <expr> <Leader>x/L g:qfloc ? 
+nnoremap <expr> <Space>s/L g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj ## <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj ## <CR>'
+vnoremap <expr> <Space>s/L g:qfloc ? 
       \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
       \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
 
-nnoremap <expr> <Leader>x/<Space>a g:qfloc ? 
+nnoremap <expr> <Space>s/<Space>a g:qfloc ? 
       \ ':<C-u>lvimgrep //gj *<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //gj *<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>x/<Space>r g:qfloc ? 
+nnoremap <expr> <Space>s/<Space>r g:qfloc ? 
       \ ':<C-u>lvimgrep //gj **/*<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //gj **/*<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>x/<Space>l g:qfloc ? 
+nnoremap <expr> <Space>s/<Space>l g:qfloc ? 
       \ ':<C-u>lvimgrep //gj ##<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //gj ##<C-Left><C-Left><Right>'
 
-nnoremap <expr> <Leader>x/<Space>A g:qfloc ? 
+nnoremap <expr> <Space>s/<Space>A g:qfloc ? 
       \ ':<C-u>lvimgrep //fgj *<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //fgj *<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>x/<Space>R g:qfloc ? 
+nnoremap <expr> <Space>s/<Space>R g:qfloc ? 
       \ ':<C-u>lvimgrep //fgj **/*<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //fgj **/*<C-Left><C-Left><Right>'
-nnoremap <expr> <Leader>x/<Space>L g:qfloc ? 
+nnoremap <expr> <Space>s/<Space>L g:qfloc ? 
       \ ':<C-u>lvimgrep //fgj ##<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //fgj ##<C-Left><C-Left><Right>'
 
-nnoremap <expr> <Leader>x/c g:qfloc ?
+nnoremap <expr> <Space>s/c g:qfloc ?
       \ ':<C-u>lvimgrep //jg<C-left><Right>'
       \ : ':<C-u>vimgrep //jg<C-left><Right>'
-nnoremap <expr> <Leader>x/C g:qfloc ?
+nnoremap <expr> <Space>s/C g:qfloc ?
       \ ':<C-u>lvimgrep //fjg<C-left><Right>'
       \ : ':<C-u>vimgrep //fjg<C-left><Right>'
 
-noremap <expr> <Leader>x/f g:qfloc ?
+noremap <expr> <Space>s/f g:qfloc ?
       \ ':<C-u>'.v:count1.
       \ 'lvimgrep //g %<C-Left><C-Left><Right>'
       \ : ':<C-u>'.v:count1.
       \ 'vimgrep //g %<C-Left><C-Left><Right>'
-noremap <expr> <Leader>x/F g:qfloc ?
+noremap <expr> <Space>s/F g:qfloc ?
       \ ':<C-u>lvimgrep //g %<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //g %<C-Left><C-Left><Right>'
+
+"}}}
+
+"{{{ procedural
+
+" function PathMap(key, path, cr=1)
+"   exe 'noremap <leader>sp'.a:key.
+"         \ ' :<C-u>Files '.a:path.
+"         \ (a:cr ? '<CR>' : '')
+"   exe 'noremap <leader>sa'.a:key.
+"         \ ' :<C-u>Args '.a:path.
+"         \ (a:cr ? '<CR>' : '')
+"   exe 'noremap <leader>sm'.a:key.
+"         \ ' :<C-u>MArgs '.a:path.
+"         \ (a:cr ? '<CR>' : '')
+"   exe 'noremap <leader>sg'.a:key.
+"         \ ' :<C-u>Dag '.a:path.
+"         \ (a:cr ? '<CR>' : '')
+"   exe 'noremap <leader>su'.a:key.
+"         \ ' :<C-u>Dau '.a:path.
+"         \ (a:cr ? '<CR>' : '')
+"   exe 'noremap <leader>sd'.a:key.
+"         \ ' :<C-u>Dgrep '.a:path.
+"         \ (a:cr ? '<CR>' : '')
+" endfunction
+
+" let paths = {
+"       \ '1':'..',
+"       \ '2':'../..',
+"       \ '3':'../../..',
+"       \ '4':'../../../..',
+"       \ '5':'../../../../..',
+"       \ '6':'../../../../../..',
+"       \ '7':'../../../../../../..',
+"       \ '8':'../../../../../../../..',
+"       \ '9':'../../../../../../../../..',
+"       \ 't':'~/Templates',
+"       \ 'c':'%',
+"       \ 's':['*', './*'],
+"       \ 'h':'* .*',
+"       \ }
+
+" let expands = {
+"       \ 'a':'##',
+"       \ }
+
+" for key in keys(paths)
+"   call PathMap(key, paths[key])
+" endfor
+" call PathMap('<Space>', '', 0)
 
 "}}}
 

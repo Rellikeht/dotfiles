@@ -17,19 +17,19 @@ function s:Tm(cmd)
 endfunction
 
 function s:Ccd()
-  let path = expand('%:h')
+  let path = Expand('%:h')
   execute 'cd' path
 endfunction
 
 function s:Setup2Panes()
-  let path = expand('%:h')
+  let path = Expand('%:h')
   execute 'cd' path
   call Tm('split-window -h -c '.path)
   call Tm('select-pane -R')
 endfunction
 
 function s:MakeThirdVertical()
-  let path = expand('%:h')
+  let path = Expand('%:h')
   execute 'cd' path
   call Tm('select-pane -R')
   call Tm('split-window -v -c '.path)
@@ -37,7 +37,7 @@ function s:MakeThirdVertical()
 endfunction
 
 function s:Setup3Panes()
-  let path = expand('%:h')
+  let path = Expand('%:h')
   call Tm('split-window -h -c '.path)
   call Tm('split-window -v -c '.path)
   call Tm('select-pane -U')
@@ -47,7 +47,7 @@ endfunction
 
 " This shit doesn't work
 function s:CdPanesDangerous(clear)
-  let path = expand('%:p:h')
+  let path = Expand('%:p:h')
   execute 'Tmux send-keys Escape :'
   execute 'Tmux setw synchronize-panes on'
   execute 'Tmux send-keys \"cd '.shellescape(path).'\"'
@@ -221,8 +221,6 @@ nnoremap <silent> gsB :call <SID>SendKeys("rlwrap " . &filetype . ' ' . g:ret)<C
 " Maybe in the future more debuggers will land here
 " but this all is mostly useless
 
-" line('.') - current line
-" expand('%:t') - current filename (tail)
 " gdb can't toggle breakpoints,
 " so here should be kept list of them :(
 

@@ -59,7 +59,7 @@ function ApplyArglist(list)
 endfunction
 
 function UpdateArglist()
-  let fname = Fpath(expand('%'))
+  let fname = Fpath(Expand('%'))
   if index(w:arglists[w:cur_arglist][1:], fname) >= 0
     let w:arglists[w:cur_arglist] =
           \ NewArglist(argv(), argidx())

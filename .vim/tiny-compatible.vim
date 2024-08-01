@@ -1,5 +1,9 @@
 "{{{ helpers
 
+function Expand(f)
+  return escape(expand(a:f), " '\"")
+endfunction
+
 command! -nargs=1 -complete=arglist Argument 
       \ argedit <args>
       \ | argdedupe
@@ -85,10 +89,10 @@ noremap <Tab>f :<C-u>tabfind<Space>
 noremap <Tab>F :<C-u>-tabfind<Space>
 
 noremap <Tab><Space>o :<C-u>tabedit  \|
-      \exe 'arglocal! '.expand('%')
+      \exe 'arglocal! '.Expand('%')
       \<C-Left><C-Left><C-Left><C-Left><Left>
 noremap <Tab><Space>O :<C-u>-tabedit  \|
-      \exe 'arglocal! '.expand('%')
+      \exe 'arglocal! '.Expand('%')
       \<C-Left><C-Left><C-Left><C-Left><Left>
 
 noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
@@ -336,10 +340,10 @@ nnoremap <Space>x<Space>w :<C-u>arglocal<Space>
 vnoremap <Space>x<Space>w :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>x<Space>W :<C-u>arglocal!<Space>
 vnoremap <Space>x<Space>W :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>x;w :<C-u>exe 'arglocal '.expand('%')<CR>
-vnoremap <Space>x;w :<C-u>exe 'arglocal '.expand('%')\|norm gv<CR>
-nnoremap <Space>x;W :<C-u>exe 'arglocal! '.expand('%')<CR>
-vnoremap <Space>x;W :<C-u>exe 'arglocal! '.expand('%')\|norm gv<CR>
+nnoremap <Space>x;w :<C-u>exe 'arglocal '.Expand('%')<CR>
+vnoremap <Space>x;w :<C-u>exe 'arglocal '.Expand('%')\|norm gv<CR>
+nnoremap <Space>x;W :<C-u>exe 'arglocal! '.Expand('%')<CR>
+vnoremap <Space>x;W :<C-u>exe 'arglocal! '.Expand('%')\|norm gv<CR>
 
 nnoremap <silent> <Space>xg :<C-u>argglobal<CR>
 vnoremap <silent> <Space>xg :<C-u>argglobal\|norm gv<CR>
@@ -352,10 +356,10 @@ nnoremap <Space>x<Space>G :<C-u>argglobal!<Space>
 vnoremap <Space>x<Space>G
       \ :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
 
-nnoremap <Space>x;g :<C-u>exe 'argglobal '.expand('%')<CR>
-vnoremap <Space>x;g :<C-u>exe 'argglobal '.expand('%')\|norm gv<CR>
-nnoremap <Space>x;G :<C-u>exe 'argglobal! '.expand('%')<CR>
-vnoremap <Space>x;G :<C-u>exe 'argglobal! '.expand('%')\|norm gv<CR>
+nnoremap <Space>x;g :<C-u>exe 'argglobal '.Expand('%')<CR>
+vnoremap <Space>x;g :<C-u>exe 'argglobal '.Expand('%')\|norm gv<CR>
+nnoremap <Space>x;G :<C-u>exe 'argglobal! '.Expand('%')<CR>
+vnoremap <Space>x;G :<C-u>exe 'argglobal! '.Expand('%')\|norm gv<CR>
 
 nnoremap <Space>xu :<C-u>update<CR>
 vnoremap <Space>xu :<C-u>update\|norm gv<CR>

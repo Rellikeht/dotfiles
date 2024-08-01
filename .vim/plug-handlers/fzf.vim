@@ -147,7 +147,6 @@ nnoremap <leader>gfs :<C-u>GFiles?<CR>
 
 "}}}
 
-" TODO on a directory
 "{{{ custom greps
 
 let grep_args = '-EI --line-number'
@@ -258,7 +257,7 @@ command! -bang -nargs=? -complete=dir Fdiffs
       \ 'dir': <q-args>,
       \ 'options': [
       \ '--preview',
-      \ 'delta '.expand("%:p").' {}',
+      \ 'delta '.Expand("%:p").' {}',
       \ '--preview-window',
       \ fzf_preview_default,
       \ ],
@@ -271,7 +270,7 @@ command! -bang -nargs=? -complete=dir Fdiffv
       \ 'dir': <q-args>,
       \ 'options': [
       \ '--preview',
-      \ 'delta '.expand("%:p").' {}',
+      \ 'delta '.Expand("%:p").' {}',
       \ '--preview-window',
       \ fzf_preview_default,
       \ ],
@@ -331,7 +330,7 @@ nnoremap <leader>sl<Space>m :MArgeditFzf<Space>
 
 "{{{ dirs mappings
 
-function PathMap(key, path, cr=1)
+function s:PathMap(key, path, cr=1)
   exe 'noremap <leader>sp'.a:key.
         \ ' :<C-u>Files '.a:path.
         \ (a:cr ? '<CR>' : '')
@@ -372,9 +371,9 @@ let paths = {
       \ }
 
 for key in keys(paths)
-  call PathMap(key, paths[key])
+  call s:PathMap(key, paths[key])
 endfor
-call PathMap('<Space>', '', 0)
+call s:PathMap('<Space>', '', 0)
 
 "}}}
 

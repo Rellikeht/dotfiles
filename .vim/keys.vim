@@ -3,6 +3,20 @@
 " copy simple mappings from normal to visual
 " 0yyprv$F<i\|norm gv
 
+function s:Tabe(...)
+  tabnew
+  if len(a:000) > 0
+    let l:fs = deepcopy(a:000)
+    let l:fs = map(l:fs, {_, e -> Expand(e)})
+    exe 'argedit '.join(l:fs, ' ')
+  else
+    arglocal!
+  endif
+endfunction
+
+command! -nargs=* -complete=file Tabe
+      \ call s:Tabe(<f-args>)
+
 "}}}
 
 "{{{ remaps
@@ -10,7 +24,7 @@
 noremap .. .
 map <C-h> <C-]>
 noremap <C-w><C-h> 
-      \ :<C-u>exe 'tab tag '.expand('<cword>')<CR>
+      \ :<C-u>exe 'tab tag '.Expand('<cword>')<CR>
 
 "}}}
 
@@ -68,6 +82,8 @@ noremap <Space>t<Space>A :<C-u>ltag!<Space>
 
 "{{{ better tab
 
+noremap <Tab>o :<C-u>Tabe<Space>
+noremap <Tab>O :<C-u>-Tabe<Space>
 noremap <silent> <Tab>k K<C-w>T
 nnoremap <Tab>gf :<C-u>tabedit <cfile><CR>
 
@@ -365,16 +381,16 @@ vnoremap <expr> .e g:qfloc ?
 
 " search into quickfix list
 nnoremap <expr> ./ g:qfloc ? 
-      \ ':<C-u>g//lexpr expand("%").":".line(".").":".getline(".")
+      \ ':<C-u>g//lexpr Expand("%").":".line(".").":".getline(".")
       \ <Home><Right><Right>'
-      \ : ':<C-u>g//cexpr expand("%").":".line(".").":".getline(".")
+      \ : ':<C-u>g//cexpr Expand("%").":".line(".").":".getline(".")
       \ <Home><Right><Right>'
 
 " search into quickfix list
 nnoremap <expr> .? g:qfloc ? 
-      \ ':<C-u>g//laddexpr expand("%").":".line(".").":".getline(".")
+      \ ':<C-u>g//laddexpr Expand("%").":".line(".").":".getline(".")
       \ <Home><Right><Right>'
-      \ : ':<C-u>g//caddexpr expand("%").":".line(".").":".getline(".")
+      \ : ':<C-u>g//caddexpr Expand("%").":".line(".").":".getline(".")
       \ <Home><Right><Right>'
 
 noremap <expr> .f g:qfloc ?
@@ -402,7 +418,8 @@ augroup Quickfix "{{{
         \| nnoremap <buffer> <silent> <BS> <CR>
         \| nmap <buffer> <CR>
         \ :<C-u>let qpos = getpos('.')<CR>
-        \<BS>:wincmd p<CR>:call setpos('.', qpos)<CR>
+        \<BS>.w
+        \:call setpos('.', qpos)<CR>
         \<C-l><Right><Left>
         \| nmap <buffer> <silent> <C-h>
         \ <CR>:call WQFcmd('close')<CR>

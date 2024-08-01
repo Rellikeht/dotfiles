@@ -16,16 +16,22 @@ autocmd WinNew,VimEnter *
 
 " arglocal with current file for all new tabs
 autocmd TabNew *
-      \ let t:make_list = 1
+      \ let t:make_list = get(t:, 'make_list', 1)
 
+" TODO A is this better with checking if exists
 " Has to use this because of order of events
 autocmd BufEnter *
       \ if get(t:, 'make_list', 0)
-      \ | if exists('%')
-      \ | exe 'arglocal! %'
+      \ |   if expand('%') == ''
+      \ |     arglocal!
+      \ |     for _ in range(argc())
+      \ |       argdelete
+      \ |     endfor
+      \ |   else
+      \ |     exe 'arglocal! %'
+      \ |   endif
       \ | endif
       \ | let t:make_list = 0
-      \ | endif
 
 " set secure
 " shitty, but works somehow

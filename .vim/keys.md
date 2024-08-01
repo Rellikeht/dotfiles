@@ -65,10 +65,12 @@ Not very accurate, at least for now.
 - U - "+P
 - y - "+y
 - Y - "+Y
+- s - `:[l]grep` and stuff
+- f - `:[l]vimgrep` and stuff
 
 ## Free
 
-b,c,f,h,k,s,v,w,z
+b,c,h,k,v,w,z
 
 <tab>,/,?,+,-
 
