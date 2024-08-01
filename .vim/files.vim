@@ -118,17 +118,27 @@ command! -nargs=+ -complete=file_in_path Grep cexpr Grep(<f-args>)
 
 "}}}
 
-"{{{ external providers
+"{{{ TODO A external providers
+" There are recursive and nonrecursive greps
+" ripgrep nonrecursive is `--max-depth=0`
+" vimgrep is nonrecursive but `*` and similar
+" are expanded without directories
+" for recursivity it needs `**`
+" paths need some **/* and other stuff
+" and recursive greps rather
+" also hidden directories may be hard
+" and wildcards are fucked when used shell is simple
+" (/usr/bin/env sh)
 
-" TODO A more
 let g:grepprgs = 
       \ [
+      \ 'grep\ -EIn\ $*',
       \ 'grep\ -EIn\ $*\ /dev/null',
-      \ 'rg\ --vimgrep\ --smart-case\ --hidden',
+      \ 'rg\ --vimgrep\ --smart-case\ --hidden $*',
       \ ]
 
 " https://vi.stackexchange.com/questions/35139/custom-arguments-to-user-command
-function Grepprgs(current_arg, command_line, cursor_position)
+function s:Grepprgs(current_arg, command_line, cursor_position)
   let l = len(a:current_arg) - 1
   if l >= 0
     let filtered_args = copy(g:grepprgs)
@@ -142,9 +152,10 @@ function Grepprgs(current_arg, command_line, cursor_position)
   return g:grepprgs
 endfunction
 
-set grepprg=grep\ -EIn\ $*\ /dev/null
+" set grepprg=grep\ -EIn\ $*\ /dev/null
+" exe 'set grepprg='.grepprgs[0]
 
-command! -nargs=1 -complete=customlist,Grepprgs ExtGrep 
+command! -nargs=1 -complete=customlist,s:Grepprgs ExtGrep 
       \ set grepprg=<args>
 
 nnoremap <Space>s: :<C-u>ExtGrep<Space>
@@ -177,36 +188,123 @@ noremap <expr> <Space>sR g:qfloc ?
 
 "{{{ vimgrep
 
+"{{{ simple commands
+
 noremap <expr> <Space>fr g:qfloc ?
+      \ ':<C-u>lvimgrep<Space>'
+      \ : ':<C-u>vimgrep<Space>'
+noremap <expr> <Space>fR g:qfloc ?
+      \ ':<C-u>lvimgrep!<Space>'
+      \ : ':<C-u>vimgrep!<Space>'
+
+noremap <expr> <Space>f;r g:qfloc ?
       \ ':<C-u>'.v:count1.'lvimgrep<Space>'
       \ : ':<C-u>'.v:count1.'vimgrep<Space>'
-noremap <expr> <Space>fR g:qfloc ?
+noremap <expr> <Space>f;R g:qfloc ?
       \ ':<C-u>'.v:count1.'lvimgrep!<Space>'
       \ : ':<C-u>'.v:count1.'vimgrep!<Space>'
 
-noremap <expr> <Space>f;r g:qfloc ?
-      \ ':<C-u>lgrep<Space>'
-      \ : ':<C-u>grep<Space>'
-noremap <expr> <Space>f;R g:qfloc ?
-      \ ':<C-u>lvimgrep!<Space>'
-      \ : ':<C-u>vimgrep!<Space>'
+nnoremap <expr> <Space>fc g:qfloc ?
+      \ ':<C-u>lvimgrep //jg<C-left><Right>'
+      \ : ':<C-u>vimgrep //jg<C-left><Right>'
+nnoremap <expr> <Space>fC g:qfloc ?
+      \ ':<C-u>lvimgrep //fgj<C-left><Right>'
+      \ : ':<C-u>vimgrep //fgj<C-left><Right>'
+
+noremap <expr> <Space>ff g:qfloc ?
+      \ ':<C-u>lvimgrep //gj %<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //gj %<C-Left><C-Left><Right>'
+noremap <expr> <Space>fF g:qfloc ?
+      \ ':<C-u>lvimgrep //fgj %<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //fgj %<C-Left><C-Left><Right>'
+
+"}}}
+
+"{{{ all files in curdir
+
+nnoremap <expr> <Space>fa g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj * .*<CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj * .*<CR>'
+vnoremap <expr> <Space>fa g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj * .* \| norm gv<CR>'
+      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj * .* \| norm gv<CR>'
+nnoremap <expr> <Space>fA g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj * .* <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj * .* <CR>'
+vnoremap <expr> <Space>fA g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj * .* \| norm gv<CR>'
+      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj * .* \| norm gv<CR>'
+
+nnoremap <expr> <Space>fh g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj * <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj * <CR>'
+vnoremap <expr> <Space>fh g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj * \| norm gv<CR>'
+      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj * \| norm gv<CR>'
+nnoremap <expr> <Space>fH g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj * <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj * <CR>'
+vnoremap <expr> <Space>fH g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj * \| norm gv<CR>'
+      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj * \| norm gv<CR>'
+
+nnoremap <expr> <Space>f<Space>a g:qfloc ? 
+      \ ':<C-u>lvimgrep //gj * .*<C-Left><C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //gj * .*<C-Left><C-Left><C-Left><Right>'
+nnoremap <expr> <Space>f<Space>A g:qfloc ? 
+      \ ':<C-u>lvimgrep //fgj * .*<C-Left><C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //fgj * .*<C-Left><C-Left><C-Left><Right>'
+
+nnoremap <expr> <Space>f<Space>h g:qfloc ? 
+      \ ':<C-u>lvimgrep //gj *<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //gj *<C-Left><C-Left><Right>'
+nnoremap <expr> <Space>f<Space>H g:qfloc ? 
+      \ ':<C-u>lvimgrep //fgj *<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //fgj *<C-Left><C-Left><Right>'
+
+"}}}
+
+"{{{ arglist
+
+nnoremap <expr> <Space>fl g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj ## <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj ## <CR>'
+vnoremap <expr> <Space>fl g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj ## \| norm gv<CR>'
+      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj ## \| norm gv<CR>'
+
+nnoremap <expr> <Space>fL g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj ## <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj ## <CR>'
+vnoremap <expr> <Space>fL g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
+      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
+
+nnoremap <expr> <Space>f<Space>l g:qfloc ? 
+      \ ':<C-u>lvimgrep //gj ##<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //gj ##<C-Left><C-Left><Right>'
+nnoremap <expr> <Space>f<Space>L g:qfloc ? 
+      \ ':<C-u>lvimgrep //fgj ##<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //fgj ##<C-Left><C-Left><Right>'
+
+"}}}
 
 "}}}
 
 "{{{ old grep
 
-nnoremap <expr> <Space>sc g:qfloc ? 
-      \ ':<C-u>lgrep <cword> . <CR>'
-      \ : ':<C-u>grep <cword> . <CR>'
-vnoremap <expr> <Space>sc g:qfloc ? 
-      \ ":<C-u>exe 'lgrep '.GetVisualSelection().' .'<CR>\|norm gv"
-      \ : ":<C-u>exe 'grep '.GetVisualSelection().' .'<CR>\|norm gv"
+" nnoremap <expr> <Space>sc g:qfloc ? 
+"       \ ':<C-u>lgrep <cword> . <CR>'
+"       \ : ':<C-u>grep <cword> . <CR>'
+" vnoremap <expr> <Space>sc g:qfloc ? 
+"       \ ":<C-u>exe 'lgrep '.GetVisualSelection().' .'<CR>\|norm gv"
+"       \ : ":<C-u>exe 'grep '.GetVisualSelection().' .'<CR>\|norm gv"
 
-noremap <expr> <Space>sf g:qfloc ?
-      \ ':<C-u>'.v:count1.
-      \ 'lgrep  %<Left><Left>'
-      \ : ':<C-u>'.v:count1.
-      \ 'grep  %<Left><Left>'
+" noremap <expr> <Space>sf g:qfloc ?
+"       \ ':<C-u>'.v:count1.
+"       \ 'lgrep  %<Left><Left>'
+"       \ : ':<C-u>'.v:count1.
+"       \ 'grep  %<Left><Left>'
 
 " arglist doesn't work with external commands
 " nnoremap <expr> <Space>sll g:qfloc ? 
@@ -222,38 +320,38 @@ noremap <expr> <Space>sf g:qfloc ?
 "             \ ':<C-u>lgrep '.GetVisualSelection().' ## \| norm gv<CR>'
 "             \ : ':<C-u>grep '.GetVisualSelection().' ## \| norm gv<CR>'
 
-nnoremap <expr> <Space>sla g:qfloc ? 
-      \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
-      \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
-vnoremap <expr> <Space>sla g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
-nnoremap <expr> <Space>slA g:qfloc ? 
-      \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
-      \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
-vnoremap <expr> <Space>slA g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
+" nnoremap <expr> <Space>sla g:qfloc ? 
+"       \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
+"       \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
+" vnoremap <expr> <Space>sla g:qfloc ? 
+"       \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
+"       \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
+" nnoremap <expr> <Space>slA g:qfloc ? 
+"       \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
+"       \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
+" vnoremap <expr> <Space>slA g:qfloc ? 
+"       \ ':<C-u>lgrep '.GetVisualSelection().' * \| norm gv<CR>'
+"       \ : ':<C-u>grep '.GetVisualSelection().' * \| norm gv<CR>'
 
-nnoremap <expr> <Space>slr g:qfloc ? 
-      \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
-      \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
-vnoremap <expr> <Space>slr g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
-nnoremap <expr> <Space>slR g:qfloc ? 
-      \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
-      \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
-vnoremap <expr> <Space>slR g:qfloc ? 
-      \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
-      \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
+" nnoremap <expr> <Space>slr g:qfloc ? 
+"       \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
+"       \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
+" vnoremap <expr> <Space>slr g:qfloc ? 
+"       \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
+"       \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
+" nnoremap <expr> <Space>slR g:qfloc ? 
+"       \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
+"       \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
+" vnoremap <expr> <Space>slR g:qfloc ? 
+"       \ ':<C-u>lgrep '.GetVisualSelection().' **/* \| norm gv<CR>'
+"       \ : ':<C-u>grep '.GetVisualSelection().' **/* \| norm gv<CR>'
 
-nnoremap <expr> <Space>sl<Space>a g:qfloc ? 
-      \ ':<C-u>lgrep  *<C-Left><Left>'
-      \ : ':<C-u>grep  *<C-Left><Left>'
-nnoremap <expr> <Space>sl<Space>r g:qfloc ? 
-      \ ':<C-u>lgrep  **/*<C-Left><Left>'
-      \ : ':<C-u>grep  **/*<C-Left><Left>'
+" nnoremap <expr> <Space>sl<Space>a g:qfloc ? 
+"       \ ':<C-u>lgrep  *<C-Left><Left>'
+"       \ : ':<C-u>grep  *<C-Left><Left>'
+" nnoremap <expr> <Space>sl<Space>r g:qfloc ? 
+"       \ ':<C-u>lgrep  **/*<C-Left><Left>'
+"       \ : ':<C-u>grep  **/*<C-Left><Left>'
 
 " nnoremap <expr> <Space>sl<Space>l g:qfloc ? 
 "             \ ':<C-u>lgrep  ##<C-Left><Left>'
@@ -262,136 +360,60 @@ nnoremap <expr> <Space>sl<Space>r g:qfloc ?
 
 "}}}
 
-"{{{ old vimgrep
+"{{{ TODO A Does this make sense - procedural
 
-nnoremap <expr> <Space>s/r g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj **/* <CR>'
-      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj **/* <CR>'
-vnoremap <expr> <Space>s/r g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj **/* \| norm gv<CR>'
-      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj **/* \| norm gv<CR>'
-nnoremap <expr> <Space>s/R g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj **/* <CR>'
-      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj **/* <CR>'
-vnoremap <expr> <Space>s/R g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj **/* \| norm gv<CR>'
-      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj **/* \| norm gv<CR>'
+function s:PathMap(key, path)
+  let l:forward = '<Home><C-Right><C-Right><C-Right><Right>'
+  let l:vforward = '<Home><C-Right><C-Right><Right><Right>'
 
-nnoremap <expr> <Space>s/a g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj * <CR>'
-      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj * <CR>'
-vnoremap <expr> <Space>s/a g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj * \| norm gv<CR>'
-      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj * \| norm gv<CR>'
-nnoremap <expr> <Space>s/A g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj * <CR>'
-      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj * <CR>'
-vnoremap <expr> <Space>s/A g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj * \| norm gv<CR>'
-      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj * \| norm gv<CR>'
+  " This shit is because i don't want this to jump into
+  " results just after searching
+  exe 'noremap <expr> <Space>sp'.a:key." g:qfloc ? ".
+        \ "':<C-u>silent! exe \"lgrep  ".a:path.'"\|:exe '.
+        \ '"norm '."\<C-o>".'"'.l:forward."'".
+        \ " : ':<C-u>silent! exe \"grep  ".a:path.'"\|:exe '.
+        \ '"norm '."\<C-o>".'"'.l:forward."'"
 
-nnoremap <expr> <Space>s/l g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj ## <CR>'
-      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj ## <CR>'
-vnoremap <expr> <Space>s/l g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/gj ## \| norm gv<CR>'
-      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/gj ## \| norm gv<CR>'
-nnoremap <expr> <Space>s/L g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj ## <CR>'
-      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj ## <CR>'
-vnoremap <expr> <Space>s/L g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
-      \ : ':<C-u>vimgrep /'.GetVisualSelection().'/fgj ## \| norm gv<CR>'
+  " Version with jumping
+  exe 'noremap <expr> <Space>sP'.a:key." g:qfloc ? ".
+        \ "':<C-u>lgrep  ".a:path.l:forward."'".
+        \ " : ':<C-u>grep  ".a:path.l:forward."'"
 
-nnoremap <expr> <Space>s/<Space>a g:qfloc ? 
-      \ ':<C-u>lvimgrep //gj *<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //gj *<C-Left><C-Left><Right>'
-nnoremap <expr> <Space>s/<Space>r g:qfloc ? 
-      \ ':<C-u>lvimgrep //gj **/*<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //gj **/*<C-Left><C-Left><Right>'
-nnoremap <expr> <Space>s/<Space>l g:qfloc ? 
-      \ ':<C-u>lvimgrep //gj ##<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //gj ##<C-Left><C-Left><Right>'
+  exe 'noremap <expr> <Space>fp'.a:key." g:qfloc ? ".
+        \ "':<C-u>silent! lvimgrep //gj ".a:path.l:vforward."'".
+        \ " : ':<C-u>silent! vimgrep //gj  ".a:path.l:vforward."'"
+  exe 'noremap <expr> <Space>fP'.a:key." g:qfloc ? ".
+        \ "':<C-u>silent! lvimgrep //g ".a:path.l:vforward."'".
+        \ " : ':<C-u>silent! vimgrep //g  ".a:path.l:vforward."'"
+endfunction
 
-nnoremap <expr> <Space>s/<Space>A g:qfloc ? 
-      \ ':<C-u>lvimgrep //fgj *<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //fgj *<C-Left><C-Left><Right>'
-nnoremap <expr> <Space>s/<Space>R g:qfloc ? 
-      \ ':<C-u>lvimgrep //fgj **/*<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //fgj **/*<C-Left><C-Left><Right>'
-nnoremap <expr> <Space>s/<Space>L g:qfloc ? 
-      \ ':<C-u>lvimgrep //fgj ##<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //fgj ##<C-Left><C-Left><Right>'
+let paths = {
+      \ '1':'..',
+      \ '2':'../..',
+      \ '3':'../../..',
+      \ '4':'../../../..',
+      \ '5':'../../../../..',
+      \ '6':'../../../../../..',
+      \ '7':'../../../../../../..',
+      \ '8':'../../../../../../../..',
+      \ '9':'../../../../../../../../..',
+      \ 't':'~/Templates',
+      \ }
 
-nnoremap <expr> <Space>s/c g:qfloc ?
-      \ ':<C-u>lvimgrep //jg<C-left><Right>'
-      \ : ':<C-u>vimgrep //jg<C-left><Right>'
-nnoremap <expr> <Space>s/C g:qfloc ?
-      \ ':<C-u>lvimgrep //fjg<C-left><Right>'
-      \ : ':<C-u>vimgrep //fjg<C-left><Right>'
-
-noremap <expr> <Space>s/f g:qfloc ?
-      \ ':<C-u>'.v:count1.
-      \ 'lvimgrep //g %<C-Left><C-Left><Right>'
-      \ : ':<C-u>'.v:count1.
-      \ 'vimgrep //g %<C-Left><C-Left><Right>'
-noremap <expr> <Space>s/F g:qfloc ?
-      \ ':<C-u>lvimgrep //g %<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //g %<C-Left><C-Left><Right>'
-
-"}}}
-
-"{{{ procedural
-
-" function PathMap(key, path, cr=1)
-"   exe 'noremap <leader>sp'.a:key.
-"         \ ' :<C-u>Files '.a:path.
-"         \ (a:cr ? '<CR>' : '')
-"   exe 'noremap <leader>sa'.a:key.
-"         \ ' :<C-u>Args '.a:path.
-"         \ (a:cr ? '<CR>' : '')
-"   exe 'noremap <leader>sm'.a:key.
-"         \ ' :<C-u>MArgs '.a:path.
-"         \ (a:cr ? '<CR>' : '')
-"   exe 'noremap <leader>sg'.a:key.
-"         \ ' :<C-u>Dag '.a:path.
-"         \ (a:cr ? '<CR>' : '')
-"   exe 'noremap <leader>su'.a:key.
-"         \ ' :<C-u>Dau '.a:path.
-"         \ (a:cr ? '<CR>' : '')
-"   exe 'noremap <leader>sd'.a:key.
-"         \ ' :<C-u>Dgrep '.a:path.
-"         \ (a:cr ? '<CR>' : '')
-" endfunction
-
-" let paths = {
-"       \ '1':'..',
-"       \ '2':'../..',
-"       \ '3':'../../..',
-"       \ '4':'../../../..',
-"       \ '5':'../../../../..',
-"       \ '6':'../../../../../..',
-"       \ '7':'../../../../../../..',
-"       \ '8':'../../../../../../../..',
-"       \ '9':'../../../../../../../../..',
-"       \ 't':'~/Templates',
-"       \ 'c':'%',
-"       \ 's':['*', './*'],
-"       \ 'h':'* .*',
-"       \ }
-
-" let expands = {
-"       \ 'a':'##',
-"       \ }
+let expands = {
+      \ 'a':'##',
+      \ 'c':'%',
+      \ 's':'*',
+      \ 'h':'* .*',
+      \ }
 
 " for key in keys(paths)
-"   call PathMap(key, paths[key])
+"   call s:PathMap(key, paths[key])
 " endfor
-" call PathMap('<Space>', '', 0)
 
 "}}}
 
-" TODO grepadd
+" TODO C grepadd
 
 "{{{ TODO A
 
