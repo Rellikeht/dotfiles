@@ -1,4 +1,4 @@
-local autopairs = require("nvim-autopairs") -- {{{ TODO C
+local autopairs = require("nvim-autopairs") -- {{{
 autopairs.setup({})
 -- }}}
 
@@ -6,44 +6,11 @@ local cmp = require("cmp") -- {{{
 ---@diagnostic disable-next-line: unused-local
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-Snippy = require("snippy")
-
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-Capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- If you want insert `(` after select function or method item
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 -- }}}
-
-Snippy.setup( -- {{{
-  {
-    hl_group = "Comment",
-
-    snippet_dirs = (function()
-      local dirs = {}
-      -- local snipdirs = vim.api.nvim_list_runtime_paths()
-      local snipdirs = {
-        NVIM_DIR,
-        NVIM_DIR .. "/plugins/vim-snippets",
-      }
-      for i, e in ipairs(snipdirs) do
-        dirs[i] = e .. "/snippets"
-        -- print(dirs[i])
-      end
-      return dirs
-    end)(),
-
-    mappings = {
-      is = {
-        ["<C-j>"] = "expand_or_advance",
-        ["<C-k>"] = "previous",
-      },
-      -- nx = {["<leader>d;"] = "cut_text"},
-      nx = {},
-    },
-  }
-) -- }}}
 
 local cmp_beh = {behavior = cmp.SelectBehavior, count = 1}
 cmp.setup(
@@ -191,23 +158,12 @@ cmp.setup(
       completeopt = "menu,menuone,preview,noselect,noinsert",
     }, -- }}}
 
-    snippet = { -- {{{
-      expand = function(args)
-        Snippy.expand_snippet(args.body)
-      end,
-    }, -- }}}
-
     sources = { -- {{{
       {name = "nvim_lua"},
-      {name = "nvim_lsp"},
-      {name = "nvim_lsp_signature_help"},
-      {name = "snippy"},
 
       { -- {{{
         name = "buffer",
         option = {
-          -- TODO C 'iskeyword'
-          -- keyword_pattern = [[̨̨\̨k\+]],
           get_bufnrs = function()
             return vim.api.nvim_list_bufs()
           end,
@@ -215,7 +171,6 @@ cmp.setup(
       }, -- }}}
       {name = "omni"},
       {name = "path"},
-      {name = "vimtex"},
     }, -- }}}
   }
 )
@@ -324,7 +279,6 @@ cmp.setup.cmdline(
 cmp.setup.cmdline(
   "/", { -- {{{
     preselect = cmp.PreselectMode.None,
-    -- view = {entries = {name = "wildmenu", separator = " | "}},
 
     completion = { -- {{{
       -- keyword_length = 3,

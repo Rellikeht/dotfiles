@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-# Because I can't make exec work :(
-alias etm='tm'
+# this makes exec work with aliases
+alias exec='exec '
+alias etm='exec tm'
