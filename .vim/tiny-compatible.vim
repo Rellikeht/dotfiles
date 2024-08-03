@@ -410,6 +410,8 @@ noremap <silent> <Tab>R :<C-u>botright vsplit<CR>
 
 " {{{ <Space> list and help
 
+nnoremap <Space>ie :<C-u>oldfiles<CR>
+vnoremap <Space>ie :<C-u>oldfiles\|norm gv<CR>
 nnoremap <Space>ir :<C-u>registers<CR>
 vnoremap <Space>ir :<C-u>registers\|norm gv<CR>
 nnoremap <Space>ip :<C-u>history<CR>
@@ -425,6 +427,8 @@ vnoremap <Space>im :<C-u>marks\|norm gv<CR>
 nnoremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
 vnoremap <Space>ig :<C-u>marks ABCDEFGHIJKLMNOPQRSTUVWXYZ\|norm gv<CR>
 
+noremap <Space>i<Space>e
+      \:<C-u>filter  oldfiles<C-Left><Left>
 noremap <Space>i<Space>r
       \:<C-u>filter  registers<C-Left><Left>
 noremap <Space>i<Space>p

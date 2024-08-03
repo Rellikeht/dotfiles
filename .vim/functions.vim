@@ -14,23 +14,10 @@ endfunction
 
 "}}}
 
-"{{{ clipboard
-
-function Xcopy(name)
-  call system('echo -n '.shellescape(@").' | xclip -i -selection '.a:name)
-endfunction
-
-" TODO make this paste using command, not norm
-" Or better: get clip to work
-function Xpaste(name)
-  execute 'normal a'.system('xclip -o -selection '.a:name)
-endfunction
-
-"}}}
-
 "{{{ commands
 
-command! We write | sleep 500 m | edit
+let g:sleeptime = "800m"
+command! We write | exe 'sleep '.g:sleeptime | edit
 
 "}}}
 

@@ -109,6 +109,13 @@ nnoremap <C-w><Space><Space>f;R :tabfind! **<Tab>
 
 "{{{ helpers
 
+function Vgcount()
+  if v:count == 0
+    return ''
+  endif
+  return v:count
+endfunction
+
 function Gescape(s)
   return escape(a:s, "\"")
 endfunction
@@ -146,9 +153,12 @@ command! -nargs=+ -complete=file Wgrep
       \ | endif
 
 " and abbrev
-" cnoreabbrev <expr> grep
-"       \ (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ?
-"       \ 'Grep' : 'grep'
+cnoreabbrev <expr> grep
+      \ (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ?
+      \ 'Grep' : 'grep'
+cnoreabbrev <expr> grep
+      \ (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ?
+      \ 'Lgrep' : 'lgrep'
 
 "}}}
 
@@ -227,36 +237,88 @@ call SetGrepprg(0)
 command! -nargs=1 -complete=customlist,s:Grepprgs ExtGrep 
       \ call s:SetGrepprg(<f-args>)
 
-nnoremap <Space>s: :<C-u>ExtGrep<Space>
-vnoremap <Space>s: :<C-u>ExtGrep  \|norm gv
+nnoremap <Space>s/ :<C-u>ExtGrep<Space>
+vnoremap <Space>s/ :<C-u>ExtGrep  \|norm gv
       \ <C-Left><C-Left><Left>
 
 "}}}
 
+" TODO B refactor vimgrep
 "{{{ vimgrep
 
 "{{{ simple commands
 
-noremap <expr> <Space>fc g:qfloc ?
+" TODO C filter .sw[po]
+
+noremap <expr> <Space>fj g:qfloc ?
       \ ':<C-u>lvimgrep<Space>'
       \ : ':<C-u>vimgrep<Space>'
-noremap <expr> <Space>fC g:qfloc ?
+noremap <expr> <Space>fJ g:qfloc ?
       \ ':<C-u>lvimgrep!<Space>'
       \ : ':<C-u>vimgrep!<Space>'
 
-noremap <expr> <Space>f<Space>c g:qfloc ?
-      \ ':<C-u>'.v:count1.'lvimgrep<Space>'
-      \ : ':<C-u>'.v:count1.'vimgrep<Space>'
-noremap <expr> <Space>f<Space>C g:qfloc ?
-      \ ':<C-u>'.v:count1.'lvimgrep!<Space>'
-      \ : ':<C-u>'.v:count1.'vimgrep!<Space>'
+noremap <expr> <Space>f<Space>j g:qfloc ?
+      \ ':<C-u>'.Vgcount().'lvimgrep<Space>'
+      \ : ':<C-u>'.Vgcount().'vimgrep<Space>'
+noremap <expr> <Space>f<Space>J g:qfloc ?
+      \ ':<C-u>'.Vgcount().'lvimgrep!<Space>'
+      \ : ':<C-u>'.Vgcount().'vimgrep!<Space>'
 
-nnoremap <expr> <Space>fr g:qfloc ?
+nnoremap <expr> <Space>fo g:qfloc ?
       \ ':<C-u>lvimgrep //jg<C-left><Right>'
       \ : ':<C-u>vimgrep //jg<C-left><Right>'
-nnoremap <expr> <Space>fR g:qfloc ?
+nnoremap <expr> <Space>fO g:qfloc ?
       \ ':<C-u>lvimgrep //fgj<C-left><Right>'
       \ : ':<C-u>vimgrep //fgj<C-left><Right>'
+
+nnoremap <expr> <Space><Space>fo g:qfloc ?
+      \ ':<C-u>'.Vgcount().'lvimgrep //jg<C-left><Right>'
+      \ : ':<C-u>'.Vgcount().'vimgrep //jg<C-left><Right>'
+nnoremap <expr> <Space><Space>fO g:qfloc ?
+      \ ':<C-u>'.Vgcount().'lvimgrep //fgj<C-left><Right>'
+      \ : ':<C-u>'.Vgcount().'vimgrep //fgj<C-left><Right>'
+
+"}}}
+
+"{{{ cur file and arglist
+
+nnoremap <expr> <Space>ff g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj %<CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj %<CR>'
+vnoremap <expr> <Space>ff g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/gj %<CR>'
+      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/gj %<CR>'
+nnoremap <expr> <Space>ff g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj % <CR>'
+      \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj % <CR>'
+vnoremap <expr> <Space>fF g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/fgj %<CR>'
+      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/fgj %<CR>'
+noremap <expr> <Space>f<Space>f g:qfloc ?
+      \ ':<C-u>lvimgrep //gj %<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //gj %<C-Left><C-Left><Right>'
+noremap <expr> <Space>f<Space>F g:qfloc ?
+      \ ':<C-u>lvimgrep //fgj %<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //fgj %<C-Left><C-Left><Right>'
+
+nnoremap <expr> <Space>fl g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.expand('<cword>').'/gj ## <CR>'
+      \ : ':<C-u>vimgrep /'.expand('<cword>').'/gj ## <CR>'
+vnoremap <expr> <Space>fl g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/gj ##<CR>'
+      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/gj ##<CR>'
+nnoremap <expr> <Space>fL g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.expand('<cword>').'/fgj ## <CR>'
+      \ : ':<C-u>vimgrep /'.expand('<cword>').'/fgj ## <CR>'
+vnoremap <expr> <Space>fL g:qfloc ? 
+      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/fgj ##<CR>'
+      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/fgj ##<CR>'
+noremap <expr> <Space>f<Space>l g:qfloc ? 
+      \ ':<C-u>lvimgrep //gj ##<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //gj ##<C-Left><C-Left><Right>'
+noremap <expr> <Space>f<Space>L g:qfloc ? 
+      \ ':<C-u>lvimgrep //fgj ##<C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //fgj ##<C-Left><C-Left><Right>'
 
 "}}}
 
@@ -266,16 +328,25 @@ nnoremap <expr> <Space>fa g:qfloc ?
       \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj * .*<CR>'
       \ : ':<C-u>vimgrep /'.Expand('<cword>').'/gj * .*<CR>'
 vnoremap <expr> <Space>fa g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).
-      \ '/gj * .*<CR>'
-      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).
-      \ '/gj * .*<CR>'
+      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/gj * .*<CR>'
+      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/gj * .*<CR>'
 nnoremap <expr> <Space>fA g:qfloc ? 
       \ ':<C-u>lvimgrep /'.Expand('<cword>').'/fgj * .* <CR>'
       \ : ':<C-u>vimgrep /'.Expand('<cword>').'/fgj * .* <CR>'
 vnoremap <expr> <Space>fA g:qfloc ? 
       \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/fgj * .*<CR>'
       \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/fgj * .*<CR>'
+
+nnoremap <expr> <Space>f<Space>a g:qfloc ? 
+      \ ':<C-u>lvimgrep //gj * .*'.
+      \ '<C-Left><C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //gj * .*'.
+      \ '<C-Left><C-Left><C-Left><Right>'
+nnoremap <expr> <Space>f<Space>A g:qfloc ? 
+      \ ':<C-u>lvimgrep //fgj * .*'.
+      \ '<C-Left><C-Left><C-Left><Right>'
+      \ : ':<C-u>vimgrep //fgj * .*'.
+      \ '<C-Left><C-Left><C-Left><Right>'
 
 nnoremap <expr> <Space>fh g:qfloc ? 
       \ ':<C-u>lvimgrep /'.Expand('<cword>').'/gj * <CR>'
@@ -290,17 +361,6 @@ vnoremap <expr> <Space>fH g:qfloc ?
       \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/fgj *<CR>'
       \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/fgj *<CR>'
 
-nnoremap <expr> <Space>f<Space>a g:qfloc ? 
-      \ ':<C-u>lvimgrep //gj * .*'.
-      \ '<C-Left><C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //gj * .*'.
-      \ '<C-Left><C-Left><C-Left><Right>'
-nnoremap <expr> <Space>f<Space>A g:qfloc ? 
-      \ ':<C-u>lvimgrep //fgj * .*'.
-      \ '<C-Left><C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //fgj * .*'.
-      \ '<C-Left><C-Left><C-Left><Right>'
-
 nnoremap <expr> <Space>f<Space>h g:qfloc ? 
       \ ':<C-u>lvimgrep //gj *'.
       \ '<C-Left><C-Left><Right>'
@@ -311,38 +371,6 @@ nnoremap <expr> <Space>f<Space>H g:qfloc ?
       \ '<C-Left><C-Left><Right>'
       \ : ':<C-u>vimgrep //fgj *'.
       \ '<C-Left><C-Left><Right>'
-
-"}}}
-
-"{{{ cur file and arglist
-
-noremap <expr> <Space>ff g:qfloc ?
-      \ ':<C-u>lvimgrep //gj %<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //gj %<C-Left><C-Left><Right>'
-noremap <expr> <Space>fF g:qfloc ?
-      \ ':<C-u>lvimgrep //fgj %<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //fgj %<C-Left><C-Left><Right>'
-
-nnoremap <expr> <Space>fl g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/gj ## <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/gj ## <CR>'
-vnoremap <expr> <Space>fl g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/gj ##<CR>'
-      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/gj ##<CR>'
-
-nnoremap <expr> <Space>fL g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.expand('<cword>').'/fgj ## <CR>'
-      \ : ':<C-u>vimgrep /'.expand('<cword>').'/fgj ## <CR>'
-vnoremap <expr> <Space>fL g:qfloc ? 
-      \ ':<C-u>lvimgrep /'.Vescape(GetVisualSelection()).'/fgj ##<CR>'
-      \ : ':<C-u>vimgrep /'.Vescape(GetVisualSelection()).'/fgj ##<CR>'
-
-noremap <expr> <Space>f<Space>l g:qfloc ? 
-      \ ':<C-u>lvimgrep //gj ##<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //gj ##<C-Left><C-Left><Right>'
-noremap <expr> <Space>f<Space>L g:qfloc ? 
-      \ ':<C-u>lvimgrep //fgj ##<C-Left><C-Left><Right>'
-      \ : ':<C-u>vimgrep //fgj ##<C-Left><C-Left><Right>'
 
 "}}}
 
@@ -380,12 +408,12 @@ noremap <expr> <Space>s- g:qfloc ?
       \ ':<C-u>Lfilter /^[^\|][^\|] /<CR>'
       \ : ':<C-u>Cfilter /^[^\|][^\|] /<CR>'
 
-noremap <Space>sr :<C-u>Sgrep<Space>
-noremap <Space>sr :<C-u>Sgrep!<Space>
+noremap <Space>sj :<C-u>Sgrep<Space>
+noremap <Space>sJ :<C-u>Sgrep!<Space>
 
 "}}}
 
-"{{{ current file
+"{{{ current file and args
 
 noremap <expr> <Space>s<Space>f
       \ ':<C-u>Sgrep  '.Expand('%').
@@ -396,10 +424,6 @@ vnoremap <expr> <Space>sf
       \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
       \ '" '.Expand('%')."'<CR>"
 
-"}}}
-
-"{{{ args
-
 noremap <expr> <Space>s<Space>l
       \ ':<C-u>Sgrep  '.Exfiles(argv()).
       \ '<Home><C-Right><Right>'
@@ -408,6 +432,27 @@ nnoremap <expr> <Space>sl
 vnoremap <expr> <Space>sl
       \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
       \ '" '.Exfiles(argv())."'<CR>"
+
+"}}}
+
+"{{{ files in curdir
+
+noremap <expr> <Space>s<Space>a ':<C-u>Sgrep  * .*'.
+      \ '<C-Left><C-Left><Left>'
+nnoremap <expr> <Space>sa ':<C-u>Sgrep '.expand('<cword>').' * .*<CR>'
+vnoremap <expr> <Space>sa
+      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
+      \ '" * .*'."'<CR>"
+
+noremap <expr> <Space>s<Space>h ':<C-u>Sgrep  *<Left><Left>'
+nnoremap <expr> <Space>sh ':<C-u>Sgrep '.expand('<cword>').' *<CR>'
+vnoremap <expr> <Space>sh
+      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
+      \ '" *'."'<CR>"
+
+"}}}
+
+"{{{ TODO A recursive
 
 "}}}
 

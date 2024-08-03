@@ -1,7 +1,3 @@
-" if exists("syntax_on")
-"   syntax reset
-" endif
-
 if v:progname =~? "^s\\?v\\(im\\?\\)\\?"
   colorscheme industry
 endif
