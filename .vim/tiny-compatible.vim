@@ -1,7 +1,11 @@
 "{{{ helpers
 
+function Escape(s)
+  return escape(a:s, " '\"")
+endfunction
+
 function Expand(f)
-  return escape(expand(a:f), " '\"")
+  return Escape(expand(a:f))
 endfunction
 
 command! -bang -nargs=1 -complete=arglist Argument 

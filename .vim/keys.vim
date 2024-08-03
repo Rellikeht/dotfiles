@@ -539,6 +539,20 @@ inoremap <C-x>c <C-x><C-]>
 
 "}}}
 
+"{{{ commands
+
+cnoremap <expr> <C-o>w "<C-r>=expand('<cword>')<CR>"
+cnoremap <expr> <C-o>c "<C-r>=expand('<cWORD>')<CR>"
+cnoremap <expr> <C-o>e "<C-r>=expand('<cexpr>')<CR>"
+cnoremap <expr> <C-o>f "<C-r>=expand('<cfile>')<CR>"
+
+cnoremap <expr> <C-o><Space>w "<cword>"
+cnoremap <expr> <C-o><Space>c "<cWORD>"
+cnoremap <expr> <C-o><Space>e "<cexpr>"
+cnoremap <expr> <C-o><Space>f "<cfile>"
+
+"}}}
+
 "{{{ TODO
 
 " TODO B running command under cursor

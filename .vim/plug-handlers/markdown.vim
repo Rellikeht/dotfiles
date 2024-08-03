@@ -44,12 +44,16 @@ let g:vimwiki_global_ext = 0
 
 "{{{ TODO B markdownfootnotes
 
+" autocmd VimEnter
+"       \ iunmap <Leader>r
+"       \ | iunmap <Leader>i
+
 "}}}
 
 "{{{ bullets.vim
 
 "{{{ file types
-" You can choose which file types this plugin will work on:
+" You can choose which file types this plugin will work on:
 let g:bullets_enabled_file_types = [
       \ 'markdown',
       \ 'text',

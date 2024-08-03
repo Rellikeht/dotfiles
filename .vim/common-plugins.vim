@@ -120,7 +120,7 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 " Plug 'vimwiki/vimwiki'
 
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
-Plug 'vim-pandoc/vim-markdownfootnotes'
+" Plug 'vim-pandoc/vim-markdownfootnotes'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'bullets-vim/bullets.vim'
 

@@ -34,6 +34,26 @@ command! We write | sleep 500 m | edit
 
 "}}}
 
+"{{{ expand (for C-r and commands)
+
+function Ew()
+  return expand('<cword>')
+endfunction
+
+function EW()
+  return expand('<cWORD>')
+endfunction
+
+function Ee()
+  return expand('<cexpr>')
+endfunction
+
+function Ef()
+  return expand('<cfile>')
+endfunction
+
+"}}}
+
 "{{{ completion generation
 
 function CompleteList(list, lead, cmdline, curpos)

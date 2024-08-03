@@ -9,8 +9,6 @@ if v:progname !~? "tv\\?\\(im\\?\\)\\?"
   "{{{ plugins and packages
   filetype plugin on
   filetype indent on
-  syntax on
-  syntax reset
 
   packadd! matchit
   packadd! cfilter
