@@ -4,17 +4,19 @@ function Expand(f)
   return escape(expand(a:f), " '\"")
 endfunction
 
-command! -nargs=1 -complete=arglist Argument 
-      \ argedit <args>
-      \ | argdedupe
-
-command! -nargs=1 -complete=arglist ArgumentE
-      \ argedit! <args>
+command! -bang -nargs=1 -complete=arglist Argument 
+      \ argedit<bang> <args>
       \ | argdedupe
 
 command! -nargs=+ Silent
       \ execute 'silent! <args>'
       \ | redraw!
+
+command! -nargs=1 -complete=arglist TabA
+      \ tabedit <args>
+
+command! -nargs=1 -complete=buffer TabB
+      \ tabedit <args>
 
 " Nope
 " command! -nargs=1 -complete=arglist Vargument
@@ -81,6 +83,11 @@ vnoremap <Space>qM :<C-u>setlocal modeline!\|norm gv<CR>
 
 noremap <Tab>o :<C-u>tabedit<Space>
 noremap <Tab>O :<C-u>-tabedit<Space>
+noremap <Tab><Space>o :<C-u>TabA<Space>
+noremap <Tab><Space>O :<C-u>-TabA<Space>
+noremap <Tab>;o :<C-u>TabA<Space>
+noremap <Tab>;O :<C-u>-TabA<Space>
+
 noremap <silent> <expr> <Tab>;e
       \(v:count ? ':<C-u>exe "tabnext "'.v:count.'<CR>' : '')
 noremap <Tab><Tab> :<C-u>tab<Space>
@@ -271,7 +278,7 @@ vnoremap <Space>l :<C-u>args\|norm gv<CR>
 noremap <Space>;l :<C-u>filter  args<C-Left><C-b>
 
 noremap <Space>e :<C-u>Argument<Space>
-noremap <Space>E :<C-u>ArgumentE<Space>
+noremap <Space>E :<C-u>Argument!<Space>
 noremap <silent> <Space>;e :<C-u>exe
       \ 'argument '.(v:count ? v:count : '')<CR>
 noremap <silent> <Space>;E :<C-u>exe
@@ -576,7 +583,8 @@ set fileformat=unix
 
 " }}}
 
-if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
+if v:progname =~? "^tv\\(im\\?\\)\\?"
+      \ || v:progname =~? "^vim.tiny" " {{{
   set background=dark
   set hlsearch
   set secure
@@ -588,7 +596,8 @@ if v:progname =~? "^tv\\(im\\?\\)\\?" " {{{
   vnoremap ,qeh :<C-u>set hls!\|norm gv<CR>
 
   map <C-p> ,
-    map <C-n> ;
+    " = gets tricked by this comma
+  map <C-n> ;
 endif " }}}
 
 if v:progname =~? "^sv\\(im\\?\\)\\?" " {{{

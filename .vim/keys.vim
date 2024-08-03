@@ -13,7 +13,7 @@ function Exfiles(...)
   return join(l:fs, ' ')
 endfunction
 
-function s:Tabe(...)
+function s:Tabarge(...)
   tabnew
   if len(a:000) > 0
     exe 'argedit '.Exfiles(a:000)
@@ -23,7 +23,19 @@ function s:Tabe(...)
 endfunction
 
 command! -nargs=* -complete=file Tabe
-      \ call s:Tabe(<f-args>)
+      \ call s:Tabarge(<f-args>)
+
+command! -nargs=* -complete=arglist TabA
+      \ call s:Tabarge(<f-args>)
+
+command! -nargs=* -complete=buffer TabB
+      \ call s:Tabarge(<f-args>)
+
+command! -nargs=* -bang -complete=buffer ArgeditB
+      \ argedit<bang> <args>
+
+command! -nargs=* -complete=buffer ArgaddB
+      \ argadd <args>
 
 "}}}
 
@@ -92,7 +104,12 @@ noremap <Space>t<Space>A :<C-u>ltag!<Space>
 
 noremap <Tab>o :<C-u>Tabe<Space>
 noremap <Tab>O :<C-u>-Tabe<Space>
+noremap <Tab><Space>o :<C-u>TabA<Space>
+noremap <Tab><Space>O :<C-u>-TabA<Space>
+noremap <Tab>;o :<C-u>TabB<Space>
+noremap <Tab>;O :<C-u>-TabB<Space>
 noremap <silent> <Tab>k K<C-w>T
+
 nnoremap <Tab>gf :<C-u>tabedit <cfile><CR>
 
 noremap <silent> <Tab>n 
@@ -147,10 +164,15 @@ noremap <silent> <Space><Space>M
 
 "{{{ args with <Space>
 
-nnoremap <Space>gf :<C-u>argedit <cfile><CR>
+noremap <Space>;o :<C-u>ArgeditB<Space>
+noremap <Space>;O :<C-u>ArgeditB!<Space>
 vnoremap <Space>;l 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' args'<CR>
+noremap <Space>;a :<C-u>ArgaddB<Space>
+
+nnoremap <Space>gf :<C-u>argedit <cfile><CR>
+nnoremap <Space>ga :<C-u>argadd <cfile><CR>
 
 noremap <silent> <Space>n :<C-u>call NextArg(1, 'argument')<CR>
 noremap <silent> <Space>N :<C-u>call NextArg(1, 'argument!')<CR>

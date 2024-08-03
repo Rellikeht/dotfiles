@@ -56,6 +56,8 @@ set shell=sh
 
 "{{{ good looking
 
+set splitkeep=screen
+
 set termguicolors
 
 set shortmess=atsOF

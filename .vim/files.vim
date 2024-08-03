@@ -109,27 +109,34 @@ nnoremap <C-w><Space><Space>f;R :tabfind! **<Tab>
 
 "{{{ helpers
 
-" async grep
+" TODO C count
+" async/silent grep
 function! Grep(...)
-  let cmd = join([&grepprg] + [join(a:000, ' ')], ' ')
+  let cmd = join([g:grepprg] + [expandcmd(join(a:000, ' '))], ' ')
+  echo cmd
   return system(cmd)
 endfunction
 
-function GrepW(...)
-  let result = Grep(a:000)
-  if g:qfloc
-    lexpr result
-    lwindow
-  else
-    cexpr result
-    cwindow
-  endif
-  return ''
-endfunction
+" TODO D bang, hidden is set, so whatever
+" commands for it
+command! -nargs=+ -complete=file Grep cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file Lgrep lgetexpr Grep(<f-args>)
 
-" command for it
-command! -nargs=+ -complete=file Grep GrepW(<f-args>)
-command! -nargs=+ -complete=file MGrep cexpr Grep(<f-args>)
+command! -nargs=+ -complete=file Sgrep
+      \ let grepres = Grep(<f-args>)
+      \ | if g:qfloc
+      \ | exe 'lgetexpr grepres'
+      \ | else
+      \ | exe 'cgetexpr grepres'
+      \ | endif
+
+command! -nargs=+ -complete=file Wgrep
+      \ Sgrep <args>
+      \ | if g:qfloc
+      \ | lopen
+      \ | else
+      \ | copen
+      \ | endif
 
 " and abbrev
 " cnoreabbrev <expr> grep
@@ -138,7 +145,7 @@ command! -nargs=+ -complete=file MGrep cexpr Grep(<f-args>)
 
 "}}}
 
-"{{{ TODO A external providers
+"{{{ external providers
 " There are recursive and nonrecursive greps
 " ripgrep nonrecursive is `--max-depth=0`
 " vimgrep is nonrecursive but `*` and similar
@@ -150,13 +157,12 @@ command! -nargs=+ -complete=file MGrep cexpr Grep(<f-args>)
 " and wildcards are fucked when used shell is simple
 " (/usr/bin/env sh)
 
-" What the fuck this dev null does
+" TODO B more
 let g:grepprgs = 
       \ [
-      \ [ 'grep\ -EIn\ $*', '%f:%l:%m,%f:%l%m,%f\ \ %l%m' ],
-      \ [ 'rg\ --vimgrep\ --smart-case\ --hidden $*', '%f:%l:%c:%m' ],
+      \ [ 'grep\ -EIn', '%f:%l:%m,%f:%l%m,%f\ \ %l%m' ],
+      \ [ 'rg\ --vimgrep\ --smart-case\ --hidden', '%f:%l:%c:%m' ],
       \ ]
-      " \ [ 'grep\ -EIn\ $*\ /dev/null', '%f:%l:%m,%f:%l%m,%f  %l%m' ],
 
 " https://vi.stackexchange.com/questions/35139/custom-arguments-to-user-command
 function s:Grepprgs(current_arg, command_line, cursor_position)
@@ -174,14 +180,15 @@ endfunction
 
 function SetGrepprg(idx)
   if a:idx < 0
-    " TODO error
+    throw "Index too low"
     return 1
   elseif a:idx >= len(g:grepprgs)
-    " TODO error
+    throw "Index too high"
     return 1
   endif
   let p = g:grepprgs[a:idx]
-  exe 'set grepprg='.p[0]
+  exe 'let g:grepprg = "'.p[0].'"'
+  exe 'set grepprg='.p[0].'\ $*'
   if len(p) == 2
     exe 'set grepformat='.p[1]
   endif
@@ -189,16 +196,18 @@ function SetGrepprg(idx)
 endfunction
 
 function s:SetGrepprg(name)
+  let i = 0
   for e in g:grepprgs
     if e[0] == a:name
-      exe 'set grepprg='.e[0]
-      if len(e) == 2
-        exe 'set grepformat='.e[1]
-      endif
+      call SetGrepprg(i)
+      break
     endif
+    let i = i+1
   endfor
   return 0
 endfunction
+
+call SetGrepprg(0)
 
 command! -nargs=1 -complete=customlist,s:Grepprgs ExtGrep 
       \ call s:SetGrepprg(<f-args>)
@@ -220,10 +229,10 @@ noremap <expr> <Space>fR g:qfloc ?
       \ ':<C-u>lvimgrep!<Space>'
       \ : ':<C-u>vimgrep!<Space>'
 
-noremap <expr> <Space>f;r g:qfloc ?
+noremap <expr> <Space>f<Space>r g:qfloc ?
       \ ':<C-u>'.v:count1.'lvimgrep<Space>'
       \ : ':<C-u>'.v:count1.'vimgrep<Space>'
-noremap <expr> <Space>f;R g:qfloc ?
+noremap <expr> <Space>f<Space>R g:qfloc ?
       \ ':<C-u>'.v:count1.'lvimgrep!<Space>'
       \ : ':<C-u>'.v:count1.'vimgrep!<Space>'
 
@@ -322,43 +331,25 @@ noremap <expr> <Space>s- g:qfloc ?
       \ ':<C-u>Lfilter /^[^\|][^\|] /<CR>'
       \ : ':<C-u>Cfilter /^[^\|][^\|] /<CR>'
 
-noremap <expr> <Space>sr g:qfloc ?
-      \ ':<C-u>lgrep<Space>'
-      \ : ':<C-u>grep<Space>'
-noremap <expr> <Space>sR g:qfloc ?
-      \ ':<C-u>lgrep!<Space>'
-      \ : ':<C-u>grep!<Space>'
+noremap <Space>sr :<C-u>Sgrep<Space>
+noremap <Space>sr :<C-u>Sgrep!<Space>
 
-noremap <expr> <Space>s;r g:qfloc ?
-      \ ':<C-u>'.v:count1.'lgrep<Space>'
-      \ : ':<C-u>'.v:count1.'grep<Space>'
-noremap <expr> <Space>s;R g:qfloc ?
-      \ ':<C-u>'.v:count1.'lgrep!<Space>'
-      \ : ':<C-u>'.v:count1.'grep!<Space>'
-
-noremap <expr> <Space>sf g:qfloc ?
-      \ ':<C-u>lgrep  '.Expand('%').'<Home><C-Right><Right>'
-      \ : ':<C-u>grep  '.Expand('%').'<Home><C-Right><Right>'
+noremap <expr> <Space>sf
+      \ ':<C-u>Sgrep  '.Expand('%').
+      \ '<Home><C-Right><Right>'
 
 "}}}
 
 "{{{ files
 
-nnoremap <expr> <Space>sl g:qfloc ? 
-            \ ':<C-u>lgrep '.shellescape(expand('<cword>')).
+nnoremap <expr> <Space>sl 
+            \ ':<C-u>Sgrep '.shellescape(expand('<cword>')).
             \ ' '.Exfiles(argv()).' <CR>'
-            \ : ':<C-u>grep '.shellescape(expand('<cword>')).
-            \ ' '.Exfiles(argv()).' <CR>'
-vnoremap <expr> <Space>sl g:qfloc ? 
-            \ ':<C-u>lgrep '.shellescape(GetVisualSelection()).
+vnoremap <expr> <Space>sl
+            \ ':<C-u>Sgrep '.shellescape(GetVisualSelection()).
             \ ' '.Exfiles(argv()).' \| norm gv<CR>'
-            \ : ':<C-u>grep '.shellescape(GetVisualSelection()).
-            \ ' '.Exfiles(argv()).' \| norm gv<CR>'
-
-noremap <expr> <Space>sl<Space>l g:qfloc ? 
-            \ ':<C-u>lgrep  '.Exfiles(argv()).'<Home><C-Right><Right>'
-            \ : ':<C-u>grep  '.Exfiles(argv()).'<Home><C-Right><Right>'
-
+noremap <expr> <Space>s<Space>l
+            \ ':<C-u>Sgrep  '.Exfiles(argv()).'<Home><C-Right><Right>'
 
 "}}}
 
