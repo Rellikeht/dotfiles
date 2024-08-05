@@ -42,6 +42,9 @@ endfunction
 "}}}
 
 "{{{ settings
+
+"{{{ basic
+
 " Enable per-command history
 " - History files will be stored in the specified directory
 " - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
@@ -56,7 +59,10 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 
 let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
 
+"}}}
+
 "{{{ layout
+
 " let g:fzf_percent = '55%'
 let g:fzf_percent = '100%'
 
@@ -85,9 +91,11 @@ let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-/']
 " let g:fzf_layout = { 'window': 'enew' }
 " let g:fzf_layout = { 'window': '-tabnew' }
 " let g:fzf_layout = { 'window': '10new' }
+
 "}}}
 
 "{{{ colors
+
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
 let g:fzf_colors = {
@@ -105,6 +113,7 @@ let g:fzf_colors = {
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment']
       \ }
+
 "}}}
 
 "}}}
