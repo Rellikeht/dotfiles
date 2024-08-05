@@ -1,8 +1,12 @@
 "{{{ helpers
 
-command! -bang -nargs=1 -complete=arglist Argument 
-      \ argedit<bang> <args>
+command! -bang -nargs=? -complete=arglist Argument 
+      \ if len(<q-args>) == 0
+      \ | argument
+      \ | else
+      \ | exe "argedit<bang> <args>"
       \ | argdedupe
+      \ | endif
 
 command! -nargs=+ Silent
       \ execute 'silent! <args>'
@@ -88,8 +92,8 @@ noremap <silent> <expr> <Tab>;e
       \(v:count ? ':<C-u>exe "tabnext "'.v:count.'<CR>' : '')
 noremap <Tab><Tab> :<C-u>tab<Space>
 noremap <Tab>;<Tab> :<C-u>-tab<Space>
-noremap <Tab>f :<C-u>tabfind<Space>
-noremap <Tab>F :<C-u>-tabfind<Space>
+noremap <Tab>gp :<C-u>tabfind<Space>
+noremap <Tab>gP :<C-u>-tabfind<Space>
 
 noremap <Tab><Space>o :<C-u>tabedit  \|
       \exe 'arglocal! '.escape(expand('%')," '"")
@@ -378,14 +382,10 @@ vnoremap <Space>q;U :<C-u>update! ## \|norm gv<CR>
 
 " {{{ splits with <Tab>
 
-noremap <Tab>v :<C-u>vsplit<Space>
-noremap <silent> <Tab>V :<C-u>vsplit<CR>
-noremap <Tab>s :<C-u>split<Space>
-noremap <silent> <Tab>S :<C-u>split<CR>
-noremap <Tab>d :<C-u>botright split<Space>
-noremap <silent> <Tab>D :<C-u>botright split<CR>
-noremap <Tab>r :<C-u>botright vsplit<Space>
-noremap <silent> <Tab>R :<C-u>botright vsplit<CR>
+noremap <Tab>sv :<C-u>vsplit<Space>
+noremap <Tab>ss :<C-u>split<Space>
+noremap <Tab>sd :<C-u>botright split<Space>
+noremap <Tab>sr :<C-u>botright vsplit<Space>
 
 " Doesn't work
 " noremap <Space>sv :<C-u>Vargument<Space>

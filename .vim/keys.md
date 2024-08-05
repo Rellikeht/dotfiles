@@ -143,7 +143,8 @@ b,c,h,k,r,v,w,x,z
 
 - g - git
 
-  - s,j,k (every possible casing) - signify
+  - j,k (every possible casing) - signify
+  - s - signify, git grep
   - v,V,? - gv
   - others - fugitive
 

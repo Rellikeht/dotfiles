@@ -257,8 +257,10 @@ nnoremap <leader>gj <plug>(signify-next-hunk)
 nnoremap <leader>gk <plug>(signify-prev-hunk)
 nnoremap <leader>gJ 9999<leader>gj
 nnoremap <leader>gK 9999<leader>gk
-nnoremap <silent> <leader>gsf :echo sy#repo#get_stats_decorated('.')<CR>
-nnoremap <silent> <leader>gsF :echo sy#repo#get_stats_decorated(Expand('%'))<CR>
+
+" TODO C
+" nnoremap <silent> <leader>gsi :echo sy#repo#get_stats_decorated('.')<CR>
+" nnoremap <silent> <leader>gsI :echo sy#repo#get_stats_decorated(Expand('%'))<CR>
 
 autocmd User SignifyHunk call s:show_current_hunk()
 

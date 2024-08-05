@@ -156,7 +156,7 @@ command! -nargs=+ -complete=file Wgrep
 cnoreabbrev <expr> grep
       \ (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ?
       \ 'Grep' : 'grep'
-cnoreabbrev <expr> grep
+cnoreabbrev <expr> lgrep
       \ (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ?
       \ 'Lgrep' : 'lgrep'
 
