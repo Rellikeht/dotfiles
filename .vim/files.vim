@@ -1,4 +1,4 @@
-"{{{ diff
+"{{{ TODO A is that enough - diff
 
 function DiffGet(pane)
   execute 'diffget' a:pane
@@ -15,7 +15,6 @@ noremap <silent> <leader>fdg :<C-u>diffget<CR>
 nnoremap <silent> <leader>fdu :<C-u>diffupdate<CR>
 vnoremap <silent> <leader>fdu :<C-u>diffupdate\|norm gv<CR>
 
-" TODO more of that
 noremap <silent> <leader>fg0 :<C-u>call DiffGet('//0')<CR>
 noremap <silent> <leader>fg1 :<C-u>call DiffGet('//1')<CR>
 noremap <silent> <leader>fg2 :<C-u>call DiffGet('//2')<CR>
