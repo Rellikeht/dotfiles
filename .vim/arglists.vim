@@ -51,11 +51,20 @@ endfunction
 function ApplyArglist(list)
   let idx = a:list[0]
   let list = a:list[1:]
+  if len(list) == 0
+    let g:no_file_msg = 1
+    exe 'arglocal! %'
+    let g:no_file_msg = 0
+    exe 'argdelete'
+    enew
+    return ''
+  endif
   exe 'arglocal! '.join(map(
         \ ArglistFiles(list),
         \ {_, e -> fnameescape(e)}),
         \ ' ')
   exe 'argument '.(idx+1)
+  return ''
 endfunction
 
 function UpdateArglist()
@@ -151,8 +160,16 @@ endfunction
 function ListArglists()
   call UpdateArglist()
   let lst = ""
+  let i = 0
   for l in w:arglists
-    let lst = lst.ArglistShort(l)."\n"
+    let lst = lst.i
+    if i == w:cur_arglist
+      let lst = lst.'*'
+    else
+      let lst = lst.' '
+    endif
+    let lst = lst.' '.ArglistShort(l)."\n"
+    let i = i+1
   endfor
   return lst[:len(lst)-2]
 endfunction
@@ -231,6 +248,9 @@ command -nargs=+ -complete=file OpenArglist
 command -nargs=1 -complete=customlist,CompleteArglist
       \ SelectArglist
       \ call SelectArglist(<f-args>)
+
+command -nargs=* -complete=file AddArglist
+      \ call AddArgs(<f-args>)
 command -nargs=1 -complete=customlist,CompleteArglist
       \ DelArglist
       \ call DelArglist(<f-args>)
@@ -247,14 +267,28 @@ map <Leader><Space>e :<C-u>SelectArglist<Space>
 map <Leader><Space>l :<C-u>ListArglists<CR>
 map <Leader><Space>i :<C-u>ArglistInfo<CR>
 
-" TODO C what to do here if anything
-" map <Leader><Space>a :<C-u>AddArglist<Space>
-map <silent> <Leader><Space>A :<C-u>call AddList(NewArglist(''))<CR>
+map <Leader><Space>a :<C-u>AddArglist<Space>
+map <silent> <Leader><Space>A :<C-u>call AddList(NewArglist([]))<CR>
 map <Leader><Space>d :<C-u>DelArglist<Space>
 map <silent> <Leader><Space>D :<C-u>exe 'DelArglist '.w:cur_arglist.':'<CR>
 
 map <Leader><Space>n :<C-u>call NextArglist(v:count1)<CR>
 map <Leader><Space>p :<C-u>call NextArglist(-v:count1)<CR>
+
+" TODO
+noremap <silent> <Space>D :<C-u>if argc() == 1 
+      \ \| q
+      \ \| elseif argc() == 2
+      \ \| argdelete
+      \ \| first
+      \ \| else
+      \ \| argdelete
+      \ \| if argidx() == argc() - 1
+      \ \| argument 1
+      \ \| else
+      \ \| next
+      \ \| endif
+      \ \| endif<CR>
 
 " map <Leader><Space>: :<C-u>ArglistsDo<Space>
 

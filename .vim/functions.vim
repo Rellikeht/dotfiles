@@ -14,6 +14,28 @@ endfunction
 
 "}}}
 
+"{{{ expands
+
+function Escape(s)
+  return escape(a:s, " '\"")
+endfunction
+
+function Expand(f)
+  return Escape(expand(a:f))
+endfunction
+
+function Exfiles(...)
+  if type(a:000[0]) == v:t_list
+    let l:fs = deepcopy(a:000[0])
+  else
+    let l:fs = deepcopy(a:000)
+  endif
+  let l:fs = map(l:fs, {_, e -> Expand(e)})
+  return join(l:fs, ' ')
+endfunction
+
+"}}}
+
 "{{{ commands
 
 let g:sleeptime = "800m"
@@ -391,7 +413,9 @@ function ToggleAutochdir()
             \ | if isdirectory(expand('%:p:h'))
             \ | exe 'lcd %:p:h'
             \ | endif
+            \ | if !get(g:, 'no_file_msg', 0)
             \ | echo RelCurFile()
+            \ | endif
             \ | endif
     augroup END
     echo 'AutoChdir enabled'

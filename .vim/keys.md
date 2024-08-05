@@ -70,7 +70,7 @@ Not very accurate, at least for now.
 
 ## Free
 
-b,c,h,k,r,v,w,z
+b,c,h,k,r,v,w,x,z
 
 <tab>,/,?,+,-
 

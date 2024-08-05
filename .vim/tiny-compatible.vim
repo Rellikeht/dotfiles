@@ -1,13 +1,5 @@
 "{{{ helpers
 
-function Escape(s)
-  return escape(a:s, " '\"")
-endfunction
-
-function Expand(f)
-  return Escape(expand(a:f))
-endfunction
-
 command! -bang -nargs=1 -complete=arglist Argument 
       \ argedit<bang> <args>
       \ | argdedupe
@@ -100,10 +92,10 @@ noremap <Tab>f :<C-u>tabfind<Space>
 noremap <Tab>F :<C-u>-tabfind<Space>
 
 noremap <Tab><Space>o :<C-u>tabedit  \|
-      \exe 'arglocal! '.Expand('%')
+      \exe 'arglocal! '.escape(expand('%')," '"")
       \<C-Left><C-Left><C-Left><C-Left><Left>
 noremap <Tab><Space>O :<C-u>-tabedit  \|
-      \exe 'arglocal! '.Expand('%')
+      \exe 'arglocal! '.escape(expand('%')," '"")
       \<C-Left><C-Left><C-Left><C-Left><Left>
 
 noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
@@ -343,49 +335,44 @@ vnoremap <Space>_ :<C-u>argdedupe\|norm gv<CR>
 noremap <Space>: :<C-u>argdo<Space>
 noremap <Space>;: :<C-u>argdo!<Space>
 
-nnoremap <silent> <Space>xw :<C-u>arglocal<CR>
-vnoremap <silent> <Space>xw :<C-u>arglocal\|norm gv<CR>
-nnoremap <silent> <Space>xW :<C-u>arglocal!<CR>
-vnoremap <silent> <Space>xW :<C-u>arglocal!\|norm gv<CR>
-nnoremap <Space>x<Space>w :<C-u>arglocal<Space>
-vnoremap <Space>x<Space>w :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>x<Space>W :<C-u>arglocal!<Space>
-vnoremap <Space>x<Space>W :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>x;w :<C-u>exe 'arglocal '.Expand('%')<CR>
-vnoremap <Space>x;w :<C-u>exe 'arglocal '.Expand('%')\|norm gv<CR>
-nnoremap <Space>x;W :<C-u>exe 'arglocal! '.Expand('%')<CR>
-vnoremap <Space>x;W :<C-u>exe 'arglocal! '.Expand('%')\|norm gv<CR>
+nnoremap <silent> <Space>ql :<C-u>arglocal<CR>
+vnoremap <silent> <Space>ql :<C-u>arglocal\|norm gv<CR>
+nnoremap <silent> <Space>qL :<C-u>arglocal!<CR>
+vnoremap <silent> <Space>qL :<C-u>arglocal!\|norm gv<CR>
+nnoremap <Space>q<Space>l :<C-u>arglocal<Space>
+vnoremap <Space>q<Space>l :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>q<Space>L :<C-u>arglocal!<Space>
+vnoremap <Space>q<Space>L :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
+nnoremap <Space>qf :<C-u>exe 'arglocal '.escape(expand('%')," '"")<CR>
+vnoremap <Space>qf :<C-u>exe 'arglocal '.escape(expand('%')," '"")\|norm gv<CR>
+nnoremap <Space>qF :<C-u>exe 'arglocal! '.escape(expand('%')," '"")<CR>
+vnoremap <Space>qF :<C-u>exe 'arglocal! '.escape(expand('%')," '"")\|norm gv<CR>
 
-nnoremap <silent> <Space>xg :<C-u>argglobal<CR>
-vnoremap <silent> <Space>xg :<C-u>argglobal\|norm gv<CR>
-nnoremap <silent> <Space>xG :<C-u>argglobal!<CR>
-vnoremap <silent> <Space>xG :<C-u>argglobal!\|norm gv<CR>
-nnoremap <Space>x<Space>g :<C-u>argglobal<Space>
-vnoremap <Space>x<Space>g
+nnoremap <silent> <Space>qg :<C-u>argglobal<CR>
+vnoremap <silent> <Space>qg :<C-u>argglobal\|norm gv<CR>
+nnoremap <silent> <Space>qG :<C-u>argglobal!<CR>
+vnoremap <silent> <Space>qG :<C-u>argglobal!\|norm gv<CR>
+nnoremap <Space>q<Space>g :<C-u>argglobal<Space>
+vnoremap <Space>q<Space>g
       \ :<C-u>argglobal  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>x<Space>G :<C-u>argglobal!<Space>
-vnoremap <Space>x<Space>G
+nnoremap <Space>q<Space>G :<C-u>argglobal!<Space>
+vnoremap <Space>q<Space>G
       \ :<C-u>argglobal!  \|norm gv<C-Left><C-Left><Left>
 
-nnoremap <Space>x;g :<C-u>exe 'argglobal '.Expand('%')<CR>
-vnoremap <Space>x;g :<C-u>exe 'argglobal '.Expand('%')\|norm gv<CR>
-nnoremap <Space>x;G :<C-u>exe 'argglobal! '.Expand('%')<CR>
-vnoremap <Space>x;G :<C-u>exe 'argglobal! '.Expand('%')\|norm gv<CR>
-
-nnoremap <Space>xu :<C-u>update<CR>
-vnoremap <Space>xu :<C-u>update\|norm gv<CR>
-nnoremap <Space>xU :<C-u>update!<CR>
-vnoremap <Space>xU :<C-u>update!\|norm gv<CR>
-nnoremap <Space><Space>xu :<C-u>update<Space>
-vnoremap <Space><Space>xu 
+nnoremap <Space>qu :<C-u>update<CR>
+vnoremap <Space>qu :<C-u>update\|norm gv<CR>
+nnoremap <Space>qU :<C-u>update!<CR>
+vnoremap <Space>qU :<C-u>update!\|norm gv<CR>
+nnoremap <Space><Space>qu :<C-u>update<Space>
+vnoremap <Space><Space>qu 
       \ :<C-u>update  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space><Space>xU :<C-u>update!<Space>
-vnoremap <Space><Space>xU
+nnoremap <Space><Space>qU :<C-u>update!<Space>
+vnoremap <Space><Space>qU
       \ :<C-u>update!  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>x;u :<C-u>update ##<CR>
-vnoremap <Space>x;u :<C-u>update ## \|norm gv<CR>
-nnoremap <Space>x;U :<C-u>update! ##<CR>
-vnoremap <Space>x;U :<C-u>update! ## \|norm gv<CR>
+nnoremap <Space>q;u :<C-u>update ##<CR>
+vnoremap <Space>q;u :<C-u>update ## \|norm gv<CR>
+nnoremap <Space>q;U :<C-u>update! ##<CR>
+vnoremap <Space>q;U :<C-u>update! ## \|norm gv<CR>
 
 "}}}
 
