@@ -1,10 +1,10 @@
---- bzlua	2024-07-07 14:02:14.175967043 +0200
-+++ zlua	2024-07-07 14:02:09.202884479 +0200
-@@ -57,6 +57,7 @@
+--- f.orig	2024-08-06 17:50:22.159686827 +0200
++++ f	2024-08-06 17:50:32.406544343 +0200
+@@ -55,6 +55,7 @@
  alias ${_ZL_CMD:-z}='_zlua'
  
  _zlua_precmd() {
 +    EXIT="$?"
      [ "$_ZL_PREVIOUS_PWD" = "$PWD" ] && return
      _ZL_PREVIOUS_PWD="$PWD"
-     (_zlua --add "$PWD" 2>/dev/null &)
+     (_zlua --add "$PWD" 2> /dev/null &)

@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
-# TODO
 
 __prompt_command() {
     # {{{
 
     # Because sometimes z.lua fucks up
-    local EX="$?"
-    local EXT
-    if [ -z "$EXIT" ]; then
-        EXT="$EX"
-    else
+    local EXT="$?"
+    if [ -n "$EXIT" ]; then
         EXT="$EXIT"
     fi
     PS1=""
@@ -37,11 +33,11 @@ __prompt_command() {
 
     # }}}
 
-    PS1+="${BLUE}[ ${RESET}"
-    PS1+="${LBLUE}\u${RESET}"
+    PS1+="${LBLUE}[${RESET}"
+    # PS1+="${LBLUE} \u ${RESET}"
     # PS1+="${LCYAN}@${RESET}"
     # PS1+="${LRED}\h${RESET}"
-    PS1+="${BLUE} ]${RESET}"
+    PS1+="${LBLUE}]${RESET}"
     PS1+="${LCYAN}:${RESET}"
     PS1+="${LMAGENTA}\w${RESET}"
 

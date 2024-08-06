@@ -74,13 +74,7 @@ let g:qs_delay = 30
 
 "{{{ signature
 
-let g:SignatureEnabledAtStartup = 0
-let g:SignatureEnabled = 0
-autocmd VimEnter *
-      \ if !g:SignatureEnabled
-      \ | let g:SignatureEnabled = 1
-      \ | exe 'SignatureToggleSigns'
-      \ | endif
+let g:SignatureEnabledAtStartup = 1
 
 noremap <silent> <Leader>qst
       \ :<C-u>SignatureToggleSigns<CR>

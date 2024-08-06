@@ -42,13 +42,6 @@ LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 
 # {{{ prompt
 
-PSC='$'
-[ "$(id -u)" -eq 0 ] && PSC='#'
-PROMPT_COMMAND=__prompt_command
-PS2=">"
-PS3=""
-PS4="+"
-
 # prompt file, something like p10k but simpler
 if ! conditional_source ~/.prompt.bash &>/dev/null; then
     __prompt_command() {
@@ -106,6 +99,13 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
 # }}}
 fi
 
+PSC='$'
+[ "$(id -u)" -eq 0 ] && PSC='#'
+PROMPT_COMMAND=__prompt_command
+PS2=">"
+PS3=""
+PS4="+"
+
 # }}}
 
 # {{{ bindings
@@ -130,12 +130,11 @@ fi
 if [ -z "$__Z_INITIALIZED" ]; then
     # z.lua or plain old z as fallback
     if whichp z.lua &>/dev/null; then
-        # eval "$(z.lua --init bash once enhanced echo fzf)"
         # {{{ Because doing this normal way messes $?
         # It is exported as $EXIT
         TEMP="$(mktemp)"
         z.lua --init bash once enhanced echo fzf >"$TEMP"
-        patch "$TEMP" "~.bash/zlua_patch" &>/dev/null
+        patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
         eval "$(cat $TEMP)"
         rm "$TEMP"
         TEMP=

@@ -118,7 +118,10 @@ function s:QstackOpen(force = 0)
         \ :<C-u>call <SID>QstackNth(qstackln)<CR>
   nmap <buffer> J j<CR>
   nmap <buffer> K k<CR>
-  " CR done in keys.vim
+  nmap <buffer> <CR>
+  \ :<C-u>let qpos = getpos('.')<CR>
+  \<BS>:call <SID>QstackOpen(1)<CR>
+  \:call setpos('.', qpos)<CR>
 
   "}}}
 endfunction

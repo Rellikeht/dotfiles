@@ -5,11 +5,8 @@ __prompt_command() {
     # {{{
 
     # Because sometimes z.lua fucks up
-    local EX="$?"
-    local EXT
-    if [ -z "$EXIT" ]; then
-        EXT="$EX"
-    else
+    local EXT="$?"
+    if [ -n "$EXIT" ]; then
         EXT="$EXIT"
     fi
     PS1=""
