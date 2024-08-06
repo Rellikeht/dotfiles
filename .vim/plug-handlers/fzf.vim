@@ -1,11 +1,29 @@
 "{{{ helpers
-function! s:with_git_root()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  return v:shell_error ? {} : {'dir': root}
+
+function! Git_root(dir='')
+  if a:dir == ''
+    return systemlist('git rev-parse --show-toplevel')[0]
+  endif
+  return systemlist('cd '.a:dir.' && git rev-parse --show-toplevel')[0]
 endfunction
 
-function! s:with_dir(dir)
-  return {'dir': a:dir}
+function! Part_root(dir='')
+  if a:dir == ''
+    return systemlist("df -P . | awk '/^\\// {print $6}'")[0]
+  endif
+  return systemlist('cd '.a:dir." && df -P . | awk '/^\\// {print $6}'")[0]
+endfunction
+
+function! s:with_dir(dir='')
+  if len(a:dir) == 0
+    return {}
+  endif
+  if type(a:dir) == v:t_list
+    let l:dir = a:dir[0]
+  else
+    let l:dir = a:dir
+  endif
+  return {'dir': l:dir}
 endfunction
 
 function! s:W0(...)
@@ -119,6 +137,7 @@ let g:fzf_colors = {
 "}}}
 
 "{{{ paths
+
 let g:fzf_mapping_paths = {
       \ '1':'..',
       \ '2':'../..',
@@ -134,33 +153,46 @@ let g:fzf_mapping_paths = {
       \ 'd':'~/Dbackup',
       \ 'D':'~/Downloads',
       \ 'f':'~/Documents',
-      \ 'e':'/etc',
-      \ 'g':'~/gits',
+      \ 'E':'/etc',
+      \ 'p':'~/gits',
       \ }
+
+let g:fzf_mapping_specials = {
+      \ 'g':"Git_root()",
+      \ 'G':"Git_root(Git_root()..'/..')",
+      \ 'r':"Part_root()",
+      \ }
+
 "}}}
 
 "{{{ custom grep
 
-let grep_args = '-EIn'
+let s:grep_args = '-EI --line-number --dereference-recursive --color=always'
 
 command! -bang -nargs=* Fgrep
       \ call fzf#vim#grep(
-      \ "grep ".grep_args." --dereference-recursive -- "
+      \ "grep ".s:grep_args." -- "
       \ .fzf#shellescape(<q-args>),
       \ fzf#vim#with_preview(),
-      \ <bang>0
-      \ )
+      \ <bang>0 )
 
-command! -bang -nargs=+ -complete=dir Dgrep
+command! -bang -nargs=* -complete=dir Dgrep
       \ call fzf#vim#grep(
-      \ "grep ".grep_args." --dereference-recursive -- "
+      \ "grep ".s:grep_args." -- "
       \ .fzf#shellescape(s:W0(<f-args>)),
       \ extend(
       \ fzf#vim#with_preview(),
-      \ s:with_dir([<f-args>][0]),
-      \ ),
-      \ <bang>0
-      \ )
+      \ s:with_dir([<f-args>]),
+      \ ), <bang>0 )
+
+command! -bang -nargs=* -complete=dir Digrep
+      \ call fzf#vim#grep(
+      \ "grep ".s:grep_args." -i -- "
+      \ .fzf#shellescape(s:W0(<f-args>)),
+      \ extend(
+      \ fzf#vim#with_preview(),
+      \ s:with_dir([<f-args>]),
+      \ ), <bang>0)
 
 "}}}
 
@@ -178,41 +210,43 @@ command! -bang -nargs=* Au
       \ fzf#vim#with_preview(),
       \ <bang>0)
 
-" TODO C reduce that and later commands
-" Ag from git root
-command! -bang -nargs=* Rag
-      \ call fzf#vim#ag(<q-args>,
-      \ extend(
-      \ s:with_git_root(),
-      \ extend(g:fzf_layout, fzf#vim#with_preview())
-      \ ),
-      \ <bang>0)
-command! -bang -nargs=* Rau
-      \ call fzf#vim#ag(<q-args>,
-      \ '--unrestricted',
-      \ extend(
-      \ s:with_git_root(),
-      \ extend(g:fzf_layout, fzf#vim#with_preview())
-      \ ),
-      \ <bang>0)
-
 " Ag from given directory
-command! -bang -nargs=+ -complete=dir Dag
+command! -bang -nargs=* -complete=dir Dag
       \ call fzf#vim#ag(s:W0(<f-args>),
       \ extend(
-      \ s:with_dir([<f-args>][0]),
-      \ extend(g:fzf_layout, fzf#vim#with_preview())
-      \ ),
-      \ <bang>0)
+      \ s:with_dir([<f-args>]),
+      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
+      \ ), <bang>0)
 
-command! -bang -nargs=+ -complete=dir Dau
+command! -bang -nargs=* -complete=dir Dau
       \ call fzf#vim#ag(s:W0(<f-args>),
       \ '--unrestricted',
       \ extend(
-      \ s:with_dir([<f-args>][0]),
-      \ extend(g:fzf_layout, fzf#vim#with_preview())
-      \ ),
-      \ <bang>0)
+      \ s:with_dir([<f-args>]),
+      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
+      \ ), <bang>0)
+
+"}}}
+
+"{{{ custom rg
+
+let s:rgcmd = "rg --column --line-number --no-heading ".
+      \ "--color=always --smart-case "
+command! -bang -nargs=* -complete=dir Drg
+      \ call fzf#vim#grep(
+      \ s:rgcmd.' -- '.fzf#shellescape(s:W0(<f-args>)),
+      \ extend(
+      \ s:with_dir(<f-args>),
+      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
+      \ ), <bang>0)
+
+command! -bang -nargs=* -complete=dir Dru
+      \ call fzf#vim#grep(
+      \ s:rgcmd.' --unrestricted -- '.fzf#shellescape(s:W0(<f-args>)),
+      \ extend(
+      \ s:with_dir(<f-args>),
+      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
+      \ ), <bang>0)
 
 "}}}
 
@@ -298,6 +332,7 @@ nnoremap <leader>sh/ :<C-u>History/<CR>
 nnoremap <leader>sh: :<C-u>History:<CR>
 nnoremap <leader>shf :<C-u>Changes<CR>
 nnoremap <leader>shc :<C-u>Commits<CR>
+nnoremap <leader>shb :<C-u>BCommits<CR>
 nnoremap <leader>shm :<C-u>Marks<CR>
 
 "}}}
@@ -310,13 +345,15 @@ nnoremap <leader>slH :<C-u>Helptags<CR>
 nnoremap <leader>slw :<C-u>Windows<CR>
 nnoremap <leader>slj :<C-u>Jumps<CR>
 nnoremap <leader>slt :<C-u>Tags<CR>
+nnoremap <leader>slb :<C-u>BTags<CR>
 noremap <leader>slf :<C-u>Files<CR>
 noremap <leader>sl<Space>f :<C-u>Files<Space>
 noremap <leader>sls :<C-u>Locate<Space>
+nnoremap <leader>slc :<C-u>Commands<CR>
 
 " Not needed really
-noremap <leader>slc :<C-u>FZF<CR>
-noremap <leader>sl<Space>c :<C-u>FZF<Space>
+noremap <leader>slr :<C-u>FZF<CR>
+noremap <leader>sl<Space>r :<C-u>FZF<Space>
 
 "}}}
 
@@ -333,17 +370,17 @@ noremap <leader>sf<Space>a :<C-u>Ag<Space>
 
 "{{{ git mappings
 
-nnoremap <leader>gsf :<C-u>GFiles<CR>
-nnoremap <leader>gss :<C-u>GFiles?<CR>
-
 " From official instructions
 " git grep
 command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
-      \   'git grep '.grep_args.' --recursive -- '.fzf#shellescape(<q-args>),
+      \   'git grep '.s:grep_args.' -r -- '.fzf#shellescape(<q-args>),
       \   fzf#vim#with_preview(
-      \      {'dir': systemlist('git rev-parse --show-toplevel')[0]}
+      \      {'dir': Git_root()}
       \   ), <bang>0)
+
+nnoremap <leader>gsf :<C-u>GFiles<CR>
+nnoremap <leader>gss :<C-u>GFiles?<CR>
 
 nnoremap <leader>gsc :GGrep<CR>
 nnoremap <leader>gs<Space>c :GGrep<Space>
@@ -361,10 +398,6 @@ nnoremap <leader>sfh :Ah<CR>
 nnoremap <leader>sf<Space>h :Ah<Space>
 nnoremap <leader>sfu :Au<CR>
 nnoremap <leader>sf<Space>u :Au<Space>
-nnoremap <leader>sfr :Rag<CR>
-nnoremap <leader>sf<Space>r :Rag<Space>
-nnoremap <leader>sfR :Rau<CR>
-nnoremap <leader>sf<Space>R :Rau<Space>
 
 " diff
 nnoremap <leader>sfd :Fdiffs<CR>
@@ -380,34 +413,34 @@ nnoremap <leader>sl<Space>a :Args<Space>
 
 "{{{ path mappings
 
-function s:PathMap(key, path, cr=1)
-  exe 'noremap <leader>sp'.a:key.
-        \ ' :<C-u>Files '.a:path.
-        \ (a:cr ? '<CR>' : '')
-  exe 'noremap <leader>so'.a:key.
-        \ ' :<C-u>ArgeditFzf '.a:path.
-        \ (a:cr ? '<CR>' : '')
-  exe 'noremap <leader>sa'.a:key.
-        \ ' :<C-u>ArgaddFzf '.a:path.
-        \ (a:cr ? '<CR>' : '')
-  exe 'noremap <leader>s+'.a:key.
-        \ ' :<C-u>ArglistFzf '.a:path.
-        \ (a:cr ? '<CR>' : '')
-  exe 'noremap <leader>sg'.a:key.
-        \ ' :<C-u>Dag '.a:path.
-        \ (a:cr ? '<CR>' : '')
-  exe 'noremap <leader>su'.a:key.
-        \ ' :<C-u>Dau '.a:path.
-        \ (a:cr ? '<CR>' : '')
-  exe 'noremap <leader>sd'.a:key.
-        \ ' :<C-u>Dgrep '.a:path.
-        \ (a:cr ? '<CR>' : '')
+function s:PathMap(key, path, cr=1, exe=0)
+  let l:ex1 = (a:exe ? "exe '" : '')
+  let l:ex2 = (a:exe ? " '." : '')
+  let l:end = (a:cr ? '<CR>' : '')
+  for e in [
+        \ ['p', 'Files'],
+        \ ['o', 'ArgeditFzf'],
+        \ ['a', 'ArgaddFzf'],
+        \ ['A', 'ArglistFzf'],
+        \ ['g', 'Dag'],
+        \ ['G', 'Dau'],
+        \ ['d', 'Dgrep'],
+        \ ['D', 'Digrep'],
+        \ ['r', 'Drg'],
+        \ ['R', 'Dru'],
+        \ ]
+    exe 'noremap <leader>s'.e[0].a:key.' :<C-u>'.
+          \ l:ex1.e[1].l:ex2.a:path.l:end
+  endfor
 endfunction
 
+call s:PathMap('<Space>', '', 0)
 for key in keys(g:fzf_mapping_paths)
   call s:PathMap(key, g:fzf_mapping_paths[key])
 endfor
-call s:PathMap('<Space>', '', 0)
+for key in keys(g:fzf_mapping_specials)
+  call s:PathMap(key, g:fzf_mapping_specials[key], 1, 1)
+endfor
 
 "}}}
 
