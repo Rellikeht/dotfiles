@@ -7,18 +7,19 @@ autocmd FileType gitcommit,gitsendmail
 
 "{{{ fugitive
 
+let g:ftype_hooks['fugitive'] = g:ftype_hooks['git']
+
 "{{{ TODO
-" TODO gmove, ggrep
-" TODO gedit ?
-" this is so fucked, there is exponentially too much of it
-" TODO procedural creation ?
+" gmove
+" sourceforge
 "}}}
 
 "{{{ G* (g)
 
-nnoremap <silent> <leader>ggc :Git\|e<CR>
-nnoremap <silent> <leader>ggC :Git\|e<CR><C-w>T
-nnoremap <silent> <C-w><leader>ggc :tab Git\|e<CR>
+nnoremap <silent> <leader>G :Git<CR>
+nnoremap <silent> <leader>ggc :Git<CR>
+nnoremap <silent> <leader>ggC :Git<CR><C-w>T
+nnoremap <silent> <C-w><leader>ggc :tab Git<CR>
 
 nnoremap <silent> <leader>ggr :Gread<CR>
 nnoremap <silent> <leader>gg<Space>r :Gread<Space>
@@ -272,6 +273,9 @@ autocmd User SignifyHunk call s:show_current_hunk()
 "}}}
 
 "{{{ gv (v,?)
+
+let g:ftype_hooks['GV'] =
+      \ 'o: open split / O: open tab / gb: GBrowse / q: quit'
 
 nnoremap <silent> <leader>gv :GV<CR>
 nnoremap <silent> <leader>gV :GV!<CR>

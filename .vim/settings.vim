@@ -36,10 +36,10 @@ autocmd BufEnter *
 " set secure
 " shitty, but works somehow
 autocmd BufReadPost *
-      \ if &ft == ""
+      \ if (&buftype == "") && (&filetype == "")
       \ |     filetype detect
       \ | endif
-      \ | if &ft == ""
+      \ | if (&buftype == "") && (&ft == "")
       \ |     if getline(1) =~ "^!"
       \ |         set filetype=xmodmap
       \ |     else
