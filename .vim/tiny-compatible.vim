@@ -49,14 +49,9 @@ noremap <Space>U "+P
 noremap <Tab>u "*p
 noremap <Tab>U "*P
 
-" noremap <Space>;p "+gp
-" noremap <Space>;P "+gP
-
 " TODO D this is harder than it should be
 noremap g+ v<C-a>
 noremap g- v<C-x>
-vnoremap + <C-a>
-vnoremap - <C-x>
 
 noremap <Space><Esc> <Nop>
 noremap <Space><Space><Esc> <Nop>

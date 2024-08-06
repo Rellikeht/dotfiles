@@ -28,18 +28,29 @@ nnoremap <silent> <leader>gg<Space>w :Gwrite<Space>
 
 nnoremap <silent> <leader>ggb :GBrowse<CR>
 nnoremap <silent> <leader>gg<Space>b :GBrowse<Space>
+nnoremap <silent> <leader>gg<Space>e :Gedit<Space>
+nnoremap <silent> <leader>gg<Space>p :Gpedit<Space>
+nnoremap <silent> <leader>gg<Space>t :Gtabedit<Space>
 
 nnoremap <silent> <leader>ggs :Gvdiffsplit<CR>
-nnoremap <silent> <leader>gg<Space>s :Gvdiffsplit!<CR>
+nnoremap <silent> <leader>ggS :Gvdiffsplit!<CR>
 nnoremap <silent> <leader>ggh :Gdiffsplit<CR>
-nnoremap <silent> <leader>gg<Space>h :Gdiffsplit!<CR>
+nnoremap <silent> <leader>ggH :Gdiffsplit!<CR>
+
+nnoremap <silent> <leader>gg<Space>s :Gvdiffsplit<Space>
+nnoremap <silent> <leader>gg<Space>S :Gvdiffsplit!<Space>
+nnoremap <silent> <leader>gg<Space>h :Gdiffsplit<Space>
+nnoremap <silent> <leader>gg<Space>H :Gdiffsplit!<Space>
 
 nnoremap <silent> <C-w><leader>ggs :tab Gvdiffsplit<CR>
-nnoremap <silent> <C-w><leader>gg<Space>s :tab Gvdiffsplit!<CR>
+nnoremap <silent> <C-w><leader>ggS :tab Gvdiffsplit!<CR>
 nnoremap <silent> <C-w><leader>ggh :tab Gdiffsplit<CR>
-nnoremap <silent> <C-w><leader>gg<Space>h :tab Gdiffsplit!<CR>
+nnoremap <silent> <C-w><leader>ggS :tab Gdiffsplit!<CR>
 
-" TODO sourceforge
+nnoremap <silent> <expr> <leader>ggl g:qfloc ?
+      \ ':<C-u>Gllog<CR>' : ':<C-u>Gclog<CR>'
+nnoremap <silent> <expr> <leader>gg<Space>l g:qfloc ?
+      \ ':<C-u>Gllog<Space>' : ':<C-u>Gclog<Space>'
 
 " }}}
 
@@ -79,7 +90,7 @@ nnoremap <C-w><leader>gi<Space>i :tab G show<Space>
 
 "}}}
 
-"{{{ diff and merge (i)
+"{{{ diff and merge tools (i)
 
 nnoremap <silent> <leader>gih :G diff HEAD<CR>
 nnoremap <silent> <C-w><leader>gi<Space>h :tab G diff HEAD
@@ -87,6 +98,8 @@ nnoremap <silent> <leader>gih :G diff HEAD<CR>
 nnoremap <silent> <C-w><leader>gi<Space>h :tab G diff HEAD
 
 nnoremap <silent> <leader>gid :G diff<CR>
+nnoremap <silent> <leader>giD :G diff --staged<CR>
+nnoremap <silent> <leader>gi;d :G diff --cached<CR>
 nnoremap <silent> <leader>gim :G mergetool<CR>
 nnoremap <leader>gi<Space>d :G diff<Space>
 nnoremap <leader>gim :G mergetool<Space>
@@ -126,55 +139,76 @@ nnoremap <C-w><leader>gt<Space>v :tab G stash show<Space>
 
 "}}}
 
-" TODO A go from here
-
-"{{{ basic commands (o)
+"{{{ TODO B (too little probably) basic commands (o)
 
 nnoremap <silent> <leader>goa :G add %<CR>
 nnoremap <leader>go<Space>a :G add<Space>
+nnoremap <leader>goA :G add .<CR>
 
-nnoremap <silent> <leader>goc :G commit<CR>
-nnoremap <leader>go<Space>c :G commit<Space>
+nnoremap <silent> <leader>gor :G rm<Space>
+nnoremap <silent> <leader>god :G rm --cached %<CR>
+nnoremap <silent> <leader>goD :G rm --cached -r .<CR>
+nnoremap <silent> <leader>go<Space>d :G rm --cached<Space>
+nnoremap <silent> <leader>go<Space>D :G rm --cached -r<Space>
 
-nnoremap <silent> <leader>gos :G push<CR>
-nnoremap <leader>go<Space>s :G push<Space>
-
-nnoremap <silent> <leader>gol :G pull<CR>
-nnoremap <leader>go<Space>l :G pull<Space>
-
-nnoremap <leader>gor :G rebase<Space>
-nnoremap <leader>go<Space>r :G rebase<CR>
-
-"}}}
-
-"{{{ modifications ???
-
-" nnoremap <leader>gmr :G revert<Space>
-" nnoremap <leader>gmn :G reset<Space>
-" nnoremap <leader>gmh :G reset --hard<Space>
+nnoremap <silent> <leader>gom :G submodule<Space>
+nnoremap <silent> <leader>gof :G fetch<Space>
+nnoremap <silent> <leader>goc :G gc<CR>
+nnoremap <silent> <leader>goC :G gc --aggressive<CR>
 
 "}}}
 
-"{{{ advanced ???
+"{{{ TODO C (is enough) merge and rebase (m)
 
-" nnoremap <leader>gaa :G add .<CR>
+nnoremap <leader>gmr :G rebase<Space>
+nnoremap <leader>gmR :G rebase<CR>
+nnoremap <leader>gmi :G rebase --interactive<Space>
+nnoremap <leader>gmI :G rebase --interactive<CR>
+nnoremap <leader>gmm :G merge<Space>
+nnoremap <leader>gmM :G merge<CR>
+nnoremap <leader>gms :G merge --squash<Space>
+nnoremap <leader>gmS :G merge --squash<CR>
 
-" nnoremap <leader>gar :G rebase --continue<CR>
-" nnoremap <leader>gam :G merge --continue<CR>
+nnoremap <leader>gmA :G rebase --abort<CR>
+nnoremap <leader>gmC :G rebase --continue<CR>
+nnoremap <leader>gmQ :G rebase --quit<CR>
+nnoremap <leader>gmJ :G rebase --skip<CR>
 
-" nnoremap <leader>ga<Space>r :G rebase --abort<CR>
-" nnoremap <leader>ga<Space>m :G merge --abort<CR>
+nnoremap <leader>gma :G merge --abort<CR>
+nnoremap <leader>gmc :G merge --continue<CR>
+nnoremap <leader>gmq :G merge --quit<CR>
 
 "}}}
 
-"{{{ commit (c) ???
+"{{{ TODO C (is enough) reset, revert, restore (r)
 
+nnoremap <leader>grf :G reset HEAD<CR>
+nnoremap <leader>grF :G reset --hard HEAD<CR>
+nnoremap <leader>gr<Space>f :G reset<Space>
+nnoremap <leader>gr<Space>F :G reset --hard<Space>
+
+nnoremap <leader>grr :G restore<Space>
+nnoremap <leader>grR :G restore --staged<Space>
+
+nnoremap <leader>grv :G revert<Space>
+nnoremap <leader>gra :G revert --abort<CR>
+nnoremap <leader>grc :G revert --continue<CR>
+nnoremap <leader>grs :G revert --skip<CR>
+nnoremap <leader>grq :G revert --quit<CR>
+
+"}}}
+
+"{{{ TODO C (is enough) commit (c)
+
+
+nnoremap <leader>gcc :G commit<CR>
 nnoremap <leader>gca :G commit --amend<CR>
 nnoremap <leader>gcp :G commit --patch<CR>
 nnoremap <leader>gcd :G commit --dry-run<CR>
 nnoremap <leader>gcf :G commit --fixup<CR>
 nnoremap <leader>gcr :G commit --fixup=reword<CR>
 
+nnoremap <leader>gc<Space>c :G commit<Space>
 nnoremap <leader>gc<Space>a :G commit --amend<Space>
 nnoremap <leader>gc<Space>p :G commit --patch<Space>
 nnoremap <leader>gc<Space>d :G commit --dry-run<Space>
@@ -183,13 +217,15 @@ nnoremap <leader>gc<Space>r :G commit --fixup=reword<Space>
 
 "}}}
 
-"{{{ push (h) ???
+"{{{ TODO C (is enough) push (h)
 
+nnoremap <leader>ghc :G push<CR>
 nnoremap <leader>ghf :G push --force<CR>
 nnoremap <leader>gha :G push --all<CR>
 nnoremap <leader>ghu :G push --set-upstream<CR>
 nnoremap <leader>ght :G push --all --force<CR>
 
+nnoremap <leader>gh<Space>c :G push<Space>
 nnoremap <leader>gh<Space>f :G push --force<Space>
 nnoremap <leader>gh<Space>a :G push --all<Space>
 nnoremap <leader>gh<Space>u :G push --set-upstream<Space>
@@ -197,8 +233,9 @@ nnoremap <leader>gh<Space>t :G push --all --force<Space>
 
 "}}}
 
-"{{{ pull (l) ???
+"{{{ TODO C (is enough) pull (l)
 
+nnoremap <leader>glc :G pull<CR>
 nnoremap <leader>glf :G pull --force<CR>
 nnoremap <leader>glr :G pull --rebase<CR>
 nnoremap <leader>gli :G pull --rebase=interactive<CR>
@@ -206,6 +243,7 @@ nnoremap <leader>gla :G pull --all<CR>
 nnoremap <leader>gld :G pull --dry-run<CR>
 nnoremap <leader>glu :G pull --set-upstream<CR>
 
+nnoremap <leader>gl<Space>c :G pull<Space>
 nnoremap <leader>gl<Space>f :G pull --force<Space>
 nnoremap <leader>gl<Space>r :G pull --rebase<Space>
 nnoremap <leader>gl<Space>i :G pull --rebase=interactive<Space>
@@ -215,27 +253,22 @@ nnoremap <leader>gl<Space>u :G pull --set-upstream<Space>
 
 "}}}
 
-"{{{ branches (b)
+"{{{ TODO B (is enough) branches (b)
 
-" TODO
-nnoremap <leader>goc :G checkout<CR>
-nnoremap <leader>go<Space>c :G checkout<Space>
+nnoremap <leader>gbc :G checkout<CR>
+nnoremap <leader>gb<Space>c :G checkout<Space>
 
 nnoremap <leader>gbt :G tag  HEAD<left><left><left><left><left>
-nnoremap <leader>gbf :G checkout --force<CR>
 nnoremap <leader>gbb :G branch<CR>
-nnoremap <leader>gbo :G checkout --ours<CR>
-nnoremap <leader>gbe :G checkout --theirs<CR>
+nnoremap <leader>gbf :G checkout --force<CR>
 nnoremap <leader>gbm :G checkout --merge<CR>
 
 nnoremap <leader>gb<Space>t :G tag<Space>
-nnoremap <leader>gb<Space>f :G checkout --force<Space>
 nnoremap <leader>gb<Space>b :G branch<Space>
+nnoremap <leader>gb<Space>f :G checkout --force<Space>
 nnoremap <leader>gb<Space>o :G checkout --ours<Space>
 nnoremap <leader>gb<Space>e :G checkout --theirs<Space>
 nnoremap <leader>gb<Space>m :G checkout --merge<Space>
-
-"}}}
 
 "}}}
 
@@ -251,10 +284,14 @@ nnoremap <silent> <leader>gsr :SignifyRefresh<CR>
 
 nnoremap <silent> <leader>gsd :SignifyHunkDiff<CR>
 nnoremap <silent> <leader>gsu :SignifyHunkUndo<CR>
-nnoremap <leader>gj <plug>(signify-next-hunk)
-nnoremap <leader>gk <plug>(signify-prev-hunk)
-nnoremap <leader>gJ 9999<leader>gj
-nnoremap <leader>gK 9999<leader>gk
+nnoremap <leader>gJ 99999<plug>(signify-next-hunk)
+nnoremap <leader>gK 99999<plug>(signify-prev-hunk)
+
+" TODO C is there a sane way
+" nnoremap <leader>gj <plug>(signify-next-hunk)
+" nnoremap <leader>gk <plug>(signify-prev-hunk)
+nnoremap + <plug>(signify-next-hunk)
+nnoremap - <plug>(signify-prev-hunk)
 
 nnoremap <silent> <leader>gsl :SignifyList<CR>
 nnoremap <silent> <leader>gsi :echo sy#repo#get_stats_decorated(Expand('%'))<CR>

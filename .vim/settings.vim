@@ -5,8 +5,8 @@ set path+=**
 " set path+=../**
 
 let mapleader = ','
-" TODO 
-let maplocalleader = '-'
+" TODO C how the fuck to do that well
+let maplocalleader = '\'
 
 autocmd FileType * let b:match_ignorecase = 0
 let g:pathshorten = 4

@@ -108,7 +108,7 @@ lspconfig.nil_ls.setup(
           },
         },
         nix = {
-          maxMemoryMB = 3072,
+          maxMemoryMB = 4096,
           flake = {
             --
             autoArchive = nil, -- true

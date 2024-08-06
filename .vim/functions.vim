@@ -310,6 +310,13 @@ function EchoRelCurFile()
       " TODO C what?
       echo bufname()
     endif
+  elseif &buftype == 'nofile'
+    let bname = bufname()
+    if bname == ''
+      echo '[nofile]'
+    else
+      echo bname
+    endif
   elseif &buftype != ''
     redraw!
   elseif has_key(g:ftype_hooks, &filetype)
