@@ -32,6 +32,16 @@ noremap <silent> <leader>fg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
 
 "}}}
 
+"{{{ nops
+
+noremap <Space>f <Nop>
+noremap <Space><Space>f <Nop>
+noremap <Space>b <Nop>
+noremap <Space>/ <Nop>
+noremap <Space>? <Nop>
+
+"}}}
+
 "{{{ drag and drop
 
 " TODO C more ?
@@ -76,31 +86,19 @@ noremap <Leader>xo
 
 "}}}
 
-"{{{ find
+"{{{ TODO C more ??? - find
 
-nnoremap <Space><Space>f<Space> :find<Space>
-nnoremap <Space><Space>fa :find *
-nnoremap <Space><Space>fr :find **
-nnoremap <Space><Space>f;a :find *<Tab>
-nnoremap <Space><Space>f;r :find **<Tab>
+nnoremap <Space><Space>fu :<C-u>find <cfile><CR>
+nnoremap <Space><Space>fw :<C-u>find <cword><CR>
+nnoremap <Space><Space>fm :<C-u>find <cWORD><CR>
+nnoremap <Space><Space>fe :<C-u>find <cexpr><CR>
 
-nnoremap <Space><Space>f;<Space> :find!<Space>
-nnoremap <Space><Space>fA :find! *
-nnoremap <Space><Space>fR :find! **
-nnoremap <Space><Space>f;A :find! *<Tab>
-nnoremap <Space><Space>f;R :find! **<Tab>
+nnoremap <Space><Space>f<Space> :<C-u>find<Space>
+nnoremap <Space><Space>fs :<C-u>exe 'find '.
+      \ GetVisualEsc()<CR>
 
-nnoremap <C-w><Space><Space>f<Space> :tabfind<Space>
-nnoremap <C-w><Space><Space>fa :tabfind *
-nnoremap <C-w><Space><Space>fr :tabfind **
-nnoremap <C-w><Space><Space>f;a :tabfind *<Tab>
-nnoremap <C-w><Space><Space>f;r :tabfind **<Tab>
-
-nnoremap <C-w><Space><Space>f;<Space> :tabfind!<Space>
-nnoremap <C-w><Space><Space>fA :tabfind! *
-nnoremap <C-w><Space><Space>fR :tabfind! **
-nnoremap <C-w><Space><Space>f;A :tabfind! *<Tab>
-nnoremap <C-w><Space><Space>f;R :tabfind! **<Tab>
+vnoremap <Space><Space>f :<C-u>exe 'find '.
+      \ GetVisualEsc()<CR>
 
 "}}}
 

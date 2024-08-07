@@ -236,6 +236,10 @@ function GetVisualSelection()
   return join(lines, "\n")
 endfunction
 
+function GetVisualEsc()
+  return escape(GetVisualSelection(), "\"")
+endfunction
+
 "}}}
 
 "{{{ 

@@ -29,6 +29,10 @@ command! -nargs=* -complete=buffer ArgaddB
 
 "}}}
 
+"{{{ nops
+
+"}}}
+
 "{{{ remaps
 
 noremap .. .

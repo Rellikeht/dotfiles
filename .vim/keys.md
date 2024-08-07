@@ -1,11 +1,17 @@
 # About
 
+I tried to balance ergonomy and logic while providing maximum
+functionality with keybindings. This results in partial
+preservation of logic and very imperfect ergonomy.
+
+## File
+
 This file is trial to describe all mappings and keep available
 keys in one place.
 
 With hundreds of mappings it may be necessary.
 
-Not very accurate, at least for now.
+All of this isn't very accurate and updated, at least for now.
 
 # Unused keys
 
@@ -67,12 +73,13 @@ Not very accurate, at least for now.
 - Y - "+Y
 - s - `:[l]grep` and stuff
 - f - `:[l]vimgrep` and stuff
+- c - eunuch find and locate commands
 
 ## Free
 
-b,c,h,k,r,v,w,x,z
+c,h,k,r,v,w,x,z
 
-<tab>,/,?,+,-
+<tab>,+,-
 
 1-9,\[,\]
 
@@ -80,12 +87,9 @@ b,c,h,k,r,v,w,x,z
 
 - navigation between buffers (:b commands)
 
-# Other <Space> combinations
+## Special
 
-- navigation between arguments in argument lists
-- manipulation of those lists
-- listings, help
-- simple settings
+- f - find
 
 ## Plugins
 

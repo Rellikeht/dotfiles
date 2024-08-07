@@ -53,11 +53,15 @@ noremap <Tab>U "*P
 noremap g+ v<C-a>
 noremap g- v<C-x>
 
-noremap <Space><Esc> <Nop>
-noremap <Space><Space><Esc> <Nop>
-noremap .<Esc> <Nop>
-
 " }}}
+
+"{{{ nops
+
+map <Space> <Nop>
+map <Space><Space> <Nop>
+map . <Nop>
+
+"}}}
 
 "{{{ settings with <Space>
 
@@ -91,10 +95,10 @@ noremap <Tab>gp :<C-u>tabfind<Space>
 noremap <Tab>gP :<C-u>-tabfind<Space>
 
 noremap <Tab><Space>o :<C-u>tabedit  \|
-      \exe 'arglocal! '.escape(expand('%')," '"")
+      \exe 'arglocal! '.fnameescape(expand('%'))
       \<C-Left><C-Left><C-Left><C-Left><Left>
 noremap <Tab><Space>O :<C-u>-tabedit  \|
-      \exe 'arglocal! '.escape(expand('%')," '"")
+      \exe 'arglocal! '.fnameescape(expand('%'))
       \<C-Left><C-Left><C-Left><C-Left><Left>
 
 noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
@@ -133,9 +137,7 @@ vnoremap <Tab>: :<C-u>tabdo  \|norm gv
 
 " }}}
 
-" {{{ resizing with <Tab>
-" TODO C better
-" TODO C more
+" {{{ TODO C refine - resizing with <Tab>
 
 nnoremap <silent> <Tab>>1 :<C-u>vertical resize 10<CR>
 vnoremap <silent> <Tab>>1 :<C-u>vertical resize 10\|norm gv<CR>
@@ -342,10 +344,10 @@ nnoremap <Space>q<Space>l :<C-u>arglocal<Space>
 vnoremap <Space>q<Space>l :<C-u>arglocal  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>q<Space>L :<C-u>arglocal!<Space>
 vnoremap <Space>q<Space>L :<C-u>arglocal!  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>qf :<C-u>exe 'arglocal '.escape(expand('%')," '"")<CR>
-vnoremap <Space>qf :<C-u>exe 'arglocal '.escape(expand('%')," '"")\|norm gv<CR>
-nnoremap <Space>qF :<C-u>exe 'arglocal! '.escape(expand('%')," '"")<CR>
-vnoremap <Space>qF :<C-u>exe 'arglocal! '.escape(expand('%')," '"")\|norm gv<CR>
+nnoremap <Space>qf :<C-u>exe 'arglocal '.fnameescape(expand('%'))<CR>
+vnoremap <Space>qf :<C-u>exe 'arglocal '.fnameescape(expand('%'))\|norm gv<CR>
+nnoremap <Space>qF :<C-u>exe 'arglocal! '.fnameescape(expand('%'))<CR>
+vnoremap <Space>qF :<C-u>exe 'arglocal! '.fnameescape(expand('%'))\|norm gv<CR>
 
 nnoremap <silent> <Space>qg :<C-u>argglobal<CR>
 vnoremap <silent> <Space>qg :<C-u>argglobal\|norm gv<CR>
