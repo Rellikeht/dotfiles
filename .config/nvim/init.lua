@@ -86,7 +86,9 @@ Plug("hedyhli/outline.nvim")
 
 Plug("puremourning/vimspector")
 Plug("jgdavey/tslime.vim")
+
 Plug("vim-test/vim-test")
+Plug("nvim-neotest/neotest")
 
 Plug("p00f/clangd_extensions.nvim")
 Plug("ilyachur/cmake4vim")
@@ -107,7 +109,7 @@ vim.call("plug#end")
 local confMods = {
   "motion",
   "cmp",
-  "colors",
+  "look",
   "treesitter",
   "lspconfig",
   "coding",

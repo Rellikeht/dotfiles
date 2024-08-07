@@ -10,25 +10,25 @@ function DiffPut(pane)
   diffupdate
 endfunction
 
-noremap <silent> <leader>fdp :<C-u>diffput<CR>
-noremap <silent> <leader>fdg :<C-u>diffget<CR>
-nnoremap <silent> <leader>fdu :<C-u>diffupdate<CR>
-vnoremap <silent> <leader>fdu :<C-u>diffupdate\|norm gv<CR>
+noremap <silent> <Space>hdp :<C-u>diffput<CR>
+noremap <silent> <Space>hdg :<C-u>diffget<CR>
+nnoremap <silent> <Space>hdu :<C-u>diffupdate<CR>
+vnoremap <silent> <Space>hdu :<C-u>diffupdate\|norm gv<CR>
 
-noremap <silent> <leader>fg0 :<C-u>call DiffGet('//0')<CR>
-noremap <silent> <leader>fg1 :<C-u>call DiffGet('//1')<CR>
-noremap <silent> <leader>fg2 :<C-u>call DiffGet('//2')<CR>
-noremap <silent> <leader>fg3 :<C-u>call DiffGet('//3')<CR>
+noremap <silent> <Space>hg0 :<C-u>call DiffGet('//0')<CR>
+noremap <silent> <Space>hg1 :<C-u>call DiffGet('//1')<CR>
+noremap <silent> <Space>hg2 :<C-u>call DiffGet('//2')<CR>
+noremap <silent> <Space>hg3 :<C-u>call DiffGet('//3')<CR>
 
-noremap <silent> <leader>fp0 :<C-u>call DiffPut('//0')<CR>
-noremap <silent> <leader>fp1 :<C-u>call DiffPut('//1')<CR>
-noremap <silent> <leader>fp2 :<C-u>call DiffPut('//2')<CR>
-noremap <silent> <leader>fp3 :<C-u>call DiffPut('//3')<CR>
+noremap <silent> <Space>hp0 :<C-u>call DiffPut('//0')<CR>
+noremap <silent> <Space>hp1 :<C-u>call DiffPut('//1')<CR>
+noremap <silent> <Space>hp2 :<C-u>call DiffPut('//2')<CR>
+noremap <silent> <Space>hp3 :<C-u>call DiffPut('//3')<CR>
 
-noremap <silent> <leader>fpf :<C-u>call DiffPut(Expand('%:p'))<CR>
-noremap <silent> <leader>fp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
-noremap <silent> <leader>fgf :<C-u>call DiffGet(Expand('%:p'))<CR>
-noremap <silent> <leader>fg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
+noremap <silent> <Space>hpf :<C-u>call DiffPut(Expand('%:p'))<CR>
+noremap <silent> <Space>hp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
+noremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
+noremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
 
 "}}}
 
@@ -96,8 +96,10 @@ nnoremap <Space><Space>fe :<C-u>find <cexpr><CR>
 nnoremap <Space><Space>f<Space> :<C-u>find<Space>
 nnoremap <Space><Space>fs :<C-u>exe 'find '.
       \ GetVisualEsc()<CR>
+nnoremap <Space><Space>f<Space>s :<C-u>exe 'find '.
+      \ GetVisualEsc()<Space>
 
-vnoremap <Space><Space>f :<C-u>exe 'find '.
+vnoremap <Space><Space>;f :<C-u>exe 'find '.
       \ GetVisualEsc()<CR>
 
 "}}}

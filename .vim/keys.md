@@ -74,10 +74,11 @@ All of this isn't very accurate and updated, at least for now.
 - s - `:[l]grep` and stuff
 - f - `:[l]vimgrep` and stuff
 - c - eunuch find and locate commands
+- h - diffs
 
 ## Free
 
-c,h,k,r,v,w,x,z
+c,k,r,v,w,x,z
 
 <tab>,+,-
 
@@ -139,8 +140,6 @@ c,h,k,r,v,w,x,z
 
 - ; - commands
 
-- f - diff operations
-
 ## With plugins
 
 - t - tmux
@@ -190,7 +189,10 @@ c,h,k,r,v,w,x,z
 
 - d - lspconfig diagnostics and lsp actions
 - <Leader> - easymotion ; TODO
-- e, E, D - code plugins ; NOT IMPLEMENTED
+
+## Free
+
+a,b,e,f,h,k,l,m,o,p,r,t,v,w,y,z
 
 # g combinations
 

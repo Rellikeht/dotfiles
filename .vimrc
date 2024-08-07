@@ -66,7 +66,7 @@ if v:progname !~? "tv\\?\\(im\\?\\)\\?"
   endfor
 
   source ~/.vim/programming.vim
-  source ~/.vim/colors.vim
+  source ~/.vim/look.vim
   "}}}
 
 endif
