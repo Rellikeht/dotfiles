@@ -12,6 +12,10 @@ function VNmap(map, key, cmd, end = "")
   endif
 endfunction
 
+function FileOrDir(path)
+  return filereadable(a:path) || isdirectory(a:path)
+endfunction
+
 "}}}
 
 "{{{ expands
@@ -242,102 +246,6 @@ endfunction
 
 "}}}
 
-"{{{ 
-
-" Simplest implementation, hopefully
-" won't be too slow
-function! WithoutCommonSubstring(first, second)
-  for i in range(strlen(a:first))
-    if i >= strlen(a:second) || a:first[i] != a:second[i]
-      return a:first[i:]
-    endif
-  endfor
-  return ''
-endfun
-
-" Path cur relative to path rel
-function RelPath(cur, rel)
-  let pardirs = WithoutCommonSubstring(
-        \ a:rel,
-        \ a:cur.'/'
-        \ )
-  let parpat = '\([^/]\+\)'
-  let subst = substitute(pardirs, parpat , '..', 'g')
-  let relpath = WithoutCommonSubstring(a:cur, a:rel.'/')
-  if subst =~ '[^/]$' && parpat[0] != '/'
-    let subst = subst.'/'
-  endif
-  return (pardirs == '' ? '' : subst).
-        \ pathshorten(relpath, g:pathshorten)
-endfunction
-
-" Path of current file relative to previously visited dir
-" (set by autocmd on bufenter)
-function RelCurFile()
-  if expand('%') == ''
-    return ''
-  endif
-
-  if &filetype == 'netrw'
-    let cpath = expand('%:p:h:h')
-  else
-    let cpath = expand('%:p:h')
-  endif
-  let relpath = RelPath(cpath, w:prev_dir)
-  if relpath != '' && relpath =~ '[^/]$'
-    let relpath = relpath.'/'
-  endif
-  let relpath = relpath.expand('%:t')
-  let fpath = expand('%:p')
-  if filereadable(fpath) || isdirectory(fpath)
-    return relpath
-  endif
-  return '--- '.relpath.' ---'
-endfunction
-
-let g:ftype_hooks = {
-      \ 'git':{-> execute('echo bufname()', '')},
-      \ }
-
-function EchoRelCurFile()
-  if &buftype == 'help'
-    echo fnamemodify(bufname(), ':t')
-  elseif &buftype == 'nowrite'
-    if has_key(g:ftype_hooks, &filetype)
-      let Msg = g:ftype_hooks[&filetype]
-      if type(Msg) == v:t_func
-        call Msg()
-      else
-        echo Msg
-      endif
-    else
-      " TODO C what?
-      echo bufname()
-    endif
-  elseif &buftype == 'nofile'
-    let bname = bufname()
-    if bname == ''
-      echo '[nofile]'
-    else
-      echo bname
-    endif
-  elseif &buftype != ''
-    redraw!
-  elseif has_key(g:ftype_hooks, &filetype)
-    echom "HAS KEY"
-    let Msg = g:ftype_hooks[&filetype]
-    if type(Msg) == v:t_func
-      call Msg()
-    else
-      echo Msg
-    endif
-  else
-    echo RelCurFile()
-  endif
-endfunction
-
-"}}}
-
 "{{{ Because :next, :prev and similar don't wrap around
 
 function NextArg(pos, cmd, before = '', after = '')
@@ -432,6 +340,109 @@ nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
 
 "}}}
 
+"{{{ displaying name relative to previous buffer on change
+
+" Return first string without prefix that is has
+" in common with second
+" Simplest and naive implementation
+function! WithoutCommonPrefix(first, second)
+  for i in range(strlen(a:first))
+    if i >= strlen(a:second) || a:first[i] != a:second[i]
+      while i > 0 && a:first[i-1] != '/'
+        let i = i-1
+      endwhile
+      return a:first[i:]
+    endif
+  endfor
+  return ''
+endfun
+
+" Path cur (file) relative to path rel (dir)
+function RelPath(cur, rel)
+  let ddirs = WithoutCommonPrefix(
+        \ a:rel,
+        \ a:cur
+        \ )
+  let subst = substitute(ddirs, '\([^/]\+\)', '..', 'g')
+  let subst = (subst == '' ? '' : subst.'/')
+  let relpath = WithoutCommonPrefix(a:cur, a:rel.'/')
+  return subst.pathshorten(relpath, g:pathshorten)
+endfunction
+
+" Path of current file relative to previously visited dir
+" (set by autocmd on bufenter)
+function RelFile(path, prev_dir)
+  if a:path == ''
+    return ''
+  endif
+  " if a:path =~ 'Netrw[^/]*Listing$'
+  if isdirectory(a:path)
+    let cpath = fnamemodify(a:path, ':p:h')
+  else
+    let cpath = fnamemodify(a:path, ':p')
+  endif
+  let relpath = RelPath(cpath, a:prev_dir)
+  " if relpath != '' && relpath =~ '[^/]$'
+  "   let relpath = relpath.'/'
+  " endif
+  " let relpath = relpath.fnamemodify(a:path, ':t')
+  " let fpath = fnamemodify(a:path, ':p')
+  if FileOrDir(a:path)
+    return relpath
+  endif
+  return '== '.relpath.' =='
+endfunction
+
+function RelCurFile()
+  return RelFile(expand('%'), w:prev_dir)
+  " return RelPath((isdirectory(expand('%')) ?
+  "       \ expand('%:p:h') : expand('%:p')),
+  "       \ w:prev_dir)
+endfunction
+
+let g:ftype_hooks = {
+      \ 'git':{-> execute('echo bufname()', '')},
+      \ }
+
+function EchoRelCurFile()
+  if &buftype == 'help'
+    echo fnamemodify(bufname(), ':t')
+  elseif &buftype == 'nowrite'
+    if has_key(g:ftype_hooks, &filetype)
+      let Msg = g:ftype_hooks[&filetype]
+      if type(Msg) == v:t_func
+        call Msg()
+      else
+        echo Msg
+      endif
+    else
+      " TODO C what?
+      echo bufname()
+    endif
+  elseif &buftype == 'nofile'
+    let bname = bufname()
+    if bname == ''
+      echo '[nofile]'
+    else
+      echo bname
+    endif
+  elseif &buftype != ''
+    redraw!
+  elseif has_key(g:ftype_hooks, &filetype)
+    echom "HAS KEY"
+    let Msg = g:ftype_hooks[&filetype]
+    if type(Msg) == v:t_func
+      call Msg()
+    else
+      echo Msg
+    endif
+  else
+    echo RelCurFile()
+  endif
+endfunction
+
+"}}}
+
 "{{{ toggling
 
 function ToggleBuffer(name)
@@ -445,42 +456,7 @@ function ToggleBuffer(name)
   endif
 endfunction
 
-function ToggleAutochdir()
-  let g:autochdir = !g:autochdir
-  if g:autochdir
-    augroup AutoChdir
-      autocmd BufLeave *
-            \ if (&buftype == '') &&
-            \ (!has_key(g:ftype_hooks, &filetype))
-            \ | if &filetype == 'netrw'
-            \ | let w:prev_dir = expand('%:p:h:h')
-            \ | elseif isdirectory(expand('%:p:h'))
-            \ | let w:prev_dir = expand('%:p:h')
-            \ | endif
-            \ | endif
-      autocmd BufEnter *
-            \ if &buftype == '' &&
-            \ (!has_key(g:ftype_hooks, &filetype))
-            \ | if isdirectory(expand('%:p:h'))
-            \ | exe 'lcd %:p:h'
-            \ | endif
-            \ | endif
-            \ | if !get(g:, 'no_file_msg', 0)
-            \ | call EchoRelCurFile()
-            \ | endif
-    augroup END
-    echo 'AutoChdir enabled'
-    else
-      augroup! AutoChdir
-      echo 'AutoChdir disabled'
-    endif
-endfunction
-
-autocmd VimResume *
-      \ checktime
-      \ | echo expand('%:p')
-
-" TODO
+" TODO C
 function ToggleAutoupdate()
   let g:autoupdate = !g:autoupdate
   if g:autoupdate
@@ -496,6 +472,47 @@ function ToggleAutoupdate()
     echo 'Autoupdate disabled'
   endif
 endfunction
+
+"}}}
+
+"{{{ autochdir and relative printing
+
+function ToggleAutochdir()
+  let g:autochdir = !g:autochdir
+  if g:autochdir
+    augroup AutoChdir
+      autocmd BufLeave *
+            \ if (&buftype == '') &&
+            \ (!has_key(g:ftype_hooks, &filetype))
+            \ | if isdirectory(expand('%:p'))
+            \ | let w:prev_dir = expand('%:p:h:h')
+            \ | elseif isdirectory(expand('%:p:h'))
+            \ | let w:prev_dir = expand('%:p:h')
+            \ | else
+            \ | let w:prev_dir = ''
+            \ | endif
+            \ | endif
+      autocmd BufEnter *
+            \ if &buftype == '' &&
+            \ (!has_key(g:ftype_hooks, &filetype))
+            \ | if isdirectory(expand('%:p:h'))
+            \ | exe 'lcd %:p:h'
+            \ | endif
+            \ | endif
+            \ | if !get(g:, 'no_file_msg', 0)
+            \ | call EchoRelCurFile()
+            \ | endif
+    augroup END
+    echo 'AutoChdir enabled'
+  else
+    augroup! AutoChdir
+    echo 'AutoChdir disabled'
+  endif
+endfunction
+
+autocmd VimResume *
+      \ checktime
+      \ | echo expand('%:p')
 
 "}}}
 

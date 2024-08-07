@@ -11,8 +11,11 @@ let maplocalleader = '\'
 autocmd FileType * let b:match_ignorecase = 0
 let g:pathshorten = 4
 
+let g:no_file_msg = 1
 autocmd WinNew,VimEnter *
       \ let w:prev_dir = expand('%:p:h')
+      \ | let g:no_file_msg = 0
+      \ | echo expand('%:p')
 
 " arglocal with current file for all new tabs
 autocmd TabNew *
@@ -192,7 +195,7 @@ set updatetime=50
 
 let g:autochdir = 0
 let w:prev_dir = expand('%:p:h')
-silent! call ToggleAutochdir()
+silent call ToggleAutochdir()
 
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
