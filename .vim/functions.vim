@@ -38,6 +38,13 @@ function Exfiles(...)
   return join(l:fs, ' ')
 endfunction
 
+function Dexpand(path)
+  if isdirectory(a:path)
+    return fnamemodify(a:path, ':p:h')
+  endif
+  return fnamemodify(a:path, ':p')
+endfunction
+
 "}}}
 
 "{{{ commands
@@ -375,13 +382,8 @@ function RelFile(path, prev_dir)
   if a:path == ''
     return ''
   endif
-  " if a:path =~ 'Netrw[^/]*Listing$'
-  if isdirectory(a:path)
-    let cpath = fnamemodify(a:path, ':p:h')
-  else
-    let cpath = fnamemodify(a:path, ':p')
-  endif
-  let relpath = RelPath(cpath, a:prev_dir)
+  " if a:path =~ 'Netrw[^/]*Listing$' " ?
+  let relpath = RelPath(Dexpand(a:path), a:prev_dir)
   " if relpath != '' && relpath =~ '[^/]$'
   "   let relpath = relpath.'/'
   " endif
@@ -395,9 +397,6 @@ endfunction
 
 function RelCurFile()
   return RelFile(expand('%'), w:prev_dir)
-  " return RelPath((isdirectory(expand('%')) ?
-  "       \ expand('%:p:h') : expand('%:p')),
-  "       \ w:prev_dir)
 endfunction
 
 let g:ftype_hooks = {
