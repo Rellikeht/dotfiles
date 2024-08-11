@@ -511,4 +511,10 @@ filetype {*.asc},<application/pgp-signature>
 
 "{{{ other
 
+" flash
+filetype *.swp
+       \ flashplayer %f,
+       \ ruffle %f,
+
+
 "}}}

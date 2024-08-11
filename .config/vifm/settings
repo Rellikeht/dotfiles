@@ -192,20 +192,20 @@ endif
 " :mark mark /full/directory/path [filename]
 
 mark h ~/
-mark d ~/Dbackup/
-mark t ~/Download/
+mark d ~/Dbackup
+mark D ~/Downloads
 
-mark g ~/gits/
-mark c ~/Templates/
+mark g ~/gits
+mark c ~/Templates
 
-mark f ~/Documents/
-mark m ~/Music/
-mark v ~/Video/
-mark p ~/Podcasts/
+mark f ~/Documents
+mark m ~/Music
+mark v ~/Videos
+mark p ~/Podcasts
 
 mark b ~/Backups
 mark s ~/Something
-mark n /mnt/
+mark e /mnt
 
 "}}}
 
