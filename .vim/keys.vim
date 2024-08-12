@@ -27,6 +27,12 @@ command! -nargs=* -bang -complete=buffer ArgeditB
 command! -nargs=* -complete=buffer ArgaddB
       \ argadd <args>
 
+command! -nargs=* -bang -complete=file_in_path ArgeditPath
+      \ argedit<bang> <args>
+
+command! -nargs=* -complete=file_in_path ArgaddPath
+      \ argadd <args>
+
 "}}}
 
 "{{{ nops
@@ -165,9 +171,6 @@ vnoremap <Space>;l
       \ GetVisualSelection().' args'<CR>
 noremap <Space>;a :<C-u>ArgaddB<Space>
 
-nnoremap <Space>gf :<C-u>argedit <cfile><CR>
-nnoremap <Space>ga :<C-u>argadd <cfile><CR>
-
 noremap <silent> <Space>n :<C-u>call NextArg(1, 'argument')<CR>
 noremap <silent> <Space>N :<C-u>call NextArg(1, 'argument!')<CR>
 noremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
@@ -181,6 +184,14 @@ noremap <silent> <Space>,
       \ :<C-u>call NextArg(0, 'argument', 'w')<CR>
 noremap <silent> <Space>< 
       \ :<C-u>call NextArg(0, 'argument!', 'w')<CR>
+
+nnoremap <Space>fo :<C-u>ArgeditPath<Space>
+nnoremap <Space>fO :<C-u>ArgeditPath!<Space>
+nnoremap <Space>fa :<C-u>ArgaddPath<Space>
+
+nnoremap <Space>fu :<C-u>argedit <cfile><CR>
+nnoremap <Space>fU :<C-u>argedit! <cfile><CR>
+nnoremap <Space>fA :<C-u>argadd <cfile><CR>
 
 "}}}
 

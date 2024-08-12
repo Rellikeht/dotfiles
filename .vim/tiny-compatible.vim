@@ -558,8 +558,8 @@ set undolevels=10000
 
 " {{{ other
 
+set noautoread
 set noautochdir
-set autoread
 set termencoding=utf-8
 
 set modelines=3

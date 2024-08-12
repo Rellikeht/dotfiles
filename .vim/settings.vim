@@ -6,11 +6,6 @@ set shell=/usr/bin/env\ bash
 
 set noshelltemp
 
-" TODO A how to do this well the fuck
-" TODO A toggling hidden
-" set path=./**,**
-set path=./**
-
 let mapleader = ','
 " TODO C how the fuck to do that well
 let maplocalleader = '\'
@@ -30,8 +25,7 @@ autocmd WinNew *
 autocmd BufWinEnter *
       \ if get(w:, 'buf_echo', 0)
       \ | let w:buf_echo = 0
-      \ | echom &filetype
-      \ | if &buftype != 'help' && !get(g:, 'no_file_msg', 1)
+      \ | if &buftype == '' && !get(g:, 'no_file_msg', 1)
       \ | echo expand('%:p')
       \ | endif
       \ | endif
@@ -73,6 +67,68 @@ autocmd BufReadPost *
 set foldmethod=marker
 
 " }}}
+
+"{{{ file stuff
+
+"{{{ ignores
+
+set wildignore+=.git/**
+set wildignore+=.local/**
+set wildignore+=.cache/**
+
+set wildignore+=*.o,*.obj,*.swp
+set wildignore+=*.so,*.a,*.bin
+set wildignore+=*.pdf,*.djvu,*.epub
+set wildignore+=*.opus,*.ogg,*.mp3
+set wildignore+=*.mp4,*.mkv,*.webm
+set wildignore+=*.AppImage
+set wildignore+=*.lock,*~
+set wildignore+=*.doc,*.xls
+
+"}}}
+
+"{{{ paths
+
+" TODO A FUCK
+      \ ['.,./**,./**/.*,./.*/**', '.,./**'],
+      \ ['.,./**,./**/.*/**', '.,./**'],
+let g:paths = [
+      \ ['.,./**', '.,./**'],
+      \ [',,**,**/.*/**', ',,**'],
+      \ ]
+
+let g:pat1 = 0
+let g:pat2 = 0
+
+function SetPath()
+    exe 'set path='.g:paths[g:pat1][g:pat2]
+endfunction
+
+function NextPat1(amount=1)
+  let g:pat1 = (g:pat1 + a:amount + len(g:paths)) % len(g:paths)
+  call SetPath()
+endfunction
+
+function NextPat2(amount=1)
+  let g:pat2 = (g:pat2 + a:amount + len(g:paths[g:pat1]))
+        \ % len(g:paths[g:pat1])
+  call SetPath()
+endfunction
+
+call SetPath()
+
+"}}}
+
+"{{{ maps
+
+noremap <silent> <Space>fn :<C-u>call NextPat1()<CR>
+noremap <silent> <Space>fp :<C-u>call NextPat1(-1)<CR>
+noremap <silent> <Space>fN :<C-u>call NextPat2()<CR>
+noremap <silent> <Space>fP :<C-u>call NextPat2(-1)<CR>
+
+"}}}
+
+"}}}
 
 "{{{ good looking
 
