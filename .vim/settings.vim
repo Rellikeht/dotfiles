@@ -1,8 +1,13 @@
 " {{{ heavy stuff
 
-" ??
-set path+=**
-" set path+=../**
+" slightly slower, but acceptable
+set shell=/usr/bin/env\ bash
+" set shell=sh
+
+" TODO A how to do this well the fuck
+" TODO A toggling hidden
+" set path=./**,**
+set path=./**
 
 let mapleader = ','
 " TODO C how the fuck to do that well
@@ -21,7 +26,6 @@ autocmd WinNew,VimEnter *
 autocmd TabNew *
       \ let t:make_list = get(t:, 'make_list', 1)
 
-" TODO A is this better with checking if exists
 " Has to use this because of order of events
 autocmd BufEnter *
       \ if get(t:, 'make_list', 0)
@@ -37,6 +41,7 @@ autocmd BufEnter *
       \ | let t:make_list = 0
 
 " set secure
+
 " shitty, but works somehow
 autocmd BufReadPost *
       \ if (&buftype == "") && (&filetype == "")
@@ -52,8 +57,6 @@ autocmd BufReadPost *
       \ | endif
 
 set foldmethod=marker
-
-set shell=sh
 
 " }}}
 
@@ -193,9 +196,9 @@ endif
 " default updatetime 4000ms is not good for async update
 set updatetime=50
 
-let g:autochdir = 0
 let w:prev_dir = expand('%:p:h')
-silent call ToggleAutochdir()
+let g:autochdir = 0
+" silent call ToggleAutochdir()
 
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>

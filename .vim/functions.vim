@@ -350,7 +350,7 @@ nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
 "{{{ displaying name relative to previous buffer on change
 
 " Return first string without prefix that is has
-" in common with second
+" in common with second, use dirs, not chars
 " Simplest and naive implementation
 function! WithoutCommonPrefix(first, second)
   for i in range(strlen(a:first))
@@ -367,11 +367,11 @@ endfun
 " Path cur (file) relative to path rel (dir)
 function RelPath(cur, rel)
   let ddirs = WithoutCommonPrefix(
-        \ a:rel,
+        \ a:rel.'/',
         \ a:cur
         \ )
   let subst = substitute(ddirs, '\([^/]\+\)', '..', 'g')
-  let subst = (subst == '' ? '' : subst.'/')
+  " let subst = (subst == '' ? '' : subst.'/')
   let relpath = WithoutCommonPrefix(a:cur, a:rel.'/')
   return subst.pathshorten(relpath, g:pathshorten)
 endfunction
@@ -382,13 +382,7 @@ function RelFile(path, prev_dir)
   if a:path == ''
     return ''
   endif
-  " if a:path =~ 'Netrw[^/]*Listing$' " ?
   let relpath = RelPath(Dexpand(a:path), a:prev_dir)
-  " if relpath != '' && relpath =~ '[^/]$'
-  "   let relpath = relpath.'/'
-  " endif
-  " let relpath = relpath.fnamemodify(a:path, ':t')
-  " let fpath = fnamemodify(a:path, ':p')
   if FileOrDir(a:path)
     return relpath
   endif
@@ -428,7 +422,6 @@ function EchoRelCurFile()
   elseif &buftype != ''
     redraw!
   elseif has_key(g:ftype_hooks, &filetype)
-    echom "HAS KEY"
     let Msg = g:ftype_hooks[&filetype]
     if type(Msg) == v:t_func
       call Msg()
@@ -480,26 +473,12 @@ function ToggleAutochdir()
   let g:autochdir = !g:autochdir
   if g:autochdir
     augroup AutoChdir
-      autocmd BufLeave *
-            \ if (&buftype == '') &&
-            \ (!has_key(g:ftype_hooks, &filetype))
-            \ | if isdirectory(expand('%:p'))
-            \ | let w:prev_dir = expand('%:p:h:h')
-            \ | elseif isdirectory(expand('%:p:h'))
-            \ | let w:prev_dir = expand('%:p:h')
-            \ | else
-            \ | let w:prev_dir = ''
-            \ | endif
-            \ | endif
       autocmd BufEnter *
-            \ if &buftype == '' &&
+            \ | if &buftype == '' &&
             \ (!has_key(g:ftype_hooks, &filetype))
             \ | if isdirectory(expand('%:p:h'))
             \ | exe 'lcd %:p:h'
             \ | endif
-            \ | endif
-            \ | if !get(g:, 'no_file_msg', 0)
-            \ | call EchoRelCurFile()
             \ | endif
     augroup END
     echo 'AutoChdir enabled'
@@ -512,6 +491,23 @@ endfunction
 autocmd VimResume *
       \ checktime
       \ | echo expand('%:p')
+
+autocmd BufLeave *
+      \ if (&buftype == '') &&
+      \ (!has_key(g:ftype_hooks, &filetype))
+      \ | if isdirectory(expand('%:p'))
+      \ | let w:prev_dir = expand('%:p:h:h')
+      \ | elseif isdirectory(expand('%:p:h'))
+      \ | let w:prev_dir = expand('%:p:h')
+      \ | else
+      \ | let w:prev_dir = ''
+      \ | endif
+      \ | endif
+
+autocmd BufEnter *
+      \ if !get(g:, 'no_file_msg', 0)
+      \ | call EchoRelCurFile()
+      \ | endif
 
 "}}}
 
