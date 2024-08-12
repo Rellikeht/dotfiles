@@ -1,7 +1,9 @@
-"{{{ settings
+"{{{ settings and helpers
 
 autocmd FileType gitcommit,gitsendmail
       \ setlocal textwidth=72
+
+map ,g <Nop>
 
 "}}}
 

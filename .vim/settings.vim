@@ -4,6 +4,8 @@
 set shell=/usr/bin/env\ bash
 " set shell=sh
 
+set noshelltemp
+
 " TODO A how to do this well the fuck
 " TODO A toggling hidden
 " set path=./**,**
@@ -16,11 +18,23 @@ let maplocalleader = '\'
 autocmd FileType * let b:match_ignorecase = 0
 let g:pathshorten = 4
 
-let g:no_file_msg = 1
-autocmd WinNew,VimEnter *
+let g:no_file_msg = 0
+autocmd VimEnter *
+      \ echo expand('%:p')
+      \ | let w:buf_echo = 0
+
+autocmd WinNew *
       \ let w:prev_dir = expand('%:p:h')
-      \ | let g:no_file_msg = 0
+      \ | let w:buf_echo = 1
+
+autocmd BufWinEnter *
+      \ if get(w:, 'buf_echo', 0)
+      \ | let w:buf_echo = 0
+      \ | echom &filetype
+      \ | if &buftype != 'help' && !get(g:, 'no_file_msg', 1)
       \ | echo expand('%:p')
+      \ | endif
+      \ | endif
 
 " arglocal with current file for all new tabs
 autocmd TabNew *
@@ -171,7 +185,7 @@ nnoremap <Leader>qv4 :<C-u>echo b:vautowrite<CR>
 vnoremap <Leader>qv4 :<C-u>echo b:vautowrite\|norm gv<CR>
 
 " TODO
-" let g:autoupdate = 0
+let g:autoupdate = 0
 " autocmd FileType * let b:autoupdate = g:autoupdate
 
 " noremap <Leader>qfu :call ToggleAutoupdate()<CR>

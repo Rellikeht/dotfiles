@@ -505,7 +505,7 @@ autocmd BufLeave *
       \ | endif
 
 autocmd BufEnter *
-      \ if !get(g:, 'no_file_msg', 0)
+      \ if !get(g:, 'no_file_msg', 1)
       \ | call EchoRelCurFile()
       \ | endif
 

@@ -36,6 +36,9 @@ command! -nargs=1 -complete=buffer TabB
 map ; <C-w>
 map ;; <C-w><C-w>
 
+map <Space>+ +
+map <Space>- -
+
 " Has to be that way
 " <CR> is equal to <C-m> !!
 noremap <C-m> <Tab>
@@ -91,6 +94,8 @@ noremap <silent> <expr> <Tab>;e
       \(v:count ? ':<C-u>exe "tabnext "'.v:count.'<CR>' : '')
 noremap <Tab><Tab> :<C-u>tab<Space>
 noremap <Tab>;<Tab> :<C-u>-tab<Space>
+
+" TODO B logic
 noremap <Tab>gp :<C-u>tabfind<Space>
 noremap <Tab>gP :<C-u>-tabfind<Space>
 
