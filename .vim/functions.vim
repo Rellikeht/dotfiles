@@ -474,7 +474,7 @@ function ToggleAutochdir()
   if g:autochdir
     augroup AutoChdir
       autocmd BufEnter *
-            \ | if &buftype == '' &&
+            \ if &buftype == '' &&
             \ (!has_key(g:ftype_hooks, &filetype))
             \ | if isdirectory(expand('%:p:h'))
             \ | exe 'lcd %:p:h'

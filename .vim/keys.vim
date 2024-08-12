@@ -27,12 +27,6 @@ command! -nargs=* -bang -complete=buffer ArgeditB
 command! -nargs=* -complete=buffer ArgaddB
       \ argadd <args>
 
-command! -nargs=* -bang -complete=file_in_path ArgeditPath
-      \ argedit<bang> <args>
-
-command! -nargs=* -complete=file_in_path ArgaddPath
-      \ argadd <args>
-
 "}}}
 
 "{{{ nops
@@ -185,17 +179,16 @@ noremap <silent> <Space>,
 noremap <silent> <Space>< 
       \ :<C-u>call NextArg(0, 'argument!', 'w')<CR>
 
-nnoremap <Space>fo :<C-u>ArgeditPath<Space>
-nnoremap <Space>fO :<C-u>ArgeditPath!<Space>
-nnoremap <Space>fa :<C-u>ArgaddPath<Space>
-
 nnoremap <Space>fu :<C-u>argedit <cfile><CR>
 nnoremap <Space>fU :<C-u>argedit! <cfile><CR>
-nnoremap <Space>fA :<C-u>argadd <cfile><CR>
+nnoremap <Space>fa :<C-u>argadd <cfile><CR>
 
 "}}}
 
 " {{{ <Space> list and help
+
+noremap <Space>il :ilist //<Left>
+noremap <Space>i/ :isearch //<Left>
 
 vnoremap <Space>i<Space>r 
       \ :<C-u>exe 'filter '.

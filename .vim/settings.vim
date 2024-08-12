@@ -68,13 +68,16 @@ set foldmethod=marker
 
 " }}}
 
-"{{{ file stuff
+"{{{ TODO B file stuff (:find)
 
 "{{{ ignores
 
 set wildignore+=.git/**
 set wildignore+=.local/**
-set wildignore+=.cache/**
+set wildignore+=.\?cache/**
+set wildignore+=git*/**
+set wildignore+=build/**
+set wildignore+=bin/**
 
 set wildignore+=*.o,*.obj,*.swp
 set wildignore+=*.so,*.a,*.bin
@@ -84,49 +87,59 @@ set wildignore+=*.mp4,*.mkv,*.webm
 set wildignore+=*.AppImage
 set wildignore+=*.lock,*~
 set wildignore+=*.doc,*.xls
+set wildignore+=.\?git*
+set wildignore+=*/
 
 "}}}
 
-"{{{ paths
+""{{{ paths
 
-" TODO A FUCK
-      \ ['.,./**,./**/.*,./.*/**', '.,./**'],
-      \ ['.,./**,./**/.*/**', '.,./**'],
-let g:paths = [
-      \ ['.,./**', '.,./**'],
-      \ [',,**,**/.*/**', ',,**'],
-      \ ]
+"autocmd VimEnter * let g:starting_path = getcwd()
 
-let g:pat1 = 0
-let g:pat2 = 0
+"      " TODO A FUCK
+"      \ ['.,./**,./**/.*,./.*/**', '.,./**'],
+"      \ ['.,./**,./**/.*/**', '.,./**'],
+"let g:paths = [
+"      \ [',,**,**/.*/**', ',,**'],
+"      \ ['.,./**', '.,./**'],
+"      \ ]
 
-function SetPath()
-    exe 'set path='.g:paths[g:pat1][g:pat2]
-endfunction
+"let g:pat1 = 0
+"let g:pat2 = 0
 
-function NextPat1(amount=1)
-  let g:pat1 = (g:pat1 + a:amount + len(g:paths)) % len(g:paths)
-  call SetPath()
-endfunction
+"function SetPath(pat1=v:null, pat2=v:null)
+"  if a:pat1 != v:null
+"    let g:pat1 = a:pat1
+"  endif
+"  if a:pat2 != v:null
+"    let g:pat2 = a:pat2
+"  endif
+"  exe 'set path='.g:paths[g:pat1][g:pat2]
+"endfunction
 
-function NextPat2(amount=1)
-  let g:pat2 = (g:pat2 + a:amount + len(g:paths[g:pat1]))
-        \ % len(g:paths[g:pat1])
-  call SetPath()
-endfunction
+"function NextPat1(amount=1)
+"  let g:pat1 = (g:pat1 + a:amount + len(g:paths)) % len(g:paths)
+"  call SetPath()
+"endfunction
 
-call SetPath()
+"function NextPat2(amount=1)
+"  let g:pat2 = (g:pat2 + a:amount + len(g:paths[g:pat1]))
+"        \ % len(g:paths[g:pat1])
+"  call SetPath()
+"endfunction
 
-"}}}
+"call SetPath()
 
-"{{{ maps
+""}}}
 
-noremap <silent> <Space>fn :<C-u>call NextPat1()<CR>
-noremap <silent> <Space>fp :<C-u>call NextPat1(-1)<CR>
-noremap <silent> <Space>fN :<C-u>call NextPat2()<CR>
-noremap <silent> <Space>fP :<C-u>call NextPat2(-1)<CR>
+""{{{ maps
 
-"}}}
+"noremap <silent> <Space>fn :<C-u>call NextPat1()<CR>
+"noremap <silent> <Space>fp :<C-u>call NextPat1(-1)<CR>
+"noremap <silent> <Space>fN :<C-u>call NextPat2()<CR>
+"noremap <silent> <Space>fP :<C-u>call NextPat2(-1)<CR>
+
+""}}}
 
 "}}}
 
@@ -260,7 +273,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " Closing loclist when closing parent window
 if exists('##QuitPre')
-    autocmd QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
+  autocmd QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
 endif
 
 " default updatetime 4000ms is not good for async update
@@ -268,7 +281,7 @@ set updatetime=50
 
 let w:prev_dir = expand('%:p:h')
 let g:autochdir = 0
-" silent call ToggleAutochdir()
+silent call ToggleAutochdir()
 
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>

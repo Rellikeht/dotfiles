@@ -157,13 +157,14 @@ let g:fzf_mapping_paths = {
       \ 'p':'~/gits',
       \ }
 
-" TODO C some selection and <cwhatever>
-
 let g:fzf_mapping_specials = {
       \ 'g':"Git_root()",
       \ 'G':"Git_root(Git_root()..'/..')",
       \ 'r':"Part_root()",
+      \ 'b':"g:starting_path",
       \ }
+
+" TODO C some selection and <cwhatever>
 
 "}}}
 
