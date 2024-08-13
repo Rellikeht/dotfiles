@@ -1,19 +1,5 @@
 "{{{ helpers
 
-function! Git_root(dir='')
-  if a:dir == ''
-    return systemlist('git rev-parse --show-toplevel')[0]
-  endif
-  return systemlist('cd '.a:dir.' && git rev-parse --show-toplevel')[0]
-endfunction
-
-function! Part_root(dir='')
-  if a:dir == ''
-    return systemlist("df -P . | awk '/^\\// {print $6}'")[0]
-  endif
-  return systemlist('cd '.a:dir." && df -P . | awk '/^\\// {print $6}'")[0]
-endfunction
-
 function! s:with_dir(dir='')
   if len(a:dir) == 0
     return {}
@@ -153,15 +139,19 @@ let g:fzf_mapping_paths = {
       \ 'd':'~/Dbackup',
       \ 'D':'~/Downloads',
       \ 'f':'~/Documents',
-      \ 'E':'/etc',
       \ 'p':'~/gits',
       \ }
 
 let g:fzf_mapping_specials = {
-      \ 'g':"Git_root()",
-      \ 'G':"Git_root(Git_root()..'/..')",
-      \ 'r':"Part_root()",
+      \ 'g':"GitRoot()",
+      \ 'G':"GitRoot(GitRoot().'/..')",
+      \ 'm':"HgRoot()",
+      \ 'M':"HgRoot(HgRoot().'/..')",
+      \ 'r':"PartRoot()",
       \ 'b':"g:starting_path",
+      \ 'e':"EnvrcRoot()",
+      \ 'E':"EnvrcRoot(EnvrcRoot().'/..')",
+      \ '<C-e>':"EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
       \ }
 
 " TODO C some selection and <cwhatever>
@@ -379,7 +369,7 @@ command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
       \   'git grep '.s:grep_args.' -r -- '.fzf#shellescape(<q-args>),
       \   fzf#vim#with_preview(
-      \      {'dir': Git_root()}
+      \      {'dir': GitRoot()}
       \   ), <bang>0)
 
 nnoremap <leader>gsf :<C-u>GFiles<CR>

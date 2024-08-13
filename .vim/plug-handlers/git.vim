@@ -22,6 +22,7 @@ nnoremap <silent> <leader>G :Git<CR>
 nnoremap <silent> <leader>ggc :Git<CR>
 nnoremap <silent> <leader>ggC :Git<CR><C-w>T
 nnoremap <silent> <C-w><leader>ggc :tab Git<CR>
+nnoremap <silent> <C-w><leader>G :tab Git<CR>
 
 nnoremap <silent> <leader>ggr :Gread<CR>
 nnoremap <silent> <leader>gg<Space>r :Gread<Space>

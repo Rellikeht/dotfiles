@@ -47,6 +47,41 @@ endfunction
 
 "}}}
 
+"{{{ paths
+
+function GetRoot(cmd, dir='')
+  if a:dir == ''
+    return systemlist(a:cmd)[0]
+  endif
+  return systemlist('cd '.a:dir.' && '.a:cmd)[0]
+endfunction
+
+function GitRoot(dir='')
+  return GetRoot('git rev-parse --show-toplevel', a:dir)
+endfunction
+
+function HgRoot(dir='')
+  return GetRoot('hg root', a:dir)
+endfunction
+
+function PartRoot(dir='')
+  return GetRoot("df -P . | awk '/^\\// {print $6}'", a:dir)
+endfunction
+
+function EnvrcRoot(dir='')
+  " return GetRoot("echo ${DIRENV_DIR#-}")
+  let l:root = GetRoot(
+        \ 'direnv status | '.
+        \ "sed -En 's#Found RC path (.*)/[^/]*#\\1#p'",
+        \ a:dir)
+  if l:root == ''
+    throw 'Not in direnv environment'
+  endif
+  return l:root
+endfunction
+
+"}}}
+
 "{{{ commands
 
 let g:sleeptime = "800m"
@@ -371,7 +406,6 @@ function RelPath(cur, rel)
         \ a:cur
         \ )
   let subst = substitute(ddirs, '\([^/]\+\)', '..', 'g')
-  " let subst = (subst == '' ? '' : subst.'/')
   let relpath = WithoutCommonPrefix(a:cur, a:rel.'/')
   return subst.pathshorten(relpath, g:pathshorten)
 endfunction
@@ -474,8 +508,7 @@ function ToggleAutochdir()
   if g:autochdir
     augroup AutoChdir
       autocmd BufEnter *
-            \ if &buftype == '' &&
-            \ (!has_key(g:ftype_hooks, &filetype))
+            \ if (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
             \ | if isdirectory(expand('%:p:h'))
             \ | exe 'lcd %:p:h'
             \ | endif
@@ -493,8 +526,7 @@ autocmd VimResume *
       \ | echo expand('%:p')
 
 autocmd BufLeave *
-      \ if (&buftype == '') &&
-      \ (!has_key(g:ftype_hooks, &filetype))
+      \ if (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
       \ | if isdirectory(expand('%:p'))
       \ | let w:prev_dir = expand('%:p:h:h')
       \ | elseif isdirectory(expand('%:p:h'))

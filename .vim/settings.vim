@@ -37,19 +37,20 @@ autocmd TabNew *
 " Has to use this because of order of events
 autocmd BufEnter *
       \ if get(t:, 'make_list', 0)
-      \ |   if expand('%') == ''
-      \ |     arglocal!
-      \ |     for _ in range(argc())
-      \ |       argdelete
-      \ |     endfor
-      \ |   else
-      \ |     exe 'arglocal! %'
-      \ |   endif
-      \ | endif
       \ | let t:make_list = 0
+      \ | if expand('%') == '' || !FileOrDir(expand('%'))
+      \ |   arglocal!
+      \ |   for _ in range(argc())
+      \ |     argdelete
+      \ |   endfor
+      \ | else
+      \ |   exe 'arglocal! %'
+      \ | endif
+      \ | endif
 
 " set secure
 
+" modeline for undetected filetypes
 " shitty, but works somehow
 autocmd BufReadPost *
       \ if (&buftype == "") && (&filetype == "")
