@@ -1,9 +1,9 @@
 " {{{ heavy stuff
 
+" TODO A make this both fast and expand **
 " slightly slower, but acceptable
-set shell=/usr/bin/env\ bash
 " set shell=sh
-
+set shell=bash
 set noshelltemp
 
 let mapleader = ','
@@ -21,6 +21,7 @@ autocmd VimEnter *
 autocmd WinNew *
       \ let w:prev_dir = expand('%:p:h')
       \ | let w:buf_echo = 1
+      \ | let w:prev_arg = 0
 
 autocmd BufWinEnter *
       \ if get(w:, 'buf_echo', 0)
@@ -66,6 +67,7 @@ autocmd BufReadPost *
       \ | endif
 
 set foldmethod=marker
+set synmaxcol=250
 
 " }}}
 
@@ -193,8 +195,9 @@ nnoremap <Leader>qkw :<C-u>call Wmt()<CR>
 vnoremap <Leader>qkw :<C-u>call Wmt()\|norm gv<CR>
 nnoremap <silent> <Leader>qpm :<C-u>call ToggleManProg()<CR>
 vnoremap <silent> <Leader>qpm :<C-u>call ToggleManProg()\|norm gv<CR>
-nnoremap <Leader>qpM :<C-u>set makeprg=make<CR>
-vnoremap <Leader>qpM :<C-u>set makeprg=make\|norm gv<CR>
+
+" nnoremap <Leader>qpM :<C-u>set makeprg=make<CR>
+" vnoremap <Leader>qpM :<C-u>set makeprg=make\|norm gv<CR>
 
 nnoremap <Leader>qet :<C-u>filetype detect<CR>
 vnoremap <Leader>qet :<C-u>filetype detect\|norm gv<CR>
@@ -269,6 +272,33 @@ let g:autoupdate = 0
 set omnifunc=syntaxcomplete#Complete
 
 "}}}
+
+" This doesn't help, but why not keep it
+augroup LargeFile "{{{
+
+  " 20 MB
+  let g:large_file = 20971520
+
+  " Set options:
+  "   eventignore+=FileType (no syntax highlighting etc
+  "   assumes FileType always on)
+  "   noswapfile (save copy of file)
+  "   bufhidden=unload (save memory when other file is viewed)
+  "   buftype=nowritefile (is read-only)
+  "   undolevels=-1 (no undo possible)
+  au BufReadPre *
+        \ let f=expand("<afile>") |
+        \ if getfsize(f) > g:large_file |
+        \ syntax off |
+        \ setlocal eventignore+=FileType |
+        \ setlocal bufhidden=unload buftype=nowrite undolevels=-1 |
+        \ setlocal noswapfile noundofile noloadplugins wrap |
+        \ setlocal nocursorline |
+        \ else |
+        \ setlocal eventignore-=FileType |
+        \ endif
+
+augroup END "}}}
 
 " {{{ other
 

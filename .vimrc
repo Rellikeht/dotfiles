@@ -18,6 +18,7 @@ if v:progname !~? "tv\\?\\(im\\?\\)\\?"
   "}}}
 
   "{{{ sourcing
+
   silent! source ~/.vim/vars.vim
   source ~/.vim/functions.vim
   source ~/.vim/settings.vim
@@ -28,6 +29,7 @@ if v:progname !~? "tv\\?\\(im\\?\\)\\?"
   source ~/.vim/syntax.vim
   source ~/.vim/ssh.vim
   source ~/.vim/history.vim
+
   "}}}
 
   if has('win32') "{{{ ??
@@ -61,12 +63,14 @@ if v:progname !~? "tv\\?\\(im\\?\\)\\?"
   endif "}}}
 
   "{{{ additional sourcing
+
   for f in split(glob("~/.vim/plug-handlers/*.vim"), "\n")
     exe 'source '.fnameescape(f)
   endfor
 
   source ~/.vim/programming.vim
   source ~/.vim/look.vim
+
   "}}}
 
 endif

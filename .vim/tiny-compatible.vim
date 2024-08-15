@@ -32,7 +32,7 @@ command! -nargs=1 -complete=buffer TabB
 
 " {{{ basic mappings
 
-" Because <C-w> is uncomfortable to press
+" Because ; is more comfortable to press
 map ; <C-w>
 map ;; <C-w><C-w>
 
@@ -539,7 +539,8 @@ set ttimeout
 set ttimeoutlen=100
 
 set mouse=a
-set clipboard=unnamed
+" set clipboard=unnamed
+set clipboard=
 
 set switchbuf+=usetab,useopen
 

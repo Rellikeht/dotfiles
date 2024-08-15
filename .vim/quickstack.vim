@@ -1,3 +1,11 @@
+"{{{ setup
+
+let s:qstack = []
+let s:qsind = 0
+let s:qsprev = 0
+
+"}}}
+
 "{{{ functions
 
 "{{{ state
@@ -34,6 +42,7 @@ function s:QstackPosMove(amount = 1)
   if len(s:qstack) < 1
     throw "There aren't any items on the stack"
   endif
+  let s:qsprev = s:qsind
   let s:qsind = (s:qsind + a:amount)%len(s:qstack)
   if s:qsind < 0
     let s:qsind = s:qsind + len(s:qstack)
@@ -51,13 +60,19 @@ function s:QstackNext(amount = 1)
   call s:QstackPosSet()
 endfunction
 
-function s:QstackNth(nth = 0)
-  if a:nth < 0
+function s:QstackNth(nth = v:null)
+  if a:nth == v:null
+    let l:cur = s:qsind
+    let s:qsind = s:qsprev
+    let s:qsprev = l:cur
+  elseif a:nth < 0
     throw "Invalid position in the stack"
   elseif a:nth >= len(s:qstack)
     throw "Too big position in stack"
+  else
+    let s:qsprev = s:qsind
+    let s:qsind = a:nth
   endif
-  let s:qsind = a:nth
   call s:QstackPosSet()
 endfunction
 
@@ -71,24 +86,19 @@ function s:QstackCurAdd()
   let s:qstack[len(s:qstack)-1][0] = bufnr()
 endfunction
 
-function s:QstackCurDel()
-  if len(s:qstack) < 1
-    let s:qsind = 0
-    return ''
-  endif
-  let ind = s:qsind
-  call s:QstackPosMove()
-  call remove(s:qstack, ind)
-endfunction
-
-function s:QstackDel(num)
-  if a:num >= len(s:qstack) || a:num < 0
+function s:QstackDel(num=v:null)
+  if a:num == v:null || a:num == s:qsind
+    call s:QstackPosMove()
+  elseif a:num >= len(s:qstack) || a:num < 0
     throw "Invalid element to delete from the stack"
   endif
-  if a:num == s:qsind
-    call s:QstackPosMove()
-  endif
   call remove(s:qstack, a:num)
+  if s:qsind >= a:num
+    let s:qsind -= 1
+  endif
+  if s:qsprev >= a:num
+    let s:qsprev -= 1
+  endif
 endfunction
 
 "}}}
@@ -107,6 +117,7 @@ function s:QstackOpen(force = 0)
   else
     cwindow
   endif
+  call setpos('.', [0, s:qsind+1, 1, 0])
 
   "{{{
 
@@ -192,16 +203,9 @@ endfunction
 
 "}}}
 
-"{{{ setup
-
-let s:qstack = []
-let s:qsind = 0
-
-"}}}
-
 "{{{ maps
 
-"{{{ :(
+"{{{ nops :(
 
 map <Space>j<Esc> <Nop>
 
@@ -218,6 +222,9 @@ noremap <silent> <Space>jl :<C-u>call <SID>QstackOpen(1)<CR>
 
 noremap <silent> <Space>jn :<C-u>call <SID>QstackNext(v:count1)<CR>
 noremap <silent> <Space>jp :<C-u>call <SID>QstackNext(-v:count1)<CR>
+noremap <silent> <c-j> :<C-u>call <SID>QstackNext(v:count1)<CR>
+noremap <silent> <c-k> :<C-u>call <SID>QstackNext(-v:count1)<CR>
+noremap <silent> <Space>jr :<C-u>call <SID>QstackNth(v:null)<CR>
 
 " TODO C file commands
 " noremap <silent> <Space>jn :<C-u>exe v:count1.'cnf'<CR>
@@ -243,8 +250,8 @@ nnoremap <silent> <Space>ja :<C-u>call <SID>QstackCurAdd()<CR>
 vnoremap <silent> <Space>ja :<C-u>call <SID>QstackCurAdd()\|norm gv<CR>
 
 " del
-nnoremap <silent> <Space>jd :<C-u>call <SID>QstackCurDel()<CR>
-vnoremap <silent> <Space>jd :<C-u>call <SID>QstackCurDel()\|norm gv<CR>
+nnoremap <silent> <Space>jd :<C-u>call <SID>QstackDel()<CR>
+vnoremap <silent> <Space>jd :<C-u>call <SID>QstackDel()\|norm gv<CR>
 
 " swap
 nnoremap <silent> <Space>jos :<C-u>call <SID>QstackSwap()<CR>

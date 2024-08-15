@@ -32,8 +32,9 @@ All of this isn't very accurate and updated, at least for now.
 
 ## (control) good
 
-- C-j
-- C-k
+<!-- - C-j -->
+
+<!-- - C-k -->
 
 ## (control) not so useful
 
@@ -50,6 +51,8 @@ All of this isn't very accurate and updated, at least for now.
 - <C-h> - \<C-\]>
 - .. - .
 - . - TODO quick and loc lists
+- <c-j>, <c-k> - quickstack (my own mini harpoon inspired thing
+  built around quickfix list)
 
 ## with plugins
 
@@ -63,8 +66,7 @@ All of this isn't very accurate and updated, at least for now.
 
 - q - settings
 - m - :make, :compiler and stuff
-- j - quickstack (my own mini harpoon inspired thing built
-  around quickfix list)
+- j - quickstack
 - i - some info commands
 - t - tags
 - u - "+p
