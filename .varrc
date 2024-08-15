@@ -83,9 +83,18 @@ pathadd "$HOME/bin"
 
 export TMUX_SOCKET='sock'
 
-export FZF_DEFAULT_COMMAND='find . -mindepth 1 -type f -o -type l'
-export FZF_CTRL_T_COMMAND='find . -mindepth 1 -type d -o -type f -o -type l'
-export FZF_ALT_C_COMMAND='find . -mindepth 1 -type d -o -type l'
+export FZF_DEFAULT_COMMAND='find . -mindepth 1 -type f -o -xtype f'
+export FZF_CTRL_T_COMMAND='find . -mindepth 1 -xtype d -o -xtype f'
+export FZF_ALT_C_COMMAND='find . -mindepth 1 -xtype d'
+
+export FZF_DEFAULT_OPTS="--preview-window 'top:60%' --preview 'bat --style=numbers --line-range :300 {}' \
+    --bind 'ctrl-y:up,ctrl-e:down'
+    --bind 'ctrl-b:page-up,ctrl-f:page-down'
+    --bind 'ctrl-u:half-page-up,ctrl-d:half-page-down'
+    --bind 'alt-y:preview-up,alt-e:preview-down'
+    --bind 'alt-b:preview-page-up,alt-f:preview-page-down'
+    --bind 'alt-u:preview-half-page-up,alt-d:preview-half-page-down'
+    "
 
 export JULIA_SHELL='zsh -i'
 export JULIA_EDITOR='ssvim'

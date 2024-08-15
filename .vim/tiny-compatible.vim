@@ -36,8 +36,8 @@ command! -nargs=1 -complete=buffer TabB
 map ; <C-w>
 map ;; <C-w><C-w>
 
-map <Space>+ +
-map <Space>- -
+" noremap <Space>+ +
+" noremap <Space>- -
 
 " Has to be that way
 " <CR> is equal to <C-m> !!
@@ -55,6 +55,8 @@ noremap <Tab>U "*P
 " TODO D this is harder than it should be
 noremap g+ v<C-a>
 noremap g- v<C-x>
+
+noremap <Space><Tab> <C-^>
 
 " }}}
 

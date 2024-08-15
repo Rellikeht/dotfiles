@@ -107,16 +107,9 @@ noremap <Leader>xo
 
 "}}}
 
-"{{{ grep
+"{{{ TODO A grep
 
 "{{{ helpers
-
-function Vgcount()
-  if v:count == 0
-    return ''
-  endif
-  return v:count
-endfunction
 
 function Gescape(s)
   return escape(a:s, "\"")

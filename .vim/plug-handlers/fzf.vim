@@ -43,6 +43,10 @@ function! s:add_arg_list(lines)
   execute 'argadd ' . join(map(a:lines, function('s:fnameescape')), ' ')
 endfunction
 
+map ,s<Esc> <Nop>
+map ,sl<Esc> <Nop>
+map ,sf<Esc> <Nop>
+
 "}}}
 
 "{{{ settings
@@ -54,14 +58,14 @@ endfunction
 " - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
 "   'previous-history' instead of 'down' and 'up'.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-let $FZF_DEFAULT_COMMAND='find .'
 let g:fzf_vim = {}
 
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
+
+let g:fzf_vim.tags_command = 'ctags -R'
 
 "}}}
 
@@ -124,7 +128,7 @@ let g:fzf_colors = {
 
 "{{{ paths
 
-let g:fzf_mapping_paths = {
+let s:fzf_mapping_paths = {
       \ '1':'..',
       \ '2':'../..',
       \ '3':'../../..',
@@ -142,7 +146,7 @@ let g:fzf_mapping_paths = {
       \ 'p':'~/gits',
       \ }
 
-let g:fzf_mapping_specials = {
+let s:fzf_mapping_specials = {
       \ 'g':"GitRoot()",
       \ 'G':"GitRoot(GitRoot().'/..')",
       \ 'm':"HgRoot()",
@@ -318,29 +322,26 @@ imap <C-X>p <C-x><C-p>
 
 "}}}
 
-"{{{ history and marks mappings
+"{{{ builtin mappings
 
-nnoremap <leader>shh :<C-u>History<CR>
-nnoremap <leader>sh/ :<C-u>History/<CR>
-nnoremap <leader>sh: :<C-u>History:<CR>
-nnoremap <leader>shf :<C-u>Changes<CR>
-nnoremap <leader>shc :<C-u>Commits<CR>
-nnoremap <leader>shb :<C-u>BCommits<CR>
-nnoremap <leader>shm :<C-u>Marks<CR>
+nnoremap <leader>slh :<C-u>History<CR>
+nnoremap <leader>sl/ :<C-u>History/<CR>
+nnoremap <leader>sl: :<C-u>History:<CR>
+nnoremap <leader>slp :<C-u>Marks<CR>
+nnoremap <leader>slm :<C-u>Changes<CR>
 
-"}}}
-
-"{{{ list mappings
-
+" lists
 nnoremap <leader>slo :<C-u>Buffers<CR>
-nnoremap <leader>slm :<C-u>Maps<CR>
-nnoremap <leader>slH :<C-u>Helptags<CR>
+nnoremap <leader>slk :<C-u>Maps<CR>
+nnoremap <leader>slT :<C-u>Helptags<CR>
 nnoremap <leader>slw :<C-u>Windows<CR>
 nnoremap <leader>slj :<C-u>Jumps<CR>
 nnoremap <leader>slt :<C-u>Tags<CR>
 nnoremap <leader>slb :<C-u>BTags<CR>
 noremap <leader>slf :<C-u>Files<CR>
 noremap <leader>sl<Space>f :<C-u>Files<Space>
+
+" other
 noremap <leader>sls :<C-u>Locate<Space>
 nnoremap <leader>slc :<C-u>Commands<CR>
 
@@ -375,8 +376,12 @@ command! -bang -nargs=* GGrep
 nnoremap <leader>gsf :<C-u>GFiles<CR>
 nnoremap <leader>gss :<C-u>GFiles?<CR>
 
-nnoremap <leader>gsc :GGrep<CR>
-nnoremap <leader>gs<Space>c :GGrep<Space>
+nnoremap <leader>gsg :GGrep<CR>
+nnoremap <leader>gs<Space>g :GGrep<Space>
+
+" history and marks
+nnoremap <leader>gsc :<C-u>Commits<CR>
+nnoremap <leader>gsb :<C-u>BCommits<CR>
 
 "}}}
 
@@ -406,38 +411,45 @@ nnoremap <leader>sl<Space>a :Args<Space>
 
 "{{{ path mappings
 
+let s:path_maps = [
+      \ ['p', 'Files'],
+      \ ['o', 'ArgeditFzf'],
+      \ ['a', 'ArgaddFzf'],
+      \ ['A', 'ArglistFzf'],
+      \ ['g', 'Dag'],
+      \ ['G', 'Dau'],
+      \ ['d', 'Dgrep'],
+      \ ['D', 'Digrep'],
+      \ ['r', 'Drg'],
+      \ ['R', 'Dru'],
+      \ ]
+
+for e in s:path_maps
+  exe 'noremap <leader>s'.e[0].'<Esc> <Nop>'
+endfor
+
 function s:PathMap(key, path, cr=1, exe=0)
   let l:ex1 = (a:exe ? "exe '" : '')
   let l:ex2 = (a:exe ? " '." : '')
   let l:end = (a:cr ? '<CR>' : '')
-  for e in [
-        \ ['p', 'Files'],
-        \ ['o', 'ArgeditFzf'],
-        \ ['a', 'ArgaddFzf'],
-        \ ['A', 'ArglistFzf'],
-        \ ['g', 'Dag'],
-        \ ['G', 'Dau'],
-        \ ['d', 'Dgrep'],
-        \ ['D', 'Digrep'],
-        \ ['r', 'Drg'],
-        \ ['R', 'Dru'],
-        \ ]
+  for e in s:path_maps
     exe 'noremap <leader>s'.e[0].a:key.' :<C-u>'.
           \ l:ex1.e[1].l:ex2.a:path.l:end
   endfor
 endfunction
 
 call s:PathMap('<Space>', '', 0)
-for key in keys(g:fzf_mapping_paths)
-  call s:PathMap(key, g:fzf_mapping_paths[key])
+for key in keys(s:fzf_mapping_paths)
+  call s:PathMap(key, s:fzf_mapping_paths[key])
 endfor
-for key in keys(g:fzf_mapping_specials)
-  call s:PathMap(key, g:fzf_mapping_specials[key], 1, 1)
+for key in keys(s:fzf_mapping_specials)
+  call s:PathMap(key, s:fzf_mapping_specials[key], 1, 1)
 endfor
 
 "}}}
 
 "{{{ actions
+
 let g:fzf_action = {
       \ 'ctrl-q': function('s:build_quickfix_list'),
       \ 'ctrl-t': 'tab split',
@@ -446,4 +458,5 @@ let g:fzf_action = {
       \ 'ctrl-l': function('s:populate_arg_list'),
       \ 'ctrl-a': function('s:add_arg_list'),
       \ }
+
 "}}}

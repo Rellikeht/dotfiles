@@ -84,6 +84,13 @@ endfunction
 
 "{{{ commands
 
+function Vgcount()
+  if v:count == 0
+    return ''
+  endif
+  return v:count
+endfunction
+
 let g:sleeptime = "800m"
 command! We write | exe 'sleep '.g:sleeptime | edit
 

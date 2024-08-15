@@ -82,7 +82,7 @@ All of this isn't very accurate and updated, at least for now.
 
 c,k,r,v,w,x,z
 
-<tab>,+,-
++,-
 
 1-9,\[,\]
 
