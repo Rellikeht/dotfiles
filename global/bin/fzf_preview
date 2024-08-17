@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if [ -d "$1" ]; then
+    ls -lA --color=always "$1"
+    exit 0
+fi
+bat --style=numbers --color=always --line-range :300 "$1"

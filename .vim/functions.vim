@@ -286,7 +286,6 @@ function GetVisualSelection()
     let [line_end, column_end] = getpos("'>")[1:2]
   end
   let lines = getline(line_start, line_end)
-  echom string([line_start, column_start]).' '.string([line_end, column_end])
 
   if (line2byte(line_start)+column_start) > (line2byte(line_end)+column_end)
     let [line_start, column_start, line_end, column_end] =

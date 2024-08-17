@@ -79,7 +79,7 @@ pathadd "$HOME/bin"
 
 # }}}
 
-# {{{ random helpers
+# {{{ random settings
 
 export TMUX_SOCKET='sock'
 
@@ -87,14 +87,30 @@ export FZF_DEFAULT_COMMAND='find . -mindepth 1 -type f -o -xtype f'
 export FZF_CTRL_T_COMMAND='find . -mindepth 1 -xtype d -o -xtype f'
 export FZF_ALT_C_COMMAND='find . -mindepth 1 -xtype d'
 
-export FZF_DEFAULT_OPTS="--preview-window 'top:60%' --preview 'bat --style=numbers --line-range :300 {}' \
-    --bind 'ctrl-y:up,ctrl-e:down'
-    --bind 'ctrl-b:page-up,ctrl-f:page-down'
-    --bind 'ctrl-u:half-page-up,ctrl-d:half-page-down'
-    --bind 'alt-y:preview-up,alt-e:preview-down'
-    --bind 'alt-b:preview-page-up,alt-f:preview-page-down'
-    --bind 'alt-u:preview-half-page-up,alt-d:preview-half-page-down'
-    "
+FZF_BINDS="
+--bind 'ctrl-y:up,ctrl-e:down'
+--bind 'ctrl-b:page-up,ctrl-f:page-down'
+--bind 'ctrl-u:half-page-up,ctrl-d:half-page-down'
+--bind 'alt-y:preview-up,alt-e:preview-down'
+--bind 'alt-b:preview-page-up,alt-f:preview-page-down'
+--bind 'alt-u:preview-half-page-up,alt-d:preview-half-page-down'
+--bind 'ctrl-/:change-preview-window(hidden|)'
+"
+
+export FZF_DEFAULT_OPTS="
+--preview-window 'top:60%'
+--preview 'fzf_preview {}'
+--height=100%
+$FZF_BINDS
+"
+
+export FZF_CTRL_T_OPTS="
+--walker-skip .git,target
+"
+
+export FZF_CTRL_R_OPTS="
+--preview ''
+"
 
 export JULIA_SHELL='zsh -i'
 export JULIA_EDITOR='ssvim'
