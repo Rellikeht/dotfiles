@@ -111,7 +111,7 @@ noremap <Leader>xo
 
 "{{{ helpers
 
-function s:VimGrep(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
+function s:VimMap(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
   let l:pattern = a:qpat ? "'".a:pattern."'" : a:pattern
   let l:bang = a:bang ? '!' : ''
   let l:end = a:qend ? "'".a:end."'" : a:end
@@ -131,11 +131,12 @@ function Lupper(str)
   return (a:str[:len(a:str)-2].toupper(a:str[len(a:str)-1]))
 endfunction
 
-function s:VGCombo(keys, pattern, end, mode='', vesc=0, qpat=1, qend=1)
-  exe a:mode.s:VimGrep(a:keys, a:pattern, a:end, 0, a:qpat, a:qend, a:vesc)
-  exe a:mode.s:VimGrep(Fupper(a:keys), a:pattern, a:end, 1, a:qpat, a:qend, a:vesc)
-  exe a:mode.s:VimGrep(Lupper(a:keys), a:pattern.'f', a:end, 0, a:qpat, a:qend, a:vesc)
-  exe a:mode.s:VimGrep(Lupper(Fupper(a:keys)), a:pattern.'f', a:end, 1, a:qpat, a:qend, a:vesc)
+function s:VMCombo(keys, pattern, end, mode='', vesc=0, qpat=1, qend=1)
+  let l:keys = 'v'.a:keys
+  exe a:mode.s:VimMap(l:keys, a:pattern, a:end, 0, a:qpat, a:qend, a:vesc)
+  exe a:mode.s:VimMap(Lupper(l:keys), a:pattern, a:end, 1, a:qpat, a:qend, a:vesc)
+  exe a:mode.s:VimMap(Fupper(l:keys), a:pattern.'f', a:end, 0, a:qpat, a:qend, a:vesc)
+  exe a:mode.s:VimMap(Lupper(Fupper(l:keys)), a:pattern.'f', a:end, 1, a:qpat, a:qend, a:vesc)
 endfunction
 
 "}}}
@@ -149,69 +150,72 @@ let s:vgmaps = [
       \ ['vC', '', '', 1, 0],
       \ ]
 
+" TODO A <cfile>
 let s:vgcmaps = [
-      \ ['v<Space>c', '//gj', '<C-Left><Right>'],
-      \ ['v<Space>f', "//gj", ' %<C-Left><C-Left><Right>'],
-      \ ['v<Space>a', "//gj", ' ## <C-Left><C-Left><Right>', 'n'],
-      \ ['v<Space>s', "//gj", ' * <C-Left><C-Left><Right>', 'n'],
-      \ ['v<Space>h', "//gj", ' .* * <C-Left><C-Left><C-Left><Right>', 'n'],
-      \ ['v<Space>r', "//gj", ' ** <C-Left><C-Left><Right>', 'n'],
-      \ ['v<Space>R', "//gj", ' .*/** ** <C-Left><C-Left><C-Left><Right>', 'n'],
+      \ ['<Space>u', '//gj', " '.Expand('<cfile>').' <Home><C-Right><Right>"],
       \ ] + [
-      \ ['vuc', "/'.Expand('<cword>').'/gj", ' ', 'n'],
-      \ ['vuf', "/'.Expand('<cword>').'/gj", ' % <CR>', 'n'],
-      \ ['vua', "/'.Expand('<cword>').'/gj", ' ## <CR>', 'n'],
-      \ ['vus', "/'.Expand('<cword>').'/gj", ' * <CR>', 'n'],
-      \ ['vuh', "/'.Expand('<cword>').'/gj", ' .* * <CR>', 'n'],
-      \ ['vur', "/'.Expand('<cword>').'/gj", ' ** <CR>', 'n'],
-      \ ['vuR', "/'.Expand('<cword>').'/gj", ' .*/** ** <CR>', 'n'],
+      \ ['<Space>c', '//gj', '<C-Left><Right>'],
+      \ ['<Space>f', "//gj", ' %<C-Left><C-Left><Right>'],
+      \ ['<Space>a', "//gj", ' ## <C-Left><C-Left><Right>'],
+      \ ['<Space>s', "//gj", ' * <C-Left><C-Left><Right>'],
+      \ ['<Space>h', "//gj", ' .* * <C-Left><C-Left><C-Left><Right>'],
+      \ ['<Space>r', "//gj", ' ** <C-Left><C-Left><Right>'],
+      \ ['<Space>R', "//gj", ' .*/** ** <C-Left><C-Left><C-Left><Right>'],
       \ ] + [
-      \ ['vwc', "/'.Expand('<cWORD>').'/gj", ' ', 'n'],
-      \ ['vwf', "/'.Expand('<cWORD>').'/gj", ' % <CR>', 'n'],
-      \ ['vwa', "/'.Expand('<cWORD>').'/gj", ' ## <CR>', 'n'],
-      \ ['vws', "/'.Expand('<cWORD>').'/gj", ' * <CR>', 'n'],
-      \ ['vwh', "/'.Expand('<cWORD>').'/gj", ' .* * <CR>', 'n'],
-      \ ['vwr', "/'.Expand('<cWORD>').'/gj", ' ** <CR>', 'n'],
-      \ ['vwR', "/'.Expand('<cWORD>').'/gj", ' .*/** ** <CR>', 'n'],
+      \ ['uc', "/'.Expand('<cword>').'/gj", ' ', 'n'],
+      \ ['uf', "/'.Expand('<cword>').'/gj", ' % <CR>', 'n'],
+      \ ['ua', "/'.Expand('<cword>').'/gj", ' ## <CR>', 'n'],
+      \ ['us', "/'.Expand('<cword>').'/gj", ' * <CR>', 'n'],
+      \ ['uh', "/'.Expand('<cword>').'/gj", ' .* * <CR>', 'n'],
+      \ ['ur', "/'.Expand('<cword>').'/gj", ' ** <CR>', 'n'],
+      \ ['uR', "/'.Expand('<cword>').'/gj", ' .*/** ** <CR>', 'n'],
       \ ] + [
-      \ ['vec', "/'.Expand('<cexpr>').'/gj", ' ', 'n'],
-      \ ['vef', "/'.Expand('<cexpr>').'/gj", ' % <CR>', 'n'],
-      \ ['vea', "/'.Expand('<cexpr>').'/gj", ' ## <CR>', 'n'],
-      \ ['ves', "/'.Expand('<cexpr>').'/gj", ' * <CR>', 'n'],
-      \ ['veh', "/'.Expand('<cexpr>').'/gj", ' .* * <CR>', 'n'],
-      \ ['ver', "/'.Expand('<cexpr>').'/gj", ' ** <CR>', 'n'],
-      \ ['veR', "/'.Expand('<cexpr>').'/gj", ' .*/** ** <CR>', 'n'],
+      \ ['wc', "/'.Expand('<cWORD>').'/gj", ' ', 'n'],
+      \ ['wf', "/'.Expand('<cWORD>').'/gj", ' % <CR>', 'n'],
+      \ ['wa', "/'.Expand('<cWORD>').'/gj", ' ## <CR>', 'n'],
+      \ ['ws', "/'.Expand('<cWORD>').'/gj", ' * <CR>', 'n'],
+      \ ['wh', "/'.Expand('<cWORD>').'/gj", ' .* * <CR>', 'n'],
+      \ ['wr', "/'.Expand('<cWORD>').'/gj", ' ** <CR>', 'n'],
+      \ ['wR', "/'.Expand('<cWORD>').'/gj", ' .*/** ** <CR>', 'n'],
       \ ] + [
-      \ ['vpc', "/'.Vescape(@\").'/gj", ' ', 'n'],
-      \ ['vpf', "/'.Vescape(@\").'/gj", ' % <CR>', 'n'],
-      \ ['vpa', "/'.Vescape(@\").'/gj", ' ## <CR>', 'n'],
-      \ ['vps', "/'.Vescape(@\").'/gj", ' * <CR>', 'n'],
-      \ ['vph', "/'.Vescape(@\").'/gj", ' .* * <CR>', 'n'],
-      \ ['vpr', "/'.Vescape(@\").'/gj", ' ** <CR>', 'n'],
-      \ ['vpR', "/'.Vescape(@\").'/gj", ' .*/** ** <CR>', 'n'],
+      \ ['ec', "/'.Expand('<cexpr>').'/gj", ' ', 'n'],
+      \ ['ef', "/'.Expand('<cexpr>').'/gj", ' % <CR>', 'n'],
+      \ ['ea', "/'.Expand('<cexpr>').'/gj", ' ## <CR>', 'n'],
+      \ ['es', "/'.Expand('<cexpr>').'/gj", ' * <CR>', 'n'],
+      \ ['eh', "/'.Expand('<cexpr>').'/gj", ' .* * <CR>', 'n'],
+      \ ['er', "/'.Expand('<cexpr>').'/gj", ' ** <CR>', 'n'],
+      \ ['eR', "/'.Expand('<cexpr>').'/gj", ' .*/** ** <CR>', 'n'],
       \ ] + [
-      \ ['vsc', "/'.Vescape(GetVisualSelection()).'/gj", ' '],
-      \ ['vsf', "/'.Vescape(GetVisualSelection()).'/gj", ' %<CR>'],
-      \ ['vsa', "/'.Vescape(GetVisualSelection().'/gj", ' ## <CR>'],
-      \ ['vss', "/'.Vescape(GetVisualSelection().'/gj", ' * <CR>'],
-      \ ['vsh', "/'.Vescape(GetVisualSelection().'/gj", ' .* * <CR>'],
-      \ ['vsr', "/'.Vescape(GetVisualSelection().'/gj", ' ** <CR>'],
-      \ ['vsR', "/'.Vescape(GetVisualSelection().'/gj", ' .*/** ** <CR>'],
+      \ ['pc', "/'.Vescape(@\").'/gj", ' ', 'n'],
+      \ ['pf', "/'.Vescape(@\").'/gj", ' % <CR>', 'n'],
+      \ ['pa', "/'.Vescape(@\").'/gj", ' ## <CR>', 'n'],
+      \ ['ps', "/'.Vescape(@\").'/gj", ' * <CR>', 'n'],
+      \ ['ph', "/'.Vescape(@\").'/gj", ' .* * <CR>', 'n'],
+      \ ['pr', "/'.Vescape(@\").'/gj", ' ** <CR>', 'n'],
+      \ ['pR', "/'.Vescape(@\").'/gj", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['sc', "/'.Vescape(GetVisualSelection()).'/gj", ' '],
+      \ ['sf', "/'.Vescape(GetVisualSelection()).'/gj", ' %<CR>'],
+      \ ['sa', "/'.Vescape(GetVisualSelection().'/gj", ' ## <CR>'],
+      \ ['ss', "/'.Vescape(GetVisualSelection().'/gj", ' * <CR>'],
+      \ ['sh', "/'.Vescape(GetVisualSelection().'/gj", ' .* * <CR>'],
+      \ ['sr', "/'.Vescape(GetVisualSelection().'/gj", ' ** <CR>'],
+      \ ['sR', "/'.Vescape(GetVisualSelection().'/gj", ' .*/** ** <CR>'],
       \ ]
 
 for m in s:vgmaps
-  exe call('s:VimGrep', m)
+  exe call('s:VimMap', m)
 endfor
 
 for m in s:vgcmaps
-  call call('s:VGCombo', m)
+  call call('s:VMCombo', m)
 endfor
 
 "}}}
 
 "}}}
 
-"{{{ TODO A grep
+"{{{ TODO C (more ?) - grep
 
 "{{{ helpers
 
@@ -259,6 +263,24 @@ cnoreabbrev <expr> lgrep
       \ (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ?
       \ 'Lgrep' : 'lgrep'
 
+
+function s:GrepMap(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
+  let l:pattern = a:qpat ? "'".a:pattern."'" : a:pattern
+  let l:bang = a:bang ? '!' : ''
+  let l:end = a:qend ? "'".a:end."'" : a:end
+  let l:esc = a:vesc ? "'<Esc>'." : ''
+  return 'noremap <expr> <Space>s'.a:keys.' g:qfloc ? '.
+        \ l:esc."':<C-u>lgrep".l:bang.
+        \ " '.".l:pattern.'.'.l:end.
+        \ ': '.l:esc."':<C-u>grep".l:bang.
+        \ " '.".l:pattern.'.'.l:end
+endfunction
+
+function s:GMCombo(keys, pattern, end, mode='', vesc=0, qpat=1, qend=1)
+  exe a:mode.s:GrepMap(a:keys, a:pattern, a:end, 0, a:qpat, a:qend, a:vesc)
+  exe a:mode.s:GrepMap(Lupper(a:keys), a:pattern, a:end, 1, a:qpat, a:qend, a:vesc)
+endfunction
+
 "}}}
 
 "{{{ external providers
@@ -276,10 +298,13 @@ cnoreabbrev <expr> lgrep
 " TODO B more
 let s:arf = '%f:%l:%c:%m'
 let s:grf = '%f:%l:%m,%f:%l%m,%f\ \ %l%m'
+
+" grep -H is gnu extension, should do fine for now
+" TODO C /dev/null magic to replace -H
 let g:grepprgs = 
       \ [
-      \ [ 'grep\ -EIn', s:grf ],
-      \ [ 'grep\ -EIin', s:grf ],
+      \ [ 'grep\ -HEIn', s:grf ],
+      \ [ 'grep\ -HEIin', s:grf ],
       \ [ 'rg\ --vimgrep\ -S\ --hidden', s:arf ],
       \ [ 'rg\ --vimgrep\ -S\ --unrestricted', s:arf ],
       \ [ 'rg\ --vimgrep\ -S', s:arf ],
@@ -342,111 +367,95 @@ vnoremap <Space>s/ :<C-u>ExtGrep  \|norm gv
 
 "}}}
 
-" TODO A grep recursive (<Space>r ?)
-
 "{{{ mappings
 
-"{{{ simple
+let s:gmaps = [
+      \ ['sc', '', '', 0, 0],
+      \ ['sC', '', '', 1, 0],
+      \ ]
+
+let s:gcmaps = [
+      \ ['<Space>u', '', " '.Expand('<cfile>').' <Home><C-Right><Right>"],
+      \ ] + [
+      \ ['<Space>f', '', " '.shellescape(expand('%')).'<Home><C-Right><Right>"],
+      \ ['<Space>a', '', ' ## <Home><C-Right><Right>'],
+      \ ['<Space>s', '', ' * <Home><C-Right><Right>'],
+      \ ['<Space>h', '', ' .* * <Home><C-Right><Right>'],
+      \ ['<Space>r', '', ' ** <Home><C-Right><Right>'],
+      \ ['<Space>R', '', ' .*/** ** <Home><C-Right><Right>'],
+      \ ] + [
+      \ ['uc', "'.Expand('<cword>').'", ' ', 'n'],
+      \ ['uf', "'.Expand('<cword>').'", " '.shellescape(expand('%')).' <CR>", 'n'],
+      \ ['ua', "'.Expand('<cword>').'", ' ## <CR>', 'n'],
+      \ ['us', "'.Expand('<cword>').'", ' * <CR>', 'n'],
+      \ ['uh', "'.Expand('<cword>').'", ' .* * <CR>', 'n'],
+      \ ['ur', "'.Expand('<cword>').'", ' ** <CR>', 'n'],
+      \ ['uR', "'.Expand('<cword>').'", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['wc', "'.Expand('<cWORD>').'", ' ', 'n'],
+      \ ['wf', "'.Expand('<cWORD>').'", " '.shellescape(expand('%')).' <CR>", 'n'],
+      \ ['wa', "'.Expand('<cWORD>').'", ' ## <CR>', 'n'],
+      \ ['ws', "'.Expand('<cWORD>').'", ' * <CR>', 'n'],
+      \ ['wh', "'.Expand('<cWORD>').'", ' .* * <CR>', 'n'],
+      \ ['wr', "'.Expand('<cWORD>').'", ' ** <CR>', 'n'],
+      \ ['wR', "'.Expand('<cWORD>').'", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['ec', "'.Expand('<cexpr>').'", ' ', 'n'],
+      \ ['ef', "'.Expand('<cexpr>').'", " '.shellescape(expand('%')).' <CR>", 'n'],
+      \ ['ea', "'.Expand('<cexpr>').'", ' ## <CR>', 'n'],
+      \ ['es', "'.Expand('<cexpr>').'", ' * <CR>', 'n'],
+      \ ['eh', "'.Expand('<cexpr>').'", ' .* * <CR>', 'n'],
+      \ ['er', "'.Expand('<cexpr>').'", ' ** <CR>', 'n'],
+      \ ['eR', "'.Expand('<cexpr>').'", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['pc', "'.Vescape(@\").'", ' ', 'n'],
+      \ ['pf', "'.Vescape(@\").'", " '.shellescape(expand('%')).' <CR>", 'n'],
+      \ ['pa', "'.Vescape(@\").'", ' ## <CR>', 'n'],
+      \ ['ps', "'.Vescape(@\").'", ' * <CR>', 'n'],
+      \ ['ph', "'.Vescape(@\").'", ' .* * <CR>', 'n'],
+      \ ['pr', "'.Vescape(@\").'", ' ** <CR>', 'n'],
+      \ ['pR', "'.Vescape(@\").'", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['sc', "'.Vescape(GetVisualSelection()).'", ' '],
+      \ ['sf', "'.Vescape(GetVisualSelection()).'", " '.shellescape(expand('%')).'<CR>"],
+      \ ['sa', "'.Vescape(GetVisualSelection().'", ' ## <CR>'],
+      \ ['ss', "'.Vescape(GetVisualSelection().'", ' * <CR>'],
+      \ ['sh', "'.Vescape(GetVisualSelection().'", ' .* * <CR>'],
+      \ ['sr', "'.Vescape(GetVisualSelection().'", ' ** <CR>'],
+      \ ['sR', "'.Vescape(GetVisualSelection().'", ' .*/** ** <CR>'],
+      \ ]
+
+for m in s:gmaps
+  exe call('s:GrepMap', m)
+endfor
+
+for m in s:gcmaps
+  call call('s:GMCombo', m)
+endfor
 
 noremap <expr> <Space>s- g:qfloc ?
-      \ ':<C-u>Lfilter /^[^\|][^\|] /<CR>'
-      \ : ':<C-u>Cfilter /^[^\|][^\|] /<CR>'
+      \ ':<C-u>Lfilter /^grep: /<CR>'
+      \ : ':<C-u>Cfilter /^grep: /<CR>'
 
 noremap <Space>sj :<C-u>Sgrep<Space>
 noremap <Space>sJ :<C-u>Sgrep!<Space>
 
-"}}}
-
-"{{{ current file and args
-
-noremap <expr> <Space>s<Space>f
-      \ ':<C-u>Sgrep  '.Expand('%').
-      \ '<Home><C-Right><Right>'
-nnoremap <expr> <Space>sf
-      \ ':<C-u>Sgrep '.expand('<cword>').' '.Expand('%').'<CR>'
-vnoremap <expr> <Space>sf
-      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
-      \ '" '.Expand('%')."'<CR>"
-
-noremap <expr> <Space>s<Space>l
-      \ ':<C-u>Sgrep  '.Exfiles(argv()).
-      \ '<Home><C-Right><Right>'
-nnoremap <expr> <Space>sl
-      \ ':<C-u>Sgrep '.expand('<cword>').' '.Exfiles(argv()).'<CR>'
-vnoremap <expr> <Space>sl
-      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
-      \ '" '.Exfiles(argv())."'<CR>"
-
-"}}}
-
-"{{{ files in curdir
-
-noremap <expr> <Space>s<Space>a ':<C-u>Sgrep  * .*'.
-      \ '<C-Left><C-Left><Left>'
-nnoremap <expr> <Space>sa ':<C-u>Sgrep '.expand('<cword>').' * .*<CR>'
-vnoremap <expr> <Space>sa
-      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
-      \ '" * .*'."'<CR>"
-
-noremap <expr> <Space>s<Space>h ':<C-u>Sgrep  *<Left><Left>'
-nnoremap <expr> <Space>sh ':<C-u>Sgrep '.expand('<cword>').' *<CR>'
-vnoremap <expr> <Space>sh
-      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
-      \ '" *'."'<CR>"
-
-"}}}
-
-"{{{ TODO A recursive
-
-"}}}
-
-"{{{ old
-
-" nnoremap <expr> <Space>sc g:qfloc ? 
-"       \ ':<C-u>lgrep <cword> . <CR>'
-"       \ : ':<C-u>grep <cword> . <CR>'
-" vnoremap <expr> <Space>sc g:qfloc ? 
-"       \ ":<C-u>exe 'lgrep '.GetVisualSelection().' .'<CR>"
-"       \ : ":<C-u>exe 'grep '.GetVisualSelection().' .'<CR>"
-
-" nnoremap <expr> <Space>sla g:qfloc ? 
-"       \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
-"       \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
-" vnoremap <expr> <Space>sla g:qfloc ? 
-"       \ ':<C-u>lgrep '.GetVisualSelection().' *<CR>'
-"       \ : ':<C-u>grep '.GetVisualSelection().' *<CR>'
-" nnoremap <expr> <Space>slA g:qfloc ? 
-"       \ ':<C-u>lgrep '.Expand('<cword>').' * <CR>'
-"       \ : ':<C-u>grep '.Expand('<cword>').' * <CR>'
-" vnoremap <expr> <Space>slA g:qfloc ? 
-"       \ ':<C-u>lgrep '.GetVisualSelection().' *<CR>'
-"       \ : ':<C-u>grep '.GetVisualSelection().' *<CR>'
-
-" nnoremap <expr> <Space>slr g:qfloc ? 
-"       \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
-"       \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
-" vnoremap <expr> <Space>slr g:qfloc ? 
-"       \ ':<C-u>lgrep '.GetVisualSelection().' **/*<CR>'
-"       \ : ':<C-u>grep '.GetVisualSelection().' **/*<CR>'
-" nnoremap <expr> <Space>slR g:qfloc ? 
-"       \ ':<C-u>lgrep '.Expand('<cword>').' **/* <CR>'
-"       \ : ':<C-u>grep '.Expand('<cword>').' **/* <CR>'
-" vnoremap <expr> <Space>slR g:qfloc ? 
-"       \ ':<C-u>lgrep '.GetVisualSelection().' **/*<CR>'
-"       \ : ':<C-u>grep '.GetVisualSelection().' **/*<CR>'
-
-" nnoremap <expr> <Space>sl<Space>a g:qfloc ? 
-"       \ ':<C-u>lgrep  *<C-Left><Left>'
-"       \ : ':<C-u>grep  *<C-Left><Left>'
-" nnoremap <expr> <Space>sl<Space>r g:qfloc ? 
-"       \ ':<C-u>lgrep  **/*<C-Left><Left>'
-"       \ : ':<C-u>grep  **/*<C-Left><Left>'
-
-" nnoremap <expr> <Space>sl<Space>l g:qfloc ? 
-"             \ ':<C-u>lgrep  ##<C-Left><Left>'
-"             \ : ':<C-u>grep  ##<C-Left><Left>'
-
-"}}}
+""{{{ files in curdir
+"
+"noremap <expr> <Space>s<Space>a ':<C-u>Sgrep  * .*'.
+"      \ '<C-Left><C-Left><Left>'
+"nnoremap <expr> <Space>sa ':<C-u>Sgrep '.expand('<cword>').' * .*<CR>'
+"vnoremap <expr> <Space>sa
+"      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
+"      \ '" * .*'."'<CR>"
+"
+"noremap <expr> <Space>s<Space>h ':<C-u>Sgrep  *<Left><Left>'
+"nnoremap <expr> <Space>sh ':<C-u>Sgrep '.expand('<cword>').' *<CR>'
+"vnoremap <expr> <Space>sh
+"      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
+"      \ '" *'."'<CR>"
+"
+""}}}
 
 "}}}
 

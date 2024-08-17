@@ -4,6 +4,7 @@ autocmd FileType gitcommit,gitsendmail
       \ setlocal textwidth=72
 
 map ,g <Nop>
+map ,gs <Nop>
 
 "}}}
 
