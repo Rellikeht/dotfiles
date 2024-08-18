@@ -45,6 +45,9 @@ alias uc='ucopys'
 # }}}
 
 # {{{ basic utils
+alias rr='rm -r'
+alias rf='rm -rf'
+
 alias lsn='ls --color=never'
 alias ls='TERM=st-256color ls --color=always'
 alias ll='lf -la'
@@ -106,7 +109,6 @@ alias amm='aft-mtp-mount'
 # }}}
 
 # {{{ session
-
 alias hn=hostname
 alias wi=whoami
 
@@ -143,6 +145,7 @@ alias ssh6='ssh "$(cat ~/.ssh/h6)"'
 alias ssh7='ssh "$(cat ~/.ssh/h7)"'
 alias ssh8='ssh "$(cat ~/.ssh/h8)"'
 alias ssh9='ssh "$(cat ~/.ssh/h9)"'
+
 # }}}
 
 # {{{ editors

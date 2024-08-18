@@ -101,7 +101,7 @@ Plug 'mmikeww/autohotkey.vim'
 "{{{ specialized
 
 Plug 'JuliaEditorSupport/julia-vim'
-
+Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'vale1410/vim-minizinc'
 
 Plug 'LnL7/vim-nix' " TODO A what is going on
