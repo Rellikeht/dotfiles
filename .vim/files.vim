@@ -303,14 +303,14 @@ let s:grf = '%f:%l:%m,%f:%l%m,%f\ \ %l%m'
 " TODO C /dev/null magic to replace -H
 let g:grepprgs = 
       \ [
+      \ [ 'ag\ --vimgrep\ -S\ --hidden', s:arf ],
+      \ [ 'ag\ --vimgrep\ -S\ --unrestricted', s:arf ],
+      \ [ 'ag\ --vimgrep\ -S', s:arf ],
       \ [ 'grep\ -HEIn', s:grf ],
       \ [ 'grep\ -HEIin', s:grf ],
       \ [ 'rg\ --vimgrep\ -S\ --hidden', s:arf ],
       \ [ 'rg\ --vimgrep\ -S\ --unrestricted', s:arf ],
       \ [ 'rg\ --vimgrep\ -S', s:arf ],
-      \ [ 'ag\ --vimgrep\ -S\ --unrestricted', s:arf ],
-      \ [ 'ag\ --vimgrep\ -S\ --hidden', s:arf ],
-      \ [ 'ag\ --vimgrep\ -S', s:arf ],
       \ ]
 
 " https://vi.stackexchange.com/questions/35139/custom-arguments-to-user-command
@@ -321,8 +321,7 @@ function s:Grepprgs(current_arg, command_line, cursor_position)
   if l >= 0
     call filter(
           \ prgs,
-          \ {_, v -> v[0][:l] ==# a:current_arg})
-    echom prgs
+          \ {_, v -> v[:l] == a:current_arg})
   endif
   return prgs
 endfunction
@@ -364,6 +363,9 @@ command! -nargs=1 -complete=customlist,s:Grepprgs ExtGrep
 nnoremap <Space>s/ :<C-u>ExtGrep<Space>
 vnoremap <Space>s/ :<C-u>ExtGrep  \|norm gv
       \ <C-Left><C-Left><Left>
+
+nnoremap <Space>sq :<C-u>echo &grepprg<CR>
+vnoremap <Space>sq :<C-u>echo &grepprg\|norm gv<CR>
 
 "}}}
 
@@ -439,23 +441,6 @@ noremap <expr> <Space>s- g:qfloc ?
 
 noremap <Space>sj :<C-u>Sgrep<Space>
 noremap <Space>sJ :<C-u>Sgrep!<Space>
-
-""{{{ files in curdir
-"
-"noremap <expr> <Space>s<Space>a ':<C-u>Sgrep  * .*'.
-"      \ '<C-Left><C-Left><Left>'
-"nnoremap <expr> <Space>sa ':<C-u>Sgrep '.expand('<cword>').' * .*<CR>'
-"vnoremap <expr> <Space>sa
-"      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
-"      \ '" * .*'."'<CR>"
-"
-"noremap <expr> <Space>s<Space>h ':<C-u>Sgrep  *<Left><Left>'
-"nnoremap <expr> <Space>sh ':<C-u>Sgrep '.expand('<cword>').' *<CR>'
-"vnoremap <expr> <Space>sh
-"      \ ":<C-u>exe 'Sgrep " . '"' . "'.GetVisualSelection().'".
-"      \ '" *'."'<CR>"
-"
-""}}}
 
 "}}}
 

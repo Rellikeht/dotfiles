@@ -1,9 +1,10 @@
 " {{{ heavy stuff
 
-" TODO A make this both fast and expand **
-" slightly slower, but acceptable
+" slightly slower than
 " set shell=sh
+" but acceptable
 set shell=bash
+
 set noshelltemp
 
 let mapleader = ','
@@ -71,9 +72,7 @@ set synmaxcol=250
 
 " }}}
 
-"{{{ TODO B file stuff (:find)
-
-"{{{ ignores
+"{{{ wildignore
 
 set wildignore+=.git/**
 set wildignore+=.local/**
@@ -91,58 +90,7 @@ set wildignore+=*.AppImage
 set wildignore+=*.lock,*~
 set wildignore+=*.doc,*.xls
 set wildignore+=.\?git*
-set wildignore+=*/
-
-"}}}
-
-""{{{ paths
-
-"autocmd VimEnter * let g:starting_path = getcwd()
-
-"      " TODO A FUCK
-"      \ ['.,./**,./**/.*,./.*/**', '.,./**'],
-"      \ ['.,./**,./**/.*/**', '.,./**'],
-"let g:paths = [
-"      \ [',,**,**/.*/**', ',,**'],
-"      \ ['.,./**', '.,./**'],
-"      \ ]
-
-"let g:pat1 = 0
-"let g:pat2 = 0
-
-"function SetPath(pat1=v:null, pat2=v:null)
-"  if a:pat1 != v:null
-"    let g:pat1 = a:pat1
-"  endif
-"  if a:pat2 != v:null
-"    let g:pat2 = a:pat2
-"  endif
-"  exe 'set path='.g:paths[g:pat1][g:pat2]
-"endfunction
-
-"function NextPat1(amount=1)
-"  let g:pat1 = (g:pat1 + a:amount + len(g:paths)) % len(g:paths)
-"  call SetPath()
-"endfunction
-
-"function NextPat2(amount=1)
-"  let g:pat2 = (g:pat2 + a:amount + len(g:paths[g:pat1]))
-"        \ % len(g:paths[g:pat1])
-"  call SetPath()
-"endfunction
-
-"call SetPath()
-
-""}}}
-
-""{{{ maps
-
-"noremap <silent> <Space>fn :<C-u>call NextPat1()<CR>
-"noremap <silent> <Space>fp :<C-u>call NextPat1(-1)<CR>
-"noremap <silent> <Space>fN :<C-u>call NextPat2()<CR>
-"noremap <silent> <Space>fP :<C-u>call NextPat2(-1)<CR>
-
-""}}}
+" set wildignore+=*/
 
 "}}}
 

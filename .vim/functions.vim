@@ -84,6 +84,13 @@ endfunction
 
 "{{{ commands
 
+function Cexec(cmd)
+    redir => out
+    silent exec a:cmd
+    redir END
+    return out
+endfunction
+
 function Vgcount()
   if v:count == 0
     return ''

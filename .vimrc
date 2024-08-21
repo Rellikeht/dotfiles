@@ -3,7 +3,7 @@ source ~/.vim/tiny-compatible.vim
 " Configration suited for beeing shared between neovim (nvim), custom compiled 
 " vim / standard vim from repos (vim) and vim-tiny (tvim / vi)
 
-if v:progname !~? "tv\\?\\(im\\?\\)\\?"
+if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   " and it works, at least now
 
   "{{{ plugins and packages
@@ -52,8 +52,8 @@ if v:progname !~? "tv\\?\\(im\\?\\)\\?"
   endif
   "}}}
 
-  if v:progname =~? "^s\\?v\\(im\\?\\)\\?" "{{{
-    source ~/.vim/preplug.vim
+  source ~/.vim/preplug.vim
+  if v:progname =~? "^s\\?v\\(im\\)\\?" "{{{
     source ~/.vim/svimrc.vim
     call plug#begin('~/.vim/plugged')
     source ~/.vim/common-plugins.vim
