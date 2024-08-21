@@ -295,12 +295,8 @@ tsconfig.setup(
 -- {{{ setting maps
 -- TODO more
 
-vim.keymap.set(
-  {"n"}, "<Leader>dqt", ":<C-u>TSToggle highlight<CR>",
-  {noremap = true}
-)
-vim.keymap.set(
-  {"v"}, "<Leader>dqt", ":<C-u>TSToggle highlight|norm gv<CR>",
+nvkeymap(
+  "<Leader>dqt", ":<C-u>TSToggle highlight<CR>",
   {noremap = true}
 )
 

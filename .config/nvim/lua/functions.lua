@@ -1,5 +1,4 @@
 ---@diagnostic disable: lowercase-global
-
 -- KEYMAPS
 function mkeymap(mode, src, dest, options)
   vim.keymap.set(mode, src, dest, options)
@@ -15,6 +14,11 @@ end
 
 function vkeymap(src, dest, options)
   mkeymap("v", src, dest, options)
+end
+
+function nvkeymap(src, dest, options)
+  mkeymap("n", src, dest, options)
+  mkeymap("v", src, dest .. "gv", options)
 end
 
 function commandRep(fn)

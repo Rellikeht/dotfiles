@@ -203,7 +203,7 @@ Available (useless otherwise): G, K, L, z
 Rather useless: I, Q, H, h, r, w
 
 - c - vim-commentary
-- C - toggle colorizer
+- C - toggle coloring of hex codes (vim-css-color)
 - S - vim-surround
 - a - unicode
 - A - radical.vim

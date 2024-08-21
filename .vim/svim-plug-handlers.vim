@@ -26,11 +26,10 @@ vnoremap <silent> <Leader>qer
 
 "}}}
 
-"{{{ Colorizer
+"{{{ CSS color
 
-let g:colorizer_maxlines = 500
-nnoremap <silent> gC :ColorToggle<CR>
-vnoremap <silent> gC :ColorToggle\|norm gv<CR>
+nnoremap <silent> gC :<C-u>call css_color#toggle()<CR>
+vnoremap <silent> gC :<C-u>call css_color#toggle()\|norm gv<CR>
 
 "}}}
 
@@ -55,7 +54,7 @@ noremap <silent> <Leader>dd :call JumpToDef()<CR>
 
 "}}}
 
-"{{{
+"{{{ other
 
 " Enable function highlighting (affects both C and C++ files)
 let g:cpp_function_highlight = 1

@@ -92,6 +92,4 @@ noremap <silent> <Leader>qsg
 
 "{{{ other
 
-let g:colorizer_nomap = 1
-
 "}}}
