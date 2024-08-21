@@ -260,6 +260,13 @@ function QuickFixToggle()
   echo 'Quickfix is now ' . (g:qfloc ? 'local' : 'global')
 endfunction
 
+command -nargs=0 QfToLoc
+      \ lexpr []
+      \ | call setloclist(0, getqflist())
+command -nargs=0 LocToQf
+      \ cexpr []
+      \ | call setqflist(getloclist(0))
+
 "}}}
 
 "{{{ settings
@@ -395,6 +402,22 @@ vnoremap <silent> .h :<C-u>call VToggleQuickFix()<CR>
 " clearing
 nnoremap <silent> .c :<C-u>call QFcmd('expr []')<CR>
 vnoremap <silent> .c :<C-u>call QFcmd('expr []')\|norm gv<CR>
+
+" copying
+nnoremap <silent> .C g:qfloc ?
+      \ ':<C-u>QfToLoc<CR>'
+      \ : ':<C-u>LocToQf<CR>'
+vnoremap <silent> .C g:qfloc ?
+      \ ':<C-u>QfToLoc\|norm gv<CR>'
+      \ : ':<C-u>LocToQf\|norm gv<CR>'
+
+" putting
+nnoremap <silent> .= g:qfloc ?
+      \ ':<C-u>LocToQf<CR>'
+      \ : ':<C-u>QfToLoc<CR>'
+vnoremap <silent> .= g:qfloc ?
+      \ ':<C-u>LocToQf\|norm gv<CR>'
+      \ : ':<C-u>QfToLoc\|norm gv<CR>'
 
 nnoremap <expr> .e g:qfloc ?
       \ ':<C-u>lexpr<Space>'

@@ -1,5 +1,7 @@
 "{{{ TODO B is that enough - diff
 
+"{{{ helpers
+
 function DiffGet(pane)
   execute 'diffget' a:pane
   diffupdate
@@ -9,6 +11,33 @@ function DiffPut(pane)
   execute 'diffget' a:pane
   diffupdate
 endfunction
+
+"}}}
+
+"{{{ settings
+
+if has('patch-8.1.0360')
+  set diffopt=internal,filler,closeoff,algorithm:patience,context:8
+endif
+
+" TODO C algorithm?
+
+function s:ToggleFiller()
+  let l:opt = &diffopt
+  set diffopt-=filler
+  if &diffopt == l:opt
+    set diffopt+=filler
+  endif
+endfunction
+
+nnoremap <silent> <Space>hqf
+      \ :<C-u>call <SID>ToggleFiller()<CR>
+vnoremap <silent> <Space>hqf
+      \ :<C-u>call <SID>ToggleFiller()\|norm gv<CR>
+
+"}}}
+
+"{{{ maps
 
 noremap <silent> <Space>hdp :<C-u>diffput<CR>
 noremap <silent> <Space>hdg :<C-u>diffget<CR>
@@ -29,6 +58,8 @@ noremap <silent> <Space>hpf :<C-u>call DiffPut(Expand('%:p'))<CR>
 noremap <silent> <Space>hp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
 noremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
 noremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
+
+"}}}
 
 "}}}
 
@@ -263,7 +294,6 @@ cnoreabbrev <expr> lgrep
       \ (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ?
       \ 'Lgrep' : 'lgrep'
 
-
 function s:GrepMap(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
   let l:pattern = a:qpat ? "'".a:pattern."'" : a:pattern
   let l:bang = a:bang ? '!' : ''
@@ -295,10 +325,10 @@ endfunction
 " and wildcards are fucked when used shell is simple
 " (/usr/bin/env sh)
 
-" TODO B more
 let s:arf = '%f:%l:%c:%m'
 let s:grf = '%f:%l:%m,%f:%l%m,%f\ \ %l%m'
 
+" TODO B more
 " grep -H is gnu extension, should do fine for now
 " TODO C /dev/null magic to replace -H
 let g:grepprgs = 

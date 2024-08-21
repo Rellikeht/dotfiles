@@ -29,6 +29,10 @@ nnoremap <silent> <leader>ggr :Gread<CR>
 nnoremap <silent> <leader>gg<Space>r :Gread<Space>
 nnoremap <silent> <leader>ggw :Gwrite<CR>
 nnoremap <silent> <leader>gg<Space>w :Gwrite<Space>
+nnoremap <silent> <leader>ggq :Gwq<CR>
+nnoremap <silent> <leader>gg<Space>q :Gwq<Space>
+nnoremap <silent> <leader>gg! :Gwq!<CR>
+nnoremap <silent> <leader>gg<Space>Q :Gwq!<Space>
 
 nnoremap <silent> <leader>ggb :GBrowse<CR>
 nnoremap <silent> <leader>gg<Space>b :GBrowse<Space>
@@ -104,14 +108,32 @@ nnoremap <silent> <C-w><leader>gi<Space>h :tab G diff HEAD
 nnoremap <silent> <leader>gid :G diff<CR>
 nnoremap <silent> <leader>giD :G diff --staged<CR>
 nnoremap <silent> <leader>gi;d :G diff --cached<CR>
-nnoremap <silent> <leader>gim :G mergetool<CR>
 nnoremap <leader>gi<Space>d :G diff<Space>
+nnoremap <silent> <leader>gim :G mergetool<CR>
 nnoremap <leader>gim :G mergetool<Space>
+nnoremap <silent> <leader>git :G difftool<CR>
+nnoremap <leader>git :G difftool<Space>
 
 nnoremap <silent> <C-w><leader>gid :tab G diff<CR>
 nnoremap <silent> <C-w><leader>gim :tab G mergetool<CR>
+nnoremap <silent> <C-w><leader>git :tab G difftool<CR>
 nnoremap <C-w><leader>gi<Space>d :tab G diff<Space>
 nnoremap <C-w><leader>gim :tab G mergetool<Space>
+nnoremap <C-w><leader>git :tab G difftool<Space>
+" TODO D qfloc versions of diff and mergetools
+" (make loclist out of quickfix list)
+
+nnoremap <expr> <leader>gig g:qfloc ?
+      \ ':<C-u>Glgrep<Space>' : ':<C-u>Ggrep<Space>'
+nnoremap <expr> <leader>giG g:qfloc ?
+      \ ':<C-u>Glgrep!<Space>' : ':<C-u>Ggrep!<Space>'
+
+"}}}
+
+"{{{ paths (p)
+
+nnoremap <Leader>gpc :<C-u>Glcd<Space>
+nnoremap <Leader>gpC :<C-u>Gcd<Space>
 
 "}}}
 
@@ -291,9 +313,6 @@ nnoremap <silent> <leader>gsu :SignifyHunkUndo<CR>
 nnoremap <leader>gJ 99999<plug>(signify-next-hunk)
 nnoremap <leader>gK 99999<plug>(signify-prev-hunk)
 
-" TODO C is there a sane way
-" nnoremap <leader>gj <plug>(signify-next-hunk)
-" nnoremap <leader>gk <plug>(signify-prev-hunk)
 nnoremap + <plug>(signify-next-hunk)
 nnoremap - <plug>(signify-prev-hunk)
 
