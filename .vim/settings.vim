@@ -16,8 +16,8 @@ let g:pathshorten = 4
 
 let g:no_file_msg = 0
 autocmd VimEnter *
-      \ echo expand('%:p')
-      \ | let w:buf_echo = 0
+      \ let w:buf_echo = 0
+      " \ | echo expand('%:p')
 
 autocmd WinNew *
       \ let w:prev_dir = expand('%:p:h')

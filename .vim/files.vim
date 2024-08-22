@@ -73,6 +73,11 @@ noremap <Space>? <Nop>
 
 "}}}
 
+"{{{ TODO B history
+" :later and :earlier
+
+"}}}
+
 "{{{ drag and drop
 
 " TODO C more ?

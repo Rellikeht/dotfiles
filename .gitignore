@@ -53,8 +53,8 @@ highlight.css
 .config/youtube-viewer/instances.json
 .config/youtube-viewer/*/
 
-.config/mpv/local.conf
 .config/mpv/watch_later
+# .config/mpv/local.conf
 
 .moc/softmixer
 .moc/last_directory

@@ -198,7 +198,7 @@ a,b,e,f,h,k,l,m,o,p,r,t,v,w,y,z
 
 # g combinations
 
-Available (useless otherwise): G, K, L, z
+Available (useless otherwise): G, K, L
 
 Rather useless: I, Q, H, h, r, w
 
@@ -209,6 +209,7 @@ Rather useless: I, Q, H, h, r, w
 - A - radical.vim
 - y,Y - "\*y,"+y
 - s - vim-slime and similar
+- z - slime send with motion
 - "+" - v<C-a>
 - "-" - v<C-x>
 - l - (markdown) inline edit

@@ -170,10 +170,12 @@ nnoremap <C-w><leader>gt<Space>v :tab G stash show<Space>
 nnoremap <silent> <leader>goa :G add %<CR>
 nnoremap <leader>go<Space>a :G add<Space>
 nnoremap <leader>goA :G add .<CR>
+nnoremap <leader>go;a :G add ##<CR>
 
 nnoremap <silent> <leader>gor :G rm<Space>
 nnoremap <silent> <leader>god :G rm --cached %<CR>
 nnoremap <silent> <leader>goD :G rm --cached -r .<CR>
+nnoremap <silent> <leader>go;d :G rm --cached -r ##<CR>
 nnoremap <silent> <leader>go<Space>d :G rm --cached<Space>
 nnoremap <silent> <leader>go<Space>D :G rm --cached -r<Space>
 

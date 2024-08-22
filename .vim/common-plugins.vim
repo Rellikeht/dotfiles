@@ -21,7 +21,7 @@ Plug 'dbakker/vim-paragraph-motion'
 Plug 'wellle/targets.vim'
 
 Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-surround' " TODO B write shortcuts somewhere
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 
 "}}}

@@ -24,24 +24,24 @@ endfunction
 function s:Setup2Panes()
   let path = Expand('%:h')
   execute 'cd' path
-  call Tm('split-window -h -c '.path)
-  call Tm('select-pane -R')
+  call s:Tm('split-window -h -c '.path)
+  call s:Tm('select-pane -R')
 endfunction
 
 function s:MakeThirdVertical()
   let path = Expand('%:h')
   execute 'cd' path
-  call Tm('select-pane -R')
-  call Tm('split-window -v -c '.path)
-  call Tm('select-pane -R')
+  call s:Tm('select-pane -R')
+  call s:Tm('split-window -v -c '.path)
+  call s:Tm('select-pane -R')
 endfunction
 
 function s:Setup3Panes()
   let path = Expand('%:h')
-  call Tm('split-window -h -c '.path)
-  call Tm('split-window -v -c '.path)
-  call Tm('select-pane -U')
-  call Tm('select-pane -L')
+  call s:Tm('split-window -h -c '.path)
+  call s:Tm('split-window -v -c '.path)
+  call s:Tm('select-pane -U')
+  call s:Tm('select-pane -L')
   execute 'cd' path
 endfunction
 
@@ -59,25 +59,25 @@ function s:CdPanesDangerous(clear)
 endfunction
 
 function s:NewWindow(home)
-  call Tm('new-window')
+  call s:Tm('new-window')
   if a:home
-    call Tm('send-keys cd ' . g:ret . ' C-l')
+    call s:Tm('send-keys cd ' . g:ret . ' C-l')
   endif
-  call Tm('last-window')
+  call s:Tm('last-window')
 endfunction
 
 function s:ReplOnSecond()
   let program = input('Type name of program for repl: ')
   redraw
-  call Tm('split-window -v '.program)
+  call s:Tm('split-window -v '.program)
 endfunction
 
 function s:ReplOnThird()
-  call Tm('select-pane -R')
-  call Tm('select-pane -t {last}')
+  call s:Tm('select-pane -R')
+  call s:Tm('select-pane -t {last}')
   let program = input("Type name of program for repl: ")
   redraw
-  call Tm('split-window -v -t {last} '.program)
+  call s:Tm('split-window -v -t {last} '.program)
 endfunction
 
 function s:CopyPath()
@@ -142,7 +142,7 @@ function s:GetSlimePane()
 endfunction
 
 function s:SendKeys(keys)
-  execute 'Tmux send-keys -t ' . GetSlimePane() . ' ' . a:keys
+  execute 'Tmux send-keys -t '.s:GetSlimePane().' '.a:keys
 endfunction
 
 function s:ProgNameSlime()
@@ -158,27 +158,15 @@ function s:ProgNameSlime()
         \ 'haskell':'ghci',
         \ 'nim':'rlwrap nim secret',
         \ 'forth':'gforth',
+        \ 'nix':'nix repl',
         \ }
-
-  " this is tricky
-  " ???
-  " \ 'forth':'fth',
-
-  " \ 'lua':'rlwrap luajit',
-  " \ 'scheme':'gambit',
-  " \ 'lisp':'rlwrap sbcl',
-  " \ 'lisp':'rlwrap ecl',
-
-  " ???
-  " \ 'scheme':'rlwrap chez',
-  " \ 'ocaml':'rlwrap ocaml',
 
   if has_key(langs, pname)
     " Only julia is almost ideal on it's own
     let pname = langs[pname]
   endif
 
-  return pname . ' ' . g:ret
+  return "'".pname."' ".g:ret
 endfunction
 
 function s:SlimeOverride_EscapeText_sh(text)
@@ -191,16 +179,16 @@ endfunction
 
 "{{{ maps
 
-" noremap <silent> gss :SlimeSend<CR>
-noremap <silent> gss :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
-noremap <silent> gsa :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
+nnoremap gsl <Plug>SlimeLineSend
+nnoremap gz <Plug>SlimeMotionSend
+
+noremap <silent> gss :SlimeSend<CR>
+vnoremap <silent> gz :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
+vnoremap <silent> gZ :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
 
 xnoremap gsr <Plug>SlimeRegionSend
 nnoremap gsp <Plug>SlimeParagraphSend
 noremap gs: <Plug>SlimeConfig
-
-nnoremap gsl <Plug>SlimeLineSend
-nnoremap gsm <Plug>SlimeMotionSend
 
 " Clear, exit
 nnoremap <silent> gsc :call <SID>SendKeys("C-l")<CR>
@@ -209,9 +197,8 @@ nnoremap <silent> gse :call <SID>SendKeys("C-c")<CR>
 nnoremap <silent> gs<cr> :call <SID>SendKeys("Enter")<CR>
 
 " Launching program for currently edited langugage
-nnoremap <silent> gsb :call <SID>SendKeys(ProgNameSlime())<CR>
+nnoremap <silent> gsb :call <SID>SendKeys(<SID>ProgNameSlime())<CR>
 nnoremap <silent> gsB :call <SID>SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
-" nnoremap <silent> gsS :call <SID>SendKeys(&filetype . ' ' . g:ret)<CR>
 
 "}}}
 
@@ -231,6 +218,7 @@ nnoremap <silent> gsB :call <SID>SendKeys("rlwrap " . &filetype . ' ' . g:ret)<C
 "}}}
 
 "{{{ tmux complete
+
 let g:tmuxcomplete#trigger = ''
 
 " Because that wasn't suppled by plugin creator
@@ -243,4 +231,5 @@ endfunction
 
 inoremap <expr> <C-x><C-m> '<C-r>=TmuxComplete()<CR>'
 imap <C-x>m <C-x><C-m>
+
 "}}}

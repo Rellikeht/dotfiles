@@ -53,8 +53,8 @@ noremap <Tab>u "*p
 noremap <Tab>U "*P
 
 " TODO D this is harder than it should be
-noremap g+ v<C-a>
-noremap g- v<C-x>
+" noremap g+ v<C-a>
+" noremap g- v<C-x>
 
 noremap <Space><Tab> <C-^>
 
