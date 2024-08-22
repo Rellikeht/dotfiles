@@ -25,30 +25,30 @@ nnoremap <silent> <leader>ggC :Git<CR><C-w>T
 nnoremap <silent> <C-w><leader>ggc :tab Git<CR>
 nnoremap <silent> <C-w><leader>G :tab Git<CR>
 
-nnoremap <silent> <leader>ggr :Gread<CR>
-nnoremap <silent> <leader>gg<Space>r :Gread<Space>
-nnoremap <silent> <leader>ggw :Gwrite<CR>
-nnoremap <silent> <leader>gg<Space>w :Gwrite<Space>
+nnoremap <leader>ggr :Gread<CR>
+nnoremap <leader>gg<Space>r :Gread<Space>
+nnoremap <leader>ggw :Gwrite<CR>
+nnoremap <leader>gg<Space>w :Gwrite<Space>
 nnoremap <silent> <leader>ggq :Gwq<CR>
-nnoremap <silent> <leader>gg<Space>q :Gwq<Space>
+nnoremap <leader>gg<Space>q :Gwq<Space>
 nnoremap <silent> <leader>gg! :Gwq!<CR>
-nnoremap <silent> <leader>gg<Space>Q :Gwq!<Space>
+nnoremap <leader>gg<Space>Q :Gwq!<Space>
 
 nnoremap <silent> <leader>ggb :GBrowse<CR>
-nnoremap <silent> <leader>gg<Space>b :GBrowse<Space>
-nnoremap <silent> <leader>gg<Space>e :Gedit<Space>
-nnoremap <silent> <leader>gg<Space>p :Gpedit<Space>
-nnoremap <silent> <leader>gg<Space>t :Gtabedit<Space>
+nnoremap <leader>gg<Space>b :GBrowse<Space>
+nnoremap <leader>gg<Space>e :Gedit<Space>
+nnoremap <leader>gg<Space>p :Gpedit<Space>
+nnoremap <leader>gg<Space>t :Gtabedit<Space>
 
 nnoremap <silent> <leader>ggs :Gvdiffsplit<CR>
 nnoremap <silent> <leader>ggS :Gvdiffsplit!<CR>
 nnoremap <silent> <leader>ggh :Gdiffsplit<CR>
 nnoremap <silent> <leader>ggH :Gdiffsplit!<CR>
 
-nnoremap <silent> <leader>gg<Space>s :Gvdiffsplit<Space>
-nnoremap <silent> <leader>gg<Space>S :Gvdiffsplit!<Space>
-nnoremap <silent> <leader>gg<Space>h :Gdiffsplit<Space>
-nnoremap <silent> <leader>gg<Space>H :Gdiffsplit!<Space>
+nnoremap <leader>gg<Space>s :Gvdiffsplit<Space>
+nnoremap <leader>gg<Space>S :Gvdiffsplit!<Space>
+nnoremap <leader>gg<Space>h :Gdiffsplit<Space>
+nnoremap <leader>gg<Space>H :Gdiffsplit!<Space>
 
 nnoremap <silent> <C-w><leader>ggs :tab Gvdiffsplit<CR>
 nnoremap <silent> <C-w><leader>ggS :tab Gvdiffsplit!<CR>
@@ -57,7 +57,7 @@ nnoremap <silent> <C-w><leader>ggS :tab Gdiffsplit!<CR>
 
 nnoremap <silent> <expr> <leader>ggl g:qfloc ?
       \ ':<C-u>Gllog<CR>' : ':<C-u>Gclog<CR>'
-nnoremap <silent> <expr> <leader>gg<Space>l g:qfloc ?
+nnoremap <expr> <leader>gg<Space>l g:qfloc ?
       \ ':<C-u>Gllog<Space>' : ':<C-u>Gclog<Space>'
 
 " }}}
@@ -80,13 +80,13 @@ nnoremap <leader>gi<space>o :G remote<Space>
 nnoremap <leader>gi<space>- :G remote show<Space>
 nnoremap <leader>gi<space>i :G show<Space>
 
-nnoremap <silent> <C-w><leader>gis :tab G status<CR>
+nnoremap <C-w><leader>gis :tab G status<CR>
 nnoremap <silent> <C-w><leader>gil :tab G log<CR>
 nnoremap <silent> <C-w><leader>gib :tab G blame<CR>
 nnoremap <silent> <C-w><leader>gir :tab G reflog<CR>
-nnoremap <silent> <C-w><leader>gio :tab G remote<CR>
-nnoremap <silent> <C-w><leader>gi- :tab G remote show<CR>
-nnoremap <silent> <C-w><leader>gii :tab G show<CR>
+nnoremap <C-w><leader>gio :tab G remote<CR>
+nnoremap <C-w><leader>gi- :tab G remote show<CR>
+nnoremap <C-w><leader>gii :tab G show<CR>
 
 nnoremap <C-w><leader>gi<Space>s :tab G status<Space>
 nnoremap <C-w><leader>gi<Space>l :tab G log<Space>
@@ -101,9 +101,9 @@ nnoremap <C-w><leader>gi<Space>i :tab G show<Space>
 "{{{ diff and merge tools (i)
 
 nnoremap <silent> <leader>gih :G diff HEAD<CR>
-nnoremap <silent> <C-w><leader>gi<Space>h :tab G diff HEAD
+nnoremap <C-w><leader>gi<Space>h :tab G diff HEAD
 nnoremap <silent> <leader>gih :G diff HEAD<CR>
-nnoremap <silent> <C-w><leader>gi<Space>h :tab G diff HEAD
+nnoremap <C-w><leader>gi<Space>h :tab G diff HEAD
 
 nnoremap <silent> <leader>gid :G diff<CR>
 nnoremap <silent> <leader>giD :G diff --staged<CR>
@@ -172,15 +172,15 @@ nnoremap <leader>go<Space>a :G add<Space>
 nnoremap <leader>goA :G add .<CR>
 nnoremap <leader>go;a :G add ##<CR>
 
-nnoremap <silent> <leader>gor :G rm<Space>
-nnoremap <silent> <leader>god :G rm --cached %<CR>
-nnoremap <silent> <leader>goD :G rm --cached -r .<CR>
-nnoremap <silent> <leader>go;d :G rm --cached -r ##<CR>
-nnoremap <silent> <leader>go<Space>d :G rm --cached<Space>
-nnoremap <silent> <leader>go<Space>D :G rm --cached -r<Space>
+nnoremap <leader>gor :G rm<Space>
+nnoremap <leader>god :G rm --cached %<CR>
+nnoremap <leader>goD :G rm --cached -r .<CR>
+nnoremap <leader>go;d :G rm --cached -r ##<CR>
+nnoremap <leader>go<Space>d :G rm --cached<Space>
+nnoremap <leader>go<Space>D :G rm --cached -r<Space>
 
-nnoremap <silent> <leader>gom :G submodule<Space>
-nnoremap <silent> <leader>gof :G fetch<Space>
+nnoremap <leader>gom :G submodule<Space>
+nnoremap <leader>gof :G fetch<Space>
 nnoremap <silent> <leader>goc :G gc<CR>
 nnoremap <silent> <leader>goC :G gc --aggressive<CR>
 
@@ -342,9 +342,9 @@ let g:ftype_hooks['GV'] =
 nnoremap <silent> <leader>gv :GV<CR>
 nnoremap <silent> <leader>gV :GV!<CR>
 nnoremap <silent> <leader>g? :GV?<CR>
-nnoremap <silent> <leader>g<Space>v :GV<Space>
-nnoremap <silent> <leader>g<Space>V :GV!<Space>
-nnoremap <silent> <leader>g<Space>? :GV?<Space>
+nnoremap <leader>g<Space>v :GV<Space>
+nnoremap <leader>g<Space>V :GV!<Space>
+nnoremap <leader>g<Space>? :GV?<Space>
 
 " maps
 " - `o` or `<cr>` on a commit to display the content of it
