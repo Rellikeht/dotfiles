@@ -44,6 +44,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/vis'
 Plug 'moll/vim-bbye'
+Plug 'azabiong/vim-highlighter'
+Plug 'bfrg/vim-qf-diagnostics'
 
 "}}}
 

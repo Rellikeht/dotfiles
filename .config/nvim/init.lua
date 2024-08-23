@@ -98,7 +98,23 @@ Plug("ilyachur/cmake4vim")
 Plug("jubnzv/mdeval.nvim")
 Plug("AckslD/nvim-FeMaco.lua")
 
--- Plug("sindrets/diffview.nvim") -- TODO C
+-- }}}
+
+-- {{{ TODO C
+
+-- advanced ui
+-- Plug("nvim-telescope/telescope.nvim")
+-- other telescopes will land here too
+
+-- diff browser
+-- Plug("sindrets/diffview.nvim")
+
+-- search and replace panel
+-- Plug("nvim-pack/nvim-spectre")
+
+-- advanced quickfix/location list
+-- + pretty lsp stuff
+-- Plug("folke/trouble.nvim")
 
 -- }}}
 
