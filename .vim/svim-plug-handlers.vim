@@ -54,6 +54,10 @@ noremap <silent> <Leader>dd :call JumpToDef()<CR>
 
 "}}}
 
+"{{{ TODO B vim-qf-diagnostics
+
+"}}}
+
 "{{{ other
 
 " Enable function highlighting (affects both C and C++ files)

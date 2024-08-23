@@ -143,10 +143,6 @@ let g:vsc_pattern = '\k'
 
 "}}}
 
-"{{{ TODO B vim-qf-diagnostics
-
-"}}}
-
 "{{{ specialized
 
 " {{{ zig.vim

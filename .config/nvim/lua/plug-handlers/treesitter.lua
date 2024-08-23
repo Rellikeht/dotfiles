@@ -1,6 +1,7 @@
 ---@diagnostic disable: undefined-global, missing-fields
 local tsconfig = require("nvim-treesitter.configs")
--- TODO there is so much of that shit
+-- there is so much of that shit
+-- TODO A better/proper maps
 
 tsconfig.setup(
   {

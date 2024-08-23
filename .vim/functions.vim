@@ -35,7 +35,17 @@ function Exfiles(...)
     let l:fs = deepcopy(a:000)
   endif
   let l:fs = map(l:fs, {_, e -> Expand(e)})
-  return join(l:fs, ' ')
+  let l:res = []
+  for e in l:fs
+    " Because of star expansion
+    let l:sp = split(e, '\n')
+    if len(l:sp) > 1
+      call extend(l:res, l:sp)
+    else
+      call add(l:res, e)
+    endif
+  endfor
+  return join(l:res, ' ')
 endfunction
 
 function Dexpand(path)

@@ -10,7 +10,7 @@ local plug_dir = "plug-handlers/"
 
 -- }}}
 
--- TODO other manager
+-- TODO other manager (lazy?)
 vim.call("plug#begin", NVIM_DIR .. "/plugins")
 vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
 
@@ -130,10 +130,14 @@ local confMods = {
   "lspconfig",
   "coding",
   -- "diff",
+  -- "images",
   "other",
 }
 
-local confVimMods = {"motion", "testing"}
+local confVimMods = {
+  -- "motion",
+  "testing",
+}
 
 for _, i in ipairs(confMods) do require(plug_dir .. i) end
 for _, i in ipairs(confVimMods) do

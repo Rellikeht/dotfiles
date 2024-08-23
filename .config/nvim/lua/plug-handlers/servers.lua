@@ -111,7 +111,7 @@ lspconfig.nil_ls.setup(
           maxMemoryMB = 4096,
           flake = {
             --
-            autoArchive = nil, -- true
+            autoArchive = false, -- true
             autoEvalInputs = true,
           },
         },
