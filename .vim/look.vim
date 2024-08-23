@@ -6,14 +6,14 @@ hi CursorLine ctermbg=237 guibg=#4a4a4a cterm=none gui=none
 hi CursorLineNr ctermbg=237 guibg=#404040 cterm=none gui=none
 
 hi DiffAdd
-            \ ctermfg=LightGray ctermbg=DarkGreen
-            \ guifg=#d0d0d0 guibg=#0f9620
+            \ ctermbg=DarkGreen guibg=#0d5826
+            \ ctermfg=NONE guifg=NONE
 hi DiffText
-            \ ctermfg=Black ctermbg=Gray
-            \ guifg=#000000 guibg=#c6c6c6
+            \ ctermbg=Gray guibg=#566670
+            \ ctermfg=NONE guifg=NONE
 hi DiffChange
-            \ ctermfg=White ctermbg=DarkBlue
-            \ guifg=#d0d0d0 guibg=#0f1a7f
+            \ ctermbg=DarkBlue guibg=#0f1a7f
+            \ ctermfg=NONE guifg=NONE
 hi DiffDelete
-            \ ctermfg=LightGray ctermbg=DarkRed
-            \ guifg=#d0d0d0 guibg=#cf0820
+            \ ctermbg=DarkRed guibg=#800620
+            \ ctermfg=NONE guifg=NONE

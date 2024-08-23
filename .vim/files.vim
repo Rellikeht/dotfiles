@@ -41,6 +41,8 @@ vnoremap <silent> <Space>hqf
 
 noremap <silent> <Space>hdp :<C-u>diffput<CR>
 noremap <silent> <Space>hdg :<C-u>diffget<CR>
+noremap <silent> <Space>hd<Space>p :<C-u>diffput<Space>
+noremap <silent> <Space>hd<Space>g :<C-u>diffget<Space>
 nnoremap <silent> <Space>hdu :<C-u>diffupdate<CR>
 vnoremap <silent> <Space>hdu :<C-u>diffupdate\|norm gv<CR>
 
@@ -58,6 +60,12 @@ noremap <silent> <Space>hpf :<C-u>call DiffPut(Expand('%:p'))<CR>
 noremap <silent> <Space>hp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
 noremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
 noremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
+
+nnoremap <silent> <Space>hoo :<C-u>diffoff<CR>
+vnoremap <silent> <Space>hoo :<C-u>diffoff\|norm gv<CR>
+nnoremap <silent> <Space>hot :<C-u>diffthis<CR>
+vnoremap <silent> <Space>hot :<C-u>diffthis\|norm gv<CR>
+noremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
 
 "}}}
 
@@ -388,6 +396,16 @@ function s:SetGrepprg(name)
     let i = i+1
   endfor
   return 0
+endfunction
+
+function s:RunGrep(prg, fmt, cmd)
+  let l:gprg = g:grepprg
+  let l:fmt = &grepformat
+  let l:prg = &grepprg
+  " TODO C ????
+  let g:grepprg = l:gprg
+  exe 'set grepprg='l:prg
+  exe 'set grepformat='l:fmt
 endfunction
 
 call SetGrepprg(0)

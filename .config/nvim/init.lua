@@ -36,8 +36,6 @@ Plug("norcalli/nvim-colorizer.lua")
 -- {{{ motion enchancing
 
 -- Plug("easymotion/vim-easymotion")
-Plug("ThePrimeagen/harpoon", {["branch"] = "harpoon2"})
-
 Plug("nvim-treesitter/nvim-treesitter-textobjects")
 
 -- }}}
@@ -100,6 +98,8 @@ Plug("ilyachur/cmake4vim")
 Plug("jubnzv/mdeval.nvim")
 Plug("AckslD/nvim-FeMaco.lua")
 
+-- Plug("sindrets/diffview.nvim") -- TODO C
+
 -- }}}
 
 vim.call("plug#end")
@@ -113,6 +113,7 @@ local confMods = {
   "treesitter",
   "lspconfig",
   "coding",
+  -- "diff",
   "other",
 }
 

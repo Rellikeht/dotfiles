@@ -311,6 +311,25 @@ cmp.setup.cmdline(
           end,
         }, -- }}}
 
+        -- ["<CR>"] = { -- {{{
+        --   c = function(fallback)
+        --     if cmp.visible() and cmp.get_active_entry() then
+        --       cmp.confirm(
+        --         {
+        --           behavior = cmp.ConfirmBehavior.Replace,
+        --           select = false,
+        --         }
+        --       )
+        --     else
+        --       vim.api.nvim_feedkeys(
+        --         vim.api.nvim_replace_termcodes(
+        --           "<CR>", true, true, true
+        --         ), "n", true
+        --       )
+        --       -- fallback()
+        --     end
+        --   end,
+        -- }, -- }}}
       }
     ), -- }}}
 
