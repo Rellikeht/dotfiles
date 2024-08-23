@@ -98,6 +98,42 @@ nnoremap <C-w><leader>gi<Space>i :tab G show<Space>
 
 "}}}
 
+"{{{ files (f)
+
+noremap <leader>gf<Space>l :G ls-files<Space>
+noremap <leader>gfc :G ls-files<CR>
+noremap <leader>gfm :G ls-files --modified<CR>
+noremap <leader>gfd :G ls-files --deleted<CR>
+noremap <leader>gfo :G ls-files --others<CR>
+noremap <leader>gfi :G ls-files --ignored<CR>
+noremap <leader>gfu :G ls-files --unmerged<CR>
+
+noremap <leader>gfC :<C-u>exe 'G ls-files "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfM :<C-u>exe 'G ls-files --modified "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfD :<C-u>exe 'G ls-files --deleted "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfO :<C-u>exe 'G ls-files --others "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfI :<C-u>exe 'G ls-files --ignored "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfU :<C-u>exe 'G ls-files --unmerged "'.Expand('%:p:h').'"'<CR>
+
+noremap <leader>gf;c :<C-u>exe 'G ls-files '.GitRoot()<CR>
+noremap <leader>gf;m :<C-u>exe 'G ls-files --modified '.GitRoot()<CR>
+noremap <leader>gf;d :<C-u>exe 'G ls-files --deleted '.GitRoot()<CR>
+noremap <leader>gf;o :<C-u>exe 'G ls-files --others '.GitRoot()<CR>
+noremap <leader>gf;i :<C-u>exe 'G ls-files --ignored '.GitRoot()<CR>
+noremap <leader>gf;u :<C-u>exe 'G ls-files --unmerged '.GitRoot()<CR>
+
+noremap <leader>gft :G ls-tree<Space>
+noremap <leader>gfr :G ls-tree -r<Space>
+noremap <leader>gfn :G ls-tree --name-only<Space>
+noremap <leader>gfl :G ls-tree -r --name-only<Space>
+
+noremap <leader>gfT :G ls-tree HEAD<CR>
+noremap <leader>gfR :G ls-tree -r HEAD<CR>
+noremap <leader>gfN :G ls-tree --name-only HEAD<CR>
+noremap <leader>gfL :G ls-tree -r --name-only HEAD<CR>
+
+"}}}
+
 "{{{ diff and merge tools (i)
 
 nnoremap <silent> <leader>gih :G diff HEAD<CR>
@@ -111,15 +147,15 @@ nnoremap <silent> <leader>gi;d :G diff --cached<CR>
 nnoremap <leader>gi<Space>d :G diff<Space>
 nnoremap <silent> <leader>gim :G mergetool<CR>
 nnoremap <leader>gim :G mergetool<Space>
-nnoremap <silent> <leader>git :G difftool<CR>
-nnoremap <leader>git :G difftool<Space>
+nnoremap <silent> <leader>giD :G difftool<CR>
+nnoremap <leader>giD :G difftool<Space>
 
 nnoremap <silent> <C-w><leader>gid :tab G diff<CR>
 nnoremap <silent> <C-w><leader>gim :tab G mergetool<CR>
-nnoremap <silent> <C-w><leader>git :tab G difftool<CR>
+nnoremap <silent> <C-w><leader>giD :tab G difftool<CR>
 nnoremap <C-w><leader>gi<Space>d :tab G diff<Space>
 nnoremap <C-w><leader>gim :tab G mergetool<Space>
-nnoremap <C-w><leader>git :tab G difftool<Space>
+nnoremap <C-w><leader>giD :tab G difftool<Space>
 " TODO D qfloc versions of diff and mergetools
 " (make loclist out of quickfix list)
 

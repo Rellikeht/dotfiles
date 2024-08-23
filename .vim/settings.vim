@@ -250,6 +250,8 @@ augroup END "}}}
 
 " {{{ other
 
+set breakindentopt=shift:2,min:40,sbr
+
 " Closing loclist when closing parent window
 if exists('##QuitPre')
   autocmd QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
