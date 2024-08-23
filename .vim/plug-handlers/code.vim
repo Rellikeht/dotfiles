@@ -128,8 +128,26 @@ noremap <Leader>n<Space>f :Neoformat<Space>
 "
 ""}}}
 
-"{{{ TODO D emmet
+"{{{ vim-simple-complete
+
+let g:vsc_type_complete = 1
+let g:vsc_tab_complete = 0
+let g:vsc_completion_command = "\<C-N>"
+let g:vsc_reverse_completion_command = "\<C-P>"
+let g:vsc_type_complete_length = 3
+let g:vsc_pattern = '\k'
+
 "}}}
+
+"{{{ TODO A dispatch
+
+"}}}
+
+"{{{ TODO B vim-qf-diagnostics
+
+"}}}
+
+"{{{ specialized
 
 " {{{ zig.vim
 
@@ -158,21 +176,6 @@ nnoremap <silent> <Leader>qdl :DirenvExport<CR>
 
 "}}}
 
-"{{{ vim-simple-complete
-
-let g:vsc_type_complete = 1
-let g:vsc_tab_complete = 0
-let g:vsc_completion_command = "\<C-N>"
-let g:vsc_reverse_completion_command = "\<C-P>"
-let g:vsc_type_complete_length = 3
-let g:vsc_pattern = '\k'
-
-"}}}
-
-"{{{ other filetypes
-
-"}}}
-
 "{{{ haskell-vim
 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -186,19 +189,6 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:haskell_disable_HT = 0              " disable template haskell
 let g:haskell_classic_highlighting = 0
 let g:haskell_indent_disable = 0
-
-"}}}
-
-"{{{ TODO D ansible-vim
-
-"}}}
-
-"{{{ others
-
-function GeneralUpgrade()
-  silent! PlugUpgrade
-  silent! PlugUpdate --sync
-endfunction
 
 "}}}
 
@@ -244,6 +234,11 @@ nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 
 " }}}
 
-"{{{ TODO A dispatch
+"{{{ TODO D emmet
+"}}}
+
+"{{{ TODO D ansible-vim
+
+"}}}
 
 "}}}

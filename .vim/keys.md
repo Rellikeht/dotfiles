@@ -61,6 +61,7 @@ All of this isn't very accurate and updated, at least for now.
 # <Space> combinations
 
 - navigation in arglist
+- random stuff, because it is a good key
 
 ## Special cases
 
@@ -74,13 +75,13 @@ All of this isn't very accurate and updated, at least for now.
 - y - "+y
 - Y - "+Y
 - s - `:[l]grep` and stuff
-- f - `:[l]vimgrep` and stuff
+- v - `:[l]vimgrep` and stuff
 - c - eunuch find and locate commands
 - h - diffs
 
 ## Free
 
-c,k,r,v,w,x,z
+c,k,r,w,x,z
 
 +,-
 
@@ -166,11 +167,7 @@ c,k,r,v,w,x,z
 
 - u - undotree, tinyMRU, obsession
 
-- w - vim wiki
-
-<!-- ?? -->
-
-<!-- - F - code formatting -->
+<!-- - w - vim wiki -->
 
 - q misc again:
 
@@ -183,9 +180,11 @@ c,k,r,v,w,x,z
   - dE - edit direnvrc
   - dl - direnv load
 
-- x, X - netrw, vifm, l?(vim)?grep, drag and drop
+- x, X - netrw, vifm, drag and drop (xdragon)
 
-- . - tabularize, vis, bullets.vim
+- i - tabularize, vis, bullets
+
+- h - highlighter
 
 ## Nvim only
 
@@ -194,7 +193,7 @@ c,k,r,v,w,x,z
 
 ## Free
 
-a,b,e,f,h,k,l,m,o,p,r,t,v,w,y,z
+a,b,e,f,k,l,m,o,p,r,v,w,y,z
 
 # g combinations
 

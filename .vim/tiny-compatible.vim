@@ -292,8 +292,8 @@ noremap <Space>O :<C-u>argedit!<Space>
 
 nnoremap <Space>a :<C-u>argadd<Space>
 vnoremap <Space>a :<C-u>argadd  \|norm gv<C-Left><C-Left><Left>
-nnoremap <Space>A :<C-u>argadd<CR>
-vnoremap <Space>A :<C-u>argadd\|norm gv<CR>
+nnoremap <silent> <Space>A :<C-u>argadd\|next<CR>
+vnoremap <silent> <Space>A :<C-u>argadd\|next\|norm gv<CR>
 nnoremap <Space>d :<C-u>argdelete<Space>
 vnoremap <Space>d :<C-u>argdelete  \|norm gv<C-Left><C-Left><Left>
 noremap <silent> <Space>D :<C-u>if argc() == 1 

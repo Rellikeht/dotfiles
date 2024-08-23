@@ -170,6 +170,9 @@ noremap <silent> <Space>N :<C-u>call NextArg(1, 'argument!')<CR>
 noremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
 noremap <silent> <Space>P :<C-u>call NextArg(0, 'argument!')<CR>
 
+nnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')<CR>
+vnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')\|norm gv<CR>
+
 noremap <silent> <Space>. 
       \ :<C-u>call NextArg(1, 'argument', 'w')<CR>
 noremap <silent> <Space>> 
