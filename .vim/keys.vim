@@ -6,8 +6,7 @@
 function s:Tabarge(...)
   tabnew
   if len(a:000) > 0
-    exe 'argedit '.Exfiles(a:000)
-    " echo 'argedit '.Exfiles(a:000)
+    exe 'argedit '.Jfiles(a:000)
   else
     arglocal!
   endif

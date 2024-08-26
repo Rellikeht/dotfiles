@@ -268,3 +268,12 @@ nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 
 " }}}
+
+"{{{ grep
+
+let g:grep = 'grep -HEIn --exclude-dir=.git'.
+      \ ' --exclude-dir=.hg'.
+      \ ' --exclude-dir=build'.
+      \ ' --exclude-dir=?cache'
+
+"}}}

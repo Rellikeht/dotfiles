@@ -82,8 +82,8 @@ Plug("nvim-treesitter/nvim-treesitter-refactor")
 
 Plug("hedyhli/outline.nvim")
 
-Plug("puremourning/vimspector")
 Plug("jgdavey/tslime.vim")
+Plug("puremourning/vimspector")
 
 Plug("vim-test/vim-test")
 Plug("nvim-neotest/neotest")
@@ -115,6 +115,17 @@ Plug("AckslD/nvim-FeMaco.lua")
 -- advanced quickfix/location list
 -- + pretty lsp stuff
 -- Plug("folke/trouble.nvim")
+
+-- alternative debugging tooling
+-- Plug("mfussenegger/nvim-dap")
+-- Plug("rcarriga/nvim-dap-ui")
+-- Plug("rcarriga/cmp-dap")
+-- Plug("LiadOz/nvim-dap-repl-highlights")
+
+-- and some adapters
+-- Plug("mfussenegger/nvim-dap-python")
+-- Plug("leoluz/nvim-dap-go")
+-- Plug("SGauvin/ctest-telescope.nvim")
 
 -- }}}
 

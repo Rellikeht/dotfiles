@@ -96,16 +96,17 @@ noremap <silent> <Leader>qsg
 " let s:hft = 0
 " function s:HiToolToggle()
 "   if s:hft
-"     let HiFindTool = 'grep -HEnrI '
+"     let HiFindTool = g:grep.' -r'
 "   endif
 " endfunction
 " call <SID>HiToolToggle()
 " noremap ,ht :<C-u>call <SID>HiToolToggle()<CR>
 
-" let HiFindTool = 'grep -HEnrI --exclude-dir=.git --exclude-dir=.hg'
-" let HiFindTool = 'rg --color=never -H --no-heading --column --smart-case 
-"       \ --hidden'
-let HiFindTool = 'ag --nocolor --noheading --column --nobreak --smart-case --hidden'
+" let HiFindTool = 'rg --color=never -H --no-heading --column'
+"       \ .' --smart-case --hidden'
+" let HiFindTool = 'ag --nocolor --noheading --column'.
+"       \ ' --nobreak --smart-case --hidden'
+let HiFindTool = g:grep.' -r'
 
 noremap ,hc :<C-u>Hi<Space>
 noremap ,hw :<C-u>Hi <><CR>
