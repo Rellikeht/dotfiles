@@ -1,7 +1,8 @@
+# {{{ zsh like tab (kind of)
 
-# {{{ zsh like tab
 set show-all-if-ambiguous on
 # set show-all-if-unmodified on
+
 # }}}
 
 # {{{ binds
@@ -14,6 +15,8 @@ TAB:menu-complete
 
 # shift tab
 "\e[Z":menu-complete-backward
+
+Space:magic-space
 
 # }}}
 

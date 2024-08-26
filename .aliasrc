@@ -65,9 +65,9 @@ alias bgrep='grep -I'
 alias ag='ag --color --depth=-1'
 alias ah='ag --hidden'
 alias au='ag --unrestricted'
-alias rs='rg -S'
-alias rgh='rg --hidden'
-alias rsh='rs --hidden'
+alias az='ag --search-zip'
+alias rg='rg -S'
+alias rh='rg --hidden'
 alias egrep='grep -E'
 alias eg='egrep'
 
@@ -122,6 +122,7 @@ alias rpo='doas poweroff'
 # }}}
 
 # {{{ ssh
+
 alias sag='ssh-agent'
 alias sad='ssh-add'
 alias sadt='sad -t'
@@ -132,7 +133,7 @@ alias satd='sadt "1d"'
 alias sath='sadt "12h"'
 alias satw='sadt "1w"'
 
-alias khost="awk '{print \$1}' ~/.ssh/known_hosts | sort | uniq | fzs"
+alias khost="awk '{print \$1}' ~/.ssh/known_hosts | sort | uniq | fzs --preview=''"
 alias skh='ssh "$(khost)"'
 
 ## ???
@@ -339,7 +340,7 @@ alias prgc='prg \
     -a zstd -a zstdcat -a zstdgrep -a unzstd \
     -a bzip2 -a bunzip2 -a bzcat -a bzip2recover -a bzdiff -a bzgrep \
     -a less -a tail -a tac -a gpart \
-    -a sed -a awk -a pdfgrep -a agrep -a ag -a pcregrep \
+    -a sed -a awk -a pdfgrep -a agrep -a ag -a rg -a pcregrep \
     -a diff -a diff3 \
     -a cadaver -a ftp -a ssh -a chezdav \
     -a nmap -a nc -a iperf3 -a iperf \
