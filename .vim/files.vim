@@ -266,33 +266,35 @@ endfor
 
 "}}}
 
+" TODO C vimgrepadd
+
 "}}}
 
 "{{{ TODO C (more ?) - grep
 
-"{{{ helpers
+" - separate shortcut for grep and ag/rg
+" - grep with variable controlling case
+" - ag/rg with the same variable, --hidden/unrestricted
+"   as variable or generate separate shortcuts
+" - ag/rg switch as separate variable
+" - recursive ???
 
-function Gescape(s)
-  return escape(a:s, "\"")
-endfunction
-
-function Vescape(s)
-  return escape(a:s, "/")
-endfunction
+"{{{ grep helpers
 
 " TODO B async
 " TODO C count
 " silent grep
-function! Grep(...)
-  let cmd = join([g:grepprg] + [expandcmd(join(a:000, ' '))], ' ')
+function Grep(...)
+  let l:grep = substitute(&grepprg, '\ ', ' ', 'g')
+  let cmd = join([l:grep] + [expandcmd(join(a:000, ' '))], ' ')
   echo cmd
   return system(cmd)
 endfunction
 
 " commands for it
-command! -nargs=+ -complete=file Grep cgetexpr Grep(<f-args>)
-command! -nargs=+ -complete=file Lgrep lgetexpr Grep(<f-args>)
-command! -nargs=+ -complete=file Sgrep
+command -nargs=+ -complete=file Grep cgetexpr Grep(<f-args>)
+command -nargs=+ -complete=file Lgrep lgetexpr Grep(<f-args>)
+command -nargs=+ -complete=file Sgrep
       \ let grepres = Grep(<f-args>)
       \ | if g:qfloc
       \ | exe 'lgetexpr grepres'
@@ -300,7 +302,7 @@ command! -nargs=+ -complete=file Sgrep
       \ | exe 'cgetexpr grepres'
       \ | endif
 
-command! -nargs=+ -complete=file Wgrep
+command -nargs=+ -complete=file Wgrep
       \ Sgrep <args>
       \ | if g:qfloc
       \ | lopen
@@ -316,15 +318,17 @@ cnoreabbrev <expr> lgrep
       \ (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ?
       \ 'Lgrep' : 'lgrep'
 
+let s:grep_prefix = '<Space>g'
+
 function s:GrepMap(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
   let l:pattern = a:qpat ? "'".a:pattern."'" : a:pattern
   let l:bang = a:bang ? '!' : ''
   let l:end = a:qend ? "'".a:end."'" : a:end
   let l:esc = a:vesc ? "'<Esc>'." : ''
-  return 'noremap <expr> <Space>s'.a:keys.' g:qfloc ? '.
-        \ l:esc."':<C-u>lgrep".l:bang.
+  return 'noremap <expr> '.s:grep_prefix.a:keys.' g:qfloc ? '.
+        \ l:esc."':<C-u>Lgrep".l:bang.
         \ " '.".l:pattern.'.'.l:end.
-        \ ': '.l:esc."':<C-u>grep".l:bang.
+        \ ': '.l:esc."':<C-u>Grep".l:bang.
         \ " '.".l:pattern.'.'.l:end
 endfunction
 
@@ -335,108 +339,122 @@ endfunction
 
 "}}}
 
-"{{{ external providers
-" There are recursive and nonrecursive greps
-" ripgrep nonrecursive is `--max-depth=0`
-" vimgrep is nonrecursive but `*` and similar
-" are expanded without directories
-" for recursivity it needs `**`
-" paths need some **/* and other stuff
-" and recursive greps rather
-" also hidden directories may be hard
-" and wildcards are fucked when used shell is simple
-" (/usr/bin/env sh)
+"{{{ additional helpers
 
-let s:arf = '%f:%l:%c:%m'
-let s:grf = '%f:%l:%m,%f:%l%m,%f\ \ %l%m'
-
-" TODO B more
-" grep -H is gnu extension, should do fine for now
-" TODO C /dev/null magic to replace -H
-let g:grepprgs = 
-      \ [
-      \ [ 'ag\ --vimgrep\ -S\ --hidden', s:arf ],
-      \ [ 'ag\ --vimgrep\ -S\ --unrestricted', s:arf ],
-      \ [ 'ag\ --vimgrep\ -S', s:arf ],
-      \ [ 'grep\ -HEIn', s:grf ],
-      \ [ 'grep\ -HEIin', s:grf ],
-      \ [ 'rg\ --vimgrep\ -S\ --hidden', s:arf ],
-      \ [ 'rg\ --vimgrep\ -S\ --unrestricted', s:arf ],
-      \ [ 'rg\ --vimgrep\ -S', s:arf ],
-      \ ]
-
-" https://vi.stackexchange.com/questions/35139/custom-arguments-to-user-command
-function s:Grepprgs(current_arg, command_line, cursor_position)
-  let l = len(a:current_arg) - 1
-  let prgs = deepcopy(g:grepprgs)
-  call map(prgs, {_, v -> v[0]})
-  if l >= 0
-    call filter(
-          \ prgs,
-          \ {_, v -> v[:l] == a:current_arg})
-  endif
-  return prgs
+" silent grep
+function Egrep(...)
+  let l:grep = substitute(&grepprg, '\ ', ' ', 'g')
+  let cmd = join([g:egrep_prog] + [expandcmd(join(a:000, ' '))], ' ')
+  echo cmd
+  return system(cmd)
 endfunction
 
-function SetGrepprg(idx)
-  if a:idx < 0
-    throw "Index too low"
-    return 1
-  elseif a:idx >= len(g:grepprgs)
-    throw "Index too high"
-    return 1
-  endif
-  let p = g:grepprgs[a:idx]
-  exe 'let g:grepprg = "'.p[0].'"'
-  exe 'set grepprg='.p[0].'\ $*'
-  if len(p) == 2
-    exe 'set grepformat='.p[1]
-  endif
-  return 0
+" commands for it
+command -nargs=+ -complete=file Egrep cgetexpr Egrep(<f-args>)
+command -nargs=+ -complete=file Legrep lgetexpr Egrep(<f-args>)
+command -nargs=+ -complete=file Segrep
+      \ let grepres = Egrep(<f-args>)
+      \ | if g:qfloc
+      \ | exe 'lgetexpr grepres'
+      \ | else
+      \ | exe 'cgetexpr grepres'
+      \ | endif
+
+command -nargs=+ -complete=file Wegrep
+      \ Segrep <args>
+      \ | if g:qfloc
+      \ | lopen
+      \ | else
+      \ | copen
+      \ | endif
+
+" and abbrev
+cnoreabbrev <expr> egrep
+      \ (getcmdtype() ==# ':' && getcmdline() ==# 'egrep') ?
+      \ 'Egrep' : 'egrep'
+cnoreabbrev <expr> legrep
+      \ (getcmdtype() ==# ':' && getcmdline() ==# 'legrep') ?
+      \ 'Legrep' : 'legrep'
+
+let s:egrep_prefix = '<Space>s'
+
+function s:EgrepMap(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
+  let l:pattern = a:qpat ? "'".a:pattern."'" : a:pattern
+  let l:bang = a:bang ? '!' : ''
+  let l:end = a:qend ? "'".a:end."'" : a:end
+  let l:esc = a:vesc ? "'<Esc>'." : ''
+  return 'noremap <expr> '.s:egrep_prefix.a:keys.' g:qfloc ? '.
+        \ l:esc."':<C-u>Legrep".l:bang.
+        \ " '.".l:pattern.'.'.l:end.
+        \ ': '.l:esc."':<C-u>Egrep".l:bang.
+        \ " '.".l:pattern.'.'.l:end
 endfunction
 
-function s:SetGrepprg(name)
-  let i = 0
-  for e in g:grepprgs
-    if e[0] == a:name
-      call SetGrepprg(i)
-      break
-    endif
-    let i = i+1
-  endfor
-  return 0
+function s:EGMCombo(keys, pattern, end, mode='', vesc=0, qpat=1, qend=1)
+  exe a:mode.s:EgrepMap(a:keys, a:pattern, a:end, 0, a:qpat, a:qend, a:vesc)
+  exe a:mode.s:EgrepMap(Lupper(a:keys), a:pattern, a:end, 1, a:qpat, a:qend, a:vesc)
 endfunction
-
-function s:RunGrep(prg, fmt, cmd)
-  let l:gprg = g:grepprg
-  let l:fmt = &grepformat
-  let l:prg = &grepprg
-  " TODO C ????
-  let g:grepprg = l:gprg
-  exe 'set grepprg='l:prg
-  exe 'set grepformat='l:fmt
-endfunction
-
-call SetGrepprg(0)
-
-command! -nargs=1 -complete=customlist,s:Grepprgs ExtGrep 
-      \ call s:SetGrepprg(<f-args>)
-
-nnoremap <Space>s/ :<C-u>ExtGrep<Space>
-vnoremap <Space>s/ :<C-u>ExtGrep  \|norm gv
-      \ <C-Left><C-Left><Left>
-
-nnoremap <Space>sq :<C-u>echo &grepprg<CR>
-vnoremap <Space>sq :<C-u>echo &grepprg\|norm gv<CR>
 
 "}}}
 
-"{{{ mappings
+"{{{ grep settings
+
+exe 'set grepprg='.escape(copy(g:grep), ' ')
+set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+let g:greprec = 0
+let g:grepcase = 0
+
+call MapToggle(s:grep_prefix, 'r', 'g:greprec', 0, 
+      \ '\|exe (g:greprec ? "set grepprg+=\\ -r" : "set grepprg-=\\ -r")')
+call VarPrint(s:grep_prefix, 'r',  'Recursive grep', 'g:greprec')
+call MapToggle(s:grep_prefix, 'i', 'g:grepcase', 0,
+      \ '\|exe (g:grepcase ? "set grepprg+=\\ -i" : "set grepprg-=\\ -i")')
+call VarPrint(s:grep_prefix, 'i',  'grep ignore case', 'g:grepcase')
+call VarPrint(s:grep_prefix, 'c', 'grepprg', &grepprg, 0)
+
+"}}}
+
+"{{{ additional settings
+
+let s:egrep_format = '%f:%l:%c:%m'
+let s:egrep_flags = '--vimgrep --smart-case --no-heading --hidden'
+let s:egrep_progs = [
+     \ 'ag --nobreak --nocolor '.s:egrep_flags,
+     \ 'rg --color=never '.s:egrep_flags,
+     \ ]
+
+let g:egrep_rec = 0
+let g:egrep_urest = 0
+let g:egrep_ind = 0
+
+function EgrepPrg()
+  let l:prg = s:egrep_progs[g:egrep_ind]
+  let l:rec = (g:egrep_rec ? '' : 
+        \ (l:prg[0:1] == 'ag' ? '-n ' : '--max-depth=0 '))
+  let l:urest = (g:egrep_urest ? '--unrestricted ' : '')
+  return l:prg.' '.l:rec.l:urest
+endfunction
+
+let g:egrep_prog = EgrepPrg()
+
+call MapToggle(s:egrep_prefix, 'u', 'g:egrep_urest')
+call VarPrint(s:egrep_prefix, 'u',  'Unrestricted egrep', 'g:egrep_urest')
+call MapToggle(s:egrep_prefix, 'r', 'g:egrep_rec')
+call VarPrint(s:egrep_prefix, 'r',  'Recursive egrep', 'g:egrep_rec')
+call MapToggle(s:egrep_prefix, 'c', 'g:egrep_ind', 1,
+      \ '\|let g:egrep_prog = EgrepPrg()\|echo "egrep program: ".g:egrep_prog')
+call VarPrint(s:egrep_prefix, 'c', 'egrep program', 'g:egrep_prog', 0)
+
+"}}}
+
+"{{{ maps
 
 let s:gmaps = [
-      \ ['sc', '', '', 0, 0],
-      \ ['sC', '', '', 1, 0],
+      \ ['c', '', '', 0, 0],
+      \ ['C', '', '', 1, 0],
       \ ]
+
+let s:egmaps = copy(s:gmaps)
 
 let s:gcmaps = [
       \ ['<Space>u', '', " '.Expand('<cfile>').' <Home><C-Right><Right>"],
@@ -497,12 +515,30 @@ for m in s:gcmaps
   call call('s:GMCombo', m)
 endfor
 
-noremap <expr> <Space>s- g:qfloc ?
-      \ ':<C-u>Lfilter /^grep: /<CR>'
-      \ : ':<C-u>Cfilter /^grep: /<CR>'
+for m in s:egmaps
+  exe call('s:EgrepMap', m)
+endfor
 
-noremap <Space>sj :<C-u>Sgrep<Space>
-noremap <Space>sJ :<C-u>Sgrep!<Space>
+for m in s:gcmaps
+  call call('s:EGMCombo', m)
+endfor
+
+exe "noremap <expr> ".s:grep_prefix."- g:qfloc ?".
+      \ "':<C-u>Lfilter /^grep: /<CR>'".
+      \ ": ':<C-u>Cfilter /^grep: /<CR>'"
+exe "noremap ".s:grep_prefix."j :<C-u>Sgrep<Space>"
+exe "noremap ".s:grep_prefix."J :<C-u>Sgrep!<Space>"
+
+" TODO C filtering errors
+" noremap <expr> <Space>s- g:qfloc ?
+"       \ ':<C-u>Lfilter /^grep: /<CR>'
+"       \ : ':<C-u>Cfilter /^grep: /<CR>'
+" exe "noremap <expr> ".s:grep_prefix."- g:qfloc ?".
+"       \ "':<C-u>Lfilter /^grep: /<CR>'".
+"       \ ": ':<C-u>Cfilter /^grep: /<CR>'"
+
+exe "noremap ".s:egrep_prefix."j :<C-u>Segrep<Space>"
+exe "noremap ".s:egrep_prefix."J :<C-u>Segrep!<Space>"
 
 "}}}
 
