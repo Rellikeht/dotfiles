@@ -98,8 +98,6 @@ vim.api.nvim_create_autocmd( -- {{{
       local opts = {buffer = bufnr, noremap = true}
       local tab_mod = "<C-w>"
 
-      -- local lfiles = {"*.go", "*.jl", "*.zig", "*.sh", "*.lua"}
-
       -- }}}
 
       -- {{{ basic maps

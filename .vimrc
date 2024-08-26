@@ -71,6 +71,7 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
 
   "}}}
 
+  if filereadable(expand('~/.local.vimrc'))
+    source ~/.local.vimrc
+  endif
 endif
-
-silent! source ~/.vimrc.local

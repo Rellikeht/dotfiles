@@ -35,3 +35,13 @@ end
 -- vim.keymap.set("n", "<leader>O", function()
 --     return "m`" .. vim.v.count .. "O<Esc>``"
 -- end, { expr = true })
+
+function fileReadable(name)
+  local f = io.open(name, "r")
+  if f ~= nil then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end

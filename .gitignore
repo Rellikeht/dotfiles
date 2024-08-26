@@ -13,6 +13,7 @@ groff/
 
 TODO
 highlight.css
+.local.*
 
 # }}}
 
@@ -84,6 +85,7 @@ tags
 
 .config/nvim*/plugins
 .config/nvim*/sessions
+.config/nvim*/**/local.lua
 
 .emacs.d/recentf
 .emacs.d/elpa

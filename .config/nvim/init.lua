@@ -156,4 +156,8 @@ for _, i in ipairs(confVimMods) do
 end
 require("additional")
 
+if fileReadable(NVIM_DIR .. "/local.lua") then
+  loadfile(NVIM_DIR .. "/local.lua")()
+end
+
 -- }}}
