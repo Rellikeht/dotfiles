@@ -498,6 +498,32 @@ augroup Quickfix "{{{
   "TODO C undo (will be tough)
 augroup END "}}}
 
+"{{{ commands
+
+let s:ls = 'ls --color=never -1 -A'
+let s:ls_rec = '-R'
+let s:sed_cmd = 'sed -E'
+let s:sed_exp = '\"s/$/:1:0\"/'
+let s:find_flags = '-mindepth 1'
+let s:find_cmd = 'find -H'
+let s:find_nore = '-maxdepth 1'
+let s:find_files = '-xtype f'
+let s:find_dirs = '-xtype d'
+
+exe "nnoremap <expr> .;l g:qfloc ?"
+            \ ." ':<C-u>lexpr system(\"".s:ls." \\| "
+            \ .s:sed_cmd.' '.s:sed_exp."\")<CR>'"
+            \ ." : ':<C-u>cexpr system(\"".s:ls." \\| "
+            \ .s:sed_cmd.' '.s:sed_exp."\")<CR>'"
+
+exe "nnoremap <expr> .;L g:qfloc ?"
+            \ ." ':<C-u>lexpr system(\"".s:ls." ".s:ls_rec" \\| "
+            \ .s:sed_cmd.' '.s:sed_exp."\")<CR>'"
+            \ ." : ':<C-u>cexpr system(\"".s:ls." ".s:ls_rec." \\| "
+            \ .s:sed_cmd.' '.s:sed_exp."\")<CR>'"
+
+"}}}
+
 "}}}
 
 "{{{ matchit

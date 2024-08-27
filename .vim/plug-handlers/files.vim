@@ -155,32 +155,32 @@ noremap <expr> <Space>?S g:qfloc ?
       \ "\"'.GetVisualEsc().'\"'<CR>"
 
 noremap <expr> <Space>?u g:qfloc ?
-      \ ':<C-u>Lfind . -type f -name <cfile><CR>'
-      \ : ':<C-u>Cfind . -type f -name <cfile><CR>'
+      \ ':<C-u>Lfind . -type f -name "<cfile>"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "<cfile>"<CR>'
 noremap <expr> <Space>?U g:qfloc ?
-      \ ':<C-u>Lfind! . -type f -name <cfile><CR>'
-      \ : ':<C-u>Cfind! . -type f -name <cfile><CR>'
+      \ ':<C-u>Lfind! . -type f -name "<cfile>"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "<cfile>"<CR>'
 
 noremap <expr> <Space>?w g:qfloc ?
-      \ ':<C-u>Lfind . -type f -name <cword><CR>'
-      \ : ':<C-u>Cfind . -type f -name <cword><CR>'
+      \ ':<C-u>Lfind . -type f -name "<cword>"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "<cword>"<CR>'
 noremap <expr> <Space>?W g:qfloc ?
-      \ ':<C-u>Lfind! . -type f -name <cword><CR>'
-      \ : ':<C-u>Cfind! . -type f -name <cword><CR>'
+      \ ':<C-u>Lfind! . -type f -name "<cword>"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "<cword>"<CR>'
 
 noremap <expr> <Space>?m g:qfloc ?
-      \ ':<C-u>Lfind . -type f -name <cWORD><CR>'
-      \ : ':<C-u>Cfind . -type f -name <cWORD><CR>'
+      \ ':<C-u>Lfind . -type f -name "<cWORD>"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "<cWORD>"<CR>'
 noremap <expr> <Space>?M g:qfloc ?
-      \ ':<C-u>Lfind! . -type f -name <cWORD><CR>'
-      \ : ':<C-u>Cfind! . -type f -name <cWORD><CR>'
+      \ ':<C-u>Lfind! . -type f -name "<cWORD>"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "<cWORD>"<CR>'
 
 noremap <expr> <Space>?e g:qfloc ?
-      \ ':<C-u>Lfind . -type f -name <cexpr><CR>'
-      \ : ':<C-u>Cfind . -type f -name <cexpr><CR>'
+      \ ':<C-u>Lfind . -type f -name "<cexpr>"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "<cexpr>"<CR>'
 noremap <expr> <Space>?E g:qfloc ?
-      \ ':<C-u>Lfind! . -type f -name <cexpr><CR>'
-      \ : ':<C-u>Cfind! . -type f -name <cexpr><CR>'
+      \ ':<C-u>Lfind! . -type f -name "<cexpr>"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "<cexpr>"<CR>'
 
 "}}}
 
