@@ -1,5 +1,14 @@
 #!/usr/bin/env sh
 
+# {{{ special variables
+
+# WT - time to wait for commands based on top
+
+_ALIASRC="$HOME/.aliasrc"
+_FUNCRC="$HOME/.funcrc"
+
+# }}}
+
 # {{{ helpers
 alias progp=' \
     echo -n $PATH | \
@@ -40,7 +49,7 @@ alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
 
 alias j='jobs'
 alias uc='ucopy'
-alias uc='ucopys'
+alias us='ucopys'
 
 # }}}
 
@@ -90,10 +99,10 @@ alias ddate='date "+%d.%m.%Y"'
 alias rlp='rlf $(!!)'
 alias dhp='du -sh $(!!)'
 
-## its_just_grep - symlink for grep in /usr/local/bin for nonconflicting name
+## its_just_grep - grep run as script to have different and nonconflicting name
 alias its_just_grep='its_just_grep --color=always'
-alias tbd='top -b -d 1'
-alias grepWgrep='its_just_grep --invert-match its_just_grep'
+alias tbd='top -b -d "$([ -n "$WT" ] && echo "$WT" || echo 1)"'
+alias grepWgrep='its_just_grep --invert-match -E "\<its_just_grep\>"'
 alias tbg='tbd | grepWgrep | its_just_grep -E'
 alias tbgm='tbd -e m | grepWgrep | its_just_grep -E'
 
@@ -109,6 +118,7 @@ alias amm='aft-mtp-mount'
 # }}}
 
 # {{{ session
+
 alias hn=hostname
 alias wi=whoami
 
@@ -118,6 +128,13 @@ alias rb=reboot
 alias po=poweroff
 alias rrb='doas reboot'
 alias rpo='doas poweroff'
+
+alias kila=killall
+alias kile='killall -e'
+alias pgr=pgrep
+alias pgl='pgrep -l'
+alias pga='pgrep -a'
+alias pki=pkill
 
 # }}}
 
@@ -182,8 +199,6 @@ alias rvi='doas vis'
 alias als='alias | grep'
 alias wb='bins | grep'
 
-_ALIASRC="$HOME/.aliasrc"
-_FUNCRC="$HOME/.funcrc"
 alias sal='source "$_ALIASRC"'
 alias sfn='source "$_FUNCRC"'
 alias bal='bat "$_ALIASRC"'
