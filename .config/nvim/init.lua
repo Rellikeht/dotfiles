@@ -98,6 +98,11 @@ Plug("ilyachur/cmake4vim")
 Plug("jubnzv/mdeval.nvim")
 Plug("AckslD/nvim-FeMaco.lua")
 
+Plug("jakewvincent/mkdnflow.nvim")
+-- or https://github.com/ixru/nvim-markdown
+-- or https://github.com/tadmccorkle/markdown.nvim
+-- there is definitely too much plugins available
+
 -- }}}
 
 -- {{{ TODO C
@@ -140,7 +145,7 @@ local confMods = {
   "treesitter",
   "lspconfig",
   "coding",
-  -- "diff",
+  "formats",
   -- "images",
   "other",
 }
