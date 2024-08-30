@@ -186,6 +186,8 @@ c,k,r,w,x,z
 
 - h - highlighter
 
+- m - markdown and similar
+
 ## Nvim only
 
 - d - lspconfig diagnostics and lsp actions
@@ -193,11 +195,11 @@ c,k,r,w,x,z
 
 ## Free
 
-a,b,e,f,k,l,m,o,p,r,v,w,y,z
+a,b,e,f,k,l,o,p,r,v,w,y,z
 
 # g combinations
 
-Available (useless otherwise): G, K, L
+Available (useless otherwise): G, K, L, l
 
 Rather useless: I, Q, H, h, r, w
 

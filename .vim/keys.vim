@@ -46,10 +46,14 @@ noremap <C-w><C-h>
 
 nnoremap <Space>tl :<C-u>tags<CR>
 vnoremap <Space>tl :<C-u>tags\|norm gv<CR>
+noremap <Space>t<Space>l
+      \:<C-u>filter  tags<C-Left><Left>
 
-" because ctrl-t exists
+" because ctrl-t exists only this is defined
 noremap <silent> <C-@> :<C-u>exe v:count1.'tag'<CR>
 
+noremap <silent> <Space>tn :<C-u>exe v:count1.'tag'<CR>
+noremap <silent> <Space>tp :<C-u>exe v:count1.'pop'<CR>
 noremap <silent> <Space>tN :<C-u>exe v:count1.'tag!'<CR>
 noremap <silent> <Space>tP :<C-u>exe v:count1.'pop!'<CR>
 noremap <silent> <Space>tg :<C-u>exe v:count1.'tselect'<CR>
@@ -64,6 +68,18 @@ noremap <silent> <Space>t0 :<C-u>tfirst<CR>
 noremap <silent> <Space>t;0 :<C-u>tfirst!<CR>
 noremap <silent> <Space>t$ :<C-u>tlast<CR>
 noremap <silent> <Space>t;$ :<C-u>tlast!<CR>
+
+nnoremap <Space>tr :<C-u>!ctags -R<CR>
+vnoremap <Space>tr :<C-u>!ctags -R\|norm gv<CR>
+nnoremap <Space>t<Space>r :<C-u>!ctags -R<Space>
+vnoremap <Space>t<Space>r :<C-u>!ctags -R  \|norm gv
+      \ <C-Left><C-Left><Left>
+
+nnoremap <silent> <Space>tb :<C-u>!ctags -R &<CR>
+vnoremap <silent> <Space>tb :<C-u>!ctags -R &\|norm gv<CR>
+nnoremap <Space>t<Space>b :<C-u>!ctags -R  &<Left><Left>
+vnoremap <Space>t<Space>b :<C-u>!ctags -R  &\|norm gv
+      \ <C-Left><C-Left><Left>
 
 " TODO C ???
 noremap <silent> <Space>ta :<C-u>ltag<CR>
@@ -586,6 +602,13 @@ inoremap <C-x>t <C-x><C-t>
 inoremap <C-x>u <C-x><C-u>
 inoremap <C-x>v <C-x><C-v>
 inoremap <C-x>c <C-x><C-]>
+
+"}}}
+
+"{{{ magic
+
+noremap <C-_> /\v
+cnoremap <C-_> \v
 
 "}}}
 

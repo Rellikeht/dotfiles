@@ -430,8 +430,6 @@ noremap <Space>i<Space>j
       \:<C-u>filter  jumps<C-Left><Left>
 noremap <Space>i<Space>o
       \:<C-u>filter  files<C-Left><Left>
-noremap <Space>i<Space>t
-      \:<C-u>filter  tags<C-Left><Left>
 noremap <Space>i<Space>m
       \:<C-u>filter  marks<C-Left><Left>
 

@@ -66,7 +66,8 @@ Plug 'wellle/tmux-complete.vim'
 " or something
 " Plug 'wellle/context.vim'
 
-Plug 'yegappan/taglist'
+" Plug 'yegappan/taglist'
+Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'xuhdev/SingleCompile'
 Plug 'Konfekt/vim-compilers'

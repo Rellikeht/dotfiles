@@ -139,7 +139,7 @@ let g:vsc_pattern = '\k'
 
 "}}}
 
-"{{{ TODO A dispatch
+"{{{ TODO B dispatch
 
 "}}}
 
@@ -236,5 +236,9 @@ nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 "{{{ TODO D ansible-vim
 
 "}}}
+
+"}}}
+
+"{{{ TODO A gutentags
 
 "}}}
