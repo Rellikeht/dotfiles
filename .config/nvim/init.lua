@@ -103,6 +103,8 @@ Plug("jakewvincent/mkdnflow.nvim")
 -- or https://github.com/tadmccorkle/markdown.nvim
 -- there is definitely too much plugins available
 
+Plug("ellisonleao/glow.nvim")
+
 -- }}}
 
 -- {{{ TODO C

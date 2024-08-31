@@ -260,6 +260,7 @@ local servers = { -- {{{
   "nickel_ls",
   "zls",
   "hls",
+  "ols",
   "dhall_lsp_server",
   "r_language_server",
   "bashls",

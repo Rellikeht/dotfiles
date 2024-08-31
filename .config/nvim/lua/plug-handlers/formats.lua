@@ -174,3 +174,27 @@ require("femaco").setup(
 )
 
 vim.keymap.set(modes, ",me", ":FeMaco<CR>", {noremap = true})
+
+-- }}}
+
+require("glow").setup( -- {{{
+  {
+    border = "shadow", -- floating window border config
+    style = "dark", -- filled automatically with your current editor background, you can override using glow json style
+    pager = false,
+    width = 120,
+    height = 140,
+    width_ratio = 0.9, -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
+    height_ratio = 0.9,
+  }
+)
+
+vim.keymap.set(modes, ",mv", ":Glow<CR>", {noremap = true})
+vim.keymap.set(
+  modes, ",m<Space>v", ":Glow<CR>", {noremap = true}
+)
+vim.keymap.set(
+  modes, ",m=", ":Glow ~/.vim/keys.md<CR>", {noremap = true}
+)
+
+-- }}}

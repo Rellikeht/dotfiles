@@ -28,6 +28,9 @@ Plug("hrsh7th/cmp-path")
 Plug("hrsh7th/cmp-cmdline")
 Plug("rasulomaroff/cmp-bufname")
 
+Plug("ellisonleao/glow.nvim")
+Plug("jakewvincent/mkdnflow.nvim")
+
 -- }}}
 
 vim.call("plug#end")
@@ -37,6 +40,7 @@ vim.call("plug#end")
 local modconfigs = { -- {{{
   "motion",
   "cmp",
+  "formats",
 } -- }}}
 
 for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
