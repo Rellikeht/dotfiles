@@ -1,13 +1,12 @@
 [user]
-	name = Rellikeht
+    name = Rellikeht
+    email = michaelhemperek@gmail.com
 
 [credential]
-	helper = gopass
+    helper = gopass
 
 [status]
-	color = always
-
-# delta config
+    color = always
 
 [core]
     pager = delta
@@ -34,8 +33,13 @@
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
 
+[diff]
+    tool = vimdiff
+    colorMoved = default
+
 [merge]
+    tool = vimdiff
     conflictstyle = diff3
 
-[diff]
-    colorMoved = default
+[init]
+    templateDir = ~/.git_template

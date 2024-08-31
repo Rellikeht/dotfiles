@@ -1,0 +1,11 @@
+TODO
+local/
+.local*
+
+*.swp
+*.swo
+*~
+\#*
+*#
+
+.direnv

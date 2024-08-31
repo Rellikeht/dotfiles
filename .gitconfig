@@ -1,9 +1,0 @@
-[user]
-    name = Rellikeht
-    email = michaelhemperek@gmail.com
-
-[diff]
-    tool = vimdiff
-
-[merge]
-    tool = vimdiff
