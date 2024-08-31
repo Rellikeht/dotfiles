@@ -126,42 +126,6 @@ let g:fzf_colors = {
 
 "}}}
 
-"{{{ paths
-
-let s:fzf_mapping_paths = {
-      \ '1':'..',
-      \ '2':'../..',
-      \ '3':'../../..',
-      \ '4':'../../../..',
-      \ '5':'../../../../..',
-      \ '6':'../../../../../..',
-      \ '7':'../../../../../../..',
-      \ '8':'../../../../../../../..',
-      \ '9':'../../../../../../../../..',
-      \ 'h':'~',
-      \ 't':'~/Templates',
-      \ 'd':'~/Dbackup',
-      \ 'D':'~/Downloads',
-      \ 'f':'~/Documents',
-      \ 'p':'~/gits',
-      \ }
-
-let s:fzf_mapping_specials = {
-      \ 'g':"GitRoot()",
-      \ 'G':"GitRoot(GitRoot().'/..')",
-      \ 'm':"HgRoot()",
-      \ 'M':"HgRoot(HgRoot().'/..')",
-      \ 'r':"PartRoot()",
-      \ 'b':"g:starting_path",
-      \ 'e':"EnvrcRoot()",
-      \ 'E':"EnvrcRoot(EnvrcRoot().'/..')",
-      \ '<C-e>':"EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
-      \ }
-
-" TODO C some selection and <cwhatever>
-
-"}}}
-
 "{{{ custom grep
 
 let s:grep_args = '-EI --line-number --dereference-recursive --color=always'
@@ -338,8 +302,9 @@ nnoremap <leader>slw :<C-u>Windows<CR>
 nnoremap <leader>slj :<C-u>Jumps<CR>
 nnoremap <leader>slt :<C-u>Tags<CR>
 nnoremap <leader>slb :<C-u>BTags<CR>
-noremap <leader>slf :<C-u>Files<CR>
-noremap <leader>sl<Space>f :<C-u>Files<Space>
+
+" noremap <leader>slf :<C-u>Files<CR>
+" noremap <leader>sl<Space>f :<C-u>Files<Space>
 
 " other
 noremap <leader>sls :<C-u>Locate<Space>
@@ -406,6 +371,43 @@ nnoremap <leader>sf<Space>v :Fdiffv<Space>
 " args
 nnoremap <leader>sla :Args<CR>
 nnoremap <leader>sl<Space>a :Args<Space>
+
+"}}}
+
+"{{{ paths
+
+let s:fzf_mapping_paths = {
+      \ '1':'..',
+      \ '2':'../..',
+      \ '3':'../../..',
+      \ '4':'../../../..',
+      \ '5':'../../../../..',
+      \ '6':'../../../../../..',
+      \ '7':'../../../../../../..',
+      \ '8':'../../../../../../../..',
+      \ '9':'../../../../../../../../..',
+      \ 'h':'~',
+      \ 't':'~/Templates',
+      \ 'd':'~/Dbackup',
+      \ 'D':'~/Downloads',
+      \ 'f':'~/Documents',
+      \ 'p':'~/gits',
+      \ '.':'',
+      \ }
+
+let s:fzf_mapping_specials = {
+      \ 'g':"GitRoot()",
+      \ 'G':"GitRoot(GitRoot().'/..')",
+      \ 'm':"HgRoot()",
+      \ 'M':"HgRoot(HgRoot().'/..')",
+      \ 'r':"PartRoot()",
+      \ 'b':"g:starting_path",
+      \ 'e':"EnvrcRoot()",
+      \ 'E':"EnvrcRoot(EnvrcRoot().'/..')",
+      \ '<C-e>':"EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
+      \ }
+
+" TODO C some selection and <cwhatever>
 
 "}}}
 

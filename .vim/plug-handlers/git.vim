@@ -66,6 +66,7 @@ nnoremap <expr> <leader>gg<Space>l g:qfloc ?
 
 nnoremap <silent> <leader>gis :G status<CR>
 nnoremap <silent> <leader>gil :G log<CR>
+nnoremap <silent> <leader>gig :G log --graph<CR>
 nnoremap <silent> <leader>gib :G blame<CR>
 nnoremap <silent> <leader>gir :G reflog<CR>
 nnoremap <silent> <leader>gio :G remote<CR>
@@ -74,6 +75,7 @@ nnoremap <silent> <leader>gii :G show<CR>
 
 nnoremap <leader>gi<space>s :G status<Space>
 nnoremap <leader>gi<space>l :G log<Space>
+nnoremap <leader>gi<space>g :G log --graph<Space>
 nnoremap <leader>gi<space>b :G blame<Space>
 nnoremap <leader>gi<space>r :G reflog<Space>
 nnoremap <leader>gi<space>o :G remote<Space>
@@ -82,6 +84,7 @@ nnoremap <leader>gi<space>i :G show<Space>
 
 nnoremap <C-w><leader>gis :tab G status<CR>
 nnoremap <silent> <C-w><leader>gil :tab G log<CR>
+nnoremap <silent> <C-w><leader>gig :tab G log --graph<CR>
 nnoremap <silent> <C-w><leader>gib :tab G blame<CR>
 nnoremap <silent> <C-w><leader>gir :tab G reflog<CR>
 nnoremap <C-w><leader>gio :tab G remote<CR>
@@ -90,6 +93,7 @@ nnoremap <C-w><leader>gii :tab G show<CR>
 
 nnoremap <C-w><leader>gi<Space>s :tab G status<Space>
 nnoremap <C-w><leader>gi<Space>l :tab G log<Space>
+nnoremap <C-w><leader>gi<Space>g :tab G log --graph<Space>
 nnoremap <C-w><leader>gi<Space>b :tab G blame<Space>
 nnoremap <C-w><leader>gi<Space>r :tab G reflog<Space>
 nnoremap <C-w><leader>gi<Space>o :tab G remote<Space>
@@ -159,9 +163,9 @@ nnoremap <C-w><leader>giD :tab G difftool<Space>
 " TODO D qfloc versions of diff and mergetools
 " (make loclist out of quickfix list)
 
-nnoremap <expr> <leader>gig g:qfloc ?
+nnoremap <expr> <leader>gif g:qfloc ?
       \ ':<C-u>Glgrep<Space>' : ':<C-u>Ggrep<Space>'
-nnoremap <expr> <leader>giG g:qfloc ?
+nnoremap <expr> <leader>giF g:qfloc ?
       \ ':<C-u>Glgrep!<Space>' : ':<C-u>Ggrep!<Space>'
 
 "}}}

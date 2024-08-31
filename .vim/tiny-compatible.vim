@@ -296,7 +296,7 @@ nnoremap <silent> <Space>A :<C-u>argadd\|next<CR>
 vnoremap <silent> <Space>A :<C-u>argadd\|next\|norm gv<CR>
 nnoremap <Space>d :<C-u>argdelete<Space>
 vnoremap <Space>d :<C-u>argdelete  \|norm gv<C-Left><C-Left><Left>
-noremap <silent> <Space>D :<C-u>if argc() == 1 
+noremap <silent> <Space>D :<C-u>if argc() == 1
       \ \| q
       \ \| elseif argc() == 2
       \ \| argdelete

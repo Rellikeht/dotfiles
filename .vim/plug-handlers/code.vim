@@ -239,6 +239,109 @@ nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 
 "}}}
 
-"{{{ TODO A gutentags
+"{{{ gutentags
+" https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
+
+" TODO C more ?
+let g:guetntags_project_root = [
+      \ ".git",
+      \ ".hg",
+      \ ".project",
+      \ ] + [
+      \ "go.mod",
+      \ "configure.sh",
+      \ "flake.lock",
+      \ "Cargo.toml",
+      \ "Project.toml",
+      \ "nimble.nimble",
+      \ "dune-project",
+      \ "cabal.project",
+      \ "stack.yaml",
+      \ ]
+
+autocmd DirChanged global call gutentags#rescan()
+let g:gutentags_exclude_project_root = [
+      \ expand('~/gits/configs/dotfiles'),
+      \ ]
+
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+command! -nargs=0 GutentagsClearCache
+      \ call system('rm ' . g:gutentags_cache_dir . '/*')
+
+" What is the best ?
+" It probably needs separate script
+" let g:gutentags_file_list_command = {
+"       \ 'markers': {
+"       \ '.git': 'bash -c "git ls-files; git ls-files --others --exclude-standard"',
+"       \ },
+"       \ }
+" let g:gutentags_file_list_command = 'rg --files'
+let g:gutentags_file_list_command = 'ag --hidden --files-with-matches'
+let g:gutentags_define_advanced_commands = 1
+
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ ]
+
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+
+"{{{ g:gutentags_ctags_exclude
+
+" TODO B something has to be missing
+let g:gutentags_ctags_exclude = [
+      \ '*.git', '*.svg', '*.hg',
+      \ '*/tests/*',
+      \ 'dist',
+      \ '*sites/*/files/*',
+      \ 'build', 'bin', 'compiled',
+      \ 'node_modules',
+      \ 'bower_components',
+      \ 'cache', '*.cache',
+      \ 'docs', 'example',
+      \ 'bundle', 'vendor',
+      \ '*.md', '*.txt', '*.rst', '*.asciidoc',
+      \ '*-lock.json',
+      \ '*bundle*.js',
+      \ '*build*.js',
+      \ '*.json', '*.yaml', '*.toml', '*.ini',
+      \ '*.conf', '.*rc*',
+      \ '*.min.*',
+      \ '*.map',
+      \ '*.bak', '*.bck',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.class',
+      \ '*.sln',
+      \ '*.Master',
+      \ '*.csproj',
+      \ '*.tmp',
+      \ '*.csproj.user',
+      \ '*.pdb',
+      \ 'tags*', 'cscope.*',
+      \ '*.css', '*.less', '*.scss',
+      \ '*.hs', '*.hi',
+      \ '*.cma', '*.cmx',
+      \ '*.exe', '*.dll', '*.o', '*.so', '*.a',
+      \ '*.out', '*.elf', '*.bin',
+      \ '*.mp3', '*.ogg', '*.flac', '*.mp4', '*.mkv', '*.webm', '*.m4a',
+      \ '*.swp', '*.swo', '*~', '#*',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png', '*.jpeg',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ ]
+      " \ '*.lock',
+
+"}}}
+
+nnoremap <Space>tqg :<C-u>GutentagsToggleEnabled<CR>
+vnoremap <Space>tqg :<C-u>GutentagsToggleEnabled\|norm gv<CR>
+nnoremap <Space>tqt :<C-u>GutentagsToggleTrace<CR>
+vnoremap <Space>tqt :<C-u>GutentagsToggleTrace\|norm gv<CR>
+nnoremap <Space>tqc :<C-u>GutentagsClearCache<CR>
+vnoremap <Space>tqc :<C-u>GutentagsClearCache\|norm gv<CR>
 
 "}}}
