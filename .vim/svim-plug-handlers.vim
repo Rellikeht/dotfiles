@@ -74,3 +74,14 @@ let g:cpp_member_highlight = 1
 let g:cpp_simple_highlight = 0
 
 "}}}
+
+"{{{ vim-simple-complete
+
+let g:vsc_type_complete = 1
+let g:vsc_tab_complete = 0
+let g:vsc_completion_command = "\<C-N>"
+let g:vsc_reverse_completion_command = "\<C-P>"
+let g:vsc_type_complete_length = 3
+let g:vsc_pattern = '\k'
+
+"}}}

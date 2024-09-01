@@ -1,7 +1,7 @@
 "{{{ cosco
 
 "nmap <silent> ; <Plug>(cosco-commaOrSemiColon)
-map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
+" map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
 " let g:cosco_ignore_comment_lines = 1
 
 "}}}
@@ -37,11 +37,6 @@ let g:neoformat_enabled_markdown = ['mdformat', 'prettierd', 'prettier']
 let g:neoformat_enabled_lua = [
       \ 'luaformat',
       \ ]
-" \ 'luaformatter',
-" let g:neoformat_lua_luaformat = {
-"             \ 'exe': 'lua-format'
-"             \ }
-
 
 " FUCKING YAML
 let g:neoformat_enabled_yaml = [
@@ -60,6 +55,7 @@ let g:neoformat_markdown_mdformat = {
       \ 'args': ['--number', '--wrap', '64', '-'],
       \ 'stdin': 1,
       \ }
+
 let g:neoformat_yaml_yamlfix = {
       \ 'exe': 'yamlfix',
       \ 'args': ['-c', '~/.vim/plug-handlers/pyproject.toml', '-'],
@@ -74,17 +70,31 @@ let g:neoformat_enabled_typescript = ['clangformat', 'prettierd', 'prettier']
 let g:neoformat_enabled_java = ['clangformat', 'astyle', 'uncrustify', 'prettierd', 'prettier']
 
 " Totally differently than it seems
-" from reading README, but somehow This
-" shit works
+" from reading README, but somehow this shit works
 let g:neoformat_typst_typstfmt = {
-      \'exe': 'typstfmt',
-      \'args': ['-o -'],
-      \'stdin': 1,
-      \'stderr': 1,
-      \'replace': 0,
-      \'no_append': 1,
-      \}
-let g:neoformat_enabled_typst = ["typstfmt"]
+      \ 'exe': 'typstfmt',
+      \ 'args': ['-o -'],
+      \ 'stdin': 1,
+      \ 'stderr': 1,
+      \ 'replace': 0,
+      \ 'no_append': 1,
+      \ }
+
+let g:neoformat_typst_prettypst = {
+      \ 'exe': 'prettypst',
+      \ 'args': [
+      \ '--use-std-in',
+      \ '--use-std-out',
+      \ '--use-configuration',
+      \ '--file-location=$HOME/.vim/plug-handlers',
+      \ ],
+      \ 'stdin': 1,
+      \ 'stderr': 1,
+      \ 'replace': 0,
+      \ 'no_append': 1,
+      \ }
+
+let g:neoformat_enabled_typst = ["typstfmt", "prettypst"]
 
 "}}}
 
@@ -128,17 +138,6 @@ noremap <Leader>n<Space>f :Neoformat<Space>
 "
 ""}}}
 
-"{{{ vim-simple-complete
-
-let g:vsc_type_complete = 1
-let g:vsc_tab_complete = 0
-let g:vsc_completion_command = "\<C-N>"
-let g:vsc_reverse_completion_command = "\<C-P>"
-let g:vsc_type_complete_length = 3
-let g:vsc_pattern = '\k'
-
-"}}}
-
 "{{{ TODO B dispatch
 
 "}}}
@@ -146,8 +145,6 @@ let g:vsc_pattern = '\k'
 "{{{ specialized
 
 " {{{ zig.vim
-
-" TODO C compiler
 
 let g:zig_fmt_autosave = 1
 

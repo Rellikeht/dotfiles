@@ -218,6 +218,8 @@ let g:autoupdate = 0
 "{{{ completion
 
 set omnifunc=syntaxcomplete#Complete
+set pumwidth=15
+set pumheight=20
 
 "}}}
 

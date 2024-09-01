@@ -12,7 +12,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'jpalardy/vim-slime'
-Plug 'maxboisvert/vim-simple-complete'
 Plug 'ryvnf/readline.vim'
 
 Plug 'unblevable/quick-scope'

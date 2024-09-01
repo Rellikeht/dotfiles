@@ -13,13 +13,13 @@ function s:Tabarge(...)
 endfunction
 
 command! -nargs=* -complete=file Tabe
-      \ call s:Tabarge(<f-args>)
+      \ call <SID>Tabarge(<f-args>)
 
 command! -nargs=* -complete=arglist TabA
-      \ call s:Tabarge(<f-args>)
+      \ call <SID>Tabarge(<f-args>)
 
 command! -nargs=* -complete=buffer TabB
-      \ call s:Tabarge(<f-args>)
+      \ call <SID>Tabarge(<f-args>)
 
 command! -nargs=* -bang -complete=buffer ArgeditB
       \ argedit<bang> <args>
