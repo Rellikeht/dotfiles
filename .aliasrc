@@ -44,7 +44,8 @@ alias b9='cd ../../../../../../../../..'
 
 alias pcd='pushd && vcd'
 
-alias aliasDups="alias | sed 's/^alias //;s/=.*$//' | sort | uniq -d"
+alias aliasDups="cat ~/.aliasrc ~/.local/.aliasrc 2>/dev/null |\
+    sed -nE 's/=.*//;s/^alias //p' | sort | uniq -d"
 alias pathprint='echo "$PATH" | sed "s/:/\n/g"'
 
 alias j='jobs'
@@ -67,23 +68,25 @@ alias ell='eza -la'
 alias mkdir='mkdir -p'
 alias pwl='readlink -f .'
 
+alias grepc='/usr/bin/env -S grep'
 alias grepn='grep --color=never'
-alias grep='grep --color=always'
-alias rgrep='grep -r'
-alias bgrep='grep -I'
+alias grep='grep --color=always -I'
 alias ag='ag --color --depth=-1'
 alias ah='ag --hidden'
 alias au='ag --unrestricted'
 alias az='ag --search-zip'
 alias rg='rg -S'
 alias rh='rg --hidden'
+
 alias egrep='grep -E'
+alias grepp='grep -P'
 alias eg='egrep'
+alias pg='grepp'
 
 alias zl='z -l | sort -nr'
 alias zr='z -l'
 alias ze='z -e'
-alias zc='z -c'
+alias zp='z -c'
 
 alias bat='LESS="$BAT_LESS_FLAGS" bat --color always'
 alias batl='bat --language lisp'
@@ -404,7 +407,7 @@ alias mppf='mpv --profile="$(mpv-prof-fzf)"'
 alias mpi='mpv --idle=yes --keep-open'
 
 alias gt='/usr/bin/env -S time'
-alias pg='ping gnu.org'
+alias pgl='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
 alias aria_helper='aria2c --continue=true \
@@ -478,6 +481,7 @@ alias cmc='mkdir -p build && cmake -B build .'
 # }}}
 
 # {{{ git
+
 alias gitp='git --paginate'
 alias gsb='git submodule'
 alias gco='git checkout'
@@ -525,6 +529,8 @@ alias gis='git stash'
 alias gsp='git stash push'
 alias gsg='git stash pop'
 alias gsl='git stash list'
+alias gic='git config'
+
 # }}}
 
 # {{{ graphical helpers
@@ -551,6 +557,7 @@ alias pmC='pcmanfm-qt "$(pwd)"'
 
 alias kbp="~/.kb-plug.sh"
 alias help2man='help2man -N'
+alias bman='MANPAGER="$BMAN" man'
 
 ## groff
 alias groff='groff -ktep'
