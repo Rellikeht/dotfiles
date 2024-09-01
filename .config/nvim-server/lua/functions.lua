@@ -17,3 +17,13 @@ end
 function commandRep(fn)
   return function() for i = 1, vim.v.count1 do fn() end end
 end
+
+function fileReadable(name)
+  local f = io.open(name, "r")
+  if f ~= nil then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end

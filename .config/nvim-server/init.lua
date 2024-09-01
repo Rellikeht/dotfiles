@@ -3,13 +3,13 @@ vim.cmd("source ~/.vimrc")
 require("functions")
 
 local Plug = vim.fn["plug#"]
-local nvim_dir = vim.call("stdpath", "config")
+NVIM_DIR = vim.call("stdpath", "config")
 local vim_dir = "~/.vim"
 local plug_dir = "plug-handlers/"
 
 -- }}}
 
-vim.call("plug#begin", nvim_dir .. "/plugins")
+vim.call("plug#begin", NVIM_DIR .. "/plugins")
 vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
 
 -- {{{
