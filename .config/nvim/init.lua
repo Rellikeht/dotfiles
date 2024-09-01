@@ -48,6 +48,7 @@ Plug("mfussenegger/nvim-jdtls")
 Plug("dcampos/nvim-snippy")
 Plug("dcampos/cmp-snippy")
 Plug("honza/vim-snippets")
+Plug("ckunte/typst-snippets-vim")
 
 -- TODO more cmps ?
 Plug("hrsh7th/nvim-cmp")
@@ -133,6 +134,12 @@ Plug("ellisonleao/glow.nvim")
 -- Plug("mfussenegger/nvim-dap-python")
 -- Plug("leoluz/nvim-dap-go")
 -- Plug("SGauvin/ctest-telescope.nvim")
+
+-- typst preview
+-- https://github.com/chomosuke/typst-preview.nvim
+-- https://github.com/Enter-tainer/typst-preview
+-- https://github.com/niuiic/typst-preview.nvim
+-- again fuck, this is too much
 
 -- }}}
 

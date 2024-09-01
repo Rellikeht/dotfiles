@@ -45,10 +45,38 @@ Snippy.setup( -- {{{
   }
 ) -- }}}
 
+-- {{{ cmp helpers
+
 local cmp_beh = {behavior = cmp.SelectBehavior, count = 1}
+
+local format = function(entry, vim_item)
+  local el = "…"
+  local aw = 18
+  local mw = 24
+  local a = vim_item.abbr and vim_item.abbr or ""
+  if #a > aw then vim_item.abbr = string.sub(a, 1, aw) .. el end
+  local m = vim_item.menu and vim_item.menu or ""
+  if #m > 20 then vim_item.menu = string.sub(m, 1, mw) .. el end
+  return vim_item
+end
+
+-- }}}
+
 cmp.setup(
   { -- {{{
+
+    -- {{{
     preselect = cmp.PreselectMode.None,
+    window = {
+      documentation = {max_width = 0, max_height = 0},
+      completion = {side_padding = 0},
+    },
+    -- }}}
+
+    formatting = { -- {{{
+      fields = {"abbr", "kind", "menu"},
+      format = format,
+    }, -- }}}
 
     enabled = function() -- {{{
       local context = require("cmp.config.context")
