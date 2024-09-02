@@ -17,10 +17,9 @@ let g:pathshorten = 4
 let g:no_file_msg = 0
 autocmd VimEnter *
       \ let w:buf_echo = 0
-      " \ | echo expand('%:p')
 
 autocmd WinNew *
-      \ let w:prev_dir = expand('%:p:h')
+      \ let g:prev_dir = expand('%:p:h')
       \ | let w:buf_echo = 1
       \ | let w:prev_arg = 0
 
@@ -205,7 +204,7 @@ vnoremap <Leader>qfW :<C-u>let g:vautowrite=!g:vautowrite\|norm gv<CR>
 nnoremap <Leader>qv4 :<C-u>echo b:vautowrite<CR>
 vnoremap <Leader>qv4 :<C-u>echo b:vautowrite\|norm gv<CR>
 
-" TODO
+" TODO C
 let g:autoupdate = 0
 " autocmd FileType * let b:autoupdate = g:autoupdate
 
@@ -262,7 +261,7 @@ endif
 " default updatetime 4000ms is not good for async update
 set updatetime=50
 
-let w:prev_dir = expand('%:p:h')
+let g:prev_dir = expand('%:p:h')
 let g:autochdir = 0
 silent call ToggleAutochdir()
 

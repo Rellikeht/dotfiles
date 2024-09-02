@@ -99,7 +99,6 @@ function PartRoot(dir='')
 endfunction
 
 function EnvrcRoot(dir='')
-  " return GetRoot("echo ${DIRENV_DIR#-}")
   let l:root = GetRoot(
         \ 'direnv status | '.
         \ "sed -En 's#Found RC path (.*)/[^/]*#\\1#p'",
@@ -480,7 +479,7 @@ function RelFile(path, prev_dir)
 endfunction
 
 function RelCurFile()
-  return RelFile(expand('%'), w:prev_dir)
+  return RelFile(expand('%'), g:prev_dir)
 endfunction
 
 let g:ftype_hooks = {
@@ -608,17 +607,21 @@ autocmd VimResume *
 autocmd BufLeave *
       \ if (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
       \ | if isdirectory(expand('%:p'))
-      \ | let w:prev_dir = expand('%:p:h:h')
+      \ | let g:prev_dir = expand('%:p:h:h')
       \ | elseif isdirectory(expand('%:p:h'))
-      \ | let w:prev_dir = expand('%:p:h')
+      \ | let g:prev_dir = expand('%:p:h')
       \ | else
-      \ | let w:prev_dir = ''
+      \ | let g:prev_dir = ''
       \ | endif
       \ | endif
 
 autocmd BufEnter *
       \ if !get(g:, 'no_file_msg', 1)
+      \ | if len(get(g:, 'prev_dir', '')) == 0
+      \ | let g:prev_dir = expand('%:p:h')
+      \ | else
       \ | call EchoRelCurFile()
+      \ | endif
       \ | endif
 
 "}}}

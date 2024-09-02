@@ -78,6 +78,7 @@ All of this isn't very accurate and updated, at least for now.
 - v - `:[l]vimgrep` and stuff
 - c - eunuch find and locate commands
 - h - diffs
+- f - search shortcuts, opening files
 
 ## Free
 

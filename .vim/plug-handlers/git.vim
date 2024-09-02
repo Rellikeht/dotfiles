@@ -155,9 +155,11 @@ nnoremap <silent> <leader>giD :G difftool<CR>
 nnoremap <leader>giD :G difftool<Space>
 
 nnoremap <silent> <C-w><leader>gid :tab G diff<CR>
+nnoremap <silent> <C-w><leader>giw :tab G diff --word-diff<CR>
 nnoremap <silent> <C-w><leader>gim :tab G mergetool<CR>
 nnoremap <silent> <C-w><leader>giD :tab G difftool<CR>
 nnoremap <C-w><leader>gi<Space>d :tab G diff<Space>
+nnoremap <C-w><leader>gi<Space>w :tab G diff --word-diff<Space>
 nnoremap <C-w><leader>gim :tab G mergetool<Space>
 nnoremap <C-w><leader>giD :tab G difftool<Space>
 " TODO D qfloc versions of diff and mergetools

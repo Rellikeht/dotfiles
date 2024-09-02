@@ -607,8 +607,14 @@ inoremap <C-x>c <C-x><C-]>
 
 "{{{ magic
 
-noremap <C-_> /\v
+noremap <Space>f/ /\v
+noremap <Space>f? /\V
+noremap <Space>f% /\%V
+
+" Shit, but probably must be like that
 cnoremap <C-_> \v
+cnoremap <C-@> \V
+cnoremap <C-o> \%V
 
 "}}}
 
