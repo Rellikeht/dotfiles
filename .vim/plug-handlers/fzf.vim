@@ -392,7 +392,9 @@ let s:fzf_mapping_paths = {
       \ 'D':'~/Downloads',
       \ 'f':'~/Documents',
       \ 'p':'~/gits',
+      \ 'c':'~/.config/',
       \ '.':'',
+      \ ',':'.',
       \ }
 
 let s:fzf_mapping_specials = {

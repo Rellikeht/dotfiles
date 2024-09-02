@@ -116,6 +116,7 @@ Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim'
 Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'HiPhish/info.vim'
 
 " TODO C and make this not slow vim down
 " Plug 'vimwiki/vimwiki'

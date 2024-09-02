@@ -200,7 +200,7 @@ a,b,e,f,k,l,o,p,r,v,w,y,z
 
 # g combinations
 
-Available (useless otherwise): G, K, L, l
+Available (useless otherwise): G, K, L
 
 Rather useless: I, Q, H, h, r, w
 

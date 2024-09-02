@@ -134,6 +134,30 @@ noremap <silent> ,hT :<C-u>Hi===<CR>
 
 "}}}
 
+"{{{ info
+
+noremap <Leader>imc :<C-u>Info<Space>
+noremap <Leader>imu :<C-u>exe 'Info '.expand('<cword>')<CR>
+noremap <Leader>imw :<C-u>exe 'Info '.expand('<cWORD>')<CR>
+noremap <Leader>imf :<C-u>exe 'Info '.expand('<cfile>')<CR>
+
+noremap <Leader>imm :<C-u>Menu<CR>
+noremap <Leader>im<Space>m :<C-u>Menu<Space>
+noremap <Leader>imo :<C-u>Follow<CR>
+noremap <Leader>im<Space>o :<C-u>Follow<Space>
+noremap <Leader>img :<C-u>GotoNode<CR>
+noremap <Leader>im<Space>g :<C-u>GotoNode<Space>
+noremap <Leader>imi :<C-u>Index<CR>
+noremap <Leader>im<Space>i :<C-u>Index<Space>
+
+noremap <Leader>in :<C-u>InfoNext<CR>
+noremap <Leader>ip :<C-u>InfoPrev<CR>
+noremap <Leader>iu :<C-u>InfoUp<CR>
+
+cnoreabbrev info Info
+
+"}}}
+
 "{{{ other
 
 "}}}

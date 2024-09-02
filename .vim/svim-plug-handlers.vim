@@ -35,8 +35,8 @@ vnoremap <silent> gC :<C-u>call css_color#toggle()\|norm gv<CR>
 
 "{{{ Inline edit
 
-nnoremap <silent> glf :InlineEdit<CR>
-vnoremap <silent> glf :InlineEdit\|norm gv<CR>
+nnoremap <silent> <Leader>mi :InlineEdit<CR>
+vnoremap <silent> <Leader>mi :InlineEdit\|norm gv<CR>
 
 "}}}
 
