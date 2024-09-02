@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+#dotf
 
 # {{{ special variables
 
@@ -80,8 +81,14 @@ alias rh='rg --hidden'
 
 alias egrep='grep -E'
 alias grepp='grep -P'
+alias fgrep='grep -F'
 alias eg='egrep'
 alias pg='grepp'
+alias gf='fgrep'
+alias gg='git grep'
+alias wdiff='git diff --word-diff'
+alias wdiffr='git diff --word-diff-regex'
+alias vdf='vimdiff'
 
 alias zl='z -l | sort -nr'
 alias zr='z -l'
@@ -359,7 +366,7 @@ alias prgc='prg \
     -a bzip2 -a bunzip2 -a bzcat -a bzip2recover -a bzdiff -a bzgrep \
     -a less -a tail -a tac -a gpart \
     -a sed -a awk -a pdfgrep -a agrep -a ag -a rg -a pcregrep \
-    -a diff -a diff3 \
+    -a diff -a diff3 -a git \
     -a cadaver -a ftp -a ssh -a chezdav \
     -a nmap -a nc -a iperf3 -a iperf \
     -a adb \
@@ -558,6 +565,9 @@ alias pmC='pcmanfm-qt "$(pwd)"'
 alias kbp="~/.kb-plug.sh"
 alias help2man='help2man -N'
 alias bman='MANPAGER="$BMAN" man'
+alias vif=viminfo
+alias info='info --vi-keys'
+alias cinfo='/usr/bin/env -S info'
 
 ## groff
 alias groff='groff -ktep'

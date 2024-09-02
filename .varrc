@@ -77,7 +77,9 @@ fi
 # Colorful man (version made without 100 env variables)
 export MANPAGER='less -s -M -r --use-color -Dd+c -DPYb -DSYb'
 export GROFF_NO_SGR=1 # THIS MAKES COLORFUL MAN WORK !
-export BMAN="sh -c 'col -bx | bat -l man -p'"
+
+# Very imperfect
+export BMAN="sh -c 'col -bx | bat -l man --color=always --theme=Monokai\ Extended\ Light -p'"
 
 export LESS='--save-marks --incsearch --ignore-case'
 export PAGER='less -r'

@@ -194,6 +194,10 @@ hms() {
     hm --no-discard-stderr $@
 }
 
+viminfo() {
+    vim -R -M -c "Info $1 $2" +only
+}
+
 rlw() {
     readlink -f "$(/usr/bin/env which "$1")"
 }
