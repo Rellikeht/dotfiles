@@ -1,14 +1,14 @@
-"{{{ eunuch
+" {{{ eunuch
 
-"{{{ helpers
+" {{{ helpers
 
 function! EQFcmd(cmd, before = '')
   call QFsel('C', 'L', a:before, a:cmd)
 endfunction
 
-"}}}
+" }}}
 
-"{{{ sudo, wall
+" {{{ sudo, wall
 
 nnoremap <silent> <Leader>;sw :<C-u>SudoWrite<CR>
 vnoremap <silent> <Leader>;sw :<C-u>SudoWrite\|norm gv<CR>
@@ -29,9 +29,9 @@ vnoremap <silent> <Leader>;s<Space>e
 nnoremap <silent> <Leader>;sa :<C-u>Wall<CR>
 vnoremap <silent> <Leader>;sa :<C-u>Wall\|norm gv<CR>
 
-"}}}
+" }}}
 
-"{{{ find
+" {{{ find
 
 noremap <Space>/c g:qfloc ?
       \ ':<C-u>Lfind<Space>'
@@ -96,9 +96,9 @@ noremap <expr> <Space>?A g:qfloc ?
       \ ':<C-u>Lfind! . -xtype d -name ""<Left>'
       \ : ':<C-u>Cfind! . -xtype d -name ""<Left>'
 
-"}}}
+" }}}
 
-"{{{ find with cursor
+" {{{ find with cursor
 
 noremap <expr> <Space>/s g:qfloc ?
       \ ":<C-u>exe 'Lfind . -type f -name ".'"*'.
@@ -139,9 +139,9 @@ noremap <expr> <Space>/E g:qfloc ?
       \ ':<C-u>Lfind! . -type f -name "*<cexpr>*"<CR>'
       \ : ':<C-u>Cfind! . -type f -name "*<cexpr>*"<CR>'
 
-"}}}
+" }}}
 
-"{{{ find with cursor (no stars)
+" {{{ find with cursor (no stars)
 
 noremap <expr> <Space>?s g:qfloc ?
       \ ":<C-u>exe 'Lfind . -type f -name ".
@@ -182,9 +182,9 @@ noremap <expr> <Space>?E g:qfloc ?
       \ ':<C-u>Lfind! . -type f -name "<cexpr>"<CR>'
       \ : ':<C-u>Cfind! . -type f -name "<cexpr>"<CR>'
 
-"}}}
+" }}}
 
-"{{{ locate
+" {{{ locate
 
 noremap <Space>bc g:qfloc ?
       \ ':<C-u>Llocate<Space>'
@@ -193,9 +193,9 @@ noremap <Space>bC g:qfloc ?
       \ ':<C-u>Llocate!<Space>'
       \ : ':<C-u>Clocate!<Space>'
 
-"}}}
+" }}}
 
-"{{{ locate with cursor
+" {{{ locate with cursor
 
 noremap <expr> <Space>bs g:qfloc ?
       \ ":<C-u>exe 'Llocate \"'.GetVisualEsc().'\"'<CR>"
@@ -232,11 +232,11 @@ noremap <expr> <Space>bE g:qfloc ?
       \ ':<C-u>Llocate! <cexpr><CR>'
       \ : ':<C-u>Cllocate! <cexpr><CR>'
 
-"}}}
+" }}}
 
-"}}}
+" }}}
 
-"{{{ vifm
+" {{{ vifm
 
 noremap <Leader>xff :<C-u>EditVifm<CR>
 noremap <Leader>xfs :<C-u>VsplitVifm<CR>
@@ -260,11 +260,11 @@ noremap <C-w><Leader>xf<Space>f :<C-u>tabnew<CR>:EditVifm<Space>
 noremap <C-w><Leader>xf<Space>d :<C-u>tabnew<CR>:DiffVifm<Space>
 noremap <C-w><Leader>xf<Space>p :<C-u>tabnew<CR>:PeditVifm<Space>
 
-"}}}
+" }}}
 
-"{{{ others
+" {{{ others
 
 " if nerdtree happens it will land here
 " or nnn
 
-"}}}
+" }}}

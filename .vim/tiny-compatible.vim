@@ -1,4 +1,4 @@
-"{{{ helpers
+" {{{ helpers
 
 command! -bang -nargs=? -complete=arglist Argument 
       \ if len(<q-args>) == 0
@@ -28,7 +28,7 @@ command! -nargs=1 -complete=buffer TabB
 " command! -nargs=1 -complete=arglist Rargument
 "             \botright horizontal argument <args>
 
-"}}}
+" }}}
 
 " {{{ basic mappings
 
@@ -60,15 +60,15 @@ noremap <Space><Tab> <C-^>
 
 " }}}
 
-"{{{ nops
+" {{{ nops
 
 map <Space> <Nop>
 map <Space><Space> <Nop>
 map . <Nop>
 
-"}}}
+" }}}
 
-"{{{ settings with <Space>
+" {{{ settings with <Space>
 
 nnoremap <Space>qw :<C-u>setlocal wrap!<CR>
 vnoremap <Space>qw :<C-u>setlocal wrap!\|norm gv<CR>
@@ -81,7 +81,7 @@ vnoremap <Space>qm :<C-u>setlocal modeline!<CR>:e\|norm gv<CR>
 nnoremap <Space>qM :<C-u>setlocal modeline!<CR>
 vnoremap <Space>qM :<C-u>setlocal modeline!\|norm gv<CR>
 
-"}}}
+" }}}
 
 " {{{ tabs with <Tab>
 
@@ -275,7 +275,7 @@ vnoremap <Space><Space>;: :<C-u>bufdo!  \|norm gv<C-Left><C-Left><Left>
 
 " }}}
 
-"{{{ args with <Space>
+" {{{ args with <Space>
 
 nnoremap <Space>l :<C-u>args<CR>
 vnoremap <Space>l :<C-u>args\|norm gv<CR>
@@ -382,7 +382,7 @@ vnoremap <Space>q;u :<C-u>update ## \|norm gv<CR>
 nnoremap <Space>q;U :<C-u>update! ##<CR>
 vnoremap <Space>q;U :<C-u>update! ## \|norm gv<CR>
 
-"}}}
+" }}}
 
 " {{{ splits with <Tab>
 
@@ -452,21 +452,21 @@ noremap <Tab>h :<C-u>tab help<Space>
 
 " }}}
 
-"{{{ <Space> operations
+" {{{ <Space> operations
 
 nnoremap <Space>iJ :<C-u>clearjumps<CR>
 vnoremap <Space>iJ :<C-u>clearjumps\|norm gv<CR>
 
 nnoremap <Space>;m :move<Space>
 
-"}}}
+" }}}
 
-"{{{ because escape doesn't work sometimes
+" {{{ because escape doesn't work sometimes
 
 noremap <Space>;<Esc> <Nop>
 noremap <Space>i<Esc> <Nop>
 
-"}}}
+" }}}
 
 " {{{ other mappings
 
@@ -546,7 +546,7 @@ set switchbuf+=usetab,useopen
 
 " }}}
 
-"{{{ editing
+" {{{ editing
 
 set formatoptions=tcroqlwn
 
@@ -555,7 +555,7 @@ set backspace=indent,eol,start
 
 set undolevels=10000
 
-"}}}
+" }}}
 
 " {{{ other
 
@@ -572,12 +572,12 @@ set cmdwinheight=30
 
 " }}}
 
-"{{{ files
+" {{{ files
 
 set encoding=utf-8
 set fileformat=unix
 
-"}}}
+" }}}
 
 " }}}
 

@@ -1,4 +1,4 @@
-"{{{ helpers
+" {{{ helpers
 
 function! s:with_dir(dir='')
   if len(a:dir) == 0
@@ -47,11 +47,11 @@ map ,s<Esc> <Nop>
 map ,sl<Esc> <Nop>
 map ,sf<Esc> <Nop>
 
-"}}}
+" }}}
 
-"{{{ settings
+" {{{ settings
 
-"{{{ basic
+" {{{ basic
 
 " Enable per-command history
 " - History files will be stored in the specified directory
@@ -67,9 +67,9 @@ let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
 
 let g:fzf_vim.tags_command = 'ctags -R'
 
-"}}}
+" }}}
 
-"{{{ layout
+" {{{ layout
 
 " let g:fzf_percent = '55%'
 let g:fzf_percent = '100%'
@@ -100,9 +100,9 @@ let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-/']
 " let g:fzf_layout = { 'window': '-tabnew' }
 " let g:fzf_layout = { 'window': '10new' }
 
-"}}}
+" }}}
 
-"{{{ colors
+" {{{ colors
 
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
@@ -122,13 +122,14 @@ let g:fzf_colors = {
       \ 'header':  ['fg', 'Comment']
       \ }
 
-"}}}
+" }}}
 
-"}}}
+" }}}
 
-"{{{ custom grep
+" {{{ custom grep
 
-let s:grep_args = '-EI --line-number --dereference-recursive --color=always'
+let s:ggrep_args = '-EI --line-number --color=always'
+let s:grep_args = s:ggrep_args.'--dereference-recursive'
 
 command! -bang -nargs=* Fgrep
       \ call fzf#vim#grep(
@@ -155,9 +156,9 @@ command! -bang -nargs=* -complete=dir Digrep
       \ s:with_dir([<f-args>]),
       \ ), <bang>0)
 
-"}}}
+" }}}
 
-"{{{ custom ag
+" {{{ custom ag
 
 command! -bang -nargs=* Ah 
       \ call fzf#vim#ag(<q-args>,
@@ -187,9 +188,9 @@ command! -bang -nargs=* -complete=dir Dau
       \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
       \ ), <bang>0)
 
-"}}}
+" }}}
 
-"{{{ custom rg
+" {{{ custom rg
 
 let s:rgcmd = "rg --column --line-number --no-heading ".
       \ "--color=always --smart-case "
@@ -209,9 +210,9 @@ command! -bang -nargs=* -complete=dir Dru
       \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
       \ ), <bang>0)
 
-"}}}
+" }}}
 
-"{{{ custom diff
+" {{{ custom diff
 
 " TODO C preview like in other commands (probably impossible)
 command! -bang -nargs=? -complete=dir Fdiffs
@@ -241,9 +242,9 @@ command! -bang -nargs=? -complete=dir Fdiffv
       \ <bang>0)
       \ )
 
-"}}}
+" }}}
 
-"{{{ arglist commands
+" {{{ arglist commands
 
 " select from arglist
 command! -bang Args call fzf#run(fzf#wrap('args',
@@ -270,9 +271,9 @@ command! -bang -nargs=? -complete=dir ArgaddFzf
 command! -bang -nargs=? -complete=dir ArglistFzf 
       \ exe 'AddArglist' | ArgaddFzf <args>
 
-"}}}
+" }}}
 
-"{{{ insert mode mappings
+" {{{ insert mode mappings
 
 " Insert mode completion
 imap <c-X><C-w> <Plug>(fzf-complete-word)
@@ -284,9 +285,9 @@ imap <C-X>p <C-x><C-p>
 
 " TODO C dictionary
 
-"}}}
+" }}}
 
-"{{{ builtin mappings
+" {{{ builtin mappings
 
 nnoremap <leader>slh :<C-u>History<CR>
 nnoremap <leader>sl/ :<C-u>History/<CR>
@@ -314,9 +315,9 @@ nnoremap <leader>slc :<C-u>Commands<CR>
 noremap <leader>slr :<C-u>FZF<CR>
 noremap <leader>sl<Space>r :<C-u>FZF<Space>
 
-"}}}
+" }}}
 
-"{{{ file mappings
+" {{{ file mappings
 
 nnoremap <leader>sfb :<C-u>BLines<CR>
 nnoremap <leader>sf<Space>b :<C-u>BLines<Space>
@@ -325,22 +326,21 @@ nnoremap <leader>sf<Space>l :<C-u>Lines<Space>
 noremap <leader>sfa :<C-u>Ag<CR>
 noremap <leader>sf<Space>a :<C-u>Ag<Space>
 
-"}}}
+" }}}
 
-"{{{ git mappings
+" {{{ git mappings
 
 " From official instructions
 " git grep
 command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
-      \   'git grep '.s:grep_args.' -r -- '.fzf#shellescape(<q-args>),
+      \   'git grep '.s:ggrep_args.' -r -- '.fzf#shellescape(<q-args>),
       \   fzf#vim#with_preview(
       \      {'dir': GitRoot()}
       \   ), <bang>0)
 
-nnoremap <leader>gsf :<C-u>GFiles<CR>
+" nnoremap <leader>gsf :<C-u>GFiles<CR>
 nnoremap <leader>gss :<C-u>GFiles?<CR>
-
 nnoremap <leader>gsg :GGrep<CR>
 nnoremap <leader>gs<Space>g :GGrep<Space>
 
@@ -348,9 +348,9 @@ nnoremap <leader>gs<Space>g :GGrep<Space>
 nnoremap <leader>gsc :<C-u>Commits<CR>
 nnoremap <leader>gsb :<C-u>BCommits<CR>
 
-"}}}
+" }}}
 
-"{{{ custom command mappings
+" {{{ custom command mappings
 
 " grep
 nnoremap <leader>sfg :Fgrep<CR>
@@ -372,9 +372,9 @@ nnoremap <leader>sf<Space>v :Fdiffv<Space>
 nnoremap <leader>sla :Args<CR>
 nnoremap <leader>sl<Space>a :Args<Space>
 
-"}}}
+" }}}
 
-"{{{ paths
+" {{{ paths
 
 let s:fzf_mapping_paths = {
       \ '1':'..',
@@ -411,21 +411,22 @@ let s:fzf_mapping_specials = {
 
 " TODO C some selection and <cwhatever>
 
-"}}}
+" }}}
 
-"{{{ path mappings
+" {{{ path mappings
 
 let s:path_maps = [
       \ ['p', 'Files'],
       \ ['o', 'ArgeditFzf'],
       \ ['a', 'ArgaddFzf'],
       \ ['A', 'ArglistFzf'],
-      \ ['g', 'Dag'],
-      \ ['G', 'Dau'],
+      \ ['s', 'Dag'],
+      \ ['S', 'Dau'],
       \ ['d', 'Dgrep'],
       \ ['D', 'Digrep'],
       \ ['r', 'Drg'],
       \ ['R', 'Dru'],
+      \ ['g', 'GFiles'],
       \ ]
 
 for e in s:path_maps
@@ -450,9 +451,9 @@ for key in keys(s:fzf_mapping_specials)
   call s:PathMap(key, s:fzf_mapping_specials[key], 1, 1)
 endfor
 
-"}}}
+" }}}
 
-"{{{ actions
+" {{{ actions
 
 let g:fzf_action = {
       \ 'ctrl-q': function('s:build_quickfix_list'),
@@ -463,4 +464,4 @@ let g:fzf_action = {
       \ 'ctrl-a': function('s:add_arg_list'),
       \ }
 
-"}}}
+" }}}

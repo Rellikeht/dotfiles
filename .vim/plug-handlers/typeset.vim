@@ -1,4 +1,4 @@
-"{{{ pdf viewers
+" {{{ pdf viewers
 
 let g:pdf_viewers = ['zathura', 'mupdf', '']
 let g:cur_pdf_viewer = 0
@@ -35,9 +35,9 @@ nnoremap <silent> <Leader>nvp
 nnoremap <silent> <Leader>nvs
       \ :call DocView('pdf')<CR>
 
-"}}}
+" }}}
 
-"{{{ vimtex
+" {{{ vimtex
 " TODO C make this complete
 
 " Viewer options: One may configure the viewer either by specifying a built-in
@@ -48,18 +48,18 @@ let g:vimtex_compiler_method = 'latexmk'
 " Also workWorkss
 "let g:vimtex_compiler_method = 'tectonic'
 
-"}}}
+" }}}
 
-"{{{ TODO B pandoc
+" {{{ TODO B pandoc
 
 " doesn't cooperate with neovim ?
 let g:pandoc#modules#disabled = [
       \ 'bibliographies'
       \ ]
 
-"}}}
+" }}}
 
-"{{{ typst
+" {{{ typst
 
 let g:typst_pdf_viewer = g:pdf_viewers[0]
 
@@ -73,4 +73,4 @@ function TypstConcealToggle()
   edit
 endfunction
 
-"}}}
+" }}}

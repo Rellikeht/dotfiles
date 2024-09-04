@@ -67,11 +67,12 @@ autocmd BufReadPost *
       \ | endif
 
 set foldmethod=marker
+set foldmarker=\ {{{,\ }}}
 set synmaxcol=250
 
 " }}}
 
-"{{{ wildignore
+" {{{ wildignore
 
 set wildignore+=.git/**
 set wildignore+=.local/**
@@ -91,9 +92,9 @@ set wildignore+=*.doc,*.xls
 set wildignore+=.\?git*
 " set wildignore+=*/
 
-"}}}
+" }}}
 
-"{{{ good looking
+" {{{ good looking
 
 set splitkeep=screen
 
@@ -118,7 +119,7 @@ set statusline+=%-14.(%l,%c%V%)
 set statusline+=\ 
 set statusline+=%P
 
-"}}}
+" }}}
 
 " {{{ some simple toggling
 
@@ -157,7 +158,7 @@ vnoremap <Leader>qeh :<C-u>set hls!\|norm gv<CR>
 
 " }}}
 
-"{{{ automatic formatting and compiling control
+" {{{ automatic formatting and compiling control
 
 let g:buffmt = 1
 let g:bufcomp = 0
@@ -178,7 +179,7 @@ vnoremap <Leader>qfC :<C-u>let g:bufcomp=!g:bufcomp\|norm gv<CR>
 nnoremap <Leader>qv2 :<C-u>echo b:bufcomp<CR>
 vnoremap <Leader>qv2 :<C-u>echo b:bufcomp\|norm gv<CR>
 
-"}}}
+" }}}
 
 " {{{ nontrivial settings
 
@@ -214,16 +215,16 @@ let g:autoupdate = 0
 
 " }}}
 
-"{{{ completion
+" {{{ completion
 
 set omnifunc=syntaxcomplete#Complete
 set pumwidth=15
 set pumheight=20
 
-"}}}
+" }}}
 
 " This doesn't help, but why not keep it
-augroup LargeFile "{{{
+augroup LargeFile " {{{
 
   " 20 MB
   let g:large_file = 20971520
@@ -247,7 +248,7 @@ augroup LargeFile "{{{
         \ setlocal eventignore-=FileType |
         \ endif
 
-augroup END "}}}
+augroup END " }}}
 
 " {{{ other
 
@@ -270,11 +271,11 @@ vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 
 " }}}
 
-"{{{ grep
+" {{{ grep
 
 let g:grep = 'grep -HEIn --exclude-dir=.git'.
       \ ' --exclude-dir=.hg'.
       \ ' --exclude-dir=build'.
       \ ' --exclude-dir=?cache'
 
-"}}}
+" }}}

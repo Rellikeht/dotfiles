@@ -1,11 +1,11 @@
-"{{{ dependencies
+" {{{ dependencies
 
 Plug 'glts/vim-magnum'
 Plug 'tpope/vim-repeat'
 
-"}}}
+" }}}
 
-"{{{ essentials
+" {{{ essentials
 
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
@@ -23,9 +23,9 @@ Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 
-"}}}
+" }}}
 
-"{{{ little utilities
+" {{{ little utilities
 
 Plug 'tpope/vim-obsession'
 Plug 'romainl/vim-tinyMRU'
@@ -45,9 +45,9 @@ Plug 'vim-scripts/vis'
 Plug 'moll/vim-bbye'
 Plug 'azabiong/vim-highlighter'
 
-"}}}
+" }}}
 
-"{{{ coding help
+" {{{ coding help
 
 Plug 'sbdchd/neoformat'
 Plug 'lfilho/cosco.vim'
@@ -71,9 +71,9 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'xuhdev/SingleCompile'
 Plug 'Konfekt/vim-compilers'
 
-"}}}
+" }}}
 
-"{{{ version control
+" {{{ version control
 
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
@@ -84,9 +84,9 @@ Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 
-"}}}
+" }}}
 
-"{{{ config help
+" {{{ config help
 
 Plug 'direnv/direnv.vim'
 
@@ -97,9 +97,9 @@ Plug 'nickel-lang/vim-nickel'
 Plug 'kmonad/kmonad-vim'
 Plug 'mmikeww/autohotkey.vim'
 
-"}}}
+" }}}
 
-"{{{ specialized
+" {{{ specialized
 
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'jeetsukumaran/vim-pythonsense'
@@ -129,10 +129,10 @@ Plug 'bullets-vim/bullets.vim'
 " Maybe...
 " Plug 'dbridges/vim-markdown-runner'
 
-"}}}
+" }}}
 
-"{{{ other
+" {{{ other
 
 Plug 'vim-pandoc/vim-pandoc'
 
-"}}}
+" }}}

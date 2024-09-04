@@ -1,4 +1,4 @@
-"{{{ helpers
+" {{{ helpers
 
 " copy simple mappings from normal to visual
 " 0yyprv$F<i\|norm gv
@@ -27,22 +27,22 @@ command! -nargs=* -bang -complete=buffer ArgeditB
 command! -nargs=* -complete=buffer ArgaddB
       \ argadd <args>
 
-"}}}
+" }}}
 
-"{{{ nops
+" {{{ nops
 
-"}}}
+" }}}
 
-"{{{ remaps
+" {{{ remaps
 
 noremap .. .
 map <C-h> <C-]>
 noremap <C-w><C-h> 
       \ :<C-u>exe 'tab tag '.Expand('<cword>')<CR>
 
-"}}}
+" }}}
 
-"{{{ taglist
+" {{{ taglist
 
 nnoremap <Space>tl :<C-u>tags<CR>
 vnoremap <Space>tl :<C-u>tags\|norm gv<CR>
@@ -89,7 +89,7 @@ noremap <Space>t<Space>A :<C-u>ltag!<Space>
 
 " }}}
 
-"{{{ TODO C tag matchlist
+" {{{ TODO C tag matchlist
 
 " noremap <silent> <Space>tj :<C-u>tjump<CR>
 " noremap <silent> <Space>ts :<C-u>stjump<CR>
@@ -104,13 +104,13 @@ noremap <Space>t<Space>A :<C-u>ltag!<Space>
 " noremap <Space>t<Space>g :<C-u>tselect<Space>
 " noremap <Space>t<Space>G :<C-u>tselect!<Space>
 
-"}}}
+" }}}
 
-"{{{ TODO B preview window
+" {{{ TODO B preview window
 
-"}}}
+" }}}
 
-"{{{ better tab
+" {{{ better tab
 
 noremap <Tab>o :<C-u>Tabe<Space>
 noremap <Tab>O :<C-u>-Tabe<Space>
@@ -139,7 +139,7 @@ nnoremap <expr> <Tab>F ':<C-u>-'.v:count1.'tabfind '
 nnoremap <silent> <Tab>w :<C-u>We<CR>
 vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
-"}}}
+" }}}
 
 " {{{ TODO D resizing with <Tab>
 
@@ -172,7 +172,7 @@ noremap <silent> <Space><Space>M
 
 " }}}
 
-"{{{ args with <Space>
+" {{{ args with <Space>
 
 noremap <Space>;o :<C-u>ArgeditB<Space>
 noremap <Space>;O :<C-u>ArgeditB!<Space>
@@ -202,7 +202,7 @@ nnoremap <Space>fu :<C-u>argedit <cfile><CR>
 nnoremap <Space>fU :<C-u>argedit! <cfile><CR>
 nnoremap <Space>fa :<C-u>argadd <cfile><CR>
 
-"}}}
+" }}}
 
 " {{{ <Space> list and help
 
@@ -232,9 +232,9 @@ noremap <expr> <Space>is g:qfloc ?
       \':<C-u>lhelpgrep<Space>'
       \ : ':<C-u>helpgrep<Space>'
 
-"}}}
+" }}}
 
-"{{{ leader stuff
+" {{{ leader stuff
 
 " TODO add more commands
 
@@ -268,11 +268,11 @@ noremap <Leader>;c<Space>v :<C-u>mkvimrc<Space>
 " ???
 " map <Leader>;r :!%<CR>
 
-"}}}
+" }}}
 
-"{{{ quickfix and loclist
+" {{{ quickfix and loclist
 
-"{{{ helpers
+" {{{ helpers
 
 function QuickFixToggle()
   let g:qfloc = !g:qfloc
@@ -286,9 +286,9 @@ command -nargs=0 LocToQf
       \ cexpr []
       \ | call setqflist(getloclist(0))
 
-"}}}
+" }}}
 
-"{{{ settings
+" {{{ settings
 
 let g:qfheight = 15
 let g:qfloc = 1
@@ -307,9 +307,9 @@ vnoremap .q :<C-u> echo 'Quickfix is now ' .
       \ (g:qfloc ? 'local' : 'global')
       \ \| normal gv<CR>
 
-"}}}
+" }}}
 
-"{{{ getting
+" {{{ getting
 
 nnoremap <silent> .b :<C-u>call QFcmd('getbuffer')<CR>
 vnoremap <silent> .b :<C-u>call QFcmd('getbuffer')\|norm gv<CR>
@@ -333,9 +333,9 @@ vnoremap <expr> .<Space><Tab> g:qfloc ?
       \ ':<C-u>lgetfile  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cgetfile  \|norm gv<C-Left><C-Left><Left>'
 
-"}}}
+" }}}
 
-"{{{ *do
+" {{{ *do
 
 nnoremap <expr> .:
       \ g:qfloc ? ':<C-u>ldo<Space>'
@@ -369,9 +369,9 @@ vnoremap <expr> .;m
       \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
 
-"}}}
+" }}}
 
-"{{{ movement
+" {{{ movement
 
 noremap <silent> .j
       \ :<C-u>call QFcmd('n', v:count1)<CR>
@@ -399,9 +399,9 @@ vnoremap <silent> .>
       \ :<C-u>call QFcmd('newer '.v:count1)
       \ \| normal gv<CR>
 
-"}}}
+" }}}
 
-"{{{  actions
+" {{{  actions
 
 noremap <silent> .w 
       \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
@@ -445,9 +445,9 @@ vnoremap <expr> .e g:qfloc ?
       \ ':<C-u>lexpr  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cexpr  \|norm gv<C-Left><C-Left><Left>'
 
-"}}}
+" }}}
 
-"{{{ search
+" {{{ search
 
 " search into quickfix list
 nnoremap <expr> ./ g:qfloc ? 
@@ -478,9 +478,9 @@ noremap <expr> .;F g:qfloc ?
       \ : ':<C-u>Cfilter! ##<Left>'
 
 
-"}}}
+" }}}
 
-augroup Quickfix "{{{
+augroup Quickfix " {{{
   autocmd FileType qf 
         \noremap <buffer> <silent> q :q<CR>
         \| noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
@@ -512,9 +512,9 @@ augroup Quickfix "{{{
         \ {idx -> idx < line('.') - 1 \|\|
         \ idx > line('.') + v:count - 1}), 'r')<CR>'`"
   "TODO C undo (will be tough)
-augroup END "}}}
+augroup END " }}}
 
-"{{{ commands
+" {{{ commands
 
 let s:ls = 'ls --color=never -1 -A'
 let s:ls_rec = '-R'
@@ -538,18 +538,18 @@ exe "nnoremap <expr> .;L g:qfloc ?"
             \ ." : ':<C-u>cexpr system(\"".s:ls." ".s:ls_rec." \\| "
             \ .s:sed_cmd.' '.s:sed_exp."\")<CR>'"
 
-"}}}
+" }}}
 
-"}}}
+" }}}
 
-"{{{ matchit
+" {{{ matchit
 
 noremap <Space>{ [%
 noremap <Space>} ]%
 
-"}}}
+" }}}
 
-"{{{ completion
+" {{{ completion
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " inoremap <expr> <Esc> pumvisible() ? "<C-e>" : "<Esc>"
@@ -603,9 +603,9 @@ inoremap <C-x>u <C-x><C-u>
 inoremap <C-x>v <C-x><C-v>
 inoremap <C-x>c <C-x><C-]>
 
-"}}}
+" }}}
 
-"{{{ magic
+" {{{ magic
 
 noremap <Space>f/ /\v
 noremap <Space>f? /\V
@@ -616,9 +616,9 @@ cnoremap <C-_> \v
 cnoremap <C-@> \V
 cnoremap <C-o> \%V
 
-"}}}
+" }}}
 
-"{{{ commands
+" {{{ commands
 
 cnoremap <expr> <C-o>w "<C-r>=expand('<cword>')<CR>"
 cnoremap <expr> <C-o>c "<C-r>=expand('<cWORD>')<CR>"
@@ -630,9 +630,9 @@ cnoremap <expr> <C-o><Space>c "<cWORD>"
 cnoremap <expr> <C-o><Space>e "<cexpr>"
 cnoremap <expr> <C-o><Space>f "<cfile>"
 
-"}}}
+" }}}
 
-"{{{ TODO
+" {{{ TODO
 
 " TODO B running command under cursor
 " TODO C running command in given register (???)
@@ -643,4 +643,4 @@ cnoremap <expr> <C-o><Space>f "<cfile>"
 " map <silent> <Leader>;D 'cyydd:execute '!' . getreg('c')<CR>
 "nmap <silent> <Leader>W bvw"cy:execute "!" . getreg('c')<CR>
 
-"}}}
+" }}}

@@ -1,4 +1,4 @@
-"{{{ tmux variables
+" {{{ tmux variables
 
 let g:ret = 'Enter' "'C-m'
 let g:default_tmux_socket = 'default'
@@ -8,9 +8,9 @@ else
   let g:tmux_socket = $TMUX_SOCKET
 endif
 
-"}}}
+" }}}
 
-"{{{ tmux functions
+" {{{ tmux functions
 
 function s:Tm(cmd)
   execute 'Tmux '.a:cmd
@@ -84,9 +84,9 @@ function s:CopyPath()
   exe 'Tmux set-buffer -b vimpath '.shellescape(expand('%:p:h'))
 endfunction
 
-"}}}
+" }}}
 
-"{{{ tmux mappings
+" {{{ tmux mappings
 
 nnoremap <Leader>tt :<C-u>Tmux
 noremap <silent> <Leader>tr :<C-u>call <SID>ReplOnThird()<CR>
@@ -113,11 +113,11 @@ nnoremap <silent> <Leader>tC :<C-u>call <SID>Ccd()<CR>
 nnoremap <Leader>tL :<C-u>Tmux list-panes<CR>
 nnoremap <silent> <Leader>tq :<C-u>Tmux kill-pane -t {last} <CR>
 
-"}}}
+" }}}
 
-"{{{ vim-slime
+" {{{ vim-slime
 
-"{{{ setup
+" {{{ setup
 
 let g:slime_target = 'tmux'
 let g:slime_paste_file = tempname()
@@ -133,9 +133,9 @@ let g:slime_no_mappings = 1
 autocmd BufEnter,VimEnter *
       \ let b:slime_config = slime_default_config
 
-"}}}
+" }}}
 
-"{{{ functions
+" {{{ functions
 
 function s:GetSlimePane()
   return get(b:, 'slime_config', g:slime_default_config)['target_pane']
@@ -175,9 +175,9 @@ function s:SlimeOverride_EscapeText_sh(text)
   return l:lines
 endfunction
 
-"}}}
+" }}}
 
-"{{{ maps
+" {{{ maps
 
 nnoremap gsl <Plug>SlimeLineSend
 nnoremap gz <Plug>SlimeMotionSend
@@ -202,9 +202,9 @@ nnoremap <silent> gsB :call <SID>SendKeys("rlwrap\ " . &filetype . ' ' . g:ret)<
 
 nnoremap <silent> gsn :call <SID>SendKeys('z\ -t\ . Enter')<CR>
 
-"}}}
+" }}}
 
-"{{{ todos
+" {{{ todos
 
 " GDB
 " Maybe in the future more debuggers will land here
@@ -215,11 +215,11 @@ nnoremap <silent> gsn :call <SID>SendKeys('z\ -t\ . Enter')<CR>
 
 " map gsP :call SendKeys('b '.line('.'))
 
-"}}}
+" }}}
 
-"}}}
+" }}}
 
-"{{{ tmux complete
+" {{{ tmux complete
 
 let g:tmuxcomplete#trigger = ''
 
@@ -234,4 +234,4 @@ endfunction
 inoremap <expr> <C-x><C-m> '<C-r>=TmuxComplete()<CR>'
 imap <C-x>m <C-x><C-m>
 
-"}}}
+" }}}

@@ -1,4 +1,4 @@
-"{{{ rainbow
+" {{{ rainbow
 " TODO C clean this
 
 let g:rainbow_active = 1
@@ -58,7 +58,7 @@ let g:rainbow_conf = {
 
 " }}}
 
-"{{{ quick-scope
+" {{{ quick-scope
 
 let g:qs_hi_priority = 2
 
@@ -70,9 +70,9 @@ let g:qs_delay = 30
 " Trigger a highlight in the appropriate direction when pressing these keys:
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
-"}}}
+" }}}
 
-"{{{ signature
+" {{{ signature
 
 let g:SignatureEnabledAtStartup = 1
 
@@ -88,9 +88,9 @@ noremap <silent> <Leader>qsg
       \ :<C-u>exe 'SignatureListGlobalMarks '
       \ .v:count1<CR>
 
-"}}}
+" }}}
 
-"{{{ vim-highlighter
+" {{{ vim-highlighter
 
 " TODO C proper handling of that shit
 " let s:hft = 0
@@ -132,9 +132,9 @@ noremap <silent> ,h= :<C-u>Hi=<CR>
 noremap <silent> ,ht :<C-u>Hi==<CR>
 noremap <silent> ,hT :<C-u>Hi===<CR>
 
-"}}}
+" }}}
 
-"{{{ info
+" {{{ info
 
 noremap <Leader>imc :<C-u>Info<Space>
 noremap <Leader>imu :<C-u>exe 'Info '.expand('<cword>')<CR>
@@ -156,8 +156,8 @@ noremap <Leader>iu :<C-u>InfoUp<CR>
 
 cnoreabbrev info Info
 
-"}}}
+" }}}
 
-"{{{ other
+" {{{ other
 
-"}}}
+" }}}

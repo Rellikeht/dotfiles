@@ -1,7 +1,7 @@
-"{{{ colors
+" {{{ colors
 
 if v:progname =~? "^s\\?v\\(im\\?\\)\\?"
-  colorscheme industry
+  colorscheme torte "industry
 endif
 
 hi CursorLine ctermbg=237 guibg=#4a4a4a cterm=none gui=none
@@ -20,9 +20,9 @@ hi DiffDelete
             \ ctermbg=DarkRed guibg=#800620
             \ ctermfg=NONE guifg=NONE
 
-"}}}
+" }}}
 
-"{{{
+" {{{
 
 " Syntax for undetected files
 autocmd BufNewFile,BufRead */.xmodmap/* set syntax=xmodmap
@@ -30,4 +30,4 @@ autocmd BufNewFile,BufRead .xbindkeys* set syntax=scheme
 
 autocmd syntax * syntax match Operator /[.]/
 
-"}}}
+" }}}

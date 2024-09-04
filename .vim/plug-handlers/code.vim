@@ -1,12 +1,12 @@
-"{{{ cosco
+" {{{ cosco
 
 "nmap <silent> ; <Plug>(cosco-commaOrSemiColon)
 " map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
 " let g:cosco_ignore_comment_lines = 1
 
-"}}}
+" }}}
 
-"{{{ neoformat formatters
+" {{{ neoformat formatters
 let g:neoformat_enabled_go = ['gofmt']
 
 " ???
@@ -96,9 +96,9 @@ let g:neoformat_typst_prettypst = {
 
 let g:neoformat_enabled_typst = ["typstfmt", "prettypst"]
 
-"}}}
+" }}}
 
-"{{{ neoformat settings
+" {{{ neoformat settings
 
 " ???
 "let b:neoformat_run_all_formatters = 1
@@ -121,9 +121,9 @@ augroup END
 noremap <silent> <Leader>nf :Neoformat<CR>
 noremap <Leader>n<Space>f :Neoformat<Space>
 
-"}}}
+" }}}
 
-""{{{ context
+"" {{{ context
 "
 "" TODO B sane settings
 "" :(
@@ -136,21 +136,21 @@ noremap <Leader>n<Space>f :Neoformat<Space>
 "
 "autocmd FileType qf ContextDisableWindow
 "
-""}}}
+"" }}}
 
-"{{{ TODO B dispatch
+" {{{ TODO B dispatch
 
-"}}}
+" }}}
 
-"{{{ specialized
+" {{{ specialized
 
 " {{{ zig.vim
 
 let g:zig_fmt_autosave = 1
 
-"}}}
+" }}}
 
-"{{{ julia-vim
+" {{{ julia-vim
 
 let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
@@ -158,18 +158,18 @@ let g:latex_to_unicode_file_types = '.*'
 
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 
-"}}}
+" }}}
 
-"{{{ direnv.vim
+" {{{ direnv.vim
 " TODO C this plugin is too shallow, it needs to be done better way
 
 nnoremap <silent> <Leader>qde :EditEnvrc<CR>
 nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>
 nnoremap <silent> <Leader>qdl :DirenvExport<CR>
 
-"}}}
+" }}}
 
-"{{{ haskell-vim
+" {{{ haskell-vim
 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -183,7 +183,7 @@ let g:haskell_disable_HT = 0              " disable template haskell
 let g:haskell_classic_highlighting = 0
 let g:haskell_indent_disable = 0
 
-"}}}
+" }}}
 
 " {{{ Pluto.jl :)
 
@@ -227,20 +227,26 @@ nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 
 " }}}
 
-"{{{ TODO D emmet
-"}}}
+" {{{ TODO D emmet
+" }}}
 
-"{{{ TODO D ansible-vim
+" {{{ TODO D ansible-vim
 
-"}}}
+" }}}
 
-"}}}
+" }}}
 
-"{{{ gutentags
+" {{{ autopairs
+
+" }}}
+
+" {{{ gutentags
 " https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
 
+" {{{ settings
+
 " TODO C more ?
-let g:guetntags_project_root = [
+let g:gutentags_project_root = [
       \ ".git",
       \ ".hg",
       \ ".project",
@@ -254,28 +260,34 @@ let g:guetntags_project_root = [
       \ "dune-project",
       \ "cabal.project",
       \ "stack.yaml",
+      \ "__init__.py",
+      \ "package.json",
       \ ]
+
+let g:gutentags_add_default_project_roots = 0
 
 autocmd DirChanged global call gutentags#rescan()
 let g:gutentags_exclude_project_root = [
-      \ expand('~/gits/configs/dotfiles'),
       \ ]
+      " \ expand('~/gits/configs/dotfiles'),
 
 let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 command! -nargs=0 GutentagsClearCache
       \ call system('rm ' . g:gutentags_cache_dir . '/*')
 
 " What is the best ?
-" It probably needs separate script
-" let g:gutentags_file_list_command = {
-"       \ 'markers': {
-"       \ '.git': 'bash -c "git ls-files; git ls-files --others --exclude-standard"',
-"       \ },
-"       \ }
+" It needs separate script
+let g:gutentags_file_list_command = {
+      \ 'markers': {
+      \ '.git': 'git ls-files',
+      \ '.hg': 'hg files',
+      \ },
+      \ }
 " let g:gutentags_file_list_command = 'rg --files'
-let g:gutentags_file_list_command = 'ag --hidden --files-with-matches'
-let g:gutentags_define_advanced_commands = 1
+" let g:gutentags_file_list_command = 'ag --hidden --files-with-matches . .'
 
+let g:gutentags_define_advanced_commands = 1
+let g:gutentags_modules = ['ctags']
 let g:gutentags_ctags_extra_args = [
       \ '--tag-relative=yes',
       \ '--fields=+ailmnS',
@@ -284,9 +296,11 @@ let g:gutentags_ctags_extra_args = [
 let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_generate_on_empty_buffer = 1
 
-"{{{ g:gutentags_ctags_exclude
+" }}}
+
+" {{{ g:gutentags_ctags_exclude
 
 " TODO B something has to be missing
 let g:gutentags_ctags_exclude = [
@@ -301,7 +315,7 @@ let g:gutentags_ctags_exclude = [
       \ 'docs', 'example',
       \ 'bundle', 'vendor',
       \ '*.md', '*.txt', '*.rst', '*.asciidoc',
-      \ '*-lock.json',
+      \ '*-lock.json', '*.lock',
       \ '*bundle*.js',
       \ '*build*.js',
       \ '*.json', '*.yaml', '*.toml', '*.ini',
@@ -330,9 +344,10 @@ let g:gutentags_ctags_exclude = [
       \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
       \ ]
-      " \ '*.lock',
 
-"}}}
+" }}}
+
+" {{{ maps
 
 nnoremap <Space>tqg :<C-u>GutentagsToggleEnabled<CR>
 vnoremap <Space>tqg :<C-u>GutentagsToggleEnabled\|norm gv<CR>
@@ -341,4 +356,6 @@ vnoremap <Space>tqt :<C-u>GutentagsToggleTrace\|norm gv<CR>
 nnoremap <Space>tqc :<C-u>GutentagsClearCache<CR>
 vnoremap <Space>tqc :<C-u>GutentagsClearCache\|norm gv<CR>
 
-"}}}
+" }}}
+
+" }}}

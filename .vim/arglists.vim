@@ -1,6 +1,6 @@
-"{{{ operations
+" {{{ operations
 
-"{{{ helpers
+" {{{ helpers
 
 function Fpath(file)
   if FileOrDir(a:file) 
@@ -28,9 +28,9 @@ function s:ListNumFromRepr(repr)
   return num
 endfunction
 
-"}}}
+" }}}
 
-"{{{ create
+" {{{ create
 
 function s:MakeArglist(alist, index = 0)
   return [a:index] + s:ArglistFiles(a:alist)
@@ -43,9 +43,9 @@ function s:NewArglist(files, index = 0)
   return s:MakeArglist(a:files, a:index)
 endfunction
 
-"}}}
+" }}}
 
-"{{{ modify state
+" {{{ modify state
 
 function s:ApplyArglist(list)
   let idx = a:list[0]
@@ -91,9 +91,9 @@ function s:SelectArglist(repr)
   call s:ApplyArglist(w:arglists[w:cur_arglist])
 endfunction
 
-"}}}
+" }}}
 
-"{{{ add
+" {{{ add
 
 function s:AddList(list)
   let w:arglists = add(w:arglists, a:list)
@@ -113,9 +113,9 @@ function s:AddArgs(...)
   call s:ApplyArglist(w:arglists[w:cur_arglist])
 endfunction
 
-"}}}
+" }}}
 
-"{{{ completion
+" {{{ completion
 
 function s:ArglistComp(list, idx)
   if len(a:list) <= 1
@@ -144,9 +144,9 @@ function s:CompleteArglist(lead, cmdline, curpos)
   return arglists
 endfunction
 
-"}}}
+" }}}
 
-"{{{ info
+" {{{ info
 
 function s:ArglistShort(list)
   if len(a:list) <= 1
@@ -195,9 +195,9 @@ function s:ArglistInfo()
   return lst[:len(lst)-2]
 endfunction
 
-"}}}
+" }}}
 
-"{{{ delete
+" {{{ delete
 
 function s:DeleteArglist(index)
   call remove(w:arglists, a:index)
@@ -234,18 +234,18 @@ endfunction
 
 " }}}
 
-"}}}
+" }}}
 
-"{{{ setup
+" {{{ setup
 
 autocmd WinNew,VimEnter *
       \ let w:arglists = []
       \ | call <SID>AddArglist(argv(), argidx())
       \ | let w:cur_arglist = 0
 
-"}}}
+" }}}
 
-"{{{ commands
+" {{{ commands
 
 command -nargs=0 ListArglists echo <SID>ListArglists()
 command -nargs=0 ArglistInfo echo <SID>ArglistInfo()
@@ -264,9 +264,9 @@ command -nargs=1 -complete=customlist,<SID>CompleteArglist
 " TODO D will be painfully tough
 " command ArglistsDo
 
-"}}}
+" }}}
 
-"{{{ maps
+" {{{ maps
 
 map <Leader><Space>o :<C-u>OpenArglist<Space>
 map <Leader><Space>e :<C-u>SelectArglist<Space>
@@ -298,4 +298,4 @@ noremap <silent> <Space>D :<C-u>if argc() == 1
 
 " map <Leader><Space>: :<C-u>ArglistsDo<Space>
 
-"}}}
+" }}}
