@@ -217,6 +217,17 @@ vcd() {
     cd "$dst"
 }
 
+bigh() {
+    local FILE
+    FILE="$1"
+    shift
+    high "$FILE" | bat $@
+}
+
+aigh() {
+    high $@ | bat
+}
+
 # }}}
 
 # {{{ fzf
@@ -264,6 +275,7 @@ fzh() {
 # }}}
 
 # {{{ multimedia
+
 mps() {
     local START="$1"
     shift
@@ -305,9 +317,11 @@ ytda() {
     fi
     yts -f "ba[language=$LANG]+bv[height>=$1]/best[height>=$1]$FORM" $@
 }
+
 # }}}
 
 # {{{ random stuff
+
 maxe() {
     if [ -n "$2" ]; then
         cmds="$2"
@@ -337,4 +351,5 @@ ariad() {
 
     aria -D -d "$(pwd)" "$FILE" $@
 }
+
 # }}}

@@ -87,18 +87,21 @@ alias gf='fgrep'
 alias gg='git grep'
 alias wdiff='git diff --word-diff'
 alias wdiffr='git diff --word-diff-regex'
+alias batdif='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
 alias vdf='vimdiff'
 
 alias zl='z -l | sort -nr'
 alias zr='z -l'
 alias ze='z -e'
 alias zp='z -c'
+alias zt='z -t'
 
 alias bat='LESS="$BAT_LESS_FLAGS" bat --color always'
 alias batl='bat --language lisp'
 alias less='less --ignore-case' # --raw-control-chars
 alias les='less --quit-if-one-screen --raw-control-chars'
 alias batp='bat $(!!)'
+alias high='highlight -O truecolor -s easter'
 
 alias dash='dash -E'
 

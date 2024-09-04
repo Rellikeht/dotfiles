@@ -1,6 +1,6 @@
 "{{{ tmux variables
 
-let g:ret = 'C-m'
+let g:ret = 'Enter' "'C-m'
 let g:default_tmux_socket = 'default'
 if $TMUX_SOCKET == ""
   let g:tmux_socket = g:default_tmux_socket
@@ -198,7 +198,9 @@ nnoremap <silent> gs<cr> :call <SID>SendKeys("Enter")<CR>
 
 " Launching program for currently edited langugage
 nnoremap <silent> gsb :call <SID>SendKeys(<SID>ProgNameSlime())<CR>
-nnoremap <silent> gsB :call <SID>SendKeys("rlwrap " . &filetype . ' ' . g:ret)<CR>
+nnoremap <silent> gsB :call <SID>SendKeys("rlwrap\ " . &filetype . ' ' . g:ret)<CR>
+
+nnoremap <silent> gsn :call <SID>SendKeys('z\ -t\ . Enter')<CR>
 
 "}}}
 
