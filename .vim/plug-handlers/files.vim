@@ -139,6 +139,27 @@ noremap <expr> <Space>/E g:qfloc ?
       \ ':<C-u>Lfind! . -type f -name "*<cexpr>*"<CR>'
       \ : ':<C-u>Cfind! . -type f -name "*<cexpr>*"<CR>'
 
+noremap <expr> <Space>/y g:qfloc ?
+      \ ':<C-u>Lfind . -type f -name "*'.getreg('"').'*"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "*'.getreg('"').'*"<CR>'
+noremap <expr> <Space>/Y g:qfloc ?
+      \ ':<C-u>Lfind! . -type f -name "*'.getreg('"').'*"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "*'.getreg('"').'*"<CR>'
+
+noremap <expr> <Space>/g g:qfloc ?
+      \ ':<C-u>Lfind . -type f -name "*'.getreg('*').'*"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "*'.getreg('*').'*"<CR>'
+noremap <expr> <Space>/G g:qfloc ?
+      \ ':<C-u>Lfind! . -type f -name "*'.getreg('*').'*"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "*'.getreg('*').'*"<CR>'
+
+noremap <expr> <Space>/p g:qfloc ?
+      \ ':<C-u>Lfind . -type f -name "*'.getreg('+').'*"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "*'.getreg('+').'*"<CR>'
+noremap <expr> <Space>/P g:qfloc ?
+      \ ':<C-u>Lfind! . -type f -name "*'.getreg('+').'*"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "*'.getreg('+').'*"<CR>'
+
 " }}}
 
 " {{{ find with cursor (no stars)
@@ -181,6 +202,27 @@ noremap <expr> <Space>?e g:qfloc ?
 noremap <expr> <Space>?E g:qfloc ?
       \ ':<C-u>Lfind! . -type f -name "<cexpr>"<CR>'
       \ : ':<C-u>Cfind! . -type f -name "<cexpr>"<CR>'
+
+noremap <expr> <Space>?y g:qfloc ?
+      \ ':<C-u>Lfind . -type f -name "'.getreg('"').'"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "'.getreg('"').'"<CR>'
+noremap <expr> <Space>?Y g:qfloc ?
+      \ ':<C-u>Lfind! . -type f -name "'.getreg('"').'"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "'.getreg('"').'"<CR>'
+
+noremap <expr> <Space>?g g:qfloc ?
+      \ ':<C-u>Lfind . -type f -name "'.getreg('*').'"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "'.getreg('*').'"<CR>'
+noremap <expr> <Space>?G g:qfloc ?
+      \ ':<C-u>Lfind! . -type f -name "'.getreg('*').'"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "'.getreg('*').'"<CR>'
+
+noremap <expr> <Space>?p g:qfloc ?
+      \ ':<C-u>Lfind . -type f -name "'.getreg('+').'"<CR>'
+      \ : ':<C-u>Cfind . -type f -name "'.getreg('+').'"<CR>'
+noremap <expr> <Space>?P g:qfloc ?
+      \ ':<C-u>Lfind! . -type f -name "'.getreg('+').'"<CR>'
+      \ : ':<C-u>Cfind! . -type f -name "'.getreg('+').'"<CR>'
 
 " }}}
 
@@ -231,6 +273,27 @@ noremap <expr> <Space>be g:qfloc ?
 noremap <expr> <Space>bE g:qfloc ?
       \ ':<C-u>Llocate! <cexpr><CR>'
       \ : ':<C-u>Cllocate! <cexpr><CR>'
+
+noremap <expr> <Space>by g:qfloc ?
+      \ ':<C-u>Llocate '.getreg('"').'<CR>'
+      \ : ':<C-u>Cllocate '.getreg('"').'<CR>'
+noremap <expr> <Space>bY g:qfloc ?
+      \ ':<C-u>Llocate! '.getreg('"').'<CR>'
+      \ : ':<C-u>Cllocate! '.getreg('"').'<CR>'
+
+noremap <expr> <Space>bg g:qfloc ?
+      \ ':<C-u>Llocate '.getreg('*').'<CR>'
+      \ : ':<C-u>Cllocate '.getreg('*').'<CR>'
+noremap <expr> <Space>bG g:qfloc ?
+      \ ':<C-u>Llocate! '.getreg('*').'<CR>'
+      \ : ':<C-u>Cllocate! '.getreg('*').'<CR>'
+
+noremap <expr> <Space>bp g:qfloc ?
+      \ ':<C-u>Llocate '.getreg('+').'<CR>'
+      \ : ':<C-u>Cllocate '.getreg('+').'<CR>'
+noremap <expr> <Space>bP g:qfloc ?
+      \ ':<C-u>Llocate! '.getreg('+').'<CR>'
+      \ : ':<C-u>Cllocate! '.getreg('+').'<CR>'
 
 " }}}
 

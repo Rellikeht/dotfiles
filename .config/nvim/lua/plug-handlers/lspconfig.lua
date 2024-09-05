@@ -269,7 +269,7 @@ local servers = { -- {{{
   -- probably not ready yet
   -- "tinymist",
   "scheme_langserver",
-  "tsserver",
+  "ts_ls",
 } -- }}}
 
 -- {{{

@@ -87,6 +87,8 @@ noremap <Space><Space>f <Nop>
 noremap <Space>b <Nop>
 noremap <Space>/ <Nop>
 noremap <Space>? <Nop>
+noremap <Space>v <Nop>
+noremap <Space>s <Nop>
 
 " }}}
 
@@ -136,27 +138,6 @@ noremap <Leader>xo
       \ system('dragon --on-top --target --and-exit '.
       \ '2>/dev/null')<CR>
       \ :redraw<CR>
-
-" }}}
-
-" {{{ find
-
-" nnoremap <Space><Space>fu :<C-u>find <cfile><CR>
-" nnoremap <Space><Space>fw :<C-u>find <cword><CR>
-" nnoremap <Space><Space>fm :<C-u>find <cWORD><CR>
-" nnoremap <Space><Space>fe :<C-u>find <cexpr><CR>
-
-" " nnoremap <Space><Space>f<Space> :<C-u>find<Space>
-" nnoremap <Space><Space>fs :<C-u>exe 'find '.
-"       \ GetVisualEsc()<CR>
-" nnoremap <Space><Space>f;s :<C-u>exe 'find '.
-"       \ GetVisualEsc()
-
-" vnoremap <Space><Space><Space>f :<C-u>find<Space>
-" vnoremap <Space><Space>f :<C-u>exe 'find '.
-"       \ GetVisualEsc()<CR>
-" vnoremap <Space><Space>;f :<C-u>exe 'find '.
-"       \ GetVisualEsc()
 
 " }}}
 
@@ -239,13 +220,37 @@ let s:vgcmaps = [
       \ ['er', "/'.Expand('<cexpr>').'/gj", ' ** <CR>', 'n'],
       \ ['eR', "/'.Expand('<cexpr>').'/gj", ' .*/** ** <CR>', 'n'],
       \ ] + [
-      \ ['pc', "/'.Vescape(@\").'/gj", ' ', 'n'],
-      \ ['pf', "/'.Vescape(@\").'/gj", ' % <CR>', 'n'],
-      \ ['pa', "/'.Vescape(@\").'/gj", ' ## <CR>', 'n'],
-      \ ['pl', "/'.Vescape(@\").'/gj", ' * <CR>', 'n'],
-      \ ['ph', "/'.Vescape(@\").'/gj", ' .* * <CR>', 'n'],
-      \ ['pr', "/'.Vescape(@\").'/gj", ' ** <CR>', 'n'],
-      \ ['pR', "/'.Vescape(@\").'/gj", ' .*/** ** <CR>', 'n'],
+      \ ['fc', "/'.Expand('<cfile>').'/gj", ' ', 'n'],
+      \ ['ff', "/'.Expand('<cfile>').'/gj", ' % <CR>', 'n'],
+      \ ['fa', "/'.Expand('<cfile>').'/gj", ' ## <CR>', 'n'],
+      \ ['fl', "/'.Expand('<cfile>').'/gj", ' * <CR>', 'n'],
+      \ ['fh', "/'.Expand('<cfile>').'/gj", ' .* * <CR>', 'n'],
+      \ ['fr', "/'.Expand('<cfile>').'/gj", ' ** <CR>', 'n'],
+      \ ['fR', "/'.Expand('<cfile>').'/gj", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['yc', "/'.Vescape(@\").'/gj", ' ', 'n'],
+      \ ['yf', "/'.Vescape(@\").'/gj", ' % <CR>', 'n'],
+      \ ['ya', "/'.Vescape(@\").'/gj", ' ## <CR>', 'n'],
+      \ ['yl', "/'.Vescape(@\").'/gj", ' * <CR>', 'n'],
+      \ ['yh', "/'.Vescape(@\").'/gj", ' .* * <CR>', 'n'],
+      \ ['yr', "/'.Vescape(@\").'/gj", ' ** <CR>', 'n'],
+      \ ['yR', "/'.Vescape(@\").'/gj", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['gc', "/'.Vescape(@*).'/gj", ' ', 'n'],
+      \ ['gf', "/'.Vescape(@*).'/gj", ' % <CR>', 'n'],
+      \ ['ga', "/'.Vescape(@*).'/gj", ' ## <CR>', 'n'],
+      \ ['gl', "/'.Vescape(@*).'/gj", ' * <CR>', 'n'],
+      \ ['gh', "/'.Vescape(@*).'/gj", ' .* * <CR>', 'n'],
+      \ ['gr', "/'.Vescape(@*).'/gj", ' ** <CR>', 'n'],
+      \ ['gR', "/'.Vescape(@*).'/gj", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['pc', "/'.Vescape(@+).'/gj", ' ', 'n'],
+      \ ['pf', "/'.Vescape(@+).'/gj", ' % <CR>', 'n'],
+      \ ['pa', "/'.Vescape(@+).'/gj", ' ## <CR>', 'n'],
+      \ ['pl', "/'.Vescape(@+).'/gj", ' * <CR>', 'n'],
+      \ ['ph', "/'.Vescape(@+).'/gj", ' .* * <CR>', 'n'],
+      \ ['pr', "/'.Vescape(@+).'/gj", ' ** <CR>', 'n'],
+      \ ['pR', "/'.Vescape(@+).'/gj", ' .*/** ** <CR>', 'n'],
       \ ] + [
       \ ['sc', "/'.Vescape(GetVisualSelection()).'/gj", ' '],
       \ ['sf', "/'.Vescape(GetVisualSelection()).'/gj", ' %<CR>'],
@@ -490,13 +495,29 @@ let s:gcmaps = [
       \ ['er', "'.Expand('<cexpr>').'", ' ** <CR>', 'n'],
       \ ['eR', "'.Expand('<cexpr>').'", ' .*/** ** <CR>', 'n'],
       \ ] + [
-      \ ['pc', "'.Vescape(@\").'", ' ', 'n'],
-      \ ['pf', "'.Vescape(@\").'", " '.shellescape(expand('%')).' <CR>", 'n'],
-      \ ['pa', "'.Vescape(@\").'", ' ## <CR>', 'n'],
-      \ ['pl', "'.Vescape(@\").'", ' * <CR>', 'n'],
-      \ ['ph', "'.Vescape(@\").'", ' .* * <CR>', 'n'],
-      \ ['pr', "'.Vescape(@\").'", ' ** <CR>', 'n'],
-      \ ['pR', "'.Vescape(@\").'", ' .*/** ** <CR>', 'n'],
+      \ ['yc', "'.Vescape(@\").'", ' ', 'n'],
+      \ ['yf', "'.Vescape(@\").'", " '.shellescape(expand('%')).' <CR>", 'n'],
+      \ ['ya', "'.Vescape(@\").'", ' ## <CR>', 'n'],
+      \ ['yl', "'.Vescape(@\").'", ' * <CR>', 'n'],
+      \ ['yh', "'.Vescape(@\").'", ' .* * <CR>', 'n'],
+      \ ['yr', "'.Vescape(@\").'", ' ** <CR>', 'n'],
+      \ ['yR', "'.Vescape(@\").'", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['gc', "'.Vescape(@*).'", ' ', 'n'],
+      \ ['gf', "'.Vescape(@*).'", " '.shellescape(expand('%')).' <CR>", 'n'],
+      \ ['ga', "'.Vescape(@*).'", ' ## <CR>', 'n'],
+      \ ['gl', "'.Vescape(@*).'", ' * <CR>', 'n'],
+      \ ['gh', "'.Vescape(@*).'", ' .* * <CR>', 'n'],
+      \ ['gr', "'.Vescape(@*).'", ' ** <CR>', 'n'],
+      \ ['gR', "'.Vescape(@*).'", ' .*/** ** <CR>', 'n'],
+      \ ] + [
+      \ ['pc', "'.Vescape(@+).'", ' ', 'n'],
+      \ ['pf', "'.Vescape(@+).'", " '.shellescape(expand('%')).' <CR>", 'n'],
+      \ ['pa', "'.Vescape(@+).'", ' ## <CR>', 'n'],
+      \ ['pl', "'.Vescape(@+).'", ' * <CR>', 'n'],
+      \ ['ph', "'.Vescape(@+).'", ' .* * <CR>', 'n'],
+      \ ['pr', "'.Vescape(@+).'", ' ** <CR>', 'n'],
+      \ ['pR', "'.Vescape(@+).'", ' .*/** ** <CR>', 'n'],
       \ ] + [
       \ ['sc', "'.Vescape(GetVisualSelection()).'", ' '],
       \ ['sf', "'.Vescape(GetVisualSelection()).'", " '.shellescape(expand('%')).'<CR>"],

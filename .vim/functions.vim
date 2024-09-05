@@ -134,11 +134,11 @@ command! We write | exe 'sleep '.g:sleeptime | edit
 
 " {{{ expand (for C-r and commands)
 
-function Ew()
+function Eu()
   return expand('<cword>')
 endfunction
 
-function EW()
+function Ew()
   return expand('<cWORD>')
 endfunction
 
@@ -148,6 +148,18 @@ endfunction
 
 function Ef()
   return expand('<cfile>')
+endfunction
+
+function Ey()
+  return getreg('"')
+endfunction
+
+function Eg()
+  return getreg('*')
+endfunction
+
+function Ep()
+  return getreg('+')
 endfunction
 
 " }}}

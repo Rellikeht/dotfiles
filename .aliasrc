@@ -649,6 +649,7 @@ fi
 # }}}
 
 # {{{ ~shitx~ nix
+
 alias ncg='nix-collect-garbage -d'
 alias nsh='nix shell'
 alias ndv='nix develop'
@@ -658,6 +659,7 @@ alias nst='nix store'
 alias npf='nix profile'
 alias nfl='nix flake'
 alias nre='nix repl'
+alias nso='nix store optimise'
 
 alias nfu='nix flake update'
 alias nfa='nix flake archive'
@@ -675,6 +677,8 @@ alias nish='nix-shell'
 alias nist='nix-store'
 alias nibu='nix-build'
 alias nich='nix-channel'
+alias niso='nix-store --optimise'
+
 # }}}
 
 # {{{ direnv
