@@ -45,17 +45,14 @@ function s:Setup3Panes()
   execute 'cd' path
 endfunction
 
-" This shit doesn't work
-function s:CdPanesDangerous(clear)
+function s:CdPanes()
   let path = Expand('%:p:h')
-  execute 'Tmux send-keys Escape :'
-  execute 'Tmux setw synchronize-panes on'
-  execute 'Tmux send-keys \"cd '.shellescape(path).'\"'
-  execute 'Tmux setw synchronize-panes off'
-  execute 'Tmux send-keys Escape :'
-  execute 'Tmux setw synchronize-panes on'
-  execute 'Tmux send-keys Enter C-l'
-  execute 'Tmux setw synchronize-panes off'
+  " And this all is simply because this shit can't simply send keys
+  " and has to open command line window and fuck codes
+  " FUCK
+  execute 'Tmux send-keys Escape Q'
+  execute '!tmux-cdall '.shellescape(path)
+  execute 'Tmux send-keys Enter visual Enter'
 endfunction
 
 function s:NewWindow(home)
@@ -100,8 +97,7 @@ nnoremap <silent> <Leader>t3 :<C-u>call <SID>Setup3Panes()<CR>
 vnoremap <silent> <Leader>t3 :<C-u>call <SID>Setup3Panes()\|norm gv<CR>
 nnoremap <silent> <Leader>tc :<C-u>call <SID>CopyPath()<CR>
 vnoremap <silent> <Leader>tc :<C-u>call <SID>CopyPath()\|norm gv<CR>
-" nnoremap <silent> <Leader>td :<C-u>call <SID>CdPanesDangerous(1)<CR>
-" nnoremap <silent> <Leader>tD :<C-u>call <SID>CdPanesDangerous(0)<CR>
+nnoremap <silent> <Leader>td :<C-u>call <SID>CdPanes()<CR>
 
 nnoremap <silent> <Leader>tp :<C-u>Tmux select-pane -m -t {last} <CR>
 nnoremap <silent> <Leader>tP :<C-u>Tmux select-pane -m<CR>

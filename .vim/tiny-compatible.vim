@@ -226,8 +226,8 @@ nnoremap <Space><Space>l :<C-u>buffers<CR>
 vnoremap <Space><Space>l :<C-u>buffers\|norm gv<CR>
 nnoremap <Space><Space>L :<C-u>buffers!<CR>
 vnoremap <Space><Space>L :<C-u>buffers!\|norm gv<CR>
-noremap <Space><Space>;l :<C-u>filter  buffers<C-Left><C-b>
-noremap <Space><Space>;L :<C-u>filter  buffers!<C-Left><C-b>
+noremap <Space><Space>;l :<C-u>filter  buffers<C-Left><Left>
+noremap <Space><Space>;L :<C-u>filter  buffers!<C-Left><Left>
 
 noremap <silent> <Space><Space>n :<C-u>bnext<CR>
 noremap <silent> <Space><Space>p :<C-u>bprevious<CR>
@@ -279,7 +279,7 @@ vnoremap <Space><Space>;: :<C-u>bufdo!  \|norm gv<C-Left><C-Left><Left>
 
 nnoremap <Space>l :<C-u>args<CR>
 vnoremap <Space>l :<C-u>args\|norm gv<CR>
-noremap <Space>;l :<C-u>filter  args<C-Left><C-b>
+noremap <Space>;l :<C-u>filter  args<C-Left><Left>
 
 noremap <Space>e :<C-u>Argument<Space>
 noremap <Space>E :<C-u>Argument!<Space>
@@ -433,18 +433,25 @@ noremap <Space>i<Space>o
 noremap <Space>i<Space>m
       \:<C-u>filter  marks<C-Left><Left>
 
-nnoremap <Space>ik :<C-u>map<Space>
-vnoremap <Space>ik :<C-u>map  \|norm gv
+nnoremap <Space>ikk :<C-u>map<Space>
+vnoremap <Space>ikk :<C-u>map  \|norm gv
       \<C-Left><C-Left><Left>
-nnoremap <Space>in :<C-u>nmap<Space>
-vnoremap <Space>in :<C-u>nmap  \|norm gv
+nnoremap <Space>ikn :<C-u>nmap<Space>
+vnoremap <Space>ikn :<C-u>nmap  \|norm gv
       \<C-Left><C-Left><Left>
-nnoremap <Space>iv :<C-u>vmap<Space>
-vnoremap <Space>iv :<C-u>vmap  \|norm gv
+nnoremap <Space>ikv :<C-u>vmap<Space>
+vnoremap <Space>ikv :<C-u>vmap  \|norm gv
       \<C-Left><C-Left><Left>
-nnoremap <Space>ii :<C-u>imap<Space>
-vnoremap <Space>ii :<C-u>imap  \|norm gv
+nnoremap <Space>iki :<C-u>imap<Space>
+vnoremap <Space>iki :<C-u>imap  \|norm gv
       \<C-Left><C-Left><Left>
+nnoremap <Space>ikc :<C-u>cmap<Space>
+vnoremap <Space>ikc :<C-u>cmap  \|norm gv
+      \<C-Left><C-Left><Left>
+
+nnoremap <space>i<space>n :g//#<Left><Left>
+vnoremap <space>i<space>n :g//#\|norm gv
+      \ <Home><Right><Right>
 
 noremap <Space>ih :<C-u>help<Space>
 " noremap <C-w><Space>ih :<C-u>tab help<Space>

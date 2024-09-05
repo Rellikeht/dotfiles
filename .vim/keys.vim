@@ -232,6 +232,16 @@ noremap <expr> <Space>is g:qfloc ?
       \':<C-u>lhelpgrep<Space>'
       \ : ':<C-u>helpgrep<Space>'
 
+nnoremap <space>inu :<C-u>exe 'g/'.expand('<cword>').'/#'<CR>
+nnoremap <space>inw :<C-u>exe 'g/'.expand('<cWORD>').'/#'<CR>
+nnoremap <space>inf :<C-u>exe 'g/'.expand('<cfile>').'/#'<CR>
+nnoremap <space>ine :<C-u>exe 'g/'.expand('<cexpr>').'/#'<CR>
+nnoremap <space>iny :<C-u>exe 'g/'.getreg('"').'/#'<CR>
+nnoremap <space>ing :<C-u>exe 'g/'.getreg('*').'/#'<CR>
+nnoremap <space>inp :<C-u>exe 'g/'.getreg('+').'/#'<CR>
+nnoremap <space>ins :<C-u>exe 'g/'.GetVisualSelection().'/#'<CR>
+vnoremap <space>in :<C-u>exe 'g/'.GetVisualSelection().'/#'<CR>
+
 " }}}
 
 " {{{ leader stuff
@@ -620,15 +630,22 @@ cnoremap <C-o> \%V
 
 " {{{ commands
 
-cnoremap <expr> <C-o>w "<C-r>=expand('<cword>')<CR>"
-cnoremap <expr> <C-o>c "<C-r>=expand('<cWORD>')<CR>"
+cnoremap <expr> <C-o>c "<C-r>="
+cnoremap <expr> <C-o>u "<C-r>=expand('<cword>')<CR>"
+cnoremap <expr> <C-o>w "<C-r>=expand('<cWORD>')<CR>"
 cnoremap <expr> <C-o>e "<C-r>=expand('<cexpr>')<CR>"
 cnoremap <expr> <C-o>f "<C-r>=expand('<cfile>')<CR>"
+cnoremap <expr> <C-o>y "<C-r>=getreg('\"')<CR>"
+cnoremap <expr> <C-o>g "<C-r>=getreg('*')<CR>"
+cnoremap <expr> <C-o>p "<C-r>=getreg('+')<CR>"
 
 cnoremap <expr> <C-o><Space>w "<cword>"
 cnoremap <expr> <C-o><Space>c "<cWORD>"
 cnoremap <expr> <C-o><Space>e "<cexpr>"
 cnoremap <expr> <C-o><Space>f "<cfile>"
+cnoremap <expr> <C-o><Space>y "@\"<CR>"
+cnoremap <expr> <C-o><Space>g "@*<CR>"
+cnoremap <expr> <C-o><Space>p "@+<CR>"
 
 " }}}
 

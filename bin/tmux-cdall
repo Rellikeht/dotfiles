@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+DIR="$(pwd)"
+[ -d "$1" ] && DIR="$1"
+DIR="$(readlink -f $DIR)"
+
+tmux setw synchronize-panes
+tmux send-keys "cd \"$DIR\""
+tmux send-keys Enter C-l
+tmux setw synchronize-panes off
