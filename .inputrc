@@ -16,8 +16,6 @@ TAB:menu-complete
 # shift tab
 "\e[Z":menu-complete-backward
 
-Space:magic-space
-
 # }}}
 
 # {{{ colored completion

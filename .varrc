@@ -139,7 +139,7 @@ $FZF_BINDS
 "
 
 export FZF_CTRL_T_OPTS="
---walker-skip .git,target
+--walker-skip .git,.hg,target
 "
 
 export FZF_CTRL_R_OPTS="

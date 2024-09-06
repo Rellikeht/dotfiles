@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
 if [ -d "$1" ]; then
-    ls -lA --color=always "$1"
-    exit 0
+    exec ls -lA --color=always "$1"
+elif file "$1" | grep text >/dev/null 2>/dev/null; then
+    exec bat --style=numbers --color=always --line-range :300 "$1"
+else
+    exec mediainfo "$1"
 fi
-bat --style=numbers --color=always --line-range :300 "$1"

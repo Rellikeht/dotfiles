@@ -118,7 +118,11 @@ config.set(
     | {  # {{{
         "yt": "https://youtube.com/results?search_query={}",
         "lb": "https://odysee.com/$/search?q={}",
-    },  # }}}
+    }  # }}}
+    | {  #  {{{
+        "ss": "https://searchmysite.net/search?q={}",
+        "cl": "https://curlie.org/search?q={}",
+    },  #  }}}
 )
 
 # ============================================================

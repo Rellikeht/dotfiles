@@ -123,6 +123,7 @@ bind '"" history-search-forward'
 
 # may be better, but is acceptable
 bind '"\ei":"**	"'
+bind 'Space:magic-space'
 
 # }}}
 

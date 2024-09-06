@@ -1,15 +1,23 @@
 #!/bin/sh
 
-bat /dev/null >/dev/null 2>/dev/null && alias cat=bat
-alias ls='TERM=st-256color ls --color=always'
+# bat /dev/null >/dev/null 2>/dev/null && alias cat=bat
+
+if [ -z "$1" ]; then
+    ls --color=always -lA
+    exit 0
+fi
 
 for i in $@; do
-    if [ -d "$i" ]; then
-        dirs="$dirs $i"
-    else
-        files="$files $i"
-    fi
+    fzf_preview "$1"
 done
 
-if [ -n "$dirs" ]; then ls $dirs; fi
-if [ -n "$files" ]; then cat $files; fi
+# for i in $@; do
+#     if [ -d "$i" ]; then
+#         dirs="$dirs $i"
+#     else
+#         files="$files $i"
+#     fi
+# done
+
+# if [ -n "$dirs" ]; then ls $dirs; fi
+# if [ -n "$files" ]; then cat $files; fi

@@ -79,7 +79,6 @@ set wildignore+=.local/**
 set wildignore+=.\?cache/**
 set wildignore+=git*/**
 set wildignore+=build/**
-set wildignore+=bin/**
 
 set wildignore+=*.o,*.obj,*.swp
 set wildignore+=*.so,*.a,*.bin
