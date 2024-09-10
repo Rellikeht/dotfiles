@@ -35,11 +35,12 @@ autocmd BufWinEnter *
 autocmd TabNew *
       \ let t:make_list = get(t:, 'make_list', 1)
 
+      " \ | if expand('%') == '' || !FileOrDir(expand('%'))
 " Has to use this because of order of events
 autocmd BufEnter *
       \ if get(t:, 'make_list', 0)
       \ | let t:make_list = 0
-      \ | if expand('%') == '' || !FileOrDir(expand('%'))
+      \ | if expand('%') == '' || &buftype != '' " ???
       \ |   arglocal!
       \ |   for _ in range(argc())
       \ |     argdelete
@@ -272,9 +273,10 @@ vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 
 " {{{ grep
 
-let g:grep = 'grep -HEIn --exclude-dir=.git'.
+let g:grep = 'grep -EI --exclude-dir=.git'.
       \ ' --exclude-dir=.hg'.
       \ ' --exclude-dir=build'.
       \ ' --exclude-dir=?cache'
+let g:vimgrep = g:grep.' -Hn'
 
 " }}}

@@ -404,7 +404,7 @@ endfunction
 
 " {{{ grep settings
 
-exe 'set grepprg='.escape(copy(g:grep), ' ')
+exe 'set grepprg='.escape(copy(g:vimgrep), ' ')
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
 let g:greprec = 0
 let g:grepcase = 0

@@ -128,19 +128,21 @@ let g:fzf_colors = {
 
 " {{{ custom grep
 
-let s:ggrep_args = '-EI --line-number --color=always'
-let s:grep_args = s:ggrep_args.'--dereference-recursive'
+let s:ggrep_args = '--line-number --color=always'
+let s:ggrep = g:grep.' '.s:ggrep_args
+let s:grep = s:ggrep.' --dereference-recursive'
+let s:ggrep_args = s:ggrep_args.' -EI'
 
 command! -bang -nargs=* Fgrep
       \ call fzf#vim#grep(
-      \ "grep ".s:grep_args." -- "
+      \ s:grep." -- "
       \ .fzf#shellescape(<q-args>),
       \ fzf#vim#with_preview(),
       \ <bang>0 )
 
 command! -bang -nargs=* -complete=dir Dgrep
       \ call fzf#vim#grep(
-      \ "grep ".s:grep_args." -- "
+      \ s:grep." -- "
       \ .fzf#shellescape(s:W0(<f-args>)),
       \ extend(
       \ fzf#vim#with_preview(),
@@ -149,7 +151,7 @@ command! -bang -nargs=* -complete=dir Dgrep
 
 command! -bang -nargs=* -complete=dir Digrep
       \ call fzf#vim#grep(
-      \ "grep ".s:grep_args." -i -- "
+      \ s:grep." -i -- "
       \ .fzf#shellescape(s:W0(<f-args>)),
       \ extend(
       \ fzf#vim#with_preview(),
@@ -160,21 +162,25 @@ command! -bang -nargs=* -complete=dir Digrep
 
 " {{{ custom ag
 
+let s:ahflags = '-I .git -I .hg --hidden'
+let s:auflags = '--unrestricted'
+
 command! -bang -nargs=* Ah 
       \ call fzf#vim#ag(<q-args>,
-      \ '--hidden',
+      \ s:ahflags,
       \ fzf#vim#with_preview(),
       \ <bang>0)
 
 command! -bang -nargs=* Au 
       \ call fzf#vim#ag(<q-args>,
-      \ '--unrestricted',
+      \ s:auflags,
       \ fzf#vim#with_preview(),
       \ <bang>0)
 
 " Ag from given directory
 command! -bang -nargs=* -complete=dir Dag
       \ call fzf#vim#ag(s:W0(<f-args>),
+      \ s:ahflags,
       \ extend(
       \ s:with_dir([<f-args>]),
       \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
@@ -182,7 +188,7 @@ command! -bang -nargs=* -complete=dir Dag
 
 command! -bang -nargs=* -complete=dir Dau
       \ call fzf#vim#ag(s:W0(<f-args>),
-      \ '--unrestricted',
+      \ s:auflags,
       \ extend(
       \ s:with_dir([<f-args>]),
       \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
@@ -192,11 +198,12 @@ command! -bang -nargs=* -complete=dir Dau
 
 " {{{ custom rg
 
-let s:rgcmd = "rg --column --line-number --no-heading ".
+let s:rgcmd = "rg --column --line-number --no-heading --hidden ".
       \ "--color=always --smart-case "
 command! -bang -nargs=* -complete=dir Drg
       \ call fzf#vim#grep(
-      \ s:rgcmd.' -- '.fzf#shellescape(s:W0(<f-args>)),
+      \ s:rgcmd.' --glob="!.git" --glob="!.hg" -- '.
+      \ fzf#shellescape(s:W0(<f-args>)),
       \ extend(
       \ s:with_dir(<f-args>),
       \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
@@ -339,8 +346,8 @@ command! -bang -nargs=* GGrep
       \      {'dir': GitRoot()}
       \   ), <bang>0)
 
-" nnoremap <leader>gsf :<C-u>GFiles<CR>
-nnoremap <leader>gss :<C-u>GFiles?<CR>
+nnoremap <leader>gs/ :<C-u>GFiles<CR>
+nnoremap <leader>gs? :<C-u>GFiles?<CR>
 nnoremap <leader>gsg :GGrep<CR>
 nnoremap <leader>gs<Space>g :GGrep<Space>
 
@@ -426,8 +433,8 @@ let s:path_maps = [
       \ ['D', 'Digrep'],
       \ ['r', 'Drg'],
       \ ['R', 'Dru'],
-      \ ['g', 'GFiles'],
       \ ]
+      " \ ['g', 'GFiles'],
 
 for e in s:path_maps
   exe 'noremap <leader>s'.e[0].'<Esc> <Nop>'
@@ -435,7 +442,7 @@ endfor
 
 function s:PathMap(key, path, cr=1, exe=0)
   let l:ex1 = (a:exe ? "exe '" : '')
-  let l:ex2 = (a:exe ? " '." : '')
+  let l:ex2 = (a:exe ? " '." : ' ')
   let l:end = (a:cr ? '<CR>' : '')
   for e in s:path_maps
     exe 'noremap <leader>s'.e[0].a:key.' :<C-u>'.
