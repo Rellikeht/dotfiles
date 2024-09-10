@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+LANG=
+[ -n "$YTL" ] && LANG="[language=$YTL]"
+
+exec yts -f "ba$LANG" $@

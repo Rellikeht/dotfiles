@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+LANG=
+[ -n "$YTL" ] && LANG="[language=$YTL]"
+H=360 
+ABR=56 
+
+exec yts -f "ba[abr>=$ABR]$LANG+bv[height>=$H]/best[height>=$H][abr>=$ABR]$LANG" $@

@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec yt-dlp --format-sort +size $@
