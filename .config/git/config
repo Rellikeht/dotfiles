@@ -41,5 +41,5 @@
     tool = vimdiff
     conflictstyle = diff3
 
-[init]
-    templateDir = ~/.git_template
+; [init]
+;     templateDir = ~/.git_template

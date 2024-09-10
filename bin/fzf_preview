@@ -1,9 +1,14 @@
 #!/usr/bin/env sh
 
+WIDTH="$((COLUMNS - 9))"
+
 if [ -d "$1" ]; then
-    exec ls -lA --color=always "$1"
+    exec ls -lA --color=always "$1" | fold -s -w "$WIDTH"
 elif file "$1" | grep text >/dev/null 2>/dev/null; then
-    exec bat --style=numbers --color=always --line-range :300 "$1"
+    exec bat --style=numbers --color=always --line-range ":$((WIDTH * 2))" \
+        "$1"
 else
-    exec mediainfo "$1"
+    file "$1" | fold -s -w "$WIDTH"
+    echo
+    exec mediainfo "$1" | fold -s -w "$WIDTH"
 fi

@@ -1,5 +1,5 @@
 ---@diagnostic disable: lowercase-global
--- KEYMAPS
+-- keymaps {{{
 function mkeymap(mode, src, dest, options)
   vim.keymap.set(mode, src, dest, options)
 end
@@ -21,10 +21,6 @@ function nvkeymap(src, dest, options)
   mkeymap("v", src, dest .. "gv", options)
 end
 
-function commandRep(fn)
-  return function() for _ = 1, vim.v.count1 do fn() end end
-end
-
 -- With more typical vim mappings
 -- -- Insert 'n' lines below current line staying in normal mode (e.g. use 5<leader>o)
 -- vim.keymap.set("n", "<leader>o", function()
@@ -36,6 +32,14 @@ end
 --     return "m`" .. vim.v.count .. "O<Esc>``"
 -- end, { expr = true })
 
+--  }}}
+
+-- helpers {{{
+
+function commandRep(fn)
+  return function() for _ = 1, vim.v.count1 do fn() end end
+end
+
 function fileReadable(name)
   local f = io.open(name, "r")
   if f ~= nil then
@@ -45,3 +49,5 @@ function fileReadable(name)
     return false
   end
 end
+
+--  }}}

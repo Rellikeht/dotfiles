@@ -123,6 +123,8 @@ set statusline+=%P
 
 " {{{ some simple toggling
 
+noremap <Leader>q <Nop>
+
 nnoremap <Leader><Space><Space> :<C-u>setlocal hls!<CR>
 vnoremap <Leader><Space><Space> :<C-u>setlocal hls!\|norm gv<CR>
 nnoremap <Leader>qen :<C-u>set relativenumber!<CR>

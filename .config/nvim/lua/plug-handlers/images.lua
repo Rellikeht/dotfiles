@@ -1,4 +1,4 @@
--- require("image").setup(
+-- require("image").setup( {{{
 --   {
 --     backend = "ueberzug",
 --     integrations = {
@@ -40,4 +40,4 @@
 --       "*.avif",
 --     }, -- render image files as images when opened
 --   }
--- )
+-- ) }}}

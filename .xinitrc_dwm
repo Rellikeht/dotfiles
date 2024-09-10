@@ -1,10 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-#export TERMINAL=st
 ~/.dwm/bar.sh &
 ~/.xinitrc_common &
-xcompmgr -fcD 1 &
 
+xcompmgr -fcD 1 &
 tabbed st -w &
 ~/.starting_moves.sh &
 
