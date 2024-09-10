@@ -5,10 +5,13 @@
 
 function s:Tabarge(...)
   tabnew
+  arglocal!
   if len(a:000) > 0
-    exe 'argedit '.Jfiles(a:000)
+    exe 'args! '.Exfiles(a:000)
   else
-    arglocal!
+    for _ in range(argc())
+      argdelete
+    endfor
   endif
 endfunction
 
@@ -120,7 +123,7 @@ noremap <Tab>;o :<C-u>TabB<Space>
 noremap <Tab>;O :<C-u>-TabB<Space>
 noremap <silent> <Tab>k K<C-w>T
 
-nnoremap <Tab>gf :<C-u>tabedit <cfile><CR>
+nnoremap <Tab>gf :<C-u>Tabe <cfile><CR>
 
 noremap <silent> <Tab>n 
       \ :<C-u>call SwitchTab(v:count1)<CR>

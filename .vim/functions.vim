@@ -597,14 +597,6 @@ endfunction
 function ToggleAutochdir()
   let g:autochdir = !g:autochdir
   if g:autochdir
-    augroup AutoChdir
-      autocmd BufEnter *
-            \ if (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
-            \ | if isdirectory(expand('%:p:h'))
-            \ | exe 'lcd %:p:h'
-            \ | endif
-            \ | endif
-    augroup END
     echo 'AutoChdir enabled'
   else
     augroup! AutoChdir
@@ -633,6 +625,11 @@ autocmd BufEnter *
       \ | let g:prev_dir = expand('%:p:h')
       \ | else
       \ | call EchoRelCurFile()
+      \ | endif
+      \ | endif
+      \ | if g:autochdir && (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
+      \ | if isdirectory(expand('%:p:h'))
+      \ | exe 'lcd %:p:h'
       \ | endif
       \ | endif
 

@@ -1,5 +1,10 @@
 " {{{ helpers
 
+command! -nargs=* -complete=file -count=1 Tabe
+      \ <count>tabnew
+      \ | arglocal!
+      \ | args! <args>
+
 command! -bang -nargs=? -complete=arglist Argument 
       \ if len(<q-args>) == 0
       \ | argument
@@ -13,10 +18,10 @@ command! -nargs=+ Silent
       \ | redraw!
 
 command! -nargs=1 -complete=arglist TabA
-      \ tabedit <args>
+      \ Tabe <args>
 
 command! -nargs=1 -complete=buffer TabB
-      \ tabedit <args>
+      \ Tabe <args>
 
 " Nope
 " command! -nargs=1 -complete=arglist Vargument
@@ -85,8 +90,8 @@ vnoremap <Space>qM :<C-u>setlocal modeline!\|norm gv<CR>
 
 " {{{ tabs with <Tab>
 
-noremap <Tab>o :<C-u>tabedit<Space>
-noremap <Tab>O :<C-u>-tabedit<Space>
+noremap <Tab>o :<C-u>Tabe<Space>
+noremap <Tab>O :<C-u>-Tabe<Space>
 noremap <Tab><Space>o :<C-u>TabA<Space>
 noremap <Tab><Space>O :<C-u>-TabA<Space>
 noremap <Tab>;o :<C-u>TabA<Space>
@@ -101,15 +106,15 @@ noremap <Tab>;<Tab> :<C-u>-tab<Space>
 noremap <Tab>gp :<C-u>tabfind<Space>
 noremap <Tab>gP :<C-u>-tabfind<Space>
 
-noremap <Tab><Space>o :<C-u>tabedit  \|
+noremap <Tab><Space>o :<C-u>Tabe  \|
       \exe 'arglocal! '.fnameescape(expand('%'))
-      \<C-Left><C-Left><C-Left><C-Left><Left>
-noremap <Tab><Space>O :<C-u>-tabedit  \|
+      \<Home><C-Right><Right>
+noremap <Tab><Space>O :<C-u>-Tabe  \|
       \exe 'arglocal! '.fnameescape(expand('%'))
-      \<C-Left><C-Left><C-Left><C-Left><Left>
+      \<Home><C-Right><Right>
 
-noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
-noremap <Tab>A :<C-u>tabnew\|arglocal!<CR>
+" noremap <Tab>a :<C-u>tabnew\|arglocal!<Space>
+" noremap <Tab>A :<C-u>tabnew\|arglocal!<CR>
 
 nnoremap <Tab>l :<C-u>tabs<CR>
 vnoremap <Tab>l :<C-u>tabs\|norm gv<CR>

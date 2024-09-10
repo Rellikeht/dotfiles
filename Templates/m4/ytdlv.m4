@@ -7,4 +7,4 @@ LANG=
 H=HF()
 ABR=RF()
 
-exec yts -f "ba[abr>=$ABR]$LANG+bv[height>=$H]/best[height>=$H][abr>=$ABR]$LANG" $@
+exec yts -f "ba[abr>=$ABR]$LANG+bv[height>=$H]/best[height>=$H]$LANG" $@

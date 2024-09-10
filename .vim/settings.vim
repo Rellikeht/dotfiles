@@ -32,23 +32,7 @@ autocmd BufWinEnter *
       \ | endif
 
 " arglocal with current file for all new tabs
-autocmd TabNew *
-      \ let t:make_list = get(t:, 'make_list', 1)
-
-      " \ | if expand('%') == '' || !FileOrDir(expand('%'))
-" Has to use this because of order of events
-autocmd BufEnter *
-      \ if get(t:, 'make_list', 0)
-      \ | let t:make_list = 0
-      \ | if expand('%') == '' || &buftype != '' " ???
-      \ |   arglocal!
-      \ |   for _ in range(argc())
-      \ |     argdelete
-      \ |   endfor
-      \ | else
-      \ |   exe 'arglocal! %'
-      \ | endif
-      \ | endif
+" autocmd TabNew * arglocal!
 
 " set secure
 
@@ -266,7 +250,9 @@ set updatetime=50
 
 let g:prev_dir = expand('%:p:h')
 let g:autochdir = 0
-silent call ToggleAutochdir()
+autocmd VimEnter * 
+      \ silent call ToggleAutochdir()
+      \ | exe 'lcd %:p:h'
 
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>

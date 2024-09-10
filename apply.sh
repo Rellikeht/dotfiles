@@ -17,10 +17,10 @@ mkdir -p "$DDIR/.config"
 ln -s "$SDIR/.config/"* "$DDIR/.config" 2>/dev/null
 
 for dir in Templates bin; do
-    mkdir -p "$DDIR/$dir"
+    # mkdir -p "$DDIR/$dir"
     # ln -fs "$DDIR/$dir/"* "$DDIR/$dir"
-    ln -s "$SDIR/$dir" "$DDIR/$dir"
+    ln -s "$SDIR/$dir" "$DDIR/"
 done
 
 touch "$DDIR/.config/mpv/local.conf"
-# touch "$DDIR/.config/vifm/vifmrc-local"
+touch "$DDIR/.config/vifm/vifmrc-local"

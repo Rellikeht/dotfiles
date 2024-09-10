@@ -52,8 +52,8 @@ filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
 " Audio
 fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
-       \ mediainfo %f,
-       \ file %f,
+       \ mediainfo %c,
+       \ file %c,
 
 fileviewer {*.mp3},<audio/mpeg> mp3info
 fileviewer {*.flac},<audio/flac> soxi
@@ -149,8 +149,8 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
 
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
         \<image/*>
-        \ mediainfo %f,
-        \ identify %f,
+        \ mediainfo %c,
+        \ identify %c,
 
         " Of course this fucking shit won't work
         " \ vifmimg draw %px %py %pw %ph %c
@@ -174,7 +174,7 @@ filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
 fileviewer {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
     \ {View contents}
     \ zip -sf %c | less,
-    \ unzip -l %f | less,
+    \ unzip -l %c | less,
 
 " ArchiveMount
 filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
@@ -256,7 +256,7 @@ fileviewer {*.doc},<application/msword> catdoc %c
 fileviewer {*.docx},
           \<application/
            \vnd.openxmlformats-officedocument.wordprocessingml.document>
-         \ docx2txt.pl %f -
+         \ docx2txt.pl %c -
 
 " TODO spreadsheets
 
