@@ -1,12 +1,13 @@
 #!/usr/bin/env sh
 
-WIDTH="$((COLUMNS - 9))"
+WIDTH="$(($(tput cols) - 9))"
+
+bat /dev/null >/dev/null 2>/dev/null && alias cat=bat
 
 if [ -d "$1" ]; then
     exec ls -lA --color=always "$1" | fold -s -w "$WIDTH"
 elif file "$1" | grep text >/dev/null 2>/dev/null; then
-    exec bat --style=numbers --color=always --line-range ":$((WIDTH * 2))" \
-        "$1"
+    exec bat --style=numbers --color=always --line-range ":$((WIDTH * 2))" "$1"
 else
     file "$1" | fold -s -w "$WIDTH"
     echo

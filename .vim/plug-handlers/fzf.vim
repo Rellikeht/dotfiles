@@ -162,7 +162,7 @@ command! -bang -nargs=* -complete=dir Digrep
 
 " {{{ custom ag
 
-let s:ahflags = '-I .git -I .hg --hidden'
+let s:ahflags = '--ignore .git --ignore .hg --hidden'
 let s:auflags = '--unrestricted'
 
 command! -bang -nargs=* Ah 

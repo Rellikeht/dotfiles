@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# bat /dev/null >/dev/null 2>/dev/null && alias cat=bat
-
 if [ -z "$1" ]; then
     ls --color=always -lA
     exit 0
@@ -10,14 +8,3 @@ fi
 for i in $@; do
     fzf_preview "$1"
 done
-
-# for i in $@; do
-#     if [ -d "$i" ]; then
-#         dirs="$dirs $i"
-#     else
-#         files="$files $i"
-#     fi
-# done
-
-# if [ -n "$dirs" ]; then ls $dirs; fi
-# if [ -n "$files" ]; then cat $files; fi

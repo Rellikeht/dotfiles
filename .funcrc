@@ -318,6 +318,13 @@ ytda() {
     yts -f "ba[language=$LANG]+bv[height>=$1]/best[height>=$1]$FORM" $@
 }
 
+trm() {
+    local DIR
+    DIR="$(readlink -f .)"
+    [ -z "$2" ] && DIR="$2"
+    transmission-remote -t "$1" --move "$DIR"
+}
+
 # }}}
 
 # {{{ random stuff

@@ -128,7 +128,7 @@ function Vgcount()
 endfunction
 
 let g:sleeptime = "800m"
-command! We write | exe 'sleep '.g:sleeptime | edit
+command -bar We write | exe 'sleep '.g:sleeptime | edit
 
 " }}}
 
@@ -442,7 +442,7 @@ function s:Kwbd(kwbdStage)
   endif
 endfunction
 
-command! Kwbd call s:Kwbd(1)
+command -bar Kwbd call s:Kwbd(1)
 nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
 
 " }}}

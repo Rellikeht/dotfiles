@@ -72,7 +72,7 @@ alias grepc='/usr/bin/env -S grep'
 alias grepn='grep --color=never'
 alias grep='grep --color=always -I'
 alias ag='ag --color --depth=-1'
-alias ah='ag -I .git -I .hg --hidden'
+alias ah="ag --ignore .git --ignore .hg --hidden"
 alias au='ag --unrestricted'
 alias az='ag --search-zip'
 alias rg='rg -S'

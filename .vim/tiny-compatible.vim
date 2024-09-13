@@ -343,8 +343,8 @@ noremap <Space>;$ :<C-u>last<Space>
 noremap <Space>;$ :<C-u>last!<Space>
 
 noremap <Space>= :<C-u>args!<Space>
-nnoremap <Space>_ :<C-u>argdedupe<CR>
-vnoremap <Space>_ :<C-u>argdedupe\|norm gv<CR>
+nnoremap <Space>@ :<C-u>argdedupe<CR>
+vnoremap <Space>@ :<C-u>argdedupe\|norm gv<CR>
 noremap <Space>: :<C-u>argdo<Space>
 noremap <Space>;: :<C-u>argdo!<Space>
 
@@ -470,6 +470,7 @@ nnoremap <Space>iJ :<C-u>clearjumps<CR>
 vnoremap <Space>iJ :<C-u>clearjumps\|norm gv<CR>
 
 nnoremap <Space>;m :move<Space>
+noremap <Space>_ "_d
 
 " }}}
 

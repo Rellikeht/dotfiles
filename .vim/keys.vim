@@ -3,11 +3,11 @@
 " copy simple mappings from normal to visual
 " 0yyprv$F<i\|norm gv
 
-function s:Tabarge(...)
+function s:Tabarge(args)
   tabnew
   arglocal!
-  if len(a:000) > 0
-    exe 'args! '.Exfiles(a:000)
+  if len(a:args) > 0
+    exe 'args! '.call('Exfiles', a:args)
   else
     for _ in range(argc())
       argdelete
@@ -15,20 +15,42 @@ function s:Tabarge(...)
   endif
 endfunction
 
-command! -nargs=* -complete=file Tabe
-      \ call <SID>Tabarge(<f-args>)
+command! -nargs=* -complete=file -bar Tabe
+      \ call <SID>Tabarge([<f-args>])
 
-command! -nargs=* -complete=arglist TabA
-      \ call <SID>Tabarge(<f-args>)
+command! -nargs=* -complete=arglist -bar TabA
+      \ call <SID>Tabarge([<f-args>])
 
-command! -nargs=* -complete=buffer TabB
-      \ call <SID>Tabarge(<f-args>)
+command! -nargs=* -complete=buffer -bar TabB
+      \ call <SID>Tabarge([<f-args>])
 
-command! -nargs=* -bang -complete=buffer ArgeditB
+command -nargs=* -bang -complete=buffer -bar ArgeditB
       \ argedit<bang> <args>
 
-command! -nargs=* -complete=buffer ArgaddB
+command -nargs=* -complete=buffer -bar ArgaddB
       \ argadd <args>
+
+
+function s:MultifHelperf(args)
+  for e in a:args[1:]
+    exe a:args[0].' '.e
+  endfor
+endfunction
+
+command -nargs=* MultifHelperc
+      \ call <SID>MultifHelperf([<f-args>])
+
+function Multif(cmd, args)
+  for e in a:args
+    exe 'MultifHelperc '.a:cmd.' '.Exfiles(e)
+  endfor
+endfunction
+
+command -nargs=* -complete=file -bar -bang Edit
+      \ call Multif('edit'.<q-bang>, [<f-args>])
+
+command -nargs=* -complete=file -bar Badd
+      \ call Multif('badd', [<f-args>])
 
 " }}}
 
@@ -152,6 +174,11 @@ vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
 noremap <silent> <Space><Space>d <Plug>Kwbd
 nnoremap <Space><Space>gf :<C-u>edit <cfile><CR>
+
+noremap <Space><Space>o :<C-u>Edit<Space>
+noremap <Space><Space>O :<C-u>Edit!<Space>
+nnoremap <Space><Space>a :<C-u>Badd<Space>
+vnoremap <Space><Space>a :<C-u>Badd  \|norm gv<C-Left><C-Left><Left>
 
 vnoremap <Space><Space>;l 
       \ :<C-u>exe 'filter '.
@@ -582,13 +609,7 @@ inoremap <expr> <C-@> pumvisible() ?
 " CTRL-X CTRL-N next completion
 " CTRL-X CTRL-P previous completion
 
-" From viki, good stuff
-" inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-"   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-" inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
-"   \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<CR>'
-
-" PageUp and PageDown don't work
+" default PageUp and PageDown don't work
 inoremap <expr> <C-d> pumvisible() ? '<C-n><C-n><C-n><C-n><C-n>' : '<C-d>'
 inoremap <expr> <C-u> pumvisible() ? '<C-p><C-p><C-p><C-p><C-p>' : '<C-u>'
 
@@ -614,7 +635,7 @@ inoremap <C-x>o <C-x><C-o>
 inoremap <C-x>t <C-x><C-t>
 inoremap <C-x>u <C-x><C-u>
 inoremap <C-x>v <C-x><C-v>
-inoremap <C-x>c <C-x><C-]>
+inoremap <C-x>j <C-x><C-]>
 
 " }}}
 
@@ -625,9 +646,9 @@ noremap <Space>f? /\V
 noremap <Space>f% /\%V
 
 " Shit, but probably must be like that
-cnoremap <C-_> \v
-cnoremap <C-@> \V
-cnoremap <C-o> \%V
+cnoremap <C-o>/ \v
+cnoremap <C-o>? \V
+cnoremap <C-o>; \%V
 
 " }}}
 

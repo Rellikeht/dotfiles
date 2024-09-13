@@ -60,7 +60,7 @@ p.map = {
 -- TODO A bindings, greps
 local qf = require("vis-quickfix") --  {{{
 
-qf.grepprg = 'grep -HEIn --exclude-dir=.git'
+qf.grepprg = "grep -HEIn --exclude-dir=.git"
 qf.peek = true
 qf.menu = false
 
@@ -107,7 +107,7 @@ vis.events.subscribe( --  {{{
     vis:command("set theme darkest-space")
     vis:command("set expandtab on")
     vis:command("set cursorline on")
-    vis:command("set showtabs on")
+    -- vis:command("set showtabs on")
     vis:command("set tabwidth 2")
   end
 ) --  }}}
