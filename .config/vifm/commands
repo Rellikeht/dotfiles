@@ -1,6 +1,6 @@
 " vim: filetype=vifm :
 
-"{{{ basic commands
+" {{{ basic commands
 
 command! df df -h %m 2> /dev/null
 command! diff vim -d %f %F
@@ -13,9 +13,9 @@ command! fi file %c %m
 " command! make !!make %a
 " command! vgrep vim "+grep %a"
 
-"}}}
+" }}}
 
-"{{{ fzf
+" {{{ fzf
 " Should be good enough
 
 " from wiki
@@ -56,9 +56,9 @@ command! FZFfind : set noquickview
                   \|     execute 'goto' fnameescape($FZF_PICK)
                   \| endif
 
-"}}}
+" }}}
 
-"{{{ docs
+" {{{ docs
 
 " :com[mand][!] command_name action
 " The following macros can be used in a command
@@ -72,9 +72,9 @@ command! FZFfind : set noquickview
 " %D the other window directory name.
 " %m run the command in a menu window
 
-"}}}
+" }}}
 
-"{{{ examples
+" {{{ examples
 
 " Use ag (the silver searcher) instead of grep
 "
@@ -97,4 +97,4 @@ command! FZFfind : set noquickview
 "
 " let $VIFM_SERVER_NAME = v:servername
 
-"}}}
+" }}}

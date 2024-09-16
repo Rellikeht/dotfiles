@@ -1,6 +1,6 @@
 " vim: filetype=vifm :
 
-"{{{ documents
+" {{{ documents
 
 " TODO pdf to text and other goodies
 
@@ -34,9 +34,9 @@ filextype {*.djvu},<image/vnd.djvu>
     \ tzathura %f &,
     \ zathura %f %i &,
 
-"}}}
+" }}}
 
-"{{{ multimedia
+" {{{ multimedia
 
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
@@ -79,22 +79,27 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
     \ ffprobe -pretty %c 2>&1,
     \ file %c,
 
-"}}}
+" }}}
 
-"{{{ markup
+" {{{ markup
 
 filextype {*.html,*.htm},<text/html>
-        " \ luakit %d/%f %i &,
         \ cat %f | vimb - %i &,
         \ vimb %f %i &,
         \ qutebrowser %f %i &,
         \ firefox %f %i &,
+        " \ luakit %d/%f %i &,
         " \ surf %f %i &,
 
 filetype {*.html,*.htm},<text/html>
     \ w3m %f,
     \ links %f,
     \ lynx %f,
+
+fileviewer {*.html,*.htm},<text/html>
+    \ w3m %c,
+    \ links %c,
+    \ lynx %c,
 
 fileviewer {*.md}
     \ glow %c
@@ -103,9 +108,9 @@ filetype {*.md}
     \ glow %f,
     \ w3m %f
 
-"}}}
+" }}}
 
-"{{{ binary
+" {{{ binary
 
 " TODO binaries / executables, especially linux
 
@@ -134,9 +139,9 @@ filetype ?*.exe,?*.dll
     \ file %f | less,
     \ strings %f | less,
 
-"}}}
+" }}}
 
-"{{{ images
+" {{{ images
 
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
         \<image/*>
@@ -157,9 +162,9 @@ fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
         " \ %pc
         " \ vifmimg clear,
 
-"}}}
+" }}}
 
-"{{{ archives
+" {{{ archives
 
 " TODO make commands for all that crap and use them here
 
@@ -215,9 +220,9 @@ fileviewer {*.rar},<application/x-rar>
     \ unrar v %c | less,
     \ unrar-free -t %c | less
 
-"}}}
+" }}}
 
-"{{{ mounting
+" {{{ mounting
 
 " IsoMount
 filetype {*.iso},<application/x-iso9660-image>
@@ -242,9 +247,9 @@ filetype *.ftp
        \ {Mount with curlftpfs}
        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 
-"}}}
+" }}}
 
-"{{{ Office files
+" {{{ Office files
 
 filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
          \<application/vnd.openxmlformats-officedocument.*,
@@ -260,9 +265,9 @@ fileviewer {*.docx},
 
 " TODO spreadsheets
 
-"}}}
+" }}}
 
-"{{{ directories
+" {{{ directories
 
 " TODO commands same as in archives
 
@@ -316,9 +321,9 @@ filetype */
         \ tar cf - %c | xz -T0 -3 > %c.tar.xz &,
         \ tar cf - %c | xz -T0 -0 > %c.tar.xz &,
 
-"}}}
+" }}}
 
-"{{{ unix
+" {{{ unix
 
 filetype {*.[1-9]}
     \ man ./%c
@@ -334,9 +339,9 @@ fileviewer <text/troff>
 filetype <text/troff>
     \ man ./%c,
 
-"}}}
+" }}}
 
-"{{{ source files
+" {{{ source files
 
 fileviewer {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
     \?*.fth,?*.4th,?*.f70,?*.f99,
@@ -405,9 +410,9 @@ filextype {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
     \ emacs %f,
     \ code %f,
 
-"}}}
+" }}}
 
-"{{{ Torrent
+" {{{ Torrent
 
 " TODO filetype, that will be tricky
 
@@ -421,9 +426,9 @@ filextype {*.torrent},<application/x-bittorrent>
 fileviewer {*.torrent},<application/x-bittorrent>
     \ dumptorrent -v %c
 
-"}}}
+" }}}
 
-"{{{ hashes and signatures
+" {{{ hashes and signatures
 
 " MD5
 filetype *.md5
@@ -450,7 +455,7 @@ filetype {*.asc},<application/pgp-signature>
        \ {Check signature}
        \ !!gpg --verify %c,"}}}
 
-"{{{ docs
+" {{{ docs
 
 " The file type is for the default programs to be used with
 " a file extension.
@@ -509,7 +514,7 @@ filetype {*.asc},<application/pgp-signature>
 
 " }}}
 
-"{{{ other
+" {{{ other
 
 " flash
 filetype *.swp
@@ -517,4 +522,4 @@ filetype *.swp
        \ ruffle %f,
 
 
-"}}}
+" }}}

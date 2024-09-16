@@ -1,8 +1,10 @@
 " vim: filetype=vifm :
 
-"{{{ basic
+" {{{ basic
 
-map <Space> <C-w>
+map <Space> <Nop>
+map ; <C-w>
+map ;; <C-w> <C-w>
 nmap ,<Space> :set hls!<CR>
 
 " Display sorting dialog
@@ -12,7 +14,9 @@ nnoremap S :invert o<CR>
 " Mappings for faster renaming
 nnoremap I cw<C-a>
 nnoremap A cw
-nnoremap cc cw<C-u>
+nnoremap cn cw<C-u>
+nnoremap cc :rename<CR>
+noremap cr :rename!<CR>
 
 map ,j :jobs<CR>
 nmap g! :shell<CR>
@@ -20,9 +24,9 @@ nmap gr :!  %i &<C-b><M-b><C-b>
 
 map ZX :qa<CR>
 
-"}}}
+" }}}
 
-"{{{ history
+" {{{ history
 
 map K :histnext<CR>
 map J :histprev<CR>
@@ -42,9 +46,9 @@ map ,gg :pushd %c<CR>
 map ,gU :pushd<Space>
 map ,gp :popd<CR>
 
-"}}}
+" }}}
 
-"{{{ settings
+" {{{ settings
 
 nnoremap ,qw :set wrap!<cr>
 
@@ -53,9 +57,9 @@ noremap ,qv :set millerview!<CR>
 
 nnoremap ,qs :set slowfs!<cr>
 
-"}}}
+" }}}
 
-"{{{ preview
+" {{{ preview
 
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
@@ -66,20 +70,22 @@ vmap W w<S-Tab>
 qmap w q
 qmap W qw
 
-"}}}
+" }}}
 
-"{{{ splits
+" {{{ splits
 
 map <C-w>d :vsplit .<CR>
 map <C-w>D :split .<CR>
 
 " original tab is nice, but had to be sacrificed
+noremap <C-h> <Tab>
+map <Tab><Tab> <C-h>
 noremap <BS> <Tab>
 map <Tab><Tab> <BS>
 
-"}}}
+" }}}
 
-"{{{ tabs
+" {{{ tabs
 
 " Freeing tab
 map <Tab><ESC> <nop><ESC>
@@ -94,16 +100,16 @@ noremap <silent> <Tab>h gT
 noremap <silent> <Tab>l gt
 map <silent> <Tab>m :tabmove<Space>
 
-"}}}
+" }}}
 
-"{{{ command line
+" {{{ command line
 
 " alt backspace won't work
 cnoremap <M-h> <M-b><M-d>
 
-"}}}
+" }}}
 
-"{{{ gui fm
+" {{{ gui fm
 
 " Sometimes may be needed for gui operations
 map gms :!pcmanfm %i &<CR>
@@ -111,11 +117,11 @@ map gmS :!pcmanfm &<CR>
 map gmd :!pcmanfm %d %D %i &<CR>
 map gmD :!pcmanfm %d %D &<CR>
 
-"}}}
+" }}}
 
-"{{{ external commands
+" {{{ external commands
 
-"{{{ Open terminal in current directory
+" {{{ Open terminal in current directory
 
 nnoremap ,tt :!st %i &<cr>
 nnoremap ,tT :!st &<cr>
@@ -140,19 +146,16 @@ nnoremap ,tX :!urxvt &<cr>
 nnoremap ,tx :!qterminal %i &<cr>
 nnoremap ,tX :!qterminal &<cr>
 
-"}}}
+" }}}
 
-"{{{ Open file in the background using its default program
+" {{{ Open file in the background using its default program
 
-map gb :file %i &<cr>l
-map gB :file &<cr>l
-
-map go :file %i<CR>
+map go :file &<CR>
 map gO :file<CR>
 
-"}}}
+" }}}
 
-"{{{ copying
+" {{{ copying
 
 map gcb :!cp -n %f %D &<CR>
 map gcB :!cp %f %D &<CR>
@@ -163,29 +166,29 @@ map gcc :!cp %f %D &<M-b><M-b><M-b>
 
 " TODO more rsyncs I guess
 
-"}}}
+" }}}
 
-"{{{ other
+" {{{ other
 
 " ga exists, but whatever
 map ,qd :echo system("du -sh ".expand("%f"))<CR>
 
-"}}}
+" }}}
 
-"}}}
+" }}}
 
-"{{{ custom commands
+" {{{ custom commands
 
 map ,qf :df<CR>
 map ,qi :fi<CR>
 
-"}}}
+" }}}
 
-"{{{ copying paths to system clipboard
+" {{{ copying paths to system clipboard
 
 " Copying paths (copied from wiki)
 if has('win')
-"{{{
+" {{{
 
     " yank current directory path to Windows clipboard with forward slashes
     nnoremap ypp :!echo %"d:gs!\!/!%i| clip<cr>
@@ -205,9 +208,9 @@ if has('win')
     " yank root of current file's name to Windows clipboard
     nnoremap ypr :!echo %"c:r%i| clip<cr>
 
-"}}}
+" }}}
 elseif executable('xclip')
-"{{{
+" {{{
 
     " yank current directory path into the clipboard
     nnoremap ypd :!echo -n %d | xclip -selection clipboard %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
@@ -221,9 +224,9 @@ elseif executable('xclip')
     " yank root of current file's name into the clipboard
     nnoremap ypr :!echo -n %c:r | xclip -selection clipboard %i<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
 
-"}}}
+" }}}
 elseif executable('xsel')
-"{{{
+" {{{
 
     " yank current directory path into primary and selection clipboards
     nnoremap ypd :!echo -n %d | xsel --input --primary %i &&
@@ -241,9 +244,9 @@ elseif executable('xsel')
     nnoremap ypr :!echo -n %c:r | xsel --input --primary %i &&
                 \ echo -n %c:r | xsel --clipboard --input %i<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
 
-"}}}
+" }}}
 elseif executable('pbcopy')
-"{{{
+" {{{
 
     " yank current directory path into the clipboard
     nnoremap ypd :!echo -n %d | pbcopy %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
@@ -257,12 +260,12 @@ elseif executable('pbcopy')
     " yank root of current file's name into the clipboard
     nnoremap ypr :!echo -n %c:r | pbcopy %i<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
 
-"}}}
+" }}}
 endif
 
-"}}}
+" }}}
 
-"{{{ drag and drop
+" {{{ drag and drop
 
 nnoremap ,dy :exe '!dragon --on-top --and-exit %c & ontop'<CR>
 nnoremap ,dY :exe '!dragon --on-top %c & ontop'<CR>
@@ -280,9 +283,9 @@ noremap ,ds :exe '!dragon --target --on-top --and-exit 2>/dev/null | ucopys %d &
 noremap ,dS :exe '!dragon --target --on-top 2>/dev/null | ucopys %d & ontop'<CR>
 noremap ,dC :exe '!dragon --target --on-top --keep 2>/dev/null | ucopys %d & ontop'<CR>
 
-"}}}
+" }}}
 
-"{{{ FZF
+" {{{ FZF
 
 noremap ,sl :FZFlocate<CR>
 noremap ,sr :FZFrun<CR>
@@ -296,9 +299,9 @@ noremap ,s<Space>g :FZFgo<Space>
 noremap ,s<Space>d :FZFdir<Space>
 noremap ,s<Space>f :FZFfind<Space>
 
-"}}}
+" }}}
 
-"{{{ paths
+" {{{ paths
 
 map gpp :cd ..<CR>
 map gp1 :cd ..<CR>
@@ -311,9 +314,13 @@ map gp7 :cd ../../../../../../..<CR>
 map gp8 :cd ../../../../../../../..<CR>
 map gp9 :cd ../../../../../../../../..<CR>
 
-"}}}
+" }}}
 
-"{{{ examples
+" {{{ TODO A bookmarks
+
+" }}}
+
+" {{{ examples
 
 "" Example of standard two-panel file managers mappings
 "nnoremap <f3> :!less %f<cr>
@@ -331,9 +338,9 @@ map gp9 :cd ../../../../../../../../..<CR>
 "" Swap panes
 ""nnoremap <c-u> <c-w>x
 
-"}}}
+" }}}
 
-"{{{ TODO B gvim (i don't even have gvim lol)
+" {{{ TODO B gvim (i don't even have gvim lol)
 
 " Open file in existing instance of gvim
 nnoremap o :!gvim --remote-tab-silent %f<cr>
@@ -345,4 +352,4 @@ nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
 " Open gvim to edit vifmrc
 nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
 
-"}}}
+" }}}

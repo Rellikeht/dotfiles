@@ -1,6 +1,6 @@
 " vim: filetype=vifm :
 
-"{{{ displaying
+" {{{ displaying
 
 " YAY
 set dotfiles
@@ -41,7 +41,7 @@ set norelativenumber
 " See man date or man strftime for details.
 set timefmt="%H:%M:%S : %d-%m-%y"
 
-"{{{ FORMAT controls the output.  Interpreted sequences are:
+" {{{ FORMAT controls the output.  Interpreted sequences are:
 
 "        %%     a literal %
 "        %a     locale's abbreviated weekday name (e.g., Sun)
@@ -101,11 +101,11 @@ set timefmt="%H:%M:%S : %d-%m-%y"
 "        modifier,  which  is either E to use the locale's alternate representations if avail‐
 "        able, or O to use the locale's alternate numeric symbols if available.
 
-"}}}
+" }}}
 
-"}}}
+" }}}
 
-"{{{ interface
+" {{{ interface
 
 " Show list of matches on tab completion in command-line mode
 set wildmenu
@@ -137,9 +137,9 @@ set mouse='a'
 set mintimeoutlen=50
 set timeoutlen=100000
 
-"}}}
+" }}}
 
-"{{{ basic
+" {{{ basic
 
 " Maximum number of changes that can be undone.
 set undolevels=500
@@ -167,9 +167,9 @@ set norunexec
 " this should be safe enough
 set confirm-=delete
 
-"}}}
+" }}}
 
-"{{{ filesystem
+" {{{ filesystem
 
 " Automatically resolve symbolic links on l or Enter.
 set followlinks
@@ -185,31 +185,37 @@ if !has('win')
     set slowfs=curlftpfs
 endif
 
-"}}}
+" }}}
 
-"{{{ marks
+" {{{ bookmarks
+" use them as predefined marks
+" and save catual marks marks for interactive usage
 
-" :mark mark /full/directory/path [filename]
+bmark! ~/ h
+bmark! ~/Dbackup d
+bmark! ~/Downloads D
 
-mark h ~/
-mark d ~/Dbackup
-mark D ~/Downloads
+bmark! ~/gits g
+bmark! ~/Templates c
+bmark! ~/bin r
+bmark! ~/.local/bin R
 
-mark g ~/gits
-mark c ~/Templates
+bmark! ~/Documents i
+bmark! ~/Music m
+bmark! ~/Videos v
+bmark! ~/Podcasts p
+bmark! ~/Backups b
+bmark! ~/Books B
+bmark! ~/Something s
+bmark! ~/Games G
 
-mark f ~/Documents
-mark m ~/Music
-mark v ~/Videos
-mark p ~/Podcasts
+bmark! /mnt e
+bmark! /etc E
+bmark! /home H
 
-mark b ~/Backups
-mark s ~/Something
-mark e /mnt
+" }}}
 
-"}}}
-
-"{{{ examples
+" {{{ examples
 
 " Examples of configuring both panels
 
@@ -221,4 +227,4 @@ mark e /mnt
 "
 " filter! {*.lo,*.o,*.d,*.class,*.pyc,*.pyo,.*~}
 
-"}}}
+" }}}
