@@ -639,7 +639,7 @@ inoremap <C-x>j <C-x><C-]>
 
 " }}}
 
-" {{{ magic
+" {{{ magic and other space
 
 noremap <Space>f/ /\v
 noremap <Space>f? /\V
@@ -649,6 +649,9 @@ noremap <Space>f% /\%V
 cnoremap <C-o>/ \v
 cnoremap <C-o>? \V
 cnoremap <C-o>; \%V
+
+noremap <Space>x :perldo
+noremap <Space>X :perl
 
 " }}}
 

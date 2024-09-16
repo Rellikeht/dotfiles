@@ -4,5 +4,8 @@ LANG=
 [ -n "$YTL" ] && LANG="[language=$YTL]"
 H=1440 
 ABR=56 
+HSET="[height>=$H]"
+# != doesn't work on it's own
+CSET="[vcodec!*=av01]"
 
-exec yts -f "ba[abr>=$ABR]$LANG+bv[height>=$H]/best[height>=$H]$LANG" $@
+exec yts -f "(ba[abr>=$ABR]$LANG+bv$HSET$CSET)/b$HSET$CSET$LANG" $@
