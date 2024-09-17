@@ -82,9 +82,20 @@ vis.events.subscribe( --  {{{
   vis.events.INIT, function()
     -- Your global configuration options
 
+    vis:command("map! normal f <vis-motion-to-right>")
+    vis:command("map! normal t <vis-motion-till-right>")
+    vis:command("map! normal F <vis-motion-to-left>")
+    vis:command("map! normal T <vis-motion-till-right>")
+
+    vis:command("map! visual f <vis-motion-to-right>")
+    vis:command("map! visual t <vis-motion-till-right>")
+    vis:command("map! visual F <vis-motion-to-left>")
+    vis:command("map! visual T <vis-motion-till-right>")
+
     vis:command("map! normal <C-n> <vis-motion-totill-repeat>")
     vis:command("map! normal <C-p> <vis-motion-totill-reverse>")
     vis:command("map! normal ; <C-w>")
+    vis:command("map! normal , <vis-nop>")
 
     vis:command("set autoindent on")
     vis:command("set ignorecase on")

@@ -100,7 +100,7 @@ vim.api.nvim_create_autocmd( -- {{{
 
       -- }}}
 
-      -- {{{ basic maps
+      -- {{{ info
 
       vim.keymap.set(
         buf_modes, "<Leader>dd", vim.lsp.buf.definition, opts
@@ -150,14 +150,19 @@ vim.api.nvim_create_autocmd( -- {{{
         opts
       )
 
-      -- }}}
-
-      -- {{{ advanced maps
-      vim.keymap.set(
-        buf_modes, "<Leader>dR", vim.lsp.buf.rename, opts
-      )
       vim.keymap.set(
         buf_modes, "<Leader>dr", vim.lsp.buf.references, opts
+      )
+
+      vim.keymap.set(
+        buf_modes, "<Leader>dh", vim.lsp.buf.hover, opts
+      )
+
+      -- }}}
+
+      -- {{{ actions
+      vim.keymap.set(
+        buf_modes, "<Leader>dR", vim.lsp.buf.rename, opts
       )
       vim.keymap.set(
         buf_modes, "<Leader>dF",
@@ -165,12 +170,16 @@ vim.api.nvim_create_autocmd( -- {{{
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>dh", vim.lsp.buf.hover, opts
-      )
-      vim.keymap.set(
         buf_modes, "<Leader>da", vim.lsp.buf.code_action, opts
       )
       -- }}}
+
+      -- insert mode {{{
+
+      -- Rather useless
+      vim.keymap.set({"i"}, "<C-x>;", vim.lsp.buf.hover, opts)
+
+      --  }}}
 
       -- {{{ workspaces
       vim.keymap.set(
