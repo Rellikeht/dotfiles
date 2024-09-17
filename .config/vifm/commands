@@ -1,6 +1,6 @@
 " vim: filetype=vifm :
 
-" {{{ basic commands
+" basic commands {{{
 
 command! df df -h %m 2> /dev/null
 command! diff vim -d %f %F
@@ -9,13 +9,15 @@ command! mkcd :mkdir %a | cd %a
 command! reload :write | restart full
 command! gman pcmanfm
 command! fi file %c %m
+command! bls bls %c | less -r +g
+command! blm bls %f | less -r +g
 
 " command! make !!make %a
 " command! vgrep vim "+grep %a"
 
 " }}}
 
-" {{{ fzf
+" fzf {{{
 " Should be good enough
 
 " from wiki
@@ -58,7 +60,7 @@ command! FZFfind : set noquickview
 
 " }}}
 
-" {{{ docs
+" docs {{{
 
 " :com[mand][!] command_name action
 " The following macros can be used in a command
@@ -74,7 +76,7 @@ command! FZFfind : set noquickview
 
 " }}}
 
-" {{{ examples
+" examples {{{
 
 " Use ag (the silver searcher) instead of grep
 "

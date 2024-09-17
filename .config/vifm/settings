@@ -1,6 +1,6 @@
 " vim: filetype=vifm :
 
-" {{{ displaying
+" displaying {{{
 
 " YAY
 set dotfiles
@@ -41,7 +41,7 @@ set norelativenumber
 " See man date or man strftime for details.
 set timefmt="%H:%M:%S : %d-%m-%y"
 
-" {{{ FORMAT controls the output.  Interpreted sequences are:
+" FORMAT controls the output.  Interpreted sequences are: {{{
 
 "        %%     a literal %
 "        %a     locale's abbreviated weekday name (e.g., Sun)
@@ -105,7 +105,7 @@ set timefmt="%H:%M:%S : %d-%m-%y"
 
 " }}}
 
-" {{{ interface
+" interface {{{
 
 " Show list of matches on tab completion in command-line mode
 set wildmenu
@@ -139,7 +139,7 @@ set timeoutlen=100000
 
 " }}}
 
-" {{{ basic
+" basic {{{
 
 " Maximum number of changes that can be undone.
 set undolevels=500
@@ -169,7 +169,7 @@ set confirm-=delete
 
 " }}}
 
-" {{{ filesystem
+" filesystem {{{
 
 " Automatically resolve symbolic links on l or Enter.
 set followlinks
@@ -187,35 +187,34 @@ endif
 
 " }}}
 
-" {{{ bookmarks
+" bookmarks {{{
 " use them as predefined marks
 " and save catual marks marks for interactive usage
 
-bmark! ~/ h
-bmark! ~/Dbackup d
-bmark! ~/Downloads D
+bmark! ~/Dbackup/ download downloads dbackup
+bmark! ~/Downloads/ downloads download
+bmark! ~/gits/ gits projects
+bmark! ~/Templates/ templates template
+bmark! ~/bin/ bin exe
+bmark! ~/.local/bin/ lbin bin
 
-bmark! ~/gits g
-bmark! ~/Templates c
-bmark! ~/bin r
-bmark! ~/.local/bin R
+bmark! ~/Documents/ document documents file files
+bmark! ~/Music/ music audio
+bmark! ~/Videos/ video videos
+bmark! ~/Podcasts/ podcast podcasts
+bmark! ~/Backups/ backup backups
+bmark! ~/Books/ book books
+bmark! ~/Something/ something
+bmark! ~/Games/ game games
 
-bmark! ~/Documents i
-bmark! ~/Music m
-bmark! ~/Videos v
-bmark! ~/Podcasts p
-bmark! ~/Backups b
-bmark! ~/Books B
-bmark! ~/Something s
-bmark! ~/Games G
-
-bmark! /mnt e
-bmark! /etc E
-bmark! /home H
+bmark! ~/ home
+bmark! /mnt/ mnt external
+bmark! /etc/ etc
+bmark! /home/ homepart
 
 " }}}
 
-" {{{ examples
+" examples {{{
 
 " Examples of configuring both panels
 

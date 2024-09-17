@@ -1,6 +1,6 @@
 " vim: filetype=vifm :
 
-" {{{ documents
+" documents {{{
 
 " TODO pdf to text and other goodies
 
@@ -36,7 +36,7 @@ filextype {*.djvu},<image/vnd.djvu>
 
 " }}}
 
-" {{{ multimedia
+" multimedia {{{
 
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
@@ -79,9 +79,14 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
     \ ffprobe -pretty %c 2>&1,
     \ file %c,
 
+" flash
+filetype *.swp
+       \ flashplayer %f,
+       \ ruffle %f,
+
 " }}}
 
-" {{{ markup
+" markup {{{
 
 filextype {*.html,*.htm},<text/html>
         \ cat %f | vimb - %i &,
@@ -110,7 +115,7 @@ filetype {*.md}
 
 " }}}
 
-" {{{ binary
+" binary {{{
 
 " TODO binaries / executables, especially linux
 
@@ -141,7 +146,7 @@ filetype ?*.exe,?*.dll
 
 " }}}
 
-" {{{ images
+" images {{{
 
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
         \<image/*>
@@ -164,7 +169,7 @@ fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
 
 " }}}
 
-" {{{ archives
+" archives {{{
 
 " TODO make commands for all that crap and use them here
 
@@ -222,7 +227,7 @@ fileviewer {*.rar},<application/x-rar>
 
 " }}}
 
-" {{{ mounting
+" mounting {{{
 
 " IsoMount
 filetype {*.iso},<application/x-iso9660-image>
@@ -249,7 +254,7 @@ filetype *.ftp
 
 " }}}
 
-" {{{ Office files
+" Office files {{{
 
 filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
          \<application/vnd.openxmlformats-officedocument.*,
@@ -267,7 +272,7 @@ fileviewer {*.docx},
 
 " }}}
 
-" {{{ directories
+" directories {{{
 
 " TODO commands same as in archives
 
@@ -323,7 +328,7 @@ filetype */
 
 " }}}
 
-" {{{ unix
+" unix {{{
 
 filetype {*.[1-9]}
     \ man ./%c
@@ -341,7 +346,7 @@ filetype <text/troff>
 
 " }}}
 
-" {{{ source files
+" source files {{{
 
 fileviewer {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
     \?*.fth,?*.4th,?*.f70,?*.f99,
@@ -412,7 +417,7 @@ filextype {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
 
 " }}}
 
-" {{{ Torrent
+" Torrent {{{
 
 " TODO filetype, that will be tricky
 
@@ -428,7 +433,7 @@ fileviewer {*.torrent},<application/x-bittorrent>
 
 " }}}
 
-" {{{ hashes and signatures
+" hashes and signatures {{{
 
 " MD5
 filetype *.md5
@@ -455,7 +460,9 @@ filetype {*.asc},<application/pgp-signature>
        \ {Check signature}
        \ !!gpg --verify %c,"}}}
 
-" {{{ docs
+" }}}
+
+" docs {{{
 
 " The file type is for the default programs to be used with
 " a file extension.
@@ -514,12 +521,6 @@ filetype {*.asc},<application/pgp-signature>
 
 " }}}
 
-" {{{ other
-
-" flash
-filetype *.swp
-       \ flashplayer %f,
-       \ ruffle %f,
-
+" other {{{
 
 " }}}
