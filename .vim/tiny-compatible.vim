@@ -38,11 +38,9 @@ command! -nargs=1 -complete=buffer TabB
 " {{{ basic mappings
 
 " Because ; is more comfortable to press
-map ; <C-w>
-map ;; <C-w><C-w>
-
-" noremap <Space>+ +
-" noremap <Space>- -
+" but all of that is not worth effort
+" map ; <C-w>
+" map ;; <C-w><C-w>
 
 " Has to be that way
 " <CR> is equal to <C-m> !!
@@ -65,11 +63,16 @@ noremap <Space><Tab> <C-^>
 
 " }}}
 
-" {{{ nops
+" {{{ nops, mostly because escape doesn't work sometimes
 
 map <Space> <Nop>
 map <Space><Space> <Nop>
-map . <Nop>
+
+noremap <Space>;<Esc> <Nop>
+noremap <Space>i<Esc> <Nop>
+
+" not that comfortable
+" map . <Nop>
 
 " }}}
 
@@ -471,13 +474,6 @@ vnoremap <Space>iJ :<C-u>clearjumps\|norm gv<CR>
 
 nnoremap <Space>;m :move<Space>
 noremap <Space>_ "_d
-
-" }}}
-
-" {{{ because escape doesn't work sometimes
-
-noremap <Space>;<Esc> <Nop>
-noremap <Space>i<Esc> <Nop>
 
 " }}}
 

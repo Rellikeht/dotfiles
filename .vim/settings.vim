@@ -103,6 +103,8 @@ set statusline+=%-14.(%l,%c%V%)
 set statusline+=\ 
 set statusline+=%P
 
+set scrolloff=4
+
 " }}}
 
 " {{{ some simple toggling

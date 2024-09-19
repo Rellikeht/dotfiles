@@ -84,9 +84,7 @@ All of this isn't very accurate and updated, at least for now.
 
 c,k,r,w,x,z
 
-+,-
-
-1-9,\[,\]
+1-9,\[,\],+,-,#,!,%,^,&,\*,(,)
 
 # <Space><Space> combinations
 
@@ -188,6 +186,10 @@ c,k,r,w,x,z
 - h - highlighter
 
 - m - markdown and similar
+
+- , - emmet
+
+- . - repeat
 
 ## Nvim only
 

@@ -227,7 +227,15 @@ nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 
 " }}}
 
-" {{{ TODO D emmet
+" {{{ emmet
+
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,markdown,javascript,typescript
+            \ EmmetInstall
+
+let g:user_emmet_mode = 'nv'  "enable all for modes
+let g:user_emmet_leader_key = '<Leader>' "<Leader>,"
+
 " }}}
 
 " {{{ TODO D ansible-vim
