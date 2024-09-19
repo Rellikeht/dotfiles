@@ -1,3 +1,41 @@
+require("lsp_signature").setup(
+  { --  {{{
+    -- Too much information on screen at the same time
+    -- + buggy positioning, but sometimes could be useful
+
+    -- ???
+    debug = false,
+    log_path = vim.fn.expand("$HOME") ..
+      "/.local/state/nvim/sig.log",
+
+    handler_opts = {border = "none"},
+    max_width = 150, -- nil
+    max_height = 14,
+    close_timeout = 1000,
+    timer_interval = 200,
+
+    toggle_key = "<c-^>",
+    toggle_key_flip_floatwin_setting = true,
+
+    -- more annoying than helpful
+    hint_enable = false,
+    -- hint_prefix = {
+    --   above = "↙ ", -- when the hint is on the line above the current line
+    --   current = "← ", -- when the hint is on the same line
+    --   below = "↖ ", -- when the hint is on the line below the current line
+    -- },
+
+    doc_lines = 12,
+    -- doc_lines = 0,
+    fix_pos = false,
+
+    floating_window = false,
+    floating_window_above_cur_line = true,
+    floating_window_off_x = 0,
+    floating_window_off_y = 0,
+  }
+) --  }}}
+
 local outline = require("outline") -- {{{
 outline.setup(
   {

@@ -60,6 +60,17 @@ local format = function(entry, vim_item)
   return vim_item
 end
 
+-- TODO B ???
+local function scroll_docs_or_open(amount)
+  return function(_)
+    if cmp.visible_docs() then
+      cmp.scroll_docs(amount)
+    else
+      cmp.open_docs()
+    end
+  end
+end
+
 -- }}}
 
 cmp.setup(
@@ -72,6 +83,10 @@ cmp.setup(
       completion = {side_padding = 0},
     },
     -- }}}
+
+    view = { --  {{{
+      docs = {auto_open = true},
+    }, --  }}}
 
     formatting = { -- {{{
       fields = {"abbr", "kind", "menu"},
@@ -203,12 +218,23 @@ cmp.setup(
         ), -- }}}
 
         -- {{{ docs
+
         ["<C-j>"] = cmp.mapping.scroll_docs(1),
         ["<C-k>"] = cmp.mapping.scroll_docs(-1),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(8),
         ["<C-b>"] = cmp.mapping.scroll_docs(-8),
+
+        -- Doesn't work
+        ["<C-s>"] = cmp.mapping.open_docs(),
+        -- ["<C-j>"] = scroll_docs_or_open(1),
+        -- ["<C-k>"] = scroll_docs_or_open(-1),
+        -- ["<C-d>"] = scroll_docs_or_open(4),
+        -- ["<C-u>"] = scroll_docs_or_open(-4),
+        -- ["<C-f>"] = scroll_docs_or_open(8),
+        -- ["<C-b>"] = scroll_docs_or_open(-8),
+
         -- }}}
 
       }

@@ -44,6 +44,7 @@ Plug("nvim-treesitter/nvim-treesitter-textobjects")
 
 Plug("neovim/nvim-lspconfig")
 Plug("mfussenegger/nvim-jdtls")
+Plug("ray-x/lsp_signature.nvim")
 
 Plug("dcampos/nvim-snippy")
 Plug("dcampos/cmp-snippy")
