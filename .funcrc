@@ -359,4 +359,14 @@ ariad() {
     aria -D -d "$(pwd)" "$FILE" $@
 }
 
+dush() {
+    local AMOUNT
+    AMOUNT=20
+    if ! [ -d "$1" ] && ! [ -f "$1" ]; then
+        AMOUNT="$1"
+        shift
+    fi
+    du -sh $@ | sort -hr | sed "$AMOUNT"q
+}
+
 # }}}

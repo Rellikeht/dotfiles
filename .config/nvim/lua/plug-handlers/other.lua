@@ -123,4 +123,15 @@ vim.api.nvim_create_autocmd(
 
 vim.cmd("let g:zig_fmt_autosave = 0")
 
+-- fugitive colors fix
+vim.cmd(
+  [[
+autocmd FileType fugitive
+      \ hi clear diffAdded
+      \ | hi clear diffRemoved
+      \ | hi def link diffAdded Added
+      \ | hi def link diffRemoved Removed
+]]
+)
+
 -- }}}

@@ -447,6 +447,17 @@ nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
 
 " }}}
 
+" {{{ current syntax group, because why give user some simpler way to do it 
+
+function SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" }}}
+
 " }}}
 
 " {{{ displaying name relative to previous buffer on change

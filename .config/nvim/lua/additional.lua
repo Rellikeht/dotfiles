@@ -79,6 +79,9 @@ hi DiffChange
 hi DiffDelete
             \ ctermbg=DarkRed guibg=#800620
             \ ctermfg=NONE guifg=NONE
+
+hi Added ctermfg=10 guifg=LimeGreen
+hi Removed ctermfg=9 guifg=Red
 ]]
 )
 
