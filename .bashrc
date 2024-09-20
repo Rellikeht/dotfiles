@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# {{{ intro
+# intro {{{
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -11,7 +11,7 @@ fi
 
 # }}}
 
-# {{{ sourcing
+# sourcing {{{
 
 conditional_source ~/.aliasrc.bash
 conditional_source ~/.funcrc.bash
@@ -19,7 +19,7 @@ conditional_source "$HOME/.local/.bashrc"
 
 # }}}
 
-# {{{ settings
+# settings {{{
 
 HISTFILE=~/.bash_history
 
@@ -45,7 +45,7 @@ shopt -s cdable_vars
 
 # }}}
 
-# {{{ prompt
+# prompt {{{
 
 # prompt file, something like p10k but simpler
 if ! conditional_source ~/.prompt.bash &>/dev/null; then
@@ -62,7 +62,7 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
         fi
         PS1=""
 
-        # {{{ colors
+        # colors {{{
         local RESET='\[\e[0m\]'
 
         local BLACK='\[\e[0;30m\]'
@@ -113,7 +113,7 @@ PS4="+"
 
 # }}}
 
-# {{{ bindings
+# bindings {{{
 
 # better up and down
 bind '"[A" history-search-backward'
@@ -127,7 +127,7 @@ bind 'Space:magic-space'
 
 # }}}
 
-# {{{ hooks
+# hooks {{{
 
 if fzf --bash &>/dev/null; then
     eval "$(fzf --bash)"
@@ -136,7 +136,7 @@ fi
 if [ -z "$__Z_INITIALIZED" ]; then
     # z.lua or plain old z as fallback
     if whichp z.lua &>/dev/null; then
-        # {{{ Because doing this normal way messes $?
+        # Because doing this normal way messes $? {{{
         # It is exported as $EXIT
         TEMP="$(mktemp)"
         z.lua --init bash once enhanced echo fzf >"$TEMP"
@@ -157,7 +157,7 @@ fi
 
 # }}}
 
-# {{{ other
+# other {{{
 
 # Compatibility between tmux and direnv
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
@@ -177,7 +177,7 @@ opam() {
 
 # }}}
 
-# {{{ shit
+# shit {{{
 
 if [ -z "$__CONDA_SETUP" ]; then
     if [ -d "$HOME/.conda" ]; then

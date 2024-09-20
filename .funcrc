@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# {{{ helpers
+# helpers {{{
+
 dir_arg() {
     if [ -z "$1" ]; then
         echo "."
@@ -38,9 +39,10 @@ noerr() {
 silent() {
     noerr "$@" >/dev/null
 }
+
 # }}}
 
-# {{{ important stuff
+# important stuff {{{
 
 lh() {
     if [ -n "$1" ]; then
@@ -77,7 +79,7 @@ dis() {
 
 # }}}
 
-# {{{ editors
+# editors {{{
 
 edt() {
     if [ -n "$2" ]; then
@@ -154,7 +156,7 @@ else # {{{
 fi
 # }}}
 
-# {{{ find
+# find {{{
 fnd() {
     find_command -name '*' $@
 }
@@ -188,7 +190,7 @@ fndre() {
 }
 # }}}
 
-# {{{ nice additions
+# nice additions {{{
 
 hms() {
     hm --no-discard-stderr $@
@@ -230,7 +232,7 @@ aigh() {
 
 # }}}
 
-# {{{ fzf
+# fzf {{{
 
 # Basically find piped to fzf with history
 fzh() {
@@ -274,7 +276,7 @@ fzh() {
 
 # }}}
 
-# {{{ multimedia
+# multimedia {{{
 
 mps() {
     local START="$1"
@@ -327,7 +329,7 @@ trm() {
 
 # }}}
 
-# {{{ random stuff
+# random stuff {{{
 
 maxe() {
     if [ -n "$2" ]; then

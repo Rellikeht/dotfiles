@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# {{{ special variables
+# special variables {{{
 
 # WT - time to wait for commands based on top
 
@@ -9,7 +9,7 @@ _FUNCRC="$HOME/.funcrc"
 
 # }}}
 
-# {{{ helpers
+# helpers {{{
 
 alias progp=' \
     echo -n $PATH | \
@@ -30,7 +30,7 @@ alias prgs='progs | sort | uniq'
 
 # }}}
 
-# {{{ some neat things
+# some neat things {{{
 
 alias bd='cd -'
 alias b1='cd ..'
@@ -57,7 +57,7 @@ alias el='echo $SHLVL'
 
 # }}}
 
-# {{{ basic utils
+# basic utils {{{
 
 alias rr='rm -r'
 alias rf='rm -rf'
@@ -126,7 +126,7 @@ alias tbgm='tbd -e m | grepWgrep | its_just_grep -E'
 
 # }}}
 
-# {{{ mounts
+# mounts {{{
 alias mu='mount -o rw,uid=$UID'
 alias rmu='doas mount -o rw,uid=$UID,gid=$GID'
 alias um=umount
@@ -135,7 +135,7 @@ alias amm='aft-mtp-mount'
 
 # }}}
 
-# {{{ session
+# session {{{
 
 alias hn=hostname
 alias wi=whoami
@@ -156,7 +156,7 @@ alias pki=pkill
 
 # }}}
 
-# {{{ ssh
+# ssh {{{
 
 alias sag='ssh-agent'
 alias sad='ssh-add'
@@ -184,7 +184,7 @@ alias ssh9='ssh "$(cat ~/.ssh/h9)"'
 
 # }}}
 
-# {{{ editors
+# editors {{{
 
 alias nano='nano --rcfile=~/.nanorc'
 alias nv=nvim
@@ -213,7 +213,7 @@ alias rvi='doas vis'
 
 # }}}
 
-# {{{ settings
+# settings {{{
 alias als='alias | grep'
 alias wb='bins | grep'
 
@@ -223,7 +223,7 @@ alias bal='bat "$_ALIASRC"'
 alias bfn='bat "$_FUNCRC"'
 # }}}
 
-# {{{ fuzzy dirs and files
+# fuzzy dirs and files {{{
 
 ## single
 alias fzs='fzf +m'
@@ -282,7 +282,7 @@ alias zc='cd "$(zh)"'
 
 # }}}
 
-# {{{ TODO B fzf with history
+# TODO B fzf with history {{{
 
 # Doesn't work
 # alias fff='fzh $fzf -type f'
@@ -294,7 +294,7 @@ alias zc='cd "$(zh)"'
 
 # }}}
 
-# {{{ fuzzy programs
+# fuzzy programs {{{
 
 alias sf='fmx -o "$(whence s)"'
 alias nf='fmx -o "$(whence nv)"'
@@ -306,7 +306,7 @@ alias bmf='fmx bat'
 
 # }}}
 
-# {{{ tooling
+# tooling {{{
 
 alias vm='vifm'
 alias vh='vifm -c history'
@@ -382,7 +382,7 @@ alias prgc='prg \
 
 # }}}
 
-# {{{ multimedia and web
+# multimedia and web {{{
 alias ffmpeg='ffmpeg -hide_banner'
 alias pm=pulsemixer
 alias am=alsamixer
@@ -432,7 +432,7 @@ alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'
 # }}}
 
-# {{{ programming
+# programming {{{
 alias scls='sbcl --script'
 alias rscl='rlwrap sbcl'
 
@@ -480,7 +480,7 @@ alias gpe='gnuplot -p -e'
 alias cmc='mkdir -p build && cmake -B build .'
 # }}}
 
-# {{{ git
+# git {{{
 
 alias gitp='git --paginate'
 alias gsb='git submodule'
@@ -533,7 +533,7 @@ alias gic='git config'
 
 # }}}
 
-# {{{ graphical helpers
+# graphical helpers {{{
 
 alias dg='dragon -T'
 alias dgw='dragon'
@@ -553,7 +553,7 @@ alias pmC='pcmanfm-qt "$(pwd)"'
 
 # }}}
 
-# {{{ other
+# other {{{
 
 alias kbp="~/.kb-plug.sh"
 alias help2man='help2man -N'
@@ -573,7 +573,7 @@ alias stL='stc --homedir ~/.config/syncthing/'
 
 # }}}
 
-# {{{ pacman
+# pacman {{{
 
 # alias pc=pcurses
 alias pa=pacman
@@ -639,7 +639,7 @@ else # {{{
 fi
 # }}}
 
-# {{{ ~shitx~ nix
+# ~shitx~ nix {{{
 
 alias ncg='nix-collect-garbage -d'
 alias nsh='nix shell'
@@ -672,7 +672,7 @@ alias niso='nix-store --optimise'
 
 # }}}
 
-# {{{ direnv
+# direnv {{{
 alias dst='direnv status'
 alias dal='direnv allow'
 alias dde='direnv deny'
@@ -681,7 +681,7 @@ alias ded='direnv edit'
 alias dhook='eval "$(direnv hook $SHELL)"'
 # }}}
 
-# {{{ adb
+# adb {{{
 
 alias ash='adb push'
 alias all='adb pull'
@@ -691,7 +691,7 @@ alias adv='adb devices'
 
 # }}}
 
-# {{{ random
+# random {{{
 
 alias sb=sbase-box
 alias bb=busybox

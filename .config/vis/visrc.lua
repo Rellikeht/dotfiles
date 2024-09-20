@@ -94,7 +94,10 @@ vis.events.subscribe( --  {{{
 
     vis:command("map! normal <C-n> <vis-motion-totill-repeat>")
     vis:command("map! normal <C-p> <vis-motion-totill-reverse>")
-    vis:command("map! normal ; <C-w>")
+
+    -- todo use that well
+    -- vis:command("map! normal ; <C-w>")
+    vis:command("map! normal ; <vis-nop>")
     vis:command("map! normal , <vis-nop>")
 
     vis:command("set autoindent on")

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# {{{ settings
+# settings {{{
 
 HISTFILE=~/.histfile
 SAVEHIST=$HISTFILESIZE
@@ -36,7 +36,7 @@ setopt AUTO_CD
 
 # }}}
 
-# {{{ completion
+# completion {{{
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion match_prev_cmd)
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
@@ -50,7 +50,7 @@ zmodload -i zsh/complist
 # why does this make things faster
 zstyle :compinstall filename '~/.zshrc'
 
-# {{{ Some completion settings and activation
+# Some completion settings and activation {{{
 if [ -z "$__COMPINIT_RUN" ]; then
     zstyle ':completion:*' use-cache on
     zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zscompcache"
@@ -99,7 +99,7 @@ compinit
 
 # }}}
 
-# {{{ bindings
+# bindings {{{
 
 bindkey -e
 bindkey \^U backward-kill-line
@@ -129,7 +129,7 @@ bindkey -M emacs -s "^[i" "**	"
 
 # }}}
 
-# {{{ sourcing
+# sourcing {{{
 
 if [ -f "$HOME/.commonrc" ]; then
     source "$HOME/.commonrc"
@@ -153,7 +153,7 @@ conditional_source ~/.p10k.zsh
 
 # }}}
 
-# {{{ hooks
+# hooks {{{
 
 if fzf --zsh &>/dev/null; then
     eval "$(fzf --zsh)"
@@ -173,7 +173,7 @@ fi
 
 # }}}
 
-# {{{ other
+# other {{{
 
 # Compatibility between tmux and direnv (?)
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
@@ -192,7 +192,7 @@ opam() {
 
 # }}}
 
-# {{{ shit
+# shit {{{
 
 if [ -z "$__CONDA_SETUP" ]; then
     if [ -d "$HOME/.conda" ]; then
