@@ -52,7 +52,9 @@ autocmd BufReadPost *
       \ | endif
 
 set foldmethod=marker
-set foldmarker=\ {{{\ ,\ }}}\ 
+" Because some formatters fuck up trailing space
+set foldmarker=\ {{{,\ }}}
+
 set synmaxcol=250
 
 " }}} 

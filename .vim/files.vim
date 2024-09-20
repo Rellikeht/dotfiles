@@ -184,7 +184,6 @@ let s:vgmaps = [
       \ ['vC', '', '', 1, 0],
       \ ]
 
-" TODO A <cfile>
 let s:vgcmaps = [
       \ ['<Space>u', '//gj', " '.Expand('<cfile>').' <Home><C-Right><Right>"],
       \ ] + [

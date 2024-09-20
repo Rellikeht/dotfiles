@@ -126,8 +126,8 @@ map <silent> <leader>nrs <Plug>ReplaceWithStraight
 " }}} 
 
 " custom textobjects {{{ 
-if exists('*textobj#user#plugin')
 
+function s:CustomTextobjects()
   call textobj#user#plugin('path', {
   \      'next_path': {
   \        'select-a': 'aep', '*select-a-function*': 'textobj#path#select_ap',
@@ -138,7 +138,6 @@ if exists('*textobj#user#plugin')
   \        'select-i': 'ieP', '*select-i-function*': 'textobj#path#select_iP',
   \      },
   \    })
-  let g:loaded_textobj_path = 1
 
   call textobj#user#plugin('url', {
   \      '-': {
@@ -146,7 +145,19 @@ if exists('*textobj#user#plugin')
   \        'select-i': 'ieu', '*select-i-function*': 'textobj#url#select_i',
   \      },
   \    })
-  let g:loaded_textobj_url = 1
+endfunction
 
-endif
+let g:loaded_textobj_path = 1
+let g:loaded_textobj_url = 1
+autocmd VimEnter * 
+      \ if exists('*textobj#user#plugin')
+      \ | call s:CustomTextobjects()
+      \ | endif
+
+let g:textobj_between_no_default_key_mappings = 1
+omap a= <Plug>(textobj-between-a)
+xmap a= <Plug>(textobj-between-a)
+omap i= <Plug>(textobj-between-i)
+xmap i= <Plug>(textobj-between-i)
+
 " }}}

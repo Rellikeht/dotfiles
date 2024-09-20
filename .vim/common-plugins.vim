@@ -83,6 +83,14 @@ Plug 'kana/vim-textobj-user'
 Plug 'rhysd/vim-textobj-continuous-line'
 Plug 'mattn/vim-textobj-url'
 Plug 'paulhybryant/vim-textobj-path'
+Plug 'rhysd/vim-textobj-anyblock'
+Plug 'thinca/vim-textobj-between'
+
+Plug 'alberto-lazari/vim-textobj-typst'
+Plug 'coachshea/vim-textobj-markdown'
+
+" Needs python :)
+" Plug 'spacewander/vim-textobj-lua'
 
 " }}} 
 

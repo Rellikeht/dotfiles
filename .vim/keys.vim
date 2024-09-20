@@ -584,8 +584,8 @@ exe "nnoremap <expr> ;;L g:qfloc ?"
 
 " matchit {{{ 
 
-noremap <Space>{ [%
-noremap <Space>} ]%
+map <Space>{ [%
+map <Space>} ]%
 
 " }}} 
 
