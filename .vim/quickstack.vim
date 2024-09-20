@@ -1,14 +1,14 @@
-" {{{ setup
+" setup {{{ 
 
 let s:qstack = []
 let s:qsind = 0
 let s:qsprev = 0
 
-" }}}
+" }}} 
 
-" {{{ functions
+" functions {{{ 
 
-" {{{ state
+" state {{{ 
 
 function s:QstackSet()
   exe 'cexpr []'
@@ -30,9 +30,9 @@ function QstackPosGet()
   return 0
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ helpers
+" helpers {{{ 
 
 function QSidx()
   return get(getqflist({idx: 0}), 'idx', 0)
@@ -51,9 +51,9 @@ function s:QstackPosMove(amount = 1)
   return 0
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ movement
+" movement {{{ 
 
 function s:QstackNext(amount = 1)
   call s:QstackPosMove(a:amount)
@@ -76,9 +76,9 @@ function s:QstackNth(nth = v:null)
   call s:QstackPosSet()
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ adding and deleting
+" adding and deleting {{{ 
 
 " TODO B proper refreshing
 function s:QstackCurAdd()
@@ -101,9 +101,9 @@ function s:QstackDel(num=v:null)
   endif
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ commands
+" commands {{{ 
 
 function s:QstackCmd(cmd)
   call s:QstackSet()
@@ -119,7 +119,7 @@ function s:QstackOpen(force = 0)
   endif
   call setpos('.', [0, s:qsind+1, 1, 0])
 
-  " {{{
+  " {{{ 
 
   nnoremap <buffer> <silent> dd :<C-u>call
         \ <SID>QstackDD(line('.')-1, v:count1)<CR>
@@ -134,7 +134,7 @@ function s:QstackOpen(force = 0)
   \<BS>:call <SID>QstackOpen(1)<CR>
   \:call setpos('.', qpos)<CR>
 
-  " }}}
+  " }}} 
 endfunction
 
 function s:QstackDD(num, amount)
@@ -152,9 +152,9 @@ function s:QstackDD(num, amount)
   norm '`
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ operations
+" operations {{{ 
 
 function s:QstackTop()
   return s:qstack[len(s:qstack)-1]
@@ -199,32 +199,32 @@ function s:QstackRot(amount = 2, times = 1)
   endfor
 endfunction
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 
 
-" {{{ maps
+" maps {{{ 
 
-" {{{ nops :(
+" nops :( {{{ 
 
 map <Space>j<Esc> <Nop>
 
-" }}}
+" }}} 
 
-" {{{ basic commands
+" basic commands {{{ 
 
 noremap <silent> <Space>jw :<C-u>call <SID>QstackOpen(0)<CR>
 noremap <silent> <Space>jl :<C-u>call <SID>QstackOpen(1)<CR>
 
-" }}}
+" }}} 
 
-" {{{ movement
+" movement {{{ 
 
 noremap <silent> <Space>jn :<C-u>call <SID>QstackNext(v:count1)<CR>
 noremap <silent> <Space>jp :<C-u>call <SID>QstackNext(-v:count1)<CR>
-noremap <silent> <c-j> :<C-u>call <SID>QstackNext(v:count1)<CR>
-noremap <silent> <c-k> :<C-u>call <SID>QstackNext(-v:count1)<CR>
 noremap <silent> <Space>jr :<C-u>call <SID>QstackNth(v:null)<CR>
+" noremap <silent> <c-j> :<C-u>call <SID>QstackNext(v:count1)<CR>
+" noremap <silent> <c-k> :<C-u>call <SID>QstackNext(-v:count1)<CR>
 
 " TODO C file commands
 " noremap <silent> <Space>jn :<C-u>exe v:count1.'cnf'<CR>
@@ -241,9 +241,9 @@ noremap <silent> <Space>j7 :<C-u>call <SID>QstackNth(7)<CR>
 noremap <silent> <Space>j8 :<C-u>call <SID>QstackNth(8)<CR>
 noremap <silent> <Space>j9 :<C-u>call <SID>QstackNth(9)<CR>
 
-" }}}
+" }}} 
 
-" {{{ stack operations
+" stack operations {{{ 
 
 " add
 nnoremap <silent> <Space>ja :<C-u>call <SID>QstackCurAdd()<CR>
@@ -275,6 +275,6 @@ vnoremap <silent> <Space>jo8 :<C-u>call <SID>QstackRot(8, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo9 :<C-u>call <SID>QstackRot(9, v:count1)<CR>
 vnoremap <silent> <Space>jo9 :<C-u>call <SID>QstackRot(9, v:count1)\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 

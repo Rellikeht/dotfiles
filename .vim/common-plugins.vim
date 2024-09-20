@@ -1,11 +1,11 @@
-" {{{ dependencies
+" dependencies {{{ 
 
 Plug 'glts/vim-magnum'
 Plug 'tpope/vim-repeat'
 
-" }}}
+" }}} 
 
-" {{{ essentials
+" essentials {{{ 
 
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
@@ -17,15 +17,14 @@ Plug 'ryvnf/readline.vim'
 Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak' " TODO A shortcuts
 Plug 'dbakker/vim-paragraph-motion'
-Plug 'wellle/targets.vim'
 
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 
-" }}}
+" }}} 
 
-" {{{ little utilities
+" little utilities {{{ 
 
 Plug 'tpope/vim-obsession'
 Plug 'romainl/vim-tinyMRU'
@@ -45,9 +44,9 @@ Plug 'vim-scripts/vis'
 Plug 'moll/vim-bbye'
 Plug 'azabiong/vim-highlighter'
 
-" }}}
+" }}} 
 
-" {{{ coding help
+" coding help {{{ 
 
 Plug 'sbdchd/neoformat'
 Plug 'lfilho/cosco.vim'
@@ -55,9 +54,6 @@ Plug 'lfilho/cosco.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 " Plug 'neomake/neomake' ?
-
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'vim-scripts/argtextobj.vim'
 
 Plug 'wellle/tmux-complete.vim'
 
@@ -71,9 +67,26 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'xuhdev/SingleCompile'
 Plug 'Konfekt/vim-compilers'
 
-" }}}
+" }}} 
 
-" {{{ version control
+" textobjects {{{ 
+
+Plug 'wellle/targets.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'preservim/vim-textobj-quote'
+Plug 'preservim/vim-textobj-sentence'
+
+" targets has this
+" Plug 'vim-scripts/argtextobj.vim'
+
+Plug 'kana/vim-textobj-user'
+Plug 'rhysd/vim-textobj-continuous-line'
+Plug 'mattn/vim-textobj-url'
+Plug 'paulhybryant/vim-textobj-path'
+
+" }}} 
+
+" version control {{{ 
 
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
@@ -84,9 +97,9 @@ Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 
-" }}}
+" }}} 
 
-" {{{ config help
+" config help {{{ 
 
 Plug 'direnv/direnv.vim'
 
@@ -97,9 +110,9 @@ Plug 'nickel-lang/vim-nickel'
 Plug 'kmonad/kmonad-vim'
 Plug 'mmikeww/autohotkey.vim'
 
-" }}}
+" }}} 
 
-" {{{ specialized
+" specialized {{{ 
 
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'jeetsukumaran/vim-pythonsense'
@@ -115,7 +128,7 @@ Plug 'jceb/vim-orgmode'
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim'
-Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'mattn/emmet-vim'
 Plug 'HiPhish/info.vim'
 
 " TODO C and make this not slow vim down
@@ -129,10 +142,15 @@ Plug 'bullets-vim/bullets.vim'
 " Maybe...
 " Plug 'dbridges/vim-markdown-runner'
 
-" }}}
+" }}} 
 
-" {{{ other
+" other {{{ 
 
 Plug 'vim-pandoc/vim-pandoc'
+Plug 'rhysd/accelerated-jk'
+Plug 'preservim/vim-wheel'
 
-" }}}
+" TODO C ???
+" Plug 'preservim/vim-colors-pencil'
+
+" }}} 

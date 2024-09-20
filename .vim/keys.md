@@ -46,11 +46,9 @@ All of this isn't very accurate and updated, at least for now.
 
 ## vanilla
 
-- ; - <C-w>
 - <C-m> (<cr>) - <Tab>
 - <C-h> - \<C-\]>
-- .. - .
-- . - TODO quick and loc lists
+- ; - TODO quick and loc lists
 - <c-j>, <c-k> - quickstack (my own mini harpoon inspired thing
   built around quickfix list)
 
@@ -162,11 +160,10 @@ c,k,r,w,x,z
   - p - pluto.jl :)
   - l - latex to unicode
   - f, <Space>f - neoformat
+  - r - replace (currently only quotes)
   - others used - nuuid
 
 - u - undotree, tinyMRU, obsession
-
-<!-- - w - vim wiki -->
 
 - q misc again:
 
@@ -187,9 +184,9 @@ c,k,r,w,x,z
 
 - m - markdown and similar
 
-- , - emmet
+- , - emmet (expansion mapping)
 
-- . - repeat
+- . - repeat (repeat dot)
 
 ## Nvim only
 
@@ -246,8 +243,7 @@ Only Z and Q is used
 # Miscelanous
 
 - Space - <C-w>
-- ae - (visual only) select whole buffer without plugins
-- ie - (visual only) Not exact vie
-- yae - copy whole buffer
+- iee, aee - (visual only) select whole buffer without plugins
+- yaee - copy whole buffer
 - ; - motions
 - TODO - cosco (inserting semicolons and colons)

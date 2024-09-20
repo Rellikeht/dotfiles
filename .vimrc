@@ -6,7 +6,7 @@ source ~/.vim/tiny-compatible.vim
 if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   " and it works, at least now
 
-  "{{{ plugins and packages
+  " plugins and packages {{{ 
   filetype plugin on
   filetype indent on
 
@@ -15,9 +15,9 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
 
   runtime macros/matchit.vim
   runtime! ftplugin/man.vim
-  "}}}
+  " }}} 
 
-  "{{{ sourcing
+  " sourcing {{{ 
 
   silent! source ~/.vim/vars.vim
   source ~/.vim/functions.vim
@@ -27,18 +27,18 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   source ~/.vim/quickstack.vim
   source ~/.vim/files.vim
 
-  "}}}
+  " }}} 
 
-  if has('win32') "{{{ ??
+  if has('win32') " ?? {{{ 
     set shell=powershell.exe
     set shellxquote=
     let &shellcmdflag='-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
     let &shellquote=''
     let &shellpipe='| Out-File -Encoding UTF8 %s'
     let &shellredir='| Out-File -Encoding UTF8 %s'
-  endif "}}}
+  endif " }}} 
 
-  "{{{ vim plug auto install
+  " vim plug auto install {{{ 
   let plug_src = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   let g:data_dir = has('nvim') ? stdpath('config') : '~/.vim'
   if empty(glob(g:data_dir . '/autoload/plug.vim'))
@@ -47,19 +47,19 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
     autocmd VimEnter * 
           \ PlugInstall --sync | source $MYVIMRC
   endif
-  "}}}
+  " }}} 
 
   source ~/.vim/preplug.vim
-  if v:progname =~? "^s\\?v\\(im\\)\\?" "{{{
+  if v:progname =~? "^s\\?v\\(im\\)\\?" " {{{ 
     source ~/.vim/svimrc.vim
     call plug#begin('~/.vim/plugged')
     source ~/.vim/common-plugins.vim
     source ~/.vim/svim-plugins.vim
     call plug#end()
     source ~/.vim/svim-plug-handlers.vim
-  endif "}}}
+  endif " }}} 
 
-  "{{{ additional sourcing
+  " additional sourcing {{{ 
 
   for f in split(glob("~/.vim/plug-handlers/*.vim"), "\n")
     exe 'source '.fnameescape(f)
@@ -68,7 +68,7 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   source ~/.vim/programming.vim
   source ~/.vim/look.vim
 
-  "}}}
+  " }}} 
 
   if filereadable(expand('~/.local.vimrc'))
     source ~/.local.vimrc

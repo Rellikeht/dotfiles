@@ -1,4 +1,4 @@
-" {{{ vim-markdown
+" vim-markdown {{{ 
 
 " https://codeinthehole.com/tips/writing-markdown-in-vim/
 
@@ -34,25 +34,25 @@ let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
 
-" }}}
+" }}} 
 
-" {{{ TODO C vimwiki
+" TODO C vimwiki {{{ 
 
 let g:vimwiki_global_ext = 0
 
-" }}}
+" }}} 
 
-" {{{ TODO B markdownfootnotes
+" TODO B markdownfootnotes {{{ 
 
 " autocmd VimEnter
 "       \ iunmap <Leader>r
 "       \ | iunmap <Leader>i
 
-" }}}
+" }}} 
 
-" {{{ bullets.vim
+" bullets.vim {{{ 
 
-" {{{ file types
+" file types {{{ 
 " You can choose which file types this plugin will work on:
 let g:bullets_enabled_file_types = [
       \ 'markdown',
@@ -67,9 +67,9 @@ let g:bullets_enabled_file_types = [
 
 " You can disable this plugin for empty buffers (no filetype):
 let g:bullets_enable_in_empty_buffers = 0
-" }}}
+" }}} 
 
-" {{{ mappings
+" mappings {{{ 
 
 " Enable/disable default key mappings:
 let g:bullets_set_mappings = 0
@@ -107,9 +107,9 @@ let g:bullets_custom_mappings = [
       \ ['imap', '<C-d>', '<Plug>(bullets-promote)'],
       \ ]
 
-" }}}
+" }}} 
 
-" {{{ padding
+" padding {{{ 
 " Don't/add extra padding between the bullet and text when
 " bullets are multiple characters long:
 " let g:bullets_pad_right = 1
@@ -126,9 +126,9 @@ let g:bullets_pad_right = 0
 " III. text
 " IV. text
 "    ^ no extra space between bullet and text
-" }}}
+" }}} 
 
-" {{{ max characters
+" max characters {{{ 
 " Maximum number of alphabetic characters to use for bullets:
 let g:bullets_max_alpha_characters = 3
 " ...
@@ -142,9 +142,9 @@ let g:bullets_max_alpha_characters = 3
 " y. text
 " z. text
 " text
-" }}}
+" }}} 
 
-" {{{ levels
+" levels {{{ 
 " Nested outline bullet levels:
 let g:bullets_outline_levels = [
       \ 'ROM',
@@ -173,9 +173,9 @@ let g:bullets_outline_levels = [
 "     - unordered bullet [ <cr><C-t> ]
 "   b. second child bullet [ <cr><C-d> ]
 " 2. second parent [ <cr><C-d> ]
-" }}}
+" }}} 
 
-" {{{ renumber
+" renumber {{{ 
 " Enable/disable automatically renumbering the current ordered bullet list 
 " when changing the indent level of bullets or inserting a new bullet:
 let g:bullets_renumber_on_change = 1
@@ -204,9 +204,9 @@ let g:bullets_renumber_on_change = 1
 " 2. second existing bullet [ use <cr>/o to add a new bullet below this ]
 " 3. new bullet
 " 3. third existing bullet [ no renumbering so this bullet remained `3` ]
-" }}}
+" }}} 
 
-" {{{
+" {{{ 
 " Enable/disable toggling parent and child checkboxes to indicate "completion" 
 " of child checkboxes:
 let g:bullets_nested_checkboxes = 1
@@ -233,9 +233,9 @@ let g:bullets_nested_checkboxes = 1
 " Note that unchecked ([ ]) and checked ([x] or [X]) statuses using the 
 " default markers are always valid, even if you set custom markers for 
 " unchecked and checked.
-" }}}
+" }}} 
 
-" {{{ markers
+" markers {{{ 
 let g:bullets_checkbox_markers = ' .oOX'
 " Example:
 " - [o] parent bullet  [ <- `o` indicates 66% - 99% of children are checked ]
@@ -259,9 +259,9 @@ let g:bullets_checkbox_markers = ' .oOX'
 
 " Define whether toggling partially complete checkboxes sets the checkbox to 
 " checked or unchecked:
-" }}}
+" }}} 
 
-" {{{ partial checkboxes
+" partial checkboxes {{{ 
 " Example 1:
 let g:bullets_checkbox_partials_toggle = 1
 " - [o] partially checked  [ type <leader>x ]
@@ -283,9 +283,9 @@ let g:bullets_checkbox_partials_toggle = 1
 " - [ ] checked
 "   - [ ] sub bullet
 "   - [ ] sub bullet
-" }}}
+" }}} 
 
-" {{{ other
+" other {{{ 
 " Enable/disable deleting the last empty bullet when hitting
 " <cr> (insert mode) or o (normal mode):
 let g:bullets_delete_last_bullet_if_empty = 1
@@ -299,6 +299,6 @@ let g:bullets_auto_indent_after_colon = 1
 " a. text
 " b. text:
 "   i. text
-" }}}
+" }}} 
 
-" }}}
+" }}} 

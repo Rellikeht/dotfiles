@@ -1,4 +1,4 @@
-" {{{ helpers
+" helpers {{{ 
 
 command! -nargs=* -complete=file -count=1 Tabe
       \ <count>tabnew
@@ -33,9 +33,9 @@ command! -nargs=1 -complete=buffer TabB
 " command! -nargs=1 -complete=arglist Rargument
 "             \botright horizontal argument <args>
 
-" }}}
+" }}} 
 
-" {{{ basic mappings
+" basic mappings {{{ 
 
 " Because ; is more comfortable to press
 " but all of that is not worth effort
@@ -61,9 +61,9 @@ noremap <Tab>U "*P
 
 noremap <Space><Tab> <C-^>
 
-" }}}
+" }}} 
 
-" {{{ nops, mostly because escape doesn't work sometimes
+" nops, mostly because escape doesn't work sometimes {{{ 
 
 map <Space> <Nop>
 map <Space><Space> <Nop>
@@ -74,9 +74,9 @@ noremap <Space>i<Esc> <Nop>
 " not that comfortable
 " map . <Nop>
 
-" }}}
+" }}} 
 
-" {{{ settings with <Space>
+" settings with <Space> {{{ 
 
 nnoremap <Space>qw :<C-u>setlocal wrap!<CR>
 vnoremap <Space>qw :<C-u>setlocal wrap!\|norm gv<CR>
@@ -89,9 +89,9 @@ vnoremap <Space>qm :<C-u>setlocal modeline!<CR>:e\|norm gv<CR>
 nnoremap <Space>qM :<C-u>setlocal modeline!<CR>
 vnoremap <Space>qM :<C-u>setlocal modeline!\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" {{{ tabs with <Tab>
+" tabs with <Tab> {{{ 
 
 noremap <Tab>o :<C-u>Tabe<Space>
 noremap <Tab>O :<C-u>-Tabe<Space>
@@ -150,9 +150,9 @@ nnoremap <Tab>: :<C-u>tabdo<Space>
 vnoremap <Tab>: :<C-u>tabdo  \|norm gv
       \<C-Left><C-Left><Left>
 
-" }}}
+" }}} 
 
-" {{{ TODO C refine - resizing with <Tab>
+" TODO C refine - resizing with <Tab> {{{ 
 
 nnoremap <silent> <Tab>>1 :<C-u>vertical resize 10<CR>
 vnoremap <silent> <Tab>>1 :<C-u>vertical resize 10\|norm gv<CR>
@@ -212,9 +212,9 @@ vnoremap <silent> <Tab>^d :<C-u>resize -10\|norm gv<CR>
 nnoremap <silent> <Tab>^D :<C-u>resize -20<CR>
 vnoremap <silent> <Tab>^D :<C-u>resize -20\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" {{{ buffers with <Space><Space>
+" buffers with <Space><Space> {{{ 
 
 noremap <Space><Space>e :<C-u>buffer<Space>
 noremap <Space><Space>E :<C-u>buffer!<Space>
@@ -281,9 +281,9 @@ vnoremap <Space><Space>: :<C-u>bufdo<Space> \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space><Space>;: :<C-u>bufdo!<Space>
 vnoremap <Space><Space>;: :<C-u>bufdo!  \|norm gv<C-Left><C-Left><Left>
 
-" }}}
+" }}} 
 
-" {{{ args with <Space>
+" args with <Space> {{{ 
 
 nnoremap <Space>l :<C-u>args<CR>
 vnoremap <Space>l :<C-u>args\|norm gv<CR>
@@ -390,9 +390,9 @@ vnoremap <Space>q;u :<C-u>update ## \|norm gv<CR>
 nnoremap <Space>q;U :<C-u>update! ##<CR>
 vnoremap <Space>q;U :<C-u>update! ## \|norm gv<CR>
 
-" }}}
+" }}} 
 
-" {{{ splits with <Tab>
+" splits with <Tab> {{{ 
 
 noremap <Tab>sv :<C-u>vsplit<Space>
 noremap <Tab>ss :<C-u>split<Space>
@@ -405,9 +405,9 @@ noremap <Tab>sr :<C-u>botright vsplit<Space>
 " noremap <Space>sd :<C-u>Dargument<Space>
 " noremap <Space>sr :<C-u>Rargument<Space>
 
-" }}}
+" }}} 
 
-" {{{ <Space> list and help
+" <Space> list and help {{{ 
 
 nnoremap <Space>ie :<C-u>oldfiles<CR>
 vnoremap <Space>ie :<C-u>oldfiles\|norm gv<CR>
@@ -465,9 +465,9 @@ noremap <Space>ih :<C-u>help<Space>
 " noremap <C-w><Space>ih :<C-u>tab help<Space>
 noremap <Tab>h :<C-u>tab help<Space>
 
-" }}}
+" }}} 
 
-" {{{ <Space> operations
+" <Space> operations {{{ 
 
 nnoremap <Space>iJ :<C-u>clearjumps<CR>
 vnoremap <Space>iJ :<C-u>clearjumps\|norm gv<CR>
@@ -475,19 +475,20 @@ vnoremap <Space>iJ :<C-u>clearjumps\|norm gv<CR>
 nnoremap <Space>;m :move<Space>
 noremap <Space>_ "_d
 
-" }}}
+" }}} 
 
-" {{{ other mappings
+" other mappings {{{ 
 
 " Select whole buffer without plugins
-vnoremap ae gg0oG$
-nnoremap yae gg0vG$y`'
+vnoremap aee gg0oG$
+vnoremap iee aee
+nnoremap yaee gg0vG$y`'
 
-" }}}
+" }}} 
 
-" {{{ settings
+" settings {{{ 
 
-" {{{ completion
+" completion {{{ 
 
 set wildchar=<Tab>
 set wildmode=list:longest,full
@@ -498,9 +499,9 @@ set wildignore+=*.o,*.elf,*.bin,*.dll,*.so
 set complete=w,b,s,i,d,t,.,k
 set completeopt=menu,menuone,noselect,noinsert,preview
 
-" }}}
+" }}} 
 
-" {{{ display
+" display {{{ 
 
 " set terse
 set ruler
@@ -513,18 +514,18 @@ set showmatch
 set nohlsearch
 " set textwidth=72
 
-" }}}
+" }}} 
 
-" {{{ search
+" search {{{ 
 
 set history=10000
 set incsearch
 set ignorecase
 set smartcase
 
-" }}}
+" }}} 
 
-" {{{ indent
+" indent {{{ 
 
 set autoindent
 set cindent
@@ -533,9 +534,9 @@ set shiftwidth=4
 set tabstop=4
 set breakindent
 
-" }}}
+" }}} 
 
-" {{{ ui
+" ui {{{ 
 
 set linebreak
 
@@ -553,9 +554,9 @@ set clipboard=
 
 set switchbuf+=usetab,useopen
 
-" }}}
+" }}} 
 
-" {{{ editing
+" editing {{{ 
 
 set formatoptions=tcroqlwn
 
@@ -564,9 +565,9 @@ set backspace=indent,eol,start
 
 set undolevels=10000
 
-" }}}
+" }}} 
 
-" {{{ other
+" other {{{ 
 
 set noautoread
 set noautochdir
@@ -579,19 +580,19 @@ set hidden
 set cedit=<C-j>
 set cmdwinheight=30
 
-" }}}
+" }}} 
 
-" {{{ files
+" files {{{ 
 
 set encoding=utf-8
 set fileformat=unix
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 
 
 if v:progname =~? "^tv\\(im\\?\\)\\?"
-      \ || v:progname =~? "^vim.tiny" " {{{
+      \ || v:progname =~? "^vim.tiny" " {{{ 
   set background=dark
   set hlsearch
   set secure
@@ -605,8 +606,8 @@ if v:progname =~? "^tv\\(im\\?\\)\\?"
   map <C-p> ,
     " = gets tricked by this comma
   map <C-n> ;
-endif " }}}
+endif " }}} 
 
-if v:progname =~? "^sv\\(im\\?\\)\\?" " {{{
+if v:progname =~? "^sv\\(im\\?\\)\\?" " {{{ 
   silent! set completeopt+=fuzzy,fuzzycollect
-endif " }}}
+endif " }}} 
