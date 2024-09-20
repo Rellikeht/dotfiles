@@ -1,4 +1,4 @@
-" {{{ helpers
+" helpers {{{ 
 
 function VNmap(map, key, cmd, end = "")
   if a:end == ""
@@ -16,9 +16,9 @@ function FileOrDir(path)
   return filereadable(a:path) || isdirectory(a:path)
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ escapes
+" escapes {{{ 
 
 function Escape(s)
   return escape(a:s, " '\"")
@@ -32,9 +32,9 @@ function Vescape(s)
   return escape(a:s, "/")
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ expands
+" expands {{{ 
 
 function Expand(f)
   return Escape(expand(a:f))
@@ -75,9 +75,9 @@ function Dexpand(path)
   return fnamemodify(a:path, ':p')
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ paths
+" paths {{{ 
 
 function GetRoot(cmd, dir='')
   if a:dir == ''
@@ -109,9 +109,9 @@ function EnvrcRoot(dir='')
   return l:root
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ commands
+" commands {{{ 
 
 function Cexec(cmd)
     redir => out
@@ -130,9 +130,9 @@ endfunction
 let g:sleeptime = "800m"
 command -bar We write | exe 'sleep '.g:sleeptime | edit
 
-" }}}
+" }}} 
 
-" {{{ expand (for C-r and commands)
+" expand (for C-r and commands) {{{ 
 
 function Eu()
   return expand('<cword>')
@@ -162,9 +162,9 @@ function Ep()
   return getreg('+')
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ completion generation
+" completion generation {{{ 
 
 function CompleteList(list, lead, cmdline, curpos)
   let completions = []
@@ -182,9 +182,9 @@ function GetCompForList(list)
         \ }
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ quickfix
+" quickfix {{{ 
 
 function! QFtype()
   " Get dictionary of properties of the current window
@@ -227,9 +227,9 @@ function! VToggleQuickFix()
   normal gv
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ workman
+" workman {{{ 
 
 " Attempt to make vim easier to use
 " in workman layout, with preserving
@@ -253,9 +253,9 @@ function! Wmt()
   endif
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ hex editing
+" hex editing {{{ 
 " TODO C do that better
 
 " ex command for toggling hex mode - define mapping if desired
@@ -304,11 +304,11 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ because vim got some things wrong
+" because vim got some things wrong {{{ 
 
-" {{{ proper tabp
+" proper tabp {{{ 
 
 " Simple wrapper because vim has working tabp, but
 " tabn is retarded and tabp won't work with negative counts
@@ -320,9 +320,9 @@ function SwitchTab(count)
   endif
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ https://stackoverflow.com/a/47051271
+" https://stackoverflow.com/a/47051271 {{{ 
 
 " Why is this not a built-in Vim script function?!
 function GetVisualSelection()
@@ -353,9 +353,9 @@ function GetVisualEsc()
   return escape(GetVisualSelection(), "\"")
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ Because :next, :prev and similar don't wrap around
+" Because :next, :prev and similar don't wrap around {{{ 
 
 function NextArg(pos, cmd, before = '', after = '')
   if a:pos
@@ -373,9 +373,9 @@ function NextArg(pos, cmd, before = '', after = '')
   call EchoRelCurFile()
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ Delete buffer while keeping window layout (don't close buffer's windows).
+" Delete buffer while keeping window layout (don't close buffer's windows). {{{ 
 
 "here is a more exotic version of my original Kwbd script
 "delete the buffer; keep windows; create a scratch buffer if no buffers left
@@ -445,9 +445,9 @@ endfunction
 command -bar Kwbd call s:Kwbd(1)
 nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
 
-" }}}
+" }}} 
 
-" {{{ current syntax group, because why give user some simpler way to do it 
+" current syntax group, because why give user some simpler way to do it  {{{ 
 
 function SynStack()
   if !exists("*synstack")
@@ -456,11 +456,11 @@ function SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 
 
-" {{{ displaying name relative to previous buffer on change
+" displaying name relative to previous buffer on change {{{ 
 
 " Return first string without prefix that is has
 " in common with second, use dirs, not chars
@@ -545,9 +545,9 @@ function EchoRelCurFile()
   endif
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ toggling
+" toggling {{{ 
 
 function ToggleBuffer(name)
   execute 'let b:v'.a:name.' = !b:v'.a:name
@@ -601,9 +601,9 @@ function ToggleAutoupdate()
   endif
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ autochdir and relative printing
+" autochdir and relative printing {{{ 
 
 function ToggleAutochdir()
   let g:autochdir = !g:autochdir
@@ -644,9 +644,9 @@ autocmd BufEnter *
       \ | endif
       \ | endif
 
-" }}}
+" }}} 
 
-" {{{ random stuff
+" random stuff {{{ 
 
 function ToggleManProg()
   if &keywordprg == ':help'
@@ -657,4 +657,4 @@ function ToggleManProg()
   echo &keywordprg
 endfunction
 
-" }}}
+" }}} 

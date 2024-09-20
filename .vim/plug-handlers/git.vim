@@ -1,4 +1,4 @@
-" {{{ settings and helpers
+" settings and helpers {{{ 
 
 autocmd FileType gitcommit,gitsendmail
       \ setlocal textwidth=72
@@ -6,18 +6,18 @@ autocmd FileType gitcommit,gitsendmail
 map ,g <Nop>
 map ,gs <Nop>
 
-" }}}
+" }}} 
 
-" {{{ fugitive
+" fugitive {{{ 
 
 let g:ftype_hooks['fugitive'] = g:ftype_hooks['git']
 
-" {{{ TODO
+" TODO {{{ 
 " gmove
 " sourceforge
-" }}}
+" }}} 
 
-" {{{ G* (g)
+" G* (g) {{{ 
 
 nnoremap <silent> <leader>G :Git<CR>
 nnoremap <silent> <leader>ggc :Git<CR>
@@ -60,9 +60,9 @@ nnoremap <silent> <expr> <leader>ggl g:qfloc ?
 nnoremap <expr> <leader>gg<Space>l g:qfloc ?
       \ ':<C-u>Gllog<Space>' : ':<C-u>Gclog<Space>'
 
-" }}}
+" }}} 
 
-" {{{ info (i)
+" info (i) {{{ 
 
 nnoremap <silent> <leader>gis :G status<CR>
 nnoremap <silent> <leader>gil :G log<CR>
@@ -100,9 +100,9 @@ nnoremap <C-w><leader>gi<Space>o :tab G remote<Space>
 nnoremap <C-w><leader>gi<Space>- :tab G remote show<Space>
 nnoremap <C-w><leader>gi<Space>i :tab G show<Space>
 
-" }}}
+" }}} 
 
-" {{{ files (f)
+" files (f) {{{ 
 
 noremap <leader>gf<Space>l :G ls-files<Space>
 noremap <leader>gfc :G ls-files<CR>
@@ -136,9 +136,9 @@ noremap <leader>gfR :G ls-tree -r HEAD<CR>
 noremap <leader>gfN :G ls-tree --name-only HEAD<CR>
 noremap <leader>gfL :G ls-tree -r --name-only HEAD<CR>
 
-" }}}
+" }}} 
 
-" {{{ diff and merge tools (i)
+" diff and merge tools (i) {{{ 
 
 nnoremap <silent> <leader>gih :G diff HEAD<CR>
 nnoremap <C-w><leader>gi<Space>h :tab G diff HEAD
@@ -170,16 +170,16 @@ nnoremap <expr> <leader>gif g:qfloc ?
 nnoremap <expr> <leader>giF g:qfloc ?
       \ ':<C-u>Glgrep!<Space>' : ':<C-u>Ggrep!<Space>'
 
-" }}}
+" }}} 
 
-" {{{ paths (p)
+" paths (p) {{{ 
 
 nnoremap <Leader>gpc :<C-u>Glcd<Space>
 nnoremap <Leader>gpC :<C-u>Gcd<Space>
 
-" }}}
+" }}} 
 
-" {{{ stash (t)
+" stash (t) {{{ 
 
 nnoremap <leader>gts :G stash push<CR>
 nnoremap <leader>gtp :G stash pop<CR>
@@ -205,9 +205,9 @@ nnoremap <C-w><leader>gtv :tab G stash show<CR>
 nnoremap <C-w><leader>gt<Space>l :tab G stash list<Space>
 nnoremap <C-w><leader>gt<Space>v :tab G stash show<Space>
 
-" }}}
+" }}} 
 
-" {{{ TODO B (too little probably) basic commands (o)
+" TODO B (too little probably) basic commands (o) {{{ 
 
 nnoremap <silent> <leader>goa :G add %<CR>
 nnoremap <leader>go<Space>a :G add<Space>
@@ -226,9 +226,9 @@ nnoremap <leader>gof :G fetch<Space>
 nnoremap <silent> <leader>goc :G gc<CR>
 nnoremap <silent> <leader>goC :G gc --aggressive<CR>
 
-" }}}
+" }}} 
 
-" {{{ TODO C (is enough) merge and rebase (m)
+" TODO C (is enough) merge and rebase (m) {{{ 
 
 nnoremap <leader>gmr :G rebase<Space>
 nnoremap <leader>gmR :G rebase<CR>
@@ -248,9 +248,9 @@ nnoremap <leader>gma :G merge --abort<CR>
 nnoremap <leader>gmc :G merge --continue<CR>
 nnoremap <leader>gmq :G merge --quit<CR>
 
-" }}}
+" }}} 
 
-" {{{ TODO C (is enough) reset, revert, restore (r)
+" TODO C (is enough) reset, revert, restore (r) {{{ 
 
 nnoremap <leader>grf :G reset HEAD<CR>
 nnoremap <leader>grF :G reset --hard HEAD<CR>
@@ -266,9 +266,9 @@ nnoremap <leader>grc :G revert --continue<CR>
 nnoremap <leader>grs :G revert --skip<CR>
 nnoremap <leader>grq :G revert --quit<CR>
 
-" }}}
+" }}} 
 
-" {{{ TODO C (is enough) commit (c)
+" TODO C (is enough) commit (c) {{{ 
 
 
 nnoremap <leader>gcc :G commit<CR>
@@ -285,9 +285,9 @@ nnoremap <leader>gc<Space>d :G commit --dry-run<Space>
 nnoremap <leader>gc<Space>f :G commit --fixup<Space>
 nnoremap <leader>gc<Space>r :G commit --fixup=reword<Space>
 
-" }}}
+" }}} 
 
-" {{{ TODO C (is enough) push (h)
+" TODO C (is enough) push (h) {{{ 
 
 nnoremap <leader>ghc :G push<CR>
 nnoremap <leader>ghf :G push --force<CR>
@@ -301,9 +301,9 @@ nnoremap <leader>gh<Space>a :G push --all<Space>
 nnoremap <leader>gh<Space>u :G push --set-upstream<Space>
 nnoremap <leader>gh<Space>t :G push --all --force<Space>
 
-" }}}
+" }}} 
 
-" {{{ TODO C (is enough) pull (l)
+" TODO C (is enough) pull (l) {{{ 
 
 nnoremap <leader>glc :G pull<CR>
 nnoremap <leader>glf :G pull --force<CR>
@@ -321,9 +321,9 @@ nnoremap <leader>gl<Space>a :G pull --all<Space>
 nnoremap <leader>gl<Space>d :G pull --dry-run<Space>
 nnoremap <leader>gl<Space>u :G pull --set-upstream<Space>
 
-" }}}
+" }}} 
 
-" {{{ TODO B (is enough) branches (b)
+" TODO B (is enough) branches (b) {{{ 
 
 nnoremap <leader>gbc :G checkout<CR>
 nnoremap <leader>gb<Space>c :G checkout<Space>
@@ -340,11 +340,11 @@ nnoremap <leader>gb<Space>o :G checkout --ours<Space>
 nnoremap <leader>gb<Space>e :G checkout --theirs<Space>
 nnoremap <leader>gb<Space>m :G checkout --merge<Space>
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 
 
-" {{{ signify (s,j,k)
+" signify (s,j,k) {{{ 
 
 nnoremap <silent> <leader>gst :SignifyToggle<CR>
 nnoremap <silent> <leader>gsh :SignifyToggleHighlight<CR>
@@ -374,9 +374,9 @@ endfunction
 
 autocmd User SignifyHunk call s:show_current_hunk()
 
-" }}}
+" }}} 
 
-" {{{ gv (v,?)
+" gv (v,?) {{{ 
 
 let g:ftype_hooks['GV'] =
       \ 'o: open split / O: open tab / gb: GBrowse / q: quit'
@@ -397,4 +397,4 @@ nnoremap <leader>g<Space>? :GV?<Space>
 " - `.` to start command-line with `:Git [CURSOR] SHA` à la fugitive
 " - `q` or `gq` to close
 
-" }}}
+" }}} 

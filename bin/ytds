@@ -2,8 +2,8 @@
 
 LANG=
 [ -n "$YTL" ] && LANG="[language=$YTL]"
-H=480 
-ABR=56 
+H=480
+ABR=56
 HSET="[height>=$H]"
 # != doesn't work on it's own
 CSET="[vcodec!*=av01]"

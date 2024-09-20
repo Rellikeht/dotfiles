@@ -1,4 +1,4 @@
-" {{{ plug
+" plug {{{ 
 
 function GeneralUpgrade()
   silent! PlugUpgrade
@@ -8,9 +8,9 @@ endfunction
 nnoremap <silent> <Leader>qu :silent! call GeneralUpgrade()<CR>
 nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>
 
-" }}}
+" }}} 
 
-" {{{ Repeat
+" Repeat {{{ 
 
 " https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 " https://vi.stackexchange.com/questions/20760/how-to-add-a-count-to-a-binding
@@ -20,9 +20,9 @@ nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>
 " probably some other mappings
 nmap <Leader>. <Plug>(RepeatDot)
 
-" }}}
+" }}} 
 
-" {{{ vim-sneak
+" vim-sneak {{{ 
 " TODO colors
 let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
@@ -37,23 +37,23 @@ noremap s <Plug>Sneak_s
 noremap S <Plug>Sneak_S
 noremap <C-p> <Plug>Sneak_,
 noremap <C-n> <Plug>Sneak_;
-" }}}
+" }}} 
 
-" {{{ abolish
+" abolish {{{ 
 
 " So little code to do so much
 cnoremap <c-g> Subvert
 
-" }}}
+" }}} 
 
-" {{{ vis
+" vis {{{ 
 
 noremap <Leader>is :<C-u>S
 noremap <Leader>ib :<C-u>B
 
-" }}}
+" }}} 
 
-" {{{ bbye
+" bbye {{{ 
 noremap <silent> <Space><Space>- :<C-u>Bdelete<CR>
 noremap <silent> <Space><Space>;- :<C-u>Bdelete!<CR>
 noremap <silent> <Space><Space>w :<C-u>Bwipeout<CR>
@@ -65,4 +65,4 @@ noremap <Space><Space>;u :<C-u>Bunload<Space>
 noremap <Space><Space>;U :<C-u>Bunload!<Space>
 noremap <Space><Space>;w :<C-u>Bwipeout<Space>
 noremap <Space><Space>;W :<C-u>Bwipeout!<Space>
-" }}}
+" }}} 

@@ -1,12 +1,12 @@
-" {{{ cosco
+" cosco {{{ 
 
 "nmap <silent> ; <Plug>(cosco-commaOrSemiColon)
 " map <silent> <C-;> <C-o><Plug>(cosco-commaOrSemiColon)
 " let g:cosco_ignore_comment_lines = 1
 
-" }}}
+" }}} 
 
-" {{{ neoformat formatters
+" neoformat formatters {{{ 
 let g:neoformat_enabled_go = ['gofmt']
 
 " ???
@@ -96,9 +96,9 @@ let g:neoformat_typst_prettypst = {
 
 let g:neoformat_enabled_typst = ["typstfmt", "prettypst"]
 
-" }}}
+" }}} 
 
-" {{{ neoformat settings
+" neoformat settings {{{ 
 
 " ???
 "let b:neoformat_run_all_formatters = 1
@@ -121,9 +121,9 @@ augroup END
 noremap <silent> <Leader>nf :Neoformat<CR>
 noremap <Leader>n<Space>f :Neoformat<Space>
 
-" }}}
+" }}} 
 
-"" {{{ context
+"" context {{{ 
 "
 "" TODO B sane settings
 "" :(
@@ -136,21 +136,21 @@ noremap <Leader>n<Space>f :Neoformat<Space>
 "
 "autocmd FileType qf ContextDisableWindow
 "
-"" }}}
+"" }}} 
 
-" {{{ TODO B dispatch
+" TODO B dispatch {{{ 
 
-" }}}
+" }}} 
 
-" {{{ specialized
+" specialized {{{ 
 
-" {{{ zig.vim
+" zig.vim {{{ 
 
 let g:zig_fmt_autosave = 1
 
-" }}}
+" }}} 
 
-" {{{ julia-vim
+" julia-vim {{{ 
 
 let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
@@ -158,18 +158,18 @@ let g:latex_to_unicode_file_types = '.*'
 
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 
-" }}}
+" }}} 
 
-" {{{ direnv.vim
+" direnv.vim {{{ 
 " TODO C this plugin is too shallow, it needs to be done better way
 
 nnoremap <silent> <Leader>qde :EditEnvrc<CR>
 nnoremap <silent> <Leader>qdE :EditDirenvrc<CR>
 nnoremap <silent> <Leader>qdl :DirenvExport<CR>
 
-" }}}
+" }}} 
 
-" {{{ haskell-vim
+" haskell-vim {{{ 
 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -183,9 +183,9 @@ let g:haskell_disable_HT = 0              " disable template haskell
 let g:haskell_classic_highlighting = 0
 let g:haskell_indent_disable = 0
 
-" }}}
+" }}} 
 
-" {{{ Pluto.jl :)
+" Pluto.jl :) {{{ 
 
 function PLR()
   if @" == '─'
@@ -225,9 +225,9 @@ nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 " Disabled:
 "# ╠═╡ disabled = true
 
-" }}}
+" }}} 
 
-" {{{ emmet
+" emmet {{{ 
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,markdown,javascript,typescript
@@ -236,22 +236,22 @@ autocmd FileType html,css,markdown,javascript,typescript
 let g:user_emmet_mode = 'nv'  "enable all for modes
 let g:user_emmet_leader_key = '<Leader>' "<Leader>,"
 
-" }}}
+" }}} 
 
-" {{{ TODO D ansible-vim
+" TODO D ansible-vim {{{ 
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 
 
-" {{{ autopairs
+" autopairs {{{ 
 
-" }}}
+" }}} 
 
-" {{{ gutentags
+" gutentags {{{ 
 " https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
 
-" {{{ settings
+" settings {{{ 
 
 " TODO C more ?
 let g:gutentags_project_root = [
@@ -306,9 +306,9 @@ let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 1
 
-" }}}
+" }}} 
 
-" {{{ g:gutentags_ctags_exclude
+" g:gutentags_ctags_exclude {{{ 
 
 " TODO B something has to be missing
 let g:gutentags_ctags_exclude = [
@@ -353,9 +353,9 @@ let g:gutentags_ctags_exclude = [
       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
       \ ]
 
-" }}}
+" }}} 
 
-" {{{ maps
+" maps {{{ 
 
 nnoremap <Space>tqg :<C-u>GutentagsToggleEnabled<CR>
 vnoremap <Space>tqg :<C-u>GutentagsToggleEnabled\|norm gv<CR>
@@ -364,6 +364,6 @@ vnoremap <Space>tqt :<C-u>GutentagsToggleTrace\|norm gv<CR>
 nnoremap <Space>tqc :<C-u>GutentagsClearCache<CR>
 vnoremap <Space>tqc :<C-u>GutentagsClearCache\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 

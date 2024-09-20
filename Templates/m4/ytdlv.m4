@@ -1,6 +1,6 @@
+define(HF, ifdef(`RES', RES(), 570))dnl
+define(RF, ifdef(`ABR', ABR(), 56))dnl
 #!/usr/bin/env sh
-define(HF, ifdef(`RES', RES(), 570) )dnl
-define(RF, ifdef(`ABR', ABR(), 56) )dnl
 
 LANG=
 [ -n "$YTL" ] && LANG="[language=$YTL]"

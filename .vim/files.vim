@@ -1,15 +1,15 @@
-" {{{ session
+" session {{{ 
 
 nnoremap ,usm :<C-u>mksession<CR>
 vnoremap ,usm :<C-u>mksession\|norm gv<CR>
 nnoremap ,usM :<C-u>mksession<Space>
 vnoremap ,usM :<C-u>mksession  \|norm gv<C-Left><C-Left><Left>
 
-" }}}
+" }}} 
 
-" {{{ TODO B is that enough - diff
+" TODO B is that enough - diff {{{ 
 
-" {{{ helpers
+" helpers {{{ 
 
 function DiffGet(pane)
   execute 'diffget' a:pane
@@ -21,9 +21,9 @@ function DiffPut(pane)
   diffupdate
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ settings
+" settings {{{ 
 
 if has('patch-8.1.0360')
   set diffopt=internal,filler,closeoff,algorithm:patience,context:8
@@ -44,9 +44,9 @@ nnoremap <silent> <Space>hqf
 vnoremap <silent> <Space>hqf
       \ :<C-u>call <SID>ToggleFiller()\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" {{{ maps
+" maps {{{ 
 
 noremap <silent> <Space>hdp :<C-u>diffput<CR>
 noremap <silent> <Space>hdg :<C-u>diffget<CR>
@@ -76,11 +76,11 @@ nnoremap <silent> <Space>hot :<C-u>diffthis<CR>
 vnoremap <silent> <Space>hot :<C-u>diffthis\|norm gv<CR>
 noremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
 
-" }}}
+" }}} 
 
-" }}}
+" }}} 
 
-" {{{ nops
+" nops {{{ 
 
 noremap <Space>f <Nop>
 noremap <Space><Space>f <Nop>
@@ -90,14 +90,14 @@ noremap <Space>? <Nop>
 noremap <Space>v <Nop>
 noremap <Space>s <Nop>
 
-" }}}
+" }}} 
 
-" {{{ TODO B history
+" TODO B history {{{ 
 " :later and :earlier
 
-" }}}
+" }}} 
 
-" {{{ drag and drop
+" drag and drop {{{ 
 
 " TODO C more ?
 
@@ -139,11 +139,11 @@ noremap <Leader>xo
       \ '2>/dev/null')<CR>
       \ :redraw<CR>
 
-" }}}
+" }}} 
 
-" {{{ TODO C (more ?) - vimgrep
+" TODO C (more ?) - vimgrep {{{ 
 
-" {{{ helpers
+" helpers {{{ 
 
 function s:VimMap(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
   let l:pattern = a:qpat ? "'".a:pattern."'" : a:pattern
@@ -173,9 +173,9 @@ function s:VMCombo(keys, pattern, end, mode='', vesc=0, qpat=1, qend=1)
   exe a:mode.s:VimMap(Lupper(Fupper(l:keys)), a:pattern.'f', a:end, 1, a:qpat, a:qend, a:vesc)
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ mappings generation
+" mappings generation {{{ 
 
 " TODO B filter .sw[po]
 
@@ -269,13 +269,13 @@ for m in s:vgcmaps
   call call('s:VMCombo', m)
 endfor
 
-" }}}
+" }}} 
 
 " TODO C vimgrepadd
 
-" }}}
+" }}} 
 
-" {{{ TODO C (more ?) - grep
+" TODO C (more ?) - grep {{{ 
 
 " - separate shortcut for grep and ag/rg
 " - grep with variable controlling case
@@ -284,7 +284,7 @@ endfor
 " - ag/rg switch as separate variable
 " - recursive ???
 
-" {{{ grep helpers
+" grep helpers {{{ 
 
 " TODO B async
 " TODO C count
@@ -342,9 +342,9 @@ function s:GMCombo(keys, pattern, end, mode='', vesc=0, qpat=1, qend=1)
   exe a:mode.s:GrepMap(Lupper(a:keys), a:pattern, a:end, 1, a:qpat, a:qend, a:vesc)
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ additional helpers
+" additional helpers {{{ 
 
 " silent grep
 function Egrep(...)
@@ -400,9 +400,9 @@ function s:EGMCombo(keys, pattern, end, mode='', vesc=0, qpat=1, qend=1)
   exe a:mode.s:EgrepMap(Lupper(a:keys), a:pattern, a:end, 1, a:qpat, a:qend, a:vesc)
 endfunction
 
-" }}}
+" }}} 
 
-" {{{ grep settings
+" grep settings {{{ 
 
 exe 'set grepprg='.escape(copy(g:vimgrep), ' ')
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
@@ -417,9 +417,9 @@ call MapToggle(s:grep_prefix, 'i', 'g:grepcase', 0,
 call VarPrint(s:grep_prefix, 'i',  'grep ignore case', 'g:grepcase')
 call VarPrint(s:grep_prefix, 'c', 'grepprg', &grepprg, 0)
 
-" }}}
+" }}} 
 
-" {{{ additional settings
+" additional settings {{{ 
 
 let s:egrep_format = '%f:%l:%c:%m'
 let s:egrep_flags = '--vimgrep --smart-case --no-heading --hidden'
@@ -450,9 +450,9 @@ call MapToggle(s:egrep_prefix, 'c', 'g:egrep_ind', 1,
       \ '\|let g:egrep_prog = EgrepPrg()\|echo "egrep program: ".g:egrep_prog')
 call VarPrint(s:egrep_prefix, 'c', 'egrep program', 'g:egrep_prog', 0)
 
-" }}}
+" }}} 
 
-" {{{ maps
+" maps {{{ 
 
 let s:gmaps = [
       \ ['c', '', '', 0, 0],
@@ -561,13 +561,13 @@ exe "noremap ".s:grep_prefix."J :<C-u>Sgrep!<Space>"
 exe "noremap ".s:egrep_prefix."j :<C-u>Segrep<Space>"
 exe "noremap ".s:egrep_prefix."J :<C-u>Segrep!<Space>"
 
-" }}}
+" }}} 
 
 " TODO C grepadd
 
-" }}}
+" }}} 
 
-" {{{ netrw settings
+" netrw settings {{{ 
 " TODO D
 
 let g:netrw_banner = 0
@@ -595,9 +595,9 @@ let g:netrw_ignorenetrc = 0 " (default for linux, cygwin)
 " map will not be available (see |netrw-gx|)
 " let g:netrw_nogx = 1
 
-" }}}
+" }}} 
 
-" {{{ netrw keymaps
+" netrw keymaps {{{ 
 
 " TODO B file openinng
 
@@ -620,4 +620,4 @@ noremap <Leader>x;L :Lexplore<Space>
 noremap <silent> <Leader>x;h :Hexplore<CR>
 noremap <Leader>x;H :Hexplore<Space>
 
-" }}}
+" }}} 

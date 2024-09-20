@@ -1,19 +1,19 @@
-" {{{ helpers
+" helpers {{{ 
 
 map <Leader>u<Esc> <Nop>
 
-" }}}
+" }}} 
 
-" {{{ TINYMRU
+" TINYMRU {{{ 
 
 noremap ,ue :<C-u>ME<Space>
 noremap ,uv :<C-u>MS<Space>
 noremap ,uh :<C-u>MV<Space>
 noremap ,un :<C-u>MT<Space>
 
-" }}}
+" }}} 
 
-" {{{ UNDO TREE
+" UNDO TREE {{{ 
 
 let g:undotree_WindowLayout = 1
 let g:undotree_ShortIndicators = 0
@@ -56,9 +56,9 @@ function g:Undotree_CustomMap()
 
 endfunc
 
-" }}}
+" }}} 
 
-" {{{ OBSESSION
+" OBSESSION {{{ 
 " Not good, not bad
 
 autocmd VimEnter * execute 'silent! Mkdir '.g:data_dir.'/sessions'
@@ -86,4 +86,4 @@ nnoremap <expr> ,usS ':<C-u>Obsession '.g:data_dir.'/sessions/'
 vnoremap <expr> ,usS ':<C-u>Obsession '.g:data_dir.'/sessions/'.
       \ '<Space>\|norm gv<C-Left><C-Left><Left>'
 
-" }}}
+" }}} 

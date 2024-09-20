@@ -1,4 +1,4 @@
-" {{{ Editor Config
+" Editor Config {{{ 
 
 packadd! editorconfig
 let g:EditorConfig_disable = 0
@@ -24,23 +24,23 @@ nnoremap <silent> <Leader>qer
 vnoremap <silent> <Leader>qer 
       \ :<C-u>EditorConfigReload\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" {{{ CSS color
+" CSS color {{{ 
 
 nnoremap <silent> gC :<C-u>call css_color#toggle()<CR>
 vnoremap <silent> gC :<C-u>call css_color#toggle()\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" {{{ Inline edit
+" Inline edit {{{ 
 
 nnoremap <silent> <Leader>mi :InlineEdit<CR>
 vnoremap <silent> <Leader>mi :InlineEdit\|norm gv<CR>
 
-" }}}
+" }}} 
 
-" {{{ nim
+" nim {{{ 
 
 function! JumpToDef()
   if exists("*GotoDefinition_" . &filetype)
@@ -52,13 +52,13 @@ endfunction
 
 noremap <silent> <Leader>dd :call JumpToDef()<CR>
 
-" }}}
+" }}} 
 
-" {{{ TODO B vim-qf-diagnostics
+" TODO B vim-qf-diagnostics {{{ 
 
-" }}}
+" }}} 
 
-" {{{ other
+" other {{{ 
 
 " Enable function highlighting (affects both C and C++ files)
 let g:cpp_function_highlight = 1
@@ -73,9 +73,9 @@ let g:cpp_member_highlight = 1
 " (affects both C and C++ files)
 let g:cpp_simple_highlight = 0
 
-" }}}
+" }}} 
 
-" {{{ vim-simple-complete
+" vim-simple-complete {{{ 
 
 let g:vsc_type_complete = 1
 let g:vsc_tab_complete = 0
@@ -84,4 +84,4 @@ let g:vsc_reverse_completion_command = "\<C-P>"
 let g:vsc_type_complete_length = 3
 let g:vsc_pattern = '\k'
 
-" }}}
+" }}} 

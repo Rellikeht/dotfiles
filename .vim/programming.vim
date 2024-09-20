@@ -1,4 +1,4 @@
-" {{{ settings
+" settings {{{ 
 
 " from opam installation
 set rtp^="~/.opam/default/share/ocp-indent/vim"
@@ -10,9 +10,9 @@ autocmd BufReadPre *
 " autocmd BufNew,BufNewFile *
 "       \ let b:compilers = []
 
-" }}}
+" }}} 
 
-" {{{ :make
+" :make {{{ 
 
 nnoremap <expr> <Space>mr g:qfloc ?
       \ ':<C-u>lmake<CR>' : ':<C-u>make<CR>'
@@ -47,9 +47,9 @@ nnoremap <Space>mF :<C-u>set errorformat=<Space>
 vnoremap <Space>mF :<C-u>set errorformat= \|norm gv
       \ <C-Left><C-Left><Left>
 
-" }}}
+" }}} 
 
-" {{{ compiler
+" compiler {{{ 
 
 function CompleteCompiler(lead, cmdline, curpos)
   return CompleteList(b:compilers, a:lead, a:cmdline, a:curpos)
@@ -67,9 +67,9 @@ vnoremap <Space>mc; :<C-u>compiler  \|norm gv<C-Left><C-Left><Left>
 nnoremap <Space>mC; :<C-u>compiler!<Space>
 vnoremap <Space>mC; :<C-u>compiler!  \|norm gv<C-Left><C-Left><Left>
 
-" }}}
+" }}} 
 
-" {{{ groff
+" groff {{{ 
 
 autocmd BufWritePost *.ms call CompileGroffMs()
 
@@ -81,4 +81,4 @@ function CompileGroffMs()
   endif
 endfunction
 
-" }}}
+" }}} 
