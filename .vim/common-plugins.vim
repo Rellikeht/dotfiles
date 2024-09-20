@@ -62,6 +62,7 @@ Plug 'wellle/tmux-complete.vim'
 " Plug 'wellle/context.vim'
 
 " Plug 'yegappan/taglist'
+Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'xuhdev/SingleCompile'

@@ -234,7 +234,7 @@ autocmd FileType html,css,markdown,javascript,typescript
             \ EmmetInstall
 
 let g:user_emmet_mode = 'nv'  "enable all for modes
-let g:user_emmet_leader_key = '<Leader>' "<Leader>,"
+let g:user_emmet_leader_key = '<Leader>,'
 
 " }}} 
 
@@ -245,6 +245,14 @@ let g:user_emmet_leader_key = '<Leader>' "<Leader>,"
 " }}} 
 
 " autopairs {{{ 
+
+let g:AutoPairsShortcutToggle = "<C-x>="
+
+autocmd FileType text
+      \ let b:autopairs_enabled = 0
+
+nnoremap <Leader>qa :<C-u>call AutoPairsToggle()<CR>
+vnoremap <Leader>qa :<C-u>call AutoPairsToggle()\|norm gv<CR>
 
 " }}} 
 
@@ -342,7 +350,7 @@ let g:gutentags_ctags_exclude = [
       \ '*.pdb',
       \ 'tags*', 'cscope.*',
       \ '*.css', '*.less', '*.scss',
-      \ '*.hs', '*.hi',
+      \ '*.hi',
       \ '*.cma', '*.cmx',
       \ '*.exe', '*.dll', '*.o', '*.so', '*.a',
       \ '*.out', '*.elf', '*.bin',
@@ -367,3 +375,71 @@ vnoremap <Space>tqc :<C-u>GutentagsClearCache\|norm gv<CR>
 " }}} 
 
 " }}} 
+
+" tagbar {{{
+
+" filetypes {{{
+
+let g:tagbar_type_make = {
+      \ 'kinds':[
+      \ 'm:macros',
+      \ 't:targets'
+      \ ]
+      \}
+
+let g:tagbar_type_markdown = {
+  \ 'ctagstype'	: 'markdown',
+  \ 'kinds'		: [
+    \ 'c:chapter:0:1',
+    \ 's:section:0:1',
+    \ 'S:subsection:0:1',
+    \ 't:subsubsection:0:1',
+    \ 'T:l4subsection:0:1',
+    \ 'u:l5subsection:0:1',
+  \ ],
+  \ 'sro'			: '""',
+  \ 'kind2scope'	: {
+    \ 'c' : 'chapter',
+    \ 's' : 'section',
+    \ 'S' : 'subsection',
+    \ 't' : 'subsubsection',
+    \ 'T' : 'l4subsection',
+  \ },
+  \ 'scope2kind'	: {
+    \ 'chapter' : 'c',
+    \ 'section' : 's',
+    \ 'subsection' : 'S',
+    \ 'subsubsection' : 't',
+    \ 'l4subsection' : 'T',
+  \ },
+\ }
+
+" }}}
+
+" maps {{{
+
+nnoremap <Leader>le :<C-u>TagbarToggle<CR>
+vnoremap <Leader>le :<C-u>TagbarToggle\|norm gv<CR>
+nnoremap <Leader>lE :<C-u>TagbarOpenAutoClose<CR>
+vnoremap <Leader>lE :<C-u>TagbarOpenAutoClose\|norm gv<CR>
+nnoremap <Leader>ls :<C-u>TagbarTogglePause<CR>
+vnoremap <Leader>ls :<C-u>TagbarTogglePause\|norm gv<CR>
+
+nnoremap <Leader>lt :<C-u>TagbarCurrentTag<CR>
+vnoremap <Leader>lt :<C-u>TagbarCurrentTag\|norm gv<CR>
+noremap <Leader>l<Space>t :<C-u>TagbarCurrentTag<Space>
+nnoremap <Leader>lu :<C-u>TagbarForceUpdate<CR>
+vnoremap <Leader>lu :<C-u>TagbarForceUpdate\|norm gv<CR>
+
+nnoremap <expr> <Leader>ln
+      \ ":<C-u>call CmdCount('TagbarJumpNext', ".v:count1.")<CR>"
+vnoremap <expr> <Leader>ln
+      \ ":<C-u>call CmdCount('TagbarJumpNext', ".v:count1.")\|norm gv<CR>"
+nnoremap <expr> <Leader>lp
+      \ ":<C-u>call CmdCount('TagbarJumpPrev', ".v:count1.")<CR>"
+vnoremap <expr> <Leader>lp
+      \ ":<C-u>call CmdCount('TagbarJumpPrev', ".v:count1.")\|norm gv<CR>"
+
+" }}}
+
+" }}}

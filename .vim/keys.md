@@ -182,11 +182,13 @@ c,k,r,w,x,z
 
 - h - highlighter
 
-- m - markdown and similar
+- m - markdown
 
-- , - emmet (expansion mapping)
+- , - emmet
 
 - . - repeat (repeat dot)
+
+- l - tagbar
 
 ## Nvim only
 
@@ -213,11 +215,11 @@ Rather useless: I, Q, H, h, r, w
 - z - slime send with motion
 - "+" - v<C-a>
 - "-" - v<C-x>
-- l - (markdown) inline edit
+- m - (markdown) inline edit
 
 ## Nvim only
 
-- l - mdeval, femaco
+- m - mdeval, femaco
 
 # z combinations
 

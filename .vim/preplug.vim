@@ -21,3 +21,7 @@ let g:pandoc#filetypes#handled = [
       \ 'rst',
       \ ]
 " }}} 
+
+" {{{ other
+
+" }}}

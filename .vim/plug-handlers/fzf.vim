@@ -463,7 +463,7 @@ endfor
 
 let g:fzf_action = {
       \ 'ctrl-q': function('s:build_quickfix_list'),
-      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-t': 'Tabe',
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit',
       \ 'ctrl-l': function('s:populate_arg_list'),

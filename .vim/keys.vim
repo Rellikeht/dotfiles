@@ -65,6 +65,9 @@ map <C-h> <C-]>
 noremap <C-w><C-h> 
       \ :<C-u>exe 'tab tag '.Expand('<cword>')<CR>
 
+" Because new file isn't scary
+map gf :e <cfile><CR>
+
 " }}} 
 
 " taglist {{{ 
