@@ -16,6 +16,12 @@ function FileOrDir(path)
   return filereadable(a:path) || isdirectory(a:path)
 endfunction
 
+function CmdCount(cmd, count)
+  for i in range(a:count)
+    exe a:cmd
+  endfor
+endfunction
+
 " }}} 
 
 " escapes {{{ 

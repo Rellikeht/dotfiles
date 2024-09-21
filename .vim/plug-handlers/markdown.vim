@@ -21,7 +21,13 @@ let g:vim_markdown_new_list_item_indent = 0 " 2 ?
 let g:vim_markdown_auto_insert_bullets = 0
 
 " Filetype names and aliases for fenced code blocks.
-" let g:vim_markdown_fenced_languages = ['php', 'py=python', 'js=javascript', 'bash=sh', 'viml=vim']
+let g:vim_markdown_fenced_languages = [
+      \ 'py=python',
+      \ 'hs=haskell',
+      \ 'js=javascript',
+      \ 'ts=typescript',
+      \ 'viml=vim',
+      \ ]
 
 " Format strike-through text (wrapped in `~~`).
 let g:vim_markdown_strikethrough = 1
@@ -33,6 +39,16 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
+
+function s:NoExGe()
+  let l:ex = g:vim_markdown_no_extensions_in_markdown
+  let g:vim_markdown_no_extensions_in_markdown = 0
+  norm ge
+  let g:vim_markdown_no_extensions_in_markdown = l:ex
+endfunction
+
+" Because ge isn't intelligent enough
+noremap gE :<C-u>call <SID>NoExGe()<CR>
 
 " }}} 
 

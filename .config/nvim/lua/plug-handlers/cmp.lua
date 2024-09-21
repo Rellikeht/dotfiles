@@ -1,5 +1,19 @@
-local autopairs = require("nvim-autopairs") -- {{{ TODO C
-autopairs.setup({})
+local autopairs = require("nvim-autopairs") -- {{{
+autopairs.setup(
+  {
+    -- pandoc ?
+    disable_filetype = { --  {{{
+      "markdown",
+      "text",
+      "fzf",
+      "fugitive",
+    }, --  }}}
+
+    disable_in_macro = true,
+    disable_in_visualblock = false,
+    disable_in_replace_mode = true,
+  }
+)
 -- }}}
 
 local cmp = require("cmp") -- {{{ 

@@ -5,8 +5,8 @@
 # Because this is not obvious some time (zsh)
 alias whichp='/usr/bin/env which'
 
-export HISTSIZE=5000
-export HISTFILESIZE=10000
+export HISTSIZE=6000
+export HISTFILESIZE=30000
 
 conditional_source() {
     [ -f "$1" ] && source "$1"

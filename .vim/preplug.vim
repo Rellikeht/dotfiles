@@ -13,14 +13,16 @@ map <unique> <Leader>iws <Plug>SaveWinPos
 map <unique> <Leader>iwr <Plug>RestoreWinPos
 " }}} 
 
-" TODO B vim-pandoc {{{ 
+" TODO B vim-pandoc {{{
+
 let g:pandoc#filetypes#pandoc_markdown = 0
 let g:pandoc#filetypes#handled = [
       \ 'markdown',
       \ 'pandoc',
       \ 'rst',
       \ ]
-" }}} 
+
+" }}}
 
 " {{{ other
 

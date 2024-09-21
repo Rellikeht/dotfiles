@@ -53,7 +53,6 @@ Plug 'lfilho/cosco.vim'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
-" Plug 'neomake/neomake' ?
 
 Plug 'wellle/tmux-complete.vim'
 
@@ -61,7 +60,6 @@ Plug 'wellle/tmux-complete.vim'
 " or something
 " Plug 'wellle/context.vim'
 
-" Plug 'yegappan/taglist'
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 

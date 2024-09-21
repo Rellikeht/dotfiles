@@ -67,6 +67,7 @@ noremap <C-w><C-h>
 
 " Because new file isn't scary
 map gf :e <cfile><CR>
+map <C-w>gf :Tabe <cfile><CR>
 
 " }}} 
 
