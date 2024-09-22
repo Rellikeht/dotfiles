@@ -453,7 +453,8 @@ nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
 
 " }}} 
 
-" current syntax group, because why give user some simpler way to do it  {{{ 
+" current syntax/highlight group {{{ 
+" because why give user some simpler way to do it 
 
 function SynStack()
   if !exists("*synstack")

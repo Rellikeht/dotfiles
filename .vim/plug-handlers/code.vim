@@ -227,11 +227,35 @@ nnoremap <Leader>np;t 03lx:call PLR()<CR>P
 
 " }}} 
 
+" tagalong {{{ 
+
+let g:tagalong_filetypes = [
+      \ 'markdown', 
+      \ 'javascript', 
+      \ 'typescript', 
+      \ 'eco',
+      \ 'eelixir',
+      \ 'ejs',
+      \ 'eruby',
+      \ 'html',
+      \ 'htmldjango',
+      \ 'javascriptreact',
+      \ 'jsx',
+      \ 'php',
+      \ 'typescriptreact',
+      \ 'xml'
+      \ ]
+
+" }}}
+
 " emmet {{{ 
 
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,markdown,javascript,typescript
-            \ EmmetInstall
+let s:emmet_filetypes = tagalong_filetypes[0]
+for t in tagalong_filetypes[1:]
+  let s:emmet_filetypes = s:emmet_filetypes.','.t
+endfor
+exe 'autocmd FileType '.s:emmet_filetypes.' EmmetInstall'
 
 let g:user_emmet_mode = 'nv'  "enable all for modes
 let g:user_emmet_leader_key = '<Leader>,'

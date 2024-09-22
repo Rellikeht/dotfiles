@@ -51,6 +51,7 @@ Plug 'azabiong/vim-highlighter'
 Plug 'sbdchd/neoformat'
 Plug 'lfilho/cosco.vim'
 
+Plug 'suy/vim-context-commentstring'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 
@@ -135,8 +136,10 @@ Plug 'jceb/vim-orgmode'
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim'
-Plug 'mattn/emmet-vim'
 Plug 'HiPhish/info.vim'
+
+Plug 'mattn/emmet-vim'
+Plug 'AndrewRadev/tagalong.vim'
 
 " TODO C and make this not slow vim down
 " Plug 'vimwiki/vimwiki'

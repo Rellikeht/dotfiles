@@ -1,5 +1,5 @@
 " rainbow {{{ 
-" TODO C clean this
+" TODO B make this better
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -52,7 +52,8 @@ let g:rainbow_conf = {
       \   'perl': {
       \     'syn_name_prefix':
       \     'perlBlockFoldRainbow',
-      \   }
+      \   },
+      \   'css': 0,
       \ }
       \}
 
