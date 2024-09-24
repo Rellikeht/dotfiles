@@ -155,6 +155,7 @@ let g:zig_fmt_autosave = 1
 let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_file_types = '.*'
+let g:latex_to_unicode_suggestions = 1
 
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 
@@ -412,8 +413,8 @@ let g:tagbar_type_make = {
       \}
 
 let g:tagbar_type_markdown = {
-  \ 'ctagstype'	: 'markdown',
-  \ 'kinds'		: [
+  \ 'ctagstype' : 'markdown',
+  \ 'kinds'   : [
     \ 'c:chapter:0:1',
     \ 's:section:0:1',
     \ 'S:subsection:0:1',
@@ -421,15 +422,15 @@ let g:tagbar_type_markdown = {
     \ 'T:l4subsection:0:1',
     \ 'u:l5subsection:0:1',
   \ ],
-  \ 'sro'			: '""',
-  \ 'kind2scope'	: {
+  \ 'sro'     : '""',
+  \ 'kind2scope'  : {
     \ 'c' : 'chapter',
     \ 's' : 'section',
     \ 'S' : 'subsection',
     \ 't' : 'subsubsection',
     \ 'T' : 'l4subsection',
   \ },
-  \ 'scope2kind'	: {
+  \ 'scope2kind'  : {
     \ 'chapter' : 'c',
     \ 'section' : 's',
     \ 'subsection' : 'S',

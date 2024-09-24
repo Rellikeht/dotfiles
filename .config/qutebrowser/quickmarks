@@ -9,7 +9,8 @@ deepl translator https://www.deepl.com/translator
 arch wiki https://wiki.archlinux.org/
 artix https://wiki.artixlinux.org/Main/Migration
 groff-eqn https://douglasrumbaugh.com/post/groff-eqn/
-latex-symbols https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
+latex-math https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
+latex-symbols https://latex-programming.fandom.com/wiki/List_of_LaTeX_symbols
 syncthing https://127.0.0.1:8384
 vim-regex-101 http://vimregex.com
 vim-regex https://learnbyexample.gitbooks.io/vim-reference/content/Regular_Expressions.html
