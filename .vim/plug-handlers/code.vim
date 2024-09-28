@@ -32,7 +32,9 @@ let g:neoformat_enabled_zig = []
 let g:neoformat_enabled_nim = ['nimpretty']
 let g:neoformat_enabled_shell = ['shfmt', 'topiary']
 let g:neoformat_enabled_zsh = ['shfmt']
-let g:neoformat_enabled_markdown = ['mdformat', 'prettierd', 'prettier']
+
+" 'mdformat',
+let g:neoformat_enabled_markdown = ['prettierd', 'prettier']
 
 let g:neoformat_enabled_lua = [
       \ 'luaformat',

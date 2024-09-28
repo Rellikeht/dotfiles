@@ -39,10 +39,15 @@ Plug 'kburdett/vim-nuuid'
 Plug 'luochen1990/rainbow'
 Plug 'kshenoy/vim-signature'
 
-Plug 'godlygeek/tabular'
 Plug 'vim-scripts/vis'
 Plug 'moll/vim-bbye'
 Plug 'azabiong/vim-highlighter'
+
+" TODO C fork and change bindings
+" Plug 'Stormherz/tablify'
+
+" TODO revert to godlygeek when updated
+Plug 'Rellikeht/tabular'
 
 " }}} 
 
@@ -133,7 +138,6 @@ Plug 'neovimhaskell/haskell-vim',
       \ {'for': ['haskell', 'cabal']}
 Plug 'zah/nim.vim', {'for': 'nim'}
 
-Plug 'jceb/vim-orgmode'
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim'
@@ -149,6 +153,10 @@ Plug 'preservim/vim-markdown', {'for': 'markdown'}
 " Plug 'vim-pandoc/vim-markdownfootnotes'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'bullets-vim/bullets.vim'
+
+Plug 'jceb/vim-orgmode'
+Plug 'habamax/vim-rst'
+Plug 'habamax/vim-asciidoctor'
 
 " Maybe...
 " Plug 'dbridges/vim-markdown-runner'
