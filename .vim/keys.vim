@@ -532,7 +532,7 @@ augroup Quickfix " {{{
         \| nnoremap <buffer> <silent> <BS> <CR>
         \| nmap <buffer> <CR>
         \ :<C-u>let qpos = getpos('.')<CR>
-        \<BS>.w
+        \<BS>:<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
         \:call setpos('.', qpos)<CR>
         \<C-l><Right><Left>
         \| nmap <buffer> <silent> <C-h>
