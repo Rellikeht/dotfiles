@@ -643,6 +643,13 @@ inoremap <C-x>j <C-x><C-]>
 
 " }}} 
 
+" other insert {{{
+
+inoremap <C-x>c <C-k>
+inoremap <C-k> <Nop>
+
+" }}}
+
 " magic and other space {{{ 
 
 noremap <Space>f/ /\v

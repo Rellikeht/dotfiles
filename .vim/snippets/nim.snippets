@@ -1,0 +1,29 @@
+snippet proc
+    proc ${1:name}(${2:args}): ${3:type} = ${4}
+
+snippet func
+    func ${1:name}(${2:args}): ${3:type} = ${4}
+
+snippet sproc
+    proc ${1:name}(${2:args}): ${3:type} {.throws: [].} =
+    ${4}
+
+snippet template
+    template ${1:name}(${2:args}): ${3:type} = ${4}
+
+snippet simport
+    import std/${1:module}
+
+snippet import
+    import ${1:module}
+
+snippet closure
+    (${1:args}) => ${2}
+
+snippet starter
+    import std/sugar
+    import std/strutils
+    import std/sequtils
+
+snippet disc
+    discard ${1}

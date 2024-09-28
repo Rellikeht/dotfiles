@@ -10,28 +10,6 @@ dir_arg() {
     fi
 }
 
-find_command() {
-    local SWITCH ALL DIR PATTERN
-    SWITCH="$1"
-    ALL="$2"
-    DIR=.
-    shift 2
-
-    if [ -d "$1" ]; then
-        DIR="$1"
-        shift
-    fi
-
-    if [ -n "$1" ]; then
-        PATTERN="$ALL$1$ALL"
-        shift
-    else
-        PATTERN="$ALL"
-    fi
-
-    find_system_special "$DIR" "$SWITCH" "$PATTERN" $@
-}
-
 noerr() {
     "$@" 2>/dev/null
 }
@@ -105,7 +83,7 @@ evr() {
 
 if [ "$(uname)" = "FreeBSD" ]; then # {{{
     find_system_special() {
-        find -E "$@" # TODO
+        find -E $@ # TODO
     }
 
     TOUCHPAD_CMD='doas sysctl hw.psm.synaptics.touchpad_off'
@@ -124,10 +102,14 @@ if [ "$(uname)" = "FreeBSD" ]; then # {{{
 
 else # {{{
 
+    # TODO B this needs redesign
     find_system_special() {
         local D
-        D="$1"
-        shift
+        D=.
+        if [ -d "$1" ]; then
+            D="$1"
+            shift
+        fi
         find "$D" -regextype posix-extended $@
     }
 
@@ -153,10 +135,33 @@ else # {{{
     hm() {
         help2man $@ | man /dev/stdin
     }
-fi
-# }}}
+fi # }}}
 
 # find {{{
+
+# TODO B this needs redesign
+find_command() {
+    local SWITCH ALL DIR PATTERN
+    SWITCH="$1"
+    ALL="$2"
+    DIR=.
+    shift 2
+
+    if [ -d "$1" ]; then
+        DIR="$1"
+        shift
+    fi
+
+    if [ -n "$1" ]; then
+        PATTERN="$ALL$1$ALL"
+        shift
+    else
+        PATTERN="$ALL"
+    fi
+
+    find_system_special "$DIR" -mindepth 1 "$SWITCH" "$PATTERN" $@
+}
+
 fnd() {
     find_command -name '*' $@
 }
@@ -188,6 +193,27 @@ fndse() {
 fndre() {
     find_command -regex '' $@
 }
+
+fndc() {
+    find_system_special -maxdepth 1 $@
+}
+
+fndcd() {
+    fndc -xtype d $@
+}
+
+fndcf() {
+    fndc -xtype f $@
+}
+
+fndcD() {
+    fndc -type d $@
+}
+
+fndcF() {
+    fndc -type f $@
+}
+
 # }}}
 
 # nice additions {{{
