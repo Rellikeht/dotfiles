@@ -13,14 +13,21 @@ find "$SDIR" -mindepth 1 -maxdepth 1 -name '\.*' |
     xargs -d '\n' -I{} cp -frs "{}" "$DDIR"
 
 mkdir -p "$DDIR/.config"
-# cp -frs --update=none "$SDIR/.config/"* "$DDIR/.config"
+[ -d "$DDIR/.config/mpv" ] && MPV_DIR=1
 ln -s "$SDIR/.config/"* "$DDIR/.config" 2>/dev/null
 
 for dir in Templates bin; do
-    # mkdir -p "$DDIR/$dir"
-    # ln -fs "$DDIR/$dir/"* "$DDIR/$dir"
     ln -s "$SDIR/$dir" "$DDIR/"
 done
 
 touch "$DDIR/.config/mpv/local.conf"
 touch "$DDIR/.config/vifm/vifmrc-local"
+
+if [ -z "$MPV_DIR" ]; then
+    rm "$DDIR/.config/mpv"
+    mkdir -p "$DDIR/.config/mpv"
+    for o in mpv.conf input.conf scripts script-opts formats; do
+        ln -s "$SDIR/.config/mpv/$o" "$DDIR/.config/mpv"
+    done
+    cp "$SDIR/.config/mpv/additional.conf" "$DDIR/.config/mpv"
+fi

@@ -70,6 +70,9 @@ config.set("content.cache.size", 67108864)
 #            '{file}'])
 config.set("editor.command", ["st", "svim", "{file}"])
 
+config.set("auto_save.session", True)
+config.set("auto_save.interval", 20000)
+
 # ============================================================
 # SHORTCUTS
 # ============================================================

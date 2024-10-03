@@ -31,10 +31,10 @@ local plugins = { --  {{{
   -- },
 
   -- and this ?
-  -- {
-  --   url = "https://github.com/jocap/vis-filetype-settings",
-  --   file = "vis-filetype-settings",
-  -- },
+  {
+    url = "https://github.com/jocap/vis-filetype-settings",
+    file = "vis-filetype-settings",
+  },
 
   -- }}}
 
@@ -47,6 +47,14 @@ local cache = os.getenv("XDG_CACHE_HOME")
 if cache == nil then cache = os.getenv("HOME") .. "/.cache" end
 package.path = cache .. "/vis-plug/plugins/?/?.lua;" .. cache ..
                  "/vis-plug/plugins/?/init.lua;" .. package.path
+--  }}}
+
+-- helpers {{{
+
+local function hasSuffix(str, suffix)
+  return str:sub(-string.len(suffix)) == suffix
+end
+
 --  }}}
 
 local p = require "vis-pairs" --  {{{
@@ -77,6 +85,11 @@ qf.menu = false
 local fop = require("vis-fzf-open") --  {{{
 
 --  }}}
+
+require("vis-filetype-settings") --  {{{
+settings = {
+  --
+} --  }}}
 
 vis.events.subscribe( --  {{{
   vis.events.INIT, function()
@@ -123,5 +136,19 @@ vis.events.subscribe( --  {{{
     vis:command("set cursorline on")
     -- vis:command("set showtabs on")
     vis:command("set tabwidth 2")
+
+    -- filename related commands
+    if win.file.name == nil then
+      return
+    end
+    if hasSuffix(win.file.name, ".nix") then
+      vis:command("set syntax haskell")
+    end
+
   end
 ) --  }}}
+
+vis.events.subscribe( -- {{{
+  vis.events.FILE_OPEN, function(file)
+  end
+) -- }}}
