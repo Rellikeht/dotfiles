@@ -151,4 +151,6 @@ export JULIA_EDITOR='ssvim'
 
 export NIXPKGS_ALLOW_UNFREE=1
 
+export GTK_THEME="Materia-dark-compact"
+
 # }}}

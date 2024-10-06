@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env sh
+
 line="File"
 if [ -n "$1" ]; then
     line=$1

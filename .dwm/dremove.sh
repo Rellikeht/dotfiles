@@ -1,9 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-DOWNLOADS=~/Pobrane/
+DOWNLOADS=~/Downloads/
 
-if [ $(uname) = "FreeBSD" ]
-then
+if [ $(uname) = "FreeBSD" ]; then
     find -E $DOWNLOADS -iregex ".*\.(png|jpe?g)" -a -cmin +60 -delete
 
 else

@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-dmenu_run
+exec dmenu_run

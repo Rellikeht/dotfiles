@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env sh
+
 DOWNS=~/Downloads
 
 rm -rf "$DOWNS"/*

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 GEOM=$(slop)
 cd ~/Pobrane

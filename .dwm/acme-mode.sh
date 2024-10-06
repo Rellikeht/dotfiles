@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env sh
+
 loc="$(
     xdotool getmouselocation | sed \"s/ scr.*//
     s/x://

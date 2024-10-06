@@ -1,7 +1,4 @@
-#!/bin/sh
-
-#INF=2500000
-#doas rtcwake -m mem -s $INF
+#!/usr/bin/env sh
 
 C=$(doas fgconsole)
 

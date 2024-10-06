@@ -10,6 +10,7 @@ unclutter -idle 1.2 &
 nitrogen --restore &
 
 xbindkeys -n &
+notification-daemon &
 
 [ -x ~/.audio_start.sh ] && ~/.audio_start.sh &
 sleep 0.2

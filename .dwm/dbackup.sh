@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 TARS="t(ar)?(\.?(gz|xz|bz2|bz))?"
 ARCHS="rar|zip|lzma|xz|gz|bz2"
@@ -23,11 +23,10 @@ DBD=~/Dbackup/
 mkdir -p "$DBD"
 mkdir -p "$DBD/pdf"
 
-backup ()
-{
-	ls --color=never $DOWNS | \
-		grep -Ei $3 "\.($1)$" | \
-		xargs -I{} cp -rn "$DOWNS"/{} "$2"
+backup() {
+    ls --color=never $DOWNS |
+        grep -Ei $3 "\.($1)$" |
+        xargs -I{} cp -rn "$DOWNS"/{} "$2"
 }
 
 backup "$EXTS" "$DBD" -v

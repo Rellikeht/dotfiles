@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 export LANG=en
 
-acpi -b | \
+acpi -b |
     sed -Ez '
     s/.*Discharging,/BAT/;
     s/.*[Cc]harging,/AC/g;
