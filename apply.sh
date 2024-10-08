@@ -31,3 +31,11 @@ if [ -z "$MPV_DIR" ]; then
     done
     cp "$SDIR/.config/mpv/additional.conf" "$DDIR/.config/mpv"
 fi
+
+for dir in \
+    Backups Downloads Dbackup Desktop \
+    Phone Public Sync \
+    Books Documents \
+    Games Music Podcasts Pictures Videos; do
+    mkdir -p "$DDIR/$dir"
+done

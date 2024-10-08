@@ -158,6 +158,8 @@ Plug 'jceb/vim-orgmode'
 Plug 'habamax/vim-rst'
 Plug 'habamax/vim-asciidoctor'
 
+Plug 'ekalinin/Dockerfile.vim'
+
 " Maybe...
 " Plug 'dbridges/vim-markdown-runner'
 

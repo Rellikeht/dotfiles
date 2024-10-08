@@ -19,19 +19,18 @@ tsconfig.setup(
       "todotxt",
       "diff",
       "latex",
-      -- "ebnf",
-      -- "org",
-      -- "norg",
       "regex",
+      "org",
+      "norg",
+      -- "ebnf",
 
       -- necessary
       "c",
       "ocaml",
-      -- "ocaml_interface",
+      "ocaml_interface",
       "commonlisp",
       "go",
       "gomod",
-      -- "gowork",
       "scheme",
       "nim",
       "nim_format_string",
@@ -43,10 +42,10 @@ tsconfig.setup(
       "typst",
 
       -- not that necessary
+      "perl",
       "html",
       "css",
       "nickel",
-      -- "asm",
       "rust",
       "make",
       "ninja",
@@ -78,7 +77,6 @@ tsconfig.setup(
 
       -- why is that shit here...
       -- "fortran",
-      -- "perl",
       -- "verilog",
       -- "vhdl",
       -- "scala",
@@ -86,10 +84,10 @@ tsconfig.setup(
       -- "teal",
       -- "roc",
       -- "kotlin",
-      "clojure",
+      -- "clojure",
       "java",
 
-      -- ... even if it is totally useless crap
+      -- ... especially if it is totally useless crap
       -- "ruby",
       -- "r",
       -- "racket",
@@ -97,8 +95,8 @@ tsconfig.setup(
       -- "prolog",
       -- "dhall",
       -- "matlab",
-      -- "javascript",
-      -- "typescript",
+      "javascript",
+      "typescript",
 
       -- git
       "git_config",
@@ -116,7 +114,7 @@ tsconfig.setup(
       -- marked as not ready ?
     }, -- }}}
 
-    -- {{{ some settings
+    -- some settings {{{
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
