@@ -686,12 +686,16 @@ alias niso='nix-store --optimise'
 # }}}
 
 # direnv {{{
+
 alias dst='direnv status'
 alias dal='direnv allow'
 alias dde='direnv deny'
 alias dre='direnv reload'
 alias ded='direnv edit'
 alias dhook='eval "$(direnv hook $SHELL)"'
+
+alias dbu=direnv_build
+
 # }}}
 
 # adb {{{

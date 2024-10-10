@@ -332,7 +332,7 @@ ytdg() {
 ytda() {
     local QUAL FORM LANG
     if [ -n "$2" ]; then
-        LANG="$1"
+        LANG="[language=$1]"
         shift
     fi
     if [ -n "$2" ]; then
@@ -343,7 +343,7 @@ ytda() {
         FORM="$1"
         shift
     fi
-    yts -f "ba[language=$LANG]+bv[height>=$1]/best[height>=$1]$FORM" $@
+    yts -f "ba$LANG+bv[height>=$1]/best[height>=$1]$FORM" $@
 }
 
 trm() {

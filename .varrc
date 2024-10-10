@@ -153,4 +153,7 @@ export NIXPKGS_ALLOW_UNFREE=1
 
 export GTK_THEME="Materia-dark-compact"
 
+# hard dillema
+# export DIRENV_LOG_FORMAT=''
+
 # }}}

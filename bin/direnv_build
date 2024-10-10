@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if command -v envbuild >/dev/null; then
+    exec envbuild
+else
+    exec ./.envbuild.sh
+fi
