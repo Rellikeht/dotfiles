@@ -54,15 +54,24 @@ noremap <Leader>ib :<C-u>B
 " }}} 
 
 " bbye {{{ 
-noremap <silent> <Space><Space>- :<C-u>Bdelete<CR>
-noremap <silent> <Space><Space>;- :<C-u>Bdelete!<CR>
-noremap <silent> <Space><Space>w :<C-u>Bwipeout<CR>
-noremap <silent> <Space><Space>W :<C-u>Bwipeout!<CR>
 
-noremap <Space><Space>;d :<C-u>Bdelete<Space>
-noremap <Space><Space>;D :<C-u>Bdelete!<Space>
-noremap <Space><Space>;u :<C-u>Bunload<Space>
-noremap <Space><Space>;U :<C-u>Bunload!<Space>
-noremap <Space><Space>;w :<C-u>Bwipeout<Space>
-noremap <Space><Space>;W :<C-u>Bwipeout!<Space>
+command! -nargs=* -bang -complete=buffer Bdel
+      \ call Multif('Bdelete'.<q-bang>, [<f-args>])
+command! -nargs=* -bang -complete=buffer Bwip
+      \ call Multif('Bwipeout'.<q-bang>, [<f-args>])
+command! -nargs=* -bang -complete=buffer Bunl
+      \ call Multif('Bunload'.<q-bang>, [<f-args>])
+
+noremap <silent> <Space><Space>- :<C-u>Bdel<CR>
+noremap <silent> <Space><Space>;- :<C-u>Bdel!<CR>
+noremap <silent> <Space><Space>w :<C-u>Bwip<CR>
+noremap <silent> <Space><Space>W :<C-u>Bwip!<CR>
+
+noremap <Space><Space>;d :<C-u>Bdel<Space>
+noremap <Space><Space>;D :<C-u>Bdel!<Space>
+noremap <Space><Space>;u :<C-u>Bunl<Space>
+noremap <Space><Space>;U :<C-u>Bunl!<Space>
+noremap <Space><Space>;w :<C-u>Bwip<Space>
+noremap <Space><Space>;W :<C-u>Bwip!<Space>
+
 " }}} 

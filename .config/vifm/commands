@@ -11,6 +11,11 @@ command! gman pcmanfm
 command! fi file %c %m
 command! bls bls %c | less -r +g
 command! blm bls %f | less -r +g
+command! hardpaste ln %r %a %m
+command! hardlink ln %c %D %m
+command! HARDLINK ln %f %D %m
+command! hardln ln %c %D/%a %m
+command! HARDLN ln %f %D/%a %m
 
 " command! make !!make %a
 " command! vgrep vim "+grep %a"

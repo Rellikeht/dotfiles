@@ -268,7 +268,8 @@ vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 let g:grep = 'grep -EI --exclude-dir=.git'.
       \ ' --exclude-dir=.hg'.
       \ ' --exclude-dir=build'.
-      \ ' --exclude-dir=?cache'
+      \ ' --exclude-dir="?cache"'
+
 let g:vimgrep = g:grep.' -Hn'
 
 " }}} 

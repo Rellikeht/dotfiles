@@ -4,6 +4,16 @@ catch e
     @warn "Error initializing Revise" exception = (e, catch_backtrace())
 end
 
+# this also works, no idea which is better
+# using Pkg: Pkg
+if isinteractive()
+    using Pkg: Pkg
+end
+
+# replacing first line with
+# if isinteractive()
+# also works (?) here (without `using Pkg: Pkg`)
+
 atreplinit() do repl
     try
         @eval using OhMyREPL
