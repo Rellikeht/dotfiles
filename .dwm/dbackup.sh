@@ -13,7 +13,7 @@ REST="out|download|crdownload|part"
 
 DOCS="pdf|djvu|epub|chm|mobi|az3"
 
-STARTS="nix-shell|pip-|dbus-"
+STARTS="nix-|pip-|dbus-|tmp"
 NAMES="env-vars"
 
 # '^[^.]*$ without extensions?

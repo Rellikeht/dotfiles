@@ -387,6 +387,7 @@ alias prgc='prg \
 # }}}
 
 # multimedia and web {{{
+
 alias ffmpeg='ffmpeg -hide_banner'
 alias pm=pulsemixer
 alias am=alsamixer
@@ -434,6 +435,8 @@ alias trCC='trr --incomplete-dir "$(readlink -f .)" --download-dir "$(readlink -
 
 alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'
+
+alias ip='ip -c'
 # }}}
 
 # programming {{{
@@ -670,7 +673,8 @@ alias nfa='nix flake archive'
 alias nfs='nix flake show'
 
 alias npu='nix profile upgrade'
-alias npa='nix profile upgrade ".*"'
+alias npa='nix profile upgrade --all'
+alias npA='nix profile upgrade ".*"'
 alias npl='nix profile list'
 alias npi='nix profile install'
 

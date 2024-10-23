@@ -50,7 +50,8 @@ function s:CdPanes()
   " And this all is simply because this shit can't simply send keys
   " and has to open command line window and fuck codes
   " FUCK
-  execute 'Tmux send-keys Escape Q'
+  " And this shit doesn't even work in nvim
+  execute 'Tmux send-keys gQ'
   execute '!tmux-cdall '.shellescape(path)
   execute 'Tmux send-keys Enter visual Enter'
 endfunction

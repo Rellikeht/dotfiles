@@ -1,10 +1,16 @@
 #!/usr/bin/env sh
 
+TIME="0.2"
 DIR="$(pwd)"
 [ -d "$1" ] && DIR="$1"
 DIR="$(readlink -f $DIR)"
 
+sleep "$TIME"
 tmux setw synchronize-panes
+sleep "$TIME"
 tmux send-keys "cd \"$DIR\""
+sleep "$TIME"
 tmux send-keys Enter C-l
+sleep "$TIME"
 tmux setw synchronize-panes off
+sleep "$TIME"

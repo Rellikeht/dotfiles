@@ -5,6 +5,3 @@ endif
 setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 let b:compilers = get(b:, 'compilers', [])
-let b:compilers += ['troff']
-
-compiler troff

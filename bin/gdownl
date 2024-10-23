@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+LNK="$1"
+shift
+
+echo "$LNK" |
+    sed 's#\.com/file/d/#.com/uc?id=#;s#/view$##' |
+    xargs gdown $@

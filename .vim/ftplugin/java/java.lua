@@ -2,11 +2,19 @@ local nvim_local_dir = vim.fn.expand("~/.local/share/nvim")
 local project_name = vim.fn.fnamemodify(
                        vim.fn.getcwd(), ":p:h:t"
                      )
+
 local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" ..
                         project_name
 
+-- local classpath 
+
 local config = {
-  cmd = {"jdtls", "-data", workspace_dir},
+  cmd = {
+    "jdtls",
+    "-data",
+    workspace_dir,
+    --
+  },
 
   settings = {
     java = {
@@ -15,9 +23,11 @@ local config = {
         favoriteStaticMembers = {},
         importOrder = {"java", "javax", "com", "org"},
       },
+
       autobuild = {enabled = false},
       rename = {enabled = true},
       trace = {server = "verbose"},
+
       import = {
         enabled = true,
         gradle = {enabled = true},
@@ -30,7 +40,17 @@ local config = {
           "/**/test/**",
         },
       },
+
       format = {enable = true},
+
+      -- configuration = {
+      --  runtimes = {
+      --    {
+      --      name = os.getenv("JAVA_NAME"),
+      --      path = os.getenv("JAVA_HOME"),
+      --      --
+      --    },
+
     },
   },
   sources = {
@@ -45,7 +65,7 @@ local config = {
 
   root_dir = vim.fs.dirname(
     vim.fs.find(
-      {"gradlew", ".git", "mvnw"}, {upward = true}
+      {"gradlew", ".git", "mvnw", ".hg"}, {upward = true}
     )[1]
   ),
 }
