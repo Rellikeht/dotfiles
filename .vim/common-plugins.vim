@@ -146,11 +146,7 @@ Plug 'HiPhish/info.vim'
 Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/tagalong.vim'
 
-" TODO C and make this not slow vim down
-" Plug 'vimwiki/vimwiki'
-
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
-" Plug 'vim-pandoc/vim-markdownfootnotes'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'bullets-vim/bullets.vim'
 

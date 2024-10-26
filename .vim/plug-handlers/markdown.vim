@@ -52,12 +52,6 @@ noremap gE :<C-u>call <SID>NoExGe()<CR>
 
 " }}} 
 
-" TODO C vimwiki {{{ 
-
-let g:vimwiki_global_ext = 0
-
-" }}} 
-
 " TODO B markdownfootnotes {{{ 
 
 " autocmd VimEnter

@@ -34,7 +34,7 @@ fi
 
 for dir in \
     Backups Downloads Dbackup Desktop \
-    Phone Public Sync \
+    Phone Phones Public Sync \
     Books Documents \
     Games Music Podcasts Pictures Videos; do
     mkdir -p "$DDIR/$dir"

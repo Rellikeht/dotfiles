@@ -93,7 +93,7 @@ noremap <silent> <Leader>qsg
 
 " vim-highlighter {{{ 
 
-" TODO C proper handling of that shit
+" TODO C external grep tools
 " let s:hft = 0
 " function s:HiToolToggle()
 "   if s:hft
