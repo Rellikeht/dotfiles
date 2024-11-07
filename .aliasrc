@@ -33,15 +33,26 @@ alias prgs='progs | sort | uniq'
 # some neat things {{{
 
 alias bd='cd -'
-alias b1='cd ..'
-alias b2='cd ../..'
-alias b3='cd ../../..'
-alias b4='cd ../../../..'
-alias b5='cd ../../../../..'
-alias b6='cd ../../../../../..'
-alias b7='cd ../../../../../../..'
-alias b8='cd ../../../../../../../..'
-alias b9='cd ../../../../../../../../..'
+
+alias b1='cd  ..'
+alias b2='cd  ../..'
+alias b3='cd  ../../..'
+alias b4='cd  ../../../..'
+alias b5='cd  ../../../../..'
+alias b6='cd  ../../../../../..'
+alias b7='cd  ../../../../../../..'
+alias b8='cd  ../../../../../../../..'
+alias b9='cd  ../../../../../../../../..'
+alias b10='cd ../../../../../../../../../..'
+alias b11='cd ../../../../../../../../../../..'
+alias b12='cd ../../../../../../../../../../../..'
+alias b13='cd ../../../../../../../../../../../../..'
+alias b14='cd ../../../../../../../../../../../../../..'
+alias b15='cd ../../../../../../../../../../../../../../..'
+alias b16='cd ../../../../../../../../../../../../../../../..'
+alias b17='cd ../../../../../../../../../../../../../../../../..'
+alias b18='cd ../../../../../../../../../../../../../../../../../..'
+alias b19='cd ../../../../../../../../../../../../../../../../../../..'
 
 alias pcd='pushd && vcd'
 
@@ -436,7 +447,11 @@ alias trCC='trr --incomplete-dir "$(readlink -f .)" --download-dir "$(readlink -
 alias w3m='w3m -B -H'
 alias w3h='w3m -T text/html'
 
+alias identexif="identify -format '%[EXIF:*]'"
+alias gidentexif="gm identify -format '%[EXIF:*]'"
+
 alias ip='ip -c'
+
 # }}}
 
 # programming {{{

@@ -120,6 +120,22 @@ lspconfig.nil_ls.setup(
   }
 )
 
+lspconfig.tinymist.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    offset_encoding = "utf-8",
+    -- }}}
+
+    settings = { -- {{{
+    }, -- }}}
+  }
+)
+
 lspconfig.gopls.setup(
   {
     -- {{{ boilerplate

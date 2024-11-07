@@ -1,9 +1,9 @@
 " session {{{ 
 
 nnoremap ,usm :<C-u>mksession<CR>
-vnoremap ,usm :<C-u>mksession\|norm gv<CR>
+xnoremap ,usm :<C-u>mksession\|norm gv<CR>
 nnoremap ,usM :<C-u>mksession<Space>
-vnoremap ,usM :<C-u>mksession  \|norm gv<C-Left><C-Left><Left>
+xnoremap ,usM :<C-u>mksession  \|norm gv<C-Left><C-Left><Left>
 
 " }}} 
 
@@ -41,7 +41,7 @@ endfunction
 
 nnoremap <silent> <Space>hqf
       \ :<C-u>call <SID>ToggleFiller()<CR>
-vnoremap <silent> <Space>hqf
+xnoremap <silent> <Space>hqf
       \ :<C-u>call <SID>ToggleFiller()\|norm gv<CR>
 
 " }}} 
@@ -53,7 +53,7 @@ noremap <silent> <Space>hdg :<C-u>diffget<CR>
 noremap <silent> <Space>hd<Space>p :<C-u>diffput<Space>
 noremap <silent> <Space>hd<Space>g :<C-u>diffget<Space>
 nnoremap <silent> <Space>hdu :<C-u>diffupdate<CR>
-vnoremap <silent> <Space>hdu :<C-u>diffupdate\|norm gv<CR>
+xnoremap <silent> <Space>hdu :<C-u>diffupdate\|norm gv<CR>
 
 noremap <silent> <Space>hg0 :<C-u>call DiffGet('//0')<CR>
 noremap <silent> <Space>hg1 :<C-u>call DiffGet('//1')<CR>
@@ -71,9 +71,9 @@ noremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
 noremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
 
 nnoremap <silent> <Space>hoo :<C-u>diffoff<CR>
-vnoremap <silent> <Space>hoo :<C-u>diffoff\|norm gv<CR>
+xnoremap <silent> <Space>hoo :<C-u>diffoff\|norm gv<CR>
 nnoremap <silent> <Space>hot :<C-u>diffthis<CR>
-vnoremap <silent> <Space>hot :<C-u>diffthis\|norm gv<CR>
+xnoremap <silent> <Space>hot :<C-u>diffthis\|norm gv<CR>
 noremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
 
 " }}} 
@@ -106,7 +106,7 @@ nnoremap <silent> <Leader>xy
       \ :<C-u>exe '!dragon --on-top --and-exit '.
       \ Expand("%").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
-vnoremap <silent> <Leader>xy
+xnoremap <silent> <Leader>xy
       \ :<C-u>exe '!dragon --on-top --and-exit '.
       \ Expand("%").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
@@ -116,7 +116,7 @@ nnoremap <silent> <Leader>xY
       \ :<C-u>exe '!dragon --on-top --and-exit '.
       \ Expand("<cfile>").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
-vnoremap <silent> <Leader>xY
+xnoremap <silent> <Leader>xY
       \ :<C-u>exe '!dragon --on-top --and-exit '.
       \ Expand("<cfile>").' 2>/dev/null &'<CR>
       \ :redraw!<CR>

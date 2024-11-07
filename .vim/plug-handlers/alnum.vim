@@ -61,31 +61,31 @@ noremap <silent> <Leader>na :NuuidToggleAbbrev<CR>
 " tabularize {{{ 
 
 nnoremap <Leader>it :<C-u>Tabularize /
-vnoremap <Leader>it :Tabularize /
+xnoremap <Leader>it :Tabularize /
 nnoremap <Leader>ip :<C-u>Tabularize //<Left>
-vnoremap <Leader>ip :Tabularize //<Left>
+xnoremap <Leader>ip :Tabularize //<Left>
 
 nnoremap <Leader>i= :<C-u>Tabularize /=<CR>
-vnoremap <Leader>i= :Tabularize /=<CR>
+xnoremap <Leader>i= :Tabularize /=<CR>
 nnoremap <Leader>i: :<C-u>Tabularize /:<CR>
-vnoremap <Leader>i: :Tabularize /:<CR>
+xnoremap <Leader>i: :Tabularize /:<CR>
 nnoremap <Leader>i; :<C-u>Tabularize /;<CR>
-vnoremap <Leader>i; :Tabularize /;<CR>
+xnoremap <Leader>i; :Tabularize /;<CR>
 nnoremap <Leader>i& :<C-u>Tabularize /&<CR>
-vnoremap <Leader>i& :Tabularize /&<CR>
+xnoremap <Leader>i& :Tabularize /&<CR>
 nnoremap <Leader>i@ :<C-u>Tabularize /@<CR>
-vnoremap <Leader>i@ :Tabularize /@<CR>
+xnoremap <Leader>i@ :Tabularize /@<CR>
 
 nnoremap <Leader>i;= :<C-u>Tabularize /=zs<CR>
-vnoremap <Leader>i;= :Tabularize /=zs<CR>
+xnoremap <Leader>i;= :Tabularize /=zs<CR>
 nnoremap <Leader>i;: :<C-u>Tabularize /:zs<CR>
-vnoremap <Leader>i;: :Tabularize /:zs<CR>
+xnoremap <Leader>i;: :Tabularize /:zs<CR>
 nnoremap <Leader>i;; :<C-u>Tabularize /;zs<CR>
-vnoremap <Leader>i;; :Tabularize /;zs<CR>
+xnoremap <Leader>i;; :Tabularize /;zs<CR>
 nnoremap <Leader>i;& :<C-u>Tabularize /&zs<CR>
-vnoremap <Leader>i;& :Tabularize /&zs<CR>
+xnoremap <Leader>i;& :Tabularize /&zs<CR>
 nnoremap <Leader>i;@ :<C-u>Tabularize /@zs<CR>
-vnoremap <Leader>i;@ :Tabularize /@zs<CR>
+xnoremap <Leader>i;@ :Tabularize /@zs<CR>
 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -110,7 +110,7 @@ function InsertAlignToggle()
 endfunction
 
 nnoremap <Leader>ii :<C-u>call InsertAlignToggle()<CR>
-vnoremap <Leader>ii :<C-u>call InsertAlignToggle()\|norm gv<CR>
+xnoremap <Leader>ii :<C-u>call InsertAlignToggle()\|norm gv<CR>
 
 "map <silent> <leader>qc <Plug>ReplaceWithCurly
 map <silent> <leader>qs <Plug>ReplaceWithStraight }}} 

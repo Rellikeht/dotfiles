@@ -64,6 +64,7 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   for f in split(glob("~/.vim/plug-handlers/*.vim"), "\n")
     exe 'source '.fnameescape(f)
   endfor
+  source ~/.vim/postplug.vim
 
   source ~/.vim/programming.vim
   source ~/.vim/look.vim

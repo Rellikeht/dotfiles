@@ -124,7 +124,7 @@ vnoremap <Tab>l :<C-u>tabs\|norm gv<CR>
 noremap <Tab><Space>l :filter  tabs<C-Left><Left>
 
 noremap <silent> <Tab>+ :<C-u>tabnew<CR>
-noremap <silent> <Tab>- :<C-u>tabclose<CR>
+noremap <silent> <Tab>- :<C-u>tabclose<CR>gT
 nnoremap <silent> <Tab>! :<C-u>tabonly<CR>
 vnoremap <silent> <Tab>! :<C-u>tabonly\|norm gv<CR>
 noremap <Tab>b :<C-u>tab<Space>sb<Space>

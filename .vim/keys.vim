@@ -74,7 +74,7 @@ map <C-w>gf :Tabe <cfile><CR>
 " taglist {{{ 
 
 nnoremap <Space>tl :<C-u>tags<CR>
-vnoremap <Space>tl :<C-u>tags\|norm gv<CR>
+xnoremap <Space>tl :<C-u>tags\|norm gv<CR>
 noremap <Space>t<Space>l
       \:<C-u>filter  tags<C-Left><Left>
 
@@ -99,15 +99,15 @@ noremap <silent> <Space>t$ :<C-u>tlast<CR>
 noremap <silent> <Space>t;$ :<C-u>tlast!<CR>
 
 nnoremap <Space>tr :<C-u>!ctags -R<CR>
-vnoremap <Space>tr :<C-u>!ctags -R\|norm gv<CR>
+xnoremap <Space>tr :<C-u>!ctags -R\|norm gv<CR>
 nnoremap <Space>t<Space>r :<C-u>!ctags -R<Space>
-vnoremap <Space>t<Space>r :<C-u>!ctags -R  \|norm gv
+xnoremap <Space>t<Space>r :<C-u>!ctags -R  \|norm gv
       \ <C-Left><C-Left><Left>
 
 nnoremap <silent> <Space>tb :<C-u>!ctags -R &<CR>
-vnoremap <silent> <Space>tb :<C-u>!ctags -R &\|norm gv<CR>
+xnoremap <silent> <Space>tb :<C-u>!ctags -R &\|norm gv<CR>
 nnoremap <Space>t<Space>b :<C-u>!ctags -R  &<Left><Left>
-vnoremap <Space>t<Space>b :<C-u>!ctags -R  &\|norm gv
+xnoremap <Space>t<Space>b :<C-u>!ctags -R  &\|norm gv
       \ <C-Left><C-Left><Left>
 
 " TODO C ???
@@ -155,18 +155,18 @@ noremap <silent> <Tab>n
       \ :<C-u>call SwitchTab(v:count1)<CR>
 nnoremap <silent> <Tab>N 
       \ :<C-u>execute 'tabmove +'.v:count1<CR>
-vnoremap <silent> <Tab>N 
+xnoremap <silent> <Tab>N 
       \ :<C-u>execute 'tabmove +'.v:count1\|norm gv<CR>
 nnoremap <silent> <Tab>P 
       \ :<C-u>execute 'tabmove -'.v:count1<CR>
-vnoremap <silent> <Tab>P 
+xnoremap <silent> <Tab>P 
       \ :<C-u>execute 'tabmove -'.v:count1\|norm gv<CR>
 
 nnoremap <expr> <Tab>f ':<C-u>'.v:count1.'tabfind '
 nnoremap <expr> <Tab>F ':<C-u>-'.v:count1.'tabfind '
 
 nnoremap <silent> <Tab>w :<C-u>We<CR>
-vnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
+xnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
 " }}} 
 
@@ -182,12 +182,12 @@ nnoremap <Space><Space>gf :<C-u>edit <cfile><CR>
 noremap <Space><Space>o :<C-u>Edit<Space>
 noremap <Space><Space>O :<C-u>Edit!<Space>
 nnoremap <Space><Space>a :<C-u>Badd<Space>
-vnoremap <Space><Space>a :<C-u>Badd  \|norm gv<C-Left><C-Left><Left>
+xnoremap <Space><Space>a :<C-u>Badd  \|norm gv<C-Left><C-Left><Left>
 
-vnoremap <Space><Space>;l 
+xnoremap <Space><Space>;l 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' buffers'<CR>
-vnoremap <Space><Space>;L 
+xnoremap <Space><Space>;L 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' buffers!'<CR>
 
@@ -210,7 +210,7 @@ noremap <silent> <Space><Space>M
 
 noremap <Space>;o :<C-u>ArgeditB<Space>
 noremap <Space>;O :<C-u>ArgeditB!<Space>
-vnoremap <Space>;l 
+xnoremap <Space>;l 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' args'<CR>
 noremap <Space>;a :<C-u>ArgaddB<Space>
@@ -221,7 +221,7 @@ noremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
 noremap <silent> <Space>P :<C-u>call NextArg(0, 'argument!')<CR>
 
 nnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')<CR>
-vnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')\|norm gv<CR>
+xnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')\|norm gv<CR>
 
 noremap <silent> <Space>. 
       \ :<C-u>call NextArg(1, 'argument', 'w')<CR>
@@ -243,22 +243,22 @@ nnoremap <Space>fa :<C-u>argadd <cfile><CR>
 noremap <Space>il :ilist //<Left>
 noremap <Space>i/ :isearch //<Left>
 
-vnoremap <Space>i<Space>r 
+xnoremap <Space>i<Space>r 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' registers'<C-Left><C-b>
-vnoremap <Space>i<Space>p 
+xnoremap <Space>i<Space>p 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' history'<C-Left><C-b>
-vnoremap <Space>i<Space>c 
+xnoremap <Space>i<Space>c 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' changes'<C-Left><C-b>
-vnoremap <Space>i<Space>j 
+xnoremap <Space>i<Space>j 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' jumps'<C-Left><C-b>
-vnoremap <Space>i<Space>o 
+xnoremap <Space>i<Space>o 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' files'<C-Left><C-b>
-vnoremap <Space>i<Space>m 
+xnoremap <Space>i<Space>m 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' marks'<C-Left><C-b>
 
@@ -274,7 +274,7 @@ nnoremap <space>iny :<C-u>exe 'g/'.getreg('"').'/#'<CR>
 nnoremap <space>ing :<C-u>exe 'g/'.getreg('*').'/#'<CR>
 nnoremap <space>inp :<C-u>exe 'g/'.getreg('+').'/#'<CR>
 nnoremap <space>ins :<C-u>exe 'g/'.GetVisualSelection().'/#'<CR>
-vnoremap <space>in :<C-u>exe 'g/'.GetVisualSelection().'/#'<CR>
+xnoremap <space>in :<C-u>exe 'g/'.GetVisualSelection().'/#'<CR>
 
 " }}} 
 
@@ -287,21 +287,21 @@ noremap <Leader>;l :<C-u>!ls<CR>
 
 " pwd
 nnoremap <Leader>;cl :<C-u>silent! lcd %:p:h<CR>
-vnoremap <Leader>;cl :<C-u>silent! lcd %:p:h\|norm gv<CR>
+xnoremap <Leader>;cl :<C-u>silent! lcd %:p:h\|norm gv<CR>
 nnoremap <Leader>;cc :<C-u>silent! cd %:p:h<CR>
-vnoremap <Leader>;cc :<C-u>silent! cd %:p:h\|norm gv<CR>
+xnoremap <Leader>;cc :<C-u>silent! cd %:p:h\|norm gv<CR>
 nnoremap <Leader>;c<Space>l :<C-u>lcd<Space>
-vnoremap <Leader>;c<Space>l :<C-u>lcd \|norm gv
+xnoremap <Leader>;c<Space>l :<C-u>lcd \|norm gv
       \ <C-Left><C-Left><Left>
 nnoremap <Leader>;c<Space>c :<C-u>lcd<Space>
-vnoremap <Leader>;c<Space>c :<C-u>lcd \|norm gv
+xnoremap <Leader>;c<Space>c :<C-u>lcd \|norm gv
       \ <C-Left><C-Left><Left>
 
 " Not the best, but should work
 noremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
 
 nnoremap <Leader>;cp :<C-u>pwd<CR>
-vnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
+xnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
 
 noremap <Leader>;m :<C-u>messages<CR>
 noremap <Leader>;cx :<C-u>mkexrc<CR>
@@ -343,11 +343,11 @@ nnoremap ;t :<C-u>let g:qfloc = !g:qfloc
 nnoremap ;q :<C-u> echo 'Quickfix is now ' . 
       \ (g:qfloc ? 'local' : 'global')<CR>
 
-vnoremap ;t :<C-u>let g:qfloc = !g:qfloc
+xnoremap ;t :<C-u>let g:qfloc = !g:qfloc
       \ \| echo 'Quickfix is now ' . 
       \ (g:qfloc ? 'local' : 'global')
       \ \| normal gv<CR>
-vnoremap ;q :<C-u> echo 'Quickfix is now ' . 
+xnoremap ;q :<C-u> echo 'Quickfix is now ' . 
       \ (g:qfloc ? 'local' : 'global')
       \ \| normal gv<CR>
 
@@ -356,24 +356,24 @@ vnoremap ;q :<C-u> echo 'Quickfix is now ' .
 " getting {{{ 
 
 nnoremap <silent> ;b :<C-u>call QFcmd('getbuffer')<CR>
-vnoremap <silent> ;b :<C-u>call QFcmd('getbuffer')\|norm gv<CR>
+xnoremap <silent> ;b :<C-u>call QFcmd('getbuffer')\|norm gv<CR>
 nnoremap <silent> ;B 
       \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")<CR>
-vnoremap <silent> ;B 
+xnoremap <silent> ;B 
       \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")\|norm gv<CR>
 nnoremap <expr> ;<Space>b g:qfloc ? 
       \ ':<C-u>lgetbuffer <Space>'
       \ : ':<C-u>cgetbuffer <Space>'
-vnoremap <expr> ;<Space>b g:qfloc ? 
+xnoremap <expr> ;<Space>b g:qfloc ? 
       \ ':<C-u>lgetbuffer  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cgetbuffer  \|norm gv<C-Left><C-Left><Left>'
 
 nnoremap <silent> ;<Tab> :<C-u>call QFcmd('getfile')<CR>
-vnoremap <silent> ;<Tab> :<C-u>call QFcmd('getfile')\|norm gv<CR>
+xnoremap <silent> ;<Tab> :<C-u>call QFcmd('getfile')\|norm gv<CR>
 nnoremap <expr> ;<Space><Tab> g:qfloc ? 
       \ ':<C-u>lgetfile <Space>'
       \ : ':<C-u>cgetfile <Space>'
-vnoremap <expr> ;<Space><Tab> g:qfloc ? 
+xnoremap <expr> ;<Space><Tab> g:qfloc ? 
       \ ':<C-u>lgetfile  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cgetfile  \|norm gv<C-Left><C-Left><Left>'
 
@@ -384,7 +384,7 @@ vnoremap <expr> ;<Space><Tab> g:qfloc ?
 nnoremap <expr> ;:
       \ g:qfloc ? ':<C-u>ldo<Space>'
       \ : ':<C-u>cdo<Space>'
-vnoremap <expr> ;:
+xnoremap <expr> ;:
       \ g:qfloc ? 
       \ ':<C-u>ldo  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cdo  \|norm gv<C-Left><C-Left><Left>'
@@ -392,7 +392,7 @@ vnoremap <expr> ;:
 nnoremap <expr> ;;:
       \ g:qfloc ? ':<C-u>ldo!<Space>'
       \ : ':<C-u>cdo!<Space>'
-vnoremap <expr> ;;:
+xnoremap <expr> ;;:
       \ g:qfloc ? 
       \ ':<C-u>ldo!  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cdo!  \|norm gv<C-Left><C-Left><Left>'
@@ -400,7 +400,7 @@ vnoremap <expr> ;;:
 nnoremap <expr> ;m
       \ g:qfloc ? ':<C-u>lfdo<Space>'
       \ : ':<C-u>cfdo<Space>'
-vnoremap <expr> ;m
+xnoremap <expr> ;m
       \ g:qfloc ? 
       \ ':<C-u>lfdo  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cfdo  \|norm gv<C-Left><C-Left><Left>'
@@ -408,7 +408,7 @@ vnoremap <expr> ;m
 nnoremap <expr> ;;m
       \ g:qfloc ? ':<C-u>lfdo!<Space>'
       \ : ':<C-u>cfdo!<Space>'
-vnoremap <expr> ;;m
+xnoremap <expr> ;;m
       \ g:qfloc ? 
       \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
@@ -436,10 +436,10 @@ nnoremap <silent> ;<
       \ :<C-u>call QFcmd('older '.v:count1)<CR>
 nnoremap <silent> ;>
       \ :<C-u>call QFcmd('newer '.v:count1)<CR>
-vnoremap <silent> ;<
+xnoremap <silent> ;<
       \ :<C-u>call QFcmd('older '.v:count1)
       \ \| normal gv<CR>
-vnoremap <silent> ;>
+xnoremap <silent> ;>
       \ :<C-u>call QFcmd('newer '.v:count1)
       \ \| normal gv<CR>
 
@@ -460,17 +460,17 @@ noremap ;l :<C-u>call QFcmd('list')<CR>
 noremap ;L :<C-u>call QFcmd('history')<CR>
 
 nnoremap <silent> ;h :<C-u>call NToggleQuickFix()<CR>
-vnoremap <silent> ;h :<C-u>call VToggleQuickFix()<CR>
+xnoremap <silent> ;h :<C-u>call VToggleQuickFix()<CR>
 
 " clearing
 nnoremap <silent> ;c :<C-u>call QFcmd('expr []')<CR>
-vnoremap <silent> ;c :<C-u>call QFcmd('expr []')\|norm gv<CR>
+xnoremap <silent> ;c :<C-u>call QFcmd('expr []')\|norm gv<CR>
 
 " copying
 nnoremap <silent> ;C g:qfloc ?
       \ ':<C-u>QfToLoc<CR>'
       \ : ':<C-u>LocToQf<CR>'
-vnoremap <silent> ;C g:qfloc ?
+xnoremap <silent> ;C g:qfloc ?
       \ ':<C-u>QfToLoc\|norm gv<CR>'
       \ : ':<C-u>LocToQf\|norm gv<CR>'
 
@@ -478,14 +478,14 @@ vnoremap <silent> ;C g:qfloc ?
 nnoremap <silent> ;= g:qfloc ?
       \ ':<C-u>LocToQf<CR>'
       \ : ':<C-u>QfToLoc<CR>'
-vnoremap <silent> ;= g:qfloc ?
+xnoremap <silent> ;= g:qfloc ?
       \ ':<C-u>LocToQf\|norm gv<CR>'
       \ : ':<C-u>QfToLoc\|norm gv<CR>'
 
 nnoremap <expr> ;e g:qfloc ?
       \ ':<C-u>lexpr<Space>'
       \ : ':<C-u>cexpr<Space>'
-vnoremap <expr> ;e g:qfloc ?
+xnoremap <expr> ;e g:qfloc ?
       \ ':<C-u>lexpr  \|norm gv<C-Left><C-Left><Left>'
       \ : ':<C-u>cexpr  \|norm gv<C-Left><C-Left><Left>'
 

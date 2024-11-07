@@ -93,11 +93,11 @@ noremap <silent> <Leader>tn :<C-u>call <SID>NewWindow(1)<CR>
 noremap <silent> <Leader>tN :<C-u>call <SID>NewWindow(0)<CR>
 
 nnoremap <silent> <Leader>t2 :<C-u>call <SID>Setup2Panes()<CR>
-vnoremap <silent> <Leader>t2 :<C-u>call <SID>Setup2Panes()\|norm gv<CR>
+xnoremap <silent> <Leader>t2 :<C-u>call <SID>Setup2Panes()\|norm gv<CR>
 nnoremap <silent> <Leader>t3 :<C-u>call <SID>Setup3Panes()<CR>
-vnoremap <silent> <Leader>t3 :<C-u>call <SID>Setup3Panes()\|norm gv<CR>
+xnoremap <silent> <Leader>t3 :<C-u>call <SID>Setup3Panes()\|norm gv<CR>
 nnoremap <silent> <Leader>tc :<C-u>call <SID>CopyPath()<CR>
-vnoremap <silent> <Leader>tc :<C-u>call <SID>CopyPath()\|norm gv<CR>
+xnoremap <silent> <Leader>tc :<C-u>call <SID>CopyPath()\|norm gv<CR>
 nnoremap <silent> <Leader>td :<C-u>call <SID>CdPanes()<CR>
 
 nnoremap <silent> <Leader>tp :<C-u>Tmux select-pane -m -t {last} <CR>
@@ -180,8 +180,8 @@ nnoremap gsl <Plug>SlimeLineSend
 nnoremap gz <Plug>SlimeMotionSend
 
 noremap <silent> gss :SlimeSend<CR>
-vnoremap <silent> gz :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
-vnoremap <silent> gZ :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
+xnoremap <silent> gz :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
+xnoremap <silent> gZ :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
 
 xnoremap gsr <Plug>SlimeRegionSend
 nnoremap gsp <Plug>SlimeParagraphSend

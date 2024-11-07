@@ -103,15 +103,15 @@ let g:bullets_custom_mappings = [
       \
       \ ['nmap', 'o', '<Plug>(bullets-newline)'],
       \
-      \ ['vmap', '<Leader>.n', '<Plug>(bullets-renumber)'],
+      \ ['xmap', '<Leader>.n', '<Plug>(bullets-renumber)'],
       \ ['nmap', '<Leader>.n', '<Plug>(bullets-renumber)'],
       \
       \ ['nmap', '<Leader>.x', '<Plug>(bullets-toggle-checkbox)'],
       \
       \ ['nmap', '>>', '<Plug>(bullets-demote)'],
-      \ ['vmap', '>', '<Plug>(bullets-demote)'],
+      \ ['xmap', '>', '<Plug>(bullets-demote)'],
       \ ['nmap', '<<', '<Plug>(bullets-promote)'],
-      \ ['vmap', '<', '<Plug>(bullets-promote)'],
+      \ ['xmap', '<', '<Plug>(bullets-promote)'],
       \
       \ ['imap', '<C-t>', '<Plug>(bullets-demote)'],
       \ ['imap', '<C-d>', '<Plug>(bullets-promote)'],

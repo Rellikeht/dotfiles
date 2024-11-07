@@ -45,7 +45,7 @@ configuration {
     // scroll-method: 0;
     // window-format: "{w}    {c}   {t}";
     // click-to-exit: true;
-    // max-history-size: 25;
+    max-history-size: 4096;
     // combi-hide-mode-prefix: false;
     // combi-display-format: "{mode} {text}";
     // matching-negate-char: '-' /* unsupported ;*/

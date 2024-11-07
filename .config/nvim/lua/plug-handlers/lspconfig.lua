@@ -274,9 +274,6 @@ local servers = { -- {{{
   "r_language_server",
   "bashls",
   "texlab",
-  "typst_lsp",
-  -- probably not ready yet
-  -- "tinymist",
   "scheme_langserver",
   "ts_ls",
 } -- }}}

@@ -65,25 +65,25 @@ autocmd VimEnter * execute 'silent! Mkdir '.g:data_dir.'/sessions'
 
 nnoremap ,usd :<C-u>execute 'mksession '.g:data_dir.
       \ '/sessions/'.localtime().'.vim'<CR>
-vnoremap ,usd :<C-u>execute 'mksession '.g:data_dir.
+xnoremap ,usd :<C-u>execute 'mksession '.g:data_dir.
       \ '/sessions/'.localtime().'.vim'\|norm gv<CR>
 nnoremap <expr> ,usD ':<C-u>mksession '.g:data_dir.'/sessions/'
-vnoremap <expr> ,usD ':<C-u>mksession '.g:data_dir.'/sessions/'.
+xnoremap <expr> ,usD ':<C-u>mksession '.g:data_dir.'/sessions/'.
       \ '<Space>\|norm gv<C-Left><C-Left><Left>'
 
 nnoremap ,uso :<C-u>Obsession<CR>
-vnoremap ,uso :<C-u>Obsession\|norm gv<CR>
+xnoremap ,uso :<C-u>Obsession\|norm gv<CR>
 nnoremap ,usO :<C-u>Obsession<Space>
-vnoremap ,usO :<C-u>Obsession  \|norm gv<C-Left><C-Left><Left>
+xnoremap ,usO :<C-u>Obsession  \|norm gv<C-Left><C-Left><Left>
 nnoremap ,usr :<C-u>Obsession!<CR>
-vnoremap ,usr :<C-u>Obsession!\|norm gv<CR>
+xnoremap ,usr :<C-u>Obsession!\|norm gv<CR>
 
 nnoremap ,uss :<C-u>execute 'Obsession '.g:data_dir.
       \ '/sessions/'.localtime().'.vim'<CR>
-vnoremap ,uss :<C-u>execute 'Obsession '.g:data_dir.
+xnoremap ,uss :<C-u>execute 'Obsession '.g:data_dir.
       \ '/sessions/'.localtime()\|norm gv<CR>
 nnoremap <expr> ,usS ':<C-u>Obsession '.g:data_dir.'/sessions/'
-vnoremap <expr> ,usS ':<C-u>Obsession '.g:data_dir.'/sessions/'.
+xnoremap <expr> ,usS ':<C-u>Obsession '.g:data_dir.'/sessions/'.
       \ '<Space>\|norm gv<C-Left><C-Left><Left>'
 
 " }}} 
