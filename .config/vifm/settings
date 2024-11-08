@@ -167,6 +167,8 @@ set norunexec
 " this should be safe enough
 set confirm-=delete
 
+set cpoptions-=t
+
 " }}}
 
 " filesystem {{{

@@ -79,9 +79,10 @@ map <C-w>D :split .<CR>
 
 " original tab is nice, but had to be sacrificed
 noremap <C-h> <Tab>
-map <Tab><Tab> <C-h>
 noremap <BS> <Tab>
-map <Tab><Tab> <BS>
+" map <Tab><Tab> <C-h>
+" map <Tab><Tab> <BS>
+noremap <Tab><Tab> <C-w><C-w>
 
 " }}}
 

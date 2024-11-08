@@ -12,9 +12,9 @@ keycode  14 = 5 percent 5 percent periodcentered U2022
 keycode  16 = 6     ampersand       6 asciicircum union intersection
 keycode  17 = 7     asterisk        F17 F17 Greek_epsilon Greek_rho
 keycode  18 = 8     parenleft       F18 F18 Greek_alpha Greek_beta
-keycode  19 = 9     parenright      Undo Undo includedin Greek_chi
-keycode  20 = 0     asciicircum     Redo Redo includes degree
-keycode  21 = minus underscore      XF86ScrollUp underscore integral radical
+keycode  19 = 9     parenright      Undo Undo Greek_chi includedin
+keycode  20 = 0     asciicircum     Redo Redo degree includes 
+keycode  21 = minus underscore      XF86ScrollUp underscore radical integral
 keycode  15 = Greek_iota emptyset XF86Tools XF86MonBrightnessUp U2286 U2287
 
 !keycode  15 = 6 asciicircum 6 asciicircum emptyset section
