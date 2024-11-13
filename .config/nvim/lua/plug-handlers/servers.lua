@@ -120,7 +120,9 @@ lspconfig.nil_ls.setup(
   }
 )
 
-lspconfig.tinymist.setup(
+-- Because "maintained" and "supported" tinymist
+-- crashes all the fucking time
+lspconfig.typst_lsp.setup(
   {
     -- {{{ boilerplate
     preselectSupport = false,
@@ -132,6 +134,9 @@ lspconfig.tinymist.setup(
     -- }}}
 
     settings = { -- {{{
+      offset_encoding = "utf-8",
+      semanticTokens = "disable",
+      exportPdf = "never",
     }, -- }}}
   }
 )

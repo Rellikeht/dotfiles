@@ -56,21 +56,21 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  buf_modes, "<Leader>dl", function(_)
+  diag_modes, "<Leader>dl", function(_)
     if vim.g["qfloc"] == 1 then
-      vim.diagnostic.setloclist({open = false})
+      vim.diagnostic.setloclist({open = true})
     else
-      vim.diagnostic.setqflist({open = false})
+      vim.diagnostic.setqflist({open = true})
     end
   end, {noremap = true}
 )
 
 vim.keymap.set(
-  diag_modes, "<Leader>dL", function(_)
+  buf_modes, "<Leader>dL", function(_)
     if vim.g["qfloc"] == 1 then
-      vim.diagnostic.setloclist({open = true})
+      vim.diagnostic.setloclist({open = false})
     else
-      vim.diagnostic.setqflist({open = true})
+      vim.diagnostic.setqflist({open = false})
     end
   end, {noremap = true}
 )
@@ -86,11 +86,13 @@ vim.api.nvim_create_autocmd( -- {{{
       local bufnr = args.buf
       local client = vim.lsp
                        .get_client_by_id(args.data.client_id)
-      if client.server_capabilities.completionProvider then
+      if client and
+        client.server_capabilities.completionProvider then
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
       end
-      if client.server_capabilities.definitionProvider then
+      if client and
+        client.server_capabilities.definitionProvider then
         vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
       end
 
@@ -206,8 +208,7 @@ vim.api.nvim_create_autocmd( -- {{{
       local ftype = vim.api.nvim_get_option_value(
                       "filetype", {scope = "local"}
                     )
-      if #vim.lsp.buf_get_clients() == 1 and Lfiles[ftype] ~=
-        nil then
+      if #vim.lsp.get_clients() == 1 and Lfiles[ftype] ~= nil then
         vim.cmd(
           [[
         let b:lspfmt = b:buffmt
@@ -265,6 +266,7 @@ local servers = { -- {{{
   -- "pylyzer",
   "pylsp",
 
+  -- "typst_lsp",
   "ocamllsp",
   "nickel_ls",
   "zls",

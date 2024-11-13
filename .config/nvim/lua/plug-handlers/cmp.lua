@@ -50,7 +50,7 @@ Snippy.setup( -- {{{
 
     mappings = {
       is = {
-        ["<C-j>"] = "expand_or_advance",
+        ["<C-j>"] = "next", --
         ["<C-k>"] = "previous",
       },
       -- nx = {["<leader>d;"] = "cut_text"},
@@ -274,8 +274,14 @@ cmp.setup(
       { -- {{{
         name = "buffer",
         option = {
-          -- TODO C 'iskeyword'
+          -- below doesn't work sometimes :<
           -- keyword_pattern = [[̨̨\̨k\+]],
+          keyword_pattern = "\\([^,./<>?;: \\|\"'{}()\\[\\]" ..
+            "!@#$%&*-_=+	€£¥¢√∇°∞©®∪∩]\\|" ..
+            "[A-Z]\\)\\+",
+          -- because this fucking shit can't even understand that something
+          -- that matches [A-Z]* isn't special characters specified above
+          -- totally lovely chinise shit
           get_bufnrs = function()
             return vim.api.nvim_list_bufs()
           end,
