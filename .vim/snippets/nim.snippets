@@ -1,12 +1,12 @@
 snippet proc
-    proc ${1:name}(${2:args}): ${3:type} = ${4}
+    proc ${1:name}(${2:args}): ${3:type} = ${0}
 
 snippet func
-    func ${1:name}(${2:args}): ${3:type} = ${4}
+    func ${1:name}(${2:args}): ${3:type} = ${0}
 
 snippet sproc
-    proc ${1:name}(${2:args}): ${3:type} {.throws: [].} =
-    ${4}
+    proc ${1:name}(${2:args}): ${3:type} {.raises: [].} =
+    ${0}
 
 snippet template
     template ${1:name}(${2:args}): ${3:type} = ${4}
@@ -18,7 +18,7 @@ snippet import
     import ${1:module}
 
 snippet closure
-    (${1:args}) => ${2}
+    (${1:args}) => ${0}
 
 snippet starter
     import std/sugar
@@ -26,4 +26,7 @@ snippet starter
     import std/sequtils
 
 snippet disc
-    discard ${1}
+    discard ${0}
+
+snippet strict
+	{.push raises: [].}
