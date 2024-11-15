@@ -1,0 +1,28 @@
+snippet rlv
+	try
+		let line = read_line () in
+		${0}
+	with End_of_file -> ${1}
+
+snippet rlo
+	try
+		read_line () |> ${0}
+	with End_of_file -> ${1}
+
+snippet binds
+	let bind = ${1:Type}.bind;;
+	let (>>=) = bind;;
+	let (let*) = bind;;
+
+	${0}
+
+snippet flipf
+	let flip f a b = f b a in
+	${0}
+
+snippet flipc
+	let flip f a b = f b a;
+	${0}
+
+snippet tof
+	type ${1:name} = ${2:Constructor} of ${3:type}

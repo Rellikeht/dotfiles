@@ -119,12 +119,12 @@ cmp.setup(
     end, -- }}}
 
     performance = { -- {{{
-      async_budget = 10,
+      async_budget = 20,
       debounce = 50,
       throttle = 10,
-      fetching_timeout = 300,
-      max_view_entries = 1000,
-      confirm_resolve_timeout = 50,
+      fetching_timeout = 500,
+      max_view_entries = 5000,
+      confirm_resolve_timeout = 60,
     }, -- }}}
 
     mapping = cmp.mapping.preset.insert( -- {{{
@@ -282,6 +282,7 @@ cmp.setup(
           -- because this fucking shit can't even understand that something
           -- that matches [A-Z]* isn't special characters specified above
           -- totally lovely chinise shit
+
           get_bufnrs = function()
             return vim.api.nvim_list_bufs()
           end,

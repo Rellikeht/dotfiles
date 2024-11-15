@@ -1,0 +1,63 @@
+snippet bu
+	builtins
+
+snippet fnixpkgs
+	nixpkgs = "github:NixOS/nixpkgs";
+
+
+snippet eflake
+	{
+		description = "${1:description}";
+
+		inputs = {
+			${2:inputs}
+		};
+
+		outputs = {${3:arguments}}@inputs : {
+			${0}
+		};
+	}
+
+snippet edefault
+	{
+		pkgs ? import <nixpkgs> {}
+		${1:args}
+	}: let
+		${2:let}
+	in {
+		${0}
+	}
+
+snippet plist
+	with pkgs; [
+		${0}
+	]
+
+snippet wlist
+	with ${1:pred}; [
+		${0}
+	]
+
+snippet mstr
+	''
+	${0}
+	'';
+
+snippet emstr
+	''
+	'';
+
+snippet dpar
+	${1:name} = {
+		${0}
+	};
+
+snippet lpar
+	${1:name} = [
+		${0}
+	];
+
+snippet spar
+	${1:name} = ''
+	${0}
+	'';
