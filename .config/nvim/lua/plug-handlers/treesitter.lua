@@ -1,4 +1,5 @@
 -- TODO A better/proper maps
+-- TODO A clean mess
 ---@diagnostic disable: undefined-global, missing-fields
 local tsconfig = require("nvim-treesitter.configs")
 
@@ -24,7 +25,7 @@ tsconfig.setup(
       "norg",
       -- "ebnf",
 
-      -- necessary
+      -- main
       "c",
       "ocaml",
       "ocaml_interface",
@@ -54,7 +55,7 @@ tsconfig.setup(
       "cpp",
       "sql",
       "tcl",
-      "odin",
+      -- "odin",
       -- "erlang",
       -- "elixir",
 
@@ -168,7 +169,7 @@ tsconfig.setup(
         floating_preview_opts = {},
 
         peek_definition_code = { -- {{{
-          -- TODO ??
+          -- TODO more ??
           ["<leader>Df"] = "@function.outer",
           ["<leader>DF"] = "@class.outer",
         }, -- }}}
@@ -350,5 +351,5 @@ nvkeymap(
 
 -- }}}
 
--- {{{ TODO C refactor
+-- {{{ TODO B refactor
 -- }}}

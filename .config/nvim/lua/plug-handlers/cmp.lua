@@ -52,6 +52,7 @@ Snippy.setup( -- {{{
       is = {
         ["<C-j>"] = "next", --
         ["<C-k>"] = "previous",
+        ["<C-g>"] = "expand_or_advance",
       },
       -- nx = {["<leader>d;"] = "cut_text"},
       nx = {},
@@ -277,7 +278,7 @@ cmp.setup(
           -- below doesn't work sometimes :<
           -- keyword_pattern = [[̨̨\̨k\+]],
           keyword_pattern = "\\([^,./<>?;: \\|\"'{}()\\[\\]" ..
-            "!@#$%&*-_=+	€£¥¢√∇°∞©®∪∩]\\|" ..
+            "!#$%&*-=+	€£¥¢√∇°∞©®∪∩]\\|" ..
             "[A-Z]\\)\\+",
           -- because this fucking shit can't even understand that something
           -- that matches [A-Z]* isn't special characters specified above

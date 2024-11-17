@@ -8,3 +8,4 @@ Plug 'elzr/vim-json', {'for': 'json'}
 
 Plug 'bfrg/vim-qf-diagnostics'
 Plug 'Rellikeht/vim-simple-complete'
+" Plug 'garbas/vim-snipmate'

@@ -28,3 +28,29 @@ snippet statm
 		${0}
 	}
 
+snippet cla
+	class ${1:`vim_snippets#Filename("$1", "Name")`} {
+		${0}
+	}
+
+snippet pcla
+	public class ${1:`vim_snippets#Filename("$1", "Name")`} {
+		${0}
+	}
+
+snippet pack
+	package ${1:name};
+
+snippet Tsl
+	Thread.sleep(${1:duration});
+
+snippet trf
+	try {
+		${0}
+	} finally {
+		${1}
+	}
+
+snippet thv
+	this.${1:name} = ${1:name};
+	${0}
