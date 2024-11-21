@@ -451,9 +451,9 @@ noremap <silent> ;w
       \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
 noremap <silent> ;W
       \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR>
-noremap <silent> <C-w>.w
+noremap <silent> <C-w>;w
       \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR><C-w>T
-noremap <silent> <C-w>.W
+noremap <silent> <C-w>;W
       \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR><C-w>T
 
 noremap ;l :<C-u>call QFcmd('list')<CR>

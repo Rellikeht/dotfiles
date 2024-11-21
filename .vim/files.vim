@@ -25,9 +25,7 @@ endfunction
 
 " settings {{{ 
 
-if has('patch-8.1.0360')
-  set diffopt=internal,filler,closeoff,algorithm:patience,context:8
-endif
+set diffopt=internal,filler,closeoff,algorithm:patience,context:8
 
 " TODO C algorithm?
 
