@@ -79,6 +79,10 @@ evr() {
     edt $1 /etc/.varrc
 }
 
+sman() {
+    svim "+Man $1" '+norm o'
+}
+
 # }}}
 
 if [ "$(uname)" = "FreeBSD" ]; then # {{{
@@ -398,3 +402,30 @@ dush() {
 }
 
 # }}}
+
+# Because opam env is expansive at some places {{{
+
+opam_activate() {
+    if [ -z "$OPAM_SWITCH_PREFIX" ] &&
+        whichp opam &>/dev/null &&
+        [ -d "$HOME/.opam" ]; then
+        eval "$(/usr/bin/env opam env --shell ${SHELL##*/})"
+    fi
+}
+
+opam() {
+    opam_activate
+    /usr/bin/env opam $@
+}
+
+dune() {
+    opam_activate
+    /usr/bin/env dune $@
+}
+
+ocaml() {
+    opam_activate
+    /usr/bin/env ocaml $@
+}
+
+#  }}}

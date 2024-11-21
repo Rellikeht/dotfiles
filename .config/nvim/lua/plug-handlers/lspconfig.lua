@@ -268,7 +268,7 @@ local servers = { -- {{{
   -- "pylyzer",
   "pylsp",
 
-  -- "typst_lsp",
+  -- "julials",
   "ocamllsp",
   "nickel_ls",
   "zls",

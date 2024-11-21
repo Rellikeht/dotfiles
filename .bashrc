@@ -165,16 +165,6 @@ if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset "${!DIRENV_@}"
 fi
 
-# Because opam env is expansive at some places
-opam() {
-    if [ -z "$OPAM_SWITCH_PREFIX" ] &&
-        whichp opam &>/dev/null &&
-        [ -f "$HOME/.opam" ]; then
-        eval "$(/usr/bin/env opam env --shell bash)"
-    fi
-    /usr/bin/env opam $@
-}
-
 # }}}
 
 # shit {{{

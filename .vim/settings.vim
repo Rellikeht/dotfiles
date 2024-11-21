@@ -256,7 +256,7 @@ let g:prev_dir = expand('%:p:h')
 let g:autochdir = 0
 autocmd VimEnter * 
       \ silent call ToggleAutochdir()
-      \ | exe 'lcd %:p:h'
+      \ | silent! exe 'lcd %:p:h'
 
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
@@ -268,7 +268,7 @@ vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 let g:grep = 'grep -EI --exclude-dir=.git'.
       \ ' --exclude-dir=.hg'.
       \ ' --exclude-dir=build'.
-      \ ' --exclude-dir="?cache"'
+      \ ' --exclude-dir=?cache'
 
 let g:vimgrep = g:grep.' -Hn'
 

@@ -554,6 +554,7 @@ alias bman='MANPAGER="$BMAN" man'
 alias vif=viminfo
 alias info='info --vi-keys'
 alias cinfo='/usr/bin/env -S info'
+alias nman="MANPAGER='nvim +Man!' man"
 
 alias tlh=tldr
 alias tlu='tldr --update'
