@@ -17,11 +17,17 @@ lspconfig.lua_ls.setup(
     capabilities = Capabilities,
     -- }}}
 
+    -- ???
+    -- workspace_folders = { --  {{{
+    -- }, --  }}}
+
     on_init = function(client) -- {{{
-      local path = client.workspace_folders[1].name
-      if vim.loop.fs_stat(path .. "/.luarc.json") or
-        vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-        return
+      if client.workspace_folders then
+        local path = client.workspace_folders[1].name
+        if vim.loop.fs_stat(path .. "/.luarc.json") or
+          vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+          return
+        end
       end
 
       client.config.settings.Lua = vim.tbl_deep_extend(
