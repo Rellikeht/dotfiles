@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-if which ocamllsp >/dev/null 2>/dev/null; then
-    eval "$(opam env)"
-fi
-ocamllsp

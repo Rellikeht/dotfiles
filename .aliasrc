@@ -487,7 +487,10 @@ alias gbr='git branch'
 alias grb='git rebase'
 alias gmb='git merge'
 alias grc='git rm --cached'
-alias gre='git reset'
+alias grC='git rm -r --cached'
+alias gre='git rm'
+alias grr='git rm -r'
+alias grs='git reset'
 alias grh='git reset --hard'
 alias grH='git reset --hard HEAD'
 
@@ -566,8 +569,8 @@ alias kbp="~/.kb-plug.sh"
 
 ## groff
 alias groff='groff -ktep'
-alias grs='groff -ms'
-alias gsf='grs -Tpdf'
+alias gms='groff -ms'
+alias gsf='gms -Tpdf'
 
 ## syncthing client
 alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
