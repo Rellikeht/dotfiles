@@ -1,0 +1,33 @@
+{
+  "language": "Haskell2010",
+  "extensions": [],
+  "style": "base",
+  "formatting": {
+    "penalty": {
+      "linebreak": 40,
+      "overfull": 1
+    },
+    "group": {
+      "[ in type": {
+        "spaces": "none",
+        "linebreaks": "none",
+        "force-linebreak": false
+      },
+      "( in *": {
+        "spaces": "none",
+        "linebreaks": "none",
+        "force-linebreak": false
+      },
+      "( in other": {
+        "spaces": "both",
+        "linebreaks": "none",
+        "force-linebreak": false
+      }
+    },
+    "options": {
+      "decl-no-blank-lines": [
+        "where"
+      ]
+    }
+  }
+}
