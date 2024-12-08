@@ -95,24 +95,6 @@ pathadd "$HOME/bin"
 
 # }}}
 
-# {{{ fuck
-
-#if [ "$(uname)" = "Linux" ]
-#then
-#    export TERMINFO=/usr/share/terminfo
-#else
-#    export TERMINFO=/usr/local/share/terminfo
-#fi
-#export TERM=st-24bit
-
-#if [ -n "$TMUX" ]
-#then
-#   TERM=st-24bit
-#   #TERM=xterm-24bit
-#fi
-
-# }}}
-
 # {{{ random settings
 
 export TMUX_SOCKET='sock'

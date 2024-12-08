@@ -669,7 +669,7 @@ alias nur="nix repl --expr 'import <unstable> {}'"
 
 alias nish='nix-shell'
 alias nist='nix-store'
-alias nibu='nix-build -L'
+alias nibu='nix-build'
 alias nich='nix-channel'
 alias niso='nix-store --optimise'
 # }}}

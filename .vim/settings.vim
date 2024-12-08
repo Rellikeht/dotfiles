@@ -261,6 +261,11 @@ autocmd VimEnter *
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 vnoremap <Leader>qca :<C-u>call ToggleAutochdir()\|norm gv<CR>
 
+set maxmempattern=2000000
+if !has("nvim")
+  set maxmem=2000000
+endif
+
 " }}} 
 
 " grep {{{ 

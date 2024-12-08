@@ -43,6 +43,8 @@ shopt -s cdspell
 shopt -s dirspell
 shopt -s cdable_vars
 
+set -eo pipefail
+
 # }}}
 
 # prompt {{{

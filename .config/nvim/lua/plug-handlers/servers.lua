@@ -126,9 +126,9 @@ lspconfig.nil_ls.setup(
   }
 )
 
--- Because "maintained" and "supported" tinymist
--- crashes all the fucking time
-lspconfig.typst_lsp.setup(
+-- fucking almost useless shit
+-- that crashes on every fucking input
+lspconfig.tinymist.setup(
   {
     -- {{{ boilerplate
     preselectSupport = false,
