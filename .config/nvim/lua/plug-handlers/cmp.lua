@@ -53,12 +53,24 @@ Snippy.setup( -- {{{
         ["<C-j>"] = "next", --
         ["<C-k>"] = "previous",
         ["<C-g>"] = "expand_or_advance",
+        -- ???
+        -- ["<C-Space>"] = "complete",
+        -- ["<C-Space>"] = function() Snippy.complete() end,
       },
+
       -- nx = {["<leader>d;"] = "cut_text"},
       nx = {},
     },
   }
-) -- }}}
+)
+
+vim.cmd(
+  [[
+    autocmd CompleteDone * lua require 'snippy'.complete_done()
+]]
+)
+
+-- }}}
 
 -- {{{ cmp helpers
 

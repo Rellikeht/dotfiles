@@ -43,7 +43,7 @@ shopt -s cdspell
 shopt -s dirspell
 shopt -s cdable_vars
 
-set -eo pipefail
+set -o pipefail
 
 # }}}
 
@@ -143,6 +143,7 @@ if [ -z "$__Z_INITIALIZED" ]; then
         TEMP="$(mktemp)"
         z.lua --init bash once enhanced echo fzf >"$TEMP"
         patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
+        rm "$TEMP.orig"
         eval "$(cat $TEMP)"
         rm "$TEMP"
         TEMP=

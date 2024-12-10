@@ -168,4 +168,9 @@ let g:accelerated_jk_enable_deceleration = 1
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
+" let g:wheel#map#up   = '<c-k>'
+" let g:wheel#map#down = '<c-j>'
+let g:wheel#map#up   = ''
+let g:wheel#map#down = ''
+
 " }}} 
