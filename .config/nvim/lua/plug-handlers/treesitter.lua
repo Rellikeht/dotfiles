@@ -29,6 +29,8 @@ tsconfig.setup(
       "c",
       "ocaml",
       "ocaml_interface",
+      -- "ocamllex",
+      "menhir",
       "commonlisp",
       "go",
       "gomod",
