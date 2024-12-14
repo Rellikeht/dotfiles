@@ -273,7 +273,7 @@ endif
 let g:grep = 'grep -EI --exclude-dir=.git'.
       \ ' --exclude-dir=.hg'.
       \ ' --exclude-dir=build'.
-      \ ' --exclude-dir=?cache'
+      \ ' --exclude-dir=\?cache'
 
 let g:vimgrep = g:grep.' -Hn'
 

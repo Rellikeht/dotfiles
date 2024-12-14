@@ -52,6 +52,27 @@ command -nargs=* -complete=file -bar -bang Edit
 command -nargs=* -complete=file -bar Badd
       \ call Multif('badd', [<f-args>])
 
+function ArgD()
+  if argc() == 1
+    q
+  elseif argc() == 2
+    argdelete
+    first
+  else
+    argdelete
+    if argidx() == argc() - 1
+      argument 1
+    else
+      next
+    endif
+  endif
+endfunction
+
+function BDArgD()
+  silent! Bdel %
+  call ArgD()
+endfunction
+
 " }}} 
 
 " nops {{{ 
@@ -208,33 +229,36 @@ noremap <silent> <Space><Space>M
 
 " args with <Space> {{{ 
 
-noremap <Space>;o :<C-u>ArgeditB<Space>
-noremap <Space>;O :<C-u>ArgeditB!<Space>
+nnoremap <Space>;o :<C-u>ArgeditB<Space>
+nnoremap <Space>;O :<C-u>ArgeditB!<Space>
 xnoremap <Space>;l 
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' args'<CR>
-noremap <Space>;a :<C-u>ArgaddB<Space>
+nnoremap <Space>;a :<C-u>ArgaddB<Space>
 
-noremap <silent> <Space>n :<C-u>call NextArg(1, 'argument')<CR>
-noremap <silent> <Space>N :<C-u>call NextArg(1, 'argument!')<CR>
-noremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
-noremap <silent> <Space>P :<C-u>call NextArg(0, 'argument!')<CR>
+nnoremap <silent> <Space>n :<C-u>call NextArg(1, 'argument')<CR>
+nnoremap <silent> <Space>N :<C-u>call NextArg(1, 'argument!')<CR>
+nnoremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
+nnoremap <silent> <Space>P :<C-u>call NextArg(0, 'argument!')<CR>
 
 nnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')<CR>
 xnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')\|norm gv<CR>
 
-noremap <silent> <Space>. 
+nnoremap <silent> <Space>. 
       \ :<C-u>call NextArg(1, 'argument', 'w')<CR>
-noremap <silent> <Space>> 
+nnoremap <silent> <Space>> 
       \ :<C-u>call NextArg(1, 'argument!', 'w')<CR>
-noremap <silent> <Space>, 
+nnoremap <silent> <Space>, 
       \ :<C-u>call NextArg(0, 'argument', 'w')<CR>
-noremap <silent> <Space>< 
+nnoremap <silent> <Space>< 
       \ :<C-u>call NextArg(0, 'argument!', 'w')<CR>
 
 nnoremap <Space>fu :<C-u>argedit <cfile><CR>
 nnoremap <Space>fU :<C-u>argedit! <cfile><CR>
 nnoremap <Space>fa :<C-u>argadd <cfile><CR>
+
+nnoremap <silent> <Space>D :<C-u>call ArgD()<CR>
+nnoremap <silent> <Space>;D :<C-u>call BDArgD()<CR>
 
 " }}} 
 

@@ -48,6 +48,7 @@ Plug 'azabiong/vim-highlighter'
 
 " TODO revert to godlygeek when updated
 Plug 'Rellikeht/tabular'
+Plug 'tpope/vim-endwise'
 
 " }}} 
 
@@ -145,6 +146,8 @@ Plug 'HiPhish/info.vim'
 
 Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/tagalong.vim'
+Plug 'averms/ebnf-vim'
+Plug 'vim-scripts/bnf.vim'
 
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc-syntax'
