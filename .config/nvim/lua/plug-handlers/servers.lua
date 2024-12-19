@@ -22,6 +22,7 @@ lspconfig.lua_ls.setup(
     -- }, --  }}}
 
     on_init = function(client) -- {{{
+      ---@diagnostic disable: undefined-field
       if client.workspace_folders then
         local path = client.workspace_folders[1].name
         if vim.loop.fs_stat(path .. "/.luarc.json") or
@@ -166,6 +167,34 @@ lspconfig.gopls.setup(
     }, -- }}}
   }
 )
+
+-- lspconfig.ocamllsp.setup(
+--   {
+--     -- {{{ boilerplate
+--     preselectSupport = false,
+--     preselect = false,
+--     single_file_support = true,
+--     on_attach = lsp_attach,
+--     capabilities = Capabilities,
+--     settings = {telemetry = {enable = false}},
+--     -- }}}
+
+--     filetypes = { --  {{{
+--       "ocaml",
+--       "menhir",
+--       "ocamllex",
+--       "ocamlinterface",
+--       "dune",
+
+--       "ocaml.interface",
+--       "ocaml.menhir",
+--       "ocaml.cram",
+--       "ocaml.mlx",
+--       "ocaml.ocamllex",
+--       "reason",
+--     }, --  }}}
+--   }
+-- )
 
 lspconfig.julials.setup(
   {

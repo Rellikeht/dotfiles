@@ -1,3 +1,6 @@
-au BufNewFile,BufReadPre,BufRead,BufEnter *.mly
-      \ set filetype=menhir
-      \ | set syntax=yacc
+if !has("nvim")
+  au BufNewFile,BufReadPre,BufEnter *.mly
+        \ set filetype=menhir
+endif
+au BufNewFile,BufReadPre,BufEnter *.mly
+      \ set syntax=yacc

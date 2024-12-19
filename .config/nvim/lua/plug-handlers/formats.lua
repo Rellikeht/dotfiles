@@ -1,4 +1,5 @@
 -- {{{ helpers
+---@diagnostic disable: unused-local
 local modes = {"n", "v"}
 
 -- }}}
@@ -178,6 +179,7 @@ vim.keymap.set(modes, ",me", ":FeMaco<CR>", {noremap = true})
 -- }}}
 
 require("glow").setup( -- {{{
+  ---@diagnostic disable: missing-fields
   {
     border = "shadow", -- floating window border config
     style = "dark", -- filled automatically with your current editor background, you can override using glow json style
@@ -198,3 +200,19 @@ vim.keymap.set(
 )
 
 -- }}}
+
+-- other {{{
+
+-- needed for ocaml lsp to work with ocamllex and menhir files
+vim.filetype.add {
+  extension = {
+    mli = "ocamlinterface",
+    mly = "menhir",
+    mll = "ocamllex",
+    mlx = "ocaml.mlx",
+    t = "ocaml.cram",
+    re = "reason",
+  },
+}
+
+--  }}}

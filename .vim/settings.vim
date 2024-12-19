@@ -36,7 +36,7 @@ autocmd BufWinEnter *
 
 " set secure
 
-" modeline for undetected filetypes
+" modeline emulation for undetected filetypes
 " shitty, but works somehow
 autocmd BufReadPost *
       \ if (&buftype == "") && (&filetype == "")

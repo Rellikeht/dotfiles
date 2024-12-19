@@ -2,8 +2,8 @@
 ---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
 
-local diag_modes = {"n", "v"}
-local buf_modes = {"n", "v"}
+local diag_modes = {"n"}
+local buf_modes = {"n"}
 
 -- lua isn't that good
 Lfiles = {"*.go", "*.jl", "*.zig", "*.sh"}
@@ -209,7 +209,7 @@ vim.api.nvim_create_autocmd( -- {{{
                       "filetype", {scope = "local"}
                     )
       local v, clients = pcall(vim.lsp.get_clients)
-      if not v then clients = vim.lsp.buf_get_clients() end
+      if not v then clients = vim.lsp.get_clients() end
       if #clients == 1 and Lfiles[ftype] ~= nil then
         vim.cmd(
           [[
