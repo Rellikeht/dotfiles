@@ -143,7 +143,7 @@ if [ -z "$__Z_INITIALIZED" ]; then
         TEMP="$(mktemp)"
         z.lua --init bash once enhanced echo fzf >"$TEMP"
         patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
-        rm "$TEMP.orig"
+        rm -f "$TEMP.orig"
         eval "$(cat $TEMP)"
         rm "$TEMP"
         TEMP=

@@ -413,6 +413,7 @@ alias aria_helper='aria2c --continue=true \
 # of having multiple commands, but this will be hard
 alias aria='aria_helper --file-allocation=falloc'
 alias ariap='aria_helper --file-allocation=prealloc'
+alias arian='aria_helper --file-allocation=none'
 alias ariat='aria_helper --follow-torrent false'
 
 alias rsync='rsync --progress'
