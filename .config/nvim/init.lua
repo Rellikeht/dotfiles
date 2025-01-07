@@ -24,7 +24,7 @@ Plug("nvim-lua/plenary.nvim")
 
 Plug(
   "nvim-treesitter/nvim-treesitter",
-  {["do"] = ":silent! TSUpdate"}
+  { ["do"] = ":silent! TSUpdate" }
 )
 Plug("norcalli/nvim-colorizer.lua")
 
@@ -150,14 +150,8 @@ vim.call("plug#end")
 -- {{{ loading rest of config
 
 local confMods = {
-  "motion",
-  "cmp",
-  "look",
-  "treesitter",
-  "lspconfig",
-  "coding",
-  "formats",
-  -- "images",
+  "motion", "cmp", "look", "treesitter", "lspconfig", "coding",
+  "formats", -- "images",
   "other",
 }
 

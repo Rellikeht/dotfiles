@@ -10,17 +10,12 @@ local util = require("lspconfig.util")
 lspconfig.lua_ls.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
-    capabilities = Capabilities,
-    -- }}}
-
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, -- }}}
     -- ???
     -- workspace_folders = { --  {{{
     -- }, --  }}}
-
     on_init = function(client) -- {{{
       ---@diagnostic disable: undefined-field
       if client.workspace_folders then
@@ -32,18 +27,14 @@ lspconfig.lua_ls.setup(
       end
 
       client.config.settings.Lua = vim.tbl_deep_extend(
-                                     "force", client.config
-                                       .settings.Lua, {
+        "force", client.config.settings.Lua, {
           runtime = {
             -- Tell the language server which version of Lua you're using
             -- (most likely LuaJIT in the case of Neovim)
             version = "LuaJIT",
-          },
-
-          -- Make the server aware of Neovim runtime files
+          }, -- Make the server aware of Neovim runtime files
           workspace = {
-            checkThirdParty = false,
-            library = {
+            checkThirdParty = false, library = {
               vim.env.VIMRUNTIME,
               -- Depending on the usage, you might want to add additional paths here.
               -- "${3rd}/luv/library"
@@ -54,41 +45,27 @@ lspconfig.lua_ls.setup(
             -- library = vim.api.nvim_get_runtime_file("", true)
           },
         }
-                                   )
+      )
     end, -- }}}
-
     settings = { -- {{{
       Lua = {
         runtime = {
-          version = "LuaJIT",
-          -- Setup your lua path
+          version = "LuaJIT", -- Setup your lua path
           path = {
-            "?.lua",
-            "?/init.lua",
+            "?.lua", "?/init.lua",
             unpack(vim.split(package.path, ";")),
           },
-        },
-
-        hint = {enable = true},
-
-        diagnostics = {
+        }, hint = { enable = true }, diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {"vim", "require"},
-        },
-
-        workspace = {
+          globals = { "vim", "require" },
+        }, workspace = {
           -- Make the server aware of Neovim runtime files
           -- library = vim.api.nvim_get_runtime_file("", true),
-        },
-
-        format = {
+        }, format = {
           defaultConfig = {
-            indent_style = "space",
-            indent_size = 2,
+            indent_style = "space", indent_size = 2,
           },
-        },
-
-        telemetry = {enable = false},
+        }, telemetry = { enable = false },
       },
     }, -- }}}
   }
@@ -97,26 +74,20 @@ lspconfig.lua_ls.setup(
 lspconfig.nil_ls.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
-    capabilities = Capabilities,
-    -- }}}
-
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, -- }}}
     settings = { -- {{{
       ["nil"] = {
-        formatting = {command = {"alejandra"}},
+        formatting = { command = { "alejandra" } },
         diagnostics = {
           ignored = {
             -- "unused_rec",
             -- "empty_let_in",
             "unused_with",
           },
-        },
-        nix = {
-          maxMemoryMB = 4096,
-          flake = {
+        }, nix = {
+          maxMemoryMB = 4096, flake = {
             --
             autoArchive = false, -- true
             autoEvalInputs = true,
@@ -132,17 +103,13 @@ lspconfig.nil_ls.setup(
 lspconfig.tinymist.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
-    capabilities = Capabilities,
-    offset_encoding = "utf-8",
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, offset_encoding = "utf-8",
     -- }}}
 
     settings = { -- {{{
-      offset_encoding = "utf-8",
-      semanticTokens = "disable",
+      offset_encoding = "utf-8", semanticTokens = "disable",
       exportPdf = "never",
     }, -- }}}
   }
@@ -151,17 +118,13 @@ lspconfig.tinymist.setup(
 lspconfig.gopls.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
-    capabilities = Capabilities,
-    -- }}}
-
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, -- }}}
     settings = { -- {{{
       gopls = {
         experimentalPostfixCompletions = true,
-        analyses = {unusedparams = true, shadow = true},
+        analyses = { unusedparams = true, shadow = true },
         staticcheck = true,
       },
     }, -- }}}
@@ -171,42 +134,36 @@ lspconfig.gopls.setup(
 -- lspconfig.ocamllsp.setup(
 --   {
 --     -- {{{ boilerplate
---     preselectSupport = false,
---     preselect = false,
---     single_file_support = true,
---     on_attach = lsp_attach,
+--     preselectSupport = false, preselect = false,
+--     single_file_support = true, on_attach = lsp_attach,
 --     capabilities = Capabilities,
---     settings = {telemetry = {enable = false}},
+--     settings = { telemetry = { enable = false } },
 --     -- }}}
 
---     filetypes = { --  {{{
---       "ocaml",
---       "menhir",
---       "ocamllex",
---       "ocamlinterface",
---       "dune",
+--     -- filetypes = { --  {{{
+--     --   "ocaml",
+--     --   "menhir",
+--     --   "ocamllex",
+--     --   "ocamlinterface",
+--     --   "dune",
 
---       "ocaml.interface",
---       "ocaml.menhir",
---       "ocaml.cram",
---       "ocaml.mlx",
---       "ocaml.ocamllex",
---       "reason",
---     }, --  }}}
+--     --   "ocaml.interface",
+--     --   "ocaml.menhir",
+--     --   "ocaml.cram",
+--     --   "ocaml.mlx",
+--     --   "ocaml.ocamllex",
+--     --   "reason",
+--     -- }, --  }}}
 --   }
 -- )
 
 lspconfig.julials.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
     capabilities = Capabilities,
-    settings = {telemetry = {enable = false}},
-    -- }}}
-
+    settings = { telemetry = { enable = false } }, -- }}}
     cmd = { -- {{{
       "julials",
     }, -- }}}
@@ -220,29 +177,21 @@ lspconfig.julials.setup(
 lspconfig.rust_analyzer.setup(
   {
     -- {{{ boilerplate
-    on_attach = lsp_attach,
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    capabilities = Capabilities,
-    -- }}}
-
+    on_attach = lsp_attach, preselectSupport = false,
+    preselect = false, single_file_support = true,
+    capabilities = Capabilities, -- }}}
     settings = { -- {{{
       ["rust-analyzer"] = {
-        standalone = true,
-        workspaceFolders = false,
-        workspace = {workspaceFolders = false},
+        standalone = true, workspaceFolders = false,
+        workspace = { workspaceFolders = false },
 
-        completion = {contextSupport = true},
+        completion = { contextSupport = true },
         imports = {
-          granularity = {group = "module"},
-          prefix = "self",
+          granularity = { group = "module" }, prefix = "self",
         },
         cargo = {
-          buildScripts = {enable = true},
-          allFeatures = true,
-        },
-        procMacro = {enable = true},
+          buildScripts = { enable = true }, allFeatures = true,
+        }, procMacro = { enable = true },
       },
     }, -- }}}
   }
@@ -283,25 +232,15 @@ lspconfig.rust_analyzer.setup(
 lspconfig.clangd.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false,
-    preselect = false,
-    single_file_support = true,
-    on_attach = lsp_attach,
-    capabilities = Capabilities,
-    -- }}}
-
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, -- }}}
     cmd = { -- {{{
-      "clangd",
-      "-j=2",
-      "--clang-tidy",
-      "--enable-config",
-      "--header-insertion=never",
-      "--completion-style=detailed",
-      "--pch-storage=memory",
-      "--background-index",
+      "clangd", "-j=2", "--clang-tidy", "--enable-config",
+      "--header-insertion=never", "--completion-style=detailed",
+      "--pch-storage=memory", "--background-index",
       "--background-index-priority=low",
     }, -- }}}
-
     settings = { -- {{{
     }, -- }}}
   }
@@ -321,7 +260,7 @@ require("clangd_extensions").setup(
       -- You can make this { "CursorMoved" } or { "CursorMoved,CursorMovedI" } but
       -- note that this may cause higher CPU usage.
       -- This option is only respected when only_current_line is true.
-      only_current_line_autocmd = {"CursorHold"},
+      only_current_line_autocmd = { "CursorHold" },
 
       -- whether to show parameter hints with the inlay hints or not
       show_parameter_hints = true,
@@ -342,42 +281,31 @@ require("clangd_extensions").setup(
       right_align = false,
 
       -- padding from the right if right_align is true
-      right_align_padding = 7,
-
-      -- The color of the hints
+      right_align_padding = 7, -- The color of the hints
       highlight = "Comment",
 
       -- The highlight group priority for extmark
       priority = 100,
     }, -- }}}
-
     ast = { -- {{{
       -- These are unicode, should be available in any font
       role_icons = { -- {{{
-        type = "🄣",
-        declaration = "🄓",
-        expression = "🄔",
-        statement = ";",
-        specifier = "🄢",
-        ["template argument"] = "🆃",
+        type = "🄣", declaration = "🄓",
+        expression = "🄔", statement = ";",
+        specifier = "🄢", ["template argument"] = "🆃",
       }, -- }}}
-
       kind_icons = { -- {{{
-        Compound = "🄲",
-        Recovery = "🅁",
-        TranslationUnit = "🅄",
-        PackExpansion = "🄿",
+        Compound = "🄲", Recovery = "🅁",
+        TranslationUnit = "🅄", PackExpansion = "🄿",
         TemplateTypeParm = "🅃",
         TemplateTemplateParm = "🅃",
         TemplateParamObject = "🅃",
       }, -- }}}
-
-      highlights = {detail = "Comment"},
+      highlights = { detail = "Comment" },
     }, -- }}}
-
     -- {{{
-    memory_usage = {border = "none"},
-    symbol_info = {border = "none"},
+    memory_usage = { border = "none" },
+    symbol_info = { border = "none" },
     -- }}}
   }
 )

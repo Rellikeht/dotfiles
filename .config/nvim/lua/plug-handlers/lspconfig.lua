@@ -1,12 +1,21 @@
 -- {{{ helpers
 ---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
+-- of course shit won't work because why would it
+-- all of this fucking useless shit was created only
+-- to show off with emptiness of heads of creators
+-- i will switch to vscode at that rate of fucking
+-- waterfall of messages that cannot be stopped
+lspconfig.util.default_config = vim.tbl_extend(
+  "force", lspconfig.util.default_config,
+  { message_level = nil }
+)
 
-local diag_modes = {"n"}
-local buf_modes = {"n"}
+local diag_modes = { "n" }
+local buf_modes = { "n" }
 
 -- lua isn't that good
-Lfiles = {"*.go", "*.jl", "*.zig", "*.sh"}
+Lfiles = { "*.go", "*.jl", "*.zig", "*.sh" }
 
 -- }}}
 
@@ -14,28 +23,29 @@ Lfiles = {"*.go", "*.jl", "*.zig", "*.sh"}
 
 vim.keymap.set(
   buf_modes, "<Leader>dqi", ":<C-u>LspInfo<CR>",
-  {noremap = true}
+  { noremap = true }
 )
 
 vim.keymap.set(
-  buf_modes, "<Leader>dql", ":<C-u>LspLog<CR>", {noremap = true}
+  buf_modes, "<Leader>dql", ":<C-u>LspLog<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
   buf_modes, "<Leader>dqr", ":<C-u>LspRestart<CR>",
-  {noremap = true}
+  { noremap = true }
 )
 
 vim.keymap.set(
   buf_modes, "<Leader>dqs", ":<C-u>LspStart<CR>",
-  {noremap = true}
+  { noremap = true }
 )
 vim.keymap.set(
-  buf_modes, "<Leader>dqe", ":<C-u>LspStop ", {noremap = true}
+  buf_modes, "<Leader>dqe", ":<C-u>LspStop ", { noremap = true }
 )
 vim.keymap.set(
   buf_modes, "<Leader>dqE", ":<C-u>LspStop *<CR>",
-  {noremap = true}
+  { noremap = true }
 )
 
 -- }}}
@@ -44,35 +54,35 @@ vim.keymap.set(
 
 vim.keymap.set(
   diag_modes, "<Leader>df", vim.diagnostic.open_float,
-  {noremap = true}
+  { noremap = true }
 )
 vim.keymap.set(
   diag_modes, "<Leader>dp",
-  commandRep(vim.diagnostic.goto_prev), {noremap = true}
+  commandRep(vim.diagnostic.goto_prev), { noremap = true }
 )
 vim.keymap.set(
   diag_modes, "<Leader>dn",
-  commandRep(vim.diagnostic.goto_next), {noremap = true}
+  commandRep(vim.diagnostic.goto_next), { noremap = true }
 )
 
 vim.keymap.set(
   diag_modes, "<Leader>dl", function(_)
     if vim.g["qfloc"] == 1 then
-      vim.diagnostic.setloclist({open = true})
+      vim.diagnostic.setloclist({ open = true })
     else
-      vim.diagnostic.setqflist({open = true})
+      vim.diagnostic.setqflist({ open = true })
     end
-  end, {noremap = true}
+  end, { noremap = true }
 )
 
 vim.keymap.set(
   buf_modes, "<Leader>dL", function(_)
     if vim.g["qfloc"] == 1 then
-      vim.diagnostic.setloclist({open = false})
+      vim.diagnostic.setloclist({ open = false })
     else
-      vim.diagnostic.setqflist({open = false})
+      vim.diagnostic.setqflist({ open = false })
     end
-  end, {noremap = true}
+  end, { noremap = true }
 )
 
 -- }}}
@@ -97,7 +107,7 @@ vim.api.nvim_create_autocmd( -- {{{
       end
 
       -- :help vim.lsp.*
-      local opts = {buffer = bufnr, noremap = true}
+      local opts = { buffer = bufnr, noremap = true }
       local tab_mod = "<C-w>"
 
       -- }}}
@@ -168,7 +178,8 @@ vim.api.nvim_create_autocmd( -- {{{
       )
       vim.keymap.set(
         buf_modes, "<Leader>dF",
-        function() vim.lsp.buf.format({async = true}) end, opts
+        function() vim.lsp.buf.format({ async = true }) end,
+        opts
       )
 
       vim.keymap.set(
@@ -179,7 +190,7 @@ vim.api.nvim_create_autocmd( -- {{{
       -- insert mode {{{
 
       -- Rather useless
-      vim.keymap.set({"i"}, "<C-x>;", vim.lsp.buf.hover, opts)
+      vim.keymap.set({ "i" }, "<C-x>;", vim.lsp.buf.hover, opts)
 
       --  }}}
 
@@ -206,8 +217,8 @@ vim.api.nvim_create_autocmd( -- {{{
       -- when attaching first lsp define variable that will control
       -- formating on saving using lsp(s)
       local ftype = vim.api.nvim_get_option_value(
-                      "filetype", {scope = "local"}
-                    )
+        "filetype", { scope = "local" }
+      )
       local v, clients = pcall(vim.lsp.get_clients)
       if not v then clients = vim.lsp.get_clients() end
       if #clients == 1 and Lfiles[ftype] ~= nil then
@@ -220,19 +231,17 @@ vim.api.nvim_create_autocmd( -- {{{
         ]]
         )
 
-        local lspformat = vim.api.nvim_create_augroup(
-                            "lspformat", {clear = true}
-                          )
+        local lspformat = --
+        vim.api
+          .nvim_create_augroup("lspformat", { clear = true })
 
         vim.api.nvim_create_autocmd(
           "BufWritePre", {
-            buffer = 0,
-            callback = function(_)
+            buffer = 0, callback = function(_)
               if vim.b["lspfmt"] == 1 then
                 vim.lsp.buf.format()
               end
-            end,
-            group = lspformat,
+            end, group = lspformat,
           }
         )
       end
@@ -250,12 +259,10 @@ local function ssetup(server) -- {{{
 
   config.setup(
     { -- {{{
-      preselectSupport = false,
-      preselect = false,
-      single_file_support = true,
-      on_attach = lsp_attach,
+      preselectSupport = false, preselect = false,
+      single_file_support = true, on_attach = lsp_attach,
       capabilities = Capabilities,
-      settings = {telemetry = {enable = false}},
+      settings = { telemetry = { enable = false } },
     } -- }}}
   )
 end
@@ -264,28 +271,10 @@ end
 local servers = { -- {{{
   -- :(
   -- "pylyzer",
-  "pylsp",
-
-  "ocamllsp",
-  "zls",
-  "hls",
-  "nimls",
-
-  "superhtml",
-  "html",
-  "cssls",
-
-  "scheme_langserver",
-  "texlab",
-  "bashls",
-  "ols",
-
-  "nickel_ls",
-  -- "dhall_lsp_server",
-
-  "ts_ls",
-  "r_language_server",
-  "metals",
+  "pylsp", "ocamllsp", "zls", "hls", "nimls", "superhtml",
+  "html", "cssls", "scheme_langserver", "texlab", "bashls",
+  "ols", "nickel_ls", -- "dhall_lsp_server",
+  "ts_ls", "r_language_server", "metals",
 } -- }}}
 
 -- {{{
@@ -301,7 +290,7 @@ require(plug_dir .. "servers")
 -- Because nimlsp breaks on
 -- empty files
 vim.api.nvim_create_autocmd(
-  {"BufNewFile"}, {
+  { "BufNewFile" }, {
     pattern = "*.nim",
     command = "call system('touch '.expand('%:p')) | read <afile>",
   }
