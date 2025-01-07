@@ -1,5 +1,4 @@
 # {{{ random
-
 !global/*
 !.config
 
@@ -13,11 +12,9 @@ local/
 TODO
 highlight.css
 .local*
-
 # }}}
 
-# {{{ ftypes
-
+# {{{ artifacts
 *.png
 *.jpg
 *.jpeg
@@ -29,7 +26,8 @@ highlight.css
 *.so
 *.out
 *.hi
-
+*.cma
+*.cmx
 # }}}
 
 # {{{ qute
@@ -48,7 +46,6 @@ highlight.css
 # }}}
 
 # {{{ mutlimedia
-
 .config/youtube-viewer/*.txt
 .config/youtube-viewer/instances.json
 .config/youtube-viewer/*/
@@ -59,7 +56,6 @@ highlight.css
 .moc/softmixer
 .moc/last_directory
 .moc/equalizer
-
 # }}}
 
 # {{{ vifm
@@ -69,7 +65,6 @@ highlight.css
 # }}}
 
 # {{{ editors
-
 .config/kak/autoload/autoload
 !.config/kak/autoload/*.*
 
@@ -88,11 +83,9 @@ tags
 
 .emacs.d/recentf
 .emacs.d/elpa
-
 # }}}
 
-# {{{ langs
-
+# {{{ programming
 .config/nim/test
 
 .config/ocaml/local.ml
@@ -103,10 +96,10 @@ tags
 .julia/*
 !.julia/config
 
+.config/git/*_local
 # }}}
 
 # {{{  w3m
-
 .w3m/cookie
 .w3m/history
 .w3m/passwd
@@ -115,7 +108,6 @@ tags
 .w3m/w3mcache*
 .w3m/w3msrc*
 .w3m/w3mcookie*
-
 # }}}
 
 # {{{ webkit browsers
@@ -128,7 +120,6 @@ tags
 # }}}
 
 # {{{ templates
-
 Templates/**/*
 !Templates/**/*/
 !Templates/**/*.*
@@ -136,5 +127,4 @@ Templates/**/*.swp
 Templates/**/*.o
 Templates/**/*.so
 !Templates/direnv/*envrc*
-
 # }}}

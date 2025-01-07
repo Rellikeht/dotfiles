@@ -1,6 +1,7 @@
 TODO
 local/
 .local*
+build/
 
 *.swp
 *.swo

@@ -1,10 +1,3 @@
-[user]
-    name = Rellikeht
-    email = michaelhemperek@gmail.com
-
-[credential]
-    helper = gopass
-
 [status]
     color = always
 
@@ -41,5 +34,5 @@
     tool = vimdiff
     conflictstyle = diff3
 
-; [init]
-;     templateDir = ~/.git_template
+[include]
+    path = config_local

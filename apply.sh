@@ -9,33 +9,49 @@ if [ -n "$1" ] && [ -d "$1" ]; then
 fi
 
 find "$SDIR" -mindepth 1 -maxdepth 1 -name '\.*' |
-    grep -Ev '/(.config|.git([^c].*)?)$' |
+    grep -Ev '(/.sw[op]|/.config|/.git([^c].*)?)$' |
     xargs -d '\n' -I{} cp -frs "{}" "$DDIR"
 
 mkdir -p "$DDIR/.config"
-[ -d "$DDIR/.config/mpv" ] && MPV_DIR=1
-ln -s "$SDIR/.config/"* "$DDIR/.config" 2>/dev/null
+find "$SDIR/.config" -mindepth 1 -maxdepth 1 |
+    grep -Ev '/(mpv)/?$' |
+    xargs -d '\n' -I{} ln -fs "{}" "$DDIR/.config/" 2>/dev/null
+# xargs -d '\n' -I{} echo "{}"
+
+mkdir -p "$DDIR/.config/mpv"
+for o in mpv.conf input.conf scripts script-opts formats; do
+    # if [ -e "$DIR/.config/$f" ]; then
+    #     continue
+    # fi
+    ln -fs "$SDIR/.config/mpv/$o" "$DDIR/.config/mpv" 2>/dev/null
+done
+cp --update=none "$SDIR/.config/mpv/additional.conf" "$DDIR/.config/mpv"
+
+# mkdir -p "$DDIR/.config/git"
+# for f in config ignore; do
+#     cp --update=none "$SDIR/.config/git/$f" "$DDIR/.config/git"
+# done
 
 for dir in Templates bin; do
-    ln -s "$SDIR/$dir" "$DDIR/"
+    # if [ -e "$DIR/$dir" ]; then
+    #     continue
+    # fi
+    ln -fs "$SDIR/$dir" "$DDIR/"
 done
-
-touch "$DDIR/.config/mpv/local.conf"
-touch "$DDIR/.config/vifm/vifmrc-local"
-
-if [ -z "$MPV_DIR" ]; then
-    rm "$DDIR/.config/mpv"
-    mkdir -p "$DDIR/.config/mpv"
-    for o in mpv.conf input.conf scripts script-opts formats; do
-        ln -s "$SDIR/.config/mpv/$o" "$DDIR/.config/mpv"
-    done
-    cp "$SDIR/.config/mpv/additional.conf" "$DDIR/.config/mpv"
-fi
+for f in "mpv/local.conf" "vifm/vifmrc-local"; do
+    if [ -e "$DIR/.config/$f" ]; then
+        continue
+    fi
+    touch "$DDIR/.config/$f"
+done
 
 for dir in \
     Backups Downloads Dbackup Desktop \
     Phone Phones Public Sync \
     Books Documents \
-    Games Music Podcasts Pictures Videos; do
+    Games Music Podcasts Pictures Videos \
+    .tmux_sessions; do
     mkdir -p "$DDIR/$dir"
 done
+
+exit 0
