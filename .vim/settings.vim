@@ -82,6 +82,8 @@ set wildignore+=.\?git*
 
 " good looking {{{ 
 
+set conceallevel=2
+
 set splitkeep=screen
 
 set termguicolors

@@ -310,6 +310,30 @@ require("clangd_extensions").setup(
   }
 )
 
+lspconfig.elixirls.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, -- }}}
+    cmd = { "elixir-ls" }, --
+    settings = { -- {{{
+    }, -- }}}
+  }
+)
+
+lspconfig.powershell_es.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, -- }}}
+    bundle_path = "~/.powershell_es", --
+    settings = { -- {{{
+    }, -- }}}
+  }
+)
+
 -- {{{
 
 -- This has some weird problems

@@ -273,8 +273,11 @@ local servers = { -- {{{
   -- "pylyzer",
   "pylsp", "ocamllsp", "zls", "hls", "nimls", "superhtml",
   "html", "cssls", "scheme_langserver", "texlab", "bashls",
-  "ols", "nickel_ls", -- "dhall_lsp_server",
-  "ts_ls", "r_language_server", "metals",
+  "ols", "nickel_ls", --
+  "ts_ls", --
+  "metals", "kotlin_language_server", "ada_ls", "roc_ls", --
+  "erlangls", --
+  "r_language_server", "teal_ls",
 } -- }}}
 
 -- {{{

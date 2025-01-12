@@ -21,7 +21,15 @@ let g:neoformat_enabled_c = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_nix = ['alejandra']
 let g:neoformat_enabled_ocaml = ['ocamlformat', 'topiary']
-let g:neoformat_enabled_haskell = ['floskell']
+let g:neoformat_enabled_haskell = [
+      \ 'floskell',
+      \ 'stylishhaskell',
+      \ 'brittany',
+      \ 'hfmt',
+      \ 'hindent',
+      \ 'sortimports',
+      \ 'ormolu',
+      \ ]
 
 autocmd FileType dhall let b:buffmt=0 " :(((
 
