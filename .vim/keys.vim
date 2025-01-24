@@ -3,8 +3,12 @@
 " copy simple mappings from normal to visual
 " 0yyprv$F<i\|norm gv
 
-function s:Tabarge(args)
-  tabnew
+function s:Tabarge(count, args)
+  if a:count < 0
+    tabnew
+  else
+    -tabnew
+  endif
   arglocal!
   if len(a:args) > 0
     exe 'args! '.call('Exfiles', a:args)
@@ -15,14 +19,14 @@ function s:Tabarge(args)
   endif
 endfunction
 
-command! -nargs=* -complete=file -bar Tabe
-      \ call <SID>Tabarge([<f-args>])
+command! -nargs=* -range -complete=file -bar Tabe
+      \ call <SID>Tabarge(<count>, [<f-args>])
 
-command! -nargs=* -complete=arglist -bar TabA
-      \ call <SID>Tabarge([<f-args>])
+command! -nargs=* -range -complete=arglist -bar TabA
+      \ call <SID>Tabarge(<count>, [<f-args>])
 
-command! -nargs=* -complete=buffer -bar TabB
-      \ call <SID>Tabarge([<f-args>])
+command! -nargs=* -range -complete=buffer -bar TabB
+      \ call <SID>Tabarge(<count>, [<f-args>])
 
 command -nargs=* -bang -complete=buffer -bar ArgeditB
       \ argedit<bang> <args>

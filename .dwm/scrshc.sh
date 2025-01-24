@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 GEOM=$(slop)
-DIR="~"
+DIR="~/Downloads"
 
 sleep 0.1
 shotgun -g "$GEOM" "$DIR/.shot.png"
