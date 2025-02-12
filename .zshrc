@@ -159,6 +159,10 @@ conditional_source ~/.p10k.zsh
 
 if fzf --zsh &>/dev/null; then
     eval "$(fzf --zsh)"
+    # https://github.com/junegunn/fzf/wiki/Configuring-fuzzy-completion#zsh
+    export FZF_COMPLETION_TRIGGER=''
+    bindkey '^T' fzf-completion
+    bindkey '^I' $fzf_default_completion
 fi
 
 # z.lua or plain old z as fallback

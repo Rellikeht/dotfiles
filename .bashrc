@@ -132,6 +132,7 @@ bind 'Space:magic-space'
 # hooks {{{
 
 if fzf --bash &>/dev/null; then
+    # this is just fucked, but at least in zsh works somehow
     eval "$(fzf --bash)"
 fi
 

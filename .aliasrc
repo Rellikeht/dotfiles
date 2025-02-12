@@ -194,7 +194,6 @@ alias gsv=gsvim
 alias se=exs
 
 alias nvl='nvim --listen'
-alias nvt='nvim --listen'
 
 alias sp='s -p'
 alias np='n -p'
@@ -417,6 +416,7 @@ alias arian='aria_helper --file-allocation=none'
 alias ariat='aria_helper --follow-torrent false'
 
 alias rsync='rsync --progress'
+alias rs=rsync
 
 alias trr='transmission-remote'
 alias trc='trr --no-incomplete-dir --download-dir "$PWD" --add'
