@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+cd "$HOME/.tmux_sessions"
+"./$(
+    find . -mindepth 1 -printf '%f\n' | fzf --no-multi
+)"

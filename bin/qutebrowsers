@@ -3,4 +3,4 @@
 exec qutebrowser \
     --config-py "$HOME/.config/qutebrowsers/config.py" \
     --basedir "$HOME/.local/share/qutebrowsers/" \
-    $@
+    "$@"

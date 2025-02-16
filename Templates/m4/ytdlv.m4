@@ -10,4 +10,4 @@ HSET="[height>=$H]"
 # != doesn't work on it's own
 CSET="[vcodec!*=av01]"
 
-exec yts -f "(ba[abr>=$ABR]$LANG+bv$HSET$CSET)/b$HSET$CSET$LANG" $@
+exec yts -f "(ba[abr>=$ABR]$LANG+bv$HSET$CSET)/b$HSET$CSET$LANG" "$@"

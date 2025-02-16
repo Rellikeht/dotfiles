@@ -5,4 +5,4 @@ shift
 
 echo "$LNK" |
     sed 's#\.com/file/d/#.com/uc?id=#;s#/view$##' |
-    xargs gdown $@
+    xargs gdown "$@"

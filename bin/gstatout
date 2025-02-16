@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for i in $@; do
+for i in "$@"; do
     if [ -d "$i" ]; then
         echo $i
         git --git-dir="$i"/.git --work-tree="$i" status

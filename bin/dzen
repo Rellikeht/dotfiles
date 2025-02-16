@@ -3,4 +3,4 @@
 # TODO wrapper for dzen2 to display on primary or secondary monitor
 # use xrandr and -x (starting x pos) and -w (width, auto when using -x)
 # options in dzen2
-dzen2 $@
+dzen2 "$@"

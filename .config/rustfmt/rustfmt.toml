@@ -1,0 +1,5 @@
+max_width = 72
+doc_comment_code_block_width = 80
+
+imports_layout = "HorizontalVertical"
+fn_single_line = true

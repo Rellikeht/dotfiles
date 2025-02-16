@@ -6,22 +6,17 @@ while [ -n "$1" ] && [ ! -e "$1" ]; do
     shift
 done
 
-# TODO exit codes
+# TODO exit codes ?
 CMD="
 pdfgrep --color always -H $ARGS {}
 "
-# E=$?
-# if [ $E -lt 2 ]; then
-#     true
-# else
-#     exit $E
-# fi
 
+# Unsafe because some of us have non ascii characters in paths :)
 if [ -n "$1" ]; then
     find $@ -iname '*\.pdf' -print0 |
-        parallel -0 -I{} "$CMD"
+        parallel --unsafe -0 -I{} "$CMD"
 
 else
     find . -iname '*\.pdf' -print0 |
-        parallel -0 -I{} "$CMD"
+        parallel --unsafe -0 -I{} "$CMD"
 fi

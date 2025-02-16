@@ -3,4 +3,4 @@
 LANG=
 [ -n "$YTL" ] && LANG="[language=$YTL]"
 
-exec yts -f "ba$LANG" $@
+exec yts -f "ba$LANG" "$@"

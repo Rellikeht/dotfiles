@@ -6,7 +6,7 @@ VIM=svim
 # TODO this almost certainly won't work
 pgrep "$VIM" >/dev/null &&
     if "$VIM" --serverlist | grep -Ei "^$SNAME\$" >/dev/null; then
-        "$VIM" --servername "$SNAME" --remote-tab $@
+        "$VIM" --servername "$SNAME" --remote-tab "$@"
         exit
     fi
-exec $VIM --servername "$SNAME" $@
+exec $VIM --servername "$SNAME" "$@"

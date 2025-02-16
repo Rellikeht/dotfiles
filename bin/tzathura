@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # tabbed -c tabbed_multiple_files 'zathura -e' "$@" >/dev/null
-exec tabbed -k -r 2 zathura -e {} $@ >/dev/null
+exec tabbed -k -r 2 zathura -e {} "$@" >/dev/null
