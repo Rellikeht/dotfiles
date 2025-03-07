@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+if [ $# -ge 1 ]; then
+    "$HOME/.tmux_sessions/$1"
+    exit
+fi
+
 "$HOME/.tmux_sessions/$(
     cd $HOME/.tmux_sessions
     find . -mindepth 1 -printf '%f\0' |

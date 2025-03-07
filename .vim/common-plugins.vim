@@ -137,7 +137,6 @@ Plug 'ziglang/zig.vim', {'for': 'zig'}
 Plug 'pearofducks/ansible-vim'
 Plug 'neovimhaskell/haskell-vim', 
       \ {'for': ['haskell', 'cabal']}
-Plug 'zah/nim.vim', {'for': 'nim'}
 
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
