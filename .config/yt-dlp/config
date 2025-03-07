@@ -1,7 +1,4 @@
-# --downloader aria2c
-# --downloader-args "aria2c:-j 10 -V -c true"
-#--downloader-args "aria2c:-c -j 3 -x 3 -s 3 -k 1M"
---downloader-args "aria2c:-j 30 -V -c -x 10 --optimize-concurrent-downloads=true"
+--downloader-args "aria2c:-j 50 -s 100 -x 16 -c -k 1M --optimize-concurrent-downloads=true"
 
 --no-warnings
 --no-playlist

@@ -121,6 +121,8 @@ config.set(
     | {  # {{{
         "yt": "https://youtube.com/results?search_query={}",
         "lb": "https://odysee.com/$/search?q={}",
+        "rb": "https://rumble.com/search/all?q={}",
+        "bc": "https://www.bitchute.com/search?query={}",
     }  # }}}
     | {  #  {{{
         "ss": "https://searchmysite.net/search?q={}",

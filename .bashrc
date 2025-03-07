@@ -131,10 +131,10 @@ bind 'Space:magic-space'
 
 # hooks {{{
 
-if fzf --bash &>/dev/null; then
-    # this is just fucked, but at least in zsh works somehow
-    eval "$(fzf --bash)"
-fi
+# if fzf --bash &>/dev/null; then
+#     # this is just fucked, but at least in zsh works somehow
+#     eval "$(fzf --bash)"
+# fi
 
 if [ -z "$__Z_INITIALIZED" ]; then
     # z.lua or plain old z as fallback
