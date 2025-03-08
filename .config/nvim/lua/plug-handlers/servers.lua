@@ -98,6 +98,22 @@ lspconfig.nil_ls.setup(
   }
 )
 
+lspconfig.nim_langserver.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false, preselect = false,
+    single_file_support = true, on_attach = lsp_attach,
+    capabilities = Capabilities, -- }}}
+    settings = { -- {{{
+      ["nim"] = {
+        notificationVerbosity = "error",
+        nimsuggestIdleTimeout = 9999999999, autoRestart = true,
+        logNimsuggest = false,
+      },
+    }, -- }}}
+  }
+)
+
 -- fucking almost useless shit
 -- that crashes on every fucking input
 lspconfig.tinymist.setup(

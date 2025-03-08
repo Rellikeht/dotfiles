@@ -3,3 +3,5 @@ if exists("b:did_ftplugin")
 endif
 
 setlocal shiftwidth=2 softtabstop=2 tabstop=2
+setlocal comments=:##,:#
+setlocal commentstring=#\ %s

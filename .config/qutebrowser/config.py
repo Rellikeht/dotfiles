@@ -85,9 +85,9 @@ config.set(
     "url.searchengines",
     {  # {{{
         "DEFAULT": DEFAULT_SEARX + "/search?q={}",
-        "sb": "https://searx.xyz/search?q={}",
+        "sb": "https://searx.be/search?q={}",
         "ps": DEFAULT_SEARX + "/search?q={}&language=pl-PL",
-        "pb": "https://searx.xyz/search?q={}&language=pl-PL",
+        "pb": "https://searx.be/search?q={}&language=pl-PL",
     }  # }}}
     | {  # {{{
         "aw": "https://wiki.archlinux.org/index.php?search={}",

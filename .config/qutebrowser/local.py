@@ -28,8 +28,9 @@ config.set("content.cookies.accept", "no-unknown-3rdparty", "devtools://*")
 
 COOKIES = [
     "https://searx.info/*",
-    "https://searx.xyz/*",
     "https://paulgo.io/*",
+    "https://searx.be/*",
+    "https://priv.au/*",
 ]
 
 for page in COOKIES:
