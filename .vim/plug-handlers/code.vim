@@ -43,9 +43,32 @@ let g:neoformat_enabled_zsh = ['shfmt']
 
 " 'mdformat',
 let g:neoformat_enabled_markdown = ['prettierd', 'prettier']
-let g:neoformat_enabled_html = ['tidy', 'htmlbeautify','prettydiff']
-" adds unnecessary / for closing at least for now
-" , 'prettierd', 'prettier'
+
+let g:neoformat_markdown_mdformat = {
+      \ 'exe': 'mdformat',
+      \ 'args': ['--number', '--wrap', '64', '-'],
+      \ 'stdin': 1,
+      \ }
+
+let g:neoformat_enabled_html = [
+      \ 'prettierd',
+      \ 'prettier',
+      \ 'tidy',
+      \ 'htmlbeautify',
+      \ 'prettydiff',
+      \ ]
+
+" TODO can this be usable??
+" let g:neoformat_html_tidy = {
+"       \ 'exe': 'tidy',
+"       \ 'args': [
+"       \   '--quiet',
+"       \   '--tidy-mark no',
+"       \   '-wrap ' . &textwidth
+"       \ ],
+"       \ 'try_node_exe': 1,
+"       \ }
+"       " \ '--wrap', '64'
 
 let g:neoformat_enabled_lua = [
       \ 'luaformat',
@@ -62,12 +85,6 @@ let g:neoformat_enabled_yaml = [
 "
 " https://github.com/mikefarah/yq
 " https://github.com/opt-nc/yamlfixer
-
-let g:neoformat_markdown_mdformat = {
-      \ 'exe': 'mdformat',
-      \ 'args': ['--number', '--wrap', '64', '-'],
-      \ 'stdin': 1,
-      \ }
 
 let g:neoformat_yaml_yamlfix = {
       \ 'exe': 'yamlfix',

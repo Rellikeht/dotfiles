@@ -15,7 +15,13 @@ local diag_modes = { "n" }
 local buf_modes = { "n" }
 
 -- lua isn't that good
-Lfiles = { "*.go", "*.jl", "*.zig", "*.sh" }
+Lfiles = {
+  ["go"] = true,
+  ["jl"] = true,
+  ["zig"] = true,
+  ["sh"] = true,
+  ["html"] = true,
+}
 
 -- }}}
 
@@ -231,17 +237,19 @@ vim.api.nvim_create_autocmd( -- {{{
         ]]
         )
 
-        local lspformat = --
-        vim.api
-          .nvim_create_augroup("lspformat", { clear = true })
+        local lspformat = vim.api.nvim_create_augroup(
+          "lspformat", { clear = true }
+        )
 
         vim.api.nvim_create_autocmd(
           "BufWritePre", {
-            buffer = 0, callback = function(_)
+            buffer = 0,
+            callback = function(_)
               if vim.b["lspfmt"] == 1 then
                 vim.lsp.buf.format()
               end
-            end, group = lspformat,
+            end,
+            group = lspformat,
           }
         )
       end
@@ -259,8 +267,10 @@ local function ssetup(server) -- {{{
 
   config.setup(
     { -- {{{
-      preselectSupport = false, preselect = false,
-      single_file_support = true, on_attach = lsp_attach,
+      preselectSupport = false,
+      preselect = false,
+      single_file_support = true,
+      on_attach = lsp_attach,
       capabilities = Capabilities,
       settings = { telemetry = { enable = false } },
     } -- }}}
@@ -271,13 +281,26 @@ end
 local servers = { -- {{{
   -- :(
   -- "pylyzer",
-  "pylsp", "ocamllsp", "zls", "hls", "superhtml", "html",
-  "cssls", "scheme_langserver", "texlab", "bashls", "ols",
-  "nickel_ls", --
-  "ts_ls", --
-  "metals", "kotlin_language_server", "ada_ls", "roc_ls", --
-  "erlangls", --
-  "r_language_server", "teal_ls",
+  "pylsp",
+  "ocamllsp",
+  "zls",
+  "hls",
+  "superhtml",
+  "html",
+  "cssls",
+  "scheme_langserver",
+  "texlab",
+  "bashls",
+  "ols",
+  "nickel_ls",
+  "ts_ls",
+  "metals",
+  "kotlin_language_server",
+  "ada_ls",
+  "roc_ls",
+  "erlangls",
+  "r_language_server",
+  "teal_ls",
 } -- }}}
 
 -- {{{
