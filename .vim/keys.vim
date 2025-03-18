@@ -94,6 +94,9 @@ noremap <C-w><C-h>
 map gf :e <cfile><CR>
 map <C-w>gf :Tabe <cfile><CR>
 
+" Nice thing for snippets
+snoremap <BS> <BS>i
+
 " }}} 
 
 " taglist {{{ 

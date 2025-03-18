@@ -45,34 +45,52 @@ xnoremap <silent> <Space>hqf
 " }}} 
 
 " maps {{{ 
+" TODO do I need x
 
-noremap <silent> <Space>hdp :<C-u>diffput<CR>
-noremap <silent> <Space>hdg :<C-u>diffget<CR>
-noremap <silent> <Space>hd<Space>p :<C-u>diffput<Space>
-noremap <silent> <Space>hd<Space>g :<C-u>diffget<Space>
+nnoremap <silent> <Space>hdp :<C-u>diffput<CR>
+nnoremap <silent> <Space>hdg :<C-u>diffget<CR>
+nnoremap <silent> <Space>hd<Space>p :<C-u>diffput<Space>
+nnoremap <silent> <Space>hd<Space>g :<C-u>diffget<Space>
 nnoremap <silent> <Space>hdu :<C-u>diffupdate<CR>
+xnoremap <silent> <Space>hdp :<C-u>diffput<CR>
+xnoremap <silent> <Space>hdg :<C-u>diffget<CR>
+xnoremap <silent> <Space>hd<Space>p :<C-u>diffput<Space>
+xnoremap <silent> <Space>hd<Space>g :<C-u>diffget<Space>
 xnoremap <silent> <Space>hdu :<C-u>diffupdate\|norm gv<CR>
 
-noremap <silent> <Space>hg0 :<C-u>call DiffGet('//0')<CR>
-noremap <silent> <Space>hg1 :<C-u>call DiffGet('//1')<CR>
-noremap <silent> <Space>hg2 :<C-u>call DiffGet('//2')<CR>
-noremap <silent> <Space>hg3 :<C-u>call DiffGet('//3')<CR>
+nnoremap <silent> <Space>hg0 :<C-u>call DiffGet('//0')<CR>
+nnoremap <silent> <Space>hg1 :<C-u>call DiffGet('//1')<CR>
+nnoremap <silent> <Space>hg2 :<C-u>call DiffGet('//2')<CR>
+nnoremap <silent> <Space>hg3 :<C-u>call DiffGet('//3')<CR>
+xnoremap <silent> <Space>hg0 :<C-u>call DiffGet('//0')<CR>
+xnoremap <silent> <Space>hg1 :<C-u>call DiffGet('//1')<CR>
+xnoremap <silent> <Space>hg2 :<C-u>call DiffGet('//2')<CR>
+xnoremap <silent> <Space>hg3 :<C-u>call DiffGet('//3')<CR>
 
-noremap <silent> <Space>hp0 :<C-u>call DiffPut('//0')<CR>
-noremap <silent> <Space>hp1 :<C-u>call DiffPut('//1')<CR>
-noremap <silent> <Space>hp2 :<C-u>call DiffPut('//2')<CR>
-noremap <silent> <Space>hp3 :<C-u>call DiffPut('//3')<CR>
+nnoremap <silent> <Space>hp0 :<C-u>call DiffPut('//0')<CR>
+nnoremap <silent> <Space>hp1 :<C-u>call DiffPut('//1')<CR>
+nnoremap <silent> <Space>hp2 :<C-u>call DiffPut('//2')<CR>
+nnoremap <silent> <Space>hp3 :<C-u>call DiffPut('//3')<CR>
+xnoremap <silent> <Space>hp0 :<C-u>call DiffPut('//0')<CR>
+xnoremap <silent> <Space>hp1 :<C-u>call DiffPut('//1')<CR>
+xnoremap <silent> <Space>hp2 :<C-u>call DiffPut('//2')<CR>
+xnoremap <silent> <Space>hp3 :<C-u>call DiffPut('//3')<CR>
 
-noremap <silent> <Space>hpf :<C-u>call DiffPut(Expand('%:p'))<CR>
-noremap <silent> <Space>hp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
-noremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
-noremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
+nnoremap <silent> <Space>hpf :<C-u>call DiffPut(Expand('%:p'))<CR>
+nnoremap <silent> <Space>hp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
+nnoremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
+nnoremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
+xnoremap <silent> <Space>hpf :<C-u>call DiffPut(Expand('%:p'))<CR>
+xnoremap <silent> <Space>hp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
+xnoremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
+xnoremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
 
 nnoremap <silent> <Space>hoo :<C-u>diffoff<CR>
-xnoremap <silent> <Space>hoo :<C-u>diffoff\|norm gv<CR>
+nnoremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
 nnoremap <silent> <Space>hot :<C-u>diffthis<CR>
+xnoremap <silent> <Space>hoo :<C-u>diffoff\|norm gv<CR>
 xnoremap <silent> <Space>hot :<C-u>diffthis\|norm gv<CR>
-noremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
+xnoremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
 
 " }}} 
 
@@ -104,34 +122,24 @@ nnoremap <silent> <Leader>xy
       \ :<C-u>exe '!dragon --on-top --and-exit '.
       \ Expand("%").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
-xnoremap <silent> <Leader>xy
-      \ :<C-u>exe '!dragon --on-top --and-exit '.
-      \ Expand("%").' 2>/dev/null &'<CR>
-      \ :redraw!<CR>
-      \ :norm gv<CR>
 
 nnoremap <silent> <Leader>xY
       \ :<C-u>exe '!dragon --on-top --and-exit '.
       \ Expand("<cfile>").' 2>/dev/null &'<CR>
       \ :redraw!<CR>
-xnoremap <silent> <Leader>xY
-      \ :<C-u>exe '!dragon --on-top --and-exit '.
-      \ Expand("<cfile>").' 2>/dev/null &'<CR>
-      \ :redraw!<CR>
-      \ :norm gv<CR>
 
 " Editing from dragon
-noremap <Leader>x<space>o
+nnoremap <Leader>x<space>o
       \ :<C-u>exe 'argedit '.
       \ system('dragon --on-top --target --and-exit '.
       \ '2>/dev/null')<CR>
       \ :redraw<CR>
-noremap <C-w><Leader>xo
+nnoremap <C-w><Leader>xo
       \ :<C-u>exe 'tabedit '.
       \ system('dragon --on-top --target --and-exit '.
       \ '2>/dev/null')<CR>
       \ :redraw<CR>
-noremap <Leader>xo
+nnoremap <Leader>xo
       \ :<C-u>exe 'edit '.
       \ system('dragon --on-top --target --and-exit '.
       \ '2>/dev/null')<CR>
@@ -598,23 +606,23 @@ let g:netrw_ignorenetrc = 0 " (default for linux, cygwin)
 
 " TODO B file openinng
 
-noremap <silent> <Leader>x;x :Explore<CR>
-noremap <Leader>x;X :Explore<Space>
-noremap <silent> <Leader>x;t :Texplore<CR>
-noremap <Leader>x;T :Texplore<Space>
-noremap <silent> <Leader>x;h :Sexplore<CR>
-noremap <Leader>x;H :Sexplore<Space>
-noremap <silent> <Leader>x;v :Vexplore<CR>
-noremap <Leader>x;V :Vexplore<Space>
-noremap <silent> <Leader>x;n :Nexplore<CR>
-noremap <Leader>x;N :Nexplore<Space>
-noremap <silent> <Leader>x;p :Pexplore<CR>
-noremap <Leader>x;P :Pexplore<Space>
-noremap <silent> <Leader>x;r :Rexplore<CR>
-noremap <Leader>x;R :Rexplore<Space>
-noremap <silent> <Leader>x;l :Lexplore<CR>
-noremap <Leader>x;L :Lexplore<Space>
-noremap <silent> <Leader>x;h :Hexplore<CR>
-noremap <Leader>x;H :Hexplore<Space>
+nnoremap <silent> <Leader>x;x :Explore<CR>
+nnoremap <Leader>x;X :Explore<Space>
+nnoremap <silent> <Leader>x;t :Texplore<CR>
+nnoremap <Leader>x;T :Texplore<Space>
+nnoremap <silent> <Leader>x;h :Sexplore<CR>
+nnoremap <Leader>x;H :Sexplore<Space>
+nnoremap <silent> <Leader>x;v :Vexplore<CR>
+nnoremap <Leader>x;V :Vexplore<Space>
+nnoremap <silent> <Leader>x;n :Nexplore<CR>
+nnoremap <Leader>x;N :Nexplore<Space>
+nnoremap <silent> <Leader>x;p :Pexplore<CR>
+nnoremap <Leader>x;P :Pexplore<Space>
+nnoremap <silent> <Leader>x;r :Rexplore<CR>
+nnoremap <Leader>x;R :Rexplore<Space>
+nnoremap <silent> <Leader>x;l :Lexplore<CR>
+nnoremap <Leader>x;L :Lexplore<Space>
+nnoremap <silent> <Leader>x;h :Hexplore<CR>
+nnoremap <Leader>x;H :Hexplore<Space>
 
 " }}} 

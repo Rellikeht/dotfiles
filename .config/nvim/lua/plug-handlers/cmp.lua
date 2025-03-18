@@ -53,6 +53,7 @@ Snippy.setup( -- {{{
         ["<C-j>"] = "next", --
         ["<C-k>"] = "previous",
         ["<C-g>"] = "expand_or_advance",
+        ["<C-h>"] = "expand",
         -- ???
         -- ["<C-Space>"] = "complete",
         -- ["<C-Space>"] = function() Snippy.complete() end,

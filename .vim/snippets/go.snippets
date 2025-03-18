@@ -1,0 +1,33 @@
+snippet errp
+	if err != nil {
+		panic(err)
+	}
+
+snippet errl
+	if err != nil {
+		log.Fatal(err)
+	}
+
+snippet errv
+	if err != nil {
+		return $1, err
+	}
+	$0
+
+snippet sel
+	select {
+		$0
+	}
+
+snippet cas
+	case ${1:expr}:
+		$0
+
+snippet casr
+	case ${1:var} := <-${2:channel}:
+		$0
+
+snippet gof
+	go func($1) {
+		$0
+	}($2)

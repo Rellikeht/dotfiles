@@ -43,6 +43,9 @@ let g:neoformat_enabled_zsh = ['shfmt']
 
 " 'mdformat',
 let g:neoformat_enabled_markdown = ['prettierd', 'prettier']
+let g:neoformat_enabled_html = ['tidy', 'htmlbeautify','prettydiff']
+" adds unnecessary / for closing at least for now
+" , 'prettierd', 'prettier'
 
 let g:neoformat_enabled_lua = [
       \ 'luaformat',
