@@ -127,6 +127,7 @@ config.set(
     | {  #  {{{
         "ss": "https://searchmysite.net/search?q={}",
         "cl": "https://curlie.org/search?q={}",
+        "br": "https://search.brave.com/search?q={}",
     },  #  }}}
 )
 

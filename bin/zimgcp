@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+zbarimg "$@" |
+    sed -E 's/^[^:]+://' |
+    xclip -i -selection clipboard
