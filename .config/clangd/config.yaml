@@ -1,12 +1,17 @@
+---
 CompileFlags:
   Add: [-Wall, -Wno-variadic-macros, -Wextra, -Wunused]
 Diagnostics:
   UnusedIncludes: Strict
   ClangTidy:
-    Add: modernize*
+    Add:
+      - modernize-*
+      - performance-*
+      - portability-*
+      - readability-*
+      - clang-analyzer-*
     Remove: modernize-use-trailing-return-type
     FastCheckFilter: Loose
-
 ---
 If:
   PathMatch: [.*\.c, .*\.h]
@@ -17,3 +22,5 @@ If:
   PathMatch: [.*\.cpp, .*\.hpp]
 CompileFlags:
   Add: [-xc++, -Weffc++]
+ClangTidy:
+  Add: cppcoreguidelines-*

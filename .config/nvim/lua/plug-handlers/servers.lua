@@ -10,8 +10,10 @@ local util = require("lspconfig.util")
 lspconfig.lua_ls.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
     -- ???
     -- workspace_folders = { --  {{{
@@ -34,7 +36,8 @@ lspconfig.lua_ls.setup(
             version = "LuaJIT",
           }, -- Make the server aware of Neovim runtime files
           workspace = {
-            checkThirdParty = false, library = {
+            checkThirdParty = false,
+            library = {
               vim.env.VIMRUNTIME,
               -- Depending on the usage, you might want to add additional paths here.
               -- "${3rd}/luv/library"
@@ -52,20 +55,27 @@ lspconfig.lua_ls.setup(
         runtime = {
           version = "LuaJIT", -- Setup your lua path
           path = {
-            "?.lua", "?/init.lua",
+            "?.lua",
+            "?/init.lua",
             unpack(vim.split(package.path, ";")),
           },
-        }, hint = { enable = true }, diagnostics = {
+        },
+        hint = { enable = true },
+        diagnostics = {
           -- Get the language server to recognize the `vim` global
           globals = { "vim", "require" },
-        }, workspace = {
+        },
+        workspace = {
           -- Make the server aware of Neovim runtime files
           -- library = vim.api.nvim_get_runtime_file("", true),
-        }, format = {
+        },
+        format = {
           defaultConfig = {
-            indent_style = "space", indent_size = 2,
+            indent_style = "space",
+            indent_size = 2,
           },
-        }, telemetry = { enable = false },
+        },
+        telemetry = { enable = false },
       },
     }, -- }}}
   }
@@ -74,8 +84,10 @@ lspconfig.lua_ls.setup(
 lspconfig.nil_ls.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
     settings = { -- {{{
       ["nil"] = {
@@ -86,8 +98,10 @@ lspconfig.nil_ls.setup(
             -- "empty_let_in",
             "unused_with",
           },
-        }, nix = {
-          maxMemoryMB = 4096, flake = {
+        },
+        nix = {
+          maxMemoryMB = 4096,
+          flake = {
             --
             autoArchive = false, -- true
             autoEvalInputs = true,
@@ -101,13 +115,16 @@ lspconfig.nil_ls.setup(
 lspconfig.nim_langserver.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
     settings = { -- {{{
       ["nim"] = {
         notificationVerbosity = "error",
-        nimsuggestIdleTimeout = 9999999999, autoRestart = true,
+        nimsuggestIdleTimeout = 9999999999,
+        autoRestart = true,
         logNimsuggest = false,
       },
     }, -- }}}
@@ -119,13 +136,17 @@ lspconfig.nim_langserver.setup(
 lspconfig.tinymist.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
-    capabilities = Capabilities, offset_encoding = "utf-8",
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    offset_encoding = "utf-8",
     -- }}}
 
     settings = { -- {{{
-      offset_encoding = "utf-8", semanticTokens = "disable",
+      offset_encoding = "utf-8",
+      semanticTokens = "disable",
       exportPdf = "never",
     }, -- }}}
   }
@@ -134,8 +155,10 @@ lspconfig.tinymist.setup(
 lspconfig.gopls.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
     settings = { -- {{{
       gopls = {
@@ -176,8 +199,10 @@ lspconfig.gopls.setup(
 lspconfig.julials.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities,
     settings = { telemetry = { enable = false } }, -- }}}
     cmd = { -- {{{
@@ -193,21 +218,27 @@ lspconfig.julials.setup(
 lspconfig.rust_analyzer.setup(
   {
     -- {{{ boilerplate
-    on_attach = lsp_attach, preselectSupport = false,
-    preselect = false, single_file_support = true,
+    on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
     capabilities = Capabilities, -- }}}
     settings = { -- {{{
       ["rust-analyzer"] = {
-        standalone = true, workspaceFolders = false,
+        standalone = true,
+        workspaceFolders = false,
         workspace = { workspaceFolders = false },
 
         completion = { contextSupport = true },
         imports = {
-          granularity = { group = "module" }, prefix = "self",
+          granularity = { group = "module" },
+          prefix = "self",
         },
         cargo = {
-          buildScripts = { enable = true }, allFeatures = true,
-        }, procMacro = { enable = true },
+          buildScripts = { enable = true },
+          allFeatures = true,
+        },
+        procMacro = { enable = true },
       },
     }, -- }}}
   }
@@ -248,15 +279,33 @@ lspconfig.rust_analyzer.setup(
 lspconfig.clangd.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
+
     cmd = { -- {{{
-      "clangd", "-j=2", "--clang-tidy", "--enable-config",
-      "--header-insertion=never", "--completion-style=detailed",
-      "--pch-storage=memory", "--background-index",
+      "clangd",
+      "-j=2",
+      "--clang-tidy",
+      "--enable-config",
+      "--header-insertion=never",
+      "--completion-style=detailed",
+      "--pch-storage=memory",
+      "--background-index",
       "--background-index-priority=low",
     }, -- }}}
+
+    filetypes = { --  {{{
+      "c",
+      "cpp",
+      "objc",
+      "objcpp",
+      "cuda",
+      "proto",
+    }, --  }}}
+
     settings = { -- {{{
     }, -- }}}
   }
@@ -306,13 +355,18 @@ require("clangd_extensions").setup(
     ast = { -- {{{
       -- These are unicode, should be available in any font
       role_icons = { -- {{{
-        type = "🄣", declaration = "🄓",
-        expression = "🄔", statement = ";",
-        specifier = "🄢", ["template argument"] = "🆃",
+        type = "🄣",
+        declaration = "🄓",
+        expression = "🄔",
+        statement = ";",
+        specifier = "🄢",
+        ["template argument"] = "🆃",
       }, -- }}}
       kind_icons = { -- {{{
-        Compound = "🄲", Recovery = "🅁",
-        TranslationUnit = "🅄", PackExpansion = "🄿",
+        Compound = "🄲",
+        Recovery = "🅁",
+        TranslationUnit = "🅄",
+        PackExpansion = "🄿",
         TemplateTypeParm = "🅃",
         TemplateTemplateParm = "🅃",
         TemplateParamObject = "🅃",
@@ -329,8 +383,10 @@ require("clangd_extensions").setup(
 lspconfig.elixirls.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
     cmd = { "elixir-ls" }, --
     settings = { -- {{{
@@ -341,14 +397,49 @@ lspconfig.elixirls.setup(
 lspconfig.powershell_es.setup(
   {
     -- {{{ boilerplate
-    preselectSupport = false, preselect = false,
-    single_file_support = true, on_attach = lsp_attach,
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
-    bundle_path = "~/.powershell_es", --
+
     settings = { -- {{{
-    }, -- }}}
+    },
+
+    bundle_path = "~/.powershell_es",
+    -- }}}
   }
 )
+
+-- lspconfig.arduino_language_server.setup(
+--   {
+--     -- {{{ boilerplate
+--     preselectSupport = false,
+--     preselect = false,
+--     single_file_support = true,
+--     on_attach = lsp_attach,
+--     capabilities = Capabilities,
+--     -- }}}
+
+--     -- cmd = { --  {{{
+--     --   "arduino-language-server",
+--     --   "-log",
+--     --   "-clangd",
+--     --   "clangd",
+--     --   "-cli",
+--     --   "arduino-cli",
+--     --   "-cli-config",
+--     --   vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+--     -- }, --  }}}
+
+--     settings = { -- {{{
+--     },
+
+--     -- disabledFeatures = { "semanticTokens" },
+--     autostart = true,
+--     -- }}}
+--   }
+-- )
 
 -- {{{
 

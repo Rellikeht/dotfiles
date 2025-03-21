@@ -17,7 +17,7 @@ local buf_modes = { "n" }
 -- lua isn't that good
 Lfiles = {
   ["go"] = true,
-  ["jl"] = true,
+  ["julia"] = true,
   ["zig"] = true,
   ["sh"] = true,
   ["html"] = true,
@@ -225,9 +225,12 @@ vim.api.nvim_create_autocmd( -- {{{
       local ftype = vim.api.nvim_get_option_value(
         "filetype", { scope = "local" }
       )
-      local v, clients = pcall(vim.lsp.get_clients)
-      if not v then clients = vim.lsp.get_clients() end
-      if #clients == 1 and Lfiles[ftype] ~= nil then
+      -- local v, clients = pcall(vim.lsp.get_clients)
+      -- if not v then
+      --   clients = vim.lsp.get_clients({ bufnr = 0 })
+      -- end
+      -- if #clients > 0 and Lfiles[ftype] then
+      if Lfiles[ftype] then
         vim.cmd(
           [[
         let b:lspfmt = b:buffmt
@@ -299,6 +302,7 @@ local servers = { -- {{{
   "ada_ls",
   "roc_ls",
   "erlangls",
+  "arduino_language_server",
   "r_language_server",
   "teal_ls",
 } -- }}}
