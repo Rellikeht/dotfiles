@@ -33,10 +33,8 @@ command! -nargs=1 -complete=buffer TabB
 " command! -nargs=1 -complete=arglist Rargument
 "             \botright horizontal argument <args>
 
-" TODO C check
 command -nargs=1 -complete=file ArgView
-      \ silent! view <args>
-      \| argedit <args>
+      \ argedit +silent!\ view <args>
 
 " }}} 
 

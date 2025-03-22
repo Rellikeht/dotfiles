@@ -58,7 +58,11 @@ command -nargs=* -complete=file -bar Badd
 
 command! -nargs=* -complete=file -bar -bang ArgView
       \ silent! call Multif('view'.<q-bang>, [<f-args>])
-      \| argedit <args>
+      \| argedit +silent!\ view <args>
+
+command! -nargs=* -complete=file -bar -bang ArgsView
+      \ silent! call Multif('view'.<q-bang>, [<f-args>])
+      \| args! <args>
 
 function ArgD()
   if argc() == 1
@@ -82,13 +86,13 @@ function BDArgD()
 endfunction
 
 command! -nargs=* -range -complete=file -bar Tabv
-      \ call <SID>Tabargc('ArgView', <count>, [<f-args>])
+      \ call <SID>Tabargc('ArgsView', <count>, [<f-args>])
 
 command! -nargs=* -range -complete=arglist -bar TabvA
-      \ call <SID>Tabargc('ArgView', <count>, [<f-args>])
+      \ call <SID>Tabargc('ArgsView', <count>, [<f-args>])
 
 command! -nargs=* -range -complete=buffer -bar TabvB
-      \ call <SID>Tabargc('ArgView', <count>, [<f-args>])
+      \ call <SID>Tabargc('ArgsView', <count>, [<f-args>])
 
 " }}} 
 
