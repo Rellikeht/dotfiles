@@ -3,7 +3,7 @@
 " copy simple mappings from normal to visual
 " 0yyprv$F<i\|norm gv
 
-function s:Tabarge(count, args)
+function s:Tabargc(cmd, count, args)
   if a:count < 0
     tabnew
   else
@@ -11,7 +11,7 @@ function s:Tabarge(count, args)
   endif
   arglocal!
   if len(a:args) > 0
-    exe 'args! '.call('Exfiles', a:args)
+    exe a:cmd.' '.call('Exfiles', a:args)
   else
     for _ in range(argc())
       argdelete
@@ -20,13 +20,13 @@ function s:Tabarge(count, args)
 endfunction
 
 command! -nargs=* -range -complete=file -bar Tabe
-      \ call <SID>Tabarge(<count>, [<f-args>])
+      \ call <SID>Tabargc('args!', <count>, [<f-args>])
 
 command! -nargs=* -range -complete=arglist -bar TabA
-      \ call <SID>Tabarge(<count>, [<f-args>])
+      \ call <SID>Tabargc('args!', <count>, [<f-args>])
 
 command! -nargs=* -range -complete=buffer -bar TabB
-      \ call <SID>Tabarge(<count>, [<f-args>])
+      \ call <SID>Tabargc('args!', <count>, [<f-args>])
 
 command -nargs=* -bang -complete=buffer -bar ArgeditB
       \ argedit<bang> <args>
@@ -56,6 +56,10 @@ command -nargs=* -complete=file -bar -bang Edit
 command -nargs=* -complete=file -bar Badd
       \ call Multif('badd', [<f-args>])
 
+command! -nargs=* -complete=file -bar -bang ArgView
+      \ silent! call Multif('view'.<q-bang>, [<f-args>])
+      \| argedit <args>
+
 function ArgD()
   if argc() == 1
     q
@@ -77,6 +81,15 @@ function BDArgD()
   call ArgD()
 endfunction
 
+command! -nargs=* -range -complete=file -bar Tabv
+      \ call <SID>Tabargc('ArgView', <count>, [<f-args>])
+
+command! -nargs=* -range -complete=arglist -bar TabvA
+      \ call <SID>Tabargc('ArgView', <count>, [<f-args>])
+
+command! -nargs=* -range -complete=buffer -bar TabvB
+      \ call <SID>Tabargc('ArgView', <count>, [<f-args>])
+
 " }}} 
 
 " nops {{{ 
@@ -87,12 +100,11 @@ endfunction
 
 " noremap .. .
 map <C-h> <C-]>
-noremap <C-w><C-h> 
-      \ :<C-u>exe 'tab tag '.Expand('<cword>')<CR>
+nnoremap <C-w><C-h> :<C-u>exe 'tab tag '.Expand('<cword>')<CR>
 
 " Because new file isn't scary
-map gf :e <cfile><CR>
-map <C-w>gf :Tabe <cfile><CR>
+nmap gf :<C-u>e <cfile><CR>
+nmap <C-w>gf :<C-u>Tabe <cfile><CR>
 
 " Nice thing for snippets
 snoremap <BS> <BS>i
@@ -102,47 +114,39 @@ snoremap <BS> <BS>i
 " taglist {{{ 
 
 nnoremap <Space>tl :<C-u>tags<CR>
-xnoremap <Space>tl :<C-u>tags\|norm gv<CR>
-noremap <Space>t<Space>l
-      \:<C-u>filter  tags<C-Left><Left>
+nnoremap <Space>t<Space>l :<C-u>filter  tags<C-Left><Left>
 
 " because ctrl-t exists only this is defined
-noremap <silent> <C-@> :<C-u>exe v:count1.'tag'<CR>
+nnoremap <silent> <C-@> :<C-u>exe v:count1.'tag'<CR>
 
-noremap <silent> <Space>tn :<C-u>exe v:count1.'tag'<CR>
-noremap <silent> <Space>tp :<C-u>exe v:count1.'pop'<CR>
-noremap <silent> <Space>tN :<C-u>exe v:count1.'tag!'<CR>
-noremap <silent> <Space>tP :<C-u>exe v:count1.'pop!'<CR>
-noremap <silent> <Space>tg :<C-u>exe v:count1.'tselect'<CR>
-noremap <silent> <Space>tG :<C-u>exe v:count1.'tselect!'<CR>
+nnoremap <silent> <Space>tn :<C-u>exe v:count1.'tag'<CR>
+nnoremap <silent> <Space>tp :<C-u>exe v:count1.'pop'<CR>
+nnoremap <silent> <Space>tN :<C-u>exe v:count1.'tag!'<CR>
+nnoremap <silent> <Space>tP :<C-u>exe v:count1.'pop!'<CR>
+nnoremap <silent> <Space>tg :<C-u>exe v:count1.'tselect'<CR>
+nnoremap <silent> <Space>tG :<C-u>exe v:count1.'tselect!'<CR>
 
-noremap <silent> <Space>tj :<C-u>exe v:count1.'tnext'<CR>
-noremap <silent> <Space>tJ :<C-u>exe v:count1.'tnext!'<CR>
-noremap <silent> <Space>tk :<C-u>exe v:count1.'tprevious'<CR>
-noremap <silent> <Space>tK :<C-u>exe v:count1.'tprevious!'<CR>
+nnoremap <silent> <Space>tj :<C-u>exe v:count1.'tnext'<CR>
+nnoremap <silent> <Space>tJ :<C-u>exe v:count1.'tnext!'<CR>
+nnoremap <silent> <Space>tk :<C-u>exe v:count1.'tprevious'<CR>
+nnoremap <silent> <Space>tK :<C-u>exe v:count1.'tprevious!'<CR>
 
-noremap <silent> <Space>t0 :<C-u>tfirst<CR>
-noremap <silent> <Space>t;0 :<C-u>tfirst!<CR>
-noremap <silent> <Space>t$ :<C-u>tlast<CR>
-noremap <silent> <Space>t;$ :<C-u>tlast!<CR>
+nnoremap <silent> <Space>t0 :<C-u>tfirst<CR>
+nnoremap <silent> <Space>t;0 :<C-u>tfirst!<CR>
+nnoremap <silent> <Space>t$ :<C-u>tlast<CR>
+nnoremap <silent> <Space>t;$ :<C-u>tlast!<CR>
 
 nnoremap <Space>tr :<C-u>!ctags -R<CR>
-xnoremap <Space>tr :<C-u>!ctags -R\|norm gv<CR>
 nnoremap <Space>t<Space>r :<C-u>!ctags -R<Space>
-xnoremap <Space>t<Space>r :<C-u>!ctags -R  \|norm gv
-      \ <C-Left><C-Left><Left>
 
 nnoremap <silent> <Space>tb :<C-u>!ctags -R &<CR>
-xnoremap <silent> <Space>tb :<C-u>!ctags -R &\|norm gv<CR>
 nnoremap <Space>t<Space>b :<C-u>!ctags -R  &<Left><Left>
-xnoremap <Space>t<Space>b :<C-u>!ctags -R  &\|norm gv
-      \ <C-Left><C-Left><Left>
 
 " TODO C ???
-noremap <silent> <Space>ta :<C-u>ltag<CR>
-noremap <Space>t<Space>a :<C-u>ltag<Space>
-noremap <silent> <Space>tA :<C-u>ltag!<Space>
-noremap <Space>t<Space>A :<C-u>ltag!<Space>
+nnoremap <silent> <Space>ta :<C-u>ltag<CR>
+nnoremap <Space>t<Space>a :<C-u>ltag<Space>
+nnoremap <silent> <Space>tA :<C-u>ltag!<Space>
+nnoremap <Space>t<Space>A :<C-u>ltag!<Space>
 
 " }}} 
 
@@ -169,32 +173,31 @@ noremap <Space>t<Space>A :<C-u>ltag!<Space>
 
 " better tab {{{ 
 
-noremap <Tab>o :<C-u>Tabe<Space>
-noremap <Tab>O :<C-u>-Tabe<Space>
-noremap <Tab><Space>o :<C-u>TabA<Space>
-noremap <Tab><Space>O :<C-u>-TabA<Space>
-noremap <Tab>;o :<C-u>TabB<Space>
-noremap <Tab>;O :<C-u>-TabB<Space>
-noremap <silent> <Tab>k K<C-w>T
+nnoremap <Tab>o :<C-u>Tabe<Space>
+nnoremap <Tab>O :<C-u>-Tabe<Space>
+nnoremap <Tab><Space>o :<C-u>TabA<Space>
+nnoremap <Tab><Space>O :<C-u>-TabA<Space>
+nnoremap <Tab>;o :<C-u>TabB<Space>
+nnoremap <Tab>;O :<C-u>-TabB<Space>
+nnoremap <silent> <Tab>k K<C-w>T
+
+nnoremap <Tab>r :<C-u>Tabv<Space>
+nnoremap <Tab>R :<C-u>-Tabv<Space>
+nnoremap <Tab><Space>r :<C-u>TabvA<Space>
+nnoremap <Tab><Space>R :<C-u>-TabvA<Space>
+nnoremap <Tab>;r :<C-u>TabvB<Space>
+nnoremap <Tab>;R :<C-u>-TabvB<Space>
 
 nnoremap <Tab>gf :<C-u>Tabe <cfile><CR>
 
-noremap <silent> <Tab>n 
-      \ :<C-u>call SwitchTab(v:count1)<CR>
-nnoremap <silent> <Tab>N 
-      \ :<C-u>execute 'tabmove +'.v:count1<CR>
-xnoremap <silent> <Tab>N 
-      \ :<C-u>execute 'tabmove +'.v:count1\|norm gv<CR>
-nnoremap <silent> <Tab>P 
-      \ :<C-u>execute 'tabmove -'.v:count1<CR>
-xnoremap <silent> <Tab>P 
-      \ :<C-u>execute 'tabmove -'.v:count1\|norm gv<CR>
+nnoremap <silent> <Tab>n :<C-u>call SwitchTab(v:count1)<CR>
+nnoremap <silent> <Tab>N :<C-u>execute 'tabmove +'.v:count1<CR>
+nnoremap <silent> <Tab>P :<C-u>execute 'tabmove -'.v:count1<CR>
 
 nnoremap <expr> <Tab>f ':<C-u>'.v:count1.'tabfind '
 nnoremap <expr> <Tab>F ':<C-u>-'.v:count1.'tabfind '
 
 nnoremap <silent> <Tab>w :<C-u>We<CR>
-xnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
 " }}} 
 
@@ -204,13 +207,12 @@ xnoremap <silent> <Tab>w :<C-u>We\|norm gv<CR>
 
 " buffers with <Space><Space> {{{ 
 
-noremap <silent> <Space><Space>d <Plug>Kwbd
+nnoremap <silent> <Space><Space>d <Plug>Kwbd
 nnoremap <Space><Space>gf :<C-u>edit <cfile><CR>
 
-noremap <Space><Space>o :<C-u>Edit<Space>
-noremap <Space><Space>O :<C-u>Edit!<Space>
+nnoremap <Space><Space>o :<C-u>Edit<Space>
+nnoremap <Space><Space>O :<C-u>Edit!<Space>
 nnoremap <Space><Space>a :<C-u>Badd<Space>
-xnoremap <Space><Space>a :<C-u>Badd  \|norm gv<C-Left><C-Left><Left>
 
 xnoremap <Space><Space>;l 
       \ :<C-u>exe 'filter '.
@@ -219,17 +221,17 @@ xnoremap <Space><Space>;L
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' buffers!'<CR>
 
-noremap <silent> <Space><Space>n 
+nnoremap <silent> <Space><Space>n 
       \ :<C-u>exe v:count1.'bnext'<CR>
-noremap <silent> <Space><Space>p 
+nnoremap <silent> <Space><Space>p 
       \ :<C-u>exe v:count1.'bprevious'<CR>
-noremap <silent> <Space><Space>N 
+nnoremap <silent> <Space><Space>N 
       \ :<C-u>exe v:count1.'bnext!'<CR>
-noremap <silent> <Space><Space>P 
+nnoremap <silent> <Space><Space>P 
       \ :<C-u>exe v:count1.'bprevious!'<CR>
-noremap <silent> <Space><Space>m 
+nnoremap <silent> <Space><Space>m 
       \ :<C-u>exe v:count1.'bmodified'<CR>
-noremap <silent> <Space><Space>M 
+nnoremap <silent> <Space><Space>M 
       \ :<C-u>exe v:count1.'bmodified!'<CR>
 
 " }}} 
@@ -249,16 +251,11 @@ nnoremap <silent> <Space>p :<C-u>call NextArg(0, 'argument')<CR>
 nnoremap <silent> <Space>P :<C-u>call NextArg(0, 'argument!')<CR>
 
 nnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')<CR>
-xnoremap <silent> <Space>A :<C-u>argadd\|call NextArg(1, 'argument')\|norm gv<CR>
 
-nnoremap <silent> <Space>. 
-      \ :<C-u>call NextArg(1, 'argument', 'w')<CR>
-nnoremap <silent> <Space>> 
-      \ :<C-u>call NextArg(1, 'argument!', 'w')<CR>
-nnoremap <silent> <Space>, 
-      \ :<C-u>call NextArg(0, 'argument', 'w')<CR>
-nnoremap <silent> <Space>< 
-      \ :<C-u>call NextArg(0, 'argument!', 'w')<CR>
+nnoremap <silent> <Space>. :<C-u>call NextArg(1, 'argument', 'w')<CR>
+nnoremap <silent> <Space>> :<C-u>call NextArg(1, 'argument!', 'w')<CR>
+nnoremap <silent> <Space>, :<C-u>call NextArg(0, 'argument', 'w')<CR>
+nnoremap <silent> <Space>< :<C-u>call NextArg(0, 'argument!', 'w')<CR>
 
 nnoremap <Space>fu :<C-u>argedit <cfile><CR>
 nnoremap <Space>fU :<C-u>argedit! <cfile><CR>
@@ -271,8 +268,8 @@ nnoremap <silent> <Space>;D :<C-u>call BDArgD()<CR>
 
 " <Space> list and help {{{ 
 
-noremap <Space>il :ilist //<Left>
-noremap <Space>i/ :isearch //<Left>
+nnoremap <Space>il :ilist //<Left>
+nnoremap <Space>i/ :isearch //<Left>
 
 xnoremap <Space>i<Space>r 
       \ :<C-u>exe 'filter '.
@@ -293,7 +290,7 @@ xnoremap <Space>i<Space>m
       \ :<C-u>exe 'filter '.
       \ GetVisualSelection().' marks'<C-Left><C-b>
 
-noremap <expr> <Space>is g:qfloc ?
+nnoremap <expr> <Space>is g:qfloc ?
       \':<C-u>lhelpgrep<Space>'
       \ : ':<C-u>helpgrep<Space>'
 
@@ -318,27 +315,20 @@ noremap <Leader>;l :<C-u>!ls<CR>
 
 " pwd
 nnoremap <Leader>;cl :<C-u>silent! lcd %:p:h<CR>
-xnoremap <Leader>;cl :<C-u>silent! lcd %:p:h\|norm gv<CR>
 nnoremap <Leader>;cc :<C-u>silent! cd %:p:h<CR>
-xnoremap <Leader>;cc :<C-u>silent! cd %:p:h\|norm gv<CR>
 nnoremap <Leader>;c<Space>l :<C-u>lcd<Space>
-xnoremap <Leader>;c<Space>l :<C-u>lcd \|norm gv
-      \ <C-Left><C-Left><Left>
 nnoremap <Leader>;c<Space>c :<C-u>lcd<Space>
-xnoremap <Leader>;c<Space>c :<C-u>lcd \|norm gv
-      \ <C-Left><C-Left><Left>
 
 " Not the best, but should work
-noremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
+nnoremap <silent> <Leader>;wc gg0vG$:<C-u>w !wc<CR>
 
 nnoremap <Leader>;cp :<C-u>pwd<CR>
-xnoremap <Leader>;cp :<C-u>pwd\|norm gv<CR>
 
-noremap <Leader>;m :<C-u>messages<CR>
-noremap <Leader>;cx :<C-u>mkexrc<CR>
-noremap <Leader>;c<Space>x :<C-u>mkexrc<Space>
-noremap <Leader>;cv :<C-u>mkvimrc<CR>
-noremap <Leader>;c<Space>v :<C-u>mkvimrc<Space>
+nnoremap <Leader>;m :<C-u>messages<CR>
+nnoremap <Leader>;cx :<C-u>mkexrc<CR>
+nnoremap <Leader>;c<Space>x :<C-u>mkexrc<Space>
+nnoremap <Leader>;cv :<C-u>mkvimrc<CR>
+nnoremap <Leader>;c<Space>v :<C-u>mkvimrc<Space>
 
 " ???
 " map <Leader>;r :!%<CR>
@@ -387,26 +377,15 @@ xnoremap ;q :<C-u> echo 'Quickfix is now ' .
 " getting {{{ 
 
 nnoremap <silent> ;b :<C-u>call QFcmd('getbuffer')<CR>
-xnoremap <silent> ;b :<C-u>call QFcmd('getbuffer')\|norm gv<CR>
-nnoremap <silent> ;B 
-      \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")<CR>
-xnoremap <silent> ;B 
-      \ :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")\|norm gv<CR>
+nnoremap <silent> ;B :<C-u>call QFcmd("getbuffer '.v:count1", "exe '")<CR>
 nnoremap <expr> ;<Space>b g:qfloc ? 
       \ ':<C-u>lgetbuffer <Space>'
       \ : ':<C-u>cgetbuffer <Space>'
-xnoremap <expr> ;<Space>b g:qfloc ? 
-      \ ':<C-u>lgetbuffer  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cgetbuffer  \|norm gv<C-Left><C-Left><Left>'
 
 nnoremap <silent> ;<Tab> :<C-u>call QFcmd('getfile')<CR>
-xnoremap <silent> ;<Tab> :<C-u>call QFcmd('getfile')\|norm gv<CR>
 nnoremap <expr> ;<Space><Tab> g:qfloc ? 
       \ ':<C-u>lgetfile <Space>'
       \ : ':<C-u>cgetfile <Space>'
-xnoremap <expr> ;<Space><Tab> g:qfloc ? 
-      \ ':<C-u>lgetfile  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cgetfile  \|norm gv<C-Left><C-Left><Left>'
 
 " }}} 
 
@@ -415,110 +394,79 @@ xnoremap <expr> ;<Space><Tab> g:qfloc ?
 nnoremap <expr> ;:
       \ g:qfloc ? ':<C-u>ldo<Space>'
       \ : ':<C-u>cdo<Space>'
-xnoremap <expr> ;:
-      \ g:qfloc ? 
-      \ ':<C-u>ldo  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cdo  \|norm gv<C-Left><C-Left><Left>'
 
 nnoremap <expr> ;;:
       \ g:qfloc ? ':<C-u>ldo!<Space>'
       \ : ':<C-u>cdo!<Space>'
-xnoremap <expr> ;;:
-      \ g:qfloc ? 
-      \ ':<C-u>ldo!  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cdo!  \|norm gv<C-Left><C-Left><Left>'
 
 nnoremap <expr> ;m
       \ g:qfloc ? ':<C-u>lfdo<Space>'
       \ : ':<C-u>cfdo<Space>'
-xnoremap <expr> ;m
-      \ g:qfloc ? 
-      \ ':<C-u>lfdo  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cfdo  \|norm gv<C-Left><C-Left><Left>'
 
 nnoremap <expr> ;;m
       \ g:qfloc ? ':<C-u>lfdo!<Space>'
       \ : ':<C-u>cfdo!<Space>'
-xnoremap <expr> ;;m
-      \ g:qfloc ? 
-      \ ':<C-u>lfdo!  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cfdo!  \|norm gv<C-Left><C-Left><Left>'
 
 " }}} 
 
 " movement {{{ 
 
-noremap <silent> ;j
+nnoremap <silent> ;j
       \ :<C-u>call QFcmd('n', v:count1)<CR>
-noremap <silent> ;k
+nnoremap <silent> ;k
       \ :<C-u>call QFcmd('p', v:count1)<CR>
-noremap <silent> ;n
+nnoremap <silent> ;n
       \ :<C-u>call QFcmd('nf', v:count1)<CR>
-noremap <silent> ;p
+nnoremap <silent> ;p
       \ :<C-u>call QFcmd('pf', v:count1)<CR>
-noremap <silent> ;g
+nnoremap <silent> ;g
       \ :<C-u>call QFsel('cc ', 'll ', '', v:count1)<CR>
 
-noremap <silent> ;0 :<C-u>call QFcmd('first')<CR>
-noremap <silent> ;$ :<C-u>call QFcmd('last')<CR>
-noremap <silent> ;G :<C-u>call QFcmd('bottom')<CR>
+nnoremap <silent> ;0 :<C-u>call QFcmd('first')<CR>
+nnoremap <silent> ;$ :<C-u>call QFcmd('last')<CR>
+nnoremap <silent> ;G :<C-u>call QFcmd('bottom')<CR>
 
 nnoremap <silent> ;<
       \ :<C-u>call QFcmd('older '.v:count1)<CR>
 nnoremap <silent> ;>
       \ :<C-u>call QFcmd('newer '.v:count1)<CR>
-xnoremap <silent> ;<
-      \ :<C-u>call QFcmd('older '.v:count1)
-      \ \| normal gv<CR>
-xnoremap <silent> ;>
-      \ :<C-u>call QFcmd('newer '.v:count1)
-      \ \| normal gv<CR>
 
 " }}} 
 
 "  actions {{{ 
 
-noremap <silent> ;w 
+nnoremap <silent> ;w 
       \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
-noremap <silent> ;W
+nnoremap <silent> ;W
       \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR>
-noremap <silent> <C-w>;w
+nnoremap <silent> <C-w>;w
       \ :<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR><C-w>T
-noremap <silent> <C-w>;W
+nnoremap <silent> <C-w>;W
       \ :<C-u>call QFcmd("window '.g:qfheight", "exe '")<CR><C-w>T
 
-noremap ;l :<C-u>call QFcmd('list')<CR>
-noremap ;L :<C-u>call QFcmd('history')<CR>
+nnoremap ;l :<C-u>call QFcmd('list')<CR>
+nnoremap ;L :<C-u>call QFcmd('history')<CR>
 
 nnoremap <silent> ;h :<C-u>call NToggleQuickFix()<CR>
+" TODO B
 xnoremap <silent> ;h :<C-u>call VToggleQuickFix()<CR>
 
 " clearing
 nnoremap <silent> ;c :<C-u>call QFcmd('expr []')<CR>
-xnoremap <silent> ;c :<C-u>call QFcmd('expr []')\|norm gv<CR>
 
 " copying
 nnoremap <silent> ;C g:qfloc ?
       \ ':<C-u>QfToLoc<CR>'
       \ : ':<C-u>LocToQf<CR>'
-xnoremap <silent> ;C g:qfloc ?
-      \ ':<C-u>QfToLoc\|norm gv<CR>'
-      \ : ':<C-u>LocToQf\|norm gv<CR>'
 
 " putting
 nnoremap <silent> ;= g:qfloc ?
       \ ':<C-u>LocToQf<CR>'
       \ : ':<C-u>QfToLoc<CR>'
-xnoremap <silent> ;= g:qfloc ?
-      \ ':<C-u>LocToQf\|norm gv<CR>'
-      \ : ':<C-u>QfToLoc\|norm gv<CR>'
 
 nnoremap <expr> ;e g:qfloc ?
       \ ':<C-u>lexpr<Space>'
       \ : ':<C-u>cexpr<Space>'
-xnoremap <expr> ;e g:qfloc ?
-      \ ':<C-u>lexpr  \|norm gv<C-Left><C-Left><Left>'
-      \ : ':<C-u>cexpr  \|norm gv<C-Left><C-Left><Left>'
 
 " }}} 
 
@@ -538,17 +486,17 @@ nnoremap <expr> ;? g:qfloc ?
       \ : ':<C-u>g//caddexpr Expand("%").":".line(".").":".getline(".")
       \ <Home><Right><Right>'
 
-noremap <expr> ;f g:qfloc ?
+nnoremap <expr> ;f g:qfloc ?
       \ ':<C-u>Lfilter //<Left>'
       \ : ':<C-u>Cfilter //<Left>'
-noremap <expr> ;F g:qfloc ?
+nnoremap <expr> ;F g:qfloc ?
       \ ':<C-u>Lfilter! //<Left>'
       \ : ':<C-u>Cfilter! //<Left>'
 
-noremap <expr> ;;f g:qfloc ?
+nnoremap <expr> ;;f g:qfloc ?
       \ ':<C-u>Lfilter ##<Left>'
       \ : ':<C-u>Cfilter ##<Left>'
-noremap <expr> ;;F g:qfloc ?
+nnoremap <expr> ;;F g:qfloc ?
       \ ':<C-u>Lfilter! ##<Left>'
       \ : ':<C-u>Cfilter! ##<Left>'
 
@@ -683,17 +631,17 @@ inoremap <C-k> <Nop>
 
 " magic and other space {{{ 
 
-noremap <Space>f/ /\v
-noremap <Space>f? /\V
-noremap <Space>f% /\%V
+nnoremap <Space>f/ /\v
+nnoremap <Space>f? /\V
+nnoremap <Space>f% /\%V
 
 " Shit, but probably must be like that
 cnoremap <C-o>/ \v
 cnoremap <C-o>? \V
 cnoremap <C-o>; \%V
 
-noremap <Space>x :perldo
-noremap <Space>X :perl
+nnoremap <Space>x :perldo
+nnoremap <Space>X :perl
 
 " }}} 
 

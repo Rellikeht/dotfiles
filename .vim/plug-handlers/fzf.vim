@@ -461,11 +461,22 @@ endfor
 
 " actions {{{ 
 
+" from env var:
+" --bind 'ctrl-y:up,ctrl-e:down'
+" --bind 'ctrl-b:page-up,ctrl-f:page-down'
+" --bind 'ctrl-u:half-page-up,ctrl-d:half-page-down'
+" --bind 'alt-y:preview-up,alt-e:preview-down'
+" --bind 'alt-b:preview-page-up,alt-f:preview-page-down'
+" --bind 'alt-u:preview-half-page-up,alt-d:preview-half-page-down'
+" --bind 'ctrl-/:change-preview-window(hidden|)'
+
 let g:fzf_action = {
       \ 'ctrl-q': function('s:build_quickfix_list'),
       \ 'ctrl-t': 'Tabe',
-      \ 'ctrl-x': 'split',
+      \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit',
+      \ 'ctrl-r': 'view',
+      \ 'ctrl-w': 'TabV',
       \ 'ctrl-l': function('s:populate_arg_list'),
       \ 'ctrl-a': function('s:add_arg_list'),
       \ }
