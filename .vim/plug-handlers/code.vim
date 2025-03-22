@@ -339,6 +339,7 @@ let g:gutentags_add_default_project_roots = 0
 
 autocmd DirChanged global call gutentags#rescan()
 let g:gutentags_exclude_project_root = [
+      \ expand('/nix/store/'),
       \ ]
       " \ expand('~/gits/configs/dotfiles'),
 
@@ -364,10 +365,10 @@ let g:gutentags_ctags_extra_args = [
       \ '--fields=+ailmnS',
       \ ]
 
-let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_new = 0
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_empty_buffer = 1
+let g:gutentags_generate_on_empty_buffer = 0
 
 " }}} 
 

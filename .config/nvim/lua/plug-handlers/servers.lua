@@ -287,7 +287,6 @@ lspconfig.clangd.setup(
 
     cmd = { -- {{{
       "clangd",
-      "-j=2",
       "--clang-tidy",
       "--enable-config",
       "--header-insertion=never",
@@ -411,35 +410,39 @@ lspconfig.powershell_es.setup(
   }
 )
 
--- lspconfig.arduino_language_server.setup(
---   {
---     -- {{{ boilerplate
---     preselectSupport = false,
---     preselect = false,
---     single_file_support = true,
---     on_attach = lsp_attach,
---     capabilities = Capabilities,
---     -- }}}
+lspconfig.arduino_language_server.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    -- }}}
 
---     -- cmd = { --  {{{
---     --   "arduino-language-server",
---     --   "-log",
---     --   "-clangd",
---     --   "clangd",
---     --   "-cli",
---     --   "arduino-cli",
---     --   "-cli-config",
---     --   vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
---     -- }, --  }}}
+    cmd = { --  {{{
+      "arduino-language-server",
+      -- "-log",
+      "-jobs",
+      "0",
+      "-clangd",
+      "clangd",
+      "-cli",
+      "arduino-cli",
+      -- gives nothing
+      -- "-skip-libraries-discovery-on-rebuild",
+      -- "-cli-config",
+      -- vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+    }, --  }}}
 
---     settings = { -- {{{
---     },
+    settings = { -- {{{
+    },
 
---     -- disabledFeatures = { "semanticTokens" },
---     autostart = true,
---     -- }}}
---   }
--- )
+    -- disabledFeatures = { "semanticTokens" },
+    autostart = true,
+    -- }}}
+  }
+)
 
 -- {{{
 

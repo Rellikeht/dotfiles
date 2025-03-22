@@ -302,7 +302,6 @@ local servers = { -- {{{
   "ada_ls",
   "roc_ls",
   "erlangls",
-  "arduino_language_server",
   "r_language_server",
   "teal_ls",
 } -- }}}
