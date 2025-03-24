@@ -102,7 +102,7 @@ vim.api.nvim_create_autocmd(
       local ftype = vim.api.nvim_get_option_value(
         "filetype", { scope = "local" }
       )
-      if Lfiles[ftype] then
+      if Lfiles[ftype] ~= nil then
         vim.cmd(
           [[
           let b:buffmt = b:lspfmt

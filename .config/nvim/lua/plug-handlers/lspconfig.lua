@@ -225,12 +225,8 @@ vim.api.nvim_create_autocmd( -- {{{
       local ftype = vim.api.nvim_get_option_value(
         "filetype", { scope = "local" }
       )
-      -- local v, clients = pcall(vim.lsp.get_clients)
-      -- if not v then
-      --   clients = vim.lsp.get_clients({ bufnr = 0 })
-      -- end
-      -- if #clients > 0 and Lfiles[ftype] then
-      if Lfiles[ftype] then
+      -- TODO type
+      if Lfiles[ftype] ~= nil then
         vim.cmd(
           [[
         let b:lspfmt = b:buffmt
@@ -284,7 +280,6 @@ end
 local servers = { -- {{{
   -- :(
   -- "pylyzer",
-  "pylsp",
   "ocamllsp",
   "zls",
   "hls",

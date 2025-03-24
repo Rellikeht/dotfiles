@@ -81,6 +81,46 @@ lspconfig.lua_ls.setup(
   }
 )
 
+lspconfig.pylsp.setup(
+  {
+    -- {{{ boilerplate
+    preselectSupport = false,
+    preselect = false,
+    single_file_support = true,
+    on_attach = lsp_attach,
+    capabilities = Capabilities,
+    -- }}}
+
+    settings = { -- {{{
+      pylsp = {
+        plugins = {
+          jedi_completion = {
+            --
+            fuzzy = true,
+            eager = true,
+            include_funciton_objects = true,
+          },
+          pylsp_mypy = {
+            enabled = true,
+            live_mode = false,
+            dmypy = true,
+          },
+          pylint = { enabled = true, executable = "pylint" },
+          pyls_isort = {
+            -- import sorting
+            enabled = true,
+          },
+          pycodestyle = { maxLineLength = 70 },
+          rope_autoimport = { enabled = true, eager = true },
+          ruff = { enabled = true },
+        },
+      },
+
+      flags = { debounce_text_changes = 100 },
+    }, -- }}}
+  }
+)
+
 lspconfig.nil_ls.setup(
   {
     -- {{{ boilerplate
