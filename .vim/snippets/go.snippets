@@ -2,15 +2,36 @@ snippet errp
 	if err != nil {
 		panic(err)
 	}
+    $0
 
 snippet errl
 	if err != nil {
 		log.Fatal(err)
 	}
+    $0
+
+snippet errp
+	if err != nil {
+        log.Println(err)
+        return ${1:values}
+	}
+    $0
 
 snippet errv
 	if err != nil {
-		return $1, err
+		return ${1:value}, err
+	}
+	$0
+
+snippet errr
+	if err != nil {
+		return ${1:values}
+	}
+	$0
+
+snippet erra
+	if err != nil {
+        ${1:action}
 	}
 	$0
 
@@ -28,6 +49,6 @@ snippet casr
 		$0
 
 snippet gof
-	go func($1) {
+	go func(${1:args}) {
 		$0
-	}($2)
+	}(${2:args})

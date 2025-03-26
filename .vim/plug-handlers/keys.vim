@@ -18,7 +18,10 @@ nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 " Because that does't work with cgn and
 " probably some other mappings
-nmap <Leader>. <Plug>(RepeatDot)
+
+" map ;. <Plug>(RepeatDot)
+map . <Plug>(RepeatDot)
+noremap ;. .
 
 " }}} 
 

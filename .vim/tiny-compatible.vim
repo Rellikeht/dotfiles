@@ -483,7 +483,7 @@ set switchbuf+=usetab,useopen
 
 " editing {{{ 
 
-set formatoptions=tcroqlwn
+set formatoptions=croqlwn
 
 " Neovim default setting at time of writing this
 set backspace=indent,eol,start

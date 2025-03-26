@@ -19,6 +19,7 @@ function s:Tabargc(cmd, count, args)
   endif
 endfunction
 
+" TODO D bang ?
 command! -nargs=* -range -complete=file -bar Tabe
       \ call <SID>Tabargc('args!', <count>, [<f-args>])
 
@@ -56,13 +57,46 @@ command -nargs=* -complete=file -bar -bang Edit
 command -nargs=* -complete=file -bar Badd
       \ call Multif('badd', [<f-args>])
 
+" Breaks readonly at one file
 command! -nargs=* -complete=file -bar -bang ArgView
-      \ silent! call Multif('view'.<q-bang>, [<f-args>])
-      \| argedit +silent!\ view <args>
+      \ call Multif('argedit\ +silent!\\\ view'.<q-bang>, [<f-args>])
 
+" This is (most probably useless) shit 
 command! -nargs=* -complete=file -bar -bang ArgsView
       \ silent! call Multif('view'.<q-bang>, [<f-args>])
-      \| args! <args>
+      " \| argedit +silent!\ view <args>
+
+" Breaks readonly at one file
+command! -nargs=* -range -complete=file -bar Tabv
+      \ Tabe <args>
+      \|silent! argdo set readonly
+      " ^^ Breaks colors
+
+      " Doesn't work on some paths
+      " \| call <SID>Tabargc('ArgsView', <count>, [<f-args>])
+
+      " Breaks readonly at some paths
+      " \ let g:temp_pwd = expand('%:p:h')
+      " \| call <SID>Tabargc('ArgsView', <count>, [<f-args>])
+      " \| exe 'lcd '.g:temp_pwd
+      " \| args! <args>
+      " \| unlet g:temp_pwd
+
+      " Breaks readonly at some paths
+      " \ Tabe
+      " \| let t:temp_pwd = expand('%:p:h')
+      " \| args! <args>
+      " \| exe 'lcd '.t:temp_pwd
+      " \| silent! call Multif('view'.<q-bang>, [<f-args>])
+      " \| unlet t:temp_pwd
+
+command! -nargs=* -range -complete=arglist -bar TabvA
+      \ TabA <args>
+      \| silent! argdo set readonly
+
+command! -nargs=* -range -complete=buffer -bar TabvB
+      \ TabB <args>
+      \| silent! argdo set readonly
 
 function ArgD()
   if argc() == 1
@@ -84,15 +118,6 @@ function BDArgD()
   silent! Bdel %
   call ArgD()
 endfunction
-
-command! -nargs=* -range -complete=file -bar Tabv
-      \ call <SID>Tabargc('ArgsView', <count>, [<f-args>])
-
-command! -nargs=* -range -complete=arglist -bar TabvA
-      \ call <SID>Tabargc('ArgsView', <count>, [<f-args>])
-
-command! -nargs=* -range -complete=buffer -bar TabvB
-      \ call <SID>Tabargc('ArgsView', <count>, [<f-args>])
 
 " }}} 
 
@@ -312,7 +337,7 @@ xnoremap <space>in :<C-u>exe 'g/'.GetVisualSelection().'/#'<CR>
 
 " leader stuff {{{ 
 
-" TODO add more commands
+" TODO C add more commands
 
 " General purpose leader mappings
 noremap <Leader>;l :<C-u>!ls<CR>

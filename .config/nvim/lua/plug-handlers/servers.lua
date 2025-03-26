@@ -136,15 +136,15 @@ lspconfig.nil_ls.setup(
           ignored = {
             -- "unused_rec",
             -- "empty_let_in",
-            "unused_with",
+            -- "unused_with",
           },
         },
         nix = {
           maxMemoryMB = 4096,
           flake = {
             --
-            autoArchive = false, -- true
-            autoEvalInputs = true,
+            autoArchive = false,
+            autoEvalInputs = false,
           },
         },
       },
@@ -161,7 +161,7 @@ lspconfig.nim_langserver.setup(
     on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
     settings = { -- {{{
-      ["nim"] = {
+      nim = {
         notificationVerbosity = "error",
         nimsuggestIdleTimeout = 9999999999,
         autoRestart = true,
@@ -202,9 +202,12 @@ lspconfig.gopls.setup(
     capabilities = Capabilities, -- }}}
     settings = { -- {{{
       gopls = {
+        completionBudget = "0",
+        usePlaceholders = true,
         experimentalPostfixCompletions = true,
         analyses = { unusedparams = true, shadow = true },
         staticcheck = true,
+        vulncheck = "Imports",
       },
     }, -- }}}
   }

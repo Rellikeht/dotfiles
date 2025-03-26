@@ -85,10 +85,7 @@ let g:bullets_enable_in_empty_buffers = 0
 let g:bullets_set_mappings = 0
 
 " Add a leader key before default mappings:
-" let g:bullets_mapping_leader = '<M-b>'
-
-" disable adding default key mappings
-let g:bullets_set_mappings = 1
+" let g:bullets_mapping_leader = '<Leader>'
 
 " N.B. You can set these mappings as-is without using this 
 " g:bullets_custom_mappings option but it
