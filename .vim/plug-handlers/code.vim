@@ -20,7 +20,6 @@ let g:neoformat_enabled_python = [
 let g:neoformat_enabled_c = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_cpp = ['clangformat', 'astyle', 'uncrustify']
 let g:neoformat_enabled_nix = ['alejandra']
-let g:neoformat_enabled_ocaml = ['ocamlformat', 'topiary']
 let g:neoformat_enabled_haskell = [
       \ 'floskell',
       \ 'stylishhaskell',
@@ -30,6 +29,15 @@ let g:neoformat_enabled_haskell = [
       \ 'sortimports',
       \ 'ormolu',
       \ ]
+
+let g:neoformat_ocaml_ocamlformat = {
+        \ 'exe': 'ocamlformat',
+        \ 'no_append': 1,
+        \ 'stdin': 1,
+        \ 'args': ['--enable-outside-detected-project', '--name', '"%:p"', '-']
+        \ }
+
+let g:neoformat_enabled_ocaml = ['ocamlformat', 'topiary']
 
 autocmd FileType dhall let b:buffmt=0 " :(((
 

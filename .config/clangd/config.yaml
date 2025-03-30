@@ -10,7 +10,15 @@ Diagnostics:
       - portability-*
       - readability-*
       - clang-analyzer-*
-    Remove: modernize-use-trailing-return-type
+      - misc-*
+      - concurrency-*
+      - bugprone-*
+      - mpi-*
+      - openmp-*
+    Remove:
+      - modernize-use-trailing-return-type
+      - readability-isolate-declaration
+      - misc-use-anonymous-namespace
     FastCheckFilter: Loose
 ---
 If:

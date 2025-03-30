@@ -21,6 +21,7 @@ highlight.css
 !.scrs/*.png
 *.swp
 *.swo
+*.tmp
 
 *.o
 *.so
@@ -83,6 +84,7 @@ tags
 
 .emacs.d/recentf
 .emacs.d/elpa
+.emacs.d/eln-cache
 # }}}
 
 # {{{ programming

@@ -54,8 +54,12 @@ autocmd BufReadPost *
 set foldmethod=marker
 " Because some formatters fuck up trailing space
 set foldmarker=\ {{{,\ }}}
+" set listchars+=tab:⤇\ ,
+set listchars+=tab:-->
+set listchars+=lead:.
 
 set synmaxcol=250
+set smarttab
 
 " }}} 
 
@@ -72,10 +76,11 @@ set wildignore+=*.so,*.a,*.bin
 set wildignore+=*.pdf,*.djvu,*.epub
 set wildignore+=*.opus,*.ogg,*.mp3
 set wildignore+=*.mp4,*.mkv,*.webm
-set wildignore+=*.AppImage
+set wildignore+=*.AppImage,*.exe
 set wildignore+=*.lock,*~
 set wildignore+=*.doc,*.xls
 set wildignore+=.\?git*
+set wildignore+=*.hi,*.cma,*.cmi
 " set wildignore+=*/
 
 " }}} 

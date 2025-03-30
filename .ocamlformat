@@ -1,0 +1,4 @@
+exp-grouping=preserve
+if-then-else=fit-or-vertical
+break-fun-decl=fit-or-vertical
+margin=78
