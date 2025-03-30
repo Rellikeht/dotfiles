@@ -127,12 +127,9 @@ endfunction
 
 " remaps {{{ 
 
-" noremap .. .
 map <C-h> <C-]>
 nnoremap <C-w><C-h> :<C-u>exe 'tab tag '.Expand('<cword>')<CR>
 
-" Because new file isn't scary
-nmap gf :<C-u>e <cfile><CR>
 nmap <C-w>gf :<C-u>Tabe <cfile><CR>
 
 " Nice thing for snippets
@@ -286,9 +283,9 @@ nnoremap <silent> <Space>> :<C-u>call NextArg(1, 'argument!', 'w')<CR>
 nnoremap <silent> <Space>, :<C-u>call NextArg(0, 'argument', 'w')<CR>
 nnoremap <silent> <Space>< :<C-u>call NextArg(0, 'argument!', 'w')<CR>
 
-nnoremap <Space>fu :<C-u>argedit <cfile><CR>
-nnoremap <Space>fU :<C-u>argedit! <cfile><CR>
-nnoremap <Space>fa :<C-u>argadd <cfile><CR>
+nnoremap <Space>gu :<C-u>argedit <cfile><CR>
+nnoremap <Space>gU :<C-u>argedit! <cfile><CR>
+nnoremap <Space>ga :<C-u>argadd <cfile><CR>
 
 nnoremap <silent> <Space>D :<C-u>call ArgD()<CR>
 nnoremap <silent> <Space>;D :<C-u>call BDArgD()<CR>
@@ -660,9 +657,9 @@ inoremap <C-k> <Nop>
 
 " magic and other space {{{ 
 
-nnoremap <Space>f/ /\v
-nnoremap <Space>f? /\V
-nnoremap <Space>f% /\%V
+nnoremap <Space>g/ /\v
+nnoremap <Space>g? /\V
+nnoremap <Space>g% /\%V
 
 " Shit, but probably must be like that
 cnoremap <C-o>/ \v

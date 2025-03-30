@@ -43,6 +43,11 @@ function! s:add_arg_list(lines)
   execute 'argadd ' . join(map(a:lines, function('s:fnameescape')), ' ')
 endfunction
 
+function! s:tab_args(lines)
+  Tabe
+  execute 'args ' . join(map(a:lines, function('s:fnameescape')), ' ')
+endfunction
+
 map ,s<Esc> <Nop>
 map ,sl<Esc> <Nop>
 map ,sf<Esc> <Nop>
@@ -461,17 +466,9 @@ endfor
 
 " actions {{{ 
 
-" from env var:
-" --bind 'ctrl-y:up,ctrl-e:down'
-" --bind 'ctrl-b:page-up,ctrl-f:page-down'
-" --bind 'ctrl-u:half-page-up,ctrl-d:half-page-down'
-" --bind 'alt-y:preview-up,alt-e:preview-down'
-" --bind 'alt-b:preview-page-up,alt-f:preview-page-down'
-" --bind 'alt-u:preview-half-page-up,alt-d:preview-half-page-down'
-" --bind 'ctrl-/:change-preview-window(hidden|)'
-
 let g:fzf_action = {
       \ 'ctrl-q': function('s:build_quickfix_list'),
+      \ 'ctrl-o': function('s:tab_args'),
       \ 'ctrl-t': 'Tabe',
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit',

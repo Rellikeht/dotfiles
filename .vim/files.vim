@@ -99,7 +99,9 @@ xnoremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
 " nops {{{ 
 
 noremap <Space>f <Nop>
+noremap <Space>g <Nop>
 noremap <Space><Space>f <Nop>
+noremap <Space><Space>g <Nop>
 noremap <Space>b <Nop>
 noremap <Space>/ <Nop>
 noremap <Space>? <Nop>
@@ -328,7 +330,7 @@ cnoreabbrev <expr> lgrep
       \ (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ?
       \ 'Lgrep' : 'lgrep'
 
-let s:grep_prefix = '<Space>g'
+let s:grep_prefix = '<Space>f'
 
 function s:GrepMap(keys, pattern, end, bang=0, qpat=1, qend=1, vesc=1)
   let l:pattern = a:qpat ? "'".a:pattern."'" : a:pattern

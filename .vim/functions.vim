@@ -372,7 +372,9 @@ function NextArg(pos, cmd, before = '', after = '')
   if a:before != ''
     exe 'silent! '.a:before
   endif
-  exe 'silent! '.a:cmd.' '.ind
+  if argc() > 1
+    exe 'silent! '.a:cmd.' '.ind
+  endif
   if a:after != ''
     exe 'silent! '.a:after
   endif

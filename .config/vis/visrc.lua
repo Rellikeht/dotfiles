@@ -1,6 +1,10 @@
 -- load standard vis module, providing parts of the Lua API
 require("vis")
 
+-- {{{
+-- TODO arglist or something close
+-- }}}
+
 local plugins = { --  {{{
 
   -- don't even need config {{{
