@@ -1,13 +1,12 @@
 define(HF, ifdef(`RES', RES(), 570))dnl
-define(RF, ifdef(`ABR', ABR(), 56))dnl
 #!/usr/bin/env sh
 
 LANG=
 [ -n "$YTL" ] && LANG="[language=$YTL]"
-H=HF()
-ABR=RF()
-HSET="[height>=$H]"
+[ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 # != doesn't work on it's own
-CSET="[vcodec!*=av01]"
+[ -n "$YTNOCODEC" ] && CODEC="[vcodec!*=$YTNOCODEC]"
+H=HF()
+HSET="[height>=$H]"
 
-exec yts -f "(ba[abr>=$ABR]$LANG+bv$HSET$CSET)/b$HSET$CSET$LANG" "$@"
+exec yts -f "(ba$ABR$LANG+bv$HSET$CODEC)/b$HSET$CODEC$LANG" "$@"

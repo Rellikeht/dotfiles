@@ -2,10 +2,10 @@
 
 LANG=
 [ -n "$YTL" ] && LANG="[language=$YTL]"
-H=570
-ABR=56
-HSET="[height>=$H]"
+[ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 # != doesn't work on it's own
-CSET="[vcodec!*=av01]"
+[ -n "$YTNOCODEC" ] && CODEC="[vcodec!*=$YTNOCODEC]"
+H=570
+HSET="[height>=$H]"
 
-exec yts -f "(ba[abr>=$ABR]$LANG+bv$HSET$CSET)/b$HSET$CSET$LANG" "$@"
+exec yts -f "(ba$ABR$LANG+bv$HSET$CODEC)/b$HSET$CODEC$LANG" "$@"

@@ -13,9 +13,10 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        packages =
-          []
-          ++ (with pkgs; [])
+        packages = with pkgs;
+          [
+            #
+          ]
           ++ (with self.packages.${system}; [run]);
       in {
         devShells = {

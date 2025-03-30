@@ -5,6 +5,7 @@ if [ -z "$1" ]; then
     exit 0
 fi
 
-for i in $@; do
+for i in "$@"; do
     fzf_preview "$1"
+    shift
 done
