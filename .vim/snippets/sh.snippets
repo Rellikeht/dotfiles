@@ -1,16 +1,23 @@
-snippet eif
-	if ${1} ; then
-		${0}
-	fi
+snippet if
+    if ${1} ; then
+        $0
+    fi
+
+snippet ife
+    if ${1} ; then
+        ${2}
+    else
+        ${0}
+    fi
 
 snippet xa0
-	xargs -0 -I{} ${0}
+    xargs -0 -I{} $0
 
 snippet sd
-	sed "${0}"
+    sed "$0"
 
 snippet ubang
-	#!/usr/bin/env sh
+    #!/usr/bin/env sh
 
 snippet ubbang
-	#!/usr/bin/env bash
+    #!/usr/bin/env bash

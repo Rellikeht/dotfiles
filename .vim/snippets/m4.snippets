@@ -1,0 +1,46 @@
+snippet def
+    define(\`${1:name}', \`${2:body}')dnl
+
+snippet defl
+    define(\`${1:name}', \`${2:body}')
+
+snippet und
+    undefine(\`${1:name}')dnl
+
+snippet undl
+    undefine(\`${1:name}')
+
+snippet `'
+    \`$0'
+
+snippet qu
+    \`$0'
+
+snippet ifd
+    ifdef(\`${1:name}', \`${2:if_defined}', \`${3:if_not}')
+
+snippet ife3
+    ifelse(\`${1:string1}', \`${2:string2}', \`${3:if_equal}')
+
+snippet ife
+    ifelse(\`${1:string1}', \`${2:string2}', \`${3:if_equal}', \`${4:if_not_equal}')
+
+snippet shi
+    shift(\`${1:name}', $0)
+
+snippet incl
+    include(\`${1:filename}')
+
+snippet sincl
+    sinclude(\`${1:filename}')
+
+snippet div
+    divert(\`${1:number}')
+
+snippet div0
+    divert(\`0')
+
+snippet undiv
+    undivert(\`${1:number}')
+
+snippet divn divnum

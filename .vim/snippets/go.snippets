@@ -1,54 +1,54 @@
 snippet errp
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
     $0
 
 snippet errl
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
     $0
 
 snippet errp
-	if err != nil {
+    if err != nil {
         log.Println(err)
         return ${1:values}
-	}
+    }
     $0
 
 snippet errv
-	if err != nil {
-		return ${1:value}, err
-	}
-	$0
+    if err != nil {
+        return ${1:value}, err
+    }
+    $0
 
 snippet errr
-	if err != nil {
-		return ${1:values}
-	}
-	$0
+    if err != nil {
+        return ${1:values}
+    }
+    $0
 
 snippet erra
-	if err != nil {
+    if err != nil {
         ${1:action}
-	}
-	$0
+    }
+    $0
 
 snippet sel
-	select {
-		$0
-	}
+    select {
+        $0
+    }
 
 snippet cas
-	case ${1:expr}:
-		$0
+    case ${1:expr}:
+        $0
 
 snippet casr
-	case ${1:var} := <-${2:channel}:
-		$0
+    case ${1:var} := <-${2:channel}:
+        $0
 
 snippet gof
-	go func(${1:args}) {
-		$0
-	}(${2:args})
+    go func(${1:args}) {
+        $0
+    }(${2:args})

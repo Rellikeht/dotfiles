@@ -3,7 +3,6 @@
 # settings {{{
 
 HISTFILE=~/.histfile
-SAVEHIST=$HISTFILESIZE
 
 # For deleting words to work acceptably
 WORDCHARS='%~!?+'
@@ -180,6 +179,9 @@ fi
 # }}}
 
 # other {{{
+
+# from .commonrc
+SAVEHIST=$HISTFILESIZE
 
 # Compatibility between tmux and direnv (?)
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then

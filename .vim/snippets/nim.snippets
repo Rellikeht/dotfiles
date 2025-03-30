@@ -1,15 +1,15 @@
 snippet proc
-    proc ${1:name}(${2:args}): ${3:type} = ${0}
+    proc ${1:name}(${2:args}): ${3:type} = ${0:discard}
 
 snippet func
-    func ${1:name}(${2:args}): ${3:type} = ${0}
+    func ${1:name}(${2:args}): ${3:type} = ${0:discard}
 
 snippet sproc
     proc ${1:name}(${2:args}): ${3:type} {.raises: [].} =
-    ${0}
+        ${0:discard}
 
 snippet template
-    template ${1:name}(${2:args}): ${3:type} = ${4}
+    template ${1:name}(${2:args}): ${3:type} = ${4:discard}
 
 snippet simport
     import std/${1:module}
@@ -17,8 +17,14 @@ snippet simport
 snippet import
     import ${1:module}
 
+snippet importq
+    from ${1:module} import nil
+
+snippet importn
+    from ${1:module} import ${2:names}
+
 snippet closure
-    (${1:args}) => ${0}
+    (${1:args}) => ${0:discard}
 
 snippet starter
     import std/sugar
@@ -28,5 +34,5 @@ snippet starter
 snippet disc
     discard ${0}
 
-snippet strict
-	{.push raises: [].}
+snippet noraise
+    {.push raises: [].}

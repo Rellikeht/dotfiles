@@ -1,65 +1,64 @@
 snippet ifor
     for (int ${1:i} = 0; ${1:i}<${2:max}; ${1:i}++) {
-        ${0}
+        $0
     }
 
 snippet dfor
     for (int ${1:i} = ${2:start}; ${1:i}>=0; ${1:i}--) {
-        ${0}
+        $0
     }
 
 snippet pubm
-	public ${1:type} ${2:name}(${3:args}) {
-		${0}
-	}
+    public ${1:type} ${2:name}(${3:args}) {
+        $0
+    }
 
 snippet privm
-	private ${1:type} ${2:name}(${3:args}) {
-		${0}
-	}
+    private ${1:type} ${2:name}(${3:args}) {
+        $0
+    }
 
 snippet protm
-	protected ${1:type} ${2:name}(${3:args}) {
-		${0}
-	}
+    protected ${1:type} ${2:name}(${3:args}) {
+        $0
+    }
 
 snippet statm
-	static ${1:type} ${2:name}(${3:args}) {
-		${0}
-	}
+    static ${1:type} ${2:name}(${3:args}) {
+        $0
+    }
 
 snippet cla
-	class ${1:`vim_snippets#Filename("$1", "Name")`} {
-		${0}
-	}
+    class ${1:`vim_snippets#Filename("$1", "Name")`} {
+        $0
+    }
 
 snippet pcla
-	public class ${1:`vim_snippets#Filename("$1", "Name")`} {
-		${0}
-	}
+    public class ${1:`vim_snippets#Filename("$1", "Name")`} {
+        $0
+    }
 
 snippet pack
-	package ${1:name};
+    package ${1:name};
 
 snippet Tsl
-	Thread.sleep(${1:duration});
+    Thread.sleep(${1:duration});
 
 snippet trf
-	try {
-		${0}
-	} finally {
-		${1}
-	}
+    try {
+        $0
+    } finally {
+        ${1:handling}
+    }
 
 snippet thv
-	this.${1:name} = ${1:name};
-	${0}
+    this.${1:name} = ${1:name};
 
 snippet arr
-    ${1:type} ${2:name}[${3:amount}]${0}
+    ${1:type} ${2:name}[${3:amount}]
 
 snippet arrz
-    ${1:type} ${2:name}[${3:amount}] = {0}${0}
+    ${1:type} ${2:name}[${3:amount}] = {0}
 
 snippet arrn
-    ${1:name}[${2:amount}]${0}
+    ${1:name}[${2:amount}]

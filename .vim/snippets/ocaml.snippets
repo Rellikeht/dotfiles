@@ -1,28 +1,41 @@
+snippet letrec
+    let rec ${1:name} =
+        $0
+    in
+
+snippet letg
+    let ${1:name} =
+        $0
+    ;;
+
+snippet letrecg
+    let rec ${1:name} =
+        $0
+    ;;
+
 snippet rlv
-	try
-		let line = read_line () in
-		${0}
-	with End_of_file -> ${1}
+    try
+        let line = read_line () in
+        $0
+    with End_of_file -> ${1:handling}
 
 snippet rlo
-	try
-		read_line () |> ${0}
-	with End_of_file -> ${1}
+    try
+        read_line () |> ${0}
+    with End_of_file -> ${1:handling}
 
 snippet binds
-	let bind = ${1:Type}.bind;;
-	let (>>=) = bind;;
-	let (let*) = bind;;
+    let bind = ${1:Type}.bind;;
+    let (>>=) = bind;;
+    let (let*) = bind;;
 
-	${0}
+    ${0}
 
 snippet flipf
-	let flip f a b = f b a in
-	${0}
+    let flip f a b = f b a in
 
 snippet flipc
-	let flip f a b = f b a;
-	${0}
+    let flip f a b = f b a;
 
 snippet tof
-	type ${1:name} = ${2:Constructor} of ${3:type}
+    type ${1:name} = ${2:Constructor} of ${3:type}
