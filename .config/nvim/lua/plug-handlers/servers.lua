@@ -468,14 +468,8 @@ lspconfig.arduino_language_server.setup(
       -- "-log",
       "-jobs",
       "0",
-      "-clangd",
-      "clangd",
-      "-cli",
-      "arduino-cli",
       -- gives nothing
       -- "-skip-libraries-discovery-on-rebuild",
-      -- "-cli-config",
-      -- vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
     }, --  }}}
 
     settings = { -- {{{

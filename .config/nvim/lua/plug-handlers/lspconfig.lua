@@ -21,6 +21,7 @@ Lfiles = {
   ["zig"] = true,
   ["sh"] = true,
   ["html"] = true,
+  ["elixir"] = true,
 }
 
 -- }}}

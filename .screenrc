@@ -2,7 +2,7 @@
 
 # {{{ command
 
-escape ^||
+escape ^q
 # this conflicts with my tmux setup and
 # I sometimes need both at the same time :(
 # bindkey "^[ " command

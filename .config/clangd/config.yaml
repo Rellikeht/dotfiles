@@ -17,6 +17,7 @@ Diagnostics:
       - openmp-*
     Remove:
       - modernize-use-trailing-return-type
+      - modernize-use-auto
       - readability-isolate-declaration
       - misc-use-anonymous-namespace
     FastCheckFilter: Loose

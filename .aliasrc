@@ -429,6 +429,7 @@ alias w3h='w3m -T text/html'
 
 alias identexif="identify -format '%[EXIF:*]'"
 alias gidentexif="gm identify -format '%[EXIF:*]'"
+alias sxiv='sxiv -a'
 
 alias ip='ip -c'
 # }}}
@@ -495,6 +496,7 @@ alias grr='git rm -r'
 alias grs='git reset'
 alias grh='git reset --hard'
 alias grH='git reset --hard HEAD'
+alias grt='git restore'
 
 alias gst='git status'
 alias grm='git remote'
@@ -580,7 +582,6 @@ alias stL='stc --homedir ~/.config/syncthing/'
 # }}}
 
 # pacman {{{
-# alias pc=pcurses
 alias pa=pacman
 alias pacman='pacman --color=always'
 alias paru='paru --color=always'
@@ -700,4 +701,5 @@ alias sb=sbase-box
 alias bb=busybox
 
 alias blc=bluetoothctl
+alias pkt=pkgtop
 # }}}

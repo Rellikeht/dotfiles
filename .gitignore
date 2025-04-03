@@ -130,3 +130,11 @@ Templates/**/*.o
 Templates/**/*.so
 !Templates/direnv/*envrc*
 # }}}
+
+# other {{{
+
+.mypy_cache
+.dmypy.json
+dmypy.json
+
+#  }}}
