@@ -2,11 +2,12 @@
 
 # {{{ command
 
-escape ^q
+# THIS MAKES Alt-q COMMAND !
+escape ^||
 # this conflicts with my tmux setup and
 # I sometimes need both at the same time :(
 # bindkey "^[ " command
-bindkey "^[k" command
+bindkey "^[q" command
 
 # Also works
 # register S ^|
