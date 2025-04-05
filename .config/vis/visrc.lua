@@ -8,18 +8,22 @@ require("vis")
 local plugins = { --  {{{
 
   -- don't even need config {{{
-  {"https://repo.or.cz/vis-goto-file.git"},
-  {"https://gitlab.com/muhq/vis-lockfiles"},
-  {"https://github.com/jpaulogg/vis-ins-completion"},
-  {"https://github.com/milhnl/vis-backspace"},
-  {"https://github.com/milhnl/vis-options-backport"},
-  {"https://github.com/lutobler/vis-commentary"},
-  {"https://repo.or.cz/vis-surround.git"},
+  { "https://repo.or.cz/vis-goto-file.git" },
+  { "https://gitlab.com/muhq/vis-lockfiles" },
+  { "https://github.com/jpaulogg/vis-ins-completion" },
+  { "https://github.com/milhnl/vis-backspace" },
+  { "https://github.com/milhnl/vis-options-backport" },
+  { "https://github.com/lutobler/vis-commentary" },
+  { "https://repo.or.cz/vis-surround.git" },
   --  }}}
 
-  {"https://repo.or.cz/vis-pairs.git"},
-  {"https://repo.or.cz/vis-quickfix.git"},
-  {"https://git.cepl.eu/cgit/vis/vis-fzf-open/"},
+  { "https://repo.or.cz/vis-pairs.git" },
+  { "https://repo.or.cz/vis-quickfix.git" },
+  { "https://git.cepl.eu/cgit/vis/vis-fzf-open/" },
+  -- TODO B do i even need this
+  -- TODO C check for config options and usage
+  -- { "https://git.sr.ht/~emg/vis-cscope" },
+  -- { "https://github.com/kupospelov/vis-ctags" },
 
   --  {{{ ???
   -- only 2 char combinations
@@ -64,7 +68,10 @@ end
 local p = require "vis-pairs" --  {{{
 p.autopairs = false
 p.map = {
-  {["_"] = {"*", "*", name = "italics"}, ["*"] = {"**", "**"}},
+  {
+    ["_"] = { "*", "*", name = "italics" },
+    ["*"] = { "**", "**" },
+  },
 }
 
 --  }}}
@@ -142,9 +149,7 @@ vis.events.subscribe( --  {{{
     vis:command("set tabwidth 2")
 
     -- filename related commands
-    if win.file.name == nil then
-      return
-    end
+    if win.file.name == nil then return end
     if hasSuffix(win.file.name, ".nix") then
       vis:command("set syntax haskell")
     end
@@ -153,6 +158,5 @@ vis.events.subscribe( --  {{{
 ) --  }}}
 
 vis.events.subscribe( -- {{{
-  vis.events.FILE_OPEN, function(file)
-  end
+  vis.events.FILE_OPEN, function(file) end
 ) -- }}}

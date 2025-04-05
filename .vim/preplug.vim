@@ -37,9 +37,12 @@ let g:makeshift_use_pwd_first = 1
 let g:makeshift_find_bundled = 1
 
 " TODO B nimble, cmake, dune, go, and probably bunch of others
+" TODO B maybe just all of them need some magical wrapper to
+" find build directory, because they can't find it by themeselves
 let g:makeshift_systems = {
-    \ 'meson.build': 'meson',
+    \ 'meson.build': 'automeson',
     \ }
+    " \ 'meson.build': 'meson',
 
 " }}}
 

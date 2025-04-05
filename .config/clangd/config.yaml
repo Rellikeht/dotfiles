@@ -20,6 +20,7 @@ Diagnostics:
       - modernize-use-auto
       - readability-isolate-declaration
       - misc-use-anonymous-namespace
+      - bugprone-switch-missing-default-case
     FastCheckFilter: Loose
 ---
 If:

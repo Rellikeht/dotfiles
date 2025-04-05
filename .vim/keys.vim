@@ -283,8 +283,8 @@ nnoremap <silent> <Space>> :<C-u>call NextArg(1, 'argument!', 'w')<CR>
 nnoremap <silent> <Space>, :<C-u>call NextArg(0, 'argument', 'w')<CR>
 nnoremap <silent> <Space>< :<C-u>call NextArg(0, 'argument!', 'w')<CR>
 
-nnoremap <Space>gu :<C-u>argedit <cfile><CR>
-nnoremap <Space>gU :<C-u>argedit! <cfile><CR>
+nnoremap <Space>gf :<C-u>argedit <cfile><CR>
+nnoremap <Space>gF :<C-u>argedit! <cfile><CR>
 nnoremap <Space>ga :<C-u>argadd <cfile><CR>
 
 nnoremap <silent> <Space>D :<C-u>call ArgD()<CR>

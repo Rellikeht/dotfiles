@@ -7,40 +7,102 @@ tsconfig.setup(
   {
     ensure_installed = { -- {{{
       -- basic
-      "lua", "luap", "vim", "vimdoc", -- notes and text
-      "markdown", "markdown_inline", "comment", "todotxt",
-      "diff", "latex", "regex", "org", "norg", "ebnf", --
+      "lua",
+      "luap",
+      "vim",
+      "vimdoc", -- notes and text
+      "markdown",
+      "markdown_inline",
+      "comment",
+      "todotxt",
+      "diff",
+      "regex",
+      "org",
+      "norg",
+      "ebnf", --
       -- main
-      "c", "ocaml", "ocaml_interface", -- "ocamllex",
-      "menhir", "commonlisp", "go", "gomod", "scheme", "nim",
-      "nim_format_string", "nix", "julia", "haskell", "zig",
-      "python", "typst", --
+      "c",
+      "ocaml",
+      "ocaml_interface",
+      "menhir",
+      "commonlisp",
+      "go",
+      "gomod",
+      "scheme",
+      "nim",
+      "nim_format_string",
+      "nix",
+      "julia",
+      "haskell",
+      "zig",
+      "python",
+      "typst", --
       -- not that necessary
-      "perl", "html", "css", "nickel", "rust", "make", "ninja",
-      "meson", "cmake", "cpp", "sql", "tcl", "odin", "erlang",
+      "perl",
+      "html",
+      "css",
+      "nickel",
+      "rust",
+      "make",
+      "ninja",
+      "meson",
+      "cmake",
+      "cpp",
+      "sql",
+      "tcl",
+      "odin",
+      "erlang",
       "elixir", --
       -- data
-      "json", "jsonc", "xml", "csv", "tsv", --
+      "json",
+      "jsonc",
+      "xml",
+      "csv",
+      "tsv", --
       -- configs
-      "query", "ini", "toml", "yaml", "tmux", "zathurarc",
-      "rasi", "ssh_config", "udev", --
+      "query",
+      "ini",
+      "toml",
+      "yaml",
+      "tmux",
+      "zathurarc",
+      "rasi",
+      "ssh_config",
+      "udev", --
       -- why is that shit here...
-      "fortran", "verilog", "vhdl", "scala", "ada", "roc",
-      "kotlin", "clojure", "java", "forth", -- "teal", --
+      "fortran",
+      "verilog",
+      "vhdl",
+      "scala",
+      "ada",
+      "roc",
+      "kotlin",
+      "clojure",
+      "java",
+      "forth",
       -- ... especially if it is totally useless crap
-      -- "ruby",
       -- "r",
+      -- "ruby",
       -- "racket",
-      "cuda", "prolog", -- "dhall",
-      -- "matlab",
-      "javascript", "typescript", --
+      "cuda",
+      "prolog",
+      "javascript",
+      "typescript", --
       -- git
-      "git_config", "git_rebase", "gitattributes", "gitcommit",
+      "git_config",
+      "git_rebase",
+      "gitattributes",
+      "gitcommit",
       "gitignore", --
       -- shell
-      "powershell", "bash", "awk", --
+      "powershell",
+      "bash",
+      "awk", --
       -- other
-      "dockerfile", "dot",
+      "dockerfile",
+      "dot",
+      -- need node :(
+      -- "ocamllex", "latex",
 
     }, -- }}}
     -- some settings {{{
@@ -79,7 +141,8 @@ tsconfig.setup(
     textobjects = {
 
       lsp_interop = { -- {{{
-        enable = true, border = "none",
+        enable = true,
+        border = "none",
         floating_preview_opts = {},
 
         peek_definition_code = { -- {{{
@@ -137,7 +200,8 @@ tsconfig.setup(
           ["iC"] = "@constructor.inner", --
           -- You can also use captures from other query groups like `locals.scm`
           ["a;"] = {
-            query = "@scope", query_group = "locals",
+            query = "@scope",
+            query_group = "locals",
             desc = "Select language scope",
           }, --
           ["a]"] = "@frame.outer", --
@@ -177,7 +241,8 @@ tsconfig.setup(
       move = { -- TODO {{{
 
         -- {{{
-        enable = true, set_jumps = true, -- whether to set jumps in the jumplist
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
         -- }}}
 
         goto_next_start = {
@@ -185,7 +250,8 @@ tsconfig.setup(
 
           ["]m"] = "@function.outer",
           ["]]"] = {
-            query = "@class.outer", desc = "Next class start",
+            query = "@class.outer",
+            desc = "Next class start",
           }, -- }}}
           -- {{{
           -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
@@ -199,22 +265,29 @@ tsconfig.setup(
           -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
           -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
           ["]s"] = {
-            query = "@scope", query_group = "locals",
+            query = "@scope",
+            query_group = "locals",
             desc = "Next scope",
-          }, ["]z"] = {
-            query = "@fold", query_group = "folds",
+          },
+          ["]z"] = {
+            query = "@fold",
+            query_group = "folds",
             desc = "Next fold",
           },
 
           -- }}}
-        }, goto_next_end = { -- {{{
-          ["]M"] = "@function.outer", ["]["] = "@class.outer",
+        },
+        goto_next_end = { -- {{{
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
         }, -- }}}
         goto_previous_start = { -- {{{
-          ["[m"] = "@function.outer", ["[["] = "@class.outer",
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
         }, -- }}}
         goto_previous_end = { -- {{{
-          ["[M"] = "@function.outer", ["[]"] = "@class.outer",
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
         }, -- }}}
         -- {{{
         -- Below will go to either the start or the end, whichever is closer.
