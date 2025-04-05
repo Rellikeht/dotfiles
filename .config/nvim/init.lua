@@ -11,6 +11,7 @@ local plug_dir = "plug-handlers/"
 -- }}}
 
 -- TODO other manager (lazy?)
+require("preplug")
 vim.call("plug#begin", NVIM_DIR .. "/plugins")
 vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
 
@@ -92,7 +93,6 @@ Plug("vim-test/vim-test")
 Plug("nvim-neotest/neotest")
 
 Plug("p00f/clangd_extensions.nvim")
-Plug("ilyachur/cmake4vim")
 
 -- }}}
 
@@ -150,7 +150,12 @@ vim.call("plug#end")
 -- {{{ loading rest of config
 
 local confMods = {
-  "motion", "cmp", "look", "treesitter", "lspconfig", "coding",
+  "motion",
+  "cmp",
+  "look",
+  "treesitter",
+  "lspconfig",
+  "coding",
   "formats", -- "images",
   "other",
 }

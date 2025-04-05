@@ -72,6 +72,9 @@ Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'xuhdev/SingleCompile'
 Plug 'Konfekt/vim-compilers'
+Plug 'johnsyweb/vim-makeshift'
+Plug 'ilyachur/cmake4vim'
+Plug 'igankevich/mesonic'
 
 " }}} 
 

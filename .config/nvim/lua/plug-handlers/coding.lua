@@ -8,7 +8,7 @@ require("lsp_signature").setup(
     log_path = vim.fn.expand("$HOME") ..
       "/.local/state/nvim/sig.log",
 
-    handler_opts = {border = "none"},
+    handler_opts = { border = "none" },
     max_width = 150, -- nil
     max_height = 14,
     close_timeout = 1000,
@@ -148,7 +148,7 @@ outline.setup(
         -- The above two options are respected.
         -- This can be triggered manually through `follow_cursor` lua API,
         -- :OutlineFollow command, or <C-g>.
-        follow = {"CursorMoved"},
+        follow = { "CursorMoved" },
 
         -- Re-request symbols from the provider.
         -- This can be triggered manually through `refresh_outline` lua API, or
@@ -190,7 +190,7 @@ outline.setup(
         -- Set true for 1 node, false for 0.
         only = true,
       }, -- }}}
-      markers = {"", ""},
+      markers = { "", "" },
     }, -- }}}
 
     preview_window = { -- {{{
@@ -235,7 +235,7 @@ outline.setup(
       -- TODO B
 
       show_help = "?",
-      close = {"<Esc>", "q"},
+      close = { "<Esc>", "q" },
 
       -- Jump to symbol under cursor.
       -- It can auto close the outline window when triggered, see
@@ -281,7 +281,7 @@ outline.setup(
     }, -- }}}
 
     providers = { -- {{{
-      priority = {"lsp", "markdown", "norg"},
+      priority = { "lsp", "markdown", "norg" },
       -- Configuration for each provider (3rd party providers are supported)
       lsp = {
         -- Lsp client names to ignore
@@ -289,7 +289,7 @@ outline.setup(
       },
       markdown = {
         -- List of supported ft's to use the markdown provider
-        filetypes = {"markdown", "vimwiki", "pandoc"},
+        filetypes = { "markdown", "vimwiki", "pandoc" },
       },
     }, -- }}}
 
@@ -314,42 +314,43 @@ outline.setup(
 -- {{{ bindings
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>doo", ":<C-u>Outline<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>doo", ":<C-u>Outline<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n"}, "<Leader>doO", ":<C-u>Outline!<CR>", {noremap = true}
+  { "n" }, "<Leader>doO", ":<C-u>Outline!<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"v"}, "<Leader>doO", ":<C-u>Outline!<CR>:norm gv<CR>",
-  {noremap = true}
+  { "v" }, "<Leader>doO", ":<C-u>Outline!<CR>:norm gv<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n"}, "<Leader>doc", ":<C-u>OutlineClose<CR>",
-  {noremap = true}
+  { "n" }, "<Leader>doc", ":<C-u>OutlineClose<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"v"}, "<Leader>doc", ":<C-u>OutlineClose<CR>:norm gv<CR>",
-  {noremap = true}
+  { "v" }, "<Leader>doc", ":<C-u>OutlineClose<CR>:norm gv<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>doi", ":<C-u>OutlineStatus<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>doi", ":<C-u>OutlineStatus<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>dof", ":<C-u>OutlineFocusOutline<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>dof", ":<C-u>OutlineFocusOutline<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>doe", ":<C-u>OutlineFocusCode<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>doe", ":<C-u>OutlineFocusCode<CR>",
+  { noremap = true }
 )
 
 -- }}}

@@ -24,6 +24,25 @@ let g:pandoc#filetypes#handled = [
 
 " }}}
 
+" makeshift {{{
+
+let g:makeshift_on_startup = 0
+let g:makeshift_on_bufread = 0
+let g:makeshift_on_bufnewfile = 0
+let g:makeshift_on_bufenter = 0
+let g:makeshift_chdir = 0
+" To try the build file in the current directory before searching from the file directory:
+let g:makeshift_use_pwd_first = 1
+" To enable search for bundled build program/script:
+let g:makeshift_find_bundled = 1
+
+" TODO B nimble, cmake, dune, go, and probably bunch of others
+let g:makeshift_systems = {
+    \ 'meson.build': 'meson',
+    \ }
+
+" }}}
+
 " {{{ other
 
 " }}}
