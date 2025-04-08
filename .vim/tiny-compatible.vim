@@ -497,7 +497,9 @@ set undolevels=10000
 
 set noautoread
 set noautochdir
-set termencoding=utf-8
+if !has("nvim")
+  set termencoding=utf-8
+endif
 
 set modelines=3
 set nomodeline

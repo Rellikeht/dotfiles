@@ -278,27 +278,43 @@ end
 -- }}}
 
 local servers = { -- {{{
+  -- must have
   -- :(
   -- "pylyzer",
   "ocamllsp",
-  "zls",
   "hls",
   "superhtml",
   "html",
   "cssls",
-  "scheme_langserver",
-  "texlab",
   "bashls",
+  -- sometimes needed
+  "zls",
+  "texlab",
+  "ast_grep",
+  "ts_ls",
+  -- just in case
+  "erlangls",
   "ols",
   "nickel_ls",
-  "ts_ls",
   "metals",
   "kotlin_language_server",
   "ada_ls",
   "roc_ls",
-  "erlangls",
   "r_language_server",
   "teal_ls",
+  "haxe_language_server",
+  "autohotkey_lsp",
+  "ansiblels",
+  "dhall_lsp_server",
+  "starlark_rust",
+  "gleam",
+  "fortls",
+  -- test and select
+  "solang",
+  "solc",
+  "solidity_ls",
+  "guile_ls",
+  "scheme_langserver",
 } -- }}}
 
 -- {{{

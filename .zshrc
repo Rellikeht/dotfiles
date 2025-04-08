@@ -35,6 +35,10 @@ setopt AUTO_CD
 
 set -o pipefail
 
+conditional_source() {
+    [ -f "$1" ] && source "$1"
+}
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.

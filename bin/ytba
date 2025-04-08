@@ -3,4 +3,4 @@
 LANG=
 [ -n "$YTL" ] && LANG="[language=$YTL]"
 
-exec yt-dlp -f "ba$LANG" $@
+exec yt-dlp -f "ba$LANG" "$@"
