@@ -26,6 +26,7 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   source ~/.vim/keys.vim
   source ~/.vim/quickstack.vim
   source ~/.vim/files.vim
+  source ~/.vim/greps.vim
 
   " }}} 
 
