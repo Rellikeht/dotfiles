@@ -1,13 +1,31 @@
 snippet def
-    define(\`${1:name}', \`${2:body}')dnl
+    define(${1:name}, ${2:body})dnl
 
 snippet defl
+    define(${1:name}, ${2:body})
+
+snippet defq
+    define(\`${1:name}', ${2:body})dnl
+
+snippet defql
+    define(\`${1:name}', ${2:body})
+
+snippet defs
+    define(\`${1:name}', \`${2:body}')dnl
+
+snippet defsl
     define(\`${1:name}', \`${2:body}')
 
 snippet und
-    undefine(\`${1:name}')dnl
+    undefine(${1:name})dnl
 
 snippet undl
+    undefine(${1:name})
+
+snippet undq
+    undefine(\`${1:name}')dnl
+
+snippet undql
     undefine(\`${1:name}')
 
 snippet `'
@@ -17,21 +35,57 @@ snippet qu
     \`$0'
 
 snippet ifd
+    ifdef(${1:name}, ${2:if_defined}, ${3:if_not})
+
+snippet ifdq
+    ifdef(\`${1:name}', ${2:if_defined}, ${3:if_not})
+
+snippet ifds
     ifdef(\`${1:name}', \`${2:if_defined}', \`${3:if_not}')
 
 snippet ife3
+    ifelse(${1:string1}, ${2:string2}, ${3:if_equal})
+
+snippet ife3q
+    ifelse(${1:string1}, \`${2:string2}', ${3:if_equal})
+
+snippet ife3s
     ifelse(\`${1:string1}', \`${2:string2}', \`${3:if_equal}')
 
 snippet ife
+    ifelse(${1:string1}, \`${2:string2}', ${3:if_equal}, ${4:if_not_equal}')
+
+snippet ifeq
     ifelse(\`${1:string1}', \`${2:string2}', \`${3:if_equal}', \`${4:if_not_equal}')
 
 snippet shi
+    shift(${1:name}, $0)
+
+snippet shiq
     shift(\`${1:name}', $0)
 
 snippet incl
-    include(\`${1:filename}')
+    include(${1:filename})dnl
 
 snippet sincl
+    sinclude(${1:filename})dnl
+
+snippet incll
+    include(${1:filename})
+
+snippet sincll
+    sinclude(${1:filename})
+
+snippet inclq
+    include(\`${1:filename}')dnl
+
+snippet sinclq
+    sinclude(\`${1:filename}')dnl
+
+snippet inclql
+    include(\`${1:filename}')
+
+snippet sinclql
     sinclude(\`${1:filename}')
 
 snippet div
@@ -44,3 +98,15 @@ snippet undiv
     undivert(\`${1:number}')
 
 snippet divn divnum
+
+snippet chq
+    changequote(${1:left}, ${2:right})
+
+snippet chqs
+    changequote([,])
+
+snippet chqa
+    changequote(<,>)
+
+snippet chqp
+    changequote((,))
