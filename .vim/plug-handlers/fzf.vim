@@ -1,3 +1,5 @@
+" TODO B procedural generation of bindings outside of vim
+
 " helpers {{{ 
 
 function! s:with_dir(dir='')

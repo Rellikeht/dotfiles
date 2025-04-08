@@ -110,7 +110,7 @@ lspconfig.pylsp.setup(
             -- import sorting
             enabled = true,
           },
-          pycodestyle = { maxLineLength = 70 },
+          pycodestyle = { maxLineLength = 78 },
           rope_autoimport = { enabled = true, eager = true },
           ruff = { enabled = true },
         },
@@ -430,8 +430,15 @@ lspconfig.elixirls.setup(
     single_file_support = true,
     on_attach = lsp_attach,
     capabilities = Capabilities, -- }}}
-    cmd = { "elixir-ls" }, --
+    cmd = { "elixir-ls" },
+
     settings = { -- {{{
+      fetchDeps = false,
+      suggestSpecs = true,
+      dialyzerEnabled = true,
+      incrementalDialyzer = true,
+      enableTestLenses = true,
+      mixEnv = true,
     }, -- }}}
   }
 )

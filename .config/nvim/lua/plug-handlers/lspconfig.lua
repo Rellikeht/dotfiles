@@ -14,14 +14,13 @@ lspconfig.util.default_config = vim.tbl_extend(
 local diag_modes = { "n" }
 local buf_modes = { "n" }
 
--- lua isn't that good
 Lfiles = {
-  ["go"] = true,
-  ["julia"] = true,
-  ["zig"] = true,
-  ["sh"] = true,
-  ["html"] = true,
-  ["elixir"] = true,
+  go = true,
+  julia = true,
+  zig = true,
+  sh = true,
+  html = true,
+  elixir = true,
 }
 
 -- }}}
@@ -226,7 +225,7 @@ vim.api.nvim_create_autocmd( -- {{{
       local ftype = vim.api.nvim_get_option_value(
         "filetype", { scope = "local" }
       )
-      -- TODO type
+      -- TODO name
       if Lfiles[ftype] ~= nil then
         vim.cmd(
           [[
