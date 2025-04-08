@@ -90,21 +90,21 @@ with open(VIM_PATH / "greps.vim", "w") as f:
         print(file=f)
     print('" }}}\n', file=f)
 
+    print('" ADDITIONAL {{{', file=f)
+    print(
+        f"""
 
-# TODO
-# " exe "noremap <expr> ".s:grep_prefix."- g:qfloc ?".
-# "       \ "':<C-u>Lfilter /^grep: /<CR>'".
-# "       \ ": ':<C-u>Cfilter /^grep: /<CR>'"
-# " exe "noremap ".s:grep_prefix."j :<C-u>Sgrep<Space>"
-# " exe "noremap ".s:grep_prefix."J :<C-u>Sgrep!<Space>"
+" TODO C filtering errors
+noremap <expr> {GREP_DESC[0]}- g:qfloc ?
+ \\ ':<C-u>Lfilter /^grep: /<CR>'
+ \\ : ':<C-u>Cfilter /^grep: /<CR>'
+noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
+noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
 
-# " " TODO C filtering errors
-# " " noremap <expr> <Space>s- g:qfloc ?
-# " "       \ ':<C-u>Lfilter /^grep: /<CR>'
-# " "       \ : ':<C-u>Cfilter /^grep: /<CR>'
-# " " exe "noremap <expr> ".s:grep_prefix."- g:qfloc ?".
-# " "       \ "':<C-u>Lfilter /^grep: /<CR>'".
-# " "       \ ": ':<C-u>Cfilter /^grep: /<CR>'"
+noremap {EGREP_DESC[0]}j :<C-u>Segrep<Space>
+noremap {EGREP_DESC[0]}J :<C-u>Segrep!<Space>
 
-# " exe "noremap ".s:egrep_prefix."j :<C-u>Segrep<Space>"
-# " exe "noremap ".s:egrep_prefix."J :<C-u>Segrep!<Space>"
+""",
+        file=f,
+    )
+    print('" }}}\n', file=f)

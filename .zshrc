@@ -35,6 +35,11 @@ setopt AUTO_CD
 
 set -o pipefail
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+conditional_source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+
 # }}}
 
 # completion {{{
@@ -140,11 +145,6 @@ conditional_source ~/.aliasrc.zsh
 conditional_source ~/.funcrc.zsh
 conditional_source "$HOME/.local/.zshrc"
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-conditional_source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-
 # Shit, removing this breaks zsh on arch :(((
 conditional_source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -172,8 +172,9 @@ elif whichp z &>/dev/null; then
     . "$(whichp z)"
 fi
 
-if direnv &>/dev/null; then
+if direnv &>/dev/null && [ -z "$__DIRENV_LOADED" ]; then
     eval "$(direnv hook zsh)"
+    __DIRENV_LOADED=1
 fi
 
 # }}}

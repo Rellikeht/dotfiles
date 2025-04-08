@@ -639,19 +639,30 @@ autocmd BufLeave *
       \ | endif
       \ | endif
 
-autocmd BufEnter *
-      \ if !get(g:, 'no_file_msg', 1)
-      \ | if len(get(g:, 'prev_dir', '')) == 0
-      \ | let g:prev_dir = expand('%:p:h')
-      \ | else
-      \ | call EchoRelCurFile()
-      \ | endif
-      \ | endif
-      \ | if g:autochdir && (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
-      \ | if isdirectory(expand('%:p:h'))
-      \ | exe 'lcd %:p:h'
-      \ | endif
-      \ | endif
+" Lazy loading, added just in case to try this out
+" probably doesn't speed things up, left here for
+" reference
+function s:BufEnterSetup()
+  autocmd BufEnter *
+        \ if !get(g:, 'no_file_msg', 1)
+        \ | if len(get(g:, 'prev_dir', '')) == 0
+        \ | let g:prev_dir = expand('%:p:h')
+        \ | else
+        \ | call EchoRelCurFile()
+        \ | endif
+        \ | endif
+        \ | if g:autochdir && (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
+        \ | if isdirectory(expand('%:p:h'))
+        \ | exe 'lcd %:p:h'
+        \ | endif
+        \ | endif
+  augroup! BufEnterSetup
+endfunction
+
+autocmd VimEnter *
+      \ augroup BufEnterSetup
+      \ call <SID>BufEnterSetup()
+      \ augroup END
 
 " }}} 
 

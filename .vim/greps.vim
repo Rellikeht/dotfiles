@@ -338,3 +338,19 @@ nnoremap <expr> <Space>ssR g:qfloc ? ':<C-u>Egrep '.Vescape(GetVisualSelection()
 
 " }}}
 
+" ADDITIONAL {{{
+
+
+" TODO C filtering errors
+noremap <expr> <Space>f- g:qfloc ?
+ \ ':<C-u>Lfilter /^grep: /<CR>'
+ \ : ':<C-u>Cfilter /^grep: /<CR>'
+noremap <Space>fj :<C-u>Sgrep<Space>
+noremap <Space>fJ :<C-u>Sgrep!<Space>
+
+noremap <Space>sj :<C-u>Segrep<Space>
+noremap <Space>sJ :<C-u>Segrep!<Space>
+
+
+" }}}
+

@@ -127,7 +127,8 @@ let g:slime_dont_ask_default = 1
 let g:slime_bracketed_paste = 1
 let g:slime_no_mappings = 1
 
-autocmd BufEnter,VimEnter *
+let b:slime_config = slime_default_config
+autocmd BufEnter *
       \ let b:slime_config = slime_default_config
 
 " }}} 
