@@ -21,6 +21,7 @@ Diagnostics:
       - readability-isolate-declaration
       - misc-use-anonymous-namespace
       - bugprone-switch-missing-default-case
+      - readability-math-missing-parentheses
     FastCheckFilter: Loose
 ---
 If:

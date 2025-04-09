@@ -14,6 +14,15 @@ autocmd BufReadPre *
 
 " :make {{{ 
 
+command -nargs=0 Smake
+      \ if g:qfloc
+      \| lmake
+      \| else
+      \| make
+      \| endif
+
+cnoreabbrev <expr> make (g:qfloc) ? 'lmake' : 'make'
+
 nnoremap <expr> <Space>mr g:qfloc ?
       \ ':<C-u>lmake<CR>' : ':<C-u>make<CR>'
 xnoremap <expr> <Space>mr g:qfloc ?

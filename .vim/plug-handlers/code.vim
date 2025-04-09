@@ -507,3 +507,24 @@ xnoremap <expr> <Leader>lp
 " }}}
 
 " }}}
+
+" Makeshift {{{
+
+command -nargs=0 SMake
+      \ if g:qfloc
+      \| LMake
+      \| else
+      \| Make
+      \| endif
+
+command -nargs=0 SMakeshiftBuild
+      \ if g:qfloc
+      \| LMakeshiftBuild
+      \| else
+      \| MakeshiftBuild
+      \| endif
+
+cnoreabbrev <expr> Make (g:qfloc) ? 'Lmake' : 'Make'
+cnoreabbrev <expr> MakeshiftBuild (g:qfloc) ? 'LMakeshiftBuild' : 'MakeshiftBuild'
+
+" }}}
