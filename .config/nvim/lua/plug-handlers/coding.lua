@@ -311,7 +311,7 @@ outline.setup(
   }
 )
 
--- {{{ bindings
+-- bindings {{{
 
 vim.keymap.set(
   { "n", "v" }, "<Leader>doo", ":<C-u>Outline<CR>",

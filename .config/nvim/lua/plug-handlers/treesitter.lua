@@ -301,7 +301,7 @@ tsconfig.setup(
   }
 )
 
--- {{{ setting maps
+-- setting maps {{{
 -- TODO more
 
 nvkeymap(
@@ -311,5 +311,5 @@ nvkeymap(
 
 -- }}}
 
--- {{{ TODO B refactor
+-- TODO B refactor {{{
 -- }}}

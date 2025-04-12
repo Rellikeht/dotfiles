@@ -1,5 +1,5 @@
 -- TODO C What a mess
--- {{{ NVIM_LINT
+-- NVIM_LINT {{{
 local nvim_lint = require("lint")
 
 nvim_lint.linters_by_ft = { -- {{{
@@ -18,7 +18,7 @@ nvim_lint.linters_by_ft = { -- {{{
 
 -- }}}
 
--- {{{ autocmd
+-- autocmd {{{
 
 vim.g["buflint"] = false
 vim.api.nvim_create_autocmd(
@@ -53,7 +53,7 @@ end
 
 -- }}}
 
--- {{{ maps
+-- maps {{{
 
 vim.keymap.set(
   "n", "<leader>dc", function() nvim_lint.try_lint() end,
@@ -67,7 +67,7 @@ vim.keymap.set(
 
 -- }}}
 
--- {{{ configurations
+-- configurations {{{
 
 -- eslint_d is shit
 -- eslint too
@@ -91,7 +91,7 @@ vim.keymap.set(
 
 -- }}}
 
--- {{{ formatting
+-- formatting {{{
 
 -- turn off formatting enabled in lspconfig
 -- when lsp exits
@@ -116,9 +116,19 @@ vim.api.nvim_create_autocmd(
   }
 )
 
+vim.api.nvim_create_autocmd(
+  { "BufWritePost" }, {
+    buffer = 0,
+    callback = function()
+      vim.cmd.normal("zv")
+      -- autocmd BufWritePost *.go normal! zv
+    end,
+  }
+)
+
 -- }}}
 
--- {{{ others
+-- others {{{
 
 vim.cmd("let g:zig_fmt_autosave = 0")
 

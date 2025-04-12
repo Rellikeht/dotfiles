@@ -1,11 +1,11 @@
--- {{{ COLORIZER
+-- COLORIZER {{{
 local col_css_conf = {
   css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
   css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
   names = true,
 }
 
-local col_vim_conf = {names = true}
+local col_vim_conf = { names = true }
 
 require"colorizer".setup(
   {
@@ -31,25 +31,28 @@ require"colorizer".setup(
 )
 
 nkeymap(
-  "<Leader>qct", ":<C-u>ColorizerToggle<CR>", {noremap = true}
+  "<Leader>qct", ":<C-u>ColorizerToggle<CR>", { noremap = true }
 )
 vkeymap(
-  "<Leader>qct", ":<C-u>ColorizerToggle<CR>gv", {noremap = true}
+  "<Leader>qct", ":<C-u>ColorizerToggle<CR>gv",
+  { noremap = true }
 )
-keymap("<Leader>qcT", "<Leader>qct<Leader>qct", {noremap = true})
+keymap(
+  "<Leader>qcT", "<Leader>qct<Leader>qct", { noremap = true }
+)
 
 nkeymap(
   "<Leader>qcr", ":<C-u>ColorizerReloadAllBuffers<CR>",
-  {noremap = true}
+  { noremap = true }
 )
 vkeymap(
   "<Leader>qcr", ":<C-u>ColorizerReloadAllBuffers<CR>gv",
-  {noremap = true}
+  { noremap = true }
 )
 
 -- }}}
 
--- {{{ TODO C colors
+-- TODO C colors {{{
 vim.cmd("hi Todo		guifg=#ffcf2f	guibg=#0e1224	gui=bold")
 
 -- TODO fucking todo can't change it's color

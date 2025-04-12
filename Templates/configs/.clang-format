@@ -3,7 +3,7 @@ BasedOnStyle: LLVM
 ---
 Language: Cpp
 AccessModifierOffset: -2
-AlignAfterOpenBracket: BlockIndent  # Align
+AlignAfterOpenBracket: BlockIndent # Align
 AlignArrayOfStructures: Left
 AlignConsecutiveMacros: AcrossComments
 AlignConsecutiveAssignments: None
@@ -57,8 +57,8 @@ BreakConstructorInitializersBeforeComma: false
 BreakConstructorInitializers: BeforeColon
 BreakAfterJavaFieldAnnotations: false
 BreakStringLiterals: true
-ColumnLimit: 64
-CommentPragmas: '^ IWYU pragma:'
+ColumnLimit: 68
+CommentPragmas: "^ IWYU pragma:"
 QualifierAlignment: Leave
 CompactNamespaces: false
 ConstructorInitializerIndentWidth: 4
@@ -71,7 +71,7 @@ EmptyLineAfterAccessModifier: Never
 EmptyLineBeforeAccessModifier: LogicalBlock
 ExperimentalAutoDetectBinPacking: false
 PackConstructorInitializers: BinPack
-BasedOnStyle: ''
+BasedOnStyle: ""
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 AllowAllConstructorInitializersOnNextLine: true
 FixNamespaceComments: true
@@ -92,7 +92,7 @@ IncludeCategories:
     SortPriority: 0
     CaseSensitive: false
 IncludeIsMainRegex: (Test)?$
-IncludeIsMainSourceRegex: ''
+IncludeIsMainSourceRegex: ""
 IndentAccessModifiers: false
 IndentCaseLabels: false
 IndentCaseBlocks: false
@@ -107,8 +107,8 @@ JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
 LambdaBodyIndentation: Signature
-MacroBlockBegin: ''
-MacroBlockEnd: ''
+MacroBlockBegin: ""
+MacroBlockEnd: ""
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 ObjCBinPackProtocolList: Auto
@@ -184,7 +184,7 @@ WhitespaceSensitiveMacros:
 ---
 Language: Java
 AccessModifierOffset: -2
-AlignAfterOpenBracket: BlockIndent  # Align
+AlignAfterOpenBracket: BlockIndent # Align
 AlignArrayOfStructures: Left
 AlignConsecutiveMacros: AcrossComments
 AlignConsecutiveAssignments: None
@@ -239,7 +239,7 @@ BreakConstructorInitializers: BeforeColon
 BreakAfterJavaFieldAnnotations: false
 BreakStringLiterals: true
 ColumnLimit: 64
-CommentPragmas: '^ IWYU pragma:'
+CommentPragmas: "^ IWYU pragma:"
 QualifierAlignment: Leave
 CompactNamespaces: false
 ConstructorInitializerIndentWidth: 4
@@ -252,7 +252,7 @@ EmptyLineAfterAccessModifier: Never
 EmptyLineBeforeAccessModifier: LogicalBlock
 ExperimentalAutoDetectBinPacking: false
 PackConstructorInitializers: BinPack
-BasedOnStyle: ''
+BasedOnStyle: ""
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 AllowAllConstructorInitializersOnNextLine: true
 FixNamespaceComments: true
@@ -273,7 +273,7 @@ IncludeCategories:
     SortPriority: 0
     CaseSensitive: false
 IncludeIsMainRegex: (Test)?$
-IncludeIsMainSourceRegex: ''
+IncludeIsMainSourceRegex: ""
 IndentAccessModifiers: false
 IndentCaseLabels: false
 IndentCaseBlocks: false
@@ -288,8 +288,8 @@ JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
 LambdaBodyIndentation: Signature
-MacroBlockBegin: ''
-MacroBlockEnd: ''
+MacroBlockBegin: ""
+MacroBlockEnd: ""
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 ObjCBinPackProtocolList: Auto

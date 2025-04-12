@@ -1,4 +1,4 @@
--- {{{ editorconfig
+-- editorconfig {{{
 -- Proper editorconfig handling
 vim.g.editorconfig = false
 vim.api.nvim_create_autocmd(
@@ -26,7 +26,7 @@ vim.keymap.set(
 
 -- }}}
 
--- {{{ settings
+-- settings {{{
 
 vim.api.nvim_create_autocmd(
   { "BufEnter" }, {
@@ -40,13 +40,14 @@ vim.api.nvim_create_autocmd(
 
 -- }}}
 
--- {{{ keymaps
+-- keymaps {{{
 
 -- Because command line window has some problems
 vim.api.nvim_create_autocmd(
   { "BufWinEnter" }, {
     ---@diagnostic disable-next-line: unused-local
-    pattern = { "*" }, command = [[
+    pattern = { "*" },
+    command = [[
       if win_gettype() == 'command'
         map <buffer> <CR> <CR>
         nmap <silent> <buffer> <C-l> :<C-u>redraw!<CR>
@@ -58,7 +59,7 @@ vim.api.nvim_create_autocmd(
 
 -- }}}
 
--- {{{ colors
+-- colors {{{
 
 vim.cmd.colorscheme("elflord")
 vim.cmd.highlight("CursorLine", "guibg=#404040")

@@ -1,4 +1,4 @@
--- {{{ helpers
+-- helpers {{{
 ---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
 
@@ -9,7 +9,7 @@ local util = require("lspconfig.util")
 
 lspconfig.lua_ls.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -83,7 +83,7 @@ lspconfig.lua_ls.setup(
 
 lspconfig.pylsp.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -123,7 +123,7 @@ lspconfig.pylsp.setup(
 
 lspconfig.nil_ls.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -154,7 +154,7 @@ lspconfig.nil_ls.setup(
 
 lspconfig.nim_langserver.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -175,7 +175,7 @@ lspconfig.nim_langserver.setup(
 -- that crashes on every fucking input
 lspconfig.tinymist.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -194,7 +194,7 @@ lspconfig.tinymist.setup(
 
 lspconfig.gopls.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -215,7 +215,7 @@ lspconfig.gopls.setup(
 
 -- lspconfig.ocamllsp.setup(
 --   {
---     -- {{{ boilerplate
+--     -- boilerplate {{{
 --     preselectSupport = false, preselect = false,
 --     single_file_support = true, on_attach = lsp_attach,
 --     capabilities = Capabilities,
@@ -241,7 +241,7 @@ lspconfig.gopls.setup(
 
 lspconfig.julials.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -260,7 +260,7 @@ lspconfig.julials.setup(
 -- No idea if all of that is really needed
 lspconfig.rust_analyzer.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     on_attach = lsp_attach,
     preselectSupport = false,
     preselect = false,
@@ -321,7 +321,7 @@ lspconfig.rust_analyzer.setup(
 
 lspconfig.clangd.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -424,7 +424,7 @@ require("clangd_extensions").setup(
 
 lspconfig.elixirls.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -445,7 +445,7 @@ lspconfig.elixirls.setup(
 
 lspconfig.powershell_es.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,
@@ -462,7 +462,7 @@ lspconfig.powershell_es.setup(
 
 lspconfig.arduino_language_server.setup(
   {
-    -- {{{ boilerplate
+    -- boilerplate {{{
     preselectSupport = false,
     preselect = false,
     single_file_support = true,

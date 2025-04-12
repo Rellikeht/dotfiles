@@ -1,4 +1,4 @@
--- {{{ helpers
+-- helpers {{{
 ---@diagnostic disable: undefined-global
 local lspconfig = require("lspconfig")
 -- of course shit won't work because why would it
@@ -25,7 +25,7 @@ Lfiles = {
 
 -- }}}
 
--- {{{ commands
+-- commands {{{
 
 vim.keymap.set(
   buf_modes, "<Leader>dqi", ":<C-u>LspInfo<CR>",
@@ -56,7 +56,7 @@ vim.keymap.set(
 
 -- }}}
 
--- {{{ general maps
+-- general maps {{{
 
 vim.keymap.set(
   diag_modes, "<Leader>df", vim.diagnostic.open_float,
@@ -97,7 +97,7 @@ vim.api.nvim_create_autocmd( -- {{{
   "LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(args)
-      -- {{{ helpers
+      -- helpers {{{
 
       local bufnr = args.buf
       local client = vim.lsp
@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd( -- {{{
 
       -- }}}
 
-      -- {{{ info
+      -- info {{{
 
       vim.keymap.set(
         buf_modes, "<Leader>dd", vim.lsp.buf.definition, opts
@@ -178,7 +178,7 @@ vim.api.nvim_create_autocmd( -- {{{
 
       -- }}}
 
-      -- {{{ actions
+      -- actions {{{
       vim.keymap.set(
         buf_modes, "<Leader>dR", vim.lsp.buf.rename, opts
       )
@@ -200,7 +200,7 @@ vim.api.nvim_create_autocmd( -- {{{
 
       --  }}}
 
-      -- {{{ workspaces
+      -- workspaces {{{
       vim.keymap.set(
         buf_modes, "<Leader>dwa",
         vim.lsp.buf.add_workspace_folder, opts
@@ -218,7 +218,7 @@ vim.api.nvim_create_autocmd( -- {{{
       )
       -- }}}
 
-      -- {{{ formatting
+      -- formatting {{{
 
       -- when attaching first lsp define variable that will control
       -- formating on saving using lsp(s)

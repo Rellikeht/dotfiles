@@ -16,7 +16,7 @@ autopairs.setup(
 )
 -- }}}
 
-local cmp = require("cmp") -- {{{ 
+local cmp = require("cmp") --  {{{
 ---@diagnostic disable-next-line: unused-local
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -73,9 +73,9 @@ vim.cmd(
 
 -- }}}
 
--- {{{ cmp helpers
+-- cmp helpers {{{
 
-local cmp_beh = {behavior = cmp.SelectBehavior, count = 1}
+local cmp_beh = { behavior = cmp.SelectBehavior, count = 1 }
 
 local format = function(entry, vim_item)
   local el = "…"
@@ -107,17 +107,17 @@ cmp.setup(
     -- {{{
     preselect = cmp.PreselectMode.None,
     window = {
-      documentation = {max_width = 0, max_height = 0},
-      completion = {side_padding = 0},
+      documentation = { max_width = 0, max_height = 0 },
+      completion = { side_padding = 0 },
     },
     -- }}}
 
     view = { --  {{{
-      docs = {auto_open = true},
+      docs = { auto_open = true },
     }, --  }}}
 
     formatting = { -- {{{
-      fields = {"abbr", "kind", "menu"},
+      fields = { "abbr", "kind", "menu" },
       format = format,
     }, -- }}}
 
@@ -143,7 +143,7 @@ cmp.setup(
 
     mapping = cmp.mapping.preset.insert( -- {{{
       {
-        -- {{{ basic
+        -- basic {{{
         ["<C-e>"] = cmp.mapping.abort(),
         -- }}}
 
@@ -151,7 +151,7 @@ cmp.setup(
           i = function(_)
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_next_item(cmp_beh)
               end
@@ -169,14 +169,14 @@ cmp.setup(
           i = function(_)
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_next_item(cmp_beh)
               end
             else
               cmp.complete()
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               end
             end
           end,
@@ -186,14 +186,14 @@ cmp.setup(
           i = function(_)
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_prev_item(cmp_beh)
               end
             else
               cmp.complete()
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_prev_item(cmp_beh)
               end
@@ -235,7 +235,7 @@ cmp.setup(
                 fallback()
               end
             end,
-            s = cmp.mapping.confirm({select = true}),
+            s = cmp.mapping.confirm({ select = true }),
             c = cmp.mapping.confirm(
               {
                 behavior = cmp.ConfirmBehavior.Replace,
@@ -245,7 +245,7 @@ cmp.setup(
           }
         ), -- }}}
 
-        -- {{{ docs
+        -- docs {{{
 
         ["<C-j>"] = cmp.mapping.scroll_docs(1),
         ["<C-k>"] = cmp.mapping.scroll_docs(-1),
@@ -280,10 +280,10 @@ cmp.setup(
     }, -- }}}
 
     sources = { -- {{{
-      {name = "nvim_lua"},
-      {name = "nvim_lsp"},
-      {name = "nvim_lsp_signature_help"},
-      {name = "snippy"},
+      { name = "nvim_lua" },
+      { name = "nvim_lsp" },
+      { name = "nvim_lsp_signature_help" },
+      { name = "snippy" },
 
       { -- {{{
         name = "buffer",
@@ -303,10 +303,10 @@ cmp.setup(
         },
       }, -- }}}
 
-      {name = "omni"},
-      {name = "path"},
-      {name = "vimtex"},
-      {name = "mkdnflow"},
+      { name = "omni" },
+      { name = "path" },
+      { name = "vimtex" },
+      { name = "mkdnflow" },
     }, -- }}}
   }
 )
@@ -338,14 +338,14 @@ cmp.setup.cmdline(
           c = function(_)
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_next_item()
               end
             else
               cmp.complete()
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               end
             end
           end,
@@ -370,7 +370,7 @@ cmp.setup.cmdline(
           c = function()
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_next_item()
               end
@@ -388,7 +388,7 @@ cmp.setup.cmdline(
           c = function(_)
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_prev_item(cmp_beh)
               end
@@ -405,8 +405,8 @@ cmp.setup.cmdline(
     ), -- }}}
 
     sources = cmp.config.sources( -- {{{
-      {{name = "path"}}, {{name = "cmdline"}},
-      {{name = "bufname"}}
+      { { name = "path" } }, { { name = "cmdline" } },
+      { { name = "bufname" } }
     ), -- }}}
   }
 ) -- }}}
@@ -453,14 +453,14 @@ cmp.setup.cmdline(
           c = function(_)
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_next_item()
               end
             else
               cmp.complete()
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               end
             end
           end,
@@ -470,14 +470,14 @@ cmp.setup.cmdline(
           c = function(_)
             if cmp.visible() then
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_prev_item()
               end
             else
               cmp.complete()
               if #cmp.get_entries() == 1 then
-                cmp.confirm({select = true})
+                cmp.confirm({ select = true })
               else
                 cmp.select_prev_item()
               end
