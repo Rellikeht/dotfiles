@@ -105,7 +105,7 @@ lspconfig.pylsp.setup(
             live_mode = false,
             dmypy = true,
           },
-          pylint = { enabled = true, executable = "pylint" },
+          pylint = { enabled = false, executable = "pylint" },
           pyls_isort = {
             -- import sorting
             enabled = true,

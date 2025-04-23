@@ -497,6 +497,7 @@ alias grs='git reset'
 alias grh='git reset --hard'
 alias grH='git reset --hard HEAD'
 alias grt='git restore'
+alias grv='git revert'
 
 alias gst='git status'
 alias grm='git remote'
@@ -567,6 +568,13 @@ alias nman="MANPAGER='nvim +Man!' man"
 alias tlh=tldr
 alias tlu='tldr --update'
 alias tll='tldr --list'
+alias tldupt='
+if [ "${TLDR_AUTO_UPDATE_DISABLED+1}" = "1" ]; then
+    unset TLDR_AUTO_UPDATE_DISABLED
+else
+    TLDR_AUTO_UPDATE_DISABLED=1
+fi
+'
 #  }}}
 
 # other {{{

@@ -40,7 +40,8 @@ let g:makeshift_find_bundled = 1
 " TODO B maybe just all of them need some magical wrapper to
 " find build directory, because they can't find it by themeselves
 let g:makeshift_systems = {
-    \ 'meson.build': 'automeson',
+    \ 'meson.build': 'auto-meson',
+    \ 'CMakeLists.txt': 'auto-cmake',
     \ }
     " \ 'meson.build': 'meson',
 
