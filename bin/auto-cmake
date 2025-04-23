@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+
+BUILD_FILE="CMakeLists.txt"
+BUILD_DIR="build"
+if [ -n "$1" ]; then
+    BUILD_DIR="$1"
+fi
+
+
+while ! [ -e "$BUILD_FILE" ]; do
+    cd .. || exit 1
+    if [ "$PWD" = "/" ]; then
+        echo "Reached /" >/dev/stderr
+        exit 1
+    fi
+done
+
+
+
+while [ -e "$BUILD_FILE" ]; do
+    cd .. || exit 1
+    if [ "$PWD" = "/" ]; then
+        echo "Reached /" >/dev/stderr
+        exit 1
+    fi
+done
+
+
+cd -
+
+if ! [ -d "$BUILD_DIR" ]; then
+    cmake -S . -B "$BUILD_DIR"
+fi
+
+exec cmake --build "$BUILD_DIR"
