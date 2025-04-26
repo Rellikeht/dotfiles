@@ -2,10 +2,10 @@
 
 SDIR="${0%/*}"
 DDIR="../../bin/"
-if ! [ -d "$DDIR" ];
+if ! [ -d "$DDIR" ]; then
     DDIR="$HOME/bin"
     mkdir -p "$DDIR"
-then
+fi
 
 m4 -DRES=360 "$SDIR/ytdlv.m4" >"$DDIR/ytdl"
 m4 -DRES=480 "$SDIR/ytdlv.m4" >"$DDIR/ytds"

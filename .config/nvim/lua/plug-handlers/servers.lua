@@ -345,7 +345,6 @@ lspconfig.clangd.setup(
       "objc",
       "objcpp",
       "cuda",
-      "proto",
     }, --  }}}
 
     settings = { -- {{{

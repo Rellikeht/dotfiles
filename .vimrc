@@ -9,6 +9,7 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   " plugins and packages {{{ 
   filetype plugin on
   filetype indent on
+  syntax on
 
   packadd! matchit
   packadd! cfilter
