@@ -1,7 +1,7 @@
 local nvim_local_dir = vim.fn.expand("~/.local/share/nvim")
 local project_name = vim.fn.fnamemodify(
-                       vim.fn.getcwd(), ":p:h:t"
-                     )
+  vim.fn.getcwd(), ":p:h:t"
+)
 
 local workspace_dir = nvim_local_dir .. "/jdtls-workspaces/" ..
                         project_name
@@ -18,20 +18,20 @@ local config = {
 
   settings = {
     java = {
-      signatureHelp = {enabled = true},
+      signatureHelp = { enabled = true },
       completion = {
         favoriteStaticMembers = {},
-        importOrder = {"java", "javax", "com", "org"},
+        importOrder = { "java", "javax", "com", "org" },
       },
 
-      autobuild = {enabled = false},
-      rename = {enabled = true},
-      trace = {server = "verbose"},
+      autobuild = { enabled = false },
+      rename = { enabled = true },
+      trace = { server = "verbose" },
 
       import = {
         enabled = true,
-        gradle = {enabled = true},
-        maven = {enabled = true},
+        gradle = { enabled = true },
+        maven = { enabled = true },
         exclusions = {
           "**/node_modules/**",
           "**/.metadata/**",
@@ -41,7 +41,7 @@ local config = {
         },
       },
 
-      format = {enable = true},
+      format = { enable = true },
 
       -- configuration = {
       --  runtimes = {
@@ -61,13 +61,14 @@ local config = {
   },
   on_attach = lsp_attach,
 
-  handlers = {["language/status"] = function() end},
+  handlers = { ["language/status"] = function() end },
 
   root_dir = vim.fs.dirname(
     vim.fs.find(
-      {"gradlew", ".git", "mvnw", ".hg"}, {upward = true}
+      { "gradlew", ".git", "mvnw", ".hg" }, { upward = true }
     )[1]
   ),
 }
 
-require("jdtls").start_or_attach(config)
+local success, jdtls = pcall(require, "jdtls")
+if success then jdtls.start_or_attach(config) end

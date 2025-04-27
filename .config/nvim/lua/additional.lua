@@ -38,6 +38,17 @@ vim.api.nvim_create_autocmd(
   }
 )
 
+-- Because neovim (treesitter) somehow get this fucked
+vim.api.nvim_create_autocmd(
+  { "BufRead" }, {
+    pattern = { "*/doc/*.txt" },
+    callback = function()
+      vim.bo.filetype = "help"
+      vim.bo.syntax = "help"
+    end,
+  }
+)
+
 -- }}}
 
 -- keymaps {{{
@@ -84,5 +95,7 @@ hi Added ctermfg=10 guifg=LimeGreen
 hi Removed ctermfg=9 guifg=Red
 ]]
 )
+
+vim.g.java_ignore_markdown = true
 
 -- }}}
