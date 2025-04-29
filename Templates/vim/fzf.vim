@@ -129,9 +129,9 @@ let g:fzf_colors = {
 
 " custom grep {{{ 
 
-let s:ggrep_args = '--line-number --color=always'
-let s:grep = g:grep.' --dereference-recursive '.s:ggrep_args
-let s:ggrep_args = s:ggrep_args.' -EI'
+let s:ggrep_args = '--line-number --color=always -EI'
+let s:grep = g:grep.' '.s:ggrep_args
+" let s:ggrep_args = s:ggrep_args.' -EI'
 
 " simple grep
 command! -bang -nargs=* Fgrep
@@ -167,8 +167,8 @@ command! -bang -nargs=* -complete=dir Digrep
 
 " custom ag {{{ 
 
-let s:ahflags = '--ignore .git --ignore .hg --hidden'
-let s:auflags = '--unrestricted'
+let s:ahflags = '--ignore .git --ignore .hg --smart-case --hidden'
+let s:auflags = '--ignore .git --ignore .hg --smart-case --unrestricted'
 
 command! -bang -nargs=* Ah 
       \ call fzf#vim#ag(<q-args>,

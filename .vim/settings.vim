@@ -277,7 +277,7 @@ endif
 
 " grep {{{ 
 
-let g:grep = 'grep -EI --exclude-dir=.git'.
+let g:grep = 'grep -EI -r --exclude-dir=.git'.
       \ ' --exclude-dir=.hg'.
       \ ' --exclude-dir=build'.
       \ ' --exclude-dir=\?cache'
