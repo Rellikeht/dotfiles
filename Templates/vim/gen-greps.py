@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from sys import argv  # , stdout
+from sys import argv
 from os.path import split
 from pathlib import Path
 
@@ -9,15 +9,34 @@ CU = ":<C-u>"
 VGREP_DESC = ("<Space>v", "lvimgrep", "vimgrep")
 VGREP_COUNT = "'.Vgcount().'"
 GREP_DESC = ("<Space>f", "Lgrep", "Grep")
-EGREP_DESC = ("<Space>s", "Egrep", "Legrep")
+# EGREP_DESC = ("<Leader>s", "Legrep", "Egrep")
 
-VGREP_SECOND = "cfalhrR"
-VGREP_PATHS = ("", "%", "##", "*", "* .*", "**", ".*/** **")
-VGREP_COMBINATIONS = list(zip(VGREP_SECOND, VGREP_PATHS))
-GREP_SECOND = "falhrR"
-GREP_PATHS = ("%", "##", "*", "* .*", "**", ".*/** **")
-GREP_COMBINATIONS = list(zip(GREP_SECOND, GREP_PATHS))
-EGREP_COMBINATIONS = GREP_COMBINATIONS
+VGREP_COMBINATIONS = {
+    "c": "",
+    "f": "%",
+    "F": "#",
+    "a": "##",
+    "l": "* .*",
+    "L": "*",
+    "r": "{.[^.]*,*}/**/{.*,*} * .*",  # yeah, vim globs...
+    "R": "**",
+}
+
+GREP_COMBINATIONS = {
+    "f": "%",
+    "F": "#",
+    "a": "##",
+    "l": "* .*",
+    "L": "*",
+    "r": "-r .",
+}
+
+# EGREP_COMBINATIONS = GREP_COMBINATIONS
+# EGREP_COMBINATIONS.update(
+#     {
+#         #
+#     }
+# )
 
 VGREP_PATTERNS = (
     ("<Space>", " //gj ", " <Home><C-Right><Right><Right>"),
@@ -40,7 +59,7 @@ GREP_PATTERNS = (
     ("p", " '.Vescape(@+).' ", "<CR>"),
     ("s", " '.Vescape(GetVisualSelection()).' ", "<CR>"),
 )
-EGREP_PATTERNS = GREP_PATTERNS
+# EGREP_PATTERNS = GREP_PATTERNS
 
 
 def generate_single(file, desc, key, end=" ", count=""):
@@ -52,9 +71,9 @@ def generate_single(file, desc, key, end=" ", count=""):
 
 
 def generate_maps(file, desc, combinations, pattern, count=""):
-    for comb in combinations:
-        gen_pat = f"{pattern[1]}{comb[1]}{pattern[2]}"
-        generate_single(file, desc, pattern[0] + comb[0], gen_pat, count)
+    for key, path in combinations.items():
+        gen_pat = f"{pattern[1]}{path}{pattern[2]}"
+        generate_single(file, desc, pattern[0] + key, gen_pat, count)
 
 
 SCRIPT_PATH = Path(split(argv[0])[0])
@@ -65,45 +84,49 @@ with open(VIM_PATH / "greps.vim", "w") as f:
         print(template.read(), file=f)
         print(file=f)
 
-    print('" VIMGREP {{{', file=f)
+    print('" vimgrep {{{', file=f)
     generate_single(f, VGREP_DESC, "c", count=VGREP_COUNT)
     print(file=f)
     for pattern in VGREP_PATTERNS:
         generate_maps(f, VGREP_DESC, VGREP_COMBINATIONS, pattern)
         print(file=f)
-    print('" }}}\n', file=f)
+    print('" }}}', file=f)
+    print(file=f)
 
-    print('" STANDARD GREP {{{', file=f)
+    print('" standard grep {{{', file=f)
     generate_single(f, GREP_DESC, "c")
     print(file=f)
     for pattern in GREP_PATTERNS:
         generate_maps(f, GREP_DESC, GREP_COMBINATIONS, pattern)
         print(file=f)
-    print('" }}}\n', file=f)
-
-    print('" NEW GEN GREP {{{', file=f)
-    generate_single(f, EGREP_DESC, "c")
+    print('" }}}', file=f)
     print(file=f)
-    for pattern in EGREP_PATTERNS:
-        generate_maps(f, EGREP_DESC, EGREP_COMBINATIONS, pattern)
-        print(file=f)
-    print('" }}}\n', file=f)
 
-    print('" ADDITIONAL {{{', file=f)
-    print(
-        f"""
+    # print('" grep replacements {{{', file=f)
+    # generate_single(f, EGREP_DESC, "c")
+    # print(file=f)
+    # for pattern in EGREP_PATTERNS:
+    #     generate_maps(f, EGREP_DESC, EGREP_COMBINATIONS, pattern)
+    #     print(file=f)
+    # print('" }}}', file=f)
+    # print(file=f)
 
-" TODO C filtering errors
-noremap <expr> {GREP_DESC[0]}- g:qfloc ?
- \\ ':<C-u>Lfilter /^grep: /<CR>'
- \\ : ':<C-u>Cfilter /^grep: /<CR>'
-noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
-noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
+    print('" additional {{{', file=f)
+    print(file=f)
+    # print(
+    #     # TODO C filtering errors
+    #     f"""
+    # noremap <expr> {GREP_DESC[0]}- g:qfloc ?
+    # \\ ':<C-u>Lfilter /^grep: /<CR>'
+    # \\ : ':<C-u>Cfilter /^grep: /<CR>'
+    # noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
+    # noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
 
-noremap {EGREP_DESC[0]}j :<C-u>Segrep<Space>
-noremap {EGREP_DESC[0]}J :<C-u>Segrep!<Space>
-
-""",
-        file=f,
-    )
-    print('" }}}\n', file=f)
+    # noremap {EGREP_DESC[0]}j :<C-u>Segrep<Space>
+    # noremap {EGREP_DESC[0]}J :<C-u>Segrep!<Space>
+    # """,
+    #     file=f,
+    # )
+    # print(file=f)
+    print('" }}}', file=f)
+    print(file=f)
