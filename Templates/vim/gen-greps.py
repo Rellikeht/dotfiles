@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-from sys import argv, stdout
-from os.path import *
-from os import getcwd
+from sys import argv  # , stdout
+from os.path import split
 from pathlib import Path
 
 QFVAR = "g:qfloc"

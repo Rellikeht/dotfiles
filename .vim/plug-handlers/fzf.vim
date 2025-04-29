@@ -386,96 +386,345 @@ nnoremap <leader>sl<Space>a :Args<Space>
 
 " }}} 
 
-" paths {{{ 
-
-let s:fzf_mapping_paths = {
-      \ '1':'..',
-      \ '2':'../..',
-      \ '3':'../../..',
-      \ '4':'../../../..',
-      \ '5':'../../../../..',
-      \ '6':'../../../../../..',
-      \ '7':'../../../../../../..',
-      \ '8':'../../../../../../../..',
-      \ '9':'../../../../../../../../..',
-      \ 'h':'~',
-      \ 't':'~/Templates',
-      \ 'd':'~/Dbackup',
-      \ 'D':'~/Downloads',
-      \ 'f':'~/Documents',
-      \ 'p':'~/gits',
-      \ 'c':'~/.config/',
-      \ '.':'',
-      \ ',':'.',
-      \ }
-
-let s:fzf_mapping_specials = {
-      \ 'g':"GitRoot()",
-      \ 'G':"GitRoot(GitRoot().'/..')",
-      \ 'm':"HgRoot()",
-      \ 'M':"HgRoot(HgRoot().'/..')",
-      \ 'r':"PartRoot()",
-      \ 'b':"g:starting_path",
-      \ 'e':"EnvrcRoot()",
-      \ 'E':"EnvrcRoot(EnvrcRoot().'/..')",
-      \ '<C-e>':"EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
-      \ }
-
-" TODO C some selection and <cwhatever>
-
-" }}} 
-
-" path mappings {{{ 
-
-let s:path_maps = [
-      \ ['p', 'Files'],
-      \ ['o', 'ArgeditFzf'],
-      \ ['a', 'ArgaddFzf'],
-      \ ['A', 'ArglistFzf'],
-      \ ['s', 'Dag'],
-      \ ['S', 'Dau'],
-      \ ['d', 'Dgrep'],
-      \ ['D', 'Digrep'],
-      \ ['r', 'Drg'],
-      \ ['R', 'Dru'],
-      \ ]
-
-for e in s:path_maps
-  exe 'noremap <leader>s'.e[0].'<Esc> <Nop>'
-endfor
-
-function s:PathMap(key, path, cr=1, exe=0)
-  let l:ex1 = (a:exe ? "exe '" : '')
-  let l:ex2 = (a:exe ? " '." : ' ')
-  let l:end = (a:cr ? '<CR>' : '')
-  for e in s:path_maps
-    exe 'noremap <leader>s'.e[0].a:key.' :<C-u>'.
-          \ l:ex1.e[1].l:ex2.a:path.l:end
-  endfor
-endfunction
-
-call s:PathMap('<Space>', '', 0)
-for key in keys(s:fzf_mapping_paths)
-  call s:PathMap(key, s:fzf_mapping_paths[key])
-endfor
-for key in keys(s:fzf_mapping_specials)
-  call s:PathMap(key, s:fzf_mapping_specials[key], 1, 1)
-endfor
-
-" }}} 
-
 " actions {{{ 
 
+" let g:fzf_action = {
+"       \ 'ctrl-q': function('s:build_quickfix_list'),
+"       \ 'ctrl-o': function('s:tab_args'),
+"       \ 'ctrl-t': 'Tabe',
+"       \ 'ctrl-s': 'split',
+"       \ 'ctrl-v': 'vsplit',
+"       \ 'ctrl-r': 'view',
+"       \ 'ctrl-w': 'TabV',
+"       \ 'ctrl-l': function('s:populate_arg_list'),
+"       \ 'ctrl-a': function('s:add_arg_list'),
+"       \ }
+
 let g:fzf_action = {
-      \ 'ctrl-q': function('s:build_quickfix_list'),
-      \ 'ctrl-o': function('s:tab_args'),
-      \ 'ctrl-t': 'Tabe',
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-v': 'vsplit',
-      \ 'ctrl-r': 'view',
-      \ 'ctrl-w': 'TabV',
-      \ 'ctrl-l': function('s:populate_arg_list'),
-      \ 'ctrl-a': function('s:add_arg_list'),
+      \ 'alt-q': function('s:build_quickfix_list'),
+      \ 'alt-t': 'Tabe',
+      \ 'alt-T': 'TabV',
+      \ 'alt-L': function('s:populate_arg_list'),
+      \ 'alt-l': function('s:add_arg_list'),
       \ }
+      " \ 'alt-o': function('s:tab_args'),
+      " \ 'alt-r': 'view',
+      " \ 'alt-s': 'split',
+      " \ 'alt-v': 'vsplit',
 
 " }}} 
+
+
+" path maps {{{
+
+" empty cmds
+nnoremap <Leader>sp :<C-u>Files<Space>
+nnoremap <Leader>so :<C-u>ArgeditFzf<Space>
+nnoremap <Leader>sa :<C-u>ArgaddFzf<Space>
+nnoremap <Leader>sA :<C-u>ArglistFzf<Space>
+nnoremap <Leader>ss :<C-u>Dag<Space>
+nnoremap <Leader>sS :<C-u>Dau<Space>
+nnoremap <Leader>sd :<C-u>Dgrep<Space>
+nnoremap <Leader>sD :<C-u>Digrep<Space>
+nnoremap <Leader>sr :<C-u>Drg<Space>
+nnoremap <Leader>sR :<C-u>Dru<Space>
+
+nnoremap <Leader>sph :<C-u>Files ~<CR>
+nnoremap <Leader>soh :<C-u>ArgeditFzf ~<CR>
+nnoremap <Leader>sah :<C-u>ArgaddFzf ~<CR>
+nnoremap <Leader>sAh :<C-u>ArglistFzf ~<CR>
+nnoremap <Leader>ssh :<C-u>Dag ~<CR>
+nnoremap <Leader>sSh :<C-u>Dau ~<CR>
+nnoremap <Leader>sdh :<C-u>Dgrep ~<CR>
+nnoremap <Leader>sDh :<C-u>Digrep ~<CR>
+nnoremap <Leader>srh :<C-u>Drg ~<CR>
+nnoremap <Leader>sRh :<C-u>Dru ~<CR>
+
+nnoremap <Leader>spt :<C-u>Files ~/Templates<CR>
+nnoremap <Leader>sot :<C-u>ArgeditFzf ~/Templates<CR>
+nnoremap <Leader>sat :<C-u>ArgaddFzf ~/Templates<CR>
+nnoremap <Leader>sAt :<C-u>ArglistFzf ~/Templates<CR>
+nnoremap <Leader>sst :<C-u>Dag ~/Templates<CR>
+nnoremap <Leader>sSt :<C-u>Dau ~/Templates<CR>
+nnoremap <Leader>sdt :<C-u>Dgrep ~/Templates<CR>
+nnoremap <Leader>sDt :<C-u>Digrep ~/Templates<CR>
+nnoremap <Leader>srt :<C-u>Drg ~/Templates<CR>
+nnoremap <Leader>sRt :<C-u>Dru ~/Templates<CR>
+
+nnoremap <Leader>spd :<C-u>Files ~/Dbackup<CR>
+nnoremap <Leader>sod :<C-u>ArgeditFzf ~/Dbackup<CR>
+nnoremap <Leader>sad :<C-u>ArgaddFzf ~/Dbackup<CR>
+nnoremap <Leader>sAd :<C-u>ArglistFzf ~/Dbackup<CR>
+nnoremap <Leader>ssd :<C-u>Dag ~/Dbackup<CR>
+nnoremap <Leader>sSd :<C-u>Dau ~/Dbackup<CR>
+nnoremap <Leader>sdd :<C-u>Dgrep ~/Dbackup<CR>
+nnoremap <Leader>sDd :<C-u>Digrep ~/Dbackup<CR>
+nnoremap <Leader>srd :<C-u>Drg ~/Dbackup<CR>
+nnoremap <Leader>sRd :<C-u>Dru ~/Dbackup<CR>
+
+nnoremap <Leader>spD :<C-u>Files ~/Downloads<CR>
+nnoremap <Leader>soD :<C-u>ArgeditFzf ~/Downloads<CR>
+nnoremap <Leader>saD :<C-u>ArgaddFzf ~/Downloads<CR>
+nnoremap <Leader>sAD :<C-u>ArglistFzf ~/Downloads<CR>
+nnoremap <Leader>ssD :<C-u>Dag ~/Downloads<CR>
+nnoremap <Leader>sSD :<C-u>Dau ~/Downloads<CR>
+nnoremap <Leader>sdD :<C-u>Dgrep ~/Downloads<CR>
+nnoremap <Leader>sDD :<C-u>Digrep ~/Downloads<CR>
+nnoremap <Leader>srD :<C-u>Drg ~/Downloads<CR>
+nnoremap <Leader>sRD :<C-u>Dru ~/Downloads<CR>
+
+nnoremap <Leader>spf :<C-u>Files ~/Documents<CR>
+nnoremap <Leader>sof :<C-u>ArgeditFzf ~/Documents<CR>
+nnoremap <Leader>saf :<C-u>ArgaddFzf ~/Documents<CR>
+nnoremap <Leader>sAf :<C-u>ArglistFzf ~/Documents<CR>
+nnoremap <Leader>ssf :<C-u>Dag ~/Documents<CR>
+nnoremap <Leader>sSf :<C-u>Dau ~/Documents<CR>
+nnoremap <Leader>sdf :<C-u>Dgrep ~/Documents<CR>
+nnoremap <Leader>sDf :<C-u>Digrep ~/Documents<CR>
+nnoremap <Leader>srf :<C-u>Drg ~/Documents<CR>
+nnoremap <Leader>sRf :<C-u>Dru ~/Documents<CR>
+
+nnoremap <Leader>spp :<C-u>Files ~/gits<CR>
+nnoremap <Leader>sop :<C-u>ArgeditFzf ~/gits<CR>
+nnoremap <Leader>sap :<C-u>ArgaddFzf ~/gits<CR>
+nnoremap <Leader>sAp :<C-u>ArglistFzf ~/gits<CR>
+nnoremap <Leader>ssp :<C-u>Dag ~/gits<CR>
+nnoremap <Leader>sSp :<C-u>Dau ~/gits<CR>
+nnoremap <Leader>sdp :<C-u>Dgrep ~/gits<CR>
+nnoremap <Leader>sDp :<C-u>Digrep ~/gits<CR>
+nnoremap <Leader>srp :<C-u>Drg ~/gits<CR>
+nnoremap <Leader>sRp :<C-u>Dru ~/gits<CR>
+
+nnoremap <Leader>spc :<C-u>Files ~/.config/<CR>
+nnoremap <Leader>soc :<C-u>ArgeditFzf ~/.config/<CR>
+nnoremap <Leader>sac :<C-u>ArgaddFzf ~/.config/<CR>
+nnoremap <Leader>sAc :<C-u>ArglistFzf ~/.config/<CR>
+nnoremap <Leader>ssc :<C-u>Dag ~/.config/<CR>
+nnoremap <Leader>sSc :<C-u>Dau ~/.config/<CR>
+nnoremap <Leader>sdc :<C-u>Dgrep ~/.config/<CR>
+nnoremap <Leader>sDc :<C-u>Digrep ~/.config/<CR>
+nnoremap <Leader>src :<C-u>Drg ~/.config/<CR>
+nnoremap <Leader>sRc :<C-u>Dru ~/.config/<CR>
+
+nnoremap <Leader>sp. :<C-u>Files <CR>
+nnoremap <Leader>so. :<C-u>ArgeditFzf <CR>
+nnoremap <Leader>sa. :<C-u>ArgaddFzf <CR>
+nnoremap <Leader>sA. :<C-u>ArglistFzf <CR>
+nnoremap <Leader>ss. :<C-u>Dag <CR>
+nnoremap <Leader>sS. :<C-u>Dau <CR>
+nnoremap <Leader>sd. :<C-u>Dgrep <CR>
+nnoremap <Leader>sD. :<C-u>Digrep <CR>
+nnoremap <Leader>sr. :<C-u>Drg <CR>
+nnoremap <Leader>sR. :<C-u>Dru <CR>
+
+nnoremap <Leader>sp, :<C-u>Files .<CR>
+nnoremap <Leader>so, :<C-u>ArgeditFzf .<CR>
+nnoremap <Leader>sa, :<C-u>ArgaddFzf .<CR>
+nnoremap <Leader>sA, :<C-u>ArglistFzf .<CR>
+nnoremap <Leader>ss, :<C-u>Dag .<CR>
+nnoremap <Leader>sS, :<C-u>Dau .<CR>
+nnoremap <Leader>sd, :<C-u>Dgrep .<CR>
+nnoremap <Leader>sD, :<C-u>Digrep .<CR>
+nnoremap <Leader>sr, :<C-u>Drg .<CR>
+nnoremap <Leader>sR, :<C-u>Dru .<CR>
+
+nnoremap <Leader>sp1 :<C-u>Files ..<CR>
+nnoremap <Leader>so1 :<C-u>ArgeditFzf ..<CR>
+nnoremap <Leader>sa1 :<C-u>ArgaddFzf ..<CR>
+nnoremap <Leader>sA1 :<C-u>ArglistFzf ..<CR>
+nnoremap <Leader>ss1 :<C-u>Dag ..<CR>
+nnoremap <Leader>sS1 :<C-u>Dau ..<CR>
+nnoremap <Leader>sd1 :<C-u>Dgrep ..<CR>
+nnoremap <Leader>sD1 :<C-u>Digrep ..<CR>
+nnoremap <Leader>sr1 :<C-u>Drg ..<CR>
+nnoremap <Leader>sR1 :<C-u>Dru ..<CR>
+
+nnoremap <Leader>sp2 :<C-u>Files ../..<CR>
+nnoremap <Leader>so2 :<C-u>ArgeditFzf ../..<CR>
+nnoremap <Leader>sa2 :<C-u>ArgaddFzf ../..<CR>
+nnoremap <Leader>sA2 :<C-u>ArglistFzf ../..<CR>
+nnoremap <Leader>ss2 :<C-u>Dag ../..<CR>
+nnoremap <Leader>sS2 :<C-u>Dau ../..<CR>
+nnoremap <Leader>sd2 :<C-u>Dgrep ../..<CR>
+nnoremap <Leader>sD2 :<C-u>Digrep ../..<CR>
+nnoremap <Leader>sr2 :<C-u>Drg ../..<CR>
+nnoremap <Leader>sR2 :<C-u>Dru ../..<CR>
+
+nnoremap <Leader>sp3 :<C-u>Files ../../..<CR>
+nnoremap <Leader>so3 :<C-u>ArgeditFzf ../../..<CR>
+nnoremap <Leader>sa3 :<C-u>ArgaddFzf ../../..<CR>
+nnoremap <Leader>sA3 :<C-u>ArglistFzf ../../..<CR>
+nnoremap <Leader>ss3 :<C-u>Dag ../../..<CR>
+nnoremap <Leader>sS3 :<C-u>Dau ../../..<CR>
+nnoremap <Leader>sd3 :<C-u>Dgrep ../../..<CR>
+nnoremap <Leader>sD3 :<C-u>Digrep ../../..<CR>
+nnoremap <Leader>sr3 :<C-u>Drg ../../..<CR>
+nnoremap <Leader>sR3 :<C-u>Dru ../../..<CR>
+
+nnoremap <Leader>sp4 :<C-u>Files ../../../..<CR>
+nnoremap <Leader>so4 :<C-u>ArgeditFzf ../../../..<CR>
+nnoremap <Leader>sa4 :<C-u>ArgaddFzf ../../../..<CR>
+nnoremap <Leader>sA4 :<C-u>ArglistFzf ../../../..<CR>
+nnoremap <Leader>ss4 :<C-u>Dag ../../../..<CR>
+nnoremap <Leader>sS4 :<C-u>Dau ../../../..<CR>
+nnoremap <Leader>sd4 :<C-u>Dgrep ../../../..<CR>
+nnoremap <Leader>sD4 :<C-u>Digrep ../../../..<CR>
+nnoremap <Leader>sr4 :<C-u>Drg ../../../..<CR>
+nnoremap <Leader>sR4 :<C-u>Dru ../../../..<CR>
+
+nnoremap <Leader>sp5 :<C-u>Files ../../../../..<CR>
+nnoremap <Leader>so5 :<C-u>ArgeditFzf ../../../../..<CR>
+nnoremap <Leader>sa5 :<C-u>ArgaddFzf ../../../../..<CR>
+nnoremap <Leader>sA5 :<C-u>ArglistFzf ../../../../..<CR>
+nnoremap <Leader>ss5 :<C-u>Dag ../../../../..<CR>
+nnoremap <Leader>sS5 :<C-u>Dau ../../../../..<CR>
+nnoremap <Leader>sd5 :<C-u>Dgrep ../../../../..<CR>
+nnoremap <Leader>sD5 :<C-u>Digrep ../../../../..<CR>
+nnoremap <Leader>sr5 :<C-u>Drg ../../../../..<CR>
+nnoremap <Leader>sR5 :<C-u>Dru ../../../../..<CR>
+
+nnoremap <Leader>sp6 :<C-u>Files ../../../../../..<CR>
+nnoremap <Leader>so6 :<C-u>ArgeditFzf ../../../../../..<CR>
+nnoremap <Leader>sa6 :<C-u>ArgaddFzf ../../../../../..<CR>
+nnoremap <Leader>sA6 :<C-u>ArglistFzf ../../../../../..<CR>
+nnoremap <Leader>ss6 :<C-u>Dag ../../../../../..<CR>
+nnoremap <Leader>sS6 :<C-u>Dau ../../../../../..<CR>
+nnoremap <Leader>sd6 :<C-u>Dgrep ../../../../../..<CR>
+nnoremap <Leader>sD6 :<C-u>Digrep ../../../../../..<CR>
+nnoremap <Leader>sr6 :<C-u>Drg ../../../../../..<CR>
+nnoremap <Leader>sR6 :<C-u>Dru ../../../../../..<CR>
+
+nnoremap <Leader>sp7 :<C-u>Files ../../../../../../..<CR>
+nnoremap <Leader>so7 :<C-u>ArgeditFzf ../../../../../../..<CR>
+nnoremap <Leader>sa7 :<C-u>ArgaddFzf ../../../../../../..<CR>
+nnoremap <Leader>sA7 :<C-u>ArglistFzf ../../../../../../..<CR>
+nnoremap <Leader>ss7 :<C-u>Dag ../../../../../../..<CR>
+nnoremap <Leader>sS7 :<C-u>Dau ../../../../../../..<CR>
+nnoremap <Leader>sd7 :<C-u>Dgrep ../../../../../../..<CR>
+nnoremap <Leader>sD7 :<C-u>Digrep ../../../../../../..<CR>
+nnoremap <Leader>sr7 :<C-u>Drg ../../../../../../..<CR>
+nnoremap <Leader>sR7 :<C-u>Dru ../../../../../../..<CR>
+
+nnoremap <Leader>sp8 :<C-u>Files ../../../../../../../..<CR>
+nnoremap <Leader>so8 :<C-u>ArgeditFzf ../../../../../../../..<CR>
+nnoremap <Leader>sa8 :<C-u>ArgaddFzf ../../../../../../../..<CR>
+nnoremap <Leader>sA8 :<C-u>ArglistFzf ../../../../../../../..<CR>
+nnoremap <Leader>ss8 :<C-u>Dag ../../../../../../../..<CR>
+nnoremap <Leader>sS8 :<C-u>Dau ../../../../../../../..<CR>
+nnoremap <Leader>sd8 :<C-u>Dgrep ../../../../../../../..<CR>
+nnoremap <Leader>sD8 :<C-u>Digrep ../../../../../../../..<CR>
+nnoremap <Leader>sr8 :<C-u>Drg ../../../../../../../..<CR>
+nnoremap <Leader>sR8 :<C-u>Dru ../../../../../../../..<CR>
+
+nnoremap <Leader>sp9 :<C-u>Files ../../../../../../../../..<CR>
+nnoremap <Leader>so9 :<C-u>ArgeditFzf ../../../../../../../../..<CR>
+nnoremap <Leader>sa9 :<C-u>ArgaddFzf ../../../../../../../../..<CR>
+nnoremap <Leader>sA9 :<C-u>ArglistFzf ../../../../../../../../..<CR>
+nnoremap <Leader>ss9 :<C-u>Dag ../../../../../../../../..<CR>
+nnoremap <Leader>sS9 :<C-u>Dau ../../../../../../../../..<CR>
+nnoremap <Leader>sd9 :<C-u>Dgrep ../../../../../../../../..<CR>
+nnoremap <Leader>sD9 :<C-u>Digrep ../../../../../../../../..<CR>
+nnoremap <Leader>sr9 :<C-u>Drg ../../../../../../../../..<CR>
+nnoremap <Leader>sR9 :<C-u>Dru ../../../../../../../../..<CR>
+
+
+nnoremap <Leader>spg :<C-u> exe 'Files '.GitRoot()<CR>
+nnoremap <Leader>sog :<C-u> exe 'ArgeditFzf '.GitRoot()<CR>
+nnoremap <Leader>sag :<C-u> exe 'ArgaddFzf '.GitRoot()<CR>
+nnoremap <Leader>sAg :<C-u> exe 'ArglistFzf '.GitRoot()<CR>
+nnoremap <Leader>ssg :<C-u> exe 'Dag '.GitRoot()<CR>
+nnoremap <Leader>sSg :<C-u> exe 'Dau '.GitRoot()<CR>
+nnoremap <Leader>sdg :<C-u> exe 'Dgrep '.GitRoot()<CR>
+nnoremap <Leader>sDg :<C-u> exe 'Digrep '.GitRoot()<CR>
+nnoremap <Leader>srg :<C-u> exe 'Drg '.GitRoot()<CR>
+nnoremap <Leader>sRg :<C-u> exe 'Dru '.GitRoot()<CR>
+
+nnoremap <Leader>spG :<C-u> exe 'Files '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>soG :<C-u> exe 'ArgeditFzf '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>saG :<C-u> exe 'ArgaddFzf '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>sAG :<C-u> exe 'ArglistFzf '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>ssG :<C-u> exe 'Dag '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>sSG :<C-u> exe 'Dau '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>sdG :<C-u> exe 'Dgrep '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>sDG :<C-u> exe 'Digrep '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>srG :<C-u> exe 'Drg '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>sRG :<C-u> exe 'Dru '.GitRoot(GitRoot().'/..')<CR>
+
+nnoremap <Leader>spm :<C-u> exe 'Files '.HgRoot()<CR>
+nnoremap <Leader>som :<C-u> exe 'ArgeditFzf '.HgRoot()<CR>
+nnoremap <Leader>sam :<C-u> exe 'ArgaddFzf '.HgRoot()<CR>
+nnoremap <Leader>sAm :<C-u> exe 'ArglistFzf '.HgRoot()<CR>
+nnoremap <Leader>ssm :<C-u> exe 'Dag '.HgRoot()<CR>
+nnoremap <Leader>sSm :<C-u> exe 'Dau '.HgRoot()<CR>
+nnoremap <Leader>sdm :<C-u> exe 'Dgrep '.HgRoot()<CR>
+nnoremap <Leader>sDm :<C-u> exe 'Digrep '.HgRoot()<CR>
+nnoremap <Leader>srm :<C-u> exe 'Drg '.HgRoot()<CR>
+nnoremap <Leader>sRm :<C-u> exe 'Dru '.HgRoot()<CR>
+
+nnoremap <Leader>spM :<C-u> exe 'Files '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>soM :<C-u> exe 'ArgeditFzf '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>saM :<C-u> exe 'ArgaddFzf '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>sAM :<C-u> exe 'ArglistFzf '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>ssM :<C-u> exe 'Dag '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>sSM :<C-u> exe 'Dau '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>sdM :<C-u> exe 'Dgrep '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>sDM :<C-u> exe 'Digrep '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>srM :<C-u> exe 'Drg '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>sRM :<C-u> exe 'Dru '.HgRoot(HgRoot().'/..')<CR>
+
+nnoremap <Leader>spr :<C-u> exe 'Files '.PartRoot()<CR>
+nnoremap <Leader>sor :<C-u> exe 'ArgeditFzf '.PartRoot()<CR>
+nnoremap <Leader>sar :<C-u> exe 'ArgaddFzf '.PartRoot()<CR>
+nnoremap <Leader>sAr :<C-u> exe 'ArglistFzf '.PartRoot()<CR>
+nnoremap <Leader>ssr :<C-u> exe 'Dag '.PartRoot()<CR>
+nnoremap <Leader>sSr :<C-u> exe 'Dau '.PartRoot()<CR>
+nnoremap <Leader>sdr :<C-u> exe 'Dgrep '.PartRoot()<CR>
+nnoremap <Leader>sDr :<C-u> exe 'Digrep '.PartRoot()<CR>
+nnoremap <Leader>srr :<C-u> exe 'Drg '.PartRoot()<CR>
+nnoremap <Leader>sRr :<C-u> exe 'Dru '.PartRoot()<CR>
+
+nnoremap <Leader>spb :<C-u> exe 'Files '.g:starting_path<CR>
+nnoremap <Leader>sob :<C-u> exe 'ArgeditFzf '.g:starting_path<CR>
+nnoremap <Leader>sab :<C-u> exe 'ArgaddFzf '.g:starting_path<CR>
+nnoremap <Leader>sAb :<C-u> exe 'ArglistFzf '.g:starting_path<CR>
+nnoremap <Leader>ssb :<C-u> exe 'Dag '.g:starting_path<CR>
+nnoremap <Leader>sSb :<C-u> exe 'Dau '.g:starting_path<CR>
+nnoremap <Leader>sdb :<C-u> exe 'Dgrep '.g:starting_path<CR>
+nnoremap <Leader>sDb :<C-u> exe 'Digrep '.g:starting_path<CR>
+nnoremap <Leader>srb :<C-u> exe 'Drg '.g:starting_path<CR>
+nnoremap <Leader>sRb :<C-u> exe 'Dru '.g:starting_path<CR>
+
+nnoremap <Leader>spe :<C-u> exe 'Files '.EnvrcRoot()<CR>
+nnoremap <Leader>soe :<C-u> exe 'ArgeditFzf '.EnvrcRoot()<CR>
+nnoremap <Leader>sae :<C-u> exe 'ArgaddFzf '.EnvrcRoot()<CR>
+nnoremap <Leader>sAe :<C-u> exe 'ArglistFzf '.EnvrcRoot()<CR>
+nnoremap <Leader>sse :<C-u> exe 'Dag '.EnvrcRoot()<CR>
+nnoremap <Leader>sSe :<C-u> exe 'Dau '.EnvrcRoot()<CR>
+nnoremap <Leader>sde :<C-u> exe 'Dgrep '.EnvrcRoot()<CR>
+nnoremap <Leader>sDe :<C-u> exe 'Digrep '.EnvrcRoot()<CR>
+nnoremap <Leader>sre :<C-u> exe 'Drg '.EnvrcRoot()<CR>
+nnoremap <Leader>sRe :<C-u> exe 'Dru '.EnvrcRoot()<CR>
+
+nnoremap <Leader>spE :<C-u> exe 'Files '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>soE :<C-u> exe 'ArgeditFzf '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>saE :<C-u> exe 'ArgaddFzf '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>sAE :<C-u> exe 'ArglistFzf '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>ssE :<C-u> exe 'Dag '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>sSE :<C-u> exe 'Dau '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>sdE :<C-u> exe 'Dgrep '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>sDE :<C-u> exe 'Digrep '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>srE :<C-u> exe 'Drg '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>sRE :<C-u> exe 'Dru '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+
+nnoremap <Leader>sp<C-e> :<C-u> exe 'Files '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>so<C-e> :<C-u> exe 'ArgeditFzf '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sa<C-e> :<C-u> exe 'ArgaddFzf '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sA<C-e> :<C-u> exe 'ArglistFzf '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>ss<C-e> :<C-u> exe 'Dag '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sS<C-e> :<C-u> exe 'Dau '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sd<C-e> :<C-u> exe 'Dgrep '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sD<C-e> :<C-u> exe 'Digrep '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sr<C-e> :<C-u> exe 'Drg '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sR<C-e> :<C-u> exe 'Dru '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+
+" }}}
