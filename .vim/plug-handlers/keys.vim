@@ -54,6 +54,10 @@ cnoremap <c-g> Subvert
 noremap <Leader>is :<C-u>S
 noremap <Leader>ib :<C-u>B
 
+" This has to be mapped for plugin not to map it
+map <unique> <Leader>iws <Plug>SaveWinPosn
+map <unique> <Leader>iwr <Plug>RestoreWinPosn
+
 " }}} 
 
 " bbye {{{ 

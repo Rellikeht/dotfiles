@@ -99,24 +99,62 @@ pathadd "$HOME/bin"
 
 export TMUX_SOCKET='sock'
 
-export FZF_DEFAULT_COMMAND='find . -mindepth 1 -type f -o -xtype f'
+export FZF_DEFAULT_COMMAND='find . -mindepth 1 -xtype f'
 export FZF_CTRL_T_COMMAND='find . -mindepth 1 -xtype d -o -xtype f'
 export FZF_ALT_C_COMMAND='find . -mindepth 1 -xtype d'
 
 FZF_BINDS="
---bind 'ctrl-y:up,ctrl-e:down'
---bind 'ctrl-b:page-up,ctrl-f:page-down'
---bind 'ctrl-u:half-page-up,ctrl-d:half-page-down'
---bind 'alt-y:preview-up,alt-e:preview-down'
---bind 'alt-b:preview-page-up,alt-f:preview-page-down'
---bind 'alt-u:preview-half-page-up,alt-d:preview-half-page-down'
---bind 'ctrl-/:change-preview-window(hidden|)'
+--bind 'alt-k:preview-up,alt-j:preview-down'
+--bind 'ctrl-k:kill-line'
+--bind 'ctrl-s:change-preview-window(hidden|)'
+--bind 'alt-K:preview-half-page-up,alt-J:preview-half-page-down'
+--bind 'alt-U:half-page-up,alt-D:half-page-down'
+--bind 'ctrl-c:cancel,ctrl-g:clear-selection'
+--bind 'alt-p:prev-history,alt-n:next-history'
+--bind 'alt-P:prev-selected,alt-N:next-selected'
+--bind 'ctrl-p:up,ctrl-n:down'
+--bind 'ctrl-t:toggle'
 "
+
+# ??
+# ctrl-l
+# ctrl-z
+
+# ok
+# ctrl-j
+# ctrl-m
+# ctrl-o
+# ctrl-q
+# ctrl-v
+# ctrl-x
+# ctrl-y
+# ctrl-]
+# ctrl-^
+# ctrl-space
+
+# alt-a
+# alt-o
+# alt-r
+# alt-w
+
+# alt-c
+# alt-e
+# alt-g
+# alt-h
+# alt-i
+# alt-m
+# alt-s
+# alt-u
+# alt-v
+# alt-x
+# alt-y
+# alt-z
 
 export FZF_DEFAULT_OPTS="
 --preview-window 'top:60%'
 --preview 'fzf_preview {}'
 --height=100%
+--history='$HOME/.fzf-hist'
 $FZF_BINDS
 "
 

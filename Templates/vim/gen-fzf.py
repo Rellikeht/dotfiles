@@ -13,8 +13,8 @@ FZF_PATHS = {
     "f": "~/Documents",
     "p": "~/gits",
     "c": "~/.config/",
-    ".": "",
-    ",": ".",
+    ".": ".",
+    # ",": ".",
 }
 FZF_PATHS.update(
     dict(map(lambda n: (str(n), ".." + "/.." * (n - 1)), range(1, 10)))
@@ -36,10 +36,7 @@ FZF_SPECIALS = {
 
 OP_MAPS = {
     "p": "Files",
-    "o": "ArgeditFzf",
-    "a": "ArgaddFzf",
-    "A": "ArglistFzf",
-    "s": "Dag",
+    "s": "Dah",
     "S": "Dau",
     "d": "Dgrep",
     "D": "Digrep",
@@ -59,20 +56,13 @@ with open(VIM_PATH / "fzf.vim", "w") as f:
     print('" path maps {{{', file=f)
     print(file=f)
 
-    # print('" nops', file=f)
-    # print(f"nnoremap {MAP_START} <Nop>")
-    # print(f"nnoremap {MAP_START}<Esc> <Nop>")
-    # for op_key in OP_MAPS.keys():
-    #     print(f"nnoremap {MAP_START}{op_key} <Nop>")
-    #     print(f"nnoremap {MAP_START}{op_key}<Esc> <Nop>")
-    # print(file=f)
-
     print('" empty cmds', file=f)
     for op_key, op in OP_MAPS.items():
-        print(
-            f"nnoremap {MAP_START}{op_key} :<C-u>{op}<Space>",
-            file=f,
-        )
+        for add_key in ["<Space>", "<CR>"]:
+            print(
+                f"nnoremap {MAP_START}{op_key}{add_key} :<C-u>{op}{add_key}",
+                file=f,
+            )
     print(file=f)
 
     for path_key, path in FZF_PATHS.items():

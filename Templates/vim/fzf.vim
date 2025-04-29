@@ -48,10 +48,6 @@ function! s:tab_args(lines)
   execute 'args ' . join(map(a:lines, function('s:fnameescape')), ' ')
 endfunction
 
-map ,s<Esc> <Nop>
-map ,sl<Esc> <Nop>
-map ,sf<Esc> <Nop>
-
 " }}} 
 
 " settings {{{ 
@@ -134,34 +130,38 @@ let g:fzf_colors = {
 " custom grep {{{ 
 
 let s:ggrep_args = '--line-number --color=always'
-let s:ggrep = g:grep.' '.s:ggrep_args
-let s:grep = s:ggrep.' --dereference-recursive'
+let s:grep = g:grep.' --dereference-recursive '.s:ggrep_args
 let s:ggrep_args = s:ggrep_args.' -EI'
 
+" simple grep
 command! -bang -nargs=* Fgrep
       \ call fzf#vim#grep(
-      \ s:grep." -- "
-      \ .fzf#shellescape(<q-args>),
+      \ s:grep." -- ".fzf#shellescape(<q-args>),
       \ fzf#vim#with_preview(),
-      \ <bang>0 )
+      \ <bang>0
+      \ )
 
+" grep on given directory
 command! -bang -nargs=* -complete=dir Dgrep
       \ call fzf#vim#grep(
-      \ s:grep." -- "
-      \ .fzf#shellescape(s:W0(<f-args>)),
+      \ s:grep." -- ".fzf#shellescape(s:W0(<f-args>)),
       \ extend(
       \ fzf#vim#with_preview(),
       \ s:with_dir([<f-args>]),
-      \ ), <bang>0 )
+      \ ),
+      \ <bang>0
+      \ )
 
+" case insensitive grep on given directory
 command! -bang -nargs=* -complete=dir Digrep
       \ call fzf#vim#grep(
-      \ s:grep." -i -- "
-      \ .fzf#shellescape(s:W0(<f-args>)),
+      \ s:grep." -i -- ".fzf#shellescape(s:W0(<f-args>)),
       \ extend(
       \ fzf#vim#with_preview(),
       \ s:with_dir([<f-args>]),
-      \ ), <bang>0)
+      \ ),
+      \ <bang>0
+      \ )
 
 " }}} 
 
@@ -183,7 +183,7 @@ command! -bang -nargs=* Au
       \ <bang>0)
 
 " Ag from given directory
-command! -bang -nargs=* -complete=dir Dag
+command! -bang -nargs=* -complete=dir Dah
       \ call fzf#vim#ag(s:W0(<f-args>),
       \ s:ahflags,
       \ extend(
@@ -256,35 +256,6 @@ command! -bang -nargs=? -complete=dir Fdiffv
 
 " }}} 
 
-" arglist commands {{{ 
-
-" select from arglist
-command! -bang Args call fzf#run(fzf#wrap('args',
-      \ {'source': map(
-      \ [argidx()]+
-      \ (argidx()==0?[]:range(argc())[0:argidx()-1])+
-      \ range(argc())[argidx()+1:], 'argv(v:val)')}, <bang>0))
-
-" Not ideal, but should be good enough
-command! -bang -nargs=? -complete=dir ArgeditFzf 
-      \ call fzf#run({
-      \ 'sink': 'argedit',
-      \ 'options': '--multi',
-      \ 'dir': <q-args>,
-      \ })
-
-command! -bang -nargs=? -complete=dir ArgaddFzf 
-      \ call fzf#run({
-      \ 'sink': 'argadd',
-      \ 'options': '--multi',
-      \ 'dir': <q-args>,
-      \ })
-
-command! -bang -nargs=? -complete=dir ArglistFzf 
-      \ exe 'AddArglist' | ArgaddFzf <args>
-
-" }}} 
-
 " insert mode mappings {{{ 
 
 " Insert mode completion
@@ -295,13 +266,11 @@ imap <c-X>l <Plug>(fzf-complete-line)
 imap <C-X><C-p> <Plug>(fzf-complete-path)
 imap <C-X>p <C-x><C-p>
 
-" TODO C dictionary
-
 " }}} 
 
 " builtin mappings {{{ 
 
-nnoremap <leader>slh :<C-u>History<CR>
+nnoremap <leader>slf :<C-u>History<CR>
 nnoremap <leader>sl/ :<C-u>History/<CR>
 nnoremap <leader>sl: :<C-u>History:<CR>
 nnoremap <leader>slp :<C-u>Marks<CR>
@@ -310,7 +279,7 @@ nnoremap <leader>slm :<C-u>Changes<CR>
 " lists
 nnoremap <leader>slo :<C-u>Buffers<CR>
 nnoremap <leader>slk :<C-u>Maps<CR>
-nnoremap <leader>slT :<C-u>Helptags<CR>
+nnoremap <leader>slh :<C-u>Helptags<CR>
 nnoremap <leader>slw :<C-u>Windows<CR>
 nnoremap <leader>slj :<C-u>Jumps<CR>
 nnoremap <leader>slt :<C-u>Tags<CR>
@@ -335,8 +304,6 @@ nnoremap <leader>sfb :<C-u>BLines<CR>
 nnoremap <leader>sf<Space>b :<C-u>BLines<Space>
 nnoremap <leader>sfl :<C-u>Lines<CR>
 nnoremap <leader>sf<Space>l :<C-u>Lines<Space>
-noremap <leader>sfa :<C-u>Ag<CR>
-noremap <leader>sf<Space>a :<C-u>Ag<Space>
 
 " }}} 
 
@@ -379,10 +346,6 @@ nnoremap <leader>sfd :Fdiffs<CR>
 nnoremap <leader>sf<Space>d :Fdiffs<Space>
 nnoremap <leader>sfv :Fdiffv<CR>
 nnoremap <leader>sf<Space>v :Fdiffv<Space>
-
-" args
-nnoremap <leader>sla :Args<CR>
-nnoremap <leader>sl<Space>a :Args<Space>
 
 " }}} 
 
