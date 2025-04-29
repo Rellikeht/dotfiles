@@ -38,8 +38,8 @@ OP_MAPS = {
     "p": "Files",
     "s": "Dah",
     "S": "Dau",
-    "d": "Dgrep",
-    "D": "Digrep",
+    "g": "Dgrep",
+    "G": "Digrep",
     "r": "Drg",
     "R": "Dru",
 }

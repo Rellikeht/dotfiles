@@ -130,7 +130,7 @@ let g:fzf_colors = {
 " custom grep {{{ 
 
 let s:ggrep_args = '--line-number --color=always -EI'
-let s:grep = g:grep.' '.s:ggrep_args
+let s:grep = g:grep_prog.' -r '.s:ggrep_args
 " let s:ggrep_args = s:ggrep_args.' -EI'
 
 " simple grep

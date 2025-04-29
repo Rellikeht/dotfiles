@@ -107,7 +107,7 @@ noremap <silent> <Leader>qsg
 "       \ .' --smart-case --hidden'
 " let HiFindTool = 'ag --nocolor --noheading --column'.
 "       \ ' --nobreak --smart-case --hidden'
-let HiFindTool = g:grep.' -r'
+let HiFindTool = g:grep_prog.' -r'
 
 noremap ,hc :<C-u>Hi<Space>
 noremap ,hw :<C-u>Hi <><CR>

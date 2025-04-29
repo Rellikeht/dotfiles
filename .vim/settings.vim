@@ -277,11 +277,13 @@ endif
 
 " grep {{{ 
 
-let g:grep = 'grep -EI -r --exclude-dir=.git'.
+let g:grep_args = ' -EI -d skip'.
+      \ ' --exclude-dir=.git'.
       \ ' --exclude-dir=.hg'.
       \ ' --exclude-dir=build'.
       \ ' --exclude-dir=\?cache'
-
-let g:vimgrep = g:grep.' -Hn'
+let g:grep_prog = 'grep '.g:grep_args
+let g:vgrep_args = g:grep_args.' -Hn'
+let g:vgrep_prog = 'grep '.g:vgrep_args
 
 " }}} 
