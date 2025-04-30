@@ -12,7 +12,9 @@ FZF_PATHS = {
     "D": "~/Downloads",
     "f": "~/Documents",
     "p": "~/gits",
-    "c": "~/.config/",
+    "cc": "~/.config",
+    "cv": "~/.vim",
+    "cn": "~/.config/nvim",
     ".": ".",
     # ",": ".",
 }

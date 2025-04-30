@@ -318,8 +318,8 @@ command! -bang -nargs=* GGrep
       \      {'dir': GitRoot()}
       \   ), <bang>0)
 
-nnoremap <leader>gs/ :<C-u>GFiles<CR>
-nnoremap <leader>gs? :<C-u>GFiles?<CR>
+nnoremap <leader>gsf :<C-u>GFiles<CR>
+nnoremap <leader>gsm :<C-u>GFiles?<CR>
 nnoremap <leader>gsg :GGrep<CR>
 nnoremap <leader>gs<Space>g :GGrep<Space>
 
@@ -351,18 +351,6 @@ nnoremap <leader>sf<Space>v :Fdiffv<Space>
 
 " actions {{{ 
 
-" let g:fzf_action = {
-"       \ 'ctrl-q': function('s:build_quickfix_list'),
-"       \ 'ctrl-o': function('s:tab_args'),
-"       \ 'ctrl-t': 'Tabe',
-"       \ 'ctrl-s': 'split',
-"       \ 'ctrl-v': 'vsplit',
-"       \ 'ctrl-r': 'view',
-"       \ 'ctrl-w': 'TabV',
-"       \ 'ctrl-l': function('s:populate_arg_list'),
-"       \ 'ctrl-a': function('s:add_arg_list'),
-"       \ }
-
 let g:fzf_action = {
       \ 'alt-q': function('s:build_quickfix_list'),
       \ 'alt-t': 'Tabe',
@@ -370,9 +358,8 @@ let g:fzf_action = {
       \ 'alt-L': function('s:populate_arg_list'),
       \ 'alt-l': function('s:add_arg_list'),
       \ }
+      " TODO C
       " \ 'alt-o': function('s:tab_args'),
       " \ 'alt-r': 'view',
-      " \ 'alt-s': 'split',
-      " \ 'alt-v': 'vsplit',
 
 " }}} 

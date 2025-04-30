@@ -362,8 +362,8 @@ nnoremap - <plug>(signify-prev-hunk)
 
 nnoremap <silent> <leader>gsl :SignifyList<CR>
 nnoremap <silent> <leader>gsi :echo sy#repo#get_stats_decorated(Expand('%'))<CR>
-nnoremap <silent> <leader>gsf :SignifyDiff<CR>
-nnoremap <silent> <leader>gsF :SignifyDiff!<CR>
+nnoremap <silent> <leader>gss :SignifyDiff<CR>
+nnoremap <silent> <leader>gsS :SignifyDiff!<CR>
 
 function! s:show_current_hunk() abort
   let h = sy#util#get_hunk_stats()

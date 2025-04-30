@@ -318,8 +318,8 @@ command! -bang -nargs=* GGrep
       \      {'dir': GitRoot()}
       \   ), <bang>0)
 
-nnoremap <leader>gs/ :<C-u>GFiles<CR>
-nnoremap <leader>gs? :<C-u>GFiles?<CR>
+nnoremap <leader>gsf :<C-u>GFiles<CR>
+nnoremap <leader>gsm :<C-u>GFiles?<CR>
 nnoremap <leader>gsg :GGrep<CR>
 nnoremap <leader>gs<Space>g :GGrep<Space>
 
@@ -351,18 +351,6 @@ nnoremap <leader>sf<Space>v :Fdiffv<Space>
 
 " actions {{{ 
 
-" let g:fzf_action = {
-"       \ 'ctrl-q': function('s:build_quickfix_list'),
-"       \ 'ctrl-o': function('s:tab_args'),
-"       \ 'ctrl-t': 'Tabe',
-"       \ 'ctrl-s': 'split',
-"       \ 'ctrl-v': 'vsplit',
-"       \ 'ctrl-r': 'view',
-"       \ 'ctrl-w': 'TabV',
-"       \ 'ctrl-l': function('s:populate_arg_list'),
-"       \ 'ctrl-a': function('s:add_arg_list'),
-"       \ }
-
 let g:fzf_action = {
       \ 'alt-q': function('s:build_quickfix_list'),
       \ 'alt-t': 'Tabe',
@@ -370,10 +358,9 @@ let g:fzf_action = {
       \ 'alt-L': function('s:populate_arg_list'),
       \ 'alt-l': function('s:add_arg_list'),
       \ }
+      " TODO C
       " \ 'alt-o': function('s:tab_args'),
       " \ 'alt-r': 'view',
-      " \ 'alt-s': 'split',
-      " \ 'alt-v': 'vsplit',
 
 " }}} 
 
@@ -444,13 +431,29 @@ nnoremap <Leader>sGp :<C-u>Digrep ~/gits<CR>
 nnoremap <Leader>srp :<C-u>Drg ~/gits<CR>
 nnoremap <Leader>sRp :<C-u>Dru ~/gits<CR>
 
-nnoremap <Leader>spc :<C-u>Files ~/.config/<CR>
-nnoremap <Leader>ssc :<C-u>Dah ~/.config/<CR>
-nnoremap <Leader>sSc :<C-u>Dau ~/.config/<CR>
-nnoremap <Leader>sgc :<C-u>Dgrep ~/.config/<CR>
-nnoremap <Leader>sGc :<C-u>Digrep ~/.config/<CR>
-nnoremap <Leader>src :<C-u>Drg ~/.config/<CR>
-nnoremap <Leader>sRc :<C-u>Dru ~/.config/<CR>
+nnoremap <Leader>spcc :<C-u>Files ~/.config<CR>
+nnoremap <Leader>sscc :<C-u>Dah ~/.config<CR>
+nnoremap <Leader>sScc :<C-u>Dau ~/.config<CR>
+nnoremap <Leader>sgcc :<C-u>Dgrep ~/.config<CR>
+nnoremap <Leader>sGcc :<C-u>Digrep ~/.config<CR>
+nnoremap <Leader>srcc :<C-u>Drg ~/.config<CR>
+nnoremap <Leader>sRcc :<C-u>Dru ~/.config<CR>
+
+nnoremap <Leader>spcv :<C-u>Files ~/.vim<CR>
+nnoremap <Leader>sscv :<C-u>Dah ~/.vim<CR>
+nnoremap <Leader>sScv :<C-u>Dau ~/.vim<CR>
+nnoremap <Leader>sgcv :<C-u>Dgrep ~/.vim<CR>
+nnoremap <Leader>sGcv :<C-u>Digrep ~/.vim<CR>
+nnoremap <Leader>srcv :<C-u>Drg ~/.vim<CR>
+nnoremap <Leader>sRcv :<C-u>Dru ~/.vim<CR>
+
+nnoremap <Leader>spcn :<C-u>Files ~/.config/nvim<CR>
+nnoremap <Leader>sscn :<C-u>Dah ~/.config/nvim<CR>
+nnoremap <Leader>sScn :<C-u>Dau ~/.config/nvim<CR>
+nnoremap <Leader>sgcn :<C-u>Dgrep ~/.config/nvim<CR>
+nnoremap <Leader>sGcn :<C-u>Digrep ~/.config/nvim<CR>
+nnoremap <Leader>srcn :<C-u>Drg ~/.config/nvim<CR>
+nnoremap <Leader>sRcn :<C-u>Dru ~/.config/nvim<CR>
 
 nnoremap <Leader>sp. :<C-u>Files .<CR>
 nnoremap <Leader>ss. :<C-u>Dah .<CR>

@@ -116,11 +116,7 @@ FZF_BINDS="
 --bind 'ctrl-t:toggle'
 "
 
-# ??
-# ctrl-l
-# ctrl-z
-
-# ok
+# free maps
 # ctrl-j
 # ctrl-m
 # ctrl-o
@@ -136,7 +132,6 @@ FZF_BINDS="
 # alt-o
 # alt-r
 # alt-w
-
 # alt-c
 # alt-e
 # alt-g
@@ -149,6 +144,10 @@ FZF_BINDS="
 # alt-x
 # alt-y
 # alt-z
+
+# probably not good to map those
+# ctrl-l
+# ctrl-z
 
 export FZF_DEFAULT_OPTS="
 --preview-window 'top:60%'
