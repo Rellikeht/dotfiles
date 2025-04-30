@@ -9,7 +9,8 @@ CU = ":<C-u>"
 VGREP_DESC = ("<Space>v", "lvimgrep", "vimgrep")
 VGREP_COUNT = "'.Vgcount().'"
 GREP_DESC = ("<Space>f", "Lgrep", "Grep")
-# EGREP_DESC = ("<Leader>s", "Legrep", "Egrep")
+RG_DESC = ("<Leader>r", "Lrg", "Rg")
+AG_DESC = ("<Leader>a", "Lag", "Ag")
 
 VGREP_COMBINATIONS = {
     "c": "",
@@ -31,15 +32,16 @@ GREP_COMBINATIONS = {
     "r": "-r .",
 }
 
-# EGREP_COMBINATIONS = GREP_COMBINATIONS
-# EGREP_COMBINATIONS.update(
-#     {
-#         #
-#     }
-# )
+EGREP_COMBINATIONS = GREP_COMBINATIONS
+EGREP_COMBINATIONS.update(
+    {
+        #
+    }
+)
 
 VGREP_PATTERNS = (
     ("<Space>", " //gj ", " <Home><C-Right><Right><Right>"),
+    ("f", " //gjf ", " <Home><C-Right><Right><Right>"),
     ("u", " /'.Expand('<cword>').'/gj ", "<CR>"),
     ("w", " /'.Expand('<cWORD>').'/gj ", "<CR>"),
     ("e", " /'.Expand('<cexpr>').'/gj ", "<CR>"),
@@ -59,7 +61,7 @@ GREP_PATTERNS = (
     ("p", " '.Vescape(@+).' ", "<CR>"),
     ("s", " '.Vescape(GetVisualSelection()).' ", "<CR>"),
 )
-# EGREP_PATTERNS = GREP_PATTERNS
+EGREP_PATTERNS = GREP_PATTERNS
 
 
 def generate_single(file, desc, key, end=" ", count=""):
@@ -102,31 +104,43 @@ with open(VIM_PATH / "greps.vim", "w") as f:
     print('" }}}', file=f)
     print(file=f)
 
-    # print('" grep replacements {{{', file=f)
-    # generate_single(f, EGREP_DESC, "c")
-    # print(file=f)
-    # for pattern in EGREP_PATTERNS:
-    #     generate_maps(f, EGREP_DESC, EGREP_COMBINATIONS, pattern)
-    #     print(file=f)
-    # print('" }}}', file=f)
-    # print(file=f)
+    print('" ripgrep {{{', file=f)
+    generate_single(f, RG_DESC, "c")
+    print(file=f)
+    for pattern in EGREP_PATTERNS:
+        generate_maps(f, RG_DESC, EGREP_COMBINATIONS, pattern)
+        print(file=f)
+    print('" }}}', file=f)
+    print(file=f)
+
+    print('" silver searcher {{{', file=f)
+    generate_single(f, AG_DESC, "c")
+    print(file=f)
+    for pattern in EGREP_PATTERNS:
+        generate_maps(f, AG_DESC, EGREP_COMBINATIONS, pattern)
+        print(file=f)
+    print('" }}}', file=f)
+    print(file=f)
 
     print('" additional {{{', file=f)
     print(file=f)
-    # print(
-    #     # TODO C filtering errors
-    #     f"""
-    # noremap <expr> {GREP_DESC[0]}- g:qfloc ?
-    # \\ ':<C-u>Lfilter /^grep: /<CR>'
-    # \\ : ':<C-u>Cfilter /^grep: /<CR>'
-    # noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
-    # noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
+    print(
+        # TODO C filtering errors
+        f"""
+    noremap <expr> {GREP_DESC[0]}- g:qfloc ?
+    \\ ':<C-u>Lfilter /^grep: /<CR>'
+    \\ : ':<C-u>Cfilter /^grep: /<CR>'
 
-    # noremap {EGREP_DESC[0]}j :<C-u>Segrep<Space>
-    # noremap {EGREP_DESC[0]}J :<C-u>Segrep!<Space>
-    # """,
-    #     file=f,
-    # )
-    # print(file=f)
+    noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
+    noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
+    noremap {RG_DESC[0]}j :<C-u>Srg<Space>
+    noremap {RG_DESC[0]}J :<C-u>Srg!<Space>
+    noremap {AG_DESC[0]}j :<C-u>Sag<Space>
+    noremap {AG_DESC[0]}J :<C-u>Sag!<Space>
+
+    """,
+        file=f,
+    )
+    print(file=f)
     print('" }}}', file=f)
     print(file=f)
