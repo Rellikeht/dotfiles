@@ -463,78 +463,6 @@ nnoremap <Leader>sG. :<C-u>Digrep .<CR>
 nnoremap <Leader>sr. :<C-u>Drg .<CR>
 nnoremap <Leader>sR. :<C-u>Dru .<CR>
 
-nnoremap <Leader>sp1 :<C-u>Files ..<CR>
-nnoremap <Leader>ss1 :<C-u>Dah ..<CR>
-nnoremap <Leader>sS1 :<C-u>Dau ..<CR>
-nnoremap <Leader>sg1 :<C-u>Dgrep ..<CR>
-nnoremap <Leader>sG1 :<C-u>Digrep ..<CR>
-nnoremap <Leader>sr1 :<C-u>Drg ..<CR>
-nnoremap <Leader>sR1 :<C-u>Dru ..<CR>
-
-nnoremap <Leader>sp2 :<C-u>Files ../..<CR>
-nnoremap <Leader>ss2 :<C-u>Dah ../..<CR>
-nnoremap <Leader>sS2 :<C-u>Dau ../..<CR>
-nnoremap <Leader>sg2 :<C-u>Dgrep ../..<CR>
-nnoremap <Leader>sG2 :<C-u>Digrep ../..<CR>
-nnoremap <Leader>sr2 :<C-u>Drg ../..<CR>
-nnoremap <Leader>sR2 :<C-u>Dru ../..<CR>
-
-nnoremap <Leader>sp3 :<C-u>Files ../../..<CR>
-nnoremap <Leader>ss3 :<C-u>Dah ../../..<CR>
-nnoremap <Leader>sS3 :<C-u>Dau ../../..<CR>
-nnoremap <Leader>sg3 :<C-u>Dgrep ../../..<CR>
-nnoremap <Leader>sG3 :<C-u>Digrep ../../..<CR>
-nnoremap <Leader>sr3 :<C-u>Drg ../../..<CR>
-nnoremap <Leader>sR3 :<C-u>Dru ../../..<CR>
-
-nnoremap <Leader>sp4 :<C-u>Files ../../../..<CR>
-nnoremap <Leader>ss4 :<C-u>Dah ../../../..<CR>
-nnoremap <Leader>sS4 :<C-u>Dau ../../../..<CR>
-nnoremap <Leader>sg4 :<C-u>Dgrep ../../../..<CR>
-nnoremap <Leader>sG4 :<C-u>Digrep ../../../..<CR>
-nnoremap <Leader>sr4 :<C-u>Drg ../../../..<CR>
-nnoremap <Leader>sR4 :<C-u>Dru ../../../..<CR>
-
-nnoremap <Leader>sp5 :<C-u>Files ../../../../..<CR>
-nnoremap <Leader>ss5 :<C-u>Dah ../../../../..<CR>
-nnoremap <Leader>sS5 :<C-u>Dau ../../../../..<CR>
-nnoremap <Leader>sg5 :<C-u>Dgrep ../../../../..<CR>
-nnoremap <Leader>sG5 :<C-u>Digrep ../../../../..<CR>
-nnoremap <Leader>sr5 :<C-u>Drg ../../../../..<CR>
-nnoremap <Leader>sR5 :<C-u>Dru ../../../../..<CR>
-
-nnoremap <Leader>sp6 :<C-u>Files ../../../../../..<CR>
-nnoremap <Leader>ss6 :<C-u>Dah ../../../../../..<CR>
-nnoremap <Leader>sS6 :<C-u>Dau ../../../../../..<CR>
-nnoremap <Leader>sg6 :<C-u>Dgrep ../../../../../..<CR>
-nnoremap <Leader>sG6 :<C-u>Digrep ../../../../../..<CR>
-nnoremap <Leader>sr6 :<C-u>Drg ../../../../../..<CR>
-nnoremap <Leader>sR6 :<C-u>Dru ../../../../../..<CR>
-
-nnoremap <Leader>sp7 :<C-u>Files ../../../../../../..<CR>
-nnoremap <Leader>ss7 :<C-u>Dah ../../../../../../..<CR>
-nnoremap <Leader>sS7 :<C-u>Dau ../../../../../../..<CR>
-nnoremap <Leader>sg7 :<C-u>Dgrep ../../../../../../..<CR>
-nnoremap <Leader>sG7 :<C-u>Digrep ../../../../../../..<CR>
-nnoremap <Leader>sr7 :<C-u>Drg ../../../../../../..<CR>
-nnoremap <Leader>sR7 :<C-u>Dru ../../../../../../..<CR>
-
-nnoremap <Leader>sp8 :<C-u>Files ../../../../../../../..<CR>
-nnoremap <Leader>ss8 :<C-u>Dah ../../../../../../../..<CR>
-nnoremap <Leader>sS8 :<C-u>Dau ../../../../../../../..<CR>
-nnoremap <Leader>sg8 :<C-u>Dgrep ../../../../../../../..<CR>
-nnoremap <Leader>sG8 :<C-u>Digrep ../../../../../../../..<CR>
-nnoremap <Leader>sr8 :<C-u>Drg ../../../../../../../..<CR>
-nnoremap <Leader>sR8 :<C-u>Dru ../../../../../../../..<CR>
-
-nnoremap <Leader>sp9 :<C-u>Files ../../../../../../../../..<CR>
-nnoremap <Leader>ss9 :<C-u>Dah ../../../../../../../../..<CR>
-nnoremap <Leader>sS9 :<C-u>Dau ../../../../../../../../..<CR>
-nnoremap <Leader>sg9 :<C-u>Dgrep ../../../../../../../../..<CR>
-nnoremap <Leader>sG9 :<C-u>Digrep ../../../../../../../../..<CR>
-nnoremap <Leader>sr9 :<C-u>Drg ../../../../../../../../..<CR>
-nnoremap <Leader>sR9 :<C-u>Dru ../../../../../../../../..<CR>
-
 
 nnoremap <Leader>spg :<C-u> exe 'Files '.GitRoot()<CR>
 nnoremap <Leader>ssg :<C-u> exe 'Dah '.GitRoot()<CR>
@@ -607,5 +535,77 @@ nnoremap <Leader>sg<C-e> :<C-u> exe 'Dgrep '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/.
 nnoremap <Leader>sG<C-e> :<C-u> exe 'Digrep '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
 nnoremap <Leader>sr<C-e> :<C-u> exe 'Drg '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
 nnoremap <Leader>sR<C-e> :<C-u> exe 'Dru '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+
+nnoremap <Leader>sp1 :<C-u> exe 'Files '.Bp(1)<CR>
+nnoremap <Leader>ss1 :<C-u> exe 'Dah '.Bp(1)<CR>
+nnoremap <Leader>sS1 :<C-u> exe 'Dau '.Bp(1)<CR>
+nnoremap <Leader>sg1 :<C-u> exe 'Dgrep '.Bp(1)<CR>
+nnoremap <Leader>sG1 :<C-u> exe 'Digrep '.Bp(1)<CR>
+nnoremap <Leader>sr1 :<C-u> exe 'Drg '.Bp(1)<CR>
+nnoremap <Leader>sR1 :<C-u> exe 'Dru '.Bp(1)<CR>
+
+nnoremap <Leader>sp2 :<C-u> exe 'Files '.Bp(2)<CR>
+nnoremap <Leader>ss2 :<C-u> exe 'Dah '.Bp(2)<CR>
+nnoremap <Leader>sS2 :<C-u> exe 'Dau '.Bp(2)<CR>
+nnoremap <Leader>sg2 :<C-u> exe 'Dgrep '.Bp(2)<CR>
+nnoremap <Leader>sG2 :<C-u> exe 'Digrep '.Bp(2)<CR>
+nnoremap <Leader>sr2 :<C-u> exe 'Drg '.Bp(2)<CR>
+nnoremap <Leader>sR2 :<C-u> exe 'Dru '.Bp(2)<CR>
+
+nnoremap <Leader>sp3 :<C-u> exe 'Files '.Bp(3)<CR>
+nnoremap <Leader>ss3 :<C-u> exe 'Dah '.Bp(3)<CR>
+nnoremap <Leader>sS3 :<C-u> exe 'Dau '.Bp(3)<CR>
+nnoremap <Leader>sg3 :<C-u> exe 'Dgrep '.Bp(3)<CR>
+nnoremap <Leader>sG3 :<C-u> exe 'Digrep '.Bp(3)<CR>
+nnoremap <Leader>sr3 :<C-u> exe 'Drg '.Bp(3)<CR>
+nnoremap <Leader>sR3 :<C-u> exe 'Dru '.Bp(3)<CR>
+
+nnoremap <Leader>sp4 :<C-u> exe 'Files '.Bp(4)<CR>
+nnoremap <Leader>ss4 :<C-u> exe 'Dah '.Bp(4)<CR>
+nnoremap <Leader>sS4 :<C-u> exe 'Dau '.Bp(4)<CR>
+nnoremap <Leader>sg4 :<C-u> exe 'Dgrep '.Bp(4)<CR>
+nnoremap <Leader>sG4 :<C-u> exe 'Digrep '.Bp(4)<CR>
+nnoremap <Leader>sr4 :<C-u> exe 'Drg '.Bp(4)<CR>
+nnoremap <Leader>sR4 :<C-u> exe 'Dru '.Bp(4)<CR>
+
+nnoremap <Leader>sp5 :<C-u> exe 'Files '.Bp(5)<CR>
+nnoremap <Leader>ss5 :<C-u> exe 'Dah '.Bp(5)<CR>
+nnoremap <Leader>sS5 :<C-u> exe 'Dau '.Bp(5)<CR>
+nnoremap <Leader>sg5 :<C-u> exe 'Dgrep '.Bp(5)<CR>
+nnoremap <Leader>sG5 :<C-u> exe 'Digrep '.Bp(5)<CR>
+nnoremap <Leader>sr5 :<C-u> exe 'Drg '.Bp(5)<CR>
+nnoremap <Leader>sR5 :<C-u> exe 'Dru '.Bp(5)<CR>
+
+nnoremap <Leader>sp6 :<C-u> exe 'Files '.Bp(6)<CR>
+nnoremap <Leader>ss6 :<C-u> exe 'Dah '.Bp(6)<CR>
+nnoremap <Leader>sS6 :<C-u> exe 'Dau '.Bp(6)<CR>
+nnoremap <Leader>sg6 :<C-u> exe 'Dgrep '.Bp(6)<CR>
+nnoremap <Leader>sG6 :<C-u> exe 'Digrep '.Bp(6)<CR>
+nnoremap <Leader>sr6 :<C-u> exe 'Drg '.Bp(6)<CR>
+nnoremap <Leader>sR6 :<C-u> exe 'Dru '.Bp(6)<CR>
+
+nnoremap <Leader>sp7 :<C-u> exe 'Files '.Bp(7)<CR>
+nnoremap <Leader>ss7 :<C-u> exe 'Dah '.Bp(7)<CR>
+nnoremap <Leader>sS7 :<C-u> exe 'Dau '.Bp(7)<CR>
+nnoremap <Leader>sg7 :<C-u> exe 'Dgrep '.Bp(7)<CR>
+nnoremap <Leader>sG7 :<C-u> exe 'Digrep '.Bp(7)<CR>
+nnoremap <Leader>sr7 :<C-u> exe 'Drg '.Bp(7)<CR>
+nnoremap <Leader>sR7 :<C-u> exe 'Dru '.Bp(7)<CR>
+
+nnoremap <Leader>sp8 :<C-u> exe 'Files '.Bp(8)<CR>
+nnoremap <Leader>ss8 :<C-u> exe 'Dah '.Bp(8)<CR>
+nnoremap <Leader>sS8 :<C-u> exe 'Dau '.Bp(8)<CR>
+nnoremap <Leader>sg8 :<C-u> exe 'Dgrep '.Bp(8)<CR>
+nnoremap <Leader>sG8 :<C-u> exe 'Digrep '.Bp(8)<CR>
+nnoremap <Leader>sr8 :<C-u> exe 'Drg '.Bp(8)<CR>
+nnoremap <Leader>sR8 :<C-u> exe 'Dru '.Bp(8)<CR>
+
+nnoremap <Leader>sp9 :<C-u> exe 'Files '.Bp(9)<CR>
+nnoremap <Leader>ss9 :<C-u> exe 'Dah '.Bp(9)<CR>
+nnoremap <Leader>sS9 :<C-u> exe 'Dau '.Bp(9)<CR>
+nnoremap <Leader>sg9 :<C-u> exe 'Dgrep '.Bp(9)<CR>
+nnoremap <Leader>sG9 :<C-u> exe 'Digrep '.Bp(9)<CR>
+nnoremap <Leader>sr9 :<C-u> exe 'Drg '.Bp(9)<CR>
+nnoremap <Leader>sR9 :<C-u> exe 'Dru '.Bp(9)<CR>
 
 " }}}

@@ -115,6 +115,10 @@ function EnvrcRoot(dir='')
   return l:root
 endfunction
 
+function Bp(n=1)
+  return ".." .. repeat("/..", (a:n)-1)
+endfunction
+
 " }}} 
 
 " commands {{{ 

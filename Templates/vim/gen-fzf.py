@@ -18,9 +18,6 @@ FZF_PATHS = {
     ".": ".",
     # ",": ".",
 }
-FZF_PATHS.update(
-    dict(map(lambda n: (str(n), ".." + "/.." * (n - 1)), range(1, 10)))
-)
 
 FZF_SPECIALS = {
     "g": "GitRoot()",
@@ -33,6 +30,7 @@ FZF_SPECIALS = {
     "E": "EnvrcRoot(EnvrcRoot().'/..')",
     "<C-e>": "EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
 }
+FZF_SPECIALS.update({str(n): f"Bp({n})" for n in range(1, 10)})
 
 # TODO C some selection and <cwhatever>
 

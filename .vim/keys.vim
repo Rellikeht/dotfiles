@@ -4,18 +4,26 @@
 " 0yyprv$F<i\|norm gv
 
 function s:Tabargc(cmd, count, args)
+  let g:lrd_bck = &lazyredraw
+  set lazyredraw
+
   if a:count < 0
     tabnew
   else
     -tabnew
   endif
   arglocal!
+
   if len(a:args) > 0
     exe a:cmd.' '.call('Exfiles', a:args)
   else
     for _ in range(argc())
       argdelete
     endfor
+  endif
+
+  if !g:lrd_bck
+    set nolazyredraw
   endif
 endfunction
 
@@ -46,9 +54,14 @@ command -nargs=* MultifHelperc
       \ call <SID>MultifHelperf([<f-args>])
 
 function Multif(cmd, args)
+  let g:lrd_bck = &lazyredraw
+  set lazyredraw
   for e in a:args
     exe 'MultifHelperc '.a:cmd.' '.Exfiles(e)
   endfor
+  if !g:lrd_bck
+    set nolazyredraw
+  endif
 endfunction
 
 command -nargs=* -complete=file -bar -bang Edit
@@ -70,25 +83,6 @@ command! -nargs=* -complete=file -bar -bang ArgsView
 command! -nargs=* -range -complete=file -bar Tabv
       \ Tabe <args>
       \|silent! argdo set readonly
-      " ^^ Breaks colors
-
-      " Doesn't work on some paths
-      " \| call <SID>Tabargc('ArgsView', <count>, [<f-args>])
-
-      " Breaks readonly at some paths
-      " \ let g:temp_pwd = expand('%:p:h')
-      " \| call <SID>Tabargc('ArgsView', <count>, [<f-args>])
-      " \| exe 'lcd '.g:temp_pwd
-      " \| args! <args>
-      " \| unlet g:temp_pwd
-
-      " Breaks readonly at some paths
-      " \ Tabe
-      " \| let t:temp_pwd = expand('%:p:h')
-      " \| args! <args>
-      " \| exe 'lcd '.t:temp_pwd
-      " \| silent! call Multif('view'.<q-bang>, [<f-args>])
-      " \| unlet t:temp_pwd
 
 command! -nargs=* -range -complete=arglist -bar TabvA
       \ TabA <args>
