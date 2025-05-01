@@ -4,8 +4,9 @@ from os.path import split
 from pathlib import Path
 from copy import deepcopy
 
-# keys {{{
+# keys and settings {{{
 
+MAX_PREV = 8
 QFVAR = "g:qfloc"
 CU = ":<C-u>"
 
@@ -54,10 +55,12 @@ GREP_COMBINATIONS = {
 AG_COMBINATIONS = deepcopy(GREP_COMBINATIONS)
 
 GREP_COMBINATIONS.update({k: "-r " + v for k, v in GEN_PATHS.items()})
-GREP_COMBINATIONS.update({str(n): f"-r '.Bp({n}).'" for n in range(1, 10)})
+GREP_COMBINATIONS.update(
+    {str(n): f"-r '.Bp({n}).'" for n in range(1, MAX_PREV)}
+)
 AG_COMBINATIONS.update({k: "--hidden " + v for k, v in GEN_PATHS.items()})
 AG_COMBINATIONS.update(
-    {str(n): f"--hidden '.Bp({n}).'" for n in range(1, 10)}
+    {str(n): f"--hidden '.Bp({n}).'" for n in range(1, MAX_PREV)}
 )
 
 AG_COMBINATIONS.update(
@@ -219,17 +222,16 @@ with open(VIM_PATH / "greps.vim", "w") as f:
     print(
         # TODO C filtering errors
         f"""
-    noremap <expr> {GREP_DESC[0]}- g:qfloc ?
-    \\ ':<C-u>Lfilter /^grep: /<CR>'
-    \\ : ':<C-u>Cfilter /^grep: /<CR>'
+noremap <expr> {GREP_DESC[0]}- g:qfloc ?
+\\ ':<C-u>Lfilter /^grep: /<CR>'
+\\ : ':<C-u>Cfilter /^grep: /<CR>'
 
-    noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
-    noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
-    noremap {RG_DESC[0]}j :<C-u>Srg<Space>
-    noremap {RG_DESC[0]}J :<C-u>Srg!<Space>
-    noremap {AG_DESC[0]}j :<C-u>Sag<Space>
-    noremap {AG_DESC[0]}J :<C-u>Sag!<Space>
-
+noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
+noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
+noremap {RG_DESC[0]}j :<C-u>Srg<Space>
+noremap {RG_DESC[0]}J :<C-u>Srg!<Space>
+noremap {AG_DESC[0]}j :<C-u>Sag<Space>
+noremap {AG_DESC[0]}J :<C-u>Sag!<Space>
     """,
         file=f,
     )

@@ -22,6 +22,7 @@ highlight.css
 *.swp
 *.swo
 *.tmp
+*.db
 
 *.o
 *.so
