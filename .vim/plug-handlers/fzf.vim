@@ -353,14 +353,14 @@ nnoremap <leader>sf<Space>v :Fdiffv<Space>
 
 let g:fzf_action = {
       \ 'alt-q': function('s:build_quickfix_list'),
-      \ 'alt-t': 'Tabe',
-      \ 'alt-T': 'TabV',
+      \ 'alt-t': function('s:tab_args'),
+      \ 'alt-T': 'Tabe',
+      \ 'alt-v': 'view',
+      \ 'alt-V': 'TabV',
       \ 'alt-L': function('s:populate_arg_list'),
       \ 'alt-l': function('s:add_arg_list'),
       \ }
       " TODO C
-      " \ 'alt-o': function('s:tab_args'),
-      " \ 'alt-r': 'view',
 
 " }}} 
 
