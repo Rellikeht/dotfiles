@@ -298,6 +298,8 @@ tsconfig.setup(
         -- }}}
       }, -- }}}
     },
+
+    matchup = { enable = true },
   }
 )
 

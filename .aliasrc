@@ -194,6 +194,8 @@ alias gsv=gsvim
 alias se=exs
 
 alias nvl='nvim --listen'
+alias nvd=neovide
+alias mnvd=mnvide
 
 alias sp='s -p'
 alias np='n -p'

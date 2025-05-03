@@ -36,8 +36,8 @@ Plug("norcalli/nvim-colorizer.lua")
 
 -- {{{ motion enchancing
 
--- Plug("easymotion/vim-easymotion")
 Plug("nvim-treesitter/nvim-treesitter-textobjects")
+Plug("RRethy/nvim-treesitter-endwise")
 
 -- }}}
 

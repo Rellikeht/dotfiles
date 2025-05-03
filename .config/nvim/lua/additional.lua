@@ -53,6 +53,32 @@ vim.api.nvim_create_autocmd(
 
 -- keymaps {{{
 
+vim.api.nvim_set_keymap(
+  "t", "<C-_>", "<C-\\>", { noremap = true }
+)
+vim.api.nvim_set_keymap(
+  "t", "<C-\\>n", "<C-\\><C-n>", { noremap = true }
+)
+vim.api.nvim_set_keymap(
+  "t", "<C-\\>o", "<C-\\><C-o>", { noremap = true }
+)
+
+for key_in, key_out in pairs(
+  {
+    ["h"] = "<C-w>h",
+    ["j"] = "<C-w>j",
+    ["k"] = "<C-w>k",
+    ["l"] = "<C-w>l",
+    ["gt"] = "gt",
+    ["gT"] = "gT",
+  }
+) do
+  vim.api.nvim_set_keymap(
+    "t", "<C-\\>" .. key_in,
+    "<C-\\><C-n>" .. key_out .. "<Esc>", { noremap = true }
+  )
+end
+
 -- }}}
 
 -- colors {{{

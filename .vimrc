@@ -11,11 +11,12 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   filetype indent on
   syntax on
 
-  packadd! matchit
   packadd! cfilter
-
-  runtime macros/matchit.vim
   runtime! ftplugin/man.vim
+
+  let g:loaded_matchit = 1
+  " packadd! matchit
+  " runtime macros/matchit.vim
   " }}} 
 
   " sourcing {{{ 

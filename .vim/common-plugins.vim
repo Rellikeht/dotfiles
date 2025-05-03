@@ -84,6 +84,7 @@ Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'preservim/vim-textobj-quote'
 Plug 'preservim/vim-textobj-sentence'
+Plug 'andymass/vim-matchup'
 
 " targets has this
 " Plug 'vim-scripts/argtextobj.vim'
