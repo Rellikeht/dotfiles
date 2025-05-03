@@ -177,41 +177,25 @@ endfunction
 
 " maps {{{ 
 
-nnoremap gsl <Plug>SlimeLineSend
-nnoremap gz <Plug>SlimeMotionSend
+nnoremap gs: <Plug>SlimeConfig
+nnoremap gs <Plug>SlimeMotionSend
+nnoremap gss <Plug>SlimeLineSend
+noremap <silent> gs; :SlimeSend<CR>
 
-noremap <silent> gss :SlimeSend<CR>
-xnoremap <silent> gz :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
-xnoremap <silent> gZ :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
-
-xnoremap gsr <Plug>SlimeRegionSend
-nnoremap gsp <Plug>SlimeParagraphSend
-noremap gs: <Plug>SlimeConfig
+xnoremap <silent> gss :<c-u>execute 'SlimeSend1 '.GetVisualSelection()<CR>
+xnoremap <silent> gsS :<c-u>execute 'SlimeSend0 "'.GetVisualSelection().'"'<CR>
+xnoremap gsi <Plug>SlimeRegionSend
+nnoremap gsi <Plug>SlimeParagraphSend
 
 " Clear, exit
 nnoremap <silent> gsc :call <SID>SendKeys("C-l")<CR>
-nnoremap <silent> gsq :call <SID>SendKeys("C-c C-d")<CR>
-nnoremap <silent> gse :call <SID>SendKeys("C-c")<CR>
+nnoremap <silent> gsQ :call <SID>SendKeys("C-c C-d")<CR>
+nnoremap <silent> gsq :call <SID>SendKeys("C-c")<CR>
 nnoremap <silent> gs<cr> :call <SID>SendKeys("Enter")<CR>
 
 " Launching program for currently edited langugage
-nnoremap <silent> gsb :call <SID>SendKeys(<SID>ProgNameSlime())<CR>
-nnoremap <silent> gsB :call <SID>SendKeys("rlwrap\ " . &filetype . ' ' . g:ret)<CR>
-
-nnoremap <silent> gsn :call <SID>SendKeys('z\ -t\ . Enter')<CR>
-
-" }}} 
-
-" todos {{{ 
-
-" GDB
-" Maybe in the future more debuggers will land here
-" but this all is mostly useless
-
-" gdb can't toggle breakpoints,
-" so here should be kept list of them :(
-
-" map gsP :call SendKeys('b '.line('.'))
+nnoremap <silent> gsr :call <SID>SendKeys(<SID>ProgNameSlime())<CR>
+nnoremap <silent> gsR :call <SID>SendKeys("rlwrap\ " . &filetype . ' ' . g:ret)<CR>
 
 " }}} 
 

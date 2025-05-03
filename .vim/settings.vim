@@ -1,9 +1,7 @@
 " heavy stuff {{{ 
 
-" slightly slower than
-" set shell=sh
-" but acceptable
-set shell=bash
+" Not needed anymore?
+" set shell=bash
 
 set noshelltemp
 
@@ -54,7 +52,6 @@ autocmd BufReadPost *
 set foldmethod=marker
 " Because some formatters fuck up trailing space
 set foldmarker=\ {{{,\ }}}
-" set listchars+=tab:⤇\ ,
 set listchars+=tab:-->
 set listchars+=lead:.
 

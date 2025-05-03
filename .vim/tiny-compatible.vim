@@ -40,14 +40,7 @@ command -nargs=1 -complete=file ArgView
 
 " basic mappings {{{ 
 
-" Because ; is more comfortable to press
-" but all of that is not worth effort
-" map ; <C-w>
-" map ;; <C-w><C-w>
-
-" Has to be that way
-" <CR> is equal to <C-m> !!
-noremap <C-m> <Tab>
+noremap <C-j> <Tab>
 
 nnoremap <Space>y "+y
 nnoremap <Space>Y "+Y
@@ -110,7 +103,7 @@ nnoremap <Tab>;O :<C-u>-TabA<Space>
 nnoremap <silent> <expr> <Tab>;e
       \(v:count ? ':<C-u>exe "tabnext "'.v:count.'<CR>' : '')
 nnoremap <Tab><Tab> :<C-u>tab<Space>
-nnoremap <Tab>;<Tab> :<C-u>-tab<Space>
+nnoremap <Tab><S-Tab> :<C-u>-tab<Space>
 
 " TODO B logic
 nnoremap <Tab>gp :<C-u>tabfind<Space>
@@ -390,6 +383,7 @@ nnoremap <space>i<space>n :g//#<Left><Left>
 nnoremap <Space>ih :<C-u>help<Space>
 " nnoremap <C-w><Space>ih :<C-u>tab help<Space>
 nnoremap <Tab>h :<C-u>tab help<Space>
+nnoremap <Tab>H :<C-u>-tab help<Space>
 
 " }}} 
 

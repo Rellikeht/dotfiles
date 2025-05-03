@@ -22,6 +22,23 @@ function CmdCount(cmd, count)
   endfor
 endfunction
 
+" let g:light_shell = "sh"
+
+" function PackLsh(...)
+"   let l:shell = &shell
+"   exe 'set shell='.substitute(g:light_shell, '\ ', ' ', 'g')
+"   " echom join(a:000, ' ')
+"   " echom join(a:000, ' ')
+"   exe join(a:000, ' ')
+"   exe 'set shell='.l:shell
+" endfunction
+
+" command -nargs=+ PackLsh
+"       \ let g:bck_shell = &shell
+"       \ | exe 'set shell='.substitute(g:light_shell, '\ ', ' ', 'g')
+"       \ | exe <args>
+"       \ | exe 'set shell='.g:bck_shell
+
 " }}} 
 
 " escapes {{{ 

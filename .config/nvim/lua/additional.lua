@@ -53,21 +53,6 @@ vim.api.nvim_create_autocmd(
 
 -- keymaps {{{
 
--- Because command line window has some problems
-vim.api.nvim_create_autocmd(
-  { "BufWinEnter" }, {
-    ---@diagnostic disable-next-line: unused-local
-    pattern = { "*" },
-    command = [[
-      if win_gettype() == 'command'
-        map <buffer> <CR> <CR>
-        nmap <silent> <buffer> <C-l> :<C-u>redraw!<CR>
-        vmap <silent> <buffer> <C-l> :<C-u>redraw!\|norm gv<CR>
-      endif
-    ]],
-  }
-)
-
 -- }}}
 
 -- colors {{{
