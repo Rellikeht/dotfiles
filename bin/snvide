@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+NVIM_APPNAME=nvim-server exec neovide "$@"

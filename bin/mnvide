@@ -1,9 +1,3 @@
 #!/usr/bin/env sh
 
-CONFIG="$XDG_CONFIG_HOME"
-if [ -z "$CONFIG" ]; then
-    CONFIG="$HOME/.config"
-fi
-
-XDG_CONFIG_HOME="$CONFIG/mnvim"
-exec neovide "$@"
+NVIM_APPNAME=mnvim exec neovide "$@"
