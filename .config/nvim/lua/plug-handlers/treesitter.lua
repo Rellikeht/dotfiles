@@ -310,7 +310,7 @@ tsconfig.setup(
 -- setting maps {{{
 -- TODO more
 
-nvkeymap(
+nkeymap(
   "<Leader>dqt", ":<C-u>TSToggle highlight<CR>",
   { noremap = true }
 )

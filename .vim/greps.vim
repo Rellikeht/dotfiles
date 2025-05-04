@@ -4,7 +4,7 @@
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
 
 " silent grep
-function s:Fgrep(prog, ...)
+function Fgrep(prog, ...)
   let l:grep = substitute(a:prog, '\ ', ' ', 'g')
   let cmd = join([l:grep] + [expandcmd(join(a:000, ' '))], ' ')
   echo cmd
@@ -57,7 +57,6 @@ let s:rg_prog = 'rg '.s:rg_args
 
 " vimgrep {{{
 
-
 command -nargs=+ -complete=file Svimgrep
       \ if g:qfloc
       \ | exe 'lvimgrep '.<q-args>
@@ -71,7 +70,6 @@ command -nargs=+ -complete=file Wvimgrep
         
 
 nnoremap <expr> <Space>vc ':<C-u>'.Vgcount().'Svimgrep '
-
 nnoremap <expr> <Space>v<Space>c ':<C-u>Svimgrep //gj  <Home><C-Right><Right><Right>'
 nnoremap <expr> <Space>v<Space>f ':<C-u>Svimgrep //gj % <Home><C-Right><Right><Right>'
 nnoremap <expr> <Space>v<Space>F ':<C-u>Svimgrep //gj # <Home><C-Right><Right><Right>'
@@ -80,15 +78,21 @@ nnoremap <expr> <Space>v<Space>l ':<C-u>Svimgrep //gj * .* <Home><C-Right><Right
 nnoremap <expr> <Space>v<Space>L ':<C-u>Svimgrep //gj * <Home><C-Right><Right><Right>'
 nnoremap <expr> <Space>v<Space>r ':<C-u>Svimgrep //gj {.[^.]*,*}/**/{.*,*} * .* <Home><C-Right><Right><Right>'
 nnoremap <expr> <Space>v<Space>R ':<C-u>Svimgrep //gj ** <Home><C-Right><Right><Right>'
-
-nnoremap <expr> <Space>vfc ':<C-u>Svimgrep //gjf  <Home><C-Right><Right><Right>'
-nnoremap <expr> <Space>vff ':<C-u>Svimgrep //gjf % <Home><C-Right><Right><Right>'
-nnoremap <expr> <Space>vfF ':<C-u>Svimgrep //gjf # <Home><C-Right><Right><Right>'
-nnoremap <expr> <Space>vfa ':<C-u>Svimgrep //gjf ## <Home><C-Right><Right><Right>'
-nnoremap <expr> <Space>vfl ':<C-u>Svimgrep //gjf * .* <Home><C-Right><Right><Right>'
-nnoremap <expr> <Space>vfL ':<C-u>Svimgrep //gjf * <Home><C-Right><Right><Right>'
-nnoremap <expr> <Space>vfr ':<C-u>Svimgrep //gjf {.[^.]*,*}/**/{.*,*} * .* <Home><C-Right><Right><Right>'
-nnoremap <expr> <Space>vfR ':<C-u>Svimgrep //gjf ** <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vfc ':<C-u>Svimgrep //fgj  <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vff ':<C-u>Svimgrep //fgj % <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vfF ':<C-u>Svimgrep //fgj # <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vfa ':<C-u>Svimgrep //fgj ## <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vfl ':<C-u>Svimgrep //fgj * .* <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vfL ':<C-u>Svimgrep //fgj * <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vfr ':<C-u>Svimgrep //fgj {.[^.]*,*}/**/{.*,*} * .* <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vfR ':<C-u>Svimgrep //fgj ** <Home><C-Right><Right><Right>'
+nnoremap <expr> <Space>vu<Space> ':<C-u>Svimgrep /'.Expand('<cword>').'/gj '
+nnoremap <expr> <Space>vw<Space> ':<C-u>Svimgrep /'.Expand('<cWORD>').'/gj '
+nnoremap <expr> <Space>ve<Space> ':<C-u>Svimgrep /'.Expand('<cexpr>').'/gj '
+nnoremap <expr> <Space>vy<Space> ':<C-u>Svimgrep /'.Vescape(@").'/gj '
+nnoremap <expr> <Space>vg<Space> ':<C-u>Svimgrep /'.Vescape(@*).'/gj '
+nnoremap <expr> <Space>vp<Space> ':<C-u>Svimgrep /'.Vescape(@+).'/gj '
+nnoremap <expr> <Space>vs<Space> ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj '
 
 nnoremap <expr> <Space>vuc ':<C-u>Svimgrep /'.Expand('<cword>').'/gj <CR>'
 nnoremap <expr> <Space>vuf ':<C-u>Svimgrep /'.Expand('<cword>').'/gj %<CR>'
@@ -152,23 +156,21 @@ nnoremap <expr> <Space>vsl ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj
 nnoremap <expr> <Space>vsL ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj *<CR>'
 nnoremap <expr> <Space>vsr ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj {.[^.]*,*}/**/{.*,*} * .*<CR>'
 nnoremap <expr> <Space>vsR ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj **<CR>'
-
 " }}}
 
 " standard grep {{{
 
-
-command -nargs=+ -complete=file Grep
-        \ cgetexpr <SID>Fgrep(s:grep_prog, <f-args>)
+command -nargs=+ -complete=file Cgrep
+        \ cgetexpr Fgrep(s:grep_prog, <f-args>)
 command -nargs=+ -complete=file Lgrep
-        \ lgetexpr <SID>Fgrep(s:grep_prog, <f-args>)
+        \ lgetexpr Fgrep(s:grep_prog, <f-args>)
             
 
 command -nargs=+ -complete=file Sgrep
       \ if g:qfloc
       \ | exe 'Lgrep '.<q-args>
       \ | else
-      \ | exe 'Grep '.<q-args>
+      \ | exe 'Cgrep '.<q-args>
       \ | endif
 
 command -nargs=+ -complete=file Wgrep
@@ -177,28 +179,36 @@ command -nargs=+ -complete=file Wgrep
         
 
 nnoremap <expr> <Space>fc ':<C-u>Sgrep '
+nnoremap <expr> <Space>f<Space>f ':<C-u>Sgrep  % <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>F ':<C-u>Sgrep  # <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>a ':<C-u>Sgrep  ## <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>l ':<C-u>Sgrep  * .* <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>L ':<C-u>Sgrep  * <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>r ':<C-u>Sgrep  -r . <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>g ':<C-u>Sgrep  -r '.GitRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>G ':<C-u>Sgrep  -r '.GitRoot(GitRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>m ':<C-u>Sgrep  -r '.HgRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>M ':<C-u>Sgrep  -r '.HgRoot(HgRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>e ':<C-u>Sgrep  -r '.EnvrcRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>E ':<C-u>Sgrep  -r '.EnvrcRoot(EnvrcRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space><C-e> ':<C-u>Sgrep  -r '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>b ':<C-u>Sgrep  -r '.g:starting_path.' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>1 ':<C-u>Sgrep  -r '.Bp(1).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>2 ':<C-u>Sgrep  -r '.Bp(2).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>3 ':<C-u>Sgrep  -r '.Bp(3).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>4 ':<C-u>Sgrep  -r '.Bp(4).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>5 ':<C-u>Sgrep  -r '.Bp(5).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>6 ':<C-u>Sgrep  -r '.Bp(6).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>7 ':<C-u>Sgrep  -r '.Bp(7).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>f<Space>8 ':<C-u>Sgrep  -r '.Bp(8).' <Home><C-Right><Right>'
+nnoremap <expr> <Space>fu<Space> ':<C-u>Sgrep '.Expand('<cword>').' '
+nnoremap <expr> <Space>fw<Space> ':<C-u>Sgrep '.Expand('<cWORD>').' '
+nnoremap <expr> <Space>fe<Space> ':<C-u>Sgrep '.Expand('<cexpr>').' '
+nnoremap <expr> <Space>fy<Space> ':<C-u>Sgrep '.Vescape(@").' '
+nnoremap <expr> <Space>fg<Space> ':<C-u>Sgrep '.Vescape(@*).' '
+nnoremap <expr> <Space>fp<Space> ':<C-u>Sgrep '.Vescape(@+).' '
+nnoremap <expr> <Space>fs<Space> ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' '
 
-nnoremap <expr> <Space>f<Space>f ':<C-u>Sgrep  %<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>F ':<C-u>Sgrep  #<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>a ':<C-u>Sgrep  ##<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>l ':<C-u>Sgrep  * .*<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>L ':<C-u>Sgrep  *<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>r ':<C-u>Sgrep  -r .<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>g ':<C-u>Sgrep  -r '.GitRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>G ':<C-u>Sgrep  -r '.GitRoot(GitRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>m ':<C-u>Sgrep  -r '.HgRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>M ':<C-u>Sgrep  -r '.HgRoot(HgRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>e ':<C-u>Sgrep  -r '.EnvrcRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>E ':<C-u>Sgrep  -r '.EnvrcRoot(EnvrcRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space><C-e> ':<C-u>Sgrep  -r '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>b ':<C-u>Sgrep  -r '.g:starting_path.'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>1 ':<C-u>Sgrep  -r '.Bp(1).'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>2 ':<C-u>Sgrep  -r '.Bp(2).'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>3 ':<C-u>Sgrep  -r '.Bp(3).'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>4 ':<C-u>Sgrep  -r '.Bp(4).'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>5 ':<C-u>Sgrep  -r '.Bp(5).'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>6 ':<C-u>Sgrep  -r '.Bp(6).'<Home><C-Right><Right>'
-nnoremap <expr> <Space>f<Space>7 ':<C-u>Sgrep  -r '.Bp(7).'<Home><C-Right><Right>'
 
 nnoremap <expr> <Space>fuf ':<C-u>Sgrep '.Expand('<cword>').' %<CR>'
 nnoremap <expr> <Space>fuF ':<C-u>Sgrep '.Expand('<cword>').' #<CR>'
@@ -221,6 +231,7 @@ nnoremap <expr> <Space>fu4 ':<C-u>Sgrep '.Expand('<cword>').' -r '.Bp(4).'<CR>'
 nnoremap <expr> <Space>fu5 ':<C-u>Sgrep '.Expand('<cword>').' -r '.Bp(5).'<CR>'
 nnoremap <expr> <Space>fu6 ':<C-u>Sgrep '.Expand('<cword>').' -r '.Bp(6).'<CR>'
 nnoremap <expr> <Space>fu7 ':<C-u>Sgrep '.Expand('<cword>').' -r '.Bp(7).'<CR>'
+nnoremap <expr> <Space>fu8 ':<C-u>Sgrep '.Expand('<cword>').' -r '.Bp(8).'<CR>'
 
 nnoremap <expr> <Space>fwf ':<C-u>Sgrep '.Expand('<cWORD>').' %<CR>'
 nnoremap <expr> <Space>fwF ':<C-u>Sgrep '.Expand('<cWORD>').' #<CR>'
@@ -243,6 +254,7 @@ nnoremap <expr> <Space>fw4 ':<C-u>Sgrep '.Expand('<cWORD>').' -r '.Bp(4).'<CR>'
 nnoremap <expr> <Space>fw5 ':<C-u>Sgrep '.Expand('<cWORD>').' -r '.Bp(5).'<CR>'
 nnoremap <expr> <Space>fw6 ':<C-u>Sgrep '.Expand('<cWORD>').' -r '.Bp(6).'<CR>'
 nnoremap <expr> <Space>fw7 ':<C-u>Sgrep '.Expand('<cWORD>').' -r '.Bp(7).'<CR>'
+nnoremap <expr> <Space>fw8 ':<C-u>Sgrep '.Expand('<cWORD>').' -r '.Bp(8).'<CR>'
 
 nnoremap <expr> <Space>fef ':<C-u>Sgrep '.Expand('<cexpr>').' %<CR>'
 nnoremap <expr> <Space>feF ':<C-u>Sgrep '.Expand('<cexpr>').' #<CR>'
@@ -265,6 +277,7 @@ nnoremap <expr> <Space>fe4 ':<C-u>Sgrep '.Expand('<cexpr>').' -r '.Bp(4).'<CR>'
 nnoremap <expr> <Space>fe5 ':<C-u>Sgrep '.Expand('<cexpr>').' -r '.Bp(5).'<CR>'
 nnoremap <expr> <Space>fe6 ':<C-u>Sgrep '.Expand('<cexpr>').' -r '.Bp(6).'<CR>'
 nnoremap <expr> <Space>fe7 ':<C-u>Sgrep '.Expand('<cexpr>').' -r '.Bp(7).'<CR>'
+nnoremap <expr> <Space>fe8 ':<C-u>Sgrep '.Expand('<cexpr>').' -r '.Bp(8).'<CR>'
 
 nnoremap <expr> <Space>fyf ':<C-u>Sgrep '.Vescape(@").' %<CR>'
 nnoremap <expr> <Space>fyF ':<C-u>Sgrep '.Vescape(@").' #<CR>'
@@ -287,6 +300,7 @@ nnoremap <expr> <Space>fy4 ':<C-u>Sgrep '.Vescape(@").' -r '.Bp(4).'<CR>'
 nnoremap <expr> <Space>fy5 ':<C-u>Sgrep '.Vescape(@").' -r '.Bp(5).'<CR>'
 nnoremap <expr> <Space>fy6 ':<C-u>Sgrep '.Vescape(@").' -r '.Bp(6).'<CR>'
 nnoremap <expr> <Space>fy7 ':<C-u>Sgrep '.Vescape(@").' -r '.Bp(7).'<CR>'
+nnoremap <expr> <Space>fy8 ':<C-u>Sgrep '.Vescape(@").' -r '.Bp(8).'<CR>'
 
 nnoremap <expr> <Space>fgf ':<C-u>Sgrep '.Vescape(@*).' %<CR>'
 nnoremap <expr> <Space>fgF ':<C-u>Sgrep '.Vescape(@*).' #<CR>'
@@ -309,6 +323,7 @@ nnoremap <expr> <Space>fg4 ':<C-u>Sgrep '.Vescape(@*).' -r '.Bp(4).'<CR>'
 nnoremap <expr> <Space>fg5 ':<C-u>Sgrep '.Vescape(@*).' -r '.Bp(5).'<CR>'
 nnoremap <expr> <Space>fg6 ':<C-u>Sgrep '.Vescape(@*).' -r '.Bp(6).'<CR>'
 nnoremap <expr> <Space>fg7 ':<C-u>Sgrep '.Vescape(@*).' -r '.Bp(7).'<CR>'
+nnoremap <expr> <Space>fg8 ':<C-u>Sgrep '.Vescape(@*).' -r '.Bp(8).'<CR>'
 
 nnoremap <expr> <Space>fpf ':<C-u>Sgrep '.Vescape(@+).' %<CR>'
 nnoremap <expr> <Space>fpF ':<C-u>Sgrep '.Vescape(@+).' #<CR>'
@@ -331,6 +346,7 @@ nnoremap <expr> <Space>fp4 ':<C-u>Sgrep '.Vescape(@+).' -r '.Bp(4).'<CR>'
 nnoremap <expr> <Space>fp5 ':<C-u>Sgrep '.Vescape(@+).' -r '.Bp(5).'<CR>'
 nnoremap <expr> <Space>fp6 ':<C-u>Sgrep '.Vescape(@+).' -r '.Bp(6).'<CR>'
 nnoremap <expr> <Space>fp7 ':<C-u>Sgrep '.Vescape(@+).' -r '.Bp(7).'<CR>'
+nnoremap <expr> <Space>fp8 ':<C-u>Sgrep '.Vescape(@+).' -r '.Bp(8).'<CR>'
 
 nnoremap <expr> <Space>fsf ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' %<CR>'
 nnoremap <expr> <Space>fsF ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' #<CR>'
@@ -353,23 +369,22 @@ nnoremap <expr> <Space>fs4 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.B
 nnoremap <expr> <Space>fs5 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.Bp(5).'<CR>'
 nnoremap <expr> <Space>fs6 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.Bp(6).'<CR>'
 nnoremap <expr> <Space>fs7 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.Bp(7).'<CR>'
-
+nnoremap <expr> <Space>fs8 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.Bp(8).'<CR>'
 " }}}
 
 " ripgrep {{{
 
-
-command -nargs=+ -complete=file Rg
-        \ cgetexpr <SID>Fgrep(s:rg_prog, <f-args>)
+command -nargs=+ -complete=file Crg
+        \ cgetexpr Fgrep(s:rg_prog, <f-args>)
 command -nargs=+ -complete=file Lrg
-        \ lgetexpr <SID>Fgrep(s:rg_prog, <f-args>)
+        \ lgetexpr Fgrep(s:rg_prog, <f-args>)
             
 
 command -nargs=+ -complete=file Srg
       \ if g:qfloc
       \ | exe 'Lrg '.<q-args>
       \ | else
-      \ | exe 'Rg '.<q-args>
+      \ | exe 'Crg '.<q-args>
       \ | endif
 
 command -nargs=+ -complete=file Wrg
@@ -378,29 +393,36 @@ command -nargs=+ -complete=file Wrg
         
 
 nnoremap <expr> <Leader>rc ':<C-u>Srg '
+nnoremap <expr> <Leader>r<Space>f ':<C-u>Srg  % <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>F ':<C-u>Srg  # <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>a ':<C-u>Srg  ## <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>l ':<C-u>Srg  --max-depth 0 * .* <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>L ':<C-u>Srg  --max-depth 0 * <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>r ':<C-u>Srg  --hidden . <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>g ':<C-u>Srg  --hidden '.GitRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>G ':<C-u>Srg  --hidden '.GitRoot(GitRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>m ':<C-u>Srg  --hidden '.HgRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>M ':<C-u>Srg  --hidden '.HgRoot(HgRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>e ':<C-u>Srg  --hidden '.EnvrcRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>E ':<C-u>Srg  --hidden '.EnvrcRoot(EnvrcRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space><C-e> ':<C-u>Srg  --hidden '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>b ':<C-u>Srg  --hidden '.g:starting_path.' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>1 ':<C-u>Srg  --hidden '.Bp(1).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>2 ':<C-u>Srg  --hidden '.Bp(2).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>3 ':<C-u>Srg  --hidden '.Bp(3).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>4 ':<C-u>Srg  --hidden '.Bp(4).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>5 ':<C-u>Srg  --hidden '.Bp(5).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>6 ':<C-u>Srg  --hidden '.Bp(6).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>7 ':<C-u>Srg  --hidden '.Bp(7).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>r<Space>R ':<C-u>Srg  . <Home><C-Right><Right>'
+nnoremap <expr> <Leader>ru<Space> ':<C-u>Srg '.Expand('<cword>').' '
+nnoremap <expr> <Leader>rw<Space> ':<C-u>Srg '.Expand('<cWORD>').' '
+nnoremap <expr> <Leader>re<Space> ':<C-u>Srg '.Expand('<cexpr>').' '
+nnoremap <expr> <Leader>ry<Space> ':<C-u>Srg '.Vescape(@").' '
+nnoremap <expr> <Leader>rg<Space> ':<C-u>Srg '.Vescape(@*).' '
+nnoremap <expr> <Leader>rp<Space> ':<C-u>Srg '.Vescape(@+).' '
+nnoremap <expr> <Leader>rs<Space> ':<C-u>Srg '.Vescape(GetVisualSelection()).' '
 
-nnoremap <expr> <Leader>r<Space>f ':<C-u>Srg  %<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>F ':<C-u>Srg  #<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>a ':<C-u>Srg  ##<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>l ':<C-u>Srg  --max-depth 0 * .*<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>L ':<C-u>Srg  --max-depth 0 *<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>r ':<C-u>Srg  --hidden .<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>g ':<C-u>Srg  --hidden '.GitRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>G ':<C-u>Srg  --hidden '.GitRoot(GitRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>m ':<C-u>Srg  --hidden '.HgRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>M ':<C-u>Srg  --hidden '.HgRoot(HgRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>e ':<C-u>Srg  --hidden '.EnvrcRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>E ':<C-u>Srg  --hidden '.EnvrcRoot(EnvrcRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space><C-e> ':<C-u>Srg  --hidden '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>b ':<C-u>Srg  --hidden '.g:starting_path.'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>1 ':<C-u>Srg  --hidden '.Bp(1).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>2 ':<C-u>Srg  --hidden '.Bp(2).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>3 ':<C-u>Srg  --hidden '.Bp(3).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>4 ':<C-u>Srg  --hidden '.Bp(4).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>5 ':<C-u>Srg  --hidden '.Bp(5).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>6 ':<C-u>Srg  --hidden '.Bp(6).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>7 ':<C-u>Srg  --hidden '.Bp(7).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>r<Space>R ':<C-u>Srg  .<Home><C-Right><Right>'
 
 nnoremap <expr> <Leader>ruf ':<C-u>Srg '.Expand('<cword>').' %<CR>'
 nnoremap <expr> <Leader>ruF ':<C-u>Srg '.Expand('<cword>').' #<CR>'
@@ -562,23 +584,21 @@ nnoremap <expr> <Leader>rs5 ':<C-u>Srg '.Vescape(GetVisualSelection()).' --hidde
 nnoremap <expr> <Leader>rs6 ':<C-u>Srg '.Vescape(GetVisualSelection()).' --hidden '.Bp(6).'<CR>'
 nnoremap <expr> <Leader>rs7 ':<C-u>Srg '.Vescape(GetVisualSelection()).' --hidden '.Bp(7).'<CR>'
 nnoremap <expr> <Leader>rsR ':<C-u>Srg '.Vescape(GetVisualSelection()).' .<CR>'
-
 " }}}
 
 " silver searcher {{{
 
-
-command -nargs=+ -complete=file Ag
-        \ cgetexpr <SID>Fgrep(s:ag_prog, <f-args>)
+command -nargs=+ -complete=file Cag
+        \ cgetexpr Fgrep(s:ag_prog, <f-args>)
 command -nargs=+ -complete=file Lag
-        \ lgetexpr <SID>Fgrep(s:ag_prog, <f-args>)
+        \ lgetexpr Fgrep(s:ag_prog, <f-args>)
             
 
 command -nargs=+ -complete=file Sag
       \ if g:qfloc
       \ | exe 'Lag '.<q-args>
       \ | else
-      \ | exe 'Ag '.<q-args>
+      \ | exe 'Cag '.<q-args>
       \ | endif
 
 command -nargs=+ -complete=file Wag
@@ -587,29 +607,35 @@ command -nargs=+ -complete=file Wag
         
 
 nnoremap <expr> <Leader>ac ':<C-u>Sag '
-
-nnoremap <expr> <Leader>a<Space>f ':<C-u>Sag  %<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>F ':<C-u>Sag  #<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>a ':<C-u>Sag  ##<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>l ':<C-u>Sag  --depth 0 * .*<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>L ':<C-u>Sag  --depth 0 *<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>r ':<C-u>Sag  --hidden .<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>g ':<C-u>Sag  --hidden '.GitRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>G ':<C-u>Sag  --hidden '.GitRoot(GitRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>m ':<C-u>Sag  --hidden '.HgRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>M ':<C-u>Sag  --hidden '.HgRoot(HgRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>e ':<C-u>Sag  --hidden '.EnvrcRoot().'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>E ':<C-u>Sag  --hidden '.EnvrcRoot(EnvrcRoot().'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space><C-e> ':<C-u>Sag  --hidden '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..').'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>b ':<C-u>Sag  --hidden '.g:starting_path.'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>1 ':<C-u>Sag  --hidden '.Bp(1).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>2 ':<C-u>Sag  --hidden '.Bp(2).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>3 ':<C-u>Sag  --hidden '.Bp(3).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>4 ':<C-u>Sag  --hidden '.Bp(4).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>5 ':<C-u>Sag  --hidden '.Bp(5).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>6 ':<C-u>Sag  --hidden '.Bp(6).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>7 ':<C-u>Sag  --hidden '.Bp(7).'<Home><C-Right><Right>'
-nnoremap <expr> <Leader>a<Space>R ':<C-u>Sag  .<Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>f ':<C-u>Sag  % <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>F ':<C-u>Sag  # <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>a ':<C-u>Sag  ## <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>l ':<C-u>Sag  --depth 0 * .* <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>L ':<C-u>Sag  --depth 0 * <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>r ':<C-u>Sag  --hidden . <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>g ':<C-u>Sag  --hidden '.GitRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>G ':<C-u>Sag  --hidden '.GitRoot(GitRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>m ':<C-u>Sag  --hidden '.HgRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>M ':<C-u>Sag  --hidden '.HgRoot(HgRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>e ':<C-u>Sag  --hidden '.EnvrcRoot().' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>E ':<C-u>Sag  --hidden '.EnvrcRoot(EnvrcRoot().'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space><C-e> ':<C-u>Sag  --hidden '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..').' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>b ':<C-u>Sag  --hidden '.g:starting_path.' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>1 ':<C-u>Sag  --hidden '.Bp(1).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>2 ':<C-u>Sag  --hidden '.Bp(2).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>3 ':<C-u>Sag  --hidden '.Bp(3).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>4 ':<C-u>Sag  --hidden '.Bp(4).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>5 ':<C-u>Sag  --hidden '.Bp(5).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>6 ':<C-u>Sag  --hidden '.Bp(6).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>7 ':<C-u>Sag  --hidden '.Bp(7).' <Home><C-Right><Right>'
+nnoremap <expr> <Leader>a<Space>R ':<C-u>Sag  . <Home><C-Right><Right>'
+nnoremap <expr> <Leader>au<Space> ':<C-u>Sag '.Expand('<cword>').' '
+nnoremap <expr> <Leader>aw<Space> ':<C-u>Sag '.Expand('<cWORD>').' '
+nnoremap <expr> <Leader>ae<Space> ':<C-u>Sag '.Expand('<cexpr>').' '
+nnoremap <expr> <Leader>ay<Space> ':<C-u>Sag '.Vescape(@").' '
+nnoremap <expr> <Leader>ag<Space> ':<C-u>Sag '.Vescape(@*).' '
+nnoremap <expr> <Leader>ap<Space> ':<C-u>Sag '.Vescape(@+).' '
+nnoremap <expr> <Leader>as<Space> ':<C-u>Sag '.Vescape(GetVisualSelection()).' '
 
 nnoremap <expr> <Leader>auf ':<C-u>Sag '.Expand('<cword>').' %<CR>'
 nnoremap <expr> <Leader>auF ':<C-u>Sag '.Expand('<cword>').' #<CR>'
@@ -771,7 +797,6 @@ nnoremap <expr> <Leader>as5 ':<C-u>Sag '.Vescape(GetVisualSelection()).' --hidde
 nnoremap <expr> <Leader>as6 ':<C-u>Sag '.Vescape(GetVisualSelection()).' --hidden '.Bp(6).'<CR>'
 nnoremap <expr> <Leader>as7 ':<C-u>Sag '.Vescape(GetVisualSelection()).' --hidden '.Bp(7).'<CR>'
 nnoremap <expr> <Leader>asR ':<C-u>Sag '.Vescape(GetVisualSelection()).' .<CR>'
-
 " }}}
 
 " additional {{{

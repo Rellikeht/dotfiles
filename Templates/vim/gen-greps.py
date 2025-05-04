@@ -56,7 +56,7 @@ AG_COMBINATIONS = deepcopy(GREP_COMBINATIONS)
 
 GREP_COMBINATIONS.update({k: "-r " + v for k, v in GEN_PATHS.items()})
 GREP_COMBINATIONS.update(
-    {str(n): f"-r '.Bp({n}).'" for n in range(1, MAX_PREV)}
+    {str(n): f"-r '.Bp({n}).'" for n in range(1, MAX_PREV + 1)}
 )
 AG_COMBINATIONS.update({k: "--hidden " + v for k, v in GEN_PATHS.items()})
 AG_COMBINATIONS.update(
@@ -86,28 +86,25 @@ RG_COMBINATIONS.update(
 
 # patterns {{{
 
-VGREP_PATTERNS = (
-    ("<Space>", " //gj ", " <Home><C-Right><Right><Right>"),
-    ("f", " //gjf ", " <Home><C-Right><Right><Right>"),
-    ("u", " /'.Expand('<cword>').'/gj ", "<CR>"),
-    ("w", " /'.Expand('<cWORD>').'/gj ", "<CR>"),
-    ("e", " /'.Expand('<cexpr>').'/gj ", "<CR>"),
-    ("y", " /'.Vescape(@\").'/gj ", "<CR>"),
-    ("g", " /'.Vescape(@*).'/gj ", "<CR>"),
-    ("p", " /'.Vescape(@+).'/gj ", "<CR>"),
-    ("s", " /'.Vescape(GetVisualSelection()).'/gj ", "<CR>"),
-)
+VGREP_PATTERNS = {
+    "u": " /'.Expand('<cword>').'/gj ",
+    "w": " /'.Expand('<cWORD>').'/gj ",
+    "e": " /'.Expand('<cexpr>').'/gj ",
+    "y": " /'.Vescape(@\").'/gj ",
+    "g": " /'.Vescape(@*).'/gj ",
+    "p": " /'.Vescape(@+).'/gj ",
+    "s": " /'.Vescape(GetVisualSelection()).'/gj ",
+}
 
-GREP_PATTERNS = (
-    ("<Space>", "  ", "<Home><C-Right><Right>"),
-    ("u", " '.Expand('<cword>').' ", "<CR>"),
-    ("w", " '.Expand('<cWORD>').' ", "<CR>"),
-    ("e", " '.Expand('<cexpr>').' ", "<CR>"),
-    ("y", " '.Vescape(@\").' ", "<CR>"),
-    ("g", " '.Vescape(@*).' ", "<CR>"),
-    ("p", " '.Vescape(@+).' ", "<CR>"),
-    ("s", " '.Vescape(GetVisualSelection()).' ", "<CR>"),
-)
+GREP_PATTERNS = {
+    "u": " '.Expand('<cword>').' ",
+    "w": " '.Expand('<cWORD>').' ",
+    "e": " '.Expand('<cexpr>').' ",
+    "y": " '.Vescape(@\").' ",
+    "g": " '.Vescape(@*).' ",
+    "p": " '.Vescape(@+).' ",
+    "s": " '.Vescape(GetVisualSelection()).' ",
+}
 
 AG_PATTERNS = deepcopy(GREP_PATTERNS)
 RG_PATTERNS = deepcopy(AG_PATTERNS)
@@ -122,9 +119,9 @@ def generate_cmds(file, name, ccmd, lcmd, gen_basic=False):
         print(
             f"""
 command -nargs=+ -complete=file {ccmd}
-        \\ cgetexpr <SID>Fgrep(s:{name}_prog, <f-args>)
+        \\ cgetexpr Fgrep(s:{name}_prog, <f-args>)
 command -nargs=+ -complete=file {lcmd}
-        \\ lgetexpr <SID>Fgrep(s:{name}_prog, <f-args>)
+        \\ lgetexpr Fgrep(s:{name}_prog, <f-args>)
             """,
             file=file,
         )
@@ -153,9 +150,26 @@ def generate_single(file, desc, key, end=" ", count=""):
     )
 
 
-def generate_maps(file, desc, combinations, pattern, count=""):
+def generate_space_pre(
+    file,
+    desc,
+    combinations,
+    space="<Space>",
+    end="<Home><C-Right><Right>",
+    pre="",
+):
     for key, path in combinations.items():
-        gen_pat = f"{pattern[1]}{path}{pattern[2]}"
+        generate_single(file, desc, space + key, f" {pre} {path} {end}")
+
+
+def generate_space_post(file, desc, combinations, space="<Space>", end=""):
+    for key, path in combinations.items():
+        generate_single(file, desc, key + space, f"{path}{end}")
+
+
+def generate_maps(file, desc, combinations, pattern, count="", end="<CR>"):
+    for key, path in combinations.items():
+        gen_pat = f"{pattern[1]}{path}{end}"
         generate_single(file, desc, pattern[0] + key, gen_pat, count)
 
 
@@ -170,52 +184,64 @@ with open(VIM_PATH / "greps.vim", "w") as f:
         print(file=f)
 
     print('" vimgrep {{{', file=f)
-    print(file=f)
-    generate_cmds(f, "vimgrep", "vimgrep", "lvimgrep")
+    generate_cmds(f, VGREP_DESC[1], "vimgrep", "lvimgrep")
     print(file=f)
     generate_single(f, VGREP_DESC, "c", count=VGREP_COUNT)
-    print(file=f)
-    for pattern in VGREP_PATTERNS:
-        generate_maps(f, VGREP_DESC, VGREP_COMBINATIONS, pattern)
+    generate_space_pre(
+        f,
+        VGREP_DESC,
+        VGREP_COMBINATIONS,
+        end="<Home><C-Right><Right><Right>",
+        pre="//gj",
+    )
+    generate_space_pre(
+        f,
+        VGREP_DESC,
+        VGREP_COMBINATIONS,
+        space="f",
+        end="<Home><C-Right><Right><Right>",
+        pre="//fgj",
+    )
+    generate_space_post(f, VGREP_DESC, VGREP_PATTERNS)
+    for pattern in VGREP_PATTERNS.items():
         print(file=f)
-    print('" }}}', file=f)
-    print(file=f)
+        generate_maps(f, VGREP_DESC, VGREP_COMBINATIONS, pattern)
+    print('" }}}\n', file=f)
 
     print('" standard grep {{{', file=f)
-    print(file=f)
-    generate_cmds(f, "grep", "Grep", "Lgrep", True)
+    generate_cmds(f, GREP_DESC[1], "Cgrep", "Lgrep", True)
     print(file=f)
     generate_single(f, GREP_DESC, "c")
+    generate_space_pre(f, GREP_DESC, GREP_COMBINATIONS)
+    generate_space_post(f, GREP_DESC, GREP_PATTERNS)
     print(file=f)
-    for pattern in GREP_PATTERNS:
-        generate_maps(f, GREP_DESC, GREP_COMBINATIONS, pattern)
+    for pattern in GREP_PATTERNS.items():
         print(file=f)
-    print('" }}}', file=f)
-    print(file=f)
+        generate_maps(f, GREP_DESC, GREP_COMBINATIONS, pattern)
+    print('" }}}\n', file=f)
 
     print('" ripgrep {{{', file=f)
-    print(file=f)
-    generate_cmds(f, "rg", "Rg", "Lrg", True)
+    generate_cmds(f, RG_DESC[1], "Crg", "Lrg", True)
     print(file=f)
     generate_single(f, RG_DESC, "c")
+    generate_space_pre(f, RG_DESC, RG_COMBINATIONS)
+    generate_space_post(f, RG_DESC, RG_PATTERNS)
     print(file=f)
-    for pattern in RG_PATTERNS:
-        generate_maps(f, RG_DESC, RG_COMBINATIONS, pattern)
+    for pattern in RG_PATTERNS.items():
         print(file=f)
-    print('" }}}', file=f)
-    print(file=f)
+        generate_maps(f, RG_DESC, RG_COMBINATIONS, pattern)
+    print('" }}}\n', file=f)
 
     print('" silver searcher {{{', file=f)
-    print(file=f)
-    generate_cmds(f, "ag", "Ag", "Lag", True)
+    generate_cmds(f, AG_DESC[1], "Cag", "Lag", True)
     print(file=f)
     generate_single(f, AG_DESC, "c")
-    print(file=f)
-    for pattern in AG_PATTERNS:
-        generate_maps(f, AG_DESC, AG_COMBINATIONS, pattern)
+    generate_space_pre(f, AG_DESC, AG_COMBINATIONS)
+    generate_space_post(f, AG_DESC, AG_PATTERNS)
+    for pattern in AG_PATTERNS.items():
         print(file=f)
-    print('" }}}', file=f)
-    print(file=f)
+        generate_maps(f, AG_DESC, AG_COMBINATIONS, pattern)
+    print('" }}}\n', file=f)
 
     print('" additional {{{', file=f)
     print(file=f)

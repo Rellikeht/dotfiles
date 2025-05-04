@@ -4,7 +4,7 @@
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
 
 " silent grep
-function s:Fgrep(prog, ...)
+function Fgrep(prog, ...)
   let l:grep = substitute(a:prog, '\ ', ' ', 'g')
   let cmd = join([l:grep] + [expandcmd(join(a:000, ' '))], ' ')
   echo cmd

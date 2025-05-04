@@ -110,3 +110,18 @@ hi Removed ctermfg=9 guifg=Red
 vim.g.java_ignore_markdown = true
 
 -- }}}
+
+if vim.g.neovide then -- {{{
+
+  vim.g.neovide_refresh_rate_idle = 5
+  vim.g.neovide_cursor_hack = false
+  vim.g.neovide_scale_factor = 0.95
+
+  -- for uniform experience
+  for _, mode in pairs({ "n", "t", "o", "v", "i" }) do
+    vim.api.nvim_set_keymap(
+      mode, "<C-/>", "<C-_>", { noremap = true }
+    )
+  end
+
+end --  }}}

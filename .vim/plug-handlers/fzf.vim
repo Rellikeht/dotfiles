@@ -64,42 +64,19 @@ let g:fzf_vim = {}
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
+function g:fzf_vim.listproc(list)
+  if g:qfloc
+    fzf#vim#listproc#location(list)
+  else
+    fzf#vim#listproc#quickfix(list)
+  endif
+endfunction
 
 let g:fzf_vim.tags_command = 'ctags -R'
 
-" }}} 
-
-" layout {{{ 
-
-" let g:fzf_percent = '55%'
-let g:fzf_percent = '100%'
-
-let g:fzf_layout = { 'down': g:fzf_percent }
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
-" if exists('$TMUX')
-"     " let g:fzf_layout = { 'tmux': '-p90%,60%' }
-"     let g:fzf_layout = { 'tmux': '-d'.g:fzf_percent }
-" else
-"     " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-"     let g:fzf_layout = { 'down': g:fzf_percent }
-" endif
-
-" ~~Preview window is hidden by default.~~ You can toggle it with ctrl-/.
-" It will show on the right with 50% width, but if the width is smaller
-" than 70 columns, it will show above the candidate list
-" let fzf_preview_default = 'right,64%,<70(up,40%)'
-" let fzf_preview_default = 'right,64%'
-
-" let fzf_preview_default = 'right,55%'
+let g:fzf_layout = {'down': '100%'}
 let fzf_preview_default = 'up,50%'
-let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-/']
-
-" " - Window using a Vim command
-" let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-" let g:fzf_layout = { 'window': '10new' }
+let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-s']
 
 " }}} 
 

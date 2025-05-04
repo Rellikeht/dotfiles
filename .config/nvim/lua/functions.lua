@@ -16,11 +16,6 @@ function vkeymap(src, dest, options)
   mkeymap("v", src, dest, options)
 end
 
-function nvkeymap(src, dest, options)
-  mkeymap("n", src, dest, options)
-  mkeymap("v", src, dest .. "gv", options)
-end
-
 -- With more typical vim mappings
 -- -- Insert 'n' lines below current line staying in normal mode (e.g. use 5<leader>o)
 -- vim.keymap.set("n", "<leader>o", function()
