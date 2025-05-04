@@ -384,14 +384,6 @@ nnoremap ;t :<C-u>let g:qfloc = !g:qfloc
 nnoremap ;q :<C-u> echo 'Quickfix is now ' . 
       \ (g:qfloc ? 'local' : 'global')<CR>
 
-xnoremap ;t :<C-u>let g:qfloc = !g:qfloc
-      \ \| echo 'Quickfix is now ' . 
-      \ (g:qfloc ? 'local' : 'global')
-      \ \| normal gv<CR>
-xnoremap ;q :<C-u> echo 'Quickfix is now ' . 
-      \ (g:qfloc ? 'local' : 'global')
-      \ \| normal gv<CR>
-
 " }}} 
 
 " getting {{{ 
@@ -468,8 +460,6 @@ nnoremap ;l :<C-u>call QFcmd('list')<CR>
 nnoremap ;L :<C-u>call QFcmd('history')<CR>
 
 nnoremap <silent> ;h :<C-u>call NToggleQuickFix()<CR>
-" TODO B
-xnoremap <silent> ;h :<C-u>call VToggleQuickFix()<CR>
 
 " clearing
 nnoremap <silent> ;c :<C-u>call QFcmd('expr []')<CR>

@@ -11,23 +11,14 @@ endfunction
 " sudo, wall {{{ 
 
 nnoremap <silent> <Leader>;sw :<C-u>SudoWrite<CR>
-xnoremap <silent> <Leader>;sw :<C-u>SudoWrite\|norm gv<CR>
 nnoremap <silent> <Leader>;s<Space>w
       \ :<C-u>SudoWrite<Space>
-xnoremap <silent> <Leader>;s<Space>w
-      \ :<C-u>SudoWrite  \|norm gv
-      \ <C-Left><C-Left><Left>
 
 nnoremap <silent> <Leader>;se :<C-u>SudoEdit<CR>
-xnoremap <silent> <Leader>;se :<C-u>SudoEdit\|norm gv<CR>
 nnoremap <silent> <Leader>;s<Space>e
       \ :<C-u>SudoEdit<Space>
-xnoremap <silent> <Leader>;s<Space>e
-      \ :<C-u>SudoEdit  \|norm gv
-      \ <C-Left><C-Left><Left>
 
 nnoremap <silent> <Leader>;sa :<C-u>Wall<CR>
-xnoremap <silent> <Leader>;sa :<C-u>Wall\|norm gv<CR>
 
 " }}} 
 

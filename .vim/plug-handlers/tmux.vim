@@ -93,11 +93,8 @@ noremap <silent> <Leader>tn :<C-u>call <SID>NewWindow(1)<CR>
 noremap <silent> <Leader>tN :<C-u>call <SID>NewWindow(0)<CR>
 
 nnoremap <silent> <Leader>t2 :<C-u>call <SID>Setup2Panes()<CR>
-xnoremap <silent> <Leader>t2 :<C-u>call <SID>Setup2Panes()\|norm gv<CR>
 nnoremap <silent> <Leader>t3 :<C-u>call <SID>Setup3Panes()<CR>
-xnoremap <silent> <Leader>t3 :<C-u>call <SID>Setup3Panes()\|norm gv<CR>
 nnoremap <silent> <Leader>tc :<C-u>call <SID>CopyPath()<CR>
-xnoremap <silent> <Leader>tc :<C-u>call <SID>CopyPath()\|norm gv<CR>
 nnoremap <silent> <Leader>td :<C-u>call <SID>CdPanes()<CR>
 
 nnoremap <silent> <Leader>tp :<C-u>Tmux select-pane -m -t {last} <CR>

@@ -110,7 +110,6 @@ function InsertAlignToggle()
 endfunction
 
 nnoremap <Leader>ii :<C-u>call InsertAlignToggle()<CR>
-xnoremap <Leader>ii :<C-u>call InsertAlignToggle()\|norm gv<CR>
 
 "map <silent> <leader>qc <Plug>ReplaceWithCurly
 map <silent> <leader>qs <Plug>ReplaceWithStraight }}} 
@@ -159,5 +158,13 @@ omap a= <Plug>(textobj-between-a)
 xmap a= <Plug>(textobj-between-a)
 omap i= <Plug>(textobj-between-i)
 xmap i= <Plug>(textobj-between-i)
+
+" }}}
+
+" matchup {{{
+ 
+let g:matchup_matchparen_offscreen = {"method":"popup"}
+let g:matchup_surround_enabled = 1
+let g:matchup_delim_noskips = 0
 
 " }}}

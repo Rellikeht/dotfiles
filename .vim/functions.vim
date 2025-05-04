@@ -244,16 +244,6 @@ function! NToggleQuickFix()
   endif
 endfunction
 
-function! VToggleQuickFix()
-  if empty(filter(getwininfo(), 'v:val.quickfix'))
-    call QFcmd("open '.g:qfheight", "exe '")
-    wincmd p
-  else
-    call QFcmd('close')
-  endif
-  normal gv
-endfunction
-
 " }}} 
 
 " workman {{{ 
@@ -590,30 +580,6 @@ function ToggleBuffer(name)
     execute 'setlocal no'.a:name
     echo a:name.' disabled'
   endif
-endfunction
-
-function OnOff(name)
-  return '('.a:name.' ? "on" : "off")'
-endfunction
-
-function MapToggle(prefix, key, name, silent=0, hook='')
-  let l:base = 'noremap '.(a:silent ? '<silent> ' : '').
-        \ a:prefix.'q'.a:key.' :<C-u>let '.a:name.'=!'.a:name.
-        \ a:hook.(a:silent ? '' : '\|echo '.OnOff(a:name))
-  exe 'n'.l:base.'<CR>'
-  exe 'v'.l:base.'\|norm gv<CR>'
-endfunction
-
-function MapPrint(prefix, key, val)
-  let l:base = 'noremap '.a:prefix.'q'.toupper(a:key).
-        \ ' :<C-u>echo "'.a:val
-  exe 'n'.l:base.'<CR>'
-  exe 'v'.l:base.'\|norm gv<CR>'
-endfunction
-
-function VarPrint(prefix, key, name, setting, binary=1)
-  return MapPrint(a:prefix, a:key,a:name.(a:binary ?
-        \ ' is now ".'.OnOff(a:setting) : ': '.a:setting.'"'))
 endfunction
 
 " TODO C

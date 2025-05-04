@@ -315,7 +315,6 @@ autocmd FileType text
       \ let b:autopairs_enabled = 0
 
 nnoremap <Leader>qa :<C-u>call AutoPairsToggle()<CR>
-xnoremap <Leader>qa :<C-u>call AutoPairsToggle()\|norm gv<CR>
 
 " }}} 
 
@@ -430,11 +429,8 @@ let g:gutentags_ctags_exclude = [
 " maps {{{ 
 
 nnoremap <Space>tqg :<C-u>GutentagsToggleEnabled<CR>
-xnoremap <Space>tqg :<C-u>GutentagsToggleEnabled\|norm gv<CR>
 nnoremap <Space>tqt :<C-u>GutentagsToggleTrace<CR>
-xnoremap <Space>tqt :<C-u>GutentagsToggleTrace\|norm gv<CR>
 nnoremap <Space>tqc :<C-u>GutentagsClearCache<CR>
-xnoremap <Space>tqc :<C-u>GutentagsClearCache\|norm gv<CR>
 
 " }}} 
 
@@ -483,26 +479,17 @@ let g:tagbar_type_markdown = {
 " maps {{{
 
 nnoremap <Leader>le :<C-u>TagbarToggle<CR>
-xnoremap <Leader>le :<C-u>TagbarToggle\|norm gv<CR>
 nnoremap <Leader>lE :<C-u>TagbarOpenAutoClose<CR>
-xnoremap <Leader>lE :<C-u>TagbarOpenAutoClose\|norm gv<CR>
 nnoremap <Leader>ls :<C-u>TagbarTogglePause<CR>
-xnoremap <Leader>ls :<C-u>TagbarTogglePause\|norm gv<CR>
 
 nnoremap <Leader>lt :<C-u>TagbarCurrentTag<CR>
-xnoremap <Leader>lt :<C-u>TagbarCurrentTag\|norm gv<CR>
 noremap <Leader>l<Space>t :<C-u>TagbarCurrentTag<Space>
 nnoremap <Leader>lu :<C-u>TagbarForceUpdate<CR>
-xnoremap <Leader>lu :<C-u>TagbarForceUpdate\|norm gv<CR>
 
 nnoremap <expr> <Leader>ln
       \ ":<C-u>call CmdCount('TagbarJumpNext', ".v:count1.")<CR>"
-xnoremap <expr> <Leader>ln
-      \ ":<C-u>call CmdCount('TagbarJumpNext', ".v:count1.")\|norm gv<CR>"
 nnoremap <expr> <Leader>lp
       \ ":<C-u>call CmdCount('TagbarJumpPrev', ".v:count1.")<CR>"
-xnoremap <expr> <Leader>lp
-      \ ":<C-u>call CmdCount('TagbarJumpPrev', ".v:count1.")\|norm gv<CR>"
 
 " }}}
 

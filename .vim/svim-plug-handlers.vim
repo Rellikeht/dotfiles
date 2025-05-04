@@ -8,35 +8,23 @@ autocmd BufNewFile,BufRead * let b:EditorConfig_disable = g:EditorConfig_disable
 nnoremap <Leader>qeb 
       \ :<C-u>let b:EditorConfig_disable=!b:EditorConfig_disable
       \ \|echo b:EditorConfig_disable<CR>
-vnoremap <Leader>qeb 
-      \ :<C-u>let b:EditorConfig_disable=!b:EditorConfig_disable
-      \ \|echo b:EditorConfig_disable<CR>
-      \ \|norm gv<CR>
 nnoremap <Leader>qeg 
       \ :<C-u>let g:EditorConfig_disable=!g:EditorConfig_disable
       \ \|echo g:EditorConfig_disable<CR>
-vnoremap <Leader>qeg 
-      \ :<C-u>let g:EditorConfig_disable=!g:EditorConfig_disable
-      \ \|echo g:EditorConfig_disable<CR>
-      \ \|norm gv<CR>
 nnoremap <silent> <Leader>qer 
       \ :<C-u>EditorConfigReload<CR>
-vnoremap <silent> <Leader>qer 
-      \ :<C-u>EditorConfigReload\|norm gv<CR>
 
 " }}} 
 
 " CSS color {{{ 
 
 nnoremap <silent> gC :<C-u>call css_color#toggle()<CR>
-vnoremap <silent> gC :<C-u>call css_color#toggle()\|norm gv<CR>
 
 " }}} 
 
 " Inline edit {{{ 
 
 nnoremap <silent> <Leader>mi :InlineEdit<CR>
-vnoremap <silent> <Leader>mi :InlineEdit\|norm gv<CR>
 
 " }}} 
 

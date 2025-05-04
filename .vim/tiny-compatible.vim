@@ -89,6 +89,8 @@ nnoremap <Space>qs :<C-u>source %<CR>
 nnoremap <Space>qm :<C-u>setlocal modeline!<CR>:e<CR>
 nnoremap <Space>qM :<C-u>setlocal modeline!<CR>
 
+nnoremap <Space>qh :<C-u>set hls!<CR>
+
 " }}} 
 
 " tabs with <Tab> {{{ 
@@ -322,13 +324,6 @@ nnoremap <silent> <Space>qG :<C-u>argglobal!<CR>
 nnoremap <Space>q<Space>g :<C-u>argglobal<Space>
 nnoremap <Space>q<Space>G :<C-u>argglobal!<Space>
 
-nnoremap <Space>qu :<C-u>update<CR>
-nnoremap <Space>qU :<C-u>update!<CR>
-nnoremap <Space><Space>qu :<C-u>update<Space>
-nnoremap <Space><Space>qU :<C-u>update!<Space>
-nnoremap <Space>q;u :<C-u>update ##<CR>
-nnoremap <Space>q;U :<C-u>update! ##<CR>
-
 " }}} 
 
 " splits with <Tab> {{{ 
@@ -388,6 +383,13 @@ nnoremap <Tab>H :<C-u>-tab help<Space>
 " }}} 
 
 " <Space> operations {{{ 
+
+nnoremap <Space>qu :<C-u>update<CR>
+nnoremap <Space>qU :<C-u>update!<CR>
+nnoremap <Space><Space>qu :<C-u>update<Space>
+nnoremap <Space><Space>qU :<C-u>update!<Space>
+nnoremap <Space>q;u :<C-u>update ##<CR>
+nnoremap <Space>q;U :<C-u>update! ##<CR>
 
 nnoremap <Space>iJ :<C-u>clearjumps<CR>
 

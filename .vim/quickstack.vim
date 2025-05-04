@@ -247,33 +247,22 @@ noremap <silent> <Space>j9 :<C-u>call <SID>QstackNth(9)<CR>
 
 " add
 nnoremap <silent> <Space>ja :<C-u>call <SID>QstackCurAdd()<CR>
-xnoremap <silent> <Space>ja :<C-u>call <SID>QstackCurAdd()\|norm gv<CR>
 
 " del
 nnoremap <silent> <Space>jd :<C-u>call <SID>QstackDel()<CR>
-xnoremap <silent> <Space>jd :<C-u>call <SID>QstackDel()\|norm gv<CR>
 
 " swap
 nnoremap <silent> <Space>jos :<C-u>call <SID>QstackSwap()<CR>
-xnoremap <silent> <Space>jos :<C-u>call <SID>QstackSwap()\|norm gv<CR>
 
 " rot
 nnoremap <silent> <Space>jo2 :<C-u>call <SID>QstackRot(2, v:count1)<CR>
-xnoremap <silent> <Space>jo2 :<C-u>call <SID>QstackRot(2, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo3 :<C-u>call <SID>QstackRot(3, v:count1)<CR>
-xnoremap <silent> <Space>jo3 :<C-u>call <SID>QstackRot(3, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo4 :<C-u>call <SID>QstackRot(4, v:count1)<CR>
-xnoremap <silent> <Space>jo4 :<C-u>call <SID>QstackRot(4, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo5 :<C-u>call <SID>QstackRot(5, v:count1)<CR>
-xnoremap <silent> <Space>jo5 :<C-u>call <SID>QstackRot(5, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo6 :<C-u>call <SID>QstackRot(6, v:count1)<CR>
-xnoremap <silent> <Space>jo6 :<C-u>call <SID>QstackRot(6, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo7 :<C-u>call <SID>QstackRot(7, v:count1)<CR>
-xnoremap <silent> <Space>jo7 :<C-u>call <SID>QstackRot(7, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo8 :<C-u>call <SID>QstackRot(8, v:count1)<CR>
-xnoremap <silent> <Space>jo8 :<C-u>call <SID>QstackRot(8, v:count1)\|norm gv<CR>
 nnoremap <silent> <Space>jo9 :<C-u>call <SID>QstackRot(9, v:count1)<CR>
-xnoremap <silent> <Space>jo9 :<C-u>call <SID>QstackRot(9, v:count1)\|norm gv<CR>
 
 " }}} 
 
