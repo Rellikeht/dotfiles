@@ -14,9 +14,9 @@ pdfgrep --color always -H $ARGS {}
 # Unsafe because some of us have non ascii characters in paths :)
 if [ -n "$1" ]; then
     find $@ -iname '*\.pdf' -print0 |
-        parallel --unsafe -0 -I{} "$CMD"
+        parallel -0 -I{} "$CMD"
 
 else
     find . -iname '*\.pdf' -print0 |
-        parallel --unsafe -0 -I{} "$CMD"
+        parallel -0 -I{} "$CMD"
 fi

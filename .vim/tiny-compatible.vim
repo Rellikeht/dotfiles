@@ -88,7 +88,6 @@ nnoremap <Space>qW :<C-u>set wrap!<CR>
 nnoremap <Space>qs :<C-u>source %<CR>
 nnoremap <Space>qm :<C-u>setlocal modeline!<CR>:e<CR>
 nnoremap <Space>qM :<C-u>setlocal modeline!<CR>
-
 nnoremap <Space>qh :<C-u>set hls!<CR>
 
 " }}} 
@@ -417,7 +416,7 @@ set wildoptions=fuzzy,tagfile,pum
 set wildmenu
 set wildignore+=*.o,*.elf,*.bin,*.dll,*.so
 
-set complete=w,b,s,i,d,t,.,k
+set complete=w,b,s,i,d,.,k
 set completeopt=menu,menuone,noselect,noinsert,preview
 
 " }}} 
@@ -522,14 +521,11 @@ if v:progname =~? "^tv\\(im\\?\\)\\?"
   set secure
   set modeline
 
-  nnoremap ,<Space><Space> :setlocal hls!<CR>
-  nnoremap ,qeh :<C-u>set hls!<CR>
-
   map <C-p> ,
-    " = gets tricked by this comma
+  " = gets tricked by this comma
   map <C-n> ;
 endif " }}} 
 
-if v:progname =~? "^sv\\(im\\?\\)\\?" " {{{ 
-  silent! set completeopt+=fuzzy,fuzzycollect
+if v:progname =~? "^s\\?v\\(im\\?\\)\\?" " {{{ 
+  set completeopt+=fuzzy
 endif " }}} 

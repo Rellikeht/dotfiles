@@ -188,6 +188,19 @@ set omnifunc=syntaxcomplete#Complete
 set pumwidth=15
 set pumheight=20
 
+function ToggleTagComplete()
+  let l:opt = strridx(&complete, "t")
+  if l:opt > 0
+    echom "Complete won't now use use tags"
+    set complete-=t
+  else
+    echom "Complete will now use tags"
+    set complete+=t
+  endif
+endfunction
+
+nnoremap <Space>qt :<C-u>call ToggleTagComplete()<CR>
+
 " }}} 
 
 " This doesn't help, but why not keep it

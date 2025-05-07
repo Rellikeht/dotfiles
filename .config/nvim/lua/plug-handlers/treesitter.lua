@@ -1,9 +1,8 @@
--- TODO A clean mess
 ---@diagnostic disable: undefined-global, missing-fields
-local tsconfig = require("nvim-treesitter.configs")
+require("nvim-treesitter.install").prefer_git = false
 
 -- there is so much of that shit
-tsconfig.setup(
+require("nvim-treesitter.configs").setup(
   {
     ensure_installed = { -- {{{
       -- basic
@@ -105,6 +104,7 @@ tsconfig.setup(
       -- "ocamllex", "latex",
 
     }, -- }}}
+
     -- some settings {{{
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -117,7 +117,9 @@ tsconfig.setup(
     -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
     incremental_selection = { enable = true },
 
-    indent = { enable = true }, -- }}}
+    indent = { enable = true },
+    -- }}}
+
     highlight = { -- {{{
       enable = true, -- ????
       -- use_languagetree = true,
@@ -138,8 +140,8 @@ tsconfig.setup(
       -- Instead of true it can also be a list of languages
       additional_vim_regex_highlighting = false,
     }, -- }}}
-    textobjects = {
 
+    textobjects = {
       lsp_interop = { -- {{{
         enable = true,
         border = "none",
@@ -152,6 +154,7 @@ tsconfig.setup(
           ["<leader>dza"] = "@assignment.outer",
         }, -- }}}
       }, -- }}}
+
       select = { -- {{{
         -- {{{
         enable = true, --
@@ -238,6 +241,7 @@ tsconfig.setup(
         include_surrounding_whitespace = false,
         -- }}}
       }, -- }}}
+
       move = { -- TODO {{{
 
         -- {{{
@@ -299,11 +303,11 @@ tsconfig.setup(
       }, -- }}}
     },
 
-    matchup = {
+    matchup = { --  {{{
       enable = true,
       disable_virtual_text = true,
       include_match_words = true,
-    },
+    }, --  }}}
   }
 )
 

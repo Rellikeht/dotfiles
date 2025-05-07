@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd(
 -- keymaps {{{
 
 vim.api.nvim_set_keymap(
-  "t", "<C-_>", "<C-\\>", { noremap = true }
+  "t", "<C-q>", "<C-\\>", { noremap = true }
 )
 vim.api.nvim_set_keymap(
   "t", "<C-\\>n", "<C-\\><C-n>", { noremap = true }
@@ -117,11 +117,13 @@ if vim.g.neovide then -- {{{
   vim.g.neovide_cursor_hack = false
   vim.g.neovide_scale_factor = 0.95
 
+  --  }}}
+elseif vim.fn.has("gui_running") then --  {{{
+
   -- for uniform experience
-  for _, mode in pairs({ "n", "t", "o", "v", "i" }) do
-    vim.api.nvim_set_keymap(
-      mode, "<C-/>", "<C-_>", { noremap = true }
-    )
+  -- "t", "i" don't work anyway
+  for _, mode in pairs({ "n", "o", "v" }) do
+    vim.api.nvim_set_keymap(mode, "<C-/>", "<C-_>", {})
   end
 
 end --  }}}
