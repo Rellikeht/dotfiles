@@ -2,7 +2,7 @@
   description = "Simple flake for building some program";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flakeUtils.url = "github:numtide/flake-utils";
     package = {
       url = "github:user/program";

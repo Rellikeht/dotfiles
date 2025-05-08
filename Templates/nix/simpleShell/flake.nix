@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flakeUtils.url = "github:numtide/flake-utils";
   };
 
@@ -17,7 +17,7 @@
           [
             #
           ]
-          ++ (with self.packages.${system}; [run]);
+          ++ (with self.packages.${system}; [default]);
       in {
         devShells = {
           default = pkgs.mkShell {
@@ -28,18 +28,16 @@
         };
 
         packages = rec {
-          run = pkgs.writeScriptBin "run" ''
+          default = pkgs.writeScriptBin "run" ''
             echo "Do the thing"
           '';
-          default = run;
         };
 
         apps = rec {
-          run = {
+          default = {
             type = "app";
-            program = "${self.packages.${system}.run}/bin/run";
+            program = "${self.packages.${system}.default}/bin/run";
           };
-          default = run;
         };
       }
     );
