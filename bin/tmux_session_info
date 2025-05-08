@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+if [ -z "$1" ]; then
+    echo "Give session name" >/dev/stderr
+    exit 1
+fi
+
+tmux list-sessions \
+    -f "#{==:$1,#{session_name}}" \
+    -F "
+#{session_name}:
+--------------------
+created:           #{t:session_created}
+last activity:     #{t:session_activity}
+path:              #{session_path}
+windows:           #{session_windows}
+clients attached:  #{session_attached}
+"
