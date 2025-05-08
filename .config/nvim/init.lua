@@ -11,7 +11,7 @@ local plug_dir = "plug-handlers/"
 -- }}}
 
 -- TODO other manager (lazy?)
-require("preplug")
+require(plug_dir .. "preplug")
 vim.call("plug#begin", NVIM_DIR .. "/plugins")
 vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
 

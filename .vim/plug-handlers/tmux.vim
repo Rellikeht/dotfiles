@@ -1,12 +1,6 @@
 " tmux variables {{{ 
 
 let g:ret = 'Enter' "'C-m'
-let g:default_tmux_socket = 'default'
-if $TMUX_SOCKET == ""
-  let g:tmux_socket = g:default_tmux_socket
-else
-  let g:tmux_socket = $TMUX_SOCKET
-endif
 
 " }}} 
 
@@ -113,20 +107,31 @@ nnoremap <silent> <Leader>tq :<C-u>Tmux kill-pane -t {last} <CR>
 
 " setup {{{ 
 
-let g:slime_target = 'tmux'
-let g:slime_paste_file = tempname()
-let g:slime_default_config = {
-      \ 'socket_name':g:tmux_socket,
-      \ 'target_pane':'{top-right}'
-      \ }
+function SlimeSetupTmux()
+  let g:slime_target = 'tmux'
+  let g:tmux_socket = get(split($TMUX, ","), 0)
+  let g:slime_default_config = {
+        \ 'socket_name':g:tmux_socket,
+        \ 'target_pane':'{top-right}'
+        \ }
 
+  let b:slime_config = g:slime_default_config
+  silent! augroup! SlimeConfig
+  augroup SlimeConfig
+    autocmd BufEnter *
+          \ let b:slime_config = g:slime_default_config
+  augroup END
+endfunction
+
+let g:slime_paste_file = tempname()
 let g:slime_dont_ask_default = 1
 let g:slime_bracketed_paste = 1
 let g:slime_no_mappings = 1
 
-let b:slime_config = slime_default_config
-autocmd BufEnter *
-      \ let b:slime_config = slime_default_config
+if !has("nvim")
+  call SlimeSetupTmux()
+  nnoremap gs: <Plug>SlimeConfig
+endif
 
 " }}} 
 
@@ -174,7 +179,6 @@ endfunction
 
 " maps {{{ 
 
-nnoremap gs: <Plug>SlimeConfig
 nnoremap gs <Plug>SlimeMotionSend
 nnoremap gss <Plug>SlimeLineSend
 noremap <silent> gs; :SlimeSend<CR>
