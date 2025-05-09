@@ -52,9 +52,6 @@ local modconfigs = { -- {{{
 
 for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
 require("additional")
-
-if fileReadable(NVIM_DIR .. "/local.lua") then
-  loadfile(NVIM_DIR .. "/local.lua")()
-end
+pcall(require, "local")
 
 -- }}}

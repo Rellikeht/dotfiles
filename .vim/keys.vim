@@ -129,6 +129,11 @@ nmap <C-w>gf :<C-u>Tabe <cfile><CR>
 " Nice thing for snippets
 snoremap <BS> <BS>i
 
+" n and N do zv when not mapped manually to anything
+" and don't when mapped
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " }}} 
 
 " taglist {{{ 

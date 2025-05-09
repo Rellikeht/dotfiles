@@ -72,7 +72,7 @@ Plug("micangl/cmp-vimtex")
 -- {{{ other coding help
 
 Plug("Vimjas/vint")
-Plug("nvim-orgmode/orgmode") -- TODO B
+Plug("nvim-orgmode/orgmode") -- TODO C
 
 Plug("mfussenegger/nvim-lint")
 Plug("windwp/nvim-autopairs")
@@ -81,14 +81,14 @@ Plug("nvim-treesitter/nvim-treesitter-refactor")
 -- THIS IS ALL SHIT, IT CAN'T FIND ANYTHING IN SYSTEM
 -- DEPENDENCIES CAN'T BE FOUND, WHY THIS HAS TO BE SO FUCKED
 -- Plug("vhyrro/luarocks.nvim")
--- Plug("benlubas/molten-nvim") -- TODO B
+-- Plug("benlubas/molten-nvim") -- TODO C
 
 Plug("hedyhli/outline.nvim")
 
-Plug("jgdavey/tslime.vim")
 -- Needs python compiled in and nvim doesn't have it sometimes ???
 -- Plug("puremourning/vimspector")
 
+Plug("jgdavey/tslime.vim") -- needed for testing plugins below
 Plug("vim-test/vim-test")
 Plug("nvim-neotest/neotest")
 
@@ -170,9 +170,6 @@ for _, i in ipairs(confVimMods) do
   vim.cmd("source " .. lua_dir .. "/" .. plug_dir .. i .. ".vim")
 end
 require("additional")
-
-if fileReadable(NVIM_DIR .. "/local.lua") then
-  loadfile(NVIM_DIR .. "/local.lua")()
-end
+pcall(require, "local")
 
 -- }}}
