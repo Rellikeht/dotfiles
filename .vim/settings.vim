@@ -269,3 +269,9 @@ let g:vgrep_args = g:grep_args.' -Hn'
 let g:vgrep_prog = 'grep '.g:vgrep_args
 
 " }}} 
+
+" good looking {{{
+
+let g:markdown_minlines = 500
+
+" }}}

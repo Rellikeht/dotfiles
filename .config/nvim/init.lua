@@ -29,9 +29,6 @@ Plug(
 )
 Plug("norcalli/nvim-colorizer.lua")
 
--- might not work
--- Plug("3rd/image.nvim") -- TODO B
-
 -- }}}
 
 -- {{{ motion enchancing
@@ -78,11 +75,6 @@ Plug("mfussenegger/nvim-lint")
 Plug("windwp/nvim-autopairs")
 Plug("nvim-treesitter/nvim-treesitter-refactor")
 
--- THIS IS ALL SHIT, IT CAN'T FIND ANYTHING IN SYSTEM
--- DEPENDENCIES CAN'T BE FOUND, WHY THIS HAS TO BE SO FUCKED
--- Plug("vhyrro/luarocks.nvim")
--- Plug("benlubas/molten-nvim") -- TODO C
-
 Plug("hedyhli/outline.nvim")
 
 -- Needs python compiled in and nvim doesn't have it sometimes ???
@@ -111,10 +103,6 @@ Plug("ellisonleao/glow.nvim")
 -- }}}
 
 -- {{{ TODO C
-
--- advanced ui
--- Plug("nvim-telescope/telescope.nvim")
--- other telescopes will land here too
 
 -- diff browser
 -- Plug("sindrets/diffview.nvim")

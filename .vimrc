@@ -7,14 +7,15 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   " and it works, at least now
 
   " plugins and packages {{{ 
-  filetype plugin on
-  filetype indent on
-  syntax on
+  " vim-plug does it
+  " filetype plugin on
+  " filetype indent on
+  " syntax on
 
   packadd! cfilter
   runtime! ftplugin/man.vim
 
-  let g:loaded_matchit = 1
+  " because of matchup
   " packadd! matchit
   " runtime macros/matchit.vim
   " }}} 

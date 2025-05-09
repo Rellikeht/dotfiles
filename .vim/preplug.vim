@@ -42,4 +42,7 @@ let g:makeshift_systems = {
 
 " {{{ other
 
+" for matchup
+let g:loaded_matchit = 1
+
 " }}}

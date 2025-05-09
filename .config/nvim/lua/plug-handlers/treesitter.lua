@@ -111,7 +111,7 @@ require("nvim-treesitter.configs").setup(
 
     -- Automatically install missing parsers when entering buffer
     -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    auto_install = false, -- auto_install = true,
+    auto_install = false,
     -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
     -- parser_install_dir = "/some/path/to/store/parsers",
     -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
@@ -121,14 +121,8 @@ require("nvim-treesitter.configs").setup(
     -- }}}
 
     highlight = { -- {{{
-      enable = true, -- ????
-      -- use_languagetree = true,
-      -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-      -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-      -- the name of the parser)
-      -- list of language that will be disabled
-      -- disable = { "c", "rust" },
-      -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+      enable = true,
+      -- Use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
       -- disable = function(lang, buf)
       --   local max_filesize = 100 * 1024 -- 100 KB
       --   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -303,6 +297,32 @@ require("nvim-treesitter.configs").setup(
       }, -- }}}
     },
 
+    refactor = { -- {{{
+      highlight_definitoins = {
+        enable = true,
+        -- TODO C
+        clear_on_cursor_move = true,
+      },
+
+      highlight_current_scope = { enable = true },
+
+      smart_rename = {
+        enable = true,
+        keymaps = { smart_rename = "<Leader>cs" },
+      },
+
+      navigation = {
+        enable = true,
+        keymaps = {
+          goto_definition = "<Leader>cd",
+          list_definitions = "<Leader>cl",
+          list_definitions_toc = "<Leader>cL",
+          goto_next_usage = "<Leader>cn",
+          goto_previous_usage = "<Leader>cp",
+        },
+      },
+    }, -- }}}
+
     matchup = { --  {{{
       enable = true,
       disable_virtual_text = true,
@@ -321,5 +341,3 @@ nkeymap(
 
 -- }}}
 
--- TODO B refactor {{{
--- }}}

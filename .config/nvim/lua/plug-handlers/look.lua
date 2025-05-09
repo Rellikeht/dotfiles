@@ -7,7 +7,7 @@ local col_css_conf = {
 
 local col_vim_conf = { names = true }
 
-require"colorizer".setup(
+require("colorizer").setup(
   {
     "*",
     html = col_css_conf,
@@ -54,6 +54,11 @@ vkeymap(
 
 -- TODO C colors {{{
 vim.cmd("hi Todo		guifg=#ffcf2f	guibg=#0e1224	gui=bold")
+-- vim.api.nvim_set_hl(0, "Todo", {
+--   fg="#ffcf2f",
+--   bg="#0e1224",
+--   bold=true,
+-- })
 
 -- TODO fucking todo can't change it's color
 -- easy to use plugin they say
