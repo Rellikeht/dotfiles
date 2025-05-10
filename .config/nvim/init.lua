@@ -1,19 +1,18 @@
 -- {{{  helpers
-vim.cmd("source ~/.vimrc")
+vim.cmd.source("~/.vimrc")
 require("functions")
 
 local Plug = vim.fn["plug#"]
-NVIM_DIR = vim.call("stdpath", "config")
+NVIM_DIR = vim.fn.stdpath("config")
 local lua_dir = NVIM_DIR .. "/lua"
 local vim_dir = "~/.vim"
 local plug_dir = "plug-handlers/"
 
 -- }}}
 
--- TODO other manager (lazy?)
 require(plug_dir .. "preplug")
-vim.call("plug#begin", NVIM_DIR .. "/plugins")
-vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
+vim.fn["plug#begin"](vim.fn.stdpath("data"))
+vim.cmd.source(vim_dir .. "/common-plugins.vim")
 
 -- {{{ dependencies
 
@@ -133,7 +132,7 @@ Plug("LiadOz/nvim-dap-repl-highlights")
 
 -- }}}
 
-vim.call("plug#end")
+vim.fn["plug#end"]()
 
 -- {{{ loading rest of config
 
@@ -156,7 +155,7 @@ local confVimMods = {
 
 for _, i in ipairs(confMods) do require(plug_dir .. i) end
 for _, i in ipairs(confVimMods) do
-  vim.cmd("source " .. lua_dir .. "/" .. plug_dir .. i .. ".vim")
+  vim.cmd.source(lua_dir .. "/" .. plug_dir .. i .. ".vim")
 end
 require("additional")
 pcall(require, "local")

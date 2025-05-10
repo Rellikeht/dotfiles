@@ -3,15 +3,14 @@ vim.cmd("source ~/.vimrc")
 require("functions")
 
 local Plug = vim.fn["plug#"]
-NVIM_DIR = vim.call("stdpath", "config")
 local vim_dir = "~/.vim"
 local plug_dir = "plug-handlers/"
 
 -- }}}
 
 require(plug_dir .. "preplug")
-vim.call("plug#begin", NVIM_DIR .. "/plugins")
-vim.cmd("source " .. vim_dir .. "/common-plugins.vim")
+vim.fn["plug#begin"](vim.fn.stdpath("data"))
+vim.cmd.source(vim_dir .. "/common-plugins.vim")
 
 -- {{{
 
@@ -40,7 +39,7 @@ Plug "tpope/vim-jdaddy"
 
 -- }}}
 
-vim.call("plug#end")
+vim.fn["plug#end"]()
 
 -- {{{
 

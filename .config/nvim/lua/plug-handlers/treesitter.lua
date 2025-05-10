@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global, missing-fields
 require("nvim-treesitter.install").prefer_git = false
 
-local tskey = "<Leader>a"
+local tskey = "<Leader>c"
 local gid = vim.api.nvim_create_augroup(
   "treesitter_load_group", {}
 )
@@ -30,7 +30,6 @@ vim.api.nvim_create_autocmd(
             "todotxt",
             "diff",
             "regex",
-            "org",
             "norg",
             "ebnf",
             -- main
