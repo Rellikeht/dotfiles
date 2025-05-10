@@ -342,6 +342,8 @@ let g:fzf_action = {
 " }}} 
 
 
+function s:SetupFzf()
+
 " path maps {{{
 
 " empty cmds
@@ -586,3 +588,5 @@ nnoremap <Leader>sr9 :<C-u> exe 'Drg '.Bp(9)<CR>
 nnoremap <Leader>sR9 :<C-u> exe 'Dru '.Bp(9)<CR>
 
 " }}}
+endfunction
+call LazyLoadOnStartup(expand("<SID>").."SetupFzf")

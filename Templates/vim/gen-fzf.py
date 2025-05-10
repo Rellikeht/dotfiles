@@ -4,6 +4,7 @@ from os.path import split
 from pathlib import Path
 
 MAP_START = "<Leader>s"
+MAX_PREV = 10
 
 FZF_PATHS = {
     "h": "~",
@@ -30,7 +31,7 @@ FZF_SPECIALS = {
     "E": "EnvrcRoot(EnvrcRoot().'/..')",
     "<C-e>": "EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
 }
-FZF_SPECIALS.update({str(n): f"Bp({n})" for n in range(1, 10)})
+FZF_SPECIALS.update({str(n): f"Bp({n})" for n in range(1, MAX_PREV)})
 
 # TODO C some selection and <cwhatever>
 
@@ -52,6 +53,8 @@ with open(VIM_PATH / "fzf.vim", "w") as f:
     with open(SCRIPT_PATH / "fzf.vim", "r") as template:
         print(template.read(), file=f)
         print(file=f)
+    print("function s:SetupFzf()", file=f)
+    print("", file=f)
 
     print('" path maps {{{', file=f)
     print(file=f)
@@ -85,3 +88,6 @@ with open(VIM_PATH / "fzf.vim", "w") as f:
         print(file=f)
 
     print('" }}}', file=f)
+
+    print("endfunction", file=f)
+    print('call LazyLoadOnStartup(expand("<SID>").."SetupFzf")', file=f)

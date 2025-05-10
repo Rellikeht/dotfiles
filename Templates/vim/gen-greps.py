@@ -6,7 +6,7 @@ from copy import deepcopy
 
 # keys and settings {{{
 
-MAX_PREV = 8
+MAX_PREV = 10
 QFVAR = "g:qfloc"
 CU = ":<C-u>"
 
