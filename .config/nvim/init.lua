@@ -143,8 +143,9 @@ local confMods = {
   "look",
   "treesitter",
   "lspconfig",
+  "servers",
   "coding",
-  "formats", -- "images",
+  "formats",
   "other",
 }
 

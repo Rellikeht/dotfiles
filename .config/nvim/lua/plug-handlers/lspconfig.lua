@@ -63,12 +63,18 @@ vim.keymap.set(
   { noremap = true }
 )
 vim.keymap.set(
-  diag_modes, "<Leader>dp",
-  commandRep(vim.diagnostic.goto_prev), { noremap = true }
+  diag_modes, "<Leader>dp", commandRep(
+    function()
+      vim.diagnostic.jump({ count = -1, float = true })
+    end
+  ), { noremap = true }
 )
 vim.keymap.set(
-  diag_modes, "<Leader>dn",
-  commandRep(vim.diagnostic.goto_next), { noremap = true }
+  diag_modes, "<Leader>dn", commandRep(
+    function()
+      vim.diagnostic.jump({ count = 1, float = true })
+    end
+  ), { noremap = true }
 )
 
 vim.keymap.set(
@@ -257,70 +263,3 @@ vim.api.nvim_create_autocmd( -- {{{
     end,
   }
 ) -- }}}
-
-local function ssetup(server) -- {{{
-  local config = lspconfig[server]
-  if vim.fn.executable(
-    config.document_config.default_config.cmd[1]
-  ) == 0 then return end
-
-  config.setup(
-    { -- {{{
-      preselectSupport = false,
-      preselect = false,
-      single_file_support = true,
-      on_attach = lsp_attach,
-      capabilities = Capabilities,
-      settings = { telemetry = { enable = false } },
-    } -- }}}
-  )
-end
--- }}}
-
-local servers = { -- {{{
-  -- must have
-  -- :(
-  -- "pylyzer",
-  "ocamllsp",
-  "hls",
-  "superhtml",
-  "html",
-  "cssls",
-  "bashls",
-  -- sometimes needed
-  "zls",
-  "texlab",
-  "ast_grep",
-  "ts_ls",
-  -- just in case
-  "erlangls",
-  "ols",
-  "nickel_ls",
-  "metals",
-  "kotlin_language_server",
-  "ada_ls",
-  "roc_ls",
-  "r_language_server",
-  "teal_ls",
-  "haxe_language_server",
-  "autohotkey_lsp",
-  "ansiblels",
-  "dhall_lsp_server",
-  "starlark_rust",
-  "gleam",
-  "fortls",
-  -- test and select
-  "solang",
-  "solc",
-  "solidity_ls",
-  "guile_ls",
-  "scheme_langserver",
-} -- }}}
-
--- {{{
-
-for _, s in ipairs(servers) do ssetup(s) end
-local plug_dir = "plug-handlers/"
-require(plug_dir .. "servers")
-
--- }}}
