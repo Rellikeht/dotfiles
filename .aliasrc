@@ -343,7 +343,7 @@ alias tt2='tt2d -h;tpl'
 alias tt3='tt2d -h;tt2d -v;tsp -L'
 alias ttw='tm new-window -c "$(pwd)"'
 
-alias tmfa='tma "$(tmfs)"'
+alias tmfa='tma -t "$(tmfs)"'
 
 alias bm='BEMENU_BACKEND=curses bemenu'
 alias nnn='nnn -d'

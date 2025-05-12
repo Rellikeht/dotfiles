@@ -8,6 +8,8 @@ let g:ftype_hooks['GV'] =
 
 let g:ftype_hooks['fugitive'] = g:ftype_hooks['git']
 
+nnoremap <silent> <leader>G :Git<CR>
+
 " }}} 
 
 " signify {{{
@@ -77,7 +79,6 @@ nnoremap <leader>g<Space>? :GV?<Space>
 
 " G* (g) {{{ 
 
-nnoremap <silent> <leader>G :Git<CR>
 nnoremap <silent> <leader>ggc :Git<CR>
 nnoremap <silent> <leader>ggC :Git<CR><C-w>T
 nnoremap <silent> <C-w><leader>ggc :tab Git<CR>
