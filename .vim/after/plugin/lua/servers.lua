@@ -5,6 +5,8 @@ local lspconfig = require("lspconfig")
 ---@diagnostic disable: unused-local
 local util = require("lspconfig.util")
 
+local lazy_utils = require("lazy_utils")
+
 local function default_setup_server(server)
   local config = lspconfig[server]
   if vim.fn.executable(
@@ -24,21 +26,12 @@ end
 
 local server_augroup_id = 0
 local function lazy_setup(filetypes, load_function)
-  local gid = vim.api.nvim_create_augroup(
-    "lsp_load_augroup_" .. server_augroup_id, {}
+  lazy_utils.load_on_filetypes(
+    filetypes, function()
+      load_function()
+      vim.cmd.LspStart()
+    end
   )
-  vim.api.nvim_create_autocmd(
-    {"FileType"}, {
-      pattern = filetypes,
-      group = gid,
-      callback = function(ev)
-        vim.api.nvim_del_augroup_by_id(gid)
-        load_function()
-        vim.cmd.LspStart()
-      end,
-    }
-  )
-  server_augroup_id = server_augroup_id + 1
 end
 
 -- }}}

@@ -22,6 +22,19 @@ Lfiles = {
   elixir = true,
 }
 
+if vim.fn.has("nvim-0.11") == 1 then
+  function NvimDiagPrev()
+    vim.diagnostic.jump({count = -1, float = true})
+  end
+  function NvimDiagNext()
+    vim.diagnostic.jump({count = 1, float = true})
+  end
+else
+  function NvimDiagNext() vim.diagnostic.goto_next() end
+  function NvimDiagPrev() vim.diagnostic.goto_prev() end
+
+end
+
 -- }}}
 
 -- commands {{{
@@ -61,16 +74,12 @@ vim.keymap.set(
   {noremap = true}
 )
 vim.keymap.set(
-  diag_modes, "<Leader>dp", commandRep(
-    function()
-      vim.diagnostic.jump({count = -1, float = true})
-    end
-  ), {noremap = true}
+  diag_modes, "<Leader>dp", commandRep(NvimDiagPrev),
+  {noremap = true}
 )
 vim.keymap.set(
-  diag_modes, "<Leader>dn", commandRep(
-    function() vim.diagnostic.jump({count = 1, float = true}) end
-  ), {noremap = true}
+  diag_modes, "<Leader>dn", commandRep(NvimDiagNext),
+  {noremap = true}
 )
 
 vim.keymap.set(
