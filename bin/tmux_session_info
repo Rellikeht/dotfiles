@@ -5,7 +5,14 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-tmux list-sessions \
+TMUX=tmux
+if [ -n "$2" ]; then
+    TMUX="tmux -L $2"
+elif [ -n "$TMUX_SOCKET" ]; then
+    TMUX="tmux -L $TMUX_SOCKET"
+fi
+
+$TMUX list-sessions \
     -f "#{==:$1,#{session_name}}" \
     -F "
 #{session_name}:

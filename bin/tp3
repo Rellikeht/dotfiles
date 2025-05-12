@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+# Beta version that names sessions after directories
+
+if [ -n "$TMUX_SOCKET" ]; then
+    alias tmux='tmux -L "$TMUX_SOCKET"'
+fi
+
+# NAME="${PWD##*/}"
+# seems like good heuristic (better than above)
+NAME="$(realpath --relative-to="$PWD/../../.." "$PWD")"
+if [ -n "$1" ]; then
+    NAME="$1"
+fi
+
+if ! tmux has-session -t "$NAME" 2>/dev/null; then
+    tmux new-session -d -s "$NAME" -c "$PWD"
+fi
+
+tmux attach-session -t "$NAME"
+exit 0
