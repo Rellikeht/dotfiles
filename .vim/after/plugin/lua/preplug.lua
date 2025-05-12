@@ -3,10 +3,10 @@ vim.api.nvim_create_user_command(
   "SlimeConfigAll", function(opts)
     vim.cmd.SlimeConfig()
     vim.g.slime_default_config = vim.b.slime_config
-  end, { nargs = 0 }
+  end, {nargs = 0}
 )
 vim.api.nvim_set_keymap(
-  "n", "gs:", ":<C-u>SlimeConfigAll<CR>", { noremap = true }
+  "n", "gs:", ":<C-u>SlimeConfigAll<CR>", {noremap = true}
 )
 
 local function slime_tmux_uniform_config()
@@ -30,7 +30,7 @@ function slime_setup_tmux()
         target_pane = opts.fargs[1],
       }
       slime_tmux_uniform_config()
-    end, { nargs = 1 }
+    end, {nargs = 1}
   )
   vim.api.nvim_create_user_command(
     "SlimeTmuxSocket", function(opts)
@@ -39,7 +39,7 @@ function slime_setup_tmux()
         target_pane = vim.g.slime_default_config.target_pane,
       }
       slime_tmux_uniform_config()
-    end, { nargs = 1 }
+    end, {nargs = 1}
   )
 
   vim.fn.SlimeSetupTmux()
@@ -55,11 +55,10 @@ function slime_setup_nvim()
   vim.g.slime_get_jobid = function()
     -- iterate over all buffers to find the first terminal with a valid job
     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-      if vim.api.nvim_get_option_value(
-        "buftype", { buf = bufnr }
-      ) == "terminal" then
+      if vim.api.nvim_get_option_value("buftype", {buf = bufnr}) ==
+        "terminal" then
         local chan = vim.api.nvim_get_option_value(
-          "channel", { buf = bufnr }
+          "channel", {buf = bufnr}
         )
         if chan and chan > 0 then return chan end
       end

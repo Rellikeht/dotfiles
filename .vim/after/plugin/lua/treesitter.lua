@@ -9,7 +9,7 @@ local gid = vim.api.nvim_create_augroup(
 -- just load treesitter after drawing window because it is very slow
 -- and nobody seems to know why
 vim.api.nvim_create_autocmd(
-  { "CursorHold" }, {
+  {"CursorHold"}, {
     pattern = "*",
     group = gid,
     callback = function()
@@ -124,9 +124,9 @@ vim.api.nvim_create_autocmd(
           -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
           -- parser_install_dir = "/some/path/to/store/parsers",
           -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-          incremental_selection = { enable = true },
+          incremental_selection = {enable = true},
 
-          indent = { enable = true },
+          indent = {enable = true},
           -- }}}
 
           highlight = { -- {{{
@@ -300,8 +300,8 @@ vim.api.nvim_create_autocmd(
               -- Below will go to either the start or the end, whichever is closer.
               -- Use if you want more granular movements
               -- Make it even more gradual by adding multiple queries and regex.
-              goto_next = { ["]d"] = "@conditional.outer" },
-              goto_previous = { ["[d"] = "@conditional.outer" },
+              goto_next = {["]d"] = "@conditional.outer"},
+              goto_previous = {["[d"] = "@conditional.outer"},
               -- }}}
             }, -- }}}
           },
@@ -313,11 +313,11 @@ vim.api.nvim_create_autocmd(
               clear_on_cursor_move = true,
             },
 
-            highlight_current_scope = { enable = true },
+            highlight_current_scope = {enable = true},
 
             smart_rename = {
               enable = true,
-              keymaps = { smart_rename = tskey .. "s" },
+              keymaps = {smart_rename = tskey .. "s"},
             },
 
             navigation = {
@@ -345,7 +345,7 @@ vim.api.nvim_create_autocmd(
 
       nkeymap(
         "<Leader>dqt", ":<C-u>TSToggle highlight<CR>",
-        { noremap = true }
+        {noremap = true}
       )
 
       -- }}}

@@ -22,7 +22,7 @@ Plug("nvim-lua/plenary.nvim")
 
 Plug(
   "nvim-treesitter/nvim-treesitter",
-  { ["do"] = ":silent! TSUpdate" }
+  {["do"] = ":silent! TSUpdate"}
 )
 Plug("norcalli/nvim-colorizer.lua")
 

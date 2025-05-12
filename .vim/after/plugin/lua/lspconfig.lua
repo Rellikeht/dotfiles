@@ -7,12 +7,11 @@ local lspconfig = require("lspconfig")
 -- i will switch to vscode at that rate of fucking
 -- waterfall of messages that cannot be stopped
 lspconfig.util.default_config = vim.tbl_extend(
-  "force", lspconfig.util.default_config,
-  { message_level = nil }
+  "force", lspconfig.util.default_config, {message_level = nil}
 )
 
-local diag_modes = { "n" }
-local buf_modes = { "n" }
+local diag_modes = {"n"}
+local buf_modes = {"n"}
 
 Lfiles = {
   go = true,
@@ -29,29 +28,28 @@ Lfiles = {
 
 vim.keymap.set(
   buf_modes, "<Leader>dqi", ":<C-u>LspInfo<CR>",
-  { noremap = true }
+  {noremap = true}
 )
 
 vim.keymap.set(
-  buf_modes, "<Leader>dql", ":<C-u>LspLog<CR>",
-  { noremap = true }
+  buf_modes, "<Leader>dql", ":<C-u>LspLog<CR>", {noremap = true}
 )
 
 vim.keymap.set(
   buf_modes, "<Leader>dqr", ":<C-u>LspRestart<CR>",
-  { noremap = true }
+  {noremap = true}
 )
 
 vim.keymap.set(
   buf_modes, "<Leader>dqs", ":<C-u>LspStart<CR>",
-  { noremap = true }
+  {noremap = true}
 )
 vim.keymap.set(
-  buf_modes, "<Leader>dqe", ":<C-u>LspStop ", { noremap = true }
+  buf_modes, "<Leader>dqe", ":<C-u>LspStop ", {noremap = true}
 )
 vim.keymap.set(
   buf_modes, "<Leader>dqE", ":<C-u>LspStop *<CR>",
-  { noremap = true }
+  {noremap = true}
 )
 
 -- }}}
@@ -60,41 +58,39 @@ vim.keymap.set(
 
 vim.keymap.set(
   diag_modes, "<Leader>df", vim.diagnostic.open_float,
-  { noremap = true }
+  {noremap = true}
 )
 vim.keymap.set(
   diag_modes, "<Leader>dp", commandRep(
     function()
-      vim.diagnostic.jump({ count = -1, float = true })
+      vim.diagnostic.jump({count = -1, float = true})
     end
-  ), { noremap = true }
+  ), {noremap = true}
 )
 vim.keymap.set(
   diag_modes, "<Leader>dn", commandRep(
-    function()
-      vim.diagnostic.jump({ count = 1, float = true })
-    end
-  ), { noremap = true }
+    function() vim.diagnostic.jump({count = 1, float = true}) end
+  ), {noremap = true}
 )
 
 vim.keymap.set(
   diag_modes, "<Leader>dl", function(_)
     if vim.g["qfloc"] == 1 then
-      vim.diagnostic.setloclist({ open = true })
+      vim.diagnostic.setloclist({open = true})
     else
-      vim.diagnostic.setqflist({ open = true })
+      vim.diagnostic.setqflist({open = true})
     end
-  end, { noremap = true }
+  end, {noremap = true}
 )
 
 vim.keymap.set(
   buf_modes, "<Leader>dL", function(_)
     if vim.g["qfloc"] == 1 then
-      vim.diagnostic.setloclist({ open = false })
+      vim.diagnostic.setloclist({open = false})
     else
-      vim.diagnostic.setqflist({ open = false })
+      vim.diagnostic.setqflist({open = false})
     end
-  end, { noremap = true }
+  end, {noremap = true}
 )
 
 -- }}}
@@ -119,7 +115,7 @@ vim.api.nvim_create_autocmd( -- {{{
       end
 
       -- :help vim.lsp.*
-      local opts = { buffer = bufnr, noremap = true }
+      local opts = {buffer = bufnr, noremap = true}
       local tab_mod = "<C-w>"
 
       -- }}}
@@ -190,8 +186,7 @@ vim.api.nvim_create_autocmd( -- {{{
       )
       vim.keymap.set(
         buf_modes, "<Leader>dF",
-        function() vim.lsp.buf.format({ async = true }) end,
-        opts
+        function() vim.lsp.buf.format({async = true}) end, opts
       )
 
       vim.keymap.set(
@@ -202,7 +197,7 @@ vim.api.nvim_create_autocmd( -- {{{
       -- insert mode {{{
 
       -- Rather useless
-      vim.keymap.set({ "i" }, "<C-x>;", vim.lsp.buf.hover, opts)
+      vim.keymap.set({"i"}, "<C-x>;", vim.lsp.buf.hover, opts)
 
       --  }}}
 
@@ -229,7 +224,7 @@ vim.api.nvim_create_autocmd( -- {{{
       -- when attaching first lsp define variable that will control
       -- formating on saving using lsp(s)
       local ftype = vim.api.nvim_get_option_value(
-        "filetype", { scope = "local" }
+        "filetype", {scope = "local"}
       )
       -- TODO name
       if Lfiles[ftype] ~= nil then
@@ -243,7 +238,7 @@ vim.api.nvim_create_autocmd( -- {{{
         )
 
         local lspformat = vim.api.nvim_create_augroup(
-          "lspformat", { clear = true }
+          "lspformat", {clear = true}
         )
 
         vim.api.nvim_create_autocmd(

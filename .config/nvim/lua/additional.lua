@@ -2,8 +2,8 @@
 -- Proper editorconfig handling
 vim.g.editorconfig = false
 vim.api.nvim_create_autocmd(
-  { "BufNewFile", "BufReadPre" }, {
-    pattern = { "*" },
+  {"BufNewFile", "BufReadPre"}, {
+    pattern = {"*"},
     ---@diagnostic disable-next-line: unused-local
     callback = function(ev)
       vim.b.editorconfig = vim.g.editorconfig
@@ -12,16 +12,16 @@ vim.api.nvim_create_autocmd(
 )
 
 vim.keymap.set(
-  { "n", "v" }, "<Leader>qeg",
+  {"n", "v"}, "<Leader>qeg",
   ":let g:editorconfig=!g:editorconfig<CR>"
 )
 vim.keymap.set(
-  { "n", "v" }, "<Leader>qeb",
+  {"n", "v"}, "<Leader>qeb",
   ":let b:editorconfig=!b:editorconfig<CR>"
 )
 -- Totally amateur
 vim.keymap.set(
-  { "n", "v" }, "<Leader>qer", "<Leader>qeb<Leader>qeb"
+  {"n", "v"}, "<Leader>qer", "<Leader>qeb<Leader>qeb"
 )
 
 -- }}}
@@ -29,8 +29,8 @@ vim.keymap.set(
 -- settings {{{
 
 vim.api.nvim_create_autocmd(
-  { "BufEnter" }, {
-    pattern = { "*/.config/nvim*/*.lua" },
+  {"BufEnter"}, {
+    pattern = {"*/.config/nvim*/*.lua"},
     ---@diagnostic disable-next-line: unused-local
     callback = function(ev)
       vim.cmd("setlocal keywordprg=':help'")
@@ -40,8 +40,8 @@ vim.api.nvim_create_autocmd(
 
 -- Because neovim (treesitter) somehow get this fucked
 vim.api.nvim_create_autocmd(
-  { "BufRead" }, {
-    pattern = { "*/doc/*.txt" },
+  {"BufRead"}, {
+    pattern = {"*/doc/*.txt"},
     callback = function()
       vim.bo.filetype = "help"
       vim.bo.syntax = "help"
@@ -53,14 +53,13 @@ vim.api.nvim_create_autocmd(
 
 -- keymaps {{{
 
+vim.api
+  .nvim_set_keymap("t", "<C-q>", "<C-\\>", {noremap = true})
 vim.api.nvim_set_keymap(
-  "t", "<C-q>", "<C-\\>", { noremap = true }
+  "t", "<C-\\>n", "<C-\\><C-n>", {noremap = true}
 )
 vim.api.nvim_set_keymap(
-  "t", "<C-\\>n", "<C-\\><C-n>", { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  "t", "<C-\\>o", "<C-\\><C-o>", { noremap = true }
+  "t", "<C-\\>o", "<C-\\><C-o>", {noremap = true}
 )
 
 for key_in, key_out in pairs(
@@ -75,7 +74,7 @@ for key_in, key_out in pairs(
 ) do
   vim.api.nvim_set_keymap(
     "t", "<C-\\>" .. key_in,
-    "<C-\\><C-n>" .. key_out .. "<Esc>", { noremap = true }
+    "<C-\\><C-n>" .. key_out .. "<Esc>", {noremap = true}
   )
 end
 
@@ -84,7 +83,7 @@ end
 -- colors {{{
 
 vim.cmd.colorscheme("elflord")
-vim.cmd.highlight("CursorLine", "guibg=#404040")
+vim.cmd.highlight("CursorLine", "guibg=#2a2a2a")
 
 -- TODO C why is this reset after vim config
 vim.cmd(
@@ -122,7 +121,7 @@ elseif vim.fn.has("gui_running") then --  {{{
 
   -- for uniform experience
   -- "t", "i" don't work anyway
-  for _, mode in pairs({ "n", "o", "v" }) do
+  for _, mode in pairs({"n", "o", "v"}) do
     vim.api.nvim_set_keymap(mode, "<C-/>", "<C-_>", {})
   end
 

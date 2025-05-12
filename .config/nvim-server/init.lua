@@ -29,10 +29,10 @@ Plug("rasulomaroff/cmp-bufname")
 Plug("ellisonleao/glow.nvim")
 Plug("jakewvincent/mkdnflow.nvim")
 
-Plug("zah/nim.vim", { ["for"] = "nim" })
-Plug("ocaml/vim-ocaml", { ["for"] = "ocaml" })
-Plug("bfrg/vim-cpp-modern", { ["for"] = "cpp" })
-Plug("elzr/vim-json", { ["for"] = "json" })
+Plug("zah/nim.vim", {["for"] = "nim"})
+Plug("ocaml/vim-ocaml", {["for"] = "ocaml"})
+Plug("bfrg/vim-cpp-modern", {["for"] = "cpp"})
+Plug("elzr/vim-json", {["for"] = "json"})
 Plug "tpope/vim-jdaddy"
 
 -- }}}

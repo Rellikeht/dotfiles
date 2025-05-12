@@ -17,7 +17,7 @@ local function default_setup_server(server)
       single_file_support = true,
       on_attach = lsp_attach,
       capabilities = Capabilities,
-      settings = { telemetry = { enable = false } },
+      settings = {telemetry = {enable = false}},
     }
   )
 end
@@ -28,7 +28,7 @@ local function lazy_setup(filetypes, load_function)
     "lsp_load_augroup_" .. server_augroup_id, {}
   )
   vim.api.nvim_create_autocmd(
-    { "FileType" }, {
+    {"FileType"}, {
       pattern = filetypes,
       group = gid,
       callback = function(ev)
@@ -56,15 +56,15 @@ local servers = { -- {{{
     "dune",
     "opam",
   }] = "ocamllsp",
-  [{ "haskell", "cabal" }] = "hls",
-  [{ "html" }] = "superhtml",
-  [{ "html" }] = "html",
-  [{ "css", "scss", "less" }] = "cssls",
-  [{ "sh", "bash", "zsh" }] = "bashls",
+  [{"haskell", "cabal"}] = "hls",
+  [{"html"}] = "superhtml",
+  [{"html"}] = "html",
+  [{"css", "scss", "less"}] = "cssls",
+  [{"sh", "bash", "zsh"}] = "bashls",
 
   -- sometimes needed
-  [{ "zig", "zir" }] = "zls",
-  [{ "latex", "tex", "plaintex", "bib" }] = "texlab",
+  [{"zig", "zir"}] = "zls",
+  [{"latex", "tex", "plaintex", "bib"}] = "texlab",
   [{
     "javascript",
     "javascriptreact",
@@ -75,29 +75,29 @@ local servers = { -- {{{
   }] = "ts_ls",
 
   -- just in case
-  [{ "erlang" }] = "erlangls",
-  [{ "odin" }] = "ols",
-  [{ "nickel", "ncl" }] = "nickel_ls",
-  [{ "scala" }] = "metals",
-  [{ "kotlin" }] = "kotlin_language_server",
-  [{ "ada" }] = "ada_ls",
-  [{ "roc" }] = "roc_ls",
-  [{ "r", "rmd", "quarto" }] = "r_language_server",
-  [{ "teal" }] = "teal_ls",
-  [{ "autohotkey" }] = "autohotkey_lsp",
-  [{ "yaml.ansible" }] = "ansiblels",
-  [{ "dhall" }] = "dhall_lsp_server",
-  [{ "star", "bzl", "BUILD.bazel" }] = "starlark_rust",
-  [{ "gleam" }] = "gleam",
-  [{ "fortran" }] = "fortls",
+  [{"erlang"}] = "erlangls",
+  [{"odin"}] = "ols",
+  [{"nickel", "ncl"}] = "nickel_ls",
+  [{"scala"}] = "metals",
+  [{"kotlin"}] = "kotlin_language_server",
+  [{"ada"}] = "ada_ls",
+  [{"roc"}] = "roc_ls",
+  [{"r", "rmd", "quarto"}] = "r_language_server",
+  [{"teal"}] = "teal_ls",
+  [{"autohotkey"}] = "autohotkey_lsp",
+  [{"yaml.ansible"}] = "ansiblels",
+  [{"dhall"}] = "dhall_lsp_server",
+  [{"star", "bzl", "BUILD.bazel"}] = "starlark_rust",
+  [{"gleam"}] = "gleam",
+  [{"fortran"}] = "fortls",
 
   -- test and select
-  [{ "solidity" }] = "solang",
-  [{ "solidity" }] = "solc",
-  [{ "solidity" }] = "solidity_ls",
+  [{"solidity"}] = "solang",
+  [{"solidity"}] = "solc",
+  [{"solidity"}] = "solidity_ls",
 
-  [{ "scheme.guile" }] = "guile_ls",
-  [{ "scheme" }] = "scheme_langserver",
+  [{"scheme.guile"}] = "guile_ls",
+  [{"scheme"}] = "scheme_langserver",
 }
 
 for ftypes, name in pairs(servers) do
@@ -109,7 +109,7 @@ default_setup_server("ast_grep")
 -- }}}
 
 lazy_setup(
-  { "lua" }, function()
+  {"lua"}, function()
     lspconfig.lua_ls.setup(
       {
         -- boilerplate {{{
@@ -160,10 +160,10 @@ lazy_setup(
                 unpack(vim.split(package.path, ";")),
               },
             },
-            hint = { enable = true },
+            hint = {enable = true},
             diagnostics = {
               -- Get the language server to recognize the `vim` global
-              globals = { "vim", "require" },
+              globals = {"vim", "require"},
             },
             workspace = {
               -- Make the server aware of Neovim runtime files
@@ -175,7 +175,7 @@ lazy_setup(
                 indent_size = 2,
               },
             },
-            telemetry = { enable = false },
+            telemetry = {enable = false},
           },
         }, -- }}}
       }
@@ -184,7 +184,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "python" }, function()
+  {"python"}, function()
     lspconfig.pylsp.setup(
       {
         -- boilerplate {{{
@@ -208,18 +208,18 @@ lazy_setup(
                 live_mode = false,
                 dmypy = true,
               },
-              pylint = { enabled = false, executable = "pylint" },
+              pylint = {enabled = false, executable = "pylint"},
               pyls_isort = {
                 -- import sorting
                 enabled = true,
               },
-              pycodestyle = { maxLineLength = 78 },
-              rope_autoimport = { enabled = true, eager = true },
-              ruff = { enabled = true },
+              pycodestyle = {maxLineLength = 78},
+              rope_autoimport = {enabled = true, eager = true},
+              ruff = {enabled = true},
             },
           },
 
-          flags = { debounce_text_changes = 100 },
+          flags = {debounce_text_changes = 100},
         }, -- }}}
       }
     )
@@ -227,7 +227,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "nix" }, function()
+  {"nix"}, function()
     lspconfig.nil_ls.setup(
       {
         -- boilerplate {{{
@@ -238,7 +238,7 @@ lazy_setup(
         capabilities = Capabilities, -- }}}
         settings = { -- {{{
           ["nil"] = {
-            formatting = { command = { "alejandra" } },
+            formatting = {command = {"alejandra"}},
             diagnostics = {
               ignored = {
                 -- "unused_rec",
@@ -262,7 +262,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "nim" }, function()
+  {"nim"}, function()
     lspconfig.nim_langserver.setup(
       {
         -- boilerplate {{{
@@ -287,7 +287,7 @@ lazy_setup(
 -- fucking almost useless shit
 -- that crashes on every fucking input
 lazy_setup(
-  { "typst" }, function()
+  {"typst"}, function()
     lspconfig.tinymist.setup(
       {
         -- boilerplate {{{
@@ -309,7 +309,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "go", "gomod", "gowork", "gotmpl" }, function()
+  {"go", "gomod", "gowork", "gotmpl"}, function()
     lspconfig.gopls.setup(
       {
         -- boilerplate {{{
@@ -323,7 +323,7 @@ lazy_setup(
             completionBudget = "0",
             usePlaceholders = true,
             experimentalPostfixCompletions = true,
-            analyses = { unusedparams = true, shadow = true },
+            analyses = {unusedparams = true, shadow = true},
             staticcheck = true,
             vulncheck = "Imports",
           },
@@ -334,7 +334,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "julia" }, function()
+  {"julia"}, function()
     lspconfig.julials.setup(
       {
         -- boilerplate {{{
@@ -343,7 +343,7 @@ lazy_setup(
         single_file_support = true,
         on_attach = lsp_attach,
         capabilities = Capabilities,
-        settings = { telemetry = { enable = false } }, -- }}}
+        settings = {telemetry = {enable = false}}, -- }}}
         cmd = { -- {{{
           "julials",
         }, -- }}}
@@ -357,7 +357,7 @@ lazy_setup(
 
 -- No idea if all of that is really needed
 lazy_setup(
-  { "rust" }, function()
+  {"rust"}, function()
     lspconfig.rust_analyzer.setup(
       {
         -- boilerplate {{{
@@ -370,18 +370,18 @@ lazy_setup(
           ["rust-analyzer"] = {
             standalone = true,
             workspaceFolders = false,
-            workspace = { workspaceFolders = false },
+            workspace = {workspaceFolders = false},
 
-            completion = { contextSupport = true },
+            completion = {contextSupport = true},
             imports = {
-              granularity = { group = "module" },
+              granularity = {group = "module"},
               prefix = "self",
             },
             cargo = {
-              buildScripts = { enable = true },
+              buildScripts = {enable = true},
               allFeatures = true,
             },
-            procMacro = { enable = true },
+            procMacro = {enable = true},
           },
         }, -- }}}
       }
@@ -422,7 +422,7 @@ lazy_setup(
 -- }}}
 
 lazy_setup(
-  { "c", "cpp", "objc", "objcpp", "cuda" }, function()
+  {"c", "cpp", "objc", "objcpp", "cuda"}, function()
     lspconfig.clangd.setup(
       {
         -- boilerplate {{{
@@ -467,7 +467,7 @@ lazy_setup(
           -- You can make this { "CursorMoved" } or { "CursorMoved,CursorMovedI" } but
           -- note that this may cause higher CPU usage.
           -- This option is only respected when only_current_line is true.
-          only_current_line_autocmd = { "CursorHold" },
+          only_current_line_autocmd = {"CursorHold"},
 
           -- whether to show parameter hints with the inlay hints or not
           show_parameter_hints = true,
@@ -513,11 +513,11 @@ lazy_setup(
             TemplateTemplateParm = "🅃",
             TemplateParamObject = "🅃",
           }, -- }}}
-          highlights = { detail = "Comment" },
+          highlights = {detail = "Comment"},
         }, -- }}}
         -- {{{
-        memory_usage = { border = "none" },
-        symbol_info = { border = "none" },
+        memory_usage = {border = "none"},
+        symbol_info = {border = "none"},
         -- }}}
       }
     )
@@ -525,7 +525,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "elixir" }, function()
+  {"elixir"}, function()
     lspconfig.elixirls.setup(
       {
         -- boilerplate {{{
@@ -542,7 +542,7 @@ lazy_setup(
           enableTestLenses = true,
           mixEnv = true,
         },
-        cmd = { "elixir-ls" },
+        cmd = {"elixir-ls"},
         -- }}}
       }
     )
@@ -550,7 +550,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "ps1" }, function()
+  {"ps1"}, function()
     lspconfig.powershell_es.setup(
       {
         -- boilerplate {{{
@@ -570,7 +570,7 @@ lazy_setup(
 )
 
 lazy_setup(
-  { "arduino" }, function()
+  {"arduino"}, function()
     lspconfig.arduino_language_server.setup(
       {
         -- boilerplate {{{
