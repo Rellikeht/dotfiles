@@ -3,14 +3,72 @@
 autocmd FileType gitcommit,gitsendmail
       \ setlocal textwidth=72
 
-map ,g <Nop>
-map ,gs <Nop>
+let g:ftype_hooks['GV'] =
+      \ 'o: open split / O: open tab / gb: GBrowse / q: quit'
+
+let g:ftype_hooks['fugitive'] = g:ftype_hooks['git']
 
 " }}} 
 
-" fugitive {{{ 
+" signify {{{
 
-let g:ftype_hooks['fugitive'] = g:ftype_hooks['git']
+nnoremap + <plug>(signify-next-hunk)
+nnoremap - <plug>(signify-prev-hunk)
+
+function! s:show_current_hunk() abort
+  let h = sy#util#get_hunk_stats()
+  if !empty(h)
+    echo printf('[Hunk %d/%d]', h.current_hunk, h.total_hunks)
+  endif
+endfunction
+
+autocmd User SignifyHunk call s:show_current_hunk()
+
+" }}}
+
+function s:SetupGit() " {{{
+
+" signify (s,j,k) {{{ 
+
+nnoremap <silent> <leader>gst :SignifyToggle<CR>
+nnoremap <silent> <leader>gsh :SignifyToggleHighlight<CR>
+nnoremap <silent> <leader>gs<Space>d :SignifyDisableAll<CR>
+nnoremap <silent> <leader>gs<Space>e :SignifyEnableAll<CR>
+nnoremap <silent> <leader>gsr :SignifyRefresh<CR>
+
+nnoremap <silent> <leader>gsd :SignifyHunkDiff<CR>
+nnoremap <silent> <leader>gsu :SignifyHunkUndo<CR>
+nnoremap <leader>gJ 99999<plug>(signify-next-hunk)
+nnoremap <leader>gK 99999<plug>(signify-prev-hunk)
+
+nnoremap <silent> <leader>gsl :SignifyList<CR>
+nnoremap <silent> <leader>gsi :echo sy#repo#get_stats_decorated(Expand('%'))<CR>
+nnoremap <silent> <leader>gss :SignifyDiff<CR>
+nnoremap <silent> <leader>gsS :SignifyDiff!<CR>
+
+" }}} 
+
+" gv (v,?) {{{ 
+
+nnoremap <silent> <leader>gv :GV<CR>
+nnoremap <silent> <leader>gV :GV!<CR>
+nnoremap <silent> <leader>g? :GV?<CR>
+nnoremap <leader>g<Space>v :GV<Space>
+nnoremap <leader>g<Space>V :GV!<Space>
+nnoremap <leader>g<Space>? :GV?<Space>
+
+" maps
+" - `o` or `<cr>` on a commit to display the content of it
+" - `o` or `<cr>` on commits to display the diff in the range
+" - `O` opens a new tab instead
+" - `gb` for `:GBrowse`
+" - `]]` and `[[` to move between commits
+" - `.` to start command-line with `:Git [CURSOR] SHA` à la fugitive
+" - `q` or `gq` to close
+
+" }}} 
+
+" fugitive {{{
 
 " TODO {{{ 
 " gmove
@@ -342,59 +400,9 @@ nnoremap <leader>gb<Space>m :G checkout --merge<Space>
 
 " }}} 
 
-" }}} 
+" }}}
 
-" signify (s,j,k) {{{ 
-
-nnoremap <silent> <leader>gst :SignifyToggle<CR>
-nnoremap <silent> <leader>gsh :SignifyToggleHighlight<CR>
-nnoremap <silent> <leader>gs<Space>d :SignifyDisableAll<CR>
-nnoremap <silent> <leader>gs<Space>e :SignifyEnableAll<CR>
-nnoremap <silent> <leader>gsr :SignifyRefresh<CR>
-
-nnoremap <silent> <leader>gsd :SignifyHunkDiff<CR>
-nnoremap <silent> <leader>gsu :SignifyHunkUndo<CR>
-nnoremap <leader>gJ 99999<plug>(signify-next-hunk)
-nnoremap <leader>gK 99999<plug>(signify-prev-hunk)
-
-nnoremap + <plug>(signify-next-hunk)
-nnoremap - <plug>(signify-prev-hunk)
-
-nnoremap <silent> <leader>gsl :SignifyList<CR>
-nnoremap <silent> <leader>gsi :echo sy#repo#get_stats_decorated(Expand('%'))<CR>
-nnoremap <silent> <leader>gss :SignifyDiff<CR>
-nnoremap <silent> <leader>gsS :SignifyDiff!<CR>
-
-function! s:show_current_hunk() abort
-  let h = sy#util#get_hunk_stats()
-  if !empty(h)
-    echo printf('[Hunk %d/%d]', h.current_hunk, h.total_hunks)
-  endif
 endfunction
+call lazy_utils#LoadOnKeys("<Leader>g", expand("<SID>").."SetupGit")
 
-autocmd User SignifyHunk call s:show_current_hunk()
-
-" }}} 
-
-" gv (v,?) {{{ 
-
-let g:ftype_hooks['GV'] =
-      \ 'o: open split / O: open tab / gb: GBrowse / q: quit'
-
-nnoremap <silent> <leader>gv :GV<CR>
-nnoremap <silent> <leader>gV :GV!<CR>
-nnoremap <silent> <leader>g? :GV?<CR>
-nnoremap <leader>g<Space>v :GV<Space>
-nnoremap <leader>g<Space>V :GV!<Space>
-nnoremap <leader>g<Space>? :GV?<Space>
-
-" maps
-" - `o` or `<cr>` on a commit to display the content of it
-" - `o` or `<cr>` on commits to display the diff in the range
-" - `O` opens a new tab instead
-" - `gb` for `:GBrowse`
-" - `]]` and `[[` to move between commits
-" - `.` to start command-line with `:Git [CURSOR] SHA` à la fugitive
-" - `q` or `gq` to close
-
-" }}} 
+" }}}
