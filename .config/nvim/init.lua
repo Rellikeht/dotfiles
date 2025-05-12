@@ -6,11 +6,9 @@ local Plug = vim.fn["plug#"]
 NVIM_DIR = vim.fn.stdpath("config")
 local lua_dir = NVIM_DIR .. "/lua"
 local vim_dir = "~/.vim"
-local plug_dir = "plug-handlers/"
 
 -- }}}
 
-require(plug_dir .. "preplug")
 vim.fn["plug#begin"](vim.fn.stdpath("data"))
 vim.cmd.source(vim_dir .. "/common-plugins.vim")
 
@@ -134,30 +132,5 @@ Plug("LiadOz/nvim-dap-repl-highlights")
 
 vim.fn["plug#end"]()
 
--- {{{ loading rest of config
-
-local confMods = {
-  "motion",
-  "cmp",
-  "look",
-  "treesitter",
-  "lspconfig",
-  "servers",
-  "coding",
-  "formats",
-  "other",
-}
-
-local confVimMods = {
-  -- "motion",
-  "testing",
-}
-
-for _, i in ipairs(confMods) do require(plug_dir .. i) end
-for _, i in ipairs(confVimMods) do
-  vim.cmd.source(lua_dir .. "/" .. plug_dir .. i .. ".vim")
-end
 require("additional")
 pcall(require, "local")
-
--- }}}

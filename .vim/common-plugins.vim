@@ -21,6 +21,7 @@ Plug 'dbakker/vim-paragraph-motion'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
+Plug 'Rellikeht/lazy-utils'
 
 " }}} 
 

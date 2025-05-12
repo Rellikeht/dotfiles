@@ -46,15 +46,15 @@ OP_MAPS = {
 }
 
 SCRIPT_PATH = Path(split(argv[0])[0])
-VIM_PATH = SCRIPT_PATH / ".." / ".." / ".vim" / "plug-handlers"
+VIM_PATH = SCRIPT_PATH / ".." / ".." / ".vim" / "after" / "plugin"
 
 # with stdout as f:
 with open(VIM_PATH / "fzf.vim", "w") as f:
+    print("function s:SetupFzf()", file=f)
+    print("", file=f)
     with open(SCRIPT_PATH / "fzf.vim", "r") as template:
         print(template.read(), file=f)
         print(file=f)
-    print("function s:SetupFzf()", file=f)
-    print("", file=f)
 
     print('" path maps {{{', file=f)
     print(file=f)
@@ -90,4 +90,7 @@ with open(VIM_PATH / "fzf.vim", "w") as f:
     print('" }}}', file=f)
 
     print("endfunction", file=f)
-    print('call LazyLoadOnStartup(expand("<SID>").."SetupFzf")', file=f)
+    print(
+        f'call lazy_utils#LoadOnKeys("{MAP_START}", expand("<SID>").."SetupFzf")',
+        file=f,
+    )

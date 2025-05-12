@@ -69,6 +69,7 @@ command -nargs=+ -complete=file Wvimgrep
       \ | call QFcmd('open')
         
 
+function s:SetupVimgrep()
 nnoremap <expr> <Space>vc ':<C-u>'.Vgcount().'Svimgrep '
 nnoremap <expr> <Space>v<Space>c ':<C-u>Svimgrep //gj  <Home><C-Right><Right><Right>'
 nnoremap <expr> <Space>v<Space>f ':<C-u>Svimgrep //gj % <Home><C-Right><Right><Right>'
@@ -156,6 +157,9 @@ nnoremap <expr> <Space>vsl ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj
 nnoremap <expr> <Space>vsL ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj *<CR>'
 nnoremap <expr> <Space>vsr ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj {.[^.]*,*}/**/{.*,*} * .*<CR>'
 nnoremap <expr> <Space>vsR ':<C-u>Svimgrep /'.Vescape(GetVisualSelection()).'/gj **<CR>'
+
+endfunction
+call lazy_utils#LoadOnKeys("<Space>v",expand("<SID>").."SetupVimgrep")
 " }}}
 
 " standard grep {{{
@@ -178,6 +182,7 @@ command -nargs=+ -complete=file Wgrep
       \ | call QFcmd('open')
         
 
+function s:SetupGrep()
 nnoremap <expr> <Space>fc ':<C-u>Sgrep '
 nnoremap <expr> <Space>f<Space>f ':<C-u>Sgrep  % <Home><C-Right><Right>'
 nnoremap <expr> <Space>f<Space>F ':<C-u>Sgrep  # <Home><C-Right><Right>'
@@ -386,6 +391,14 @@ nnoremap <expr> <Space>fs7 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.B
 nnoremap <expr> <Space>fs8 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.Bp(8).'<CR>'
 nnoremap <expr> <Space>fs9 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.Bp(9).'<CR>'
 nnoremap <expr> <Space>fs10 ':<C-u>Sgrep '.Vescape(GetVisualSelection()).' -r '.Bp(10).'<CR>'
+endfunction
+
+
+noremap <expr> <Space>f- g:qfloc ?
+\ ':<C-u>Lfilter /^grep: /<CR>'
+\ : ':<C-u>Cfilter /^grep: /<CR>'
+    
+call lazy_utils#LoadOnKeys("<Space>f",expand("<SID>").."SetupGrep")
 " }}}
 
 " ripgrep {{{
@@ -408,6 +421,7 @@ command -nargs=+ -complete=file Wrg
       \ | call QFcmd('open')
         
 
+function s:SetupRg()
 nnoremap <expr> <Leader>rc ':<C-u>Srg '
 nnoremap <expr> <Leader>r<Space>f ':<C-u>Srg  % <Home><C-Right><Right>'
 nnoremap <expr> <Leader>r<Space>F ':<C-u>Srg  # <Home><C-Right><Right>'
@@ -616,6 +630,9 @@ nnoremap <expr> <Leader>rs7 ':<C-u>Srg '.Vescape(GetVisualSelection()).' --hidde
 nnoremap <expr> <Leader>rs8 ':<C-u>Srg '.Vescape(GetVisualSelection()).' --hidden '.Bp(8).'<CR>'
 nnoremap <expr> <Leader>rs9 ':<C-u>Srg '.Vescape(GetVisualSelection()).' --hidden '.Bp(9).'<CR>'
 nnoremap <expr> <Leader>rsR ':<C-u>Srg '.Vescape(GetVisualSelection()).' .<CR>'
+endfunction
+
+call lazy_utils#LoadOnKeys("<Leader>r",expand("<SID>").."SetupRg")
 " }}}
 
 " silver searcher {{{
@@ -638,6 +655,7 @@ command -nargs=+ -complete=file Wag
       \ | call QFcmd('open')
         
 
+function s:SetupAg()
 nnoremap <expr> <Leader>ac ':<C-u>Sag '
 nnoremap <expr> <Leader>a<Space>f ':<C-u>Sag  % <Home><C-Right><Right>'
 nnoremap <expr> <Leader>a<Space>F ':<C-u>Sag  # <Home><C-Right><Right>'
@@ -845,22 +863,8 @@ nnoremap <expr> <Leader>as7 ':<C-u>Sag '.Vescape(GetVisualSelection()).' --hidde
 nnoremap <expr> <Leader>as8 ':<C-u>Sag '.Vescape(GetVisualSelection()).' --hidden '.Bp(8).'<CR>'
 nnoremap <expr> <Leader>as9 ':<C-u>Sag '.Vescape(GetVisualSelection()).' --hidden '.Bp(9).'<CR>'
 nnoremap <expr> <Leader>asR ':<C-u>Sag '.Vescape(GetVisualSelection()).' .<CR>'
-" }}}
+endfunction
 
-" additional {{{
-
-
-noremap <expr> <Space>f- g:qfloc ?
-\ ':<C-u>Lfilter /^grep: /<CR>'
-\ : ':<C-u>Cfilter /^grep: /<CR>'
-
-noremap <Space>fj :<C-u>Sgrep<Space>
-noremap <Space>fJ :<C-u>Sgrep!<Space>
-noremap <Leader>rj :<C-u>Srg<Space>
-noremap <Leader>rJ :<C-u>Srg!<Space>
-noremap <Leader>aj :<C-u>Sag<Space>
-noremap <Leader>aJ :<C-u>Sag!<Space>
-    
-
+call lazy_utils#LoadOnKeys("<Leader>a",expand("<SID>").."SetupAg")
 " }}}
 

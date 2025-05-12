@@ -13,7 +13,9 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   " syntax on
 
   packadd! cfilter
-  runtime! ftplugin/man.vim
+  if !has("nvim")
+    runtime! ftplugin/man.vim
+  endif
 
   " because of matchup
   " packadd! matchit
@@ -27,13 +29,6 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   source ~/.vim/settings.vim
   source ~/.vim/keys.vim
   source ~/.vim/files.vim
-
-  function s:Helper1()
-    source ~/.vim/greps.vim
-    source ~/.vim/quickstack.vim
-    " source ~/.vim/arglists.vim
-  endfunction
-  call LazyLoadOnStartup(expand("<SID>").."Helper1")
 
   " }}} 
 
@@ -67,17 +62,11 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
     source ~/.vim/svim-plug-handlers.vim
   endif " }}} 
 
-  " additional sourcing {{{ 
-
-  for f in split(glob("~/.vim/plug-handlers/*.vim"), "\n")
-    exe 'source '.fnameescape(f)
-  endfor
-  source ~/.vim/postplug.vim
-
+  " Those (may) use plugins, but aren't for plugins setup
+  source ~/.vim/quickstack.vim
+  " source ~/.vim/arglists.vim
   source ~/.vim/programming.vim
   source ~/.vim/look.vim
-
-  " }}} 
 
   if filereadable(expand('~/.local.vimrc'))
     source ~/.local.vimrc

@@ -656,29 +656,3 @@ function ToggleManProg()
 endfunction
 
 " }}} 
-
-" lazy loading {{{
-
-" this currently runs after moving cursor despite name of the event
-" TODO B maybe there is way to run this automatically after some time
-let s:lazy_id = 0
-function LazyLoadOnStartup(func)
-  let l:group_name = "lazy_load_group_"..s:lazy_id
-  let l:def =<< trim eval STOP
-  function s:Helper{s:lazy_id}()
-    augroup {l:group_name}
-    autocmd!
-    call {a:func}()
-    augroup END
-  endfunction
-  STOP
-  exe join(l:def, "\n")
-  exe "augroup "..l:group_name
-  exe "autocmd! ".." CursorHold * call s:Helper"..s:lazy_id.."()"
-  augroup END
-  let s:lazy_id = s:lazy_id + 1
-endfunction
-
-" TODO C setup on key
-
-" }}}

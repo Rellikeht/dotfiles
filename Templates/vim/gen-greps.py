@@ -176,7 +176,7 @@ def generate_maps(file, desc, combinations, pattern, count="", end="<CR>"):
 #  }}}
 
 SCRIPT_PATH = Path(split(argv[0])[0])
-VIM_PATH = SCRIPT_PATH / ".." / ".." / ".vim"
+VIM_PATH = SCRIPT_PATH / ".." / ".." / ".vim" / "after" / "plugin"
 
 with open(VIM_PATH / "greps.vim", "w") as f:
     with open(SCRIPT_PATH / "greps.vim", "r") as template:
@@ -186,6 +186,7 @@ with open(VIM_PATH / "greps.vim", "w") as f:
     print('" vimgrep {{{', file=f)
     generate_cmds(f, VGREP_DESC[1], "vimgrep", "lvimgrep")
     print(file=f)
+    print("function s:SetupVimgrep()", file=f)
     generate_single(f, VGREP_DESC, "c", count=VGREP_COUNT)
     generate_space_pre(
         f,
@@ -206,11 +207,19 @@ with open(VIM_PATH / "greps.vim", "w") as f:
     for pattern in VGREP_PATTERNS.items():
         print(file=f)
         generate_maps(f, VGREP_DESC, VGREP_COMBINATIONS, pattern)
+    print(file=f)
+    print("endfunction", file=f)
+    print(
+        f'call lazy_utils#LoadOnKeys("{VGREP_DESC[0]}",'
+        + 'expand("<SID>").."SetupVimgrep")',
+        file=f,
+    )
     print('" }}}\n', file=f)
 
     print('" standard grep {{{', file=f)
     generate_cmds(f, GREP_DESC[1], "Cgrep", "Lgrep", True)
     print(file=f)
+    print("function s:SetupGrep()", file=f)
     generate_single(f, GREP_DESC, "c")
     generate_space_pre(f, GREP_DESC, GREP_COMBINATIONS)
     generate_space_post(f, GREP_DESC, GREP_PATTERNS)
@@ -218,11 +227,27 @@ with open(VIM_PATH / "greps.vim", "w") as f:
     for pattern in GREP_PATTERNS.items():
         print(file=f)
         generate_maps(f, GREP_DESC, GREP_COMBINATIONS, pattern)
+    print("endfunction", file=f)
+    print(file=f)
+    print(
+        f"""
+noremap <expr> {GREP_DESC[0]}- g:qfloc ?
+\\ ':<C-u>Lfilter /^grep: /<CR>'
+\\ : ':<C-u>Cfilter /^grep: /<CR>'
+    """,
+        file=f,
+    )
+    print(
+        f'call lazy_utils#LoadOnKeys("{GREP_DESC[0]}",'
+        + 'expand("<SID>").."SetupGrep")',
+        file=f,
+    )
     print('" }}}\n', file=f)
 
     print('" ripgrep {{{', file=f)
     generate_cmds(f, RG_DESC[1], "Crg", "Lrg", True)
     print(file=f)
+    print("function s:SetupRg()", file=f)
     generate_single(f, RG_DESC, "c")
     generate_space_pre(f, RG_DESC, RG_COMBINATIONS)
     generate_space_post(f, RG_DESC, RG_PATTERNS)
@@ -230,37 +255,48 @@ with open(VIM_PATH / "greps.vim", "w") as f:
     for pattern in RG_PATTERNS.items():
         print(file=f)
         generate_maps(f, RG_DESC, RG_COMBINATIONS, pattern)
+    print("endfunction", file=f)
+    print(file=f)
+    print(
+        f'call lazy_utils#LoadOnKeys("{RG_DESC[0]}",'
+        + 'expand("<SID>").."SetupRg")',
+        file=f,
+    )
     print('" }}}\n', file=f)
 
     print('" silver searcher {{{', file=f)
     generate_cmds(f, AG_DESC[1], "Cag", "Lag", True)
     print(file=f)
+    print("function s:SetupAg()", file=f)
     generate_single(f, AG_DESC, "c")
     generate_space_pre(f, AG_DESC, AG_COMBINATIONS)
     generate_space_post(f, AG_DESC, AG_PATTERNS)
     for pattern in AG_PATTERNS.items():
         print(file=f)
         generate_maps(f, AG_DESC, AG_COMBINATIONS, pattern)
-    print('" }}}\n', file=f)
-
-    print('" additional {{{', file=f)
+    print("endfunction", file=f)
     print(file=f)
     print(
-        # TODO C filtering errors
-        f"""
-noremap <expr> {GREP_DESC[0]}- g:qfloc ?
-\\ ':<C-u>Lfilter /^grep: /<CR>'
-\\ : ':<C-u>Cfilter /^grep: /<CR>'
-
-noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
-noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
-noremap {RG_DESC[0]}j :<C-u>Srg<Space>
-noremap {RG_DESC[0]}J :<C-u>Srg!<Space>
-noremap {AG_DESC[0]}j :<C-u>Sag<Space>
-noremap {AG_DESC[0]}J :<C-u>Sag!<Space>
-    """,
+        f'call lazy_utils#LoadOnKeys("{AG_DESC[0]}",'
+        + 'expand("<SID>").."SetupAg")',
         file=f,
     )
-    print(file=f)
-    print('" }}}', file=f)
-    print(file=f)
+    print('" }}}\n', file=f)
+
+#     print('" additional {{{', file=f)
+#     print(file=f)
+#     print(
+#         # TODO C filtering errors
+#         f"""
+# noremap {GREP_DESC[0]}j :<C-u>Sgrep<Space>
+# noremap {GREP_DESC[0]}J :<C-u>Sgrep!<Space>
+# noremap {RG_DESC[0]}j :<C-u>Srg<Space>
+# noremap {RG_DESC[0]}J :<C-u>Srg!<Space>
+# noremap {AG_DESC[0]}j :<C-u>Sag<Space>
+# noremap {AG_DESC[0]}J :<C-u>Sag!<Space>
+#     """,
+#         file=f,
+#     )
+#     print(file=f)
+#     print('" }}}', file=f)
+#     print(file=f)

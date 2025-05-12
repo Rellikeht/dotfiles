@@ -4,11 +4,9 @@ require("functions")
 
 local Plug = vim.fn["plug#"]
 local vim_dir = "~/.vim"
-local plug_dir = "plug-handlers/"
 
 -- }}}
 
-require(plug_dir .. "preplug")
 vim.fn["plug#begin"](vim.fn.stdpath("data"))
 vim.cmd.source(vim_dir .. "/common-plugins.vim")
 
@@ -41,16 +39,5 @@ Plug "tpope/vim-jdaddy"
 
 vim.fn["plug#end"]()
 
--- {{{
-
-local modconfigs = { -- {{{
-  "motion",
-  "cmp",
-  "formats",
-} -- }}}
-
-for _, i in ipairs(modconfigs) do require(plug_dir .. i) end
 require("additional")
 pcall(require, "local")
-
--- }}}

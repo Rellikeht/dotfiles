@@ -1,3 +1,5 @@
+function s:SetupFzf()
+
 " helpers {{{ 
 
 function! s:with_dir(dir='')
@@ -342,8 +344,6 @@ let g:fzf_action = {
 " }}} 
 
 
-function s:SetupFzf()
-
 " path maps {{{
 
 " empty cmds
@@ -589,4 +589,4 @@ nnoremap <Leader>sR9 :<C-u> exe 'Dru '.Bp(9)<CR>
 
 " }}}
 endfunction
-call LazyLoadOnStartup(expand("<SID>").."SetupFzf")
+call lazy_utils#LoadOnKeys("<Leader>s", expand("<SID>").."SetupFzf")
