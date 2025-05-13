@@ -52,7 +52,10 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
   endif
   " }}} 
 
-  source ~/.vim/preplug.vim
+  for f in split(glob("~/.vim/preplug/*.vim"), "\n")
+    exe "source ".fnameescape(f)
+  endfor
+
   if v:progname =~? "^s\\?v\\(im\\)\\?" " {{{ 
     source ~/.vim/svimrc.vim
     call plug#begin('~/.vim/plugged')
