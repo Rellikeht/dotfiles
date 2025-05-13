@@ -180,20 +180,18 @@ function slime_setup_nvim()
     return nil
   end
 
-  -- vim.b.slime_config = vim.g.slime_default_config
-  -- pcall(vim.api.nvim_del_augroup_by_name, "SlimeConfig")
-
-  -- TODO term command that generates config automagically
-  -- vim.api.nvim_create_autocmd(
-  --   "TermResponse", {
-  --     group = vim.api.nvim_create_augroup("SlimeConfig", {}),
-  --     callback = function(args)
-  --       for k, v in pairs(args) do print(k, " ", v) end
-  --       -- Very imperfect and brittle solution really
-  --       pcall(vim.cmd.SlimeConfig)
-  --     end,
-  --   }
-  -- )
+  -- TODO is there a better way?
+  pcall(vim.api.nvim_del_augroup_by_name, "SlimeConfig")
+  vim.api.nvim_create_autocmd(
+    "TermEnter", {
+      group = vim.api.nvim_create_augroup("SlimeConfig", {}),
+      -- Imperfect and brittle solution
+      callback = function(args)
+        -- for k, v in pairs(args) do print(k, " ", v) end
+        pcall(vim.cmd.SlimeConfigAll)
+      end,
+    }
+  )
 
   pcall(vim.api.nvim_del_user_command, "SlimeTmuxPane")
   pcall(vim.api.nvim_del_user_command, "SlimeTmuxSocket")
