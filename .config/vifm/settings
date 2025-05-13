@@ -2,7 +2,7 @@
 
 " displaying {{{
 
-" YAY
+" YAYYYY
 set dotfiles
 
 " Try to leave some space from cursor to upper/lower border in lists
@@ -15,8 +15,6 @@ set sortnumbers
 " If you would rather use a plain text help file set novimhelp.
 set vimhelp
 
-" some elements aren't visible
-" colorscheme palenight
 colorscheme nord
 
 " good for now
@@ -153,7 +151,7 @@ set undolevels=500
 set trash
 
 " This is how many directories to store in the directory history.
-set history=2000
+set history=5000
 
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile

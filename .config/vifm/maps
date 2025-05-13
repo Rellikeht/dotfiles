@@ -4,8 +4,8 @@
 
 map <Space> <Nop>
 map ; <C-w>
-map ;; <C-w> <C-w>
-nmap ,<Space> :set hls!<CR>
+map ;; <C-w><C-w>
+nmap <Space>qh :set hls!<CR>
 
 " Display sorting dialog
 nnoremap s :sort<CR>
@@ -50,12 +50,12 @@ map ,gp :popd<CR>
 
 " settings {{{
 
-nnoremap ,qw :set wrap!<cr>
+nnoremap <Space>qw :set wrap!<cr>
 
 " View like in ranger
-noremap ,qv :set millerview!<CR>
+noremap <Space>qv :set millerview!<CR>
 
-nnoremap ,qs :set slowfs!<cr>
+nnoremap <Space>qs :set slowfs!<cr>
 
 " }}}
 

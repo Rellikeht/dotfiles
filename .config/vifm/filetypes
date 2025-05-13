@@ -81,8 +81,8 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " flash
 filetype *.swp
-       \ flashplayer %f,
-       \ ruffle %f,
+       \ flashplayer %f %i,
+       \ ruffle %f %i,
 
 " }}}
 
@@ -150,11 +150,13 @@ filetype ?*.exe,?*.dll
 
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
         \<image/*>
-        \ {View in sxiv}
+        \ {View in feh}
         \ feh %f %i,
         \ {View in sxiv}
         \ sxiv %f %i,
+        \ {Edit with pinta}
         \ pinta %f %i,
+        \ {Edit with gimp}
         \ gimp %f %i,
 
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},
@@ -260,7 +262,7 @@ filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
          \<application/vnd.openxmlformats-officedocument.*,
           \application/msword,
           \application/vnd.ms-excel>
-        \ libreoffice %f &
+        \ libreoffice %f %i &
 
 fileviewer {*.doc},<application/msword> catdoc %c
 fileviewer {*.docx},
@@ -412,6 +414,7 @@ filextype {?*.c,?*.h,?*.hpp,?*.cpp,?*.s,?*.asm,
     \.git*,?*.url,
     \}
     \ nvim-qt %f,
+    \ neovide %f,
     \ emacs %f,
     \ code %f,
 
