@@ -38,6 +38,7 @@ Plug("RRethy/nvim-treesitter-endwise")
 -- {{{ completion
 
 Plug("neovim/nvim-lspconfig")
+Plug("Rellikeht/nvim-lsp-config")
 Plug("mfussenegger/nvim-jdtls")
 Plug("ray-x/lsp_signature.nvim")
 
