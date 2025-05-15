@@ -156,6 +156,8 @@ augroup fmt
         \| endif
 augroup END
 
+cnoreabbrev Fmt Neoformat
+
 noremap <silent> <Leader>nf :Neoformat<CR>
 noremap <Leader>n<Space>f :Neoformat<Space>
 

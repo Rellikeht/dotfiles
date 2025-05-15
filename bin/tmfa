@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+SESSION="$(tmfs)"
+if [ -z "$SESSION" ]; then
+    echo Select session
+    exit 1
+fi
+
+TMUX=tmux
+if [ -n "$TMUX_SOCKET" ]; then
+    TMUX="tmux -L $TMUX_SOCKET"
+fi
+$TMUX attach -t "$SESSION"
