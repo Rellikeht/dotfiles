@@ -10,9 +10,6 @@ lspconfig.util.default_config = vim.tbl_extend(
   "force", lspconfig.util.default_config, {message_level = nil}
 )
 
-local diag_modes = {"n"}
-local buf_modes = {"n"}
-
 Lfiles = {
   go = true,
   julia = true,
@@ -32,7 +29,13 @@ if vim.fn.has("nvim-0.11") == 1 then
 else
   function NvimDiagNext() vim.diagnostic.goto_next() end
   function NvimDiagPrev() vim.diagnostic.goto_prev() end
+end
 
+local function add_opts(table, opts)
+  local result = {}
+  for k, v in pairs(table) do result[k] = v end
+  for k, v in pairs(opts) do result[k] = v end
+  return result
 end
 
 -- }}}
@@ -40,29 +43,25 @@ end
 -- commands {{{
 
 vim.keymap.set(
-  buf_modes, "<Leader>dqi", ":<C-u>LspInfo<CR>",
-  {noremap = true}
+  "n", "<Leader>dqi", ":<C-u>LspInfo<CR>", {noremap = true}
 )
 
 vim.keymap.set(
-  buf_modes, "<Leader>dql", ":<C-u>LspLog<CR>", {noremap = true}
+  "n", "<Leader>dql", ":<C-u>LspLog<CR>", {noremap = true}
 )
 
 vim.keymap.set(
-  buf_modes, "<Leader>dqr", ":<C-u>LspRestart<CR>",
-  {noremap = true}
+  "n", "<Leader>dqr", ":<C-u>LspRestart<CR>", {noremap = true}
 )
 
 vim.keymap.set(
-  buf_modes, "<Leader>dqs", ":<C-u>LspStart<CR>",
-  {noremap = true}
+  "n", "<Leader>dqs", ":<C-u>LspStart<CR>", {noremap = true}
 )
 vim.keymap.set(
-  buf_modes, "<Leader>dqe", ":<C-u>LspStop ", {noremap = true}
+  "n", "<Leader>dqe", ":<C-u>LspStop ", {noremap = true}
 )
 vim.keymap.set(
-  buf_modes, "<Leader>dqE", ":<C-u>LspStop *<CR>",
-  {noremap = true}
+  "n", "<Leader>dqE", ":<C-u>LspStop *<CR>", {noremap = true}
 )
 
 -- }}}
@@ -70,36 +69,29 @@ vim.keymap.set(
 -- general maps {{{
 
 vim.keymap.set(
-  diag_modes, "<Leader>df", vim.diagnostic.open_float,
-  {noremap = true}
+  "n", "<Leader>de", vim.diagnostic.open_float,
+  {noremap = true, desc = "show diagnostics under cursor"}
 )
 vim.keymap.set(
-  diag_modes, "<Leader>dp", commandRep(NvimDiagPrev),
-  {noremap = true}
+  "n", "<Leader>dp", commandRep(NvimDiagPrev),
+  {noremap = true, desc = "[N] prev diagnostic"}
 )
 vim.keymap.set(
-  diag_modes, "<Leader>dn", commandRep(NvimDiagNext),
-  {noremap = true}
+  "n", "<Leader>dn", commandRep(NvimDiagNext),
+  {noremap = true, desc = "[N] next diagnostic"}
 )
 
 vim.keymap.set(
-  diag_modes, "<Leader>dl", function(_)
-    if vim.g["qfloc"] == 1 then
+  "n", "<Leader>dll", function(_)
+    if vim.g.qfloc == 1 then
       vim.diagnostic.setloclist({open = true})
     else
       vim.diagnostic.setqflist({open = true})
     end
-  end, {noremap = true}
-)
-
-vim.keymap.set(
-  buf_modes, "<Leader>dL", function(_)
-    if vim.g["qfloc"] == 1 then
-      vim.diagnostic.setloclist({open = false})
-    else
-      vim.diagnostic.setqflist({open = false})
-    end
-  end, {noremap = true}
+  end, {
+    noremap = true,
+    desc = "populate quickfix/loclist with diagnostics",
+  }
 )
 
 -- }}}
@@ -132,74 +124,104 @@ vim.api.nvim_create_autocmd( -- {{{
       -- info {{{
 
       vim.keymap.set(
-        buf_modes, "<Leader>dd", vim.lsp.buf.definition, opts
+        "n", "<Leader>dgd", vim.lsp.buf.definition,
+        add_opts(opts, {desc = "go to definition"})
       )
       vim.keymap.set(
-        buf_modes, tab_mod .. "<Leader>dd",
+        "n", tab_mod .. "<Leader>dgd",
         "<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
-        opts
+        add_opts(opts, {desc = "go to definition in new tab"})
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>dD", vim.lsp.buf.declaration, opts
+        "n", "<Leader>dgD", vim.lsp.buf.declaration,
+        add_opts(opts, {desc = "go to declaration"})
       )
       vim.keymap.set(
-        buf_modes, tab_mod .. "<Leader>dD",
+        "n", tab_mod .. "<Leader>dgD",
         "<cmd>tab split | lua vim.lsp.buf.declaration()<CR>",
-        opts
+        add_opts(opts, {desc = "go to declaration in new tab"})
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>di", vim.lsp.buf.implementation,
-        opts
+        "n", "<Leader>dgi", vim.lsp.buf.implementation,
+        add_opts(opts, {desc = "go to implementation"})
       )
       vim.keymap.set(
-        buf_modes, tab_mod .. "<Leader>di",
+        "n", tab_mod .. "<Leader>dgi",
         "<cmd>tab split | lua vim.lsp.buf.implementation()<CR>",
-        opts
+        add_opts(
+          opts, {desc = "go to implementation in new tab"}
+        )
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>dt", vim.lsp.buf.type_definition,
-        opts
+        "n", "<Leader>dgt", vim.lsp.buf.type_definition,
+        add_opts(opts, {desc = "go to type definition"})
       )
       vim.keymap.set(
-        buf_modes, tab_mod .. "<Leader>dt",
+        "n", tab_mod .. "<Leader>dgt",
         "<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>",
-        opts
+        add_opts(
+          opts, {desc = "go to type definition in new tab"}
+        )
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>ds", vim.lsp.buf.signature_help,
-        opts
-      )
-      vim.keymap.set(
-        buf_modes, tab_mod .. "<Leader>ds",
-        "<cmd>tab split | lua vim.lsp.buf.signature_help()<CR>",
-        opts
+        "n", "<Leader>dit", vim.lsp.buf.signature_help,
+        add_opts(opts, {desc = "show signature help"})
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>dr", vim.lsp.buf.references, opts
+        "n", "<Leader>dlr", function()
+          vim.lsp.buf.references(nil, {loclist = vim.g.qfloc})
+        end, add_opts(
+          opts,
+          {desc = "populate quickfix/loclist with references"}
+        )
+      )
+
+      -- TODO qfloc
+      vim.keymap.set(
+        "n", "<Leader>dlu",
+        function() vim.lsp.buf.typehierarchy("subtypes") end,
+        add_opts(
+          opts, {desc = "populate quickfix with subtypes"}
+        )
+      )
+      vim.keymap.set(
+        "n", "<Leader>dlo",
+        function()
+          vim.lsp.buf.typehierarchy("supertypes")
+        end, add_opts(
+          opts, {desc = "populate quickfix with supertypes"}
+        )
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>dh", vim.lsp.buf.hover, opts
+        "n", "<Leader>dis", vim.lsp.buf.hover, add_opts(
+          opts, {
+            desc = "display hover information about the symbol under the cursor",
+          }
+        )
       )
 
       -- }}}
 
       -- actions {{{
       vim.keymap.set(
-        buf_modes, "<Leader>dR", vim.lsp.buf.rename, opts
+        "n", "<Leader>dar", vim.lsp.buf.rename,
+        add_opts(opts, {desc = "rename symbol under cursor"})
       )
       vim.keymap.set(
-        buf_modes, "<Leader>dF",
-        function() vim.lsp.buf.format({async = true}) end, opts
+        "n", "<Leader>daf",
+        function() vim.lsp.buf.format({async = true}) end,
+        add_opts(opts, {desc = "format file using lsp"})
       )
 
       vim.keymap.set(
-        buf_modes, "<Leader>da", vim.lsp.buf.code_action, opts
+        "n", "<Leader>daa", vim.lsp.buf.code_action,
+        add_opts(opts, {desc = "execute code action"})
       )
       -- }}}
 
@@ -212,19 +234,19 @@ vim.api.nvim_create_autocmd( -- {{{
 
       -- workspaces {{{
       vim.keymap.set(
-        buf_modes, "<Leader>dwa",
-        vim.lsp.buf.add_workspace_folder, opts
+        "n", "<Leader>dwa", vim.lsp.buf.add_workspace_folder,
+        add_opts(opts, {desc = "add workspace folder"})
       )
       vim.keymap.set(
-        buf_modes, "<Leader>dwr",
-        vim.lsp.buf.remove_workspace_folder, opts
+        "n", "<Leader>dwr", vim.lsp.buf.remove_workspace_folder,
+        add_opts(opts, {desc = "remove workspace folder"})
       )
       vim.keymap.set(
-        buf_modes, "<Leader>dwl", function()
+        "n", "<Leader>dwl", function()
           print(
             vim.inspect(vim.lsp.buf.list_workspace_folders())
           )
-        end, opts
+        end, add_opts(opts, {desc = "list workspace folders"})
       )
       -- }}}
 
