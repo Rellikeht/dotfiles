@@ -58,27 +58,10 @@ set listchars+=lead:.
 set synmaxcol=250
 set smarttab
 
-" }}} 
-
-" wildignore {{{ 
-
-set wildignore+=.git/**
-set wildignore+=.local/**
-set wildignore+=.\?cache/**
-set wildignore+=git*/**
-set wildignore+=build/**
-
-set wildignore+=*.o,*.obj,*.swp
-set wildignore+=*.so,*.a,*.bin
-set wildignore+=*.pdf,*.djvu,*.epub
-set wildignore+=*.opus,*.ogg,*.mp3
-set wildignore+=*.mp4,*.mkv,*.webm
-set wildignore+=*.AppImage,*.exe
-set wildignore+=*.lock,*~
-set wildignore+=*.doc,*.xls
-set wildignore+=.\?git*
-set wildignore+=*.hi,*.cma,*.cmi
-" set wildignore+=*/
+set undofile
+if !has("nvim")
+  set undodir=~/.vim/history
+endif
 
 " }}} 
 
@@ -275,3 +258,25 @@ let g:vgrep_prog = 'grep '.g:vgrep_args
 let g:markdown_minlines = 500
 
 " }}}
+
+" wildignore {{{ 
+
+set wildignore+=.git/**
+set wildignore+=.local/**
+set wildignore+=.\?cache/**
+set wildignore+=git*/**
+set wildignore+=build/**
+
+set wildignore+=*.o,*.obj,*.swp
+set wildignore+=*.so,*.a,*.bin
+set wildignore+=*.pdf,*.djvu,*.epub
+set wildignore+=*.opus,*.ogg,*.mp3
+set wildignore+=*.mp4,*.mkv,*.webm
+set wildignore+=*.AppImage,*.exe
+set wildignore+=*.lock,*~
+set wildignore+=*.doc,*.xls
+set wildignore+=.\?git*
+set wildignore+=*.hi,*.cma,*.cmi
+" set wildignore+=*/
+
+" }}} 

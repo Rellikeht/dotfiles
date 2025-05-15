@@ -27,7 +27,10 @@ if vim.fn.has("nvim-0.11") == 1 then
     vim.diagnostic.jump({count = 1, float = true})
   end
 else
+
+  ---@diagnostic disable-next-line: deprecated
   function NvimDiagNext() vim.diagnostic.goto_next() end
+  ---@diagnostic disable-next-line: deprecated
   function NvimDiagPrev() vim.diagnostic.goto_prev() end
 end
 
