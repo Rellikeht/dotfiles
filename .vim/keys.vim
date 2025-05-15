@@ -134,6 +134,12 @@ snoremap <BS> <BS>i
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" Primeagen's moving visually selected lines
+xnoremap J :m '>+1<CR>gv=gv
+xnoremap K :m '<-2<CR>gv=gv
+
+nnoremap Q <nop>
+
 " }}} 
 
 " taglist {{{ 

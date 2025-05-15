@@ -127,31 +127,31 @@ vim.api.nvim_create_autocmd( -- {{{
       -- info {{{
 
       vim.keymap.set(
-        "n", "<Leader>dgd", vim.lsp.buf.definition,
+        "n", "<Leader>dd", vim.lsp.buf.definition,
         add_opts(opts, {desc = "go to definition"})
       )
       vim.keymap.set(
-        "n", tab_mod .. "<Leader>dgd",
+        "n", tab_mod .. "<Leader>dd",
         "<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
         add_opts(opts, {desc = "go to definition in new tab"})
       )
 
       vim.keymap.set(
-        "n", "<Leader>dgD", vim.lsp.buf.declaration,
+        "n", "<Leader>dD", vim.lsp.buf.declaration,
         add_opts(opts, {desc = "go to declaration"})
       )
       vim.keymap.set(
-        "n", tab_mod .. "<Leader>dgD",
+        "n", tab_mod .. "<Leader>dD",
         "<cmd>tab split | lua vim.lsp.buf.declaration()<CR>",
         add_opts(opts, {desc = "go to declaration in new tab"})
       )
 
       vim.keymap.set(
-        "n", "<Leader>dgi", vim.lsp.buf.implementation,
+        "n", "<Leader>di", vim.lsp.buf.implementation,
         add_opts(opts, {desc = "go to implementation"})
       )
       vim.keymap.set(
-        "n", tab_mod .. "<Leader>dgi",
+        "n", tab_mod .. "<Leader>di",
         "<cmd>tab split | lua vim.lsp.buf.implementation()<CR>",
         add_opts(
           opts, {desc = "go to implementation in new tab"}
@@ -159,11 +159,11 @@ vim.api.nvim_create_autocmd( -- {{{
       )
 
       vim.keymap.set(
-        "n", "<Leader>dgt", vim.lsp.buf.type_definition,
+        "n", "<Leader>dt", vim.lsp.buf.type_definition,
         add_opts(opts, {desc = "go to type definition"})
       )
       vim.keymap.set(
-        "n", tab_mod .. "<Leader>dgt",
+        "n", tab_mod .. "<Leader>dt",
         "<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>",
         add_opts(
           opts, {desc = "go to type definition in new tab"}
@@ -171,7 +171,7 @@ vim.api.nvim_create_autocmd( -- {{{
       )
 
       vim.keymap.set(
-        "n", "<Leader>dit", vim.lsp.buf.signature_help,
+        "n", "<Leader>ds", vim.lsp.buf.signature_help,
         add_opts(opts, {desc = "show signature help"})
       )
 
@@ -202,7 +202,7 @@ vim.api.nvim_create_autocmd( -- {{{
       )
 
       vim.keymap.set(
-        "n", "<Leader>dis", vim.lsp.buf.hover, add_opts(
+        "n", "<Leader>dh", vim.lsp.buf.hover, add_opts(
           opts, {
             desc = "display hover information about the symbol under the cursor",
           }
@@ -213,17 +213,17 @@ vim.api.nvim_create_autocmd( -- {{{
 
       -- actions {{{
       vim.keymap.set(
-        "n", "<Leader>dar", vim.lsp.buf.rename,
+        "n", "<Leader>dr", vim.lsp.buf.rename,
         add_opts(opts, {desc = "rename symbol under cursor"})
       )
       vim.keymap.set(
-        "n", "<Leader>daf",
+        "n", "<Leader>df",
         function() vim.lsp.buf.format({async = true}) end,
         add_opts(opts, {desc = "format file using lsp"})
       )
 
       vim.keymap.set(
-        "n", "<Leader>daa", vim.lsp.buf.code_action,
+        "n", "<Leader>da", vim.lsp.buf.code_action,
         add_opts(opts, {desc = "execute code action"})
       )
       -- }}}
@@ -231,7 +231,12 @@ vim.api.nvim_create_autocmd( -- {{{
       -- insert mode {{{
 
       -- Rather useless
-      vim.keymap.set({"i"}, "<C-x>;", vim.lsp.buf.hover, opts)
+      vim.keymap
+        .set({"i"}, "<C-x><C-q>", vim.lsp.buf.hover, opts)
+      vim.keymap.set({"i"}, "<C-x>q", "<C-x>q", opts)
+      vim.keymap.set(
+        {"i"}, "<C-x>;", vim.lsp.buf.signature_help, opts
+      )
 
       --  }}}
 
