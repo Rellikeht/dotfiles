@@ -3,7 +3,7 @@ source ~/.vim/tiny-compatible.vim
 " Configration suited for beeing shared between neovim (nvim), custom compiled 
 " vim / standard vim from repos (vim) and vim-tiny (tvim / vi)
 
-if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
+if v:progname !~? "\v^t(v(i(m)?)?)?" && v:progname !~? "^vim.tiny" " {{{ 
   " and it works, at least now
 
   " plugins and packages {{{ 
@@ -41,7 +41,10 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
     let &shellredir='| Out-File -Encoding UTF8 %s'
   endif " }}} 
 
-  " vim plug auto install {{{ 
+  " vim-plug {{{ 
+  let g:plug_threads = 32
+
+  " auto install
   let plug_src = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   let g:data_dir = has('nvim') ? stdpath('config') : '~/.vim'
   if empty(glob(g:data_dir . '/autoload/plug.vim'))
@@ -56,17 +59,16 @@ if v:progname !~? "t\\(v\\(im\\)\\?\\)\\?"
     exe "source ".fnameescape(f)
   endfor
 
-  if v:progname =~? "^s\\?v\\(im\\)\\?" " {{{ 
+  if !has("nvim") " {{{ 
     source ~/.vim/svimrc.vim
     call plug#begin('~/.vim/plugged')
-    source ~/.vim/common-plugins.vim
-    source ~/.vim/svim-plugins.vim
+    source ~/.vim/plugins.vim
     call plug#end()
     source ~/.vim/svim-plug-handlers.vim
   endif " }}} 
 
   " Those (may) use plugins, but aren't for plugins setup
-  source ~/.vim/quickstack.vim
+  " source ~/.vim/quickstack.vim
   " source ~/.vim/arglists.vim
   source ~/.vim/programming.vim
   source ~/.vim/look.vim

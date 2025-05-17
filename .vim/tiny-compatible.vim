@@ -490,6 +490,8 @@ set undolevels=10000
 
 " other {{{ 
 
+set background=dark
+
 set noautoread
 set noautochdir
 if !has("nvim")
@@ -497,13 +499,23 @@ if !has("nvim")
 endif
 
 set modelines=3
-set nomodeline
 set hidden
+set secure
 
 set cedit=<C-j>
 set cmdwinheight=30
 
 " }}} 
+
+" only for tiny vim !!! {{{
+
+set modeline
+
+map <C-p> ,
+" = gets tricked by this comma
+map <C-n> ;
+
+" }}}
 
 " files {{{ 
 
@@ -513,19 +525,3 @@ set fileformat=unix
 " }}} 
 
 " }}} 
-
-if v:progname =~? "^tv\\(im\\?\\)\\?"
-      \ || v:progname =~? "^vim.tiny" " {{{ 
-  set background=dark
-  set hlsearch
-  set secure
-  set modeline
-
-  map <C-p> ,
-  " = gets tricked by this comma
-  map <C-n> ;
-endif " }}} 
-
-if v:progname =~? "^s\\?v\\(im\\?\\)\\?" " {{{ 
-  set completeopt+=fuzzy
-endif " }}} 

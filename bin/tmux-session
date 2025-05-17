@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 if [ $# -ge 1 ]; then
-    SESSION="$HOME/.tmux_sessions/$1"
+    SESSION="$1"
 else
     SESSION=$(
         cd $HOME/.tmux_sessions

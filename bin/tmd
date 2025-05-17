@@ -4,14 +4,14 @@
 if [ -n "$TMUX_SOCKET" ]; then
     alias tmux='tmux -L "$TMUX_SOCKET"'
 fi
-NAME="$PWD" # ???
+DIR="$PWD" # ???
 if [ -n "$1" ]; then
-    NAME="$1"
+    DIR="$1"
 fi
 
-if ! tmux has-session -t "$NAME" 2>/dev/null; then
-    tmux new-session -d -s "$NAME" -c "$PWD"
+if ! tmux has-session -t "$DIR" 2>/dev/null; then
+    tmux new-session -d -s "$DIR" -c "$DIR"
 fi
 
-tmux attach-session -t "$NAME"
+tmux attach-session -t "$DIR"
 exit 0

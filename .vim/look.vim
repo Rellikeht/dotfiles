@@ -1,6 +1,6 @@
 " colors {{{ 
 
-if v:progname =~? "^s\\?v\\(im\\?\\)\\?"
+if !has("nvim")
   colorscheme torte "industry
 endif
 

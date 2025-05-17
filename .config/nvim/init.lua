@@ -10,7 +10,7 @@ local vim_dir = "~/.vim"
 -- }}}
 
 vim.fn["plug#begin"](vim.fn.stdpath("data"))
-vim.cmd.source(vim_dir .. "/common-plugins.vim")
+vim.cmd.source(vim_dir .. "/plugins.vim")
 
 -- {{{ dependencies
 

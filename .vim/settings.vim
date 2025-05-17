@@ -32,7 +32,7 @@ autocmd BufWinEnter *
 " arglocal with current file for all new tabs
 " autocmd TabNew * arglocal!
 
-" set secure
+set nomodeline
 
 " modeline emulation for undetected filetypes
 " shitty, but works somehow
@@ -59,9 +59,6 @@ set synmaxcol=250
 set smarttab
 
 set undofile
-if !has("nvim")
-  set undodir=~/.vim/history
-endif
 
 " }}} 
 
@@ -234,9 +231,6 @@ autocmd VimEnter *
 nnoremap <Leader>qca :<C-u>call ToggleAutochdir()<CR>
 
 set maxmempattern=2000000
-if !has("nvim")
-  set maxmem=2000000
-endif
 
 " }}} 
 
@@ -280,3 +274,13 @@ set wildignore+=*.hi,*.cma,*.cmi
 " set wildignore+=*/
 
 " }}} 
+
+if !has("nvim") " {{{
+  set maxmem=2000000
+  set undodir=~/.vim/history
+  set completeopt+=fuzzy
+  " }}}
+
+elseif has("nvim-0.11") " {{{
+  set completeopt+=fuzzy
+endif " }}}
