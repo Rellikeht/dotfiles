@@ -362,7 +362,7 @@ alias prgc='prg \
     -a mpv -a vlc \
     -a vifm -a ranger -a nnn -a lf \
     -a pcmanfm -a pcmanfm-qt \
-    -a wget -a curl -a aria2 -a rsync -a gdown -a megatools \
+    -a wget -a curl -a aria2c -a rsync -a gdown -a megatools \
     -a rar -a unrar -a 7z -a 7za -a 7zr \
     -a zipgrep -a zipcloak -a zipsplit \
     -a xz -a unxz -a xzcat -a lzma -a unlzma -a lzcat \
@@ -406,17 +406,6 @@ alias gt='/usr/bin/env -S time'
 alias pgo='ping gnu.org'
 alias pgs='ping -c 3 gnu.org'
 alias myip="curl -s ipinfo.io/ip | sed 'a\\'"
-alias aria_helper='aria2c --continue=true \
-    --max-concurrent-downloads=200 --optimize-concurrent-downloads=true \
-    --bt-detach-seed-only=true --bt-max-peers=80 \
-    --seed-ratio=0.0 --check-integrity=true '
-
-# It may be better to automate this somehow instead
-# of having multiple commands, but this will be hard
-alias aria='aria_helper --file-allocation=falloc'
-alias ariap='aria_helper --file-allocation=prealloc'
-alias arian='aria_helper --file-allocation=none'
-alias ariat='aria_helper --follow-torrent false'
 
 alias rsync='rsync --progress'
 alias rs=rsync

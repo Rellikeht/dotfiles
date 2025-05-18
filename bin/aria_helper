@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+aria2c --continue=true \
+    --max-concurrent-downloads=200 \
+    --optimize-concurrent-downloads=true \
+    --bt-detach-seed-only=true \
+    --bt-max-peers=80 \
+    --seed-ratio=0.0 \
+    --check-integrity=true \
+    "$@"
