@@ -2,7 +2,7 @@
 
 " documents {{{
 
-" TODO pdf to text and other goodies
+" TODO C pdf to text and other goodies
 
 filextype {*.pdf},<application/pdf>
     \ zathura %f %i &, 
@@ -21,6 +21,15 @@ filextype {*.epub},<application/epub>
     \ zathura %f %i &,
     \ zathura %c %i &,
     \ tzathura %f &,
+    \ mupdf %c %i &,
+    \ mupdf %f &,
+
+filextype {*.mobi},<application/mobi>
+    \ zathura %f %i &,
+    \ zathura %c %i &,
+    \ tzathura %f &,
+    \ mupdf %f %i &,
+    \ mupdf %c %i &,
 
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
     \ zathura %f %i &,

@@ -20,9 +20,11 @@ noremap cr :rename!<CR>
 
 map ,j :jobs<CR>
 nmap g! :shell<CR>
-nmap gr :!  %i &<C-b><M-b><C-b>
+nmap gc! :!  %i &<C-b><M-b><C-b>
 
 map ZX :qa<CR>
+noremap gL gr
+map gm :move<CR>
 
 " }}}
 
@@ -113,10 +115,10 @@ cnoremap <M-h> <M-b><M-d>
 " gui fm {{{
 
 " Sometimes may be needed for gui operations
-map gms :!pcmanfm %i &<CR>
-map gmS :!pcmanfm &<CR>
-map gmd :!pcmanfm %d %D %i &<CR>
-map gmD :!pcmanfm %d %D &<CR>
+nnoremap grs :!pcmanfm %i &<CR>
+nnoremap grS :!pcmanfm &<CR>
+nnoremap grd :!pcmanfm %d %D %i &<CR>
+nnoremap grD :!pcmanfm %d %D &<CR>
 
 " }}}
 
