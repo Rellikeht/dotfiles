@@ -1,3 +1,3 @@
 # dotfiles
 
-My most important configs
+All (main) configurations for programs I use (and used to use).

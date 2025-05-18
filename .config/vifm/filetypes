@@ -7,8 +7,8 @@
 filextype {*.pdf},<application/pdf>
     \ zathura %f %i &, 
     \ tzathura %f &, 
-    \ mupdf %f %i &,
     \ zathura %c %i &, 
+    \ mupdf %f %i &,
     \ mupdf %c %i &,
 
 fileviewer {*.pdf},<application/pdf>
@@ -18,16 +18,10 @@ fileviewer {*.pdf},<application/pdf>
     " \ vifmimg clear,
 
 filextype {*.epub},<application/epub>
-    \ zathura %f %i &,
-    \ zathura %c %i &,
-    \ tzathura %f &,
     \ mupdf %c %i &,
     \ mupdf %f &,
 
 filextype {*.mobi},<application/mobi>
-    \ zathura %f %i &,
-    \ zathura %c %i &,
-    \ tzathura %f &,
     \ mupdf %f %i &,
     \ mupdf %c %i &,
 

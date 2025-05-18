@@ -167,6 +167,7 @@ let g:autoupdate = 0
 set omnifunc=syntaxcomplete#Complete
 set pumwidth=15
 set pumheight=20
+silent! set completeopt+=fuzzy
 
 function ToggleTagComplete()
   let l:opt = strridx(&complete, "t")
@@ -278,9 +279,4 @@ set wildignore+=*.hi,*.cma,*.cmi
 if !has("nvim") " {{{
   set maxmem=2000000
   set undodir=~/.vim/history
-  set completeopt+=fuzzy
-  " }}}
-
-elseif has("nvim-0.11") " {{{
-  set completeopt+=fuzzy
 endif " }}}
