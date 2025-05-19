@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+FILE="$1"
+shift
+
+case "$(file -b $FILE | awk '{print $1}')" in
+"PDF") pdfgrep --color=always $@ $FILE ;;
+"EPUB") zipgrep --color=always $@ $FILE 2>/dev/null ;;
+"DjVu") djvutxt $FILE | grep --color=always -E $@ ;;
+"PostScript") ps2ascii $FILE | grep --color=always -E $@ ;;
+    # *) ;;
+esac

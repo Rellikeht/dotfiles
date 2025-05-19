@@ -325,6 +325,8 @@ nnoremap <Leader>qa :<C-u>call AutoPairsToggle()<CR>
 
 " settings {{{ 
 
+" function s:SetupGutentags()
+
 " TODO C more ?
 let g:gutentags_project_root = [
       \ ".git",
@@ -349,12 +351,15 @@ let g:gutentags_add_default_project_roots = 0
 autocmd DirChanged global call gutentags#rescan()
 let g:gutentags_exclude_project_root = [
       \ expand('/nix/store/'),
+      \ expand('~/.vim/plugged'),
       \ ]
-      " \ expand('~/gits/configs/dotfiles'),
+" \ expand('~/gits/configs/dotfiles'),
 
 let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+call mkdir(g:gutentags_cache_dir, "p")
 command! -nargs=0 GutentagsClearCache
-      \ call system('rm ' . g:gutentags_cache_dir . '/*')
+      \ call delete(g:gutentags_cache_dir)
+      \| call mkdir(g:gutentags_cache_dir, "p")
 
 " What is the best ?
 " It needs separate script
@@ -378,6 +383,9 @@ let g:gutentags_generate_on_new = 0
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
+
+" endfunction
+" call lazy_utils#LoadOnStartup(expand("<SID>").."SetupGutentags")
 
 " }}} 
 
