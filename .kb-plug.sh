@@ -3,7 +3,7 @@
 cd ~
 killall xcape
 
-xmodmap .xmodmap/qwerty_start 2>/dev/null
+xmodmap .xmodmap/qwerty 2>/dev/null
 xmodmap .xmodmaprc 2>/dev/null
 xmodmap .xmodmaprc_local 2>/dev/null
 
