@@ -381,6 +381,8 @@ alias prgc='prg \
 
 # multimedia and web {{{
 alias ffmpeg='ffmpeg -hide_banner'
+alias ffmedc='ffmpeg -v error -f null - -i'
+
 alias pm=pulsemixer
 alias am=alsamixer
 

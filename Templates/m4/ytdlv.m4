@@ -6,7 +6,6 @@ LANG=
 [ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 # != doesn't work on it's own
 [ -n "$YTNOCODEC" ] && CODEC="[vcodec!*=$YTNOCODEC]"
-H=HF()
-HSET="[height>=$H]"
+HSET="[height>=HF()]"
 
-exec yts -f "(ba$ABR$LANG+bv$HSET$CODEC)/b$HSET$CODEC$LANG" "$@"
+exec yt-dlp -S size -f "(ba$ABR$LANG+wv$HSET$CODEC)/w$HSET$CODEC$LANG" "$@"
