@@ -53,35 +53,9 @@ vim.api.nvim_create_autocmd(
 
 -- keymaps {{{
 
-vim.api.nvim_set_keymap("t", "<C-q>", "<C-\\>", {})
-vim.api.nvim_set_keymap(
-  "t", "<C-q><C-q>", "<C-q>", {noremap = true}
-)
-vim.api.nvim_set_keymap(
-  "t", "<C-\\>n", "<C-\\><C-n>", {noremap = true}
-)
-vim.api.nvim_set_keymap(
-  "t", "<C-\\>o", "<C-\\><C-o>", {noremap = true}
-)
-vim.api.nvim_set_keymap(
-  "t", "<C-\\>:", "<C-\\><C-n>:", {noremap = true}
-)
-
-for key_in, key_out in pairs(
-  {
-    ["h"] = "<C-w>h",
-    ["j"] = "<C-w>j",
-    ["k"] = "<C-w>k",
-    ["l"] = "<C-w>l",
-    ["gt"] = "gt",
-    ["gT"] = "gT",
-  }
-) do
-  vim.api.nvim_set_keymap(
-    "t", "<C-\\>" .. key_in,
-    "<C-\\><C-n>" .. key_out .. "<Esc>", {noremap = true}
-  )
-end
+vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", {remap = true})
+vim.keymap.set("t", "<C-q><C-w>", "<C-w>", {noremap = true})
+vim.keymap.set("t", "<C-q><C-q>", "<C-q>", {noremap = true})
 
 -- }}}
 
@@ -122,7 +96,7 @@ vim.api.nvim_create_user_command(
     vim.g.slime_default_config = vim.b.slime_config
   end, {nargs = 0}
 )
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   "n", "gs:", ":<C-u>SlimeConfigAll<CR>", {noremap = true}
 )
 
@@ -220,7 +194,7 @@ elseif vim.fn.has("gui_running") then --  {{{
   -- for uniform experience
   -- "t", "i" don't work anyway
   for _, mode in pairs({"n", "o", "v"}) do
-    vim.api.nvim_set_keymap(mode, "<C-/>", "<C-_>", {})
+    vim.keymap.set(mode, "<C-/>", "<C-_>", {})
   end
 
 end --  }}}
