@@ -289,23 +289,32 @@ nnoremap <silent> <leader>goC :G gc --aggressive<CR>
 
 " TODO C (is enough) merge and rebase (m) {{{ 
 
-nnoremap <leader>gmr :G rebase<Space>
-nnoremap <leader>gmR :G rebase<CR>
-nnoremap <leader>gmi :G rebase --interactive<Space>
-nnoremap <leader>gmI :G rebase --interactive<CR>
-nnoremap <leader>gmm :G merge<Space>
-nnoremap <leader>gmM :G merge<CR>
-nnoremap <leader>gms :G merge --squash<Space>
-nnoremap <leader>gmS :G merge --squash<CR>
+nnoremap <leader>gw<Space>c :G rebase<Space>
+nnoremap <leader>gw<Space>i :G rebase --interactive<Space>
+nnoremap <leader>gwc :G rebase<CR>
+nnoremap <leader>gwi :G rebase --interactive<CR>
 
-nnoremap <leader>gmA :G rebase --abort<CR>
-nnoremap <leader>gmC :G rebase --continue<CR>
-nnoremap <leader>gmQ :G rebase --quit<CR>
-nnoremap <leader>gmJ :G rebase --skip<CR>
+nnoremap <leader>gm<Space>c :G merge<Space>
+nnoremap <leader>gm<Space>s :G merge --squash<Space>
+nnoremap <leader>gmc :G merge<CR>
+nnoremap <leader>gms :G merge --squash<CR>
 
+nnoremap <leader>gw<Space>a :G rebase --abort<Space>
+nnoremap <leader>gw<Space>n :G rebase --continue<Space>
+nnoremap <leader>gw<Space>q :G rebase --quit<Space>
+nnoremap <leader>gw<Space>s :G rebase --skip<Space>
+nnoremap <leader>gwa :G rebase --abort<CR>
+nnoremap <leader>gwn :G rebase --continue<CR>
+nnoremap <leader>gwq :G rebase --quit<CR>
+nnoremap <leader>gws :G rebase --skip<CR>
+
+nnoremap <leader>gm<Space>a :G merge --abort<Space>
+nnoremap <leader>gm<Space>n :G merge --continue<Space>
+nnoremap <leader>gm<Space>q :G merge --quit<Space>
 nnoremap <leader>gma :G merge --abort<CR>
-nnoremap <leader>gmc :G merge --continue<CR>
+nnoremap <leader>gmn :G merge --continue<CR>
 nnoremap <leader>gmq :G merge --quit<CR>
+
 
 " }}} 
 
@@ -332,6 +341,7 @@ nnoremap <leader>grq :G revert --quit<CR>
 
 nnoremap <leader>gcc :G commit<CR>
 nnoremap <leader>gca :G commit --amend<CR>
+nnoremap <leader>gcA :G commit --amend --no-edit<CR>
 nnoremap <leader>gcp :G commit --patch<CR>
 nnoremap <leader>gcd :G commit --dry-run<CR>
 nnoremap <leader>gcf :G commit --fixup<CR>
@@ -339,6 +349,7 @@ nnoremap <leader>gcr :G commit --fixup=reword<CR>
 
 nnoremap <leader>gc<Space>c :G commit<Space>
 nnoremap <leader>gc<Space>a :G commit --amend<Space>
+nnoremap <leader>gc<Space>A :G commit --amend --no-edit<Space>
 nnoremap <leader>gc<Space>p :G commit --patch<Space>
 nnoremap <leader>gc<Space>d :G commit --dry-run<Space>
 nnoremap <leader>gc<Space>f :G commit --fixup<Space>
