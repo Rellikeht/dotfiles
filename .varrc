@@ -105,7 +105,7 @@ export FZF_ALT_C_COMMAND='find . -mindepth 1 -xtype d'
 
 FZF_BINDS="
 --bind 'alt-k:preview-up,alt-j:preview-down'
---bind 'ctrl-k:kill-line'
+--bind 'ctrl-k:kill-line,ctrl-j:jump'
 --bind 'ctrl-s:change-preview-window(hidden|)'
 --bind 'alt-K:preview-half-page-up,alt-J:preview-half-page-down'
 --bind 'alt-U:half-page-up,alt-D:half-page-down'

@@ -56,6 +56,12 @@ vim.api.nvim_create_autocmd(
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", {remap = true})
 vim.keymap.set("t", "<C-q><C-w>", "<C-w>", {noremap = true})
 vim.keymap.set("t", "<C-q><C-q>", "<C-q>", {noremap = true})
+vim.keymap.set(
+  "t", "<C-q><C-n>", "<C-\\><C-n>", {noremap = true}
+)
+vim.keymap.set(
+  "t", "<C-q><C-o>", "<C-\\><C-o>", {noremap = true}
+)
 
 -- }}}
 

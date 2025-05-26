@@ -77,8 +77,9 @@ endfunction
 let g:fzf_vim.tags_command = 'ctags -R'
 
 let g:fzf_layout = {'down': '100%'}
-let fzf_preview_default = 'up,50%'
-let g:fzf_vim.preview_window = [fzf_preview_default, 'ctrl-s']
+" border is useful here
+let g:fzf_preview_default = 'up,50%'
+let g:fzf_vim.preview_window = [g:fzf_preview_default, 'ctrl-s']
 
 " }}} 
 
@@ -94,7 +95,6 @@ let g:fzf_colors = {
       \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
       \ 'hl+':     ['fg', 'Statement'],
       \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
       \ 'prompt':  ['fg', 'Conditional'],
       \ 'pointer': ['fg', 'Exception'],
       \ 'marker':  ['fg', 'Keyword'],
@@ -214,7 +214,7 @@ command! -bang -nargs=? -complete=dir Fdiffs
       \ '--preview',
       \ 'delta '.Expand("%:p").' {}',
       \ '--preview-window',
-      \ fzf_preview_default,
+      \ g:fzf_preview_default,
       \ ],
       \ },
       \ <bang>0))
@@ -227,7 +227,7 @@ command! -bang -nargs=? -complete=dir Fdiffv
       \ '--preview',
       \ 'delta '.Expand("%:p").' {}',
       \ '--preview-window',
-      \ fzf_preview_default,
+      \ g:fzf_preview_default,
       \ ],
       \ },
       \ <bang>0)
