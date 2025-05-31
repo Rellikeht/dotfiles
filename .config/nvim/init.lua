@@ -5,12 +5,12 @@ require("functions")
 local Plug = vim.fn["plug#"]
 NVIM_DIR = vim.fn.stdpath("config")
 local lua_dir = NVIM_DIR .. "/lua"
-local vim_dir = "~/.vim"
+VIM_DIR = "~/.vim"
 
 -- }}}
 
-vim.fn["plug#begin"](vim.fn.stdpath("data"))
-vim.cmd.source(vim_dir .. "/plugins.vim")
+vim.fn["plug#begin"](vim.fn.stdpath("data") .. "/plugins")
+vim.cmd.source(VIM_DIR .. "/plugins.vim")
 
 -- {{{ dependencies
 

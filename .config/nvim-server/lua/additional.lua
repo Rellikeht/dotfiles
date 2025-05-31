@@ -102,7 +102,7 @@ vim.g.java_ignore_markdown = true
 
 -- vim-slime {{{
 vim.api.nvim_create_user_command(
-  "SlimeConfigAll", function(opts)
+  "SlimeConfigAll", function()
     vim.cmd.SlimeConfig()
     vim.g.slime_default_config = vim.b.slime_config
   end, {nargs = 0}
@@ -154,6 +154,7 @@ function slime_setup_nvim()
   vim.g.slime_input_pid = false
 
   -- https://github.com/jpalardy/vim-slime/blob/main/assets/doc/targets/neovim.md
+  ---@diagnostic disable-next-line: duplicate-set-field
   vim.g.slime_get_jobid = function()
     -- iterate over all buffers to find the first terminal with a valid job
     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
