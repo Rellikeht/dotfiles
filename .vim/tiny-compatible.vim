@@ -417,7 +417,7 @@ set wildmenu
 set wildignore+=*.o,*.elf,*.bin,*.dll,*.so
 
 set complete=w,b,s,i,d,.,k
-set completeopt=menu,menuone,noselect,noinsert,preview
+set completeopt=menu,menuone,noselect,noinsert
 
 " }}} 
 

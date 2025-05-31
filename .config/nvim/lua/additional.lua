@@ -70,6 +70,11 @@ vim.keymap.set(
 vim.cmd.colorscheme("elflord")
 vim.cmd.highlight("CursorLine", "guibg=#2a2a2a")
 
+vim.api.nvim_set_hl(0, "Pmenu", {bg = "#1f1f1f"})
+vim.api.nvim_set_hl(0, "PmenuKind", {bg = "#1f1f1f"})
+vim.api.nvim_set_hl(0, "PmenuExtra", {bg = "#1f1f1f"})
+vim.api.nvim_set_hl(0, "CmpItemKind", {fg = "#ff1000"})
+
 -- TODO C why is this reset after vim config
 vim.cmd(
   [[

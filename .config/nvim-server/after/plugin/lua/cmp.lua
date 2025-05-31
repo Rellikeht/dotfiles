@@ -4,6 +4,8 @@ autopairs.setup({})
 
 require("lazy_utils").load_on_insert(
   function()
+    -- TODO is this good here
+    -- vim.opt.completeopt:append("preview")
 
     local cmp = require("cmp") -- {{{ 
     ---@diagnostic disable-next-line: unused-local
