@@ -188,6 +188,7 @@ if !has("nvim") " {{{
   Plug 'elzr/vim-json', {'for': 'json'}
   Plug 'ocaml/vim-ocaml', {'for': 'ocaml'}
   Plug 'tpope/vim-jdaddy'
+  Plug 'elixir-editors/vim-elixir'
 
   Plug 'bfrg/vim-qf-diagnostics'
   Plug 'Rellikeht/vim-simple-complete'

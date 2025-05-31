@@ -83,6 +83,7 @@ Plug("vim-test/vim-test")
 Plug("nvim-neotest/neotest")
 
 Plug("p00f/clangd_extensions.nvim")
+Plug("elixir-editors/vim-elixir")
 
 -- }}}
 

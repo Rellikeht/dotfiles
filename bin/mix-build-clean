@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+while ! [ -e mix.exs ]; do
+    cd ..
+    if [ "$PWD" = "/" ]; then
+        echo "Reached / and not found mix.exs file"
+        exit 1
+    fi
+done
+
+rm -fr .elixir_ls _build
+if [ -n "$1" ]; then
+    rm -f mix.lock
+fi
