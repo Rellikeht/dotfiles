@@ -10,13 +10,6 @@ nnoremap <silent> <Leader>qP :silent! PlugClean!<CR>
 
 " }}} 
 
-" abolish {{{ 
-
-" So little code to do so much
-cnoremap <c-g> Subvert
-
-" }}} 
-
 " vis {{{ 
 
 noremap <Leader>is :<C-u>S
@@ -62,3 +55,9 @@ noremap <C-p> <Plug>Sneak_,
 noremap <C-n> <Plug>Sneak_;
 
 " }}}
+
+" other {{{ 
+
+cnoreabbrev Abo Abolish
+
+" }}} 

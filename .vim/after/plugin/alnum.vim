@@ -37,31 +37,31 @@ noremap <silent> <Leader>na :NuuidToggleAbbrev<CR>
 
 " tabularize {{{ 
 
-nnoremap <Leader>it :<C-u>Tabularize /
-xnoremap <Leader>it :Tabularize /
-nnoremap <Leader>ip :<C-u>Tabularize //<Left>
-xnoremap <Leader>ip :Tabularize //<Left>
+cnoreabbrev Tabu Tabularize
 
-nnoremap <Leader>i= :<C-u>Tabularize /=<CR>
+nnoremap <Leader>ic :Tabularize /
+xnoremap <Leader>ic :Tabularize /
+
+nnoremap <Leader>i= :Tabularize /=<CR>
 xnoremap <Leader>i= :Tabularize /=<CR>
-nnoremap <Leader>i: :<C-u>Tabularize /:<CR>
+nnoremap <Leader>i: :Tabularize /:<CR>
 xnoremap <Leader>i: :Tabularize /:<CR>
-nnoremap <Leader>i; :<C-u>Tabularize /;<CR>
+nnoremap <Leader>i; :Tabularize /;<CR>
 xnoremap <Leader>i; :Tabularize /;<CR>
-nnoremap <Leader>i& :<C-u>Tabularize /&<CR>
+nnoremap <Leader>i& :Tabularize /&<CR>
 xnoremap <Leader>i& :Tabularize /&<CR>
-nnoremap <Leader>i@ :<C-u>Tabularize /@<CR>
+nnoremap <Leader>i@ :Tabularize /@<CR>
 xnoremap <Leader>i@ :Tabularize /@<CR>
 
-nnoremap <Leader>i;= :<C-u>Tabularize /=zs<CR>
+nnoremap <Leader>i;= :Tabularize /=zs<CR>
 xnoremap <Leader>i;= :Tabularize /=zs<CR>
-nnoremap <Leader>i;: :<C-u>Tabularize /:zs<CR>
+nnoremap <Leader>i;: :Tabularize /:zs<CR>
 xnoremap <Leader>i;: :Tabularize /:zs<CR>
-nnoremap <Leader>i;; :<C-u>Tabularize /;zs<CR>
+nnoremap <Leader>i;; :Tabularize /;zs<CR>
 xnoremap <Leader>i;; :Tabularize /;zs<CR>
-nnoremap <Leader>i;& :<C-u>Tabularize /&zs<CR>
+nnoremap <Leader>i;& :Tabularize /&zs<CR>
 xnoremap <Leader>i;& :Tabularize /&zs<CR>
-nnoremap <Leader>i;@ :<C-u>Tabularize /@zs<CR>
+nnoremap <Leader>i;@ :Tabularize /@zs<CR>
 xnoremap <Leader>i;@ :Tabularize /@zs<CR>
 
 function! s:align()
@@ -89,7 +89,9 @@ endfunction
 nnoremap <Leader>ii :<C-u>call InsertAlignToggle()<CR>
 
 "map <silent> <leader>qc <Plug>ReplaceWithCurly
-map <silent> <leader>qs <Plug>ReplaceWithStraight }}} 
+map <silent> <leader>qs <Plug>ReplaceWithStraight
+
+" }}} 
 
 " quote textobj {{{ 
 
