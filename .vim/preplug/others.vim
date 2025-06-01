@@ -99,4 +99,15 @@ let g:git_messenger_no_default_mappings = 1
 map <unique> <Leader>iws <Plug>SaveWinPosn
 map <unique> <Leader>iwr <Plug>RestoreWinPosn
 
+let g:wheel#line#threshold = 2*&scrolloff " lines from start or end
+
+let g:accelerated_jk_acceleration_limit = 250
+let g:accelerated_jk_enable_deceleration = 1
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+
+" alt really, but this seems the only way to map this
+let g:wheel#map#up   = '<Esc>k'
+let g:wheel#map#down = '<Esc>j'
+
 " }}}

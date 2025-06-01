@@ -134,10 +134,10 @@ Plug 'mmikeww/autohotkey.vim'
 " specialized {{{ 
 
 Plug 'JuliaEditorSupport/julia-vim'
-Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
 Plug 'vale1410/vim-minizinc'
 
-Plug 'LnL7/vim-nix' " TODO A what is going on
+Plug 'LnL7/vim-nix', {'for': 'nix'} " TODO A what is going on
 Plug 'ziglang/zig.vim', {'for': 'zig'}
 Plug 'pearofducks/ansible-vim'
 Plug 'neovimhaskell/haskell-vim', 
@@ -145,10 +145,10 @@ Plug 'neovimhaskell/haskell-vim',
 
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'Gavinok/vim-troff'
-Plug 'kaarmu/typst.vim'
+Plug 'kaarmu/typst.vim', {'for': 'typst'}
 Plug 'HiPhish/info.vim'
 
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', {'for': ['html', 'markdown']}
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'averms/ebnf-vim'
 Plug 'vim-scripts/bnf.vim'
@@ -174,9 +174,6 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'rhysd/accelerated-jk'
 Plug 'preservim/vim-wheel'
 
-" TODO C ???
-" Plug 'preservim/vim-colors-pencil'
-
 " }}} 
 
 if !has("nvim") " {{{
@@ -188,7 +185,7 @@ if !has("nvim") " {{{
   Plug 'elzr/vim-json', {'for': 'json'}
   Plug 'ocaml/vim-ocaml', {'for': 'ocaml'}
   Plug 'tpope/vim-jdaddy'
-  Plug 'elixir-editors/vim-elixir'
+  Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 
   Plug 'bfrg/vim-qf-diagnostics'
   Plug 'Rellikeht/vim-simple-complete'

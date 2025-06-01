@@ -39,7 +39,7 @@ Plug("RRethy/nvim-treesitter-endwise")
 
 Plug("neovim/nvim-lspconfig")
 Plug("Rellikeht/nvim-lsp-config")
-Plug("mfussenegger/nvim-jdtls")
+Plug("mfussenegger/nvim-jdtls", {["for"] = "java"})
 Plug("ray-x/lsp_signature.nvim")
 
 Plug("dcampos/nvim-snippy")
@@ -83,7 +83,6 @@ Plug("vim-test/vim-test")
 Plug("nvim-neotest/neotest")
 
 Plug("p00f/clangd_extensions.nvim")
-Plug("elixir-editors/vim-elixir")
 
 -- }}}
 
@@ -97,7 +96,7 @@ Plug("jakewvincent/mkdnflow.nvim")
 -- or https://github.com/tadmccorkle/markdown.nvim
 -- there is definitely too much plugins available
 
-Plug("ellisonleao/glow.nvim")
+Plug("ellisonleao/glow.nvim", {["for"] = "markdown"})
 
 -- }}}
 

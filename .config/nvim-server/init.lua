@@ -26,13 +26,14 @@ Plug("hrsh7th/cmp-path")
 Plug("hrsh7th/cmp-cmdline")
 Plug("rasulomaroff/cmp-bufname")
 
-Plug("ellisonleao/glow.nvim")
+Plug("ellisonleao/glow.nvim", {["for"] = "markdown"})
 Plug("jakewvincent/mkdnflow.nvim")
 
 Plug("zah/nim.vim", {["for"] = "nim"})
 Plug("ocaml/vim-ocaml", {["for"] = "ocaml"})
 Plug("bfrg/vim-cpp-modern", {["for"] = "cpp"})
 Plug("elzr/vim-json", {["for"] = "json"})
+Plug("elixir-editors/vim-elixir", {["for"] = "elixir"})
 Plug "tpope/vim-jdaddy"
 
 -- }}}
