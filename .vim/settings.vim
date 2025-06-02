@@ -119,7 +119,7 @@ nnoremap <Leader>qeT :<C-u>set filetype=
 
 " automatic formatting and compiling control {{{ 
 
-let g:buffmt = 1
+let g:buffmt = 0
 let g:bufcomp = 0
 autocmd FileType * let b:buffmt = g:buffmt
 autocmd FileType * let b:bufcomp = g:bufcomp

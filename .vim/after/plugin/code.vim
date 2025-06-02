@@ -6,7 +6,9 @@
 
 " }}} 
 
-" neoformat formatters {{{ 
+" neoformat {{{ 
+
+" formatters {{{ 
 let g:neoformat_enabled_go = ['gofmt']
 
 " ???
@@ -135,8 +137,6 @@ let g:neoformat_typst_prettypst = {
 let g:neoformat_enabled_typst = ["typstfmt", "prettypst"]
 
 " }}} 
-
-" neoformat settings {{{ 
 
 " ???
 "let b:neoformat_run_all_formatters = 1
