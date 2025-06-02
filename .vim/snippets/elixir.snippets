@@ -1,0 +1,55 @@
+snippet gscall
+    def ${1:name}(${2:args}) do
+        GenServer.call(__MODULE__, {:$1, $2})
+    end
+
+    def handle_call({:$1, $2}, ${3:_from}, ${4:state}) do
+        $0
+        {:reply, ${5:state}}
+    end
+
+snippet gscast
+    def ${1:name}(${2:args}) do
+        GenServer.cast(__MODULE__, {:$1, $2})
+    end
+
+    def handle_cast({:$1, $2}, ${3:state}) do
+        $0
+        {:noreply, ${4:state}}
+    end
+
+snippet gspcall
+    def ${1:name}(pid, ${2:args}) do
+        GenServer.call(pid, {:$1, $2})
+    end
+
+    def handle_call({:$1, $2}, ${3:_from}, ${4:state}) do
+        $0
+        {:reply, ${5:state}}
+    end
+
+snippet gspcast
+    def ${1:name}(pid, ${2:args}) do
+        GenServer.cast(pid, {:$1, $2})
+    end
+
+    def handle_cast({:$1, $2}, ${3:state}) do
+        $0
+        {:noreply, ${4:state}}
+    end
+
+
+snippet gsinit
+    def init(${1:state}) do
+        {:ok, $1}
+    end
+
+snippet gslink
+    def start_link(${1:args})$2 do
+        GenServer.start_link(__MODULE__, $1)
+    end
+
+    def init(${3:state}) do
+        $0
+        {:ok, ${4:state}}
+    end
