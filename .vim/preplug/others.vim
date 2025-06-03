@@ -107,8 +107,11 @@ nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
 " alt really, but this seems the only way to map this
-let g:wheel#map#up   = '<Esc>k'
-let g:wheel#map#down = '<Esc>j'
-nnoremap <Esc><Esc> <Esc>
+" let g:wheel#map#up   = '<Esc>k'
+" let g:wheel#map#down = '<Esc>j'
+" nnoremap <Esc><Esc> <Esc>
+" TODO how to even
+let g:wheel#map#up   = ''
+let g:wheel#map#down = ''
 
 " }}}

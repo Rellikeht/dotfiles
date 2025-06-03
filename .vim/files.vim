@@ -41,32 +41,38 @@ nnoremap <silent> <Space>hqf
 " }}} 
 
 " maps {{{ 
-" TODO do I need x
 
-nnoremap <silent> <Space>hdp :<C-u>diffput<CR>
-nnoremap <silent> <Space>hdg :<C-u>diffget<CR>
-nnoremap <silent> <Space>hd<Space>p :<C-u>diffput<Space>
-nnoremap <silent> <Space>hd<Space>g :<C-u>diffget<Space>
-nnoremap <silent> <Space>hdu :<C-u>diffupdate<CR>
+nnoremap <silent> <Space>2c :<C-u>diffput<CR>
+nnoremap <silent> <Space>1c :<C-u>diffget<CR>
+nnoremap <silent> <Space>2<Space> :<C-u>diffput<Space>
+nnoremap <silent> <Space>1<Space> :<C-u>diffget<Space>
 
-nnoremap <silent> <Space>hg0 :<C-u>call DiffGet('//0')<CR>
-nnoremap <silent> <Space>hg1 :<C-u>call DiffGet('//1')<CR>
-nnoremap <silent> <Space>hg2 :<C-u>call DiffGet('//2')<CR>
-nnoremap <silent> <Space>hg3 :<C-u>call DiffGet('//3')<CR>
+nnoremap <silent> <Space>10 :<C-u>call DiffGet('//0')<CR>
+nnoremap <silent> <Space>11 :<C-u>call DiffGet('//1')<CR>
+nnoremap <silent> <Space>12 :<C-u>call DiffGet('//2')<CR>
+nnoremap <silent> <Space>13 :<C-u>call DiffGet('//3')<CR>
+nnoremap <silent> <Space>1l :<C-u>call DiffGet('_LOCAL_')<CR>
+nnoremap <silent> <Space>1r :<C-u>call DiffGet('_REMOTE_')<CR>
+nnoremap <silent> <Space>1b :<C-u>call DiffGet('_BASE_')<CR>
 
-nnoremap <silent> <Space>hp0 :<C-u>call DiffPut('//0')<CR>
-nnoremap <silent> <Space>hp1 :<C-u>call DiffPut('//1')<CR>
-nnoremap <silent> <Space>hp2 :<C-u>call DiffPut('//2')<CR>
-nnoremap <silent> <Space>hp3 :<C-u>call DiffPut('//3')<CR>
+nnoremap <silent> <Space>20 :<C-u>call DiffPut('//0')<CR>
+nnoremap <silent> <Space>21 :<C-u>call DiffPut('//1')<CR>
+nnoremap <silent> <Space>22 :<C-u>call DiffPut('//2')<CR>
+nnoremap <silent> <Space>23 :<C-u>call DiffPut('//3')<CR>
+nnoremap <silent> <Space>2l :<C-u>call DiffPut('_LOCAL_')<CR>
+nnoremap <silent> <Space>2r :<C-u>call DiffPut('_REMOTE_')<CR>
+nnoremap <silent> <Space>2b :<C-u>call DiffPut('_BASE_')<CR>
 
-nnoremap <silent> <Space>hpf :<C-u>call DiffPut(Expand('%:p'))<CR>
-nnoremap <silent> <Space>hp;f :<C-u>call DiffPut(Expand('%:t'))<CR>
-nnoremap <silent> <Space>hgf :<C-u>call DiffGet(Expand('%:p'))<CR>
-nnoremap <silent> <Space>hg;f :<C-u>call DiffGet(Expand('%:t'))<CR>
+nnoremap <silent> <Space>2f :<C-u>call DiffPut(Expand('%:p'))<CR>
+nnoremap <silent> <Space>2F :<C-u>call DiffPut(Expand('%:t'))<CR>
 
-nnoremap <silent> <Space>hoo :<C-u>diffoff<CR>
-nnoremap <silent> <Space>ho<Space>t :<C-u>diffthis<Space>
-nnoremap <silent> <Space>hot :<C-u>diffthis<CR>
+nnoremap <silent> <Space>1f :<C-u>call DiffGet(Expand('%:p'))<CR>
+nnoremap <silent> <Space>1F :<C-u>call DiffGet(Expand('%:t'))<CR>
+
+nnoremap <silent> <Space>hoc :<C-u>diffoff<CR>
+nnoremap <silent> <Space>htc :<C-u>diffthis<CR>
+nnoremap <silent> <Space>ht<Space> :<C-u>diffthis<Space>
+nnoremap <silent> <Space>hu :<C-u>diffupdate<CR>
 
 " }}} 
 
@@ -74,15 +80,15 @@ nnoremap <silent> <Space>hot :<C-u>diffthis<CR>
 
 " nops {{{ 
 
-noremap <Space>f <Nop>
-noremap <Space>g <Nop>
-noremap <Space><Space>f <Nop>
-noremap <Space><Space>g <Nop>
-noremap <Space>b <Nop>
-noremap <Space>/ <Nop>
-noremap <Space>? <Nop>
-noremap <Space>v <Nop>
-noremap <Space>s <Nop>
+" noremap <Space>f <Nop>
+" noremap <Space>g <Nop>
+" noremap <Space><Space>f <Nop>
+" noremap <Space><Space>g <Nop>
+" noremap <Space>b <Nop>
+" noremap <Space>/ <Nop>
+" noremap <Space>? <Nop>
+" noremap <Space>v <Nop>
+" noremap <Space>s <Nop>
 
 " }}} 
 
