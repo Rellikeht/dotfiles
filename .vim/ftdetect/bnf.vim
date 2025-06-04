@@ -1,2 +1,2 @@
-au BufNewFile,BufReadPre,BufRead,BufEnter *.bnf
+au BufNewFile,BufReadPre,BufRead *.bnf
       \ set filetype=bnf
