@@ -45,4 +45,13 @@ function fileReadable(name)
   end
 end
 
+function GetBool(value)
+  if value == 0 then
+    return false
+  elseif value == 1 then
+    return true
+  end
+  return value
+end
+
 --  }}}

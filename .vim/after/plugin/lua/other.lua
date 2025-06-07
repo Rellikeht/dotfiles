@@ -93,39 +93,6 @@ vim.keymap.set(
 
 -- formatting {{{
 
--- turn off formatting enabled in lspconfig
--- when lsp exits
-vim.api.nvim_create_autocmd(
-  {"LspDetach"}, {
-    buffer = 0,
-    callback = function()
-      local ftype = vim.api.nvim_get_option_value(
-        "filetype", {scope = "local"}
-      )
-      if Lfiles[ftype] ~= nil then
-        vim.cmd(
-          [[
-          let b:buffmt = b:lspfmt
-          let b:lspfmt = 0
-          unmap <Leader>dqf
-          augroup! lspformat
-        ]]
-        )
-      end
-    end,
-  }
-)
-
-vim.api.nvim_create_autocmd(
-  {"BufWritePost"}, {
-    buffer = 0,
-    callback = function()
-      vim.cmd.normal("zv")
-      -- autocmd BufWritePost *.go normal! zv
-    end,
-  }
-)
-
 -- }}}
 
 -- others {{{
