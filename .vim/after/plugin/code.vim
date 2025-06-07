@@ -158,8 +158,8 @@ augroup END
 
 cnoreabbrev Fmt Neoformat
 
-noremap <silent> <Leader>nf :Neoformat<CR>
-noremap <Leader>n<Space>f :Neoformat<Space>
+noremap <silent> <Leader>dm :Neoformat<CR>
+noremap <Leader>d<Space>m :Neoformat<Space>
 
 " }}} 
 
@@ -196,6 +196,7 @@ let g:latex_to_unicode_keymap = 1
 let g:latex_to_unicode_tab = "on"
 let g:latex_to_unicode_file_types = '.*'
 let g:latex_to_unicode_suggestions = 1
+let g:latex_to_unicode_eager = 0
 
 noremap <expr> <Leader>nlt LaTeXtoUnicode#Toggle()
 

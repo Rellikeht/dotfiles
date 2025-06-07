@@ -613,35 +613,6 @@ function ToggleAutochdir()
   endif
 endfunction
 
-autocmd VimResume *
-      \ checktime
-      \ | echo expand('%:p')
-
-autocmd BufLeave *
-      \ if (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
-      \ | if isdirectory(expand('%:p'))
-      \ | let g:prev_dir = expand('%:p:h:h')
-      \ | elseif isdirectory(expand('%:p:h'))
-      \ | let g:prev_dir = expand('%:p:h')
-      \ | else
-      \ | let g:prev_dir = ''
-      \ | endif
-      \ | endif
-
-autocmd BufEnter *
-      \ if !get(g:, 'no_file_msg', 1)
-      \ | if len(get(g:, 'prev_dir', '')) == 0
-      \ | let g:prev_dir = expand('%:p:h')
-      \ | else
-      \ | call EchoRelCurFile()
-      \ | endif
-      \ | endif
-      \ | if g:autochdir && (&buftype == '') && (!has_key(g:ftype_hooks, &filetype))
-      \ | if isdirectory(expand('%:p:h'))
-      \ | exe 'lcd %:p:h'
-      \ | endif
-      \ | endif
-
 " }}} 
 
 " random stuff {{{ 

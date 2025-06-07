@@ -24,7 +24,7 @@ if v:progname !~? "\v^t(v(i(m)?)?)?" && v:progname !~? "^vim.tiny" " {{{
 
   " sourcing {{{ 
 
-  silent! source ~/.vim/vars.vim
+  source ~/.vim/vars.vim
   source ~/.vim/functions.vim
   source ~/.vim/settings.vim
   source ~/.vim/keys.vim
@@ -55,9 +55,8 @@ if v:progname !~? "\v^t(v(i(m)?)?)?" && v:progname !~? "^vim.tiny" " {{{
   endif
   " }}} 
 
-  for f in split(glob("~/.vim/preplug/*.vim"), "\n")
-    exe "source ".fnameescape(f)
-  endfor
+  source ~/.vim/preplug/tmux.vim
+  source ~/.vim/preplug/others.vim
 
   if !has("nvim") " {{{ 
     source ~/.vim/svimrc.vim

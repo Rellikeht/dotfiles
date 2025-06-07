@@ -400,8 +400,8 @@ noremap <Space>_ "_d
 " other mappings {{{ 
 
 " Select whole buffer without plugins
-vnoremap aee gg0oG$
-vnoremap iee aee
+xnoremap aee gg0oG$
+xnoremap iee aee
 nnoremap yaee gg0vG$y`'
 
 " }}} 

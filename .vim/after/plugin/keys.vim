@@ -60,4 +60,8 @@ noremap <C-n> <Plug>Sneak_;
 
 cnoreabbrev Abo Abolish
 
+if !has("nvim")
+  call lazy_utils#LoadOnStartup("SlimeSetupTmux")
+endif
+
 " }}} 

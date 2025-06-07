@@ -129,7 +129,7 @@ let g:slime_bracketed_paste = 1
 let g:slime_no_mappings = 1
 
 if !has("nvim")
-  call SlimeSetupTmux()
+  " call SlimeSetupTmux()
   nnoremap gs: <Plug>SlimeConfig
 endif
 
