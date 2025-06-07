@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec ffmpeg -v error -f null - -i "$@"

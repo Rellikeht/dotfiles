@@ -71,17 +71,18 @@ require("lazy_utils").load_on_insert(
       }
     )
 
-    vim.cmd(
-      [[
-    autocmd CompleteDone * lua require 'snippy'.complete_done()
-]]
+    vim.api.nvim_create_autocmd(
+      "CompleteDone", {
+        pattern = "*",
+        callback = Snippy.complete_done
+      }
     )
 
     -- }}}
 
     -- cmp helpers {{{
 
-    local cmp_beh = {behavior = cmp.SelectBehavior, count = 1}
+    local cmp_beh = { behavior = cmp.SelectBehavior, count = 1 }
 
     local format = function(entry, vim_item)
       local el = "…"
@@ -117,19 +118,19 @@ require("lazy_utils").load_on_insert(
         -- {{{
         preselect = cmp.PreselectMode.None,
         window = {
-          documentation = {max_width = 0, max_height = 0},
-          completion = {side_padding = 0},
+          documentation = { max_width = 0, max_height = 0 },
+          completion = { side_padding = 0 },
         },
         -- }}}
 
-        view = { --  {{{
-          docs = {auto_open = true},
-        }, --  }}}
+        view = {       --  {{{
+          docs = { auto_open = true },
+        },             --  }}}
 
         formatting = { -- {{{
-          fields = {"abbr", "kind", "menu"},
+          fields = { "abbr", "kind", "menu" },
           format = format,
-        }, -- }}}
+        },                   -- }}}
 
         enabled = function() -- {{{
           local context = require("cmp.config.context")
@@ -138,9 +139,9 @@ require("lazy_utils").load_on_insert(
             return true
           else
             return not context.in_syntax_group("Comment") and
-                     not context.in_syntax_group("String")
+                not context.in_syntax_group("String")
           end
-        end, -- }}}
+        end,            -- }}}
 
         performance = { -- {{{
           async_budget = 20,
@@ -149,7 +150,7 @@ require("lazy_utils").load_on_insert(
           fetching_timeout = 500,
           max_view_entries = 5000,
           confirm_resolve_timeout = 60,
-        }, -- }}}
+        },                                   -- }}}
 
         mapping = cmp.mapping.preset.insert( -- {{{
           {
@@ -161,7 +162,7 @@ require("lazy_utils").load_on_insert(
               i = function(_)
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_next_item(cmp_beh)
                   end
@@ -173,43 +174,43 @@ require("lazy_utils").load_on_insert(
                   )
                 end
               end,
-            }, -- }}}
+            },                -- }}}
 
             ["<C-Space>"] = { -- {{{
               i = function(_)
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_next_item(cmp_beh)
                   end
                 else
                   cmp.complete()
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   end
                 end
               end,
-            }, -- }}}
+            },              -- }}}
 
             ["<S-Tab>"] = { -- {{{
               i = function(_)
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_prev_item(cmp_beh)
                   end
                 else
                   cmp.complete()
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_prev_item(cmp_beh)
                   end
                 end
               end,
-            }, -- }}}
+            },            -- }}}
 
             ["<C-n>"] = { -- {{{
               i = function(fallback)
@@ -219,7 +220,7 @@ require("lazy_utils").load_on_insert(
                   fallback()
                 end
               end,
-            }, -- }}}
+            },            -- }}}
 
             ["<C-p>"] = { -- {{{
               i = function(fallback)
@@ -229,7 +230,7 @@ require("lazy_utils").load_on_insert(
                   fallback()
                 end
               end,
-            }, -- }}}
+            },                      -- }}}
 
             ["<CR>"] = cmp.mapping( -- {{{
               {
@@ -245,7 +246,7 @@ require("lazy_utils").load_on_insert(
                     fallback()
                   end
                 end,
-                s = cmp.mapping.confirm({select = true}),
+                s = cmp.mapping.confirm({ select = true }),
                 c = cmp.mapping.confirm(
                   {
                     behavior = cmp.ConfirmBehavior.Replace,
@@ -276,24 +277,24 @@ require("lazy_utils").load_on_insert(
             -- }}}
 
           }
-        ), -- }}}
+        ),             -- }}}
 
         completion = { -- {{{
           keyword_length = 2,
           completeopt = "menu,menuone,preview,noselect,noinsert",
-        }, -- }}}
+        },          -- }}}
 
         snippet = { -- {{{
           expand = function(args)
             Snippy.expand_snippet(args.body)
           end,
-        }, -- }}}
+        },          -- }}}
 
         sources = { -- {{{
-          {name = "nvim_lua"},
-          {name = "nvim_lsp"},
-          {name = "nvim_lsp_signature_help"},
-          {name = "snippy"},
+          { name = "nvim_lua" },
+          { name = "nvim_lsp" },
+          { name = "nvim_lsp_signature_help" },
+          { name = "snippy" },
 
           { -- {{{
             name = "buffer",
@@ -301,8 +302,8 @@ require("lazy_utils").load_on_insert(
               -- below doesn't work sometimes :<
               -- keyword_pattern = [[̨̨\̨k\+]],
               keyword_pattern = "\\([^,./<>?;: \\|\"'{}()\\[\\]" ..
-                "!#$%&*-=+	€£¥¢√∇°∞©®∪∩]\\|" ..
-                "[A-Z]\\)\\+",
+                  "!#$%&*-=+	€£¥¢√∇°∞©®∪∩]\\|" ..
+                  "[A-Z]\\)\\+",
               -- because this fucking shit can't even understand that something
               -- that matches [A-Z]* isn't special characters specified above
               -- totally lovely chinise shit
@@ -313,10 +314,10 @@ require("lazy_utils").load_on_insert(
             },
           }, -- }}}
 
-          {name = "omni"},
-          {name = "path"},
-          {name = "vimtex"},
-          {name = "mkdnflow"},
+          { name = "omni" },
+          { name = "path" },
+          { name = "vimtex" },
+          { name = "mkdnflow" },
         }, -- }}}
       }
     )
@@ -334,32 +335,32 @@ require("lazy_utils").load_on_insert(
           fetching_timeout = 300,
           max_view_entries = 1000,
           confirm_resolve_timeout = 50,
-        }, -- }}}
+        },             -- }}}
 
         completion = { -- {{{
           -- keyword_length = 3,
           autocomplete = false,
           completeopt = "menu,preview,noselect,noinsert",
-        }, -- }}}
+        },                                    -- }}}
 
         mapping = cmp.mapping.preset.cmdline( -- {{{
           {
-            ["<C-Space>"] = { -- {{{
+            ["<C-Space>"] = {                 -- {{{
               c = function(_)
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_next_item()
                   end
                 else
                   cmp.complete()
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   end
                 end
               end,
-            }, -- }}}
+            },            -- }}}
 
             ["<C-c>"] = { -- {{{
               c = function()
@@ -380,7 +381,7 @@ require("lazy_utils").load_on_insert(
               c = function()
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_next_item()
                   end
@@ -392,13 +393,13 @@ require("lazy_utils").load_on_insert(
                   )
                 end
               end,
-            }, -- }}}
+            },              -- }}}
 
             ["<S-Tab>"] = { -- {{{
               c = function(_)
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_prev_item(cmp_beh)
                   end
@@ -410,16 +411,16 @@ require("lazy_utils").load_on_insert(
                   )
                 end
               end,
-            }, -- }}}
+            },                        -- }}}
           }
-        ), -- }}}
+        ),                            -- }}}
 
         sources = cmp.config.sources( -- {{{
-          {{name = "path"}}, {{name = "cmdline"}},
-          {{name = "bufname"}}
+          { { name = "path" } }, { { name = "cmdline" } },
+          { { name = "bufname" } }
         ), -- }}}
       }
-    ) -- }}}
+    )      -- }}}
 
     cmp.setup.cmdline(
       "/", { -- {{{
@@ -430,7 +431,7 @@ require("lazy_utils").load_on_insert(
           -- keyword_length = 3,
           autocomplete = false,
           completeopt = "menu,preview,noselect,noinsert",
-        }, -- }}}
+        },              -- }}}
 
         performance = { -- {{{
           -- TODO C this is slow
@@ -463,31 +464,31 @@ require("lazy_utils").load_on_insert(
               c = function(_)
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_next_item()
                   end
                 else
                   cmp.complete()
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   end
                 end
               end,
-            }, -- }}}
+            },              -- }}}
 
             ["<S-Tab>"] = { -- {{{
               c = function(_)
                 if cmp.visible() then
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_prev_item()
                   end
                 else
                   cmp.complete()
                   if #cmp.get_entries() == 1 then
-                    cmp.confirm({select = true})
+                    cmp.confirm({ select = true })
                   else
                     cmp.select_prev_item()
                   end
@@ -498,7 +499,7 @@ require("lazy_utils").load_on_insert(
         ),
 
         sources = { -- {{{
-          { -- {{{
+          {         -- {{{
             name = "buffer",
             -- only visible buffers
             option = {
@@ -511,9 +512,8 @@ require("lazy_utils").load_on_insert(
               end,
             },
           }, -- }}}
-        }, -- }}}
+        },   -- }}}
       }
-    ) -- }}}
-
+    )        -- }}}
   end
 )

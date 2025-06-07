@@ -1,5 +1,5 @@
 -- {{{
-vim.cmd("source ~/.vimrc")
+vim.cmd.source("~/.vimrc")
 require("functions")
 
 local Plug = vim.fn["plug#"]

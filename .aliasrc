@@ -357,7 +357,8 @@ alias prr='prime-run'
 alias prg='progress -M -W 1'
 
 alias prgc='prg \
-    -a ffmpeg -a ebook-convert \
+    -a ffmpeg -a magick -a convert -a gm \
+    -a ebook-convert \
     -a yt-dlp -a youtube-dl -a you-get \
     -a mpv -a vlc \
     -a vifm -a ranger -a nnn -a lf \
@@ -381,7 +382,6 @@ alias prgc='prg \
 
 # multimedia and web {{{
 alias ffmpeg='ffmpeg -hide_banner'
-alias ffmedc='ffmpeg -v error -f null - -i'
 
 alias pm=pulsemixer
 alias am=alsamixer

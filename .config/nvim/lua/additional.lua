@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd(
     pattern = {"*/.config/nvim*/*.lua"},
     ---@diagnostic disable-next-line: unused-local
     callback = function(ev)
-      vim.cmd("setlocal keywordprg=':help'")
+      vim.bo.keywordprg = ":help"
     end,
   }
 )

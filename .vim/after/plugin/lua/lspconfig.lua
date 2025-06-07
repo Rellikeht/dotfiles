@@ -1,16 +1,14 @@
 -- helpers {{{
 
-if vim.fn.has("nvim-0.11.2") == 1 then
-  local lspconfig = require("lspconfig")
-  -- of course shit won't work because why would it
-  -- all of this fucking useless shit was created only
-  -- to show off with emptiness of heads of creators
-  -- i will switch to vscode at that rate of fucking
-  -- waterfall of messages that cannot be stopped
-  lspconfig.util.default_config = vim.tbl_extend(
-    "force", lspconfig.util.default_config, { message_level = nil }
-  )
-end
+local lspconfig = require("lspconfig")
+-- of course shit won't work because why would it
+-- all of this fucking useless shit was created only
+-- to show off with emptiness of heads of creators
+-- i will switch to vscode at that rate of fucking
+-- waterfall of messages that cannot be stopped
+lspconfig.util.default_config = vim.tbl_extend(
+  "force", lspconfig.util.default_config, { message_level = nil }
+)
 
 Lspfmt_files = {
   go = true,
