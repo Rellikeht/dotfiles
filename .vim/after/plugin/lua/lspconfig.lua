@@ -1,5 +1,4 @@
 -- helpers {{{
-
 local lspconfig = require("lspconfig")
 -- of course shit won't work because why would it
 -- all of this fucking useless shit was created only
@@ -28,12 +27,16 @@ do
 end
 
 if vim.fn.has("nvim-0.11") == 1 then
-  function NvimDiagPrev()
-    vim.diagnostic.jump({ count = -1, float = true })
+  function NvimDiagPrev(args)
+    if not args.count then args.count = -1 end
+    if not args.float then args.float = true end
+    vim.diagnostic.jump(args)
   end
 
-  function NvimDiagNext()
-    vim.diagnostic.jump({ count = 1, float = true })
+  function NvimDiagNext(args)
+    if not args.count then args.count = -1 end
+    if not args.float then args.float = true end
+    vim.diagnostic.jump(args)
   end
 else
   ---@diagnostic disable-next-line: deprecated
@@ -84,13 +87,62 @@ vim.keymap.set(
   "n", "<Leader>de", vim.diagnostic.open_float,
   { noremap = true, desc = "show diagnostics under cursor" }
 )
+
 vim.keymap.set(
-  "n", "<Leader>dp", commandRep(NvimDiagPrev),
-  { noremap = true, desc = "[N] prev diagnostic" }
+  "n", "<Leader>dp", commandRep(
+    NvimDiagPrev, {
+      severity = {
+        vim.diagnostic.severity.ERROR,
+        vim.diagnostic.severity.WARN,
+      },
+    }
+  ), { noremap = true, desc = "[N] prev diagnostic" }
 )
 vim.keymap.set(
-  "n", "<Leader>dn", commandRep(NvimDiagNext),
-  { noremap = true, desc = "[N] next diagnostic" }
+  "n", "<Leader>dn", commandRep(
+    NvimDiagNext, {
+      severity = {
+        vim.diagnostic.severity.ERROR,
+        vim.diagnostic.severity.WARN,
+      },
+    }
+  ), { noremap = true, desc = "[N] next diagnostic" }
+)
+
+vim.keymap.set(
+  "n", "<Leader>dP", commandRep(
+    NvimDiagPrev, { severity = { vim.diagnostic.severity.ERROR } }
+  ), { noremap = true, desc = "[N] prev diagnostic" }
+)
+vim.keymap.set(
+  "n", "<Leader>dN", commandRep(
+    NvimDiagNext, { severity = { vim.diagnostic.severity.ERROR } }
+  ), { noremap = true, desc = "[N] next diagnostic" }
+)
+
+vim.keymap.set(
+  "n", "<Leader>d<C-p>", commandRep(
+    NvimDiagPrev, {
+      severity = {
+        vim.diagnostic.severity.ERROR,
+        vim.diagnostic.severity.WARN,
+        vim.diagnostic.severity.INFO,
+        vim.diagnostic.severity.HINT,
+      },
+    }
+  ), { noremap = true, desc = "[N] prev diagnostic" }
+)
+vim.keymap.set(
+  "n", "<Leader>d<C-n>", commandRep(
+    NvimDiagNext, {
+      severity = {
+        vim.diagnostic.severity.ERROR,
+        vim.diagnostic.severity.WARN,
+        vim.diagnostic.severity.INFO,
+        vim.diagnostic.severity.HINT,
+      },
+    }
+  ), { noremap = true, desc = "[N] next diagnostic" }
 )
 
 vim.keymap.set(
@@ -226,12 +278,10 @@ vim.api.nvim_create_autocmd( -- {{{
         add_opts(opts, { desc = "rename symbol under cursor" })
       )
       vim.keymap.set(
-        "n", "<Leader>df",
-        function()
+        "n", "<Leader>df", function()
           vim.lsp.buf.format({ async = false })
           vim.cmd.norm("zv")
-        end,
-        add_opts(opts, { desc = "format file using lsp" })
+        end, add_opts(opts, { desc = "format file using lsp" })
       )
 
       vim.keymap.set(
@@ -278,14 +328,18 @@ vim.api.nvim_create_autocmd( -- {{{
         "filetype", { scope = "local" }
       )
 
-      local name = vim.lsp.get_client_by_id(args.data.client_id).name
-      if Lspfmt_files[ftype] == true or Lspfmt_files[ftype] == name then
+      local name = vim.lsp.get_client_by_id(args.data.client_id)
+          .name
+      if Lspfmt_files[ftype] == true or Lspfmt_files[ftype] ==
+          name then
         vim.b.lspfmt = GetBool(vim.b.buffmt)
         vim.b.buffmt = false
-        vim.keymap.set("n", "<Leader>dqf", function()
-          vim.b.lspfmt = not vim.b.lspfmt
-          print(vim.b.lspfmt)
-        end)
+        vim.keymap.set(
+          "n", "<Leader>dqf", function()
+            vim.b.lspfmt = not vim.b.lspfmt
+            print(vim.b.lspfmt)
+          end
+        )
 
         local lspfmt_gid = vim.api.nvim_create_augroup(
           "lspfmt_" .. lspfmt_get_gid(), {}
@@ -313,8 +367,7 @@ vim.api.nvim_create_autocmd( -- {{{
               vim.b.lspfmt = false
               vim.keymap.del("n", "<Leader>dqf")
               vim.api.nvim_del_augroup_by_id(lspfmt_gid)
-            end
-            ,
+            end,
           }
         )
       end

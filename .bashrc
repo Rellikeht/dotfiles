@@ -56,11 +56,8 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
 
         # Because sometimes z.lua fucks up
         local EX="$?"
-        local EXT
-        if [ -z "$EXIT" ]; then
-            EXT="$EX"
-        else
-            EXT="$EXIT"
+        if [ -n "$EXIT" ]; then
+            EX="$EXIT"
         fi
         PS1=""
 
@@ -94,13 +91,13 @@ if ! conditional_source ~/.prompt.bash &>/dev/null; then
         PS1+="${LBLUE}:${RESET}"
         PS1+="${LMAGENTA}\w${RESET}"
 
-        if [ "$EXT" != 0 ]; then
+        if [ "$EX" != 0 ]; then
             PS1+="${RED}"
         else
             PS1+="${GREEN}"
         fi
 
-        PS1+="[$EXT]${RESET}"
+        PS1+="[$EX]${RESET}"
         PS1+="${LCYAN}$PSC ${RESET}"
     }
 # }}}
@@ -139,16 +136,15 @@ fi
 if [ -z "$__Z_INITIALIZED" ]; then
     # z.lua or plain old z as fallback
     if whichp z.lua &>/dev/null; then
-        eval "$(z.lua --init bash once enhanced echo fzf)"
-        # # Because doing this normal way messes $? {{{
-        # # It is exported as $EXIT
-        # TEMP="$(mktemp)"
-        # z.lua --init bash once enhanced echo fzf >"$TEMP"
-        # patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
-        # rm -f "$TEMP.orig"
-        # eval "$(cat $TEMP)"
-        # rm "$TEMP"
-        # TEMP=
+        # Because doing this normal way messes in some cases $? {{{
+        # It is exported as $EXIT
+        TEMP="$(mktemp)"
+        z.lua --init bash once enhanced echo fzf >"$TEMP"
+        patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
+        rm -f "$TEMP.orig"
+        eval "$(cat $TEMP)"
+        rm "$TEMP"
+        TEMP=
         # }}}
     elif whichp z &>/dev/null; then
         . "$(whichp z)"

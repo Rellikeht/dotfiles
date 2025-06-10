@@ -31,8 +31,8 @@ end
 
 -- helpers {{{
 
-function commandRep(fn)
-  return function() for _ = 1, vim.v.count1 do fn() end end
+function commandRep(fn, args)
+  return function() for _ = 1, vim.v.count1 do fn(args) end end
 end
 
 function fileReadable(name)

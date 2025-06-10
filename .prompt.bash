@@ -3,10 +3,9 @@
 __prompt_command() {
     # {{{
 
-    # Because sometimes z.lua fucks up
-    local EXT="$?"
+    local EX="$?"
     if [ -n "$EXIT" ]; then
-        EXT="$EXIT"
+        EX="$EXIT"
     fi
     PS1=""
 
@@ -33,21 +32,13 @@ __prompt_command() {
 
     # }}}
 
-    if [ "$EXT" != 0 ]; then
+    if [ "$EX" != 0 ]; then
         PS1+="${LRED}"
     else
         PS1+="${LGREEN}"
     fi
-    PS1+="[$EXT]${RESET} "
-
-    # PS1+="${BLUE}[ ${RESET}"
-    # PS1+="${LBLUE}\u ${RESET}"
-    # PS1+="${LCYAN}@${RESET}"
-    # PS1+="${LRED}\h${RESET}"
-    # PS1+="${BLUE}]${RESET}"
-    # PS1+="${LCYAN}:${RESET}"
-    PS1+="${LMAGENTA}\w${RESET} "
-
+    PS1+="[$EX]${RESET} "
+    PS1+="${LMAGENTA}\w${RESET}"
     PS1+="${LYELLOW}$PSC ${RESET}"
 
     # export EXIT=
