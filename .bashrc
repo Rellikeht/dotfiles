@@ -131,23 +131,24 @@ bind 'Space:magic-space'
 
 # hooks {{{
 
-# if fzf --bash &>/dev/null; then
-#     # this is just fucked, but at least in zsh works somehow
-#     eval "$(fzf --bash)"
-# fi
+if fzf --bash &>/dev/null; then
+    FZF_COMPLETION_TRIGGER='***'
+    eval "$(fzf --bash)"
+fi
 
 if [ -z "$__Z_INITIALIZED" ]; then
     # z.lua or plain old z as fallback
     if whichp z.lua &>/dev/null; then
-        # Because doing this normal way messes $? {{{
-        # It is exported as $EXIT
-        TEMP="$(mktemp)"
-        z.lua --init bash once enhanced echo fzf >"$TEMP"
-        patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
-        rm -f "$TEMP.orig"
-        eval "$(cat $TEMP)"
-        rm "$TEMP"
-        TEMP=
+        eval "$(z.lua --init bash once enhanced echo fzf)"
+        # # Because doing this normal way messes $? {{{
+        # # It is exported as $EXIT
+        # TEMP="$(mktemp)"
+        # z.lua --init bash once enhanced echo fzf >"$TEMP"
+        # patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
+        # rm -f "$TEMP.orig"
+        # eval "$(cat $TEMP)"
+        # rm "$TEMP"
+        # TEMP=
         # }}}
     elif whichp z &>/dev/null; then
         . "$(whichp z)"

@@ -3,6 +3,7 @@
 --no-warnings
 --no-playlist
 --convert-subtitles srt
---concurrent-fragments 5
+--concurrent-fragments 8
+--abort-on-unavailable-fragments
 
 --geo-bypass 

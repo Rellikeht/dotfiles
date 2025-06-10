@@ -148,7 +148,7 @@ Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim', {'for': 'typst'}
 Plug 'HiPhish/info.vim'
 
-Plug 'mattn/emmet-vim', {'for': ['html', 'markdown']}
+Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'averms/ebnf-vim'
 Plug 'vim-scripts/bnf.vim'
