@@ -161,7 +161,7 @@ conditional_source ~/.p10k.zsh
 # hooks {{{
 
 if fzf --zsh &>/dev/null; then
-    FZF_COMPLETION_TRIGGER='***'
+    FZF_COMPLETION_TRIGGER='**'
     eval "$(fzf --zsh)"
 fi
 

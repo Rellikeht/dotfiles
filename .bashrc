@@ -49,66 +49,114 @@ set -o pipefail
 
 # prompt {{{
 
-# prompt file, something like p10k but simpler
+# colors {{{
+RESET='\[\e[0m\]'
+
+BLACK='\[\e[0;30m\]'
+RED='\[\e[0;31m\]'
+GREEN='\[\e[0;32m\]'
+YELLOW='\[\e[0;33m\]'
+BLUE='\[\e[0;34m\]'
+MAGENTA='\[\e[0;35m\]'
+CYAN='\[\e[0;36m\]'
+WHITE='\[\e[0;37m\]'
+
+LBLACK='\[\e[1;30m\]'
+LRED='\[\e[1;31m\]'
+LGREEN='\[\e[1;32m\]'
+LYELLOW='\[\e[1;33m\]'
+LBLUE='\[\e[1;34m\]'
+LMAGENTA='\[\e[1;35m\]'
+LCYAN='\[\e[1;36m\]'
+LWHITE='\[\e[1;37m\]'
+# }}}
+
+# calculate duration of ran command {{{
+
+# file to write, shm to cause least delay possible
+TIME_PIPE="/dev/shm/$USER.bash.$PID"
+clean_time_pipe() {
+    rm -fr "$TIME_PIPE"
+}
+trap clean_time_pipe TERM QUIT EXIT
+# starting time of command
+PS0='$(date +%s%N > $TIME_PIPE)'
+
+# calculating time of running some really basic command to subtract
+# it from result because all commands get this time added somehow
+__calc_run_time() {
+    date +%s%N >"$TIME_PIPE"
+
+    # No idea how to balance that
+    _="$(true > /dev/null)"
+    # _="$(date > /dev/null)"
+    _="$(cat "$TIME_PIPE" > /dev/null)"
+
+    local START_TIME="$(cat "$TIME_PIPE")"
+    echo >"$TIME_PIPE"
+    local END_TIME="$(date +%s%N)"
+    echo "$((END_TIME - START_TIME))"
+}
+RUN_TIME="$(__calc_run_time)"
+
+__calc_command_duration() {
+    local LAST_TIME="$(cat "$TIME_PIPE")"
+    if [ -n "$LAST_TIME" ]; then
+        echo >"$TIME_PIPE"
+        local NEW_TIME="$(date +%s%N)"
+        DURATION="$((NEW_TIME - LAST_TIME - RUN_TIME))"
+        local DI="$((DURATION / 1000000000))"
+        local DD="$((DURATION % 1000000000))"
+        local DAY="$(($(date -d "@$DI" +%j) - 1))"
+        local HOUR="$(date -d "@$(($DI - 3600))" +%T)"
+        local SECS="$(printf "%02d\n" "$(($DD/10000000))")"
+        # local SECS="$(printf "%03d\n" "$(($DD / 1000000))")"
+        DURATION="$HOUR:$SECS"
+        if [ "$DAY" -gt 0 ]; then
+            DURATION="${DAY}d $DURATION"
+        fi
+    fi
+    echo $DURATION
+}
+
+# }}}
+
+# helpers {{{
+__ps1_with_duration() {
+    # bash just can't do this without breaking typed long lines
+    # printf "%*s\r%s%s\n" "$(tput cols)" "$1 " "$PS1" "$2"
+    echo "$PS1 -> $1"
+    echo "$2"
+}
+PSC='$'
+[ "$(id -u)" -eq 0 ] && PSC='#'
+PS2=">"
+PS3=""
+PS4="+"
+# }}}
+
+# prompt file
 if ! conditional_source ~/.prompt.bash &>/dev/null; then
     __prompt_command() {
         # {{{
-
         # Because sometimes z.lua fucks up
         local EX="$?"
         if [ -n "$EXIT" ]; then
             EX="$EXIT"
         fi
         PS1=""
-
-        # colors {{{
-        local RESET='\[\e[0m\]'
-
-        local BLACK='\[\e[0;30m\]'
-        local RED='\[\e[0;31m\]'
-        local GREEN='\[\e[0;32m\]'
-        local YELLOW='\[\e[0;33m\]'
-        local BLUE='\[\e[0;34m\]'
-        local MAGENTA='\[\e[0;35m\]'
-        local CYAN='\[\e[0;36m\]'
-        local WHITE='\[\e[0;37m\]'
-
-        local LBLACK='\[\e[1;30m\]'
-        local LRED='\[\e[1;31m\]'
-        local LGREEN='\[\e[1;32m\]'
-        local LYELLOW='\[\e[1;33m\]'
-        local LBLUE='\[\e[1;34m\]'
-        local LMAGENTA='\[\e[1;35m\]'
-        local LCYAN='\[\e[1;36m\]'
-        local LWHITE='\[\e[1;37m\]'
-        # }}}
-
-        PS1+="${MAGENTA}[${RESET}"
-        PS1+="${CYANj}\u${RESET}"
-        PS1+="${LRED}@${RESET}"
-        PS1+="${LCYAN}\h${RESET}"
-        PS1+="${MAGENTA}]${RESET}"
-        PS1+="${LBLUE}:${RESET}"
         PS1+="${LMAGENTA}\w${RESET}"
-
         if [ "$EX" != 0 ]; then
             PS1+="${RED}"
         else
             PS1+="${GREEN}"
         fi
-
         PS1+="[$EX]${RESET}"
         PS1+="${LCYAN}$PSC ${RESET}"
     }
 # }}}
 fi
-
-PSC='$'
-[ "$(id -u)" -eq 0 ] && PSC='#'
 PROMPT_COMMAND=__prompt_command
-PS2=">"
-PS3=""
-PS4="+"
 
 # }}}
 
@@ -129,7 +177,7 @@ bind 'Space:magic-space'
 # hooks {{{
 
 if fzf --bash &>/dev/null; then
-    FZF_COMPLETION_TRIGGER='***'
+    FZF_COMPLETION_TRIGGER='**'
     eval "$(fzf --bash)"
 fi
 
