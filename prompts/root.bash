@@ -3,7 +3,6 @@
 __prompt_command() {
     # {{{
     local EX="$?"
-    local DURATION=$(__calc_command_duration)
     if [ -n "$EXIT" ]; then
         EX="$EXIT"
     fi
@@ -14,7 +13,6 @@ __prompt_command() {
     else
         PS1+="${LGREEN}"
     fi
-    PS1+="[$EX]${RESET} "
-    PEND="${LYELLOW}$PSC${RESET} "
-    PS1=$(__ps1_with_duration "$DURATION" "$PEND")
+    PS1+="[$EX]${RESET}"
+    PS1+="${LYELLOW}$PSC${RESET} "
 } # }}}
