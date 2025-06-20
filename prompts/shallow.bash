@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO more info but not on every prompt
-# PS1+="${MAGENTA}[${RESET}"
-# PS1+="${CYAN}\u${RESET}"
-# PS1+="${LRED}@${RESET}"
-# PS1+="${LCYAN}\h${RESET}"
-# PS1+="${MAGENTA}]${RESET}"
-# PS1+="${LBLUE}:${RESET}"
-# PS1+="${LGREEN}:${RESET}"
-
 __prompt_command() {
     # {{{
     # Because sometimes z.lua fucks up
@@ -16,13 +7,27 @@ __prompt_command() {
     if [ -n "$EXIT" ]; then
         EX="$EXIT"
     fi
+
     PS1=""
-    PS1+="${LCYAN}\w${RESET} "
+    if [ -n "$USER_PS1" ]; then
+        # PS1+="${MAGENTA}[${RESET}"
+        PS1+="${MAGENTA}\u${RESET}"
+        PS1+="${LRED}@${RESET}"
+        PS1+="${LMAGENTA}\h${RESET} "
+        # PS1+="${MAGENTA}]${RESET}"
+        PS1+="${LBLUE}${RESET}"
+    fi
+    PS1+="${GREEN}\w${RESET} "
+
+    if [ -n "$USER_PS1" ]; then
+        PS1+="\n"
+    fi
     if [ "$EX" != 0 ]; then
         PS1+="${LRED}"
     else
         PS1+="${LGREEN}"
     fi
+
     PS1+="[$EX]${RESET}"
     PS1+="${LMAGENTA}$PSC ${RESET}"
 } # }}}
