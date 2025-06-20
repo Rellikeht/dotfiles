@@ -96,7 +96,7 @@ vim.keymap.set(
         vim.diagnostic.severity.WARN,
       },
     }
-  ), { noremap = true, desc = "[N] prev diagnostic" }
+  ), { noremap = true, desc = "[N] prev error or warning" }
 )
 vim.keymap.set(
   "n", "<Leader>dn", commandRep(
@@ -106,43 +106,39 @@ vim.keymap.set(
         vim.diagnostic.severity.WARN,
       },
     }
-  ), { noremap = true, desc = "[N] next diagnostic" }
+  ), { noremap = true, desc = "[N] next error or warning" }
 )
 
 vim.keymap.set(
   "n", "<Leader>dP", commandRep(
     NvimDiagPrev, { severity = { vim.diagnostic.severity.ERROR } }
-  ), { noremap = true, desc = "[N] prev diagnostic" }
+  ), { noremap = true, desc = "[N] prev error" }
 )
 vim.keymap.set(
   "n", "<Leader>dN", commandRep(
     NvimDiagNext, { severity = { vim.diagnostic.severity.ERROR } }
-  ), { noremap = true, desc = "[N] next diagnostic" }
+  ), { noremap = true, desc = "[N] next error" }
 )
 
 vim.keymap.set(
   "n", "<Leader>d<C-p>", commandRep(
     NvimDiagPrev, {
       severity = {
-        vim.diagnostic.severity.ERROR,
-        vim.diagnostic.severity.WARN,
         vim.diagnostic.severity.INFO,
         vim.diagnostic.severity.HINT,
       },
     }
-  ), { noremap = true, desc = "[N] prev diagnostic" }
+  ), { noremap = true, desc = "[N] prev hint/info" }
 )
 vim.keymap.set(
   "n", "<Leader>d<C-n>", commandRep(
     NvimDiagNext, {
       severity = {
-        vim.diagnostic.severity.ERROR,
-        vim.diagnostic.severity.WARN,
         vim.diagnostic.severity.INFO,
         vim.diagnostic.severity.HINT,
       },
     }
-  ), { noremap = true, desc = "[N] next diagnostic" }
+  ), { noremap = true, desc = "[N] next hint/info" }
 )
 
 vim.keymap.set(
@@ -366,7 +362,7 @@ vim.api.nvim_create_autocmd( -- {{{
               vim.b.buffmt = GetBool(vim.b.lspfmt)
               vim.b.lspfmt = false
               vim.keymap.del("n", "<Leader>dqf")
-              vim.api.nvim_del_augroup_by_id(lspfmt_gid)
+              pcall(vim.api.nvim_del_augroup_by_id, lspfmt_gid)
             end,
           }
         )

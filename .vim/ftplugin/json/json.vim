@@ -3,4 +3,4 @@ if exists("b:did_ftplugin")
 endif
 
 syntax match Comment +\/\/.\+$+
-set conceallevel=1
+set conceallevel=2

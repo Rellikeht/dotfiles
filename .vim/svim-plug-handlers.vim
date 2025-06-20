@@ -46,6 +46,17 @@ noremap <silent> <Leader>dd :call JumpToDef()<CR>
 
 " }}} 
 
+" vim-simple-complete {{{ 
+
+let g:vsc_type_complete = 1
+let g:vsc_tab_complete = 0
+let g:vsc_completion_command = "\<C-N>"
+let g:vsc_reverse_completion_command = "\<C-P>"
+let g:vsc_type_complete_length = 3
+let g:vsc_pattern = '\k'
+
+" }}} 
+
 " other {{{ 
 
 " Enable function highlighting (affects both C and C++ files)
@@ -60,16 +71,5 @@ let g:cpp_member_highlight = 1
 " Put all standard C and C++ keywords under Vim's highlight group 'Statement'
 " (affects both C and C++ files)
 let g:cpp_simple_highlight = 0
-
-" }}} 
-
-" vim-simple-complete {{{ 
-
-let g:vsc_type_complete = 1
-let g:vsc_tab_complete = 0
-let g:vsc_completion_command = "\<C-N>"
-let g:vsc_reverse_completion_command = "\<C-P>"
-let g:vsc_type_complete_length = 3
-let g:vsc_pattern = '\k'
 
 " }}} 

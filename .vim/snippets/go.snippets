@@ -52,3 +52,16 @@ snippet gof
     go func(${1:args}) {
         $0
     }(${2:args})
+
+snippet ctxch
+    select {
+        case <-ctx.Done():
+            return $1
+        default:
+            $0
+    }
+
+snippet ctxfun
+    func (ctx context.Context$1) {
+        $0
+    }
