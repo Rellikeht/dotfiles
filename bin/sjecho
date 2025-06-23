@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+DIR="$1"
+shift
+# cd "$DIR" || exit
+echo "DIR: $DIR ; ARGS:" "$@"

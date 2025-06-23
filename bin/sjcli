@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+SDIR=$(readlink -f "${0%/*}")
+NAME="conv-server"
+if [ -n "$CSERVER" ]; then
+    NAME="$NAME-$CSERVER"
+else
+    NAME="$NAME-default"
+fi
+PIPE="/tmp/$NAME"
+
+if ! [ -p "$PIPE" ]; then
+    if ! [ -e "$PIPE" ]; then
+        echo "$PIPE isn't a pipe!!!"
+    else
+        echo "Server is not running"
+    fi
+    exit 1
+fi
+
+RUNNER="$SDIR/sjecho"
+if [ -e "$1" ]; then
+    RUNNER="$1"
+    shift
+elif [ -e "runners/$1" ]; then
+    RUNNER="runners/$1"
+    shift
+fi
+CDIR="$(readlink -f "$PWD")"
+exec >"$PIPE"
+
+if [ "$1" = "--" ]; then
+    # ability to have multiple arguments
+    shift
+    printf "%q %q" "$RUNNER" "$CDIR"
+    for arg in "$@"; do
+        printf " %q" "$arg"
+    done
+    echo
+else
+    # batch processing
+    for arg in "$@"; do
+        printf "%q %q %q\n" "$RUNNER" "$CDIR" "$arg"
+    done
+fi

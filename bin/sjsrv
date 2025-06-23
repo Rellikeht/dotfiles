@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+NAME="conv-server"
+if [ -n "$1" ]; then
+    NAME="$NAME-$1"
+else
+    NAME="$NAME-sjserver"
+fi
+
+PIPE="/tmp/$NAME"
+clean() {
+    rm -fr "$PIPE"
+}
+
+mkfifo "$PIPE" || exit 1
+trap clean INT TERM QUIT
+if [ -z "$PROCS" ]; then
+    PROCS=$(nproc)
+    if [ "$PROCS" -ge 16 ]; then
+        PROCS=$((PROCS / 4))
+    elif [ "$PROCS" -gt 8 ]; then
+        PROCS=$((PROCS / 2))
+    elif [ "$PROCS" -gt 4 ]; then
+        PROCS=$((PROCS - 1))
+    fi
+fi
+PROCS="-P$PROCS"
+# Breaks when no command is executed and script is stopped
+# exec <"$PIPE"
+
+while [ -p "$PIPE" ]; do
+    # tee /dev/stderr <"$PIPE" # for debugging
+    cat "$PIPE" # everything one needs
+    # tee /dev/stderr
+    # cat
+done | xargs "$PROCS" -I{} sh -c "{}"
+# is just slower
+# done | parallel "$PROCS" --tty "{}"
+
+clean
