@@ -1,4 +1,3 @@
-define(HF, ifdef(`RES', RES(), 570))dnl
 #!/usr/bin/env sh
 
 LANG1="[format_note*=original]"
@@ -6,14 +5,12 @@ LANG2=
 if [ -n "$YTL" ]; then
     LANG1="[language=$YTL]"
     LANG2="[language=$YTL]"
-    dnl LANG2="[format_note*=original]"
-    dnl LANG2=
-fi
+        fi
 
 [ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 # != doesn't work on it's own
 [ -n "$YTNOCODEC" ] && CODEC="[vcodec!*=$YTNOCODEC]"
-HSET="[height>=HF()]"
+HSET="[height>=2160]"
 ADDS="((ba$ABR$LANG1/ba$ABR$LANG2)+wv$HSET$CODEC)"
 SINGLE="w$HSET$CODEC$LANG1/w$HSET$CODEC$LANG2"
 

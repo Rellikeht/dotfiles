@@ -1,10 +1,17 @@
 #!/usr/bin/env sh
 
-LANG=
-[ -n "$YTL" ] && LANG="[language=$YTL]"
+LANG1="[format_note*=original]"
+LANG2=
+if [ -n "$YTL" ]; then
+    LANG1="[language=$YTL]"
+    LANG2="[language=$YTL]"
+        fi
+
 [ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 # != doesn't work on it's own
 [ -n "$YTNOCODEC" ] && CODEC="[vcodec!*=$YTNOCODEC]"
 HSET="[height>=1440]"
+ADDS="((ba$ABR$LANG1/ba$ABR$LANG2)+wv$HSET$CODEC)"
+SINGLE="w$HSET$CODEC$LANG1/w$HSET$CODEC$LANG2"
 
-exec yt-dlp -S size -f "(ba$ABR$LANG+wv$HSET$CODEC)/w$HSET$CODEC$LANG" "$@"
+exec yt-dlp -S size -f "$ADDS/$SINGLE" "$@"

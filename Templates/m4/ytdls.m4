@@ -1,6 +1,11 @@
 #!/usr/bin/env sh
 
-LANG=
-[ -n "$YTL" ] && LANG="[language=$YTL]"
+LANG1="[format_note*=original]"
+LANG2=
+if [ -n "$YTL" ]; then
+    LANG1="[language=$YTL]"
+    LANG2="[language=$YTL]"
+fi
+[ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 
-exec yt-dlp -f "FORMAT()$LANG" "$@"
+exec yt-dlp -f "FORMAT()" "$@"
