@@ -6,9 +6,9 @@ require("lsp_signature").setup(
     -- ???
     debug = false,
     log_path = vim.fn.expand("$HOME") ..
-      "/.local/state/nvim/sig.log",
+        "/.local/state/nvim/sig.log",
 
-    handler_opts = {border = "none"},
+    handler_opts = { border = "none" },
     max_width = 150, -- nil
     max_height = 14,
     close_timeout = 1000,
@@ -34,7 +34,7 @@ require("lsp_signature").setup(
     floating_window_off_x = 0,
     floating_window_off_y = 0,
   }
-) --  }}}
+)                                  --  }}}
 
 local outline = require("outline") -- {{{
 outline.setup(
@@ -148,7 +148,7 @@ outline.setup(
         -- The above two options are respected.
         -- This can be triggered manually through `follow_cursor` lua API,
         -- :OutlineFollow command, or <C-g>.
-        follow = {"CursorMoved"},
+        follow = { "CursorMoved" },
 
         -- Re-request symbols from the provider.
         -- This can be triggered manually through `refresh_outline` lua API, or
@@ -160,9 +160,9 @@ outline.setup(
           "BufWinEnter",
           "TabEnter",
           "BufWritePost",
-        }, -- }}}
-      }, -- }}}
-    }, -- }}}
+        },     -- }}}
+      },       -- }}}
+    },         -- }}}
 
     guides = { -- {{{
       -- Options for outline guides which help show tree hierarchy of symbols
@@ -174,8 +174,8 @@ outline.setup(
         bottom = "└",
         middle = "├",
         vertical = "│",
-      }, -- }}}
-    }, -- }}}
+      },               -- }}}
+    },                 -- }}}
 
     symbol_folding = { -- {{{
       -- Depth past which nodes will be folded by default. Set to false to unfold all on open.
@@ -189,9 +189,9 @@ outline.setup(
         -- Auto fold when the root level only has this many nodes.
         -- Set true for 1 node, false for 0.
         only = true,
-      }, -- }}}
-      markers = {"", ""},
-    }, -- }}}
+      },               -- }}}
+      markers = { "", "" },
+    },                 -- }}}
 
     preview_window = { -- {{{
       -- Automatically open preview of code location when navigating outline window
@@ -203,7 +203,7 @@ outline.setup(
       -- below.
       open_hover_on_preview = false,
 
-      width = 50, -- Percentage or integer of columns
+      width = 50,     -- Percentage or integer of columns
       min_width = 50, -- This is the number of columns
 
       -- Whether width is relative to the total width of nvim.
@@ -227,7 +227,7 @@ outline.setup(
       -- Experimental feature that let's you edit the source content live
       -- in the preview window. Like VS Code's "peek editor".
       live = true,
-    }, -- }}}
+    },          -- }}}
 
     keymaps = { -- {{{
       -- These keymaps can be a string or a table for multiple keys.
@@ -235,7 +235,7 @@ outline.setup(
       -- TODO B
 
       show_help = "?",
-      close = {"<Esc>", "q"},
+      close = { "<Esc>", "q" },
 
       -- Jump to symbol under cursor.
       -- It can auto close the outline window when triggered, see
@@ -278,10 +278,10 @@ outline.setup(
       -- j/k/<down>/<up>.
       down_and_jump = "J",
       up_and_jump = "K",
-    }, -- }}}
+    },            -- }}}
 
     providers = { -- {{{
-      priority = {"lsp", "markdown", "norg"},
+      priority = { "lsp", "markdown", "norg" },
       -- Configuration for each provider (3rd party providers are supported)
       lsp = {
         -- Lsp client names to ignore
@@ -289,9 +289,9 @@ outline.setup(
       },
       markdown = {
         -- List of supported ft's to use the markdown provider
-        filetypes = {"markdown", "vimwiki", "pandoc"},
+        filetypes = { "markdown", "vimwiki", "pandoc" },
       },
-    }, -- }}}
+    },          -- }}}
 
     symbols = { -- {{{
       -- Filter by kinds (string) for symbols in the outline.
@@ -314,42 +314,42 @@ outline.setup(
 -- bindings {{{
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>doo", ":<C-u>Outline<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>doo", ":<C-u>Outline<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n"}, "<Leader>doO", ":<C-u>Outline!<CR>", {noremap = true}
+  { "n" }, "<Leader>doO", ":<C-u>Outline!<CR>", { noremap = true }
 )
 
 vim.keymap.set(
-  {"v"}, "<Leader>doO", ":<C-u>Outline!<CR>:norm gv<CR>",
-  {noremap = true}
+  { "v" }, "<Leader>doO", ":<C-u>Outline!<CR>:norm gv<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n"}, "<Leader>doc", ":<C-u>OutlineClose<CR>",
-  {noremap = true}
+  { "n" }, "<Leader>doc", ":<C-u>OutlineClose<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"v"}, "<Leader>doc", ":<C-u>OutlineClose<CR>:norm gv<CR>",
-  {noremap = true}
+  { "v" }, "<Leader>doc", ":<C-u>OutlineClose<CR>:norm gv<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>doi", ":<C-u>OutlineStatus<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>doi", ":<C-u>OutlineStatus<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>dof", ":<C-u>OutlineFocusOutline<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>dof", ":<C-u>OutlineFocusOutline<CR>",
+  { noremap = true }
 )
 
 vim.keymap.set(
-  {"n", "v"}, "<Leader>doe", ":<C-u>OutlineFocusCode<CR>",
-  {noremap = true}
+  { "n", "v" }, "<Leader>doe", ":<C-u>OutlineFocusCode<CR>",
+  { noremap = true }
 )
 
 -- }}}

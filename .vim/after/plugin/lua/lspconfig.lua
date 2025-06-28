@@ -334,7 +334,7 @@ vim.api.nvim_create_autocmd( -- {{{
           "n", "<Leader>dqf", function()
             vim.b.lspfmt = not vim.b.lspfmt
             print(vim.b.lspfmt)
-          end
+          end, { buffer = true }
         )
 
         local lspfmt_gid = vim.api.nvim_create_augroup(
@@ -361,7 +361,9 @@ vim.api.nvim_create_autocmd( -- {{{
             callback = function()
               vim.b.buffmt = GetBool(vim.b.lspfmt)
               vim.b.lspfmt = false
-              vim.keymap.del("n", "<Leader>dqf")
+              pcall(
+                vim.keymap.del, "n", "<Leader>dqf", { buffer = 0 }
+              )
               pcall(vim.api.nvim_del_augroup_by_id, lspfmt_gid)
             end,
           }

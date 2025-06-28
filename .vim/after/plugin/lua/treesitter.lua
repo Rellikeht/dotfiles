@@ -118,9 +118,9 @@ lazy_utils.load_on_startup(
         -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
         -- parser_install_dir = "/some/path/to/store/parsers",
         -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-        incremental_selection = {enable = true},
+        incremental_selection = { enable = true },
 
-        indent = {enable = true},
+        indent = { enable = true },
         -- }}}
 
         highlight = { -- {{{
@@ -149,68 +149,68 @@ lazy_utils.load_on_startup(
               ["<leader>dzf"] = "@function.outer",
               ["<leader>dzc"] = "@class.outer",
               ["<leader>dza"] = "@assignment.outer",
-            }, -- }}}
-          }, -- }}}
+            },                            -- }}}
+          },                              -- }}}
 
-          select = { -- {{{
+          select = {                      -- {{{
             -- {{{
-            enable = true, --
-            lookahead = true, --
+            enable = true,                --
+            lookahead = true,             --
             -- }}}
-            keymaps = { -- {{{
+            keymaps = {                   -- {{{
               -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer", --
               ["if"] = "@function.inner", --
-              ["aF"] = "@method.outer", --
-              ["iF"] = "@method.inner", --
+              ["aF"] = "@method.outer",   --
+              ["iF"] = "@method.inner",   --
               ["as"] = "@conditional.outer",
               ["is"] = "@conditional.inner",
-              ["aa"] = "@parameter.outer", --
-              ["ia"] = "@parameter.inner", --
-              ["am"] = "@macro.outer", --
-              ["im"] = "@macro.inner", --
-              ["aM"] = "@define.outer", --
-              ["iM"] = "@define.inner", --
-              ["a#"] = "@comment.outer", --
-              ["i#"] = "@comment.inner", --
-              ["a\""] = "@string.outer", --
-              ["i\""] = "@string.inner", --
-              ["al"] = "@loop.outer", --
-              ["il"] = "@loop.inner", --
-              ["aL"] = "@repeat.outer", --
-              ["iL"] = "@repeat.inner", --
-              ["aed"] = "@exception.outer", --
-              ["ied"] = "@exception.inner", --
-              ["an"] = "@namespace.outer", --
-              ["in"] = "@namespace.inner", --
-              ["au"] = "@include.outer", --
-              ["iu"] = "@include.inner", --
-              ["at"] = "@type.outer", --
-              ["it"] = "@type.inner", --
+              ["aa"] = "@parameter.outer",       --
+              ["ia"] = "@parameter.inner",       --
+              ["am"] = "@macro.outer",           --
+              ["im"] = "@macro.inner",           --
+              ["aM"] = "@define.outer",          --
+              ["iM"] = "@define.inner",          --
+              ["a#"] = "@comment.outer",         --
+              ["i#"] = "@comment.inner",         --
+              ["a\""] = "@string.outer",         --
+              ["i\""] = "@string.inner",         --
+              ["al"] = "@loop.outer",            --
+              ["il"] = "@loop.inner",            --
+              ["aL"] = "@repeat.outer",          --
+              ["iL"] = "@repeat.inner",          --
+              ["aed"] = "@exception.outer",      --
+              ["ied"] = "@exception.inner",      --
+              ["an"] = "@namespace.outer",       --
+              ["in"] = "@namespace.inner",       --
+              ["au"] = "@include.outer",         --
+              ["iu"] = "@include.inner",         --
+              ["at"] = "@type.outer",            --
+              ["it"] = "@type.inner",            --
               ["aT"] = "@type.definition.outer", --
               ["iT"] = "@type.definition.inner", --
-              ["ac"] = "@class.outer", --
+              ["ac"] = "@class.outer",           --
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
               ["ic"] = {
-                query = "@class.inner", --
+                query = "@class.inner",                       --
                 desc = "Select inner part of a class region", --
-              }, --
-              ["aC"] = "@constructor.outer", --
-              ["iC"] = "@constructor.inner", --
+              },                                              --
+              ["aC"] = "@constructor.outer",                  --
+              ["iC"] = "@constructor.inner",                  --
               -- You can also use captures from other query groups like `locals.scm`
               ["a;"] = {
                 query = "@scope",
                 query_group = "locals",
                 desc = "Select language scope",
-              }, --
-              ["a]"] = "@frame.outer", --
-              ["i]"] = "@frame.inner", --
-              ["ar"] = "@return.outer", --
-              ["ir"] = "@return.inner", --
+              },                            --
+              ["a]"] = "@frame.outer",      --
+              ["i]"] = "@frame.inner",      --
+              ["ar"] = "@return.outer",     --
+              ["ir"] = "@return.inner",     --
               ["aA"] = "@assignment.outer", --
               ["iA"] = "@assignment.inner", --
-            }, -- }}}
+            },                              -- }}}
             -- {{{
             -- You can choose the select mode (default is charwise 'v')
             --
@@ -220,11 +220,11 @@ lazy_utils.load_on_startup(
             -- and should return the mode ('v', 'V', or '<c-v>') or a table
             -- mapping query_strings to modes.
             -- }}}
-            selection_modes = { -- {{{
+            selection_modes = {           -- {{{
               ["@parameter.outer"] = "v", -- charwise
-              ["@function.outer"] = "V", -- linewise
+              ["@function.outer"] = "V",  -- linewise
               ["@class.outer"] = "<c-v>", -- blockwise
-            }, -- }}}
+            },                            -- }}}
             -- {{{
             -- If you set this to `true` (default is `false`) then any textobject is
             -- extended to include preceding or succeeding whitespace. Succeeding
@@ -237,7 +237,7 @@ lazy_utils.load_on_startup(
             -- and should return true or false
             include_surrounding_whitespace = false,
             -- }}}
-          }, -- }}}
+          },       -- }}}
 
           move = { -- TODO {{{
 
@@ -281,11 +281,11 @@ lazy_utils.load_on_startup(
             goto_next_end = { -- {{{
               ["]M"] = "@function.outer",
               ["]["] = "@class.outer",
-            }, -- }}}
+            },                      -- }}}
             goto_previous_start = { -- {{{
               ["[m"] = "@function.outer",
               ["[["] = "@class.outer",
-            }, -- }}}
+            },                    -- }}}
             goto_previous_end = { -- {{{
               ["[M"] = "@function.outer",
               ["[]"] = "@class.outer",
@@ -294,8 +294,8 @@ lazy_utils.load_on_startup(
             -- Below will go to either the start or the end, whichever is closer.
             -- Use if you want more granular movements
             -- Make it even more gradual by adding multiple queries and regex.
-            goto_next = {["]d"] = "@conditional.outer"},
-            goto_previous = {["[d"] = "@conditional.outer"},
+            goto_next = { ["]d"] = "@conditional.outer" },
+            goto_previous = { ["[d"] = "@conditional.outer" },
             -- }}}
           }, -- }}}
         },
@@ -307,11 +307,11 @@ lazy_utils.load_on_startup(
             clear_on_cursor_move = true,
           },
 
-          highlight_current_scope = {enable = true},
+          highlight_current_scope = { enable = true },
 
           smart_rename = {
             enable = true,
-            keymaps = {smart_rename = tskey .. "s"},
+            keymaps = { smart_rename = tskey .. "s" },
           },
 
           navigation = {
@@ -324,7 +324,7 @@ lazy_utils.load_on_startup(
               goto_previous_usage = tskey .. "p",
             },
           },
-        }, -- }}}
+        },          -- }}}
 
         matchup = { --  {{{
           enable = true,
@@ -339,7 +339,7 @@ lazy_utils.load_on_startup(
 
     nkeymap(
       "<Leader>dqt", ":<C-u>TSToggle highlight<CR>",
-      {noremap = true}
+      { noremap = true }
     )
 
     -- }}}
