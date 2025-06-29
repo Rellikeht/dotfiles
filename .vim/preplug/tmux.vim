@@ -115,11 +115,13 @@ function SlimeSetupTmux()
         \ 'target_pane':'{top-right}'
         \ }
 
-  let b:slime_config = g:slime_default_config
+  let b:slime_config = deepcopy(g:slime_default_config)
   silent! augroup! SlimeConfig
   augroup SlimeConfig
     autocmd BufEnter *
-          \ let b:slime_config = g:slime_default_config
+          \ if !exists("b:slime_config")
+          \ | let b:slime_config = deepcopy(g:slime_default_config)
+          \ | endif
   augroup END
 endfunction
 
