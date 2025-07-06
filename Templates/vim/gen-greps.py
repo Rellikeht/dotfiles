@@ -69,7 +69,6 @@ AG_COMBINATIONS.update(
         "L": "--depth 0 *",
         "r": "--hidden .",
         "R": ".",
-        #
     }
 )
 
@@ -78,7 +77,6 @@ RG_COMBINATIONS.update(
     {
         "l": "--max-depth 0 * .*",
         "L": "--max-depth 0 *",
-        #
     }
 )
 

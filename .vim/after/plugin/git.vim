@@ -19,9 +19,7 @@ nnoremap - <plug>(signify-prev-hunk)
 
 function! s:show_current_hunk() abort
   let h = sy#util#get_hunk_stats()
-  if !empty(h)
-    echo printf('[Hunk %d/%d]', h.current_hunk, h.total_hunks)
-  endif
+  echo printf('[Hunk %d/%d]', h.current_hunk, h.total_hunks)
 endfunction
 
 autocmd User SignifyHunk call s:show_current_hunk()
@@ -34,8 +32,8 @@ function s:SetupGit() " {{{
 
 nnoremap <silent> <leader>gst :SignifyToggle<CR>
 nnoremap <silent> <leader>gsh :SignifyToggleHighlight<CR>
-nnoremap <silent> <leader>gs<Space>d :SignifyDisableAll<CR>
-nnoremap <silent> <leader>gs<Space>e :SignifyEnableAll<CR>
+nnoremap <silent> <leader>gsD :SignifyDisableAll<CR>
+nnoremap <silent> <leader>gsE :SignifyEnableAll<CR>
 nnoremap <silent> <leader>gsr :SignifyRefresh<CR>
 
 nnoremap <silent> <leader>gsd :SignifyHunkDiff<CR>

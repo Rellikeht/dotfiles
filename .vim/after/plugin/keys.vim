@@ -42,8 +42,8 @@ noremap <Space><Space>;W :<C-u>Bwip!<Space>
 
 " surround & sneak {{{
 
-xmap <C-s> <Plug>VSurround
-xmap g<C-s> <Plug>VgSurround
+xmap <Space>a <Plug>VSurround
+xmap <Space>A <Plug>VgSurround
 
 noremap f <Plug>Sneak_f
 noremap F <Plug>Sneak_F

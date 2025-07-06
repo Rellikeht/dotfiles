@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from sys import argv  # , stdout
+from sys import argv
 from os.path import split
 from pathlib import Path
 
@@ -17,7 +17,6 @@ FZF_PATHS = {
     "cv": "~/.vim",
     "cn": "~/.config/nvim",
     ".": ".",
-    # ",": ".",
 }
 
 FZF_SPECIALS = {
@@ -48,7 +47,6 @@ OP_MAPS = {
 SCRIPT_PATH = Path(split(argv[0])[0])
 VIM_PATH = SCRIPT_PATH / ".." / ".." / ".vim" / "after" / "plugin"
 
-# with stdout as f:
 with open(VIM_PATH / "fzf.vim", "w") as f:
     print("function s:SetupFzf()", file=f)
     print("", file=f)
