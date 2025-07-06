@@ -19,7 +19,9 @@ nnoremap - <plug>(signify-prev-hunk)
 
 function! s:show_current_hunk() abort
   let h = sy#util#get_hunk_stats()
-  echo printf('[Hunk %d/%d]', h.current_hunk, h.total_hunks)
+  if !empty(h)
+    echo printf('[Hunk %d/%d]', h.current_hunk, h.total_hunks)
+  endif
 endfunction
 
 autocmd User SignifyHunk call s:show_current_hunk()
@@ -77,111 +79,113 @@ nnoremap <leader>g<Space>? :GV?<Space>
 
 " G* (g) {{{ 
 
-nnoremap <silent> <leader>ggc :Git<CR>
-nnoremap <silent> <leader>ggC :Git<CR><C-w>T
-nnoremap <silent> <C-w><leader>ggc :tab Git<CR>
+nnoremap <silent> <C-w><leader>gC :Git<CR><C-w>T
 nnoremap <silent> <C-w><leader>G :tab Git<CR>
 
 nnoremap <leader>ggr :Gread<CR>
-nnoremap <leader>gg<Space>r :Gread<Space>
-nnoremap <leader>ggw :Gwrite<CR>
-nnoremap <leader>gg<Space>w :Gwrite<Space>
-nnoremap <silent> <leader>ggq :Gwq<CR>
-nnoremap <leader>gg<Space>q :Gwq<Space>
-nnoremap <silent> <leader>gg! :Gwq!<CR>
-nnoremap <leader>gg<Space>Q :Gwq!<Space>
+nnoremap <leader>ggR :Gread<Space>
+nnoremap <leader>ggw :Gwrite<Space>
+nnoremap <leader>ggW :Gwrite<CR>
+nnoremap <leader>ggq :Gwq<Space>
+nnoremap <silent> <leader>ggQ :Gwq<CR>
+nnoremap <leader>ggz :Gwq!<Space>
+nnoremap <silent> <leader>ggZ :Gwq!<CR>
 
-nnoremap <silent> <leader>ggb :GBrowse<CR>
-nnoremap <leader>gg<Space>b :GBrowse<Space>
-nnoremap <leader>gg<Space>e :Gedit<Space>
-nnoremap <leader>gg<Space>p :Gpedit<Space>
-nnoremap <leader>gg<Space>t :Gtabedit<Space>
+nnoremap <leader>ggb :GBrowse<Space>
+nnoremap <silent> <leader>ggB :GBrowse<CR>
+nnoremap <leader>gge :Gedit<Space>
+nnoremap <leader>ggp :Gpedit<Space>
+nnoremap <leader>ggt :Gtabedit<Space>
 
-nnoremap <silent> <leader>ggs :Gvdiffsplit<CR>
-nnoremap <silent> <leader>ggS :Gvdiffsplit!<CR>
-nnoremap <silent> <leader>ggh :Gdiffsplit<CR>
-nnoremap <silent> <leader>ggH :Gdiffsplit!<CR>
+nnoremap <silent> <leader>ggS :Gvdiffsplit<CR>
+nnoremap <silent> <leader>gGS :Gvdiffsplit!<CR>
+nnoremap <silent> <leader>ggH :Gdiffsplit<CR>
+nnoremap <silent> <leader>gGH :Gdiffsplit!<CR>
 
-nnoremap <leader>gg<Space>s :Gvdiffsplit<Space>
-nnoremap <leader>gg<Space>S :Gvdiffsplit!<Space>
-nnoremap <leader>gg<Space>h :Gdiffsplit<Space>
-nnoremap <leader>gg<Space>H :Gdiffsplit!<Space>
+nnoremap <leader>ggs :Gvdiffsplit<Space>
+nnoremap <leader>gGS :Gvdiffsplit!<Space>
+nnoremap <leader>ggh :Gdiffsplit<Space>
+nnoremap <leader>gGH :Gdiffsplit!<Space>
 
-nnoremap <silent> <C-w><leader>ggs :tab Gvdiffsplit<CR>
-nnoremap <silent> <C-w><leader>ggS :tab Gvdiffsplit!<CR>
-nnoremap <silent> <C-w><leader>ggh :tab Gdiffsplit<CR>
-nnoremap <silent> <C-w><leader>ggS :tab Gdiffsplit!<CR>
+nnoremap <silent> <C-w><leader>ggS :tab Gvdiffsplit<CR>
+nnoremap <silent> <C-w><leader>gGS :tab Gvdiffsplit!<CR>
+nnoremap <silent> <C-w><leader>ggH :tab Gdiffsplit<CR>
+nnoremap <silent> <C-w><leader>gGS :tab Gdiffsplit!<CR>
 
-nnoremap <silent> <expr> <leader>ggl g:qfloc ?
-      \ ':<C-u>Gllog<CR>' : ':<C-u>Gclog<CR>'
-nnoremap <expr> <leader>gg<Space>l g:qfloc ?
+nnoremap <expr> <leader>ggl g:qfloc ?
       \ ':<C-u>Gllog<Space>' : ':<C-u>Gclog<Space>'
+nnoremap <silent> <expr> <leader>ggL g:qfloc ?
+      \ ':<C-u>Gllog<CR>' : ':<C-u>Gclog<CR>'
 
 " }}} 
 
 " info (i) {{{ 
 
-nnoremap <silent> <leader>gis :G status<CR>
-nnoremap <silent> <leader>gil :G log<CR>
-nnoremap <silent> <leader>gig :G log --graph<CR>
-nnoremap <silent> <leader>gib :G blame<CR>
-nnoremap <silent> <leader>gir :G reflog<CR>
-nnoremap <silent> <leader>gio :G remote<CR>
-nnoremap <silent> <leader>gi- :G remote show<CR>
-nnoremap <silent> <leader>gii :G show<CR>
+nnoremap <leader>gis :G status<Space>
+nnoremap <leader>gil :G log<Space>
+nnoremap <leader>gig :G log --graph<Space>
+nnoremap <leader>gib :G blame<Space>
+nnoremap <leader>gir :G reflog<Space>
+nnoremap <leader>gio :G remote<Space>
+nnoremap <leader>gii :G show<Space>
+nnoremap <leader>gi- :G remote show<Space>
+nnoremap <leader>gif :G log --all --graph --oneline --decorate<Space>
 
-nnoremap <leader>gi<space>s :G status<Space>
-nnoremap <leader>gi<space>l :G log<Space>
-nnoremap <leader>gi<space>g :G log --graph<Space>
-nnoremap <leader>gi<space>b :G blame<Space>
-nnoremap <leader>gi<space>r :G reflog<Space>
-nnoremap <leader>gi<space>o :G remote<Space>
-nnoremap <leader>gi<space>- :G remote show<Space>
-nnoremap <leader>gi<space>i :G show<Space>
+nnoremap <silent> <leader>giS :G status<CR>
+nnoremap <silent> <leader>giL :G log<CR>
+nnoremap <silent> <leader>giG :G log --graph<CR>
+nnoremap <silent> <leader>giB :G blame<CR>
+nnoremap <silent> <leader>giR :G reflog<CR>
+nnoremap <silent> <leader>giO :G remote<CR>
+nnoremap <silent> <leader>giI :G show<CR>
+nnoremap <silent> <leader>gi_ :G remote show<CR>
+nnoremap <leader>giF :G log --all --graph --oneline --decorate<CR>
 
-nnoremap <C-w><leader>gis :tab G status<CR>
-nnoremap <silent> <C-w><leader>gil :tab G log<CR>
-nnoremap <silent> <C-w><leader>gig :tab G log --graph<CR>
-nnoremap <silent> <C-w><leader>gib :tab G blame<CR>
-nnoremap <silent> <C-w><leader>gir :tab G reflog<CR>
-nnoremap <C-w><leader>gio :tab G remote<CR>
-nnoremap <C-w><leader>gi- :tab G remote show<CR>
-nnoremap <C-w><leader>gii :tab G show<CR>
+nnoremap <C-w><leader>gis :tab G status<Space>
+nnoremap <C-w><leader>gil :tab G log<Space>
+nnoremap <C-w><leader>gig :tab G log --graph<Space>
+nnoremap <C-w><leader>gib :tab G blame<Space>
+nnoremap <C-w><leader>gir :tab G reflog<Space>
+nnoremap <C-w><leader>gio :tab G remote<Space>
+nnoremap <C-w><leader>gii :tab G show<Space>
+nnoremap <C-w><leader>gi- :tab G remote show<Space>
+nnoremap <leader>gif :G log --all --graph --oneline --decorate<Space>
 
-nnoremap <C-w><leader>gi<Space>s :tab G status<Space>
-nnoremap <C-w><leader>gi<Space>l :tab G log<Space>
-nnoremap <C-w><leader>gi<Space>g :tab G log --graph<Space>
-nnoremap <C-w><leader>gi<Space>b :tab G blame<Space>
-nnoremap <C-w><leader>gi<Space>r :tab G reflog<Space>
-nnoremap <C-w><leader>gi<Space>o :tab G remote<Space>
-nnoremap <C-w><leader>gi<Space>- :tab G remote show<Space>
-nnoremap <C-w><leader>gi<Space>i :tab G show<Space>
+nnoremap <C-w><leader>giS :tab G status<CR>
+nnoremap <silent> <C-w><leader>giL :tab G log<CR>
+nnoremap <silent> <C-w><leader>giG :tab G log --graph<CR>
+nnoremap <silent> <C-w><leader>giB :tab G blame<CR>
+nnoremap <silent> <C-w><leader>giR :tab G reflog<CR>
+nnoremap <C-w><leader>giO :tab G remote<CR>
+nnoremap <C-w><leader>giI :tab G show<CR>
+nnoremap <C-w><leader>gi_ :tab G remote show<CR>
+nnoremap <C-w><leader>giF :G log --all --graph --oneline --decorate<CR>
 
 " }}} 
 
 " files (f) {{{ 
 
-noremap <leader>gf<Space>l :G ls-files<Space>
-noremap <leader>gfc :G ls-files<CR>
-noremap <leader>gfm :G ls-files --modified<CR>
-noremap <leader>gfd :G ls-files --deleted<CR>
-noremap <leader>gfo :G ls-files --others<CR>
-noremap <leader>gfi :G ls-files --ignored<CR>
-noremap <leader>gfu :G ls-files --unmerged<CR>
+noremap <leader>gfc :G ls-files<Space>
+noremap <leader>gfC :G ls-files<CR>
+noremap <leader>gfM :G ls-files --modified<CR>
+noremap <leader>gfD :G ls-files --deleted<CR>
+noremap <leader>gfO :G ls-files --others<CR>
+noremap <leader>gfI :G ls-files --ignored<CR>
+noremap <leader>gfU :G ls-files --unmerged<CR>
 
-noremap <leader>gfC :<C-u>exe 'G ls-files "'.Expand('%:p:h').'"'<CR>
-noremap <leader>gfM :<C-u>exe 'G ls-files --modified "'.Expand('%:p:h').'"'<CR>
-noremap <leader>gfD :<C-u>exe 'G ls-files --deleted "'.Expand('%:p:h').'"'<CR>
-noremap <leader>gfO :<C-u>exe 'G ls-files --others "'.Expand('%:p:h').'"'<CR>
-noremap <leader>gfI :<C-u>exe 'G ls-files --ignored "'.Expand('%:p:h').'"'<CR>
-noremap <leader>gfU :<C-u>exe 'G ls-files --unmerged "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfdC :<C-u>exe 'G ls-files "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfdM :<C-u>exe 'G ls-files --modified "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfdD :<C-u>exe 'G ls-files --deleted "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfdO :<C-u>exe 'G ls-files --others "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfdI :<C-u>exe 'G ls-files --ignored "'.Expand('%:p:h').'"'<CR>
+noremap <leader>gfdU :<C-u>exe 'G ls-files --unmerged "'.Expand('%:p:h').'"'<CR>
 
-noremap <leader>gf;c :<C-u>exe 'G ls-files '.GitRoot()<CR>
-noremap <leader>gf;m :<C-u>exe 'G ls-files --modified '.GitRoot()<CR>
-noremap <leader>gf;d :<C-u>exe 'G ls-files --deleted '.GitRoot()<CR>
-noremap <leader>gf;o :<C-u>exe 'G ls-files --others '.GitRoot()<CR>
-noremap <leader>gf;i :<C-u>exe 'G ls-files --ignored '.GitRoot()<CR>
-noremap <leader>gf;u :<C-u>exe 'G ls-files --unmerged '.GitRoot()<CR>
+noremap <leader>gfgc :<C-u>exe 'G ls-files '.GitRoot()<CR>
+noremap <leader>gfgm :<C-u>exe 'G ls-files --modified '.GitRoot()<CR>
+noremap <leader>gfgd :<C-u>exe 'G ls-files --deleted '.GitRoot()<CR>
+noremap <leader>gfgo :<C-u>exe 'G ls-files --others '.GitRoot()<CR>
+noremap <leader>gfgi :<C-u>exe 'G ls-files --ignored '.GitRoot()<CR>
+noremap <leader>gfgu :<C-u>exe 'G ls-files --unmerged '.GitRoot()<CR>
 
 noremap <leader>gft :G ls-tree<Space>
 noremap <leader>gfr :G ls-tree -r<Space>
@@ -197,216 +201,208 @@ noremap <leader>gfL :G ls-tree -r --name-only HEAD<CR>
 
 " diff and merge tools (i) {{{ 
 
-nnoremap <silent> <leader>gih :G diff HEAD<CR>
-nnoremap <C-w><leader>gi<Space>h :tab G diff HEAD
-nnoremap <silent> <leader>gih :G diff HEAD<CR>
-nnoremap <C-w><leader>gi<Space>h :tab G diff HEAD
+nnoremap <silent> <leader>gih :G diff HEAD<Space>
+nnoremap <silent> <leader>giH :G diff HEAD<CR>
+nnoremap <C-w><leader>gih :tab G diff HEAD
+nnoremap <C-w><leader>giH :tab G diff HEAD<CR>
 
-nnoremap <silent> <leader>gid :G diff<CR>
-nnoremap <silent> <leader>giD :G diff --staged<CR>
-nnoremap <silent> <leader>gi;d :G diff --cached<CR>
-nnoremap <leader>gi<Space>d :G diff<Space>
-nnoremap <silent> <leader>gim :G mergetool<CR>
+nnoremap <leader>gid :G diff<Space>
+nnoremap <leader>gia :G diff --staged<Space>
 nnoremap <leader>gim :G mergetool<Space>
-nnoremap <silent> <leader>giD :G difftool<CR>
-nnoremap <leader>giD :G difftool<Space>
+nnoremap <leader>git :G difftool<Space>
+nnoremap <silent> <leader>giD :G diff<CR>
+nnoremap <silent> <leader>giA :G diff --staged<CR>
+nnoremap <silent> <leader>giM :G mergetool<CR>
+nnoremap <silent> <leader>giT :G difftool<CR>
 
-nnoremap <silent> <C-w><leader>gid :tab G diff<CR>
-nnoremap <silent> <C-w><leader>giw :tab G diff --word-diff<CR>
-nnoremap <silent> <C-w><leader>gim :tab G mergetool<CR>
-nnoremap <silent> <C-w><leader>giD :tab G difftool<CR>
-nnoremap <C-w><leader>gi<Space>d :tab G diff<Space>
-nnoremap <C-w><leader>gi<Space>w :tab G diff --word-diff<Space>
+nnoremap <C-w><leader>gid :tab G diff<Space>
 nnoremap <C-w><leader>gim :tab G mergetool<Space>
-nnoremap <C-w><leader>giD :tab G difftool<Space>
+nnoremap <C-w><leader>git :tab G difftool<Space>
+nnoremap <silent> <C-w><leader>giD :tab G diff<CR>
+nnoremap <silent> <C-w><leader>giM :tab G mergetool<CR>
+nnoremap <silent> <C-w><leader>giT :tab G difftool<CR>
 " TODO D qfloc versions of diff and mergetools
 " (make loclist out of quickfix list)
 
 nnoremap <expr> <leader>gif g:qfloc ?
       \ ':<C-u>Glgrep<Space>' : ':<C-u>Ggrep<Space>'
-nnoremap <expr> <leader>giF g:qfloc ?
+nnoremap <expr> <leader>gIf g:qfloc ?
       \ ':<C-u>Glgrep!<Space>' : ':<C-u>Ggrep!<Space>'
-
-" }}} 
-
-" paths (p) {{{ 
-
-nnoremap <Leader>gpc :<C-u>Glcd<Space>
-nnoremap <Leader>gpC :<C-u>Gcd<Space>
 
 " }}} 
 
 " stash (t) {{{ 
 
-nnoremap <leader>gts :G stash push<CR>
-nnoremap <leader>gtp :G stash pop<CR>
-nnoremap <leader>gta :G stash apply<CR>
-nnoremap <leader>gtd :G stash drop<CR>
-nnoremap <leader>gtb :G stash branch<CR>
+nnoremap <leader>gts :G stash push<Space>
+nnoremap <leader>gtm :G stash push -m<Space>
+nnoremap <leader>gtp :G stash pop<Space>
+nnoremap <leader>gta :G stash apply<Space>
+nnoremap <leader>gtd :G stash drop<Space>
+nnoremap <leader>gtb :G stash branch<Space>
+
+nnoremap <leader>gtS :G stash push<CR>
+nnoremap <leader>gtP :G stash pop<CR>
+nnoremap <leader>gtA :G stash apply<CR>
+nnoremap <leader>gtD :G stash drop<CR>
+nnoremap <leader>gtB :G stash branch<CR>
 nnoremap <leader>gt! :G stash clear<CR>
 
-nnoremap <leader>gt<Space>s :G stash push<Space>
-nnoremap <leader>gt;s :G stash push -m<Space>
-nnoremap <leader>gt<Space>p :G stash pop<Space>
-nnoremap <leader>gt<Space>a :G stash apply<Space>
-nnoremap <leader>gt<Space>d :G stash drop<Space>
-nnoremap <leader>gt<Space>b :G stash branch<Space>
+nnoremap <leader>gtl :G stash list<Space>
+nnoremap <leader>gtv :G stash show<Space>
+nnoremap <leader>gtL :G stash list<CR>
+nnoremap <leader>gtV :G stash show<CR>
 
-nnoremap <leader>gtl :G stash list<CR>
-nnoremap <leader>gtv :G stash show<CR>
-nnoremap <leader>gt<Space>l :G stash list<Space>
-nnoremap <leader>gt<Space>v :G stash show<Space>
-
-nnoremap <C-w><leader>gtl :tab G stash list<CR>
-nnoremap <C-w><leader>gtv :tab G stash show<CR>
-nnoremap <C-w><leader>gt<Space>l :tab G stash list<Space>
-nnoremap <C-w><leader>gt<Space>v :tab G stash show<Space>
-
-" }}} 
-
-" TODO B (too little probably) basic commands (o) {{{ 
-
-nnoremap <silent> <leader>goa :G add %<CR>
-nnoremap <leader>go<Space>a :G add<Space>
-nnoremap <leader>goA :G add .<CR>
-nnoremap <leader>go;a :G add ##<CR>
-
-nnoremap <leader>gor :G rm<Space>
-nnoremap <leader>god :G rm --cached %<CR>
-nnoremap <leader>goD :G rm --cached -r .<CR>
-nnoremap <leader>go;d :G rm --cached -r ##<CR>
-nnoremap <leader>go<Space>d :G rm --cached<Space>
-nnoremap <leader>go<Space>D :G rm --cached -r<Space>
-
-nnoremap <leader>gom :G submodule<Space>
-nnoremap <leader>gof :G fetch<Space>
-nnoremap <silent> <leader>goc :G gc<CR>
-nnoremap <silent> <leader>goC :G gc --aggressive<CR>
+nnoremap <C-w><leader>gtl :tab G stash list<Space>
+nnoremap <C-w><leader>gtv :tab G stash show<Space>
+nnoremap <C-w><leader>gtL :tab G stash list<CR>
+nnoremap <C-w><leader>gtV :tab G stash show<CR>
 
 " }}} 
 
 " TODO C (is enough) merge and rebase (m) {{{ 
 
-nnoremap <leader>gw<Space>c :G rebase<Space>
-nnoremap <leader>gw<Space>i :G rebase --interactive<Space>
-nnoremap <leader>gwc :G rebase<CR>
-nnoremap <leader>gwi :G rebase --interactive<CR>
+nnoremap <leader>gwc :G rebase<Space>
+nnoremap <leader>gwi :G rebase --interactive<Space>
+nnoremap <leader>gwC :G rebase<CR>
+nnoremap <leader>gwI :G rebase --interactive<CR>
 
-nnoremap <leader>gm<Space>c :G merge<Space>
-nnoremap <leader>gm<Space>s :G merge --squash<Space>
-nnoremap <leader>gmc :G merge<CR>
-nnoremap <leader>gms :G merge --squash<CR>
+nnoremap <leader>gmc :G merge<Space>
+nnoremap <leader>gms :G merge --squash<Space>
+nnoremap <leader>gmC :G merge<CR>
+nnoremap <leader>gmS :G merge --squash<CR>
 
-nnoremap <leader>gw<Space>a :G rebase --abort<Space>
-nnoremap <leader>gw<Space>n :G rebase --continue<Space>
-nnoremap <leader>gw<Space>q :G rebase --quit<Space>
-nnoremap <leader>gw<Space>s :G rebase --skip<Space>
-nnoremap <leader>gwa :G rebase --abort<CR>
-nnoremap <leader>gwn :G rebase --continue<CR>
-nnoremap <leader>gwq :G rebase --quit<CR>
-nnoremap <leader>gws :G rebase --skip<CR>
+nnoremap <leader>gwa :G rebase --abort<Space>
+nnoremap <leader>gwn :G rebase --continue<Space>
+nnoremap <leader>gwq :G rebase --quit<Space>
+nnoremap <leader>gws :G rebase --skip<Space>
+nnoremap <leader>gwA :G rebase --abort<CR>
+nnoremap <leader>gwN :G rebase --continue<CR>
+nnoremap <leader>gwQ :G rebase --quit<CR>
+nnoremap <leader>gwS :G rebase --skip<CR>
 
-nnoremap <leader>gm<Space>a :G merge --abort<Space>
-nnoremap <leader>gm<Space>n :G merge --continue<Space>
-nnoremap <leader>gm<Space>q :G merge --quit<Space>
-nnoremap <leader>gma :G merge --abort<CR>
-nnoremap <leader>gmn :G merge --continue<CR>
-nnoremap <leader>gmq :G merge --quit<CR>
-
+nnoremap <leader>gma :G merge --abort<Space>
+nnoremap <leader>gmn :G merge --continue<Space>
+nnoremap <leader>gmq :G merge --quit<Space>
+nnoremap <leader>gmA :G merge --abort<CR>
+nnoremap <leader>gmN :G merge --continue<CR>
+nnoremap <leader>gmQ :G merge --quit<CR>
 
 " }}} 
 
 " TODO C (is enough) reset, revert, restore (r) {{{ 
 
-nnoremap <leader>grf :G reset HEAD<CR>
-nnoremap <leader>grF :G reset --hard HEAD<CR>
-nnoremap <leader>gr<Space>f :G reset<Space>
-nnoremap <leader>gr<Space>F :G reset --hard<Space>
+nnoremap <leader>grf :G reset<Space>
+nnoremap <leader>grh :G reset --hard<Space>
+nnoremap <leader>grF :G reset HEAD<CR>
+nnoremap <leader>grH :G reset --hard HEAD<CR>
 
 nnoremap <leader>grr :G restore<Space>
-nnoremap <leader>grR :G restore --staged<Space>
+nnoremap <leader>gru :G restore --staged<Space>
 
 nnoremap <leader>grv :G revert<Space>
-nnoremap <leader>gra :G revert --abort<CR>
-nnoremap <leader>grc :G revert --continue<CR>
-nnoremap <leader>grs :G revert --skip<CR>
-nnoremap <leader>grq :G revert --quit<CR>
+nnoremap <leader>grA :G revert --abort<CR>
+nnoremap <leader>grC :G revert --continue<CR>
+nnoremap <leader>grS :G revert --skip<CR>
+nnoremap <leader>grQ :G revert --quit<CR>
 
 " }}} 
 
 " TODO C (is enough) commit (c) {{{ 
 
+nnoremap <leader>gcc :G commit<Space>
+nnoremap <leader>gca :G commit --amend<Space>
+nnoremap <leader>gcn :G commit --amend --no-edit<Space>
+nnoremap <leader>gcp :G commit --patch<Space>
+nnoremap <leader>gcd :G commit --dry-run<Space>
+nnoremap <leader>gcf :G commit --fixup<Space>
+nnoremap <leader>gcr :G commit --fixup=reword<Space>
 
-nnoremap <leader>gcc :G commit<CR>
-nnoremap <leader>gca :G commit --amend<CR>
-nnoremap <leader>gcA :G commit --amend --no-edit<CR>
-nnoremap <leader>gcp :G commit --patch<CR>
-nnoremap <leader>gcd :G commit --dry-run<CR>
-nnoremap <leader>gcf :G commit --fixup<CR>
-nnoremap <leader>gcr :G commit --fixup=reword<CR>
-
-nnoremap <leader>gc<Space>c :G commit<Space>
-nnoremap <leader>gc<Space>a :G commit --amend<Space>
-nnoremap <leader>gc<Space>A :G commit --amend --no-edit<Space>
-nnoremap <leader>gc<Space>p :G commit --patch<Space>
-nnoremap <leader>gc<Space>d :G commit --dry-run<Space>
-nnoremap <leader>gc<Space>f :G commit --fixup<Space>
-nnoremap <leader>gc<Space>r :G commit --fixup=reword<Space>
+nnoremap <leader>gcC :G commit<CR>
+nnoremap <leader>gcA :G commit --amend<CR>
+nnoremap <leader>gcN :G commit --amend --no-edit<CR>
+nnoremap <leader>gcP :G commit --patch<CR>
+nnoremap <leader>gcD :G commit --dry-run<CR>
+nnoremap <leader>gcF :G commit --fixup<CR>
+nnoremap <leader>gcR :G commit --fixup=reword<CR>
 
 " }}} 
 
 " TODO C (is enough) push (h) {{{ 
 
-nnoremap <leader>ghc :G push<CR>
-nnoremap <leader>ghf :G push --force<CR>
-nnoremap <leader>gha :G push --all<CR>
-nnoremap <leader>ghu :G push --set-upstream<CR>
-nnoremap <leader>ght :G push --all --force<CR>
+nnoremap <leader>ghc :G push<Space>
+nnoremap <leader>ghf :G push --force<Space>
+nnoremap <leader>gha :G push --all<Space>
+nnoremap <leader>ghu :G push --set-upstream<Space>
+nnoremap <leader>ght :G push --all --force<Space>
 
-nnoremap <leader>gh<Space>c :G push<Space>
-nnoremap <leader>gh<Space>f :G push --force<Space>
-nnoremap <leader>gh<Space>a :G push --all<Space>
-nnoremap <leader>gh<Space>u :G push --set-upstream<Space>
-nnoremap <leader>gh<Space>t :G push --all --force<Space>
+nnoremap <leader>ghC :G push<CR>
+nnoremap <leader>ghF :G push --force<CR>
+nnoremap <leader>ghA :G push --all<CR>
+nnoremap <leader>ghU :G push --set-upstream<CR>
+nnoremap <leader>ghT :G push --all --force<CR>
 
 " }}} 
 
 " TODO C (is enough) pull (l) {{{ 
 
-nnoremap <leader>glc :G pull<CR>
-nnoremap <leader>glf :G pull --force<CR>
-nnoremap <leader>glr :G pull --rebase<CR>
-nnoremap <leader>gli :G pull --rebase=interactive<CR>
-nnoremap <leader>gla :G pull --all<CR>
-nnoremap <leader>gld :G pull --dry-run<CR>
-nnoremap <leader>glu :G pull --set-upstream<CR>
+nnoremap <leader>glc :G pull<Space>
+nnoremap <leader>glf :G pull --force<Space>
+nnoremap <leader>glr :G pull --rebase<Space>
+nnoremap <leader>gli :G pull --rebase=interactive<Space>
+nnoremap <leader>gla :G pull --all<Space>
+nnoremap <leader>gld :G pull --dry-run<Space>
+nnoremap <leader>glu :G pull --set-upstream<Space>
 
-nnoremap <leader>gl<Space>c :G pull<Space>
-nnoremap <leader>gl<Space>f :G pull --force<Space>
-nnoremap <leader>gl<Space>r :G pull --rebase<Space>
-nnoremap <leader>gl<Space>i :G pull --rebase=interactive<Space>
-nnoremap <leader>gl<Space>a :G pull --all<Space>
-nnoremap <leader>gl<Space>d :G pull --dry-run<Space>
-nnoremap <leader>gl<Space>u :G pull --set-upstream<Space>
+nnoremap <leader>glC :G pull<CR>
+nnoremap <leader>glC :G pull --force<CR>
+nnoremap <leader>glC :G pull --rebase<CR>
+nnoremap <leader>glC :G pull --rebase=interactive<CR>
+nnoremap <leader>glC :G pull --all<CR>
+nnoremap <leader>glC :G pull --dry-run<CR>
+nnoremap <leader>glC :G pull --set-upstream<CR>
 
 " }}} 
 
 " TODO B (is enough) branches (b) {{{ 
 
-nnoremap <leader>gbc :G checkout<CR>
-nnoremap <leader>gb<Space>c :G checkout<Space>
+nnoremap <leader>gbc :G checkout<Space>
+nnoremap <leader>gbC :G checkout<CR>
 
-nnoremap <leader>gbt :G tag  HEAD<left><left><left><left><left>
-nnoremap <leader>gbb :G branch<CR>
-nnoremap <leader>gbf :G checkout --force<CR>
-nnoremap <leader>gbm :G checkout --merge<CR>
+nnoremap <leader>gbh :G tag  HEAD<left><left><left><left><left>
+nnoremap <leader>gbA :G branch -a<CR>
+nnoremap <leader>gbB :G branch<CR>
+nnoremap <leader>gbF :G checkout --force<CR>
+nnoremap <leader>gbM :G checkout --merge<CR>
 
-nnoremap <leader>gb<Space>t :G tag<Space>
-nnoremap <leader>gb<Space>b :G branch<Space>
-nnoremap <leader>gb<Space>f :G checkout --force<Space>
-nnoremap <leader>gb<Space>o :G checkout --ours<Space>
-nnoremap <leader>gb<Space>e :G checkout --theirs<Space>
-nnoremap <leader>gb<Space>m :G checkout --merge<Space>
+nnoremap <leader>gbt :G tag<Space>
+nnoremap <leader>gbb :G branch<Space>
+nnoremap <leader>gbf :G checkout --force<Space>
+nnoremap <leader>gbo :G checkout --ours<Space>
+nnoremap <leader>gbe :G checkout --theirs<Space>
+nnoremap <leader>gbm :G checkout --merge<Space>
+
+" }}} 
+
+" TODO B (too little probably) other commands (o, a, r) {{{ 
+
+nnoremap <leader>gac :G add<Space>
+nnoremap <leader>gaD :G add .<CR>
+nnoremap <silent> <leader>gaF :G add %<CR>
+nnoremap <leader>gaL :G add ##<CR>
+
+nnoremap <leader>grc :G rm<Space>
+nnoremap <leader>grc :G rm --cached<Space>
+nnoremap <leader>grr :G rm --cached -r<Space>
+nnoremap <leader>grF :G rm --cached %<CR>
+nnoremap <leader>grD :G rm --cached -r .<CR>
+nnoremap <leader>grL :G rm --cached -r ##<CR>
+
+nnoremap <leader>gom :G submodule<Space>
+nnoremap <leader>gof :G fetch<Space>
+nnoremap <silent> <leader>gog :G gc<CR>
+nnoremap <silent> <leader>goG :G gc --aggressive<CR>
+nnoremap <Leader>gol :<C-u>Glcd<Space>
+nnoremap <Leader>gcc :<C-u>Gcd<Space>
 
 " }}} 
 
