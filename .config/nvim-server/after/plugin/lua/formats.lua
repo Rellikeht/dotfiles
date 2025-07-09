@@ -1,8 +1,3 @@
--- {{{ helpers
-local modes = {"n", "v"}
-
--- }}}
-
 require("mkdnflow").setup( -- {{{
   {
     modules = {
@@ -77,12 +72,8 @@ require("glow").setup( -- {{{
   }
 )
 
-vim.keymap.set(modes, ",mv", ":Glow<CR>", {noremap = true})
-vim.keymap.set(
-  modes, ",m<Space>v", ":Glow<CR>", {noremap = true}
-)
-vim.keymap.set(
-  modes, ",m=", ":Glow ~/.vim/keys.md<CR>", {noremap = true}
-)
+vim.keymap.set("n", ",mv", ":Glow<CR>", {noremap = true})
+vim.keymap.set("n", ",m<Space>v", ":Glow<CR>", {noremap = true})
+vim.keymap.set("n", ",m=", ":Glow ~/.vim/keys.md<CR>", {noremap = true})
 
 -- }}}

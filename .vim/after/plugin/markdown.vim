@@ -26,7 +26,9 @@ let g:vim_markdown_fenced_languages = [
       \ 'hs=haskell',
       \ 'js=javascript',
       \ 'ts=typescript',
-      \ 'viml=vim',
+      \ 'rs=rust',
+      \ 'csharp=cs',
+      \ 'md=markdown',
       \ ]
 
 " Format strike-through text (wrapped in `~~`).
@@ -47,7 +49,7 @@ function s:NoExGe()
   let g:vim_markdown_no_extensions_in_markdown = l:ex
 endfunction
 
-" Because ge isn't intelligent enough
+" Because gE isn't intelligent enough
 noremap gE :<C-u>call <SID>NoExGe()<CR>
 
 " }}} 
@@ -73,6 +75,8 @@ let g:bullets_enabled_file_types = [
       \ 'org',
       \ 'vimwiki',
       \ 'pandoc',
+      \ 'typst',
+      \ 'rst',
       \]
 
 " You can disable this plugin for empty buffers (no filetype):

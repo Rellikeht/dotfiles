@@ -10,6 +10,13 @@ autocmd BufReadPre *
 " autocmd BufNew,BufNewFile *
 "       \ let b:compilers = []
 
+autocmd FileType
+      \ html,
+      \ vim,
+      \ lua,
+      \ r,
+      setlocal shiftwidth=2 softtabstop=2 tabstop=2
+
 " }}} 
 
 " :make {{{ 
