@@ -76,6 +76,7 @@ Plug 'Konfekt/vim-compilers'
 Plug 'Rellikeht/vim-makeshift'
 Plug 'ilyachur/cmake4vim'
 Plug 'igankevich/mesonic'
+Plug 'Rellikeht/vim-compiler-collection'
 
 " }}} 
 
