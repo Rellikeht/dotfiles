@@ -64,10 +64,6 @@ Plug 'tpope/vim-dispatch'
 
 Plug 'wellle/tmux-complete.vim'
 
-" folds should be enough
-" or something
-" Plug 'wellle/context.vim'
-
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 

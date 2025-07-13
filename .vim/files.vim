@@ -161,27 +161,44 @@ let g:netrw_ignorenetrc = 0 " (default for linux, cygwin)
 
 " }}} 
 
+" netrw helpers {{{
+
+function GetNetrwFP()
+  return b:netrw_curdir .. "/" .. netrw#Call("NetrwGetWord")
+endfunction
+
+" }}}
+
 " netrw keymaps {{{ 
 
-" TODO B file openinng
+" TODO B more file openinng
 
-nnoremap <silent> <Leader>x;x :Explore<CR>
-nnoremap <Leader>x;X :Explore<Space>
-nnoremap <silent> <Leader>x;t :Texplore<CR>
-nnoremap <Leader>x;T :Texplore<Space>
-nnoremap <silent> <Leader>x;h :Sexplore<CR>
-nnoremap <Leader>x;H :Sexplore<Space>
-nnoremap <silent> <Leader>x;v :Vexplore<CR>
-nnoremap <Leader>x;V :Vexplore<Space>
-nnoremap <silent> <Leader>x;n :Nexplore<CR>
-nnoremap <Leader>x;N :Nexplore<Space>
-nnoremap <silent> <Leader>x;p :Pexplore<CR>
-nnoremap <Leader>x;P :Pexplore<Space>
-nnoremap <silent> <Leader>x;r :Rexplore<CR>
-nnoremap <Leader>x;R :Rexplore<Space>
-nnoremap <silent> <Leader>x;l :Lexplore<CR>
-nnoremap <Leader>x;L :Lexplore<Space>
-nnoremap <silent> <Leader>x;h :Hexplore<CR>
-nnoremap <Leader>x;H :Hexplore<Space>
+nnoremap <Space>ga :<C-u>exe 'argadd '..GetNetrwFP()<CR>
+nnoremap <Space>gf :<C-u>exe 'argedit '..GetNetrwFP()<CR>
+nnoremap <Space>gF :<C-u>exe 'argedit! '..GetNetrwFP()<CR>
+
+nnoremap <silent> <Leader>x;X :Explore<CR>
+nnoremap <Leader>x;x :Explore<Space>
+nnoremap <silent> <Leader>x;T :Texplore<CR>
+nnoremap <Leader>x;t :Texplore<Space>
+nnoremap <silent> <Leader>x;H :Sexplore<CR>
+nnoremap <Leader>x;h :Sexplore<Space>
+nnoremap <silent> <Leader>x;V :Vexplore<CR>
+nnoremap <Leader>x;v :Vexplore<Space>
+nnoremap <silent> <Leader>x;N :Nexplore<CR>
+nnoremap <Leader>x;n :Nexplore<Space>
+nnoremap <silent> <Leader>x;P :Pexplore<CR>
+nnoremap <Leader>x;p :Pexplore<Space>
+nnoremap <silent> <Leader>x;R :Rexplore<CR>
+nnoremap <Leader>x;r :Rexplore<Space>
+nnoremap <silent> <Leader>x;L :Lexplore<CR>
+nnoremap <Leader>x;l :Lexplore<Space>
+nnoremap <silent> <Leader>x;H :Hexplore<CR>
+nnoremap <Leader>x;h :Hexplore<Space>
+
+nnoremap <Leader>x;s :<C-u>Sexplore<Space>
+nnoremap <Leader>x;S :<C-u>Sexplore<CR>
+nnoremap <Leader>x;v :<C-u>Sexplore<Space><C-w>R
+nnoremap <Leader>x;V :<C-u>Sexplore<CR><C-W>R
 
 " }}} 

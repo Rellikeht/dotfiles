@@ -121,7 +121,7 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  "n", "<Leader>d<C-p>", commandRep(
+  "n", "<Leader>dk", commandRep(
     NvimDiagPrev, {
       severity = {
         vim.diagnostic.severity.INFO,
@@ -131,7 +131,7 @@ vim.keymap.set(
   ), { noremap = true, desc = "[N] prev hint/info" }
 )
 vim.keymap.set(
-  "n", "<Leader>d<C-n>", commandRep(
+  "n", "<Leader>dj", commandRep(
     NvimDiagNext, {
       severity = {
         vim.diagnostic.severity.INFO,

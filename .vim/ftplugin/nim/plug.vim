@@ -5,3 +5,5 @@ endif
 setlocal formatoptions-=t formatoptions+=croql
 
 compiler nim
+
+let g:syntastic_nim_checkers = ["nim"]
