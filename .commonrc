@@ -5,14 +5,20 @@
 # Because this is not obvious some time (zsh)
 alias whichp='/usr/bin/env which'
 
-export HISTSIZE=5000
-export HISTFILESIZE=100000
-
 conditional_source() {
     [ -f "$1" ] && source "$1"
 }
 
 # }}}
+
+# settings {{{
+
+export HISTSIZE=5000
+export HISTFILESIZE=100000
+
+stty -ixon 2>/dev/null
+
+#  }}}
 
 # {{{ sourcing
 
@@ -99,7 +105,4 @@ if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
     export __HM_SESS_SOURCED="$UID"
 fi
 
-# }}}
-
-# {{{ other hooks
 # }}}
