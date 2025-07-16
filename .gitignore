@@ -138,5 +138,7 @@ Templates/**/*.so
 .mypy_cache
 .dmypy.json
 dmypy.json
+*.bck
+bck.*
 
 #  }}}
