@@ -67,8 +67,7 @@ if v:progname !~? "\v^t(v(i(m)?)?)?" && v:progname !~? "^vim.tiny" " {{{
   endif " }}} 
 
   " Those (may) use plugins, but aren't for plugins setup
-  " source ~/.vim/quickstack.vim
-  " source ~/.vim/arglists.vim
+  source ~/.vim/quickstack.vim
   source ~/.vim/programming.vim
   source ~/.vim/look.vim
 
