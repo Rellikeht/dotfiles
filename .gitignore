@@ -76,6 +76,7 @@ highlight.css
 .vim/history
 .vim/sessions
 .vim/templates
+.vim/.VimballRecord
 *~
 Session.vim
 tags

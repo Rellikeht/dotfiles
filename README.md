@@ -1,3 +1,3 @@
 # dotfiles
 
-All (main) configurations for programs I use (and used to use).
+All (main) configurations for various programs I use or used to use.

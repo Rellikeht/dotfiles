@@ -109,8 +109,8 @@ alias czt="z -t '.'"
 
 alias bat='LESS="$BAT_LESS_FLAGS" bat --color always'
 alias batl='bat --language lisp'
-alias less='less --ignore-case' # --raw-control-chars
-alias les='less --quit-if-one-screen --raw-control-chars'
+alias less='less --ignore-case'
+alias lesv='less --quit-if-one-screen --RAW-CONTROL-CHARS'
 alias batp='bat $(!!)'
 alias high='highlight -O truecolor'
 alias hl='high -s easter'

@@ -5,6 +5,7 @@ xrdb .Xresources &
 keynav daemonize &
 setxkbmap -option caps:escape
 [ -x ~/.kb-plug.sh ] && ~/.kb-plug.sh &
+[ -x ~/.dwm/kbd.sh ] && ~/.dwm/kbd.sh &
 
 unclutter -idle 1.2 &
 nitrogen --restore &
