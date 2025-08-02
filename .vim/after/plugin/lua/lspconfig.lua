@@ -184,8 +184,9 @@ vim.api.nvim_create_autocmd( -- {{{
       -- info {{{
 
       vim.keymap.set(
-        "n", "<Leader>dd", vim.lsp.buf.definition,
-        add_opts(opts, { desc = "go to definition" })
+        "n", "<Leader>dd", function()
+          vim.lsp.buf.definition({ loclist = vim.g.qfloc })
+        end, add_opts(opts, { desc = "go to definition" })
       )
       vim.keymap.set(
         "n", tab_mod .. "<Leader>dd",
@@ -194,8 +195,9 @@ vim.api.nvim_create_autocmd( -- {{{
       )
 
       vim.keymap.set(
-        "n", "<Leader>dD", vim.lsp.buf.declaration,
-        add_opts(opts, { desc = "go to declaration" })
+        "n", "<Leader>dD", function()
+          vim.lsp.buf.declaration({ loclist = vim.g.qfloc })
+        end, add_opts(opts, { desc = "go to declaration" })
       )
       vim.keymap.set(
         "n", tab_mod .. "<Leader>dD",
@@ -204,8 +206,9 @@ vim.api.nvim_create_autocmd( -- {{{
       )
 
       vim.keymap.set(
-        "n", "<Leader>di", vim.lsp.buf.implementation,
-        add_opts(opts, { desc = "go to implementation" })
+        "n", "<Leader>di", function()
+          vim.lsp.buf.implementation({ loclist = vim.g.qfloc })
+        end, add_opts(opts, { desc = "go to implementation" })
       )
       vim.keymap.set(
         "n", tab_mod .. "<Leader>di",
@@ -216,8 +219,9 @@ vim.api.nvim_create_autocmd( -- {{{
       )
 
       vim.keymap.set(
-        "n", "<Leader>dt", vim.lsp.buf.type_definition,
-        add_opts(opts, { desc = "go to type definition" })
+        "n", "<Leader>dt", function()
+          vim.lsp.buf.type_definition({ loclist = vim.g.qfloc })
+        end, add_opts(opts, { desc = "go to type definition" })
       )
       vim.keymap.set(
         "n", tab_mod .. "<Leader>dt",
@@ -241,7 +245,7 @@ vim.api.nvim_create_autocmd( -- {{{
         )
       )
 
-      -- TODO qfloc
+      -- TODO this doesn't give a choice between quickfix and loclist
       vim.keymap.set(
         "n", "<Leader>dlu",
         function() vim.lsp.buf.typehierarchy("subtypes") end,
@@ -249,6 +253,7 @@ vim.api.nvim_create_autocmd( -- {{{
           opts, { desc = "populate quickfix with subtypes" }
         )
       )
+      -- TODO this doesn't give a choice between quickfix and loclist
       vim.keymap.set(
         "n", "<Leader>dlo",
         function()

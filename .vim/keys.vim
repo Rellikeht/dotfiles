@@ -529,7 +529,7 @@ augroup Quickfix " {{{
         \noremap <buffer> <silent> q :q<CR>
         \| noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
         \| nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
-        \| nnoremap <buffer> <silent> <BS> <CR>
+        \| nnoremap <buffer> <silent> <BS> <CR>zv
         \| nmap <buffer> <CR>
         \ :<C-u>let qpos = getpos('.')<CR>
         \<BS>:<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>

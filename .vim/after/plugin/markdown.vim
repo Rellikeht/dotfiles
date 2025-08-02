@@ -49,7 +49,7 @@ function s:NoExGe()
   let g:vim_markdown_no_extensions_in_markdown = l:ex
 endfunction
 
-" Because gE isn't intelligent enough
+" Because ge isn't intelligent enough
 noremap gE :<C-u>call <SID>NoExGe()<CR>
 
 " }}} 
