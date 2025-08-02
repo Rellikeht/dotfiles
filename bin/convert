@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# Just a wrapper to have magick not complain about convert being deprecated
+# and commands from internet to just work
+exec magick "$@"

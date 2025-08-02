@@ -16,3 +16,5 @@ notification-daemon &
 [ -x ~/.audio_start.sh ] && ~/.audio_start.sh &
 sleep 0.2
 playerctld daemon &
+
+[ -x ~/.xinitrc_local ] && ~/.xinitrc_local &

@@ -374,10 +374,9 @@ alias prgc='prg \
     -a diff -a diff3 -a git \
     -a cadaver -a ftp -a ssh -a chezdav \
     -a nmap -a nc -a iperf3 -a iperf \
+    -a adb \
     '
 
-# putting above following commands makes them appear twice:
-# adb
 # }}}
 
 # multimedia and web {{{

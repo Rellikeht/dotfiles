@@ -17,14 +17,16 @@ kbs() {
 }
 
 plug() {
-    sleep 4
-    ~/.kb-plug.sh
+  # To balance startup time of some (chinise) keyboards
+  sleep 4
+  echo plugged
+  ~/.kb-plug.sh
 }
 
-kbs > "$TEMP2"
+kbs >"$TEMP2"
 while true; do
-  cat "$TEMP2" > "$TEMP1"
-  kbs > "$TEMP2"
+  cat "$TEMP2" >"$TEMP1"
+  kbs >"$TEMP2"
   diff -q "$TEMP1" "$TEMP2" >/dev/null || plug &
-  sleep 2
+  sleep 1
 done
