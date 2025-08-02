@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ "$#" -gt 1 ]; then
+    BRANCH="${@: -1}"
+    ARGS="${@:1:$#-1}"
+    git remote | xargs -I{} git push "$ARGS" "{}" "$BRANCH"
+    exit 0
+fi
+
+if [ "$#" -eq 1 ]; then
+    ARG="$1"
+else
+    ARG="$(git branch --show-current)"
+fi
+git remote | xargs -I{} git push "{}" "$ARG"
