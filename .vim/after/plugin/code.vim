@@ -313,7 +313,6 @@ nnoremap <Leader>qa :<C-u>call AutoPairsToggle()<CR>
 
 " function s:SetupGutentags()
 
-" TODO C more ?
 let g:gutentags_project_root = [
       \ ".git",
       \ ".hg",
@@ -328,8 +327,11 @@ let g:gutentags_project_root = [
       \ "dune-project",
       \ "cabal.project",
       \ "stack.yaml",
-      \ "__init__.py",
+      \ "pyproject.toml",
       \ "package.json",
+      \ "init.lua",
+      \ "settings.gradle",
+      \ "pom.xml",
       \ ]
 
 let g:gutentags_add_default_project_roots = 0
@@ -337,7 +339,7 @@ let g:gutentags_add_default_project_roots = 0
 autocmd DirChanged global call gutentags#rescan()
 let g:gutentags_exclude_project_root = [
       \ expand('/nix/store/'),
-      \ expand('~/.vim/plugged'),
+      \ expand(g:vim_plug_dir),
       \ ]
 " \ expand('~/gits/configs/dotfiles'),
 
@@ -366,8 +368,8 @@ let g:gutentags_ctags_extra_args = [
       \ ]
 
 let g:gutentags_generate_on_new = 0
-let g:gutentags_generate_on_missing = 1
-let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_missing = 0
+let g:gutentags_generate_on_write = 0
 let g:gutentags_generate_on_empty_buffer = 0
 
 " endfunction

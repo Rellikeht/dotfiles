@@ -7,6 +7,7 @@ Plug 'tpope/vim-repeat'
 
 " essentials {{{ 
 
+Plug 'Rellikeht/arglist-plus'
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -129,6 +130,8 @@ Plug 'mmikeww/autohotkey.vim'
 " }}} 
 
 " specialized {{{ 
+
+Plug 'junegunn/vader.vim'
 
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}

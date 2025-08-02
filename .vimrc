@@ -43,6 +43,8 @@ if v:progname !~? "\v^t(v(i(m)?)?)?" && v:progname !~? "^vim.tiny" " {{{
 
   " vim-plug {{{ 
   let g:plug_threads = 32
+  let g:vim_share_dir = '~/.local/share/vim'
+  let g:vim_plug_dir = g:vim_share_dir..'/plugged'
 
   " auto install
   let plug_src = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -60,7 +62,7 @@ if v:progname !~? "\v^t(v(i(m)?)?)?" && v:progname !~? "^vim.tiny" " {{{
 
   if !has("nvim") " {{{ 
     source ~/.vim/svimrc.vim
-    call plug#begin('~/.vim/plugged')
+    call plug#begin(g:vim_plug_dir)
     source ~/.vim/plugins.vim
     call plug#end()
     source ~/.vim/svim-plug-handlers.vim
