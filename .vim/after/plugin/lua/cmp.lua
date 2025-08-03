@@ -32,7 +32,7 @@ require("lazy_utils").load_on_insert(
     Capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- If you want insert `(` after select function or method item
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     -- }}}
 
