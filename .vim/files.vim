@@ -173,9 +173,10 @@ endfunction
 
 " TODO B more file openinng
 
-nnoremap <Space>ga :<C-u>exe 'argadd '..GetNetrwFP()<CR>
-nnoremap <Space>gf :<C-u>exe 'argedit '..GetNetrwFP()<CR>
-nnoremap <Space>gF :<C-u>exe 'argedit! '..GetNetrwFP()<CR>
+autocmd FileType netrw
+            \ | nnoremap <buffer> <silent> <Space>ga :<C-u>exe 'argadd '..fnameescape(GetNetrwFP())<CR>
+            \ | nnoremap <buffer> <silent> <Space>gf :<C-u>exe 'argedit '..fnameescape(GetNetrwFP())<CR>
+            \ | nnoremap <buffer> <silent> <Space>gF :<C-u>exe 'argedit! '..fnameescape(GetNetrwFP())<CR>
 
 nnoremap <silent> <Leader>x;X :Explore<CR>
 nnoremap <Leader>x;x :Explore<Space>

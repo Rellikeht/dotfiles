@@ -19,6 +19,7 @@ noremap <Leader>ib :<C-u>B
 
 " bbye {{{ 
 
+" TODO Proper expand
 command! -nargs=* -bang -complete=buffer Bdel
       \ call Multif('Bdelete'.<q-bang>, [<f-args>])
 command! -nargs=* -bang -complete=buffer Bwip

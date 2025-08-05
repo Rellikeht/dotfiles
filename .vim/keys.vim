@@ -124,8 +124,6 @@ endfunction
 map <C-h> <C-]>
 nnoremap <C-w><C-h> :<C-u>exe 'tab tag '.Expand('<cword>')<CR>
 
-nmap <C-w>gf :<C-u>Tabe <cfile><CR>
-
 " Nice thing for snippets
 snoremap <BS> <BS>i
 
@@ -529,14 +527,12 @@ augroup Quickfix " {{{
         \noremap <buffer> <silent> q :q<CR>
         \| noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
         \| nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
-        \| nnoremap <buffer> <silent> <BS> <CR>zv
-        \| nmap <buffer> <CR>
-        \ :<C-u>let qpos = getpos('.')<CR>
-        \<BS>:<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
+        \| nnoremap <buffer> <silent> <CR> <CR>zv
+        \| nmap <buffer> <C-h>
+        \ :<C-u>let qpos = getcurpos()<CR>
+        \<CR>:<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
         \:call setpos('.', qpos)<CR>
-        \<C-l><Right><Left>
-        \| nmap <buffer> <silent> <C-h>
-        \ <CR>:call WQFcmd('close')<CR>
+        \| nmap <buffer> <silent> <BS> <CR>:call WQFcmd('close')<CR>
         \| nmap <buffer> <silent> J j<CR>
         \| nmap <buffer> <silent> K k<CR>
         \| noremap <buffer> <expr> a g:qfloc ?

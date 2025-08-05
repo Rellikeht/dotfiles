@@ -2,8 +2,7 @@
 
 command! -nargs=* -complete=file -count=1 Tabe
       \ <count>tabnew
-      \ | arglocal!
-      \ | args! <args>
+      \ | arglocal! <args>
 
 command! -bang -nargs=? -complete=arglist Argument 
       \ if len(<q-args>) == 0
@@ -432,7 +431,7 @@ set showcmd
 set showmode
 set showmatch
 set nohlsearch
-" set textwidth=72
+set textwidth=72
 
 " }}} 
 
