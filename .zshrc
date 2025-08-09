@@ -36,7 +36,7 @@ setopt AUTO_CD
 set -o pipefail
 
 conditional_source() {
-    [ -f "$1" ] && source "$1"
+    [ -r "$1" ] && source "$1"
 }
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -86,19 +86,17 @@ if [ -z "$__COMPINIT_RUN" ]; then
     # colors files until they have common prefix
     zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==35=35;01}:${(s.:.)LS_COLORS}")';
 
-    zstyle ':completion:*' matcher-list '' \
-      'm:{a-z\-}={A-Z\_}' \
-      'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-      'r:|?=** m:{a-z\-}={A-Z\_}'
+        zstyle ':completion:*' matcher-list '' \
+            'm:{a-z\-}={A-Z\_}' \
+            'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+            'r:|?=** m:{a-z\-}={A-Z\_}'
 
     # {{{
-
     # smart case baby
     # zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
-
     # zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
-
     # }}}
+
     __COMPINIT_RUN=1
 fi
 # }}}

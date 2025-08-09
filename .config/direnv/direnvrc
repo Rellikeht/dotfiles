@@ -1,5 +1,5 @@
 conditional_source() {
-    [ -f "$1" ] && source "$1"
+    [ -r "$1" ] && source "$1"
 }
 
 conditional_source "$HOME/.nix-profile/share/nix-direnv/direnvrc"

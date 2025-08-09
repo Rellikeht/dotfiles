@@ -92,7 +92,7 @@ __calc_command_duration() {
         local DI="$((DURATION / 1000000000))"
         local DD="$((DURATION % 1000000000))"
         local HOUR="$(date -d "@$(($DI - 3600))" +%T)"
-        local SECS="$(printf "%02d\n" "$(($DD/10000000))")"
+        local SECS="$(printf "%02d\n" "$(($DD / 10000000))")"
         # local SECS="$(printf "%03d\n" "$(($DD / 1000000))")"
         local DAY="$(($(date -d "@$DI" +%j) - 1))"
         local YEAR="$(($(date -d "@$DI" +%y) - 70))"

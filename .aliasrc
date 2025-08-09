@@ -13,7 +13,7 @@ alias progp=' \
     xargs -d ":" -I{} \
     find -L "{}" -executable -a -type f \
     2>/dev/null
-    '
+'
 
 # sed "s/:/\n/g;/^$/d"
 alias progs=' \
@@ -602,10 +602,10 @@ if [ "$(uname)" = "FreeBSD" ]; then # {{{
     alias gdiu='gdiff --color=never --unified'
 
     alias fpr='ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
-    grepWgrep | its_just_grep -E'
+        grepWgrep | its_just_grep -E'
 
     alias fprh="ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
-    numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
+        numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     # TODO
     # it needs script or link for watch program
@@ -627,10 +627,10 @@ else # {{{
     alias diu='diff --color=never --unified'
 
     alias fpr='ps axh o rss,pid,state,pcpu,user,cmd | \
-    grepWgrep | its_just_grep -E'
+        grepWgrep | its_just_grep -E'
 
     alias fprh="ps axh o rss,pid,state,pcpu,user,cmd | \
-    numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
+        numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
 
     alias w1='wat 1'
     alias w1c='watc 1'
