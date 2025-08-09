@@ -264,6 +264,14 @@ aigh() {
 
 # fzf {{{
 
+fzcf() {
+  find .. -xtype f | fzf --bind "enter:become($@ {+})"
+}
+
+fzcd() {
+  find .. -xtype d | fzf --bind "enter:become($@ {+})"
+}
+
 # Basically find piped to fzf with history
 fzh() {
     local FZF FZH_FILE TEMP
