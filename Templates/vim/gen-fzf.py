@@ -30,7 +30,7 @@ FZF_SPECIALS = {
     "E": "EnvrcRoot(EnvrcRoot().'/..')",
     "<C-e>": "EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
 }
-FZF_SPECIALS.update({str(n): f"Bp({n})" for n in range(1, MAX_PREV)})
+FZF_SPECIALS.update({str(n): f"B({n})" for n in range(1, MAX_PREV)})
 
 # TODO C some selection and <cwhatever>
 
@@ -48,12 +48,12 @@ SCRIPT_PATH = Path(split(argv[0])[0])
 VIM_PATH = SCRIPT_PATH / ".." / ".." / ".vim" / "after" / "plugin"
 
 with open(VIM_PATH / "fzf.vim", "w") as f:
-    print("function s:SetupFzf()", file=f)
-    print("", file=f)
     with open(SCRIPT_PATH / "fzf.vim", "r") as template:
         print(template.read(), file=f)
         print(file=f)
 
+    print("function s:SetupFzf()", file=f)
+    print("", file=f)
     print('" path maps {{{', file=f)
     print(file=f)
 

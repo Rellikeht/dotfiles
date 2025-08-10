@@ -1,5 +1,3 @@
-function s:SetupFzf()
-
 " helpers {{{ 
 
 function! s:with_dir(dir='')
@@ -63,9 +61,6 @@ endfunction
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_vim = {}
 
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
 function g:fzf_vim.listproc(list)
   if g:qfloc
     fzf#vim#listproc#location(list)
@@ -103,135 +98,6 @@ let g:fzf_colors = {
       \ }
 
 " }}} 
-
-" }}} 
-
-" custom grep {{{ 
-
-let s:ggrep_args = '--line-number --color=always -EI'
-let s:grep = g:grep_prog.' -r '.s:ggrep_args
-" let s:ggrep_args = s:ggrep_args.' -EI'
-
-" simple grep
-command! -bang -nargs=* Fgrep
-      \ call fzf#vim#grep(
-      \ s:grep." -- ".fzf#shellescape(<q-args>),
-      \ fzf#vim#with_preview(),
-      \ <bang>0
-      \ )
-
-" grep on given directory
-command! -bang -nargs=* -complete=dir Dgrep
-      \ call fzf#vim#grep(
-      \ s:grep." -- ".fzf#shellescape(s:W0(<f-args>)),
-      \ extend(
-      \ fzf#vim#with_preview(),
-      \ s:with_dir([<f-args>]),
-      \ ),
-      \ <bang>0
-      \ )
-
-" case insensitive grep on given directory
-command! -bang -nargs=* -complete=dir Digrep
-      \ call fzf#vim#grep(
-      \ s:grep." -i -- ".fzf#shellescape(s:W0(<f-args>)),
-      \ extend(
-      \ fzf#vim#with_preview(),
-      \ s:with_dir([<f-args>]),
-      \ ),
-      \ <bang>0
-      \ )
-
-" }}} 
-
-" custom ag {{{ 
-
-let s:ahflags = '--ignore .git --ignore .hg --smart-case --hidden'
-let s:auflags = '--ignore .git --ignore .hg --smart-case --unrestricted'
-
-command! -bang -nargs=* Ah 
-      \ call fzf#vim#ag(<q-args>,
-      \ s:ahflags,
-      \ fzf#vim#with_preview(),
-      \ <bang>0)
-
-command! -bang -nargs=* Au 
-      \ call fzf#vim#ag(<q-args>,
-      \ s:auflags,
-      \ fzf#vim#with_preview(),
-      \ <bang>0)
-
-" Ag from given directory
-command! -bang -nargs=* -complete=dir Dah
-      \ call fzf#vim#ag(s:W0(<f-args>),
-      \ s:ahflags,
-      \ extend(
-      \ s:with_dir([<f-args>]),
-      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
-      \ ), <bang>0)
-
-command! -bang -nargs=* -complete=dir Dau
-      \ call fzf#vim#ag(s:W0(<f-args>),
-      \ s:auflags,
-      \ extend(
-      \ s:with_dir([<f-args>]),
-      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
-      \ ), <bang>0)
-
-" }}} 
-
-" custom rg {{{ 
-
-let s:rgcmd = "rg --column --line-number --no-heading --hidden ".
-      \ "--color=always --smart-case "
-command! -bang -nargs=* -complete=dir Drg
-      \ call fzf#vim#grep(
-      \ s:rgcmd.' --glob="!.git" --glob="!.hg" -- '.
-      \ fzf#shellescape(s:W0(<f-args>)),
-      \ extend(
-      \ s:with_dir(<f-args>),
-      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
-      \ ), <bang>0)
-
-command! -bang -nargs=* -complete=dir Dru
-      \ call fzf#vim#grep(
-      \ s:rgcmd.' --unrestricted -- '.fzf#shellescape(s:W0(<f-args>)),
-      \ extend(
-      \ s:with_dir(<f-args>),
-      \ extend(deepcopy(g:fzf_layout), fzf#vim#with_preview())
-      \ ), <bang>0)
-
-" }}} 
-
-" custom diff {{{ 
-
-" TODO C preview like in other commands (probably impossible)
-command! -bang -nargs=? -complete=dir Fdiffs
-      \ call fzf#run(fzf#wrap({
-      \ 'sink': 'diffs',
-      \ 'dir': <q-args>,
-      \ 'options': [
-      \ '--preview',
-      \ 'delta '.Expand("%:p").' {}',
-      \ '--preview-window',
-      \ g:fzf_preview_default,
-      \ ],
-      \ },
-      \ <bang>0))
-
-command! -bang -nargs=? -complete=dir Fdiffv
-      \ call fzf#run(fzf#wrap({
-      \ 'sink': 'vert diffs',
-      \ 'dir': <q-args>,
-      \ 'options': [
-      \ '--preview',
-      \ 'delta '.Expand("%:p").' {}',
-      \ '--preview-window',
-      \ g:fzf_preview_default,
-      \ ],
-      \ },
-      \ <bang>0)
-      \ )
 
 " }}} 
 
@@ -288,15 +154,6 @@ nnoremap <leader>sf<Space>l :<C-u>Lines<Space>
 
 " git mappings {{{ 
 
-" From official instructions
-" git grep
-command! -bang -nargs=* GGrep
-      \ call fzf#vim#grep(
-      \   'git grep '.s:ggrep_args.' -r -- '.fzf#shellescape(<q-args>),
-      \   fzf#vim#with_preview(
-      \      {'dir': GitRoot()}
-      \   ), <bang>0)
-
 nnoremap <leader>gsf :<C-u>GFiles<CR>
 nnoremap <leader>gsm :<C-u>GFiles?<CR>
 nnoremap <leader>gsg :GGrep<CR>
@@ -343,6 +200,8 @@ let g:fzf_action = {
 
 " }}} 
 
+
+function s:SetupFzf()
 
 " path maps {{{
 
@@ -515,77 +374,77 @@ nnoremap <Leader>sG<C-e> :<C-u> exe 'Digrep '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/
 nnoremap <Leader>sr<C-e> :<C-u> exe 'Drg '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
 nnoremap <Leader>sR<C-e> :<C-u> exe 'Dru '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
 
-nnoremap <Leader>sp1 :<C-u> exe 'Files '.Bp(1)<CR>
-nnoremap <Leader>ss1 :<C-u> exe 'Dah '.Bp(1)<CR>
-nnoremap <Leader>sS1 :<C-u> exe 'Dau '.Bp(1)<CR>
-nnoremap <Leader>sg1 :<C-u> exe 'Dgrep '.Bp(1)<CR>
-nnoremap <Leader>sG1 :<C-u> exe 'Digrep '.Bp(1)<CR>
-nnoremap <Leader>sr1 :<C-u> exe 'Drg '.Bp(1)<CR>
-nnoremap <Leader>sR1 :<C-u> exe 'Dru '.Bp(1)<CR>
+nnoremap <Leader>sp1 :<C-u> exe 'Files '.B(1)<CR>
+nnoremap <Leader>ss1 :<C-u> exe 'Dah '.B(1)<CR>
+nnoremap <Leader>sS1 :<C-u> exe 'Dau '.B(1)<CR>
+nnoremap <Leader>sg1 :<C-u> exe 'Dgrep '.B(1)<CR>
+nnoremap <Leader>sG1 :<C-u> exe 'Digrep '.B(1)<CR>
+nnoremap <Leader>sr1 :<C-u> exe 'Drg '.B(1)<CR>
+nnoremap <Leader>sR1 :<C-u> exe 'Dru '.B(1)<CR>
 
-nnoremap <Leader>sp2 :<C-u> exe 'Files '.Bp(2)<CR>
-nnoremap <Leader>ss2 :<C-u> exe 'Dah '.Bp(2)<CR>
-nnoremap <Leader>sS2 :<C-u> exe 'Dau '.Bp(2)<CR>
-nnoremap <Leader>sg2 :<C-u> exe 'Dgrep '.Bp(2)<CR>
-nnoremap <Leader>sG2 :<C-u> exe 'Digrep '.Bp(2)<CR>
-nnoremap <Leader>sr2 :<C-u> exe 'Drg '.Bp(2)<CR>
-nnoremap <Leader>sR2 :<C-u> exe 'Dru '.Bp(2)<CR>
+nnoremap <Leader>sp2 :<C-u> exe 'Files '.B(2)<CR>
+nnoremap <Leader>ss2 :<C-u> exe 'Dah '.B(2)<CR>
+nnoremap <Leader>sS2 :<C-u> exe 'Dau '.B(2)<CR>
+nnoremap <Leader>sg2 :<C-u> exe 'Dgrep '.B(2)<CR>
+nnoremap <Leader>sG2 :<C-u> exe 'Digrep '.B(2)<CR>
+nnoremap <Leader>sr2 :<C-u> exe 'Drg '.B(2)<CR>
+nnoremap <Leader>sR2 :<C-u> exe 'Dru '.B(2)<CR>
 
-nnoremap <Leader>sp3 :<C-u> exe 'Files '.Bp(3)<CR>
-nnoremap <Leader>ss3 :<C-u> exe 'Dah '.Bp(3)<CR>
-nnoremap <Leader>sS3 :<C-u> exe 'Dau '.Bp(3)<CR>
-nnoremap <Leader>sg3 :<C-u> exe 'Dgrep '.Bp(3)<CR>
-nnoremap <Leader>sG3 :<C-u> exe 'Digrep '.Bp(3)<CR>
-nnoremap <Leader>sr3 :<C-u> exe 'Drg '.Bp(3)<CR>
-nnoremap <Leader>sR3 :<C-u> exe 'Dru '.Bp(3)<CR>
+nnoremap <Leader>sp3 :<C-u> exe 'Files '.B(3)<CR>
+nnoremap <Leader>ss3 :<C-u> exe 'Dah '.B(3)<CR>
+nnoremap <Leader>sS3 :<C-u> exe 'Dau '.B(3)<CR>
+nnoremap <Leader>sg3 :<C-u> exe 'Dgrep '.B(3)<CR>
+nnoremap <Leader>sG3 :<C-u> exe 'Digrep '.B(3)<CR>
+nnoremap <Leader>sr3 :<C-u> exe 'Drg '.B(3)<CR>
+nnoremap <Leader>sR3 :<C-u> exe 'Dru '.B(3)<CR>
 
-nnoremap <Leader>sp4 :<C-u> exe 'Files '.Bp(4)<CR>
-nnoremap <Leader>ss4 :<C-u> exe 'Dah '.Bp(4)<CR>
-nnoremap <Leader>sS4 :<C-u> exe 'Dau '.Bp(4)<CR>
-nnoremap <Leader>sg4 :<C-u> exe 'Dgrep '.Bp(4)<CR>
-nnoremap <Leader>sG4 :<C-u> exe 'Digrep '.Bp(4)<CR>
-nnoremap <Leader>sr4 :<C-u> exe 'Drg '.Bp(4)<CR>
-nnoremap <Leader>sR4 :<C-u> exe 'Dru '.Bp(4)<CR>
+nnoremap <Leader>sp4 :<C-u> exe 'Files '.B(4)<CR>
+nnoremap <Leader>ss4 :<C-u> exe 'Dah '.B(4)<CR>
+nnoremap <Leader>sS4 :<C-u> exe 'Dau '.B(4)<CR>
+nnoremap <Leader>sg4 :<C-u> exe 'Dgrep '.B(4)<CR>
+nnoremap <Leader>sG4 :<C-u> exe 'Digrep '.B(4)<CR>
+nnoremap <Leader>sr4 :<C-u> exe 'Drg '.B(4)<CR>
+nnoremap <Leader>sR4 :<C-u> exe 'Dru '.B(4)<CR>
 
-nnoremap <Leader>sp5 :<C-u> exe 'Files '.Bp(5)<CR>
-nnoremap <Leader>ss5 :<C-u> exe 'Dah '.Bp(5)<CR>
-nnoremap <Leader>sS5 :<C-u> exe 'Dau '.Bp(5)<CR>
-nnoremap <Leader>sg5 :<C-u> exe 'Dgrep '.Bp(5)<CR>
-nnoremap <Leader>sG5 :<C-u> exe 'Digrep '.Bp(5)<CR>
-nnoremap <Leader>sr5 :<C-u> exe 'Drg '.Bp(5)<CR>
-nnoremap <Leader>sR5 :<C-u> exe 'Dru '.Bp(5)<CR>
+nnoremap <Leader>sp5 :<C-u> exe 'Files '.B(5)<CR>
+nnoremap <Leader>ss5 :<C-u> exe 'Dah '.B(5)<CR>
+nnoremap <Leader>sS5 :<C-u> exe 'Dau '.B(5)<CR>
+nnoremap <Leader>sg5 :<C-u> exe 'Dgrep '.B(5)<CR>
+nnoremap <Leader>sG5 :<C-u> exe 'Digrep '.B(5)<CR>
+nnoremap <Leader>sr5 :<C-u> exe 'Drg '.B(5)<CR>
+nnoremap <Leader>sR5 :<C-u> exe 'Dru '.B(5)<CR>
 
-nnoremap <Leader>sp6 :<C-u> exe 'Files '.Bp(6)<CR>
-nnoremap <Leader>ss6 :<C-u> exe 'Dah '.Bp(6)<CR>
-nnoremap <Leader>sS6 :<C-u> exe 'Dau '.Bp(6)<CR>
-nnoremap <Leader>sg6 :<C-u> exe 'Dgrep '.Bp(6)<CR>
-nnoremap <Leader>sG6 :<C-u> exe 'Digrep '.Bp(6)<CR>
-nnoremap <Leader>sr6 :<C-u> exe 'Drg '.Bp(6)<CR>
-nnoremap <Leader>sR6 :<C-u> exe 'Dru '.Bp(6)<CR>
+nnoremap <Leader>sp6 :<C-u> exe 'Files '.B(6)<CR>
+nnoremap <Leader>ss6 :<C-u> exe 'Dah '.B(6)<CR>
+nnoremap <Leader>sS6 :<C-u> exe 'Dau '.B(6)<CR>
+nnoremap <Leader>sg6 :<C-u> exe 'Dgrep '.B(6)<CR>
+nnoremap <Leader>sG6 :<C-u> exe 'Digrep '.B(6)<CR>
+nnoremap <Leader>sr6 :<C-u> exe 'Drg '.B(6)<CR>
+nnoremap <Leader>sR6 :<C-u> exe 'Dru '.B(6)<CR>
 
-nnoremap <Leader>sp7 :<C-u> exe 'Files '.Bp(7)<CR>
-nnoremap <Leader>ss7 :<C-u> exe 'Dah '.Bp(7)<CR>
-nnoremap <Leader>sS7 :<C-u> exe 'Dau '.Bp(7)<CR>
-nnoremap <Leader>sg7 :<C-u> exe 'Dgrep '.Bp(7)<CR>
-nnoremap <Leader>sG7 :<C-u> exe 'Digrep '.Bp(7)<CR>
-nnoremap <Leader>sr7 :<C-u> exe 'Drg '.Bp(7)<CR>
-nnoremap <Leader>sR7 :<C-u> exe 'Dru '.Bp(7)<CR>
+nnoremap <Leader>sp7 :<C-u> exe 'Files '.B(7)<CR>
+nnoremap <Leader>ss7 :<C-u> exe 'Dah '.B(7)<CR>
+nnoremap <Leader>sS7 :<C-u> exe 'Dau '.B(7)<CR>
+nnoremap <Leader>sg7 :<C-u> exe 'Dgrep '.B(7)<CR>
+nnoremap <Leader>sG7 :<C-u> exe 'Digrep '.B(7)<CR>
+nnoremap <Leader>sr7 :<C-u> exe 'Drg '.B(7)<CR>
+nnoremap <Leader>sR7 :<C-u> exe 'Dru '.B(7)<CR>
 
-nnoremap <Leader>sp8 :<C-u> exe 'Files '.Bp(8)<CR>
-nnoremap <Leader>ss8 :<C-u> exe 'Dah '.Bp(8)<CR>
-nnoremap <Leader>sS8 :<C-u> exe 'Dau '.Bp(8)<CR>
-nnoremap <Leader>sg8 :<C-u> exe 'Dgrep '.Bp(8)<CR>
-nnoremap <Leader>sG8 :<C-u> exe 'Digrep '.Bp(8)<CR>
-nnoremap <Leader>sr8 :<C-u> exe 'Drg '.Bp(8)<CR>
-nnoremap <Leader>sR8 :<C-u> exe 'Dru '.Bp(8)<CR>
+nnoremap <Leader>sp8 :<C-u> exe 'Files '.B(8)<CR>
+nnoremap <Leader>ss8 :<C-u> exe 'Dah '.B(8)<CR>
+nnoremap <Leader>sS8 :<C-u> exe 'Dau '.B(8)<CR>
+nnoremap <Leader>sg8 :<C-u> exe 'Dgrep '.B(8)<CR>
+nnoremap <Leader>sG8 :<C-u> exe 'Digrep '.B(8)<CR>
+nnoremap <Leader>sr8 :<C-u> exe 'Drg '.B(8)<CR>
+nnoremap <Leader>sR8 :<C-u> exe 'Dru '.B(8)<CR>
 
-nnoremap <Leader>sp9 :<C-u> exe 'Files '.Bp(9)<CR>
-nnoremap <Leader>ss9 :<C-u> exe 'Dah '.Bp(9)<CR>
-nnoremap <Leader>sS9 :<C-u> exe 'Dau '.Bp(9)<CR>
-nnoremap <Leader>sg9 :<C-u> exe 'Dgrep '.Bp(9)<CR>
-nnoremap <Leader>sG9 :<C-u> exe 'Digrep '.Bp(9)<CR>
-nnoremap <Leader>sr9 :<C-u> exe 'Drg '.Bp(9)<CR>
-nnoremap <Leader>sR9 :<C-u> exe 'Dru '.Bp(9)<CR>
+nnoremap <Leader>sp9 :<C-u> exe 'Files '.B(9)<CR>
+nnoremap <Leader>ss9 :<C-u> exe 'Dah '.B(9)<CR>
+nnoremap <Leader>sS9 :<C-u> exe 'Dau '.B(9)<CR>
+nnoremap <Leader>sg9 :<C-u> exe 'Dgrep '.B(9)<CR>
+nnoremap <Leader>sG9 :<C-u> exe 'Digrep '.B(9)<CR>
+nnoremap <Leader>sr9 :<C-u> exe 'Drg '.B(9)<CR>
+nnoremap <Leader>sR9 :<C-u> exe 'Dru '.B(9)<CR>
 
 " }}}
 endfunction

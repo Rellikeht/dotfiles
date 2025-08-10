@@ -11,18 +11,20 @@ Plug 'Rellikeht/arglist-plus'
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'Rellikeht/fzf-vim-additional'
 
 Plug 'jpalardy/vim-slime'
 Plug 'ryvnf/readline.vim'
 
 Plug 'unblevable/quick-scope'
-Plug 'justinmk/vim-sneak' " TODO A shortcuts
+Plug 'justinmk/vim-sneak'
 Plug 'dbakker/vim-paragraph-motion'
 
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'Rellikeht/lazy-utils'
+Plug 'Rellikeht/vim-extras'
 
 " }}} 
 
