@@ -51,10 +51,6 @@ nnoremap <Space>mF :<C-u>set errorformat=<Space>
 
 " compiler {{{ 
 
-function CompleteCompiler(lead, cmdline, curpos)
-  return CompleteList(b:compilers, a:lead, a:cmdline, a:curpos)
-endfunction
-
 command -nargs=1 -complete=customlist,CompleteCompiler SelectCompiler
       \ exe 'compiler '.<args>
 

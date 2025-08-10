@@ -525,14 +525,14 @@ nnoremap <expr> ;;F g:qfloc ?
 augroup Quickfix " {{{ 
   autocmd FileType qf 
         \noremap <buffer> <silent> q :q<CR>
-        \| noremap <buffer> < :<C-u>call WQFcmd('older')<CR>
-        \| nnoremap <buffer> > :<C-u>call WQFcmd('newer')<CR>
+        \| noremap <buffer> < :<C-u>call QFcmd('older')<CR>
+        \| nnoremap <buffer> > :<C-u>call QFcmd('newer')<CR>
         \| nnoremap <buffer> <silent> <CR> <CR>zv
         \| nmap <buffer> <C-h>
         \ :<C-u>let qpos = getcurpos()<CR>
         \<CR>:<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
         \:call setpos('.', qpos)<CR>
-        \| nmap <buffer> <silent> <BS> <CR>:call WQFcmd('close')<CR>
+        \| nmap <buffer> <silent> <BS> <CR>:call QFcmd('close')<CR>
         \| nmap <buffer> <silent> J j<CR>
         \| nmap <buffer> <silent> K k<CR>
         \| noremap <buffer> <expr> a g:qfloc ?

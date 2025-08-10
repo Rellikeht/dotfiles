@@ -301,45 +301,45 @@ nnoremap <Leader>sr. :<C-u>Drg .<CR>
 nnoremap <Leader>sR. :<C-u>Dru .<CR>
 
 
-nnoremap <Leader>spg :<C-u> exe 'Files '.GitRoot()<CR>
-nnoremap <Leader>ssg :<C-u> exe 'Dah '.GitRoot()<CR>
-nnoremap <Leader>sSg :<C-u> exe 'Dau '.GitRoot()<CR>
-nnoremap <Leader>sgg :<C-u> exe 'Dgrep '.GitRoot()<CR>
-nnoremap <Leader>sGg :<C-u> exe 'Digrep '.GitRoot()<CR>
-nnoremap <Leader>srg :<C-u> exe 'Drg '.GitRoot()<CR>
-nnoremap <Leader>sRg :<C-u> exe 'Dru '.GitRoot()<CR>
+nnoremap <Leader>spg :<C-u> exe 'Files '.extras#git_root()<CR>
+nnoremap <Leader>ssg :<C-u> exe 'Dah '.extras#git_root()<CR>
+nnoremap <Leader>sSg :<C-u> exe 'Dau '.extras#git_root()<CR>
+nnoremap <Leader>sgg :<C-u> exe 'Dgrep '.extras#git_root()<CR>
+nnoremap <Leader>sGg :<C-u> exe 'Digrep '.extras#git_root()<CR>
+nnoremap <Leader>srg :<C-u> exe 'Drg '.extras#git_root()<CR>
+nnoremap <Leader>sRg :<C-u> exe 'Dru '.extras#git_root()<CR>
 
-nnoremap <Leader>spG :<C-u> exe 'Files '.GitRoot(GitRoot().'/..')<CR>
-nnoremap <Leader>ssG :<C-u> exe 'Dah '.GitRoot(GitRoot().'/..')<CR>
-nnoremap <Leader>sSG :<C-u> exe 'Dau '.GitRoot(GitRoot().'/..')<CR>
-nnoremap <Leader>sgG :<C-u> exe 'Dgrep '.GitRoot(GitRoot().'/..')<CR>
-nnoremap <Leader>sGG :<C-u> exe 'Digrep '.GitRoot(GitRoot().'/..')<CR>
-nnoremap <Leader>srG :<C-u> exe 'Drg '.GitRoot(GitRoot().'/..')<CR>
-nnoremap <Leader>sRG :<C-u> exe 'Dru '.GitRoot(GitRoot().'/..')<CR>
+nnoremap <Leader>spG :<C-u> exe 'Files '.extras#git_root(extras#git_root().'/..')<CR>
+nnoremap <Leader>ssG :<C-u> exe 'Dah '.extras#git_root(extras#git_root().'/..')<CR>
+nnoremap <Leader>sSG :<C-u> exe 'Dau '.extras#git_root(extras#git_root().'/..')<CR>
+nnoremap <Leader>sgG :<C-u> exe 'Dgrep '.extras#git_root(extras#git_root().'/..')<CR>
+nnoremap <Leader>sGG :<C-u> exe 'Digrep '.extras#git_root(extras#git_root().'/..')<CR>
+nnoremap <Leader>srG :<C-u> exe 'Drg '.extras#git_root(extras#git_root().'/..')<CR>
+nnoremap <Leader>sRG :<C-u> exe 'Dru '.extras#git_root(extras#git_root().'/..')<CR>
 
-nnoremap <Leader>spm :<C-u> exe 'Files '.HgRoot()<CR>
-nnoremap <Leader>ssm :<C-u> exe 'Dah '.HgRoot()<CR>
-nnoremap <Leader>sSm :<C-u> exe 'Dau '.HgRoot()<CR>
-nnoremap <Leader>sgm :<C-u> exe 'Dgrep '.HgRoot()<CR>
-nnoremap <Leader>sGm :<C-u> exe 'Digrep '.HgRoot()<CR>
-nnoremap <Leader>srm :<C-u> exe 'Drg '.HgRoot()<CR>
-nnoremap <Leader>sRm :<C-u> exe 'Dru '.HgRoot()<CR>
+nnoremap <Leader>spm :<C-u> exe 'Files '.extras#hg_root()<CR>
+nnoremap <Leader>ssm :<C-u> exe 'Dah '.extras#hg_root()<CR>
+nnoremap <Leader>sSm :<C-u> exe 'Dau '.extras#hg_root()<CR>
+nnoremap <Leader>sgm :<C-u> exe 'Dgrep '.extras#hg_root()<CR>
+nnoremap <Leader>sGm :<C-u> exe 'Digrep '.extras#hg_root()<CR>
+nnoremap <Leader>srm :<C-u> exe 'Drg '.extras#hg_root()<CR>
+nnoremap <Leader>sRm :<C-u> exe 'Dru '.extras#hg_root()<CR>
 
-nnoremap <Leader>spM :<C-u> exe 'Files '.HgRoot(HgRoot().'/..')<CR>
-nnoremap <Leader>ssM :<C-u> exe 'Dah '.HgRoot(HgRoot().'/..')<CR>
-nnoremap <Leader>sSM :<C-u> exe 'Dau '.HgRoot(HgRoot().'/..')<CR>
-nnoremap <Leader>sgM :<C-u> exe 'Dgrep '.HgRoot(HgRoot().'/..')<CR>
-nnoremap <Leader>sGM :<C-u> exe 'Digrep '.HgRoot(HgRoot().'/..')<CR>
-nnoremap <Leader>srM :<C-u> exe 'Drg '.HgRoot(HgRoot().'/..')<CR>
-nnoremap <Leader>sRM :<C-u> exe 'Dru '.HgRoot(HgRoot().'/..')<CR>
+nnoremap <Leader>spM :<C-u> exe 'Files '.extras#hg_root(extras#hg_root().'/..')<CR>
+nnoremap <Leader>ssM :<C-u> exe 'Dah '.extras#hg_root(extras#hg_root().'/..')<CR>
+nnoremap <Leader>sSM :<C-u> exe 'Dau '.extras#hg_root(extras#hg_root().'/..')<CR>
+nnoremap <Leader>sgM :<C-u> exe 'Dgrep '.extras#hg_root(extras#hg_root().'/..')<CR>
+nnoremap <Leader>sGM :<C-u> exe 'Digrep '.extras#hg_root(extras#hg_root().'/..')<CR>
+nnoremap <Leader>srM :<C-u> exe 'Drg '.extras#hg_root(extras#hg_root().'/..')<CR>
+nnoremap <Leader>sRM :<C-u> exe 'Dru '.extras#hg_root(extras#hg_root().'/..')<CR>
 
-nnoremap <Leader>spr :<C-u> exe 'Files '.PartRoot()<CR>
-nnoremap <Leader>ssr :<C-u> exe 'Dah '.PartRoot()<CR>
-nnoremap <Leader>sSr :<C-u> exe 'Dau '.PartRoot()<CR>
-nnoremap <Leader>sgr :<C-u> exe 'Dgrep '.PartRoot()<CR>
-nnoremap <Leader>sGr :<C-u> exe 'Digrep '.PartRoot()<CR>
-nnoremap <Leader>srr :<C-u> exe 'Drg '.PartRoot()<CR>
-nnoremap <Leader>sRr :<C-u> exe 'Dru '.PartRoot()<CR>
+nnoremap <Leader>spr :<C-u> exe 'Files '.extras#part_root()<CR>
+nnoremap <Leader>ssr :<C-u> exe 'Dah '.extras#part_root()<CR>
+nnoremap <Leader>sSr :<C-u> exe 'Dau '.extras#part_root()<CR>
+nnoremap <Leader>sgr :<C-u> exe 'Dgrep '.extras#part_root()<CR>
+nnoremap <Leader>sGr :<C-u> exe 'Digrep '.extras#part_root()<CR>
+nnoremap <Leader>srr :<C-u> exe 'Drg '.extras#part_root()<CR>
+nnoremap <Leader>sRr :<C-u> exe 'Dru '.extras#part_root()<CR>
 
 nnoremap <Leader>spb :<C-u> exe 'Files '.g:starting_path<CR>
 nnoremap <Leader>ssb :<C-u> exe 'Dah '.g:starting_path<CR>
@@ -349,29 +349,29 @@ nnoremap <Leader>sGb :<C-u> exe 'Digrep '.g:starting_path<CR>
 nnoremap <Leader>srb :<C-u> exe 'Drg '.g:starting_path<CR>
 nnoremap <Leader>sRb :<C-u> exe 'Dru '.g:starting_path<CR>
 
-nnoremap <Leader>spe :<C-u> exe 'Files '.EnvrcRoot()<CR>
-nnoremap <Leader>sse :<C-u> exe 'Dah '.EnvrcRoot()<CR>
-nnoremap <Leader>sSe :<C-u> exe 'Dau '.EnvrcRoot()<CR>
-nnoremap <Leader>sge :<C-u> exe 'Dgrep '.EnvrcRoot()<CR>
-nnoremap <Leader>sGe :<C-u> exe 'Digrep '.EnvrcRoot()<CR>
-nnoremap <Leader>sre :<C-u> exe 'Drg '.EnvrcRoot()<CR>
-nnoremap <Leader>sRe :<C-u> exe 'Dru '.EnvrcRoot()<CR>
+nnoremap <Leader>spe :<C-u> exe 'Files '.extras#envrc_root()<CR>
+nnoremap <Leader>sse :<C-u> exe 'Dah '.extras#envrc_root()<CR>
+nnoremap <Leader>sSe :<C-u> exe 'Dau '.extras#envrc_root()<CR>
+nnoremap <Leader>sge :<C-u> exe 'Dgrep '.extras#envrc_root()<CR>
+nnoremap <Leader>sGe :<C-u> exe 'Digrep '.extras#envrc_root()<CR>
+nnoremap <Leader>sre :<C-u> exe 'Drg '.extras#envrc_root()<CR>
+nnoremap <Leader>sRe :<C-u> exe 'Dru '.extras#envrc_root()<CR>
 
-nnoremap <Leader>spE :<C-u> exe 'Files '.EnvrcRoot(EnvrcRoot().'/..')<CR>
-nnoremap <Leader>ssE :<C-u> exe 'Dah '.EnvrcRoot(EnvrcRoot().'/..')<CR>
-nnoremap <Leader>sSE :<C-u> exe 'Dau '.EnvrcRoot(EnvrcRoot().'/..')<CR>
-nnoremap <Leader>sgE :<C-u> exe 'Dgrep '.EnvrcRoot(EnvrcRoot().'/..')<CR>
-nnoremap <Leader>sGE :<C-u> exe 'Digrep '.EnvrcRoot(EnvrcRoot().'/..')<CR>
-nnoremap <Leader>srE :<C-u> exe 'Drg '.EnvrcRoot(EnvrcRoot().'/..')<CR>
-nnoremap <Leader>sRE :<C-u> exe 'Dru '.EnvrcRoot(EnvrcRoot().'/..')<CR>
+nnoremap <Leader>spE :<C-u> exe 'Files '.extras#envrc_root(extras#envrc_root().'/..')<CR>
+nnoremap <Leader>ssE :<C-u> exe 'Dah '.extras#envrc_root(extras#envrc_root().'/..')<CR>
+nnoremap <Leader>sSE :<C-u> exe 'Dau '.extras#envrc_root(extras#envrc_root().'/..')<CR>
+nnoremap <Leader>sgE :<C-u> exe 'Dgrep '.extras#envrc_root(extras#envrc_root().'/..')<CR>
+nnoremap <Leader>sGE :<C-u> exe 'Digrep '.extras#envrc_root(extras#envrc_root().'/..')<CR>
+nnoremap <Leader>srE :<C-u> exe 'Drg '.extras#envrc_root(extras#envrc_root().'/..')<CR>
+nnoremap <Leader>sRE :<C-u> exe 'Dru '.extras#envrc_root(extras#envrc_root().'/..')<CR>
 
-nnoremap <Leader>sp<C-e> :<C-u> exe 'Files '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
-nnoremap <Leader>ss<C-e> :<C-u> exe 'Dah '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
-nnoremap <Leader>sS<C-e> :<C-u> exe 'Dau '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
-nnoremap <Leader>sg<C-e> :<C-u> exe 'Dgrep '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
-nnoremap <Leader>sG<C-e> :<C-u> exe 'Digrep '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
-nnoremap <Leader>sr<C-e> :<C-u> exe 'Drg '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
-nnoremap <Leader>sR<C-e> :<C-u> exe 'Dru '.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')<CR>
+nnoremap <Leader>sp<C-e> :<C-u> exe 'Files '.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')<CR>
+nnoremap <Leader>ss<C-e> :<C-u> exe 'Dah '.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')<CR>
+nnoremap <Leader>sS<C-e> :<C-u> exe 'Dau '.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')<CR>
+nnoremap <Leader>sg<C-e> :<C-u> exe 'Dgrep '.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')<CR>
+nnoremap <Leader>sG<C-e> :<C-u> exe 'Digrep '.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')<CR>
+nnoremap <Leader>sr<C-e> :<C-u> exe 'Drg '.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')<CR>
+nnoremap <Leader>sR<C-e> :<C-u> exe 'Dru '.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')<CR>
 
 nnoremap <Leader>sp1 :<C-u> exe 'Files '.B(1)<CR>
 nnoremap <Leader>ss1 :<C-u> exe 'Dah '.B(1)<CR>

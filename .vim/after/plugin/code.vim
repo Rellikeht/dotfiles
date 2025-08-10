@@ -513,3 +513,12 @@ cnoreabbrev <expr> Make (g:qfloc) ? 'Lmake' : 'Make'
 cnoreabbrev <expr> MakeshiftBuild (g:qfloc) ? 'LMakeshiftBuild' : 'MakeshiftBuild'
 
 " }}}
+
+" other {{{
+
+function CompleteCompiler(lead, cmdline, curpos)
+  return extras#complete_list(b:compilers, a:lead, a:cmdline, a:curpos)
+endfunction
+
+" }}}
+

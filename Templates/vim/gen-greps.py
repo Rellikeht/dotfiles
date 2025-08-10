@@ -31,17 +31,17 @@ VGREP_COMBINATIONS = {
     "R": "**",
 }
 # probably won't be useful anyway
-# VGREP_COMBINATIONS.update({str(n): f"'.Bp({n}).'" for n in range(1, 10)})
+# VGREP_COMBINATIONS.update({str(n): f"'.B({n}).'" for n in range(1, 10)})
 
 GEN_PATHS = {
     "r": ".",
-    "g": "'.GitRoot().'",
-    "G": "'.GitRoot(GitRoot().'/..').'",
-    "m": "'.HgRoot().'",
-    "M": "'.HgRoot(HgRoot().'/..').'",
-    "e": "'.EnvrcRoot().'",
-    "E": "'.EnvrcRoot(EnvrcRoot().'/..').'",
-    "<C-e>": "'.EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..').'",
+    "g": "'.extras#git_root().'",
+    "G": "'.extras#git_root(extras#git_root().'/..').'",
+    "m": "'.extras#hg_root().'",
+    "M": "'.extras#hg_root(extras#hg_root().'/..').'",
+    "e": "'.extras#envrc_root().'",
+    "E": "'.extras#envrc_root(extras#envrc_root().'/..').'",
+    "<C-e>": "'.extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..').'",
     "b": "'.g:starting_path.'",
 }
 
@@ -56,11 +56,11 @@ AG_COMBINATIONS = deepcopy(GREP_COMBINATIONS)
 
 GREP_COMBINATIONS.update({k: "-r " + v for k, v in GEN_PATHS.items()})
 GREP_COMBINATIONS.update(
-    {str(n): f"-r '.Bp({n}).'" for n in range(1, MAX_PREV + 1)}
+    {str(n): f"-r '.B({n}).'" for n in range(1, MAX_PREV + 1)}
 )
 AG_COMBINATIONS.update({k: "--hidden " + v for k, v in GEN_PATHS.items()})
 AG_COMBINATIONS.update(
-    {str(n): f"--hidden '.Bp({n}).'" for n in range(1, MAX_PREV)}
+    {str(n): f"--hidden '.B({n}).'" for n in range(1, MAX_PREV)}
 )
 
 AG_COMBINATIONS.update(

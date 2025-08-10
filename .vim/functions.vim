@@ -100,44 +100,6 @@ endfunction
 
 " }}} 
 
-" paths {{{ 
-
-function GetRoot(cmd, dir='')
-  if a:dir == ''
-    return systemlist(a:cmd)[0]
-  endif
-  return systemlist('cd '.a:dir.' && '.a:cmd)[0]
-endfunction
-
-function GitRoot(dir='')
-  return GetRoot('git rev-parse --show-toplevel', a:dir)
-endfunction
-
-function HgRoot(dir='')
-  return GetRoot('hg root', a:dir)
-endfunction
-
-function PartRoot(dir='')
-  return GetRoot("df -P . | awk '/^\\// {print $6}'", a:dir)
-endfunction
-
-function EnvrcRoot(dir='')
-  let l:root = GetRoot(
-        \ 'direnv status | '.
-        \ "sed -En 's#Found RC path (.*)/[^/]*#\\1#p'",
-        \ a:dir)
-  if l:root == ''
-    throw 'Not in direnv environment'
-  endif
-  return l:root
-endfunction
-
-function Bp(n=1)
-  return ".." .. repeat("/..", (a:n)-1)
-endfunction
-
-" }}} 
-
 " commands {{{ 
 
 function Cexec(cmd)
@@ -187,26 +149,6 @@ endfunction
 
 function Ep()
   return getreg('+')
-endfunction
-
-" }}} 
-
-" completion generation {{{ 
-
-function CompleteList(list, lead, cmdline, curpos)
-  let completions = []
-  for e in a:list
-    if e =~ '^'.a:lead
-      let completions = add(completions, e)
-    endif
-  endfor
-  return completions
-endfunction
-
-function GetCompForList(list)
-  return {lead, cmdline, curpos ->
-        \ CompleteList(a:list, lead, cmdline, curpos)
-        \ }
 endfunction
 
 " }}} 

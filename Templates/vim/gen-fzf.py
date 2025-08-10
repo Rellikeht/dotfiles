@@ -20,15 +20,15 @@ FZF_PATHS = {
 }
 
 FZF_SPECIALS = {
-    "g": "GitRoot()",
-    "G": "GitRoot(GitRoot().'/..')",
-    "m": "HgRoot()",
-    "M": "HgRoot(HgRoot().'/..')",
-    "r": "PartRoot()",
+    "g": "extras#git_root()",
+    "G": "extras#git_root(extras#git_root().'/..')",
+    "m": "extras#hg_root()",
+    "M": "extras#hg_root(extras#hg_root().'/..')",
+    "r": "extras#part_root()",
     "b": "g:starting_path",
-    "e": "EnvrcRoot()",
-    "E": "EnvrcRoot(EnvrcRoot().'/..')",
-    "<C-e>": "EnvrcRoot(EnvrcRoot(EnvrcRoot().'/..').'/..')",
+    "e": "extras#envrc_root()",
+    "E": "extras#envrc_root(extras#envrc_root().'/..')",
+    "<C-e>": "extras#envrc_root(extras#envrc_root(extras#envrc_root().'/..').'/..')",
 }
 FZF_SPECIALS.update({str(n): f"B({n})" for n in range(1, MAX_PREV)})
 
