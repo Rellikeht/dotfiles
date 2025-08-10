@@ -49,11 +49,15 @@ VIM_PATH = SCRIPT_PATH / ".." / ".." / ".vim" / "after" / "plugin"
 
 with open(VIM_PATH / "fzf.vim", "w") as f:
     with open(SCRIPT_PATH / "fzf.vim", "r") as template:
-        print(template.read(), file=f)
+        content = template.readlines()
+        try:
+            line = content.index("\" setup fzf here\n")
+            content[line] = "function s:SetupFzf() abort"
+        except:
+            pass
+        print("".join(content), file=f)
         print(file=f)
 
-    print("function s:SetupFzf()", file=f)
-    print("", file=f)
     print('" path maps {{{', file=f)
     print(file=f)
 

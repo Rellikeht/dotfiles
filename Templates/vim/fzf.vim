@@ -101,6 +101,8 @@ let g:fzf_colors = {
 
 " }}} 
 
+" setup fzf here
+
 " insert mode mappings {{{ 
 
 " Insert mode completion

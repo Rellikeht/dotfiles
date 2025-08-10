@@ -101,6 +101,7 @@ let g:fzf_colors = {
 
 " }}} 
 
+function s:SetupFzf() abort
 " insert mode mappings {{{ 
 
 " Insert mode completion
@@ -200,8 +201,6 @@ let g:fzf_action = {
 
 " }}} 
 
-
-function s:SetupFzf()
 
 " path maps {{{
 
