@@ -16,6 +16,8 @@ require("colorizer").setup(
     ts = col_css_conf,
     vim = col_vim_conf,
     lua = col_vim_conf,
+    "!json",
+    "!qf",
   }, {
     RGB = true, -- #RGB hex codes
     RRGGBB = true, -- #RRGGBB hex codes

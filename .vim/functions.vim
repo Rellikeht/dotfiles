@@ -161,14 +161,6 @@ function! QFtype()
   return wininfo.loclist
 endfunction
 
-function! WQFsel(ccmd, lcmd, before = '', after = '')
-  execute a:before . (QFtype() ? a:lcmd : a:ccmd) . a:after
-endfunction
-
-function! WQFcmd(cmd, before = '')
-  call WQFsel('c', 'l', a:before, a:cmd)
-endfunction
-
 function! QFsel(ccmd, lcmd, before = '', after = '')
   execute a:before . (g:qfloc ? a:lcmd : a:ccmd) . a:after
 endfunction

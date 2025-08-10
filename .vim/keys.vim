@@ -528,7 +528,7 @@ augroup Quickfix " {{{
         \| noremap <buffer> < :<C-u>call QFcmd('older')<CR>
         \| nnoremap <buffer> > :<C-u>call QFcmd('newer')<CR>
         \| nnoremap <buffer> <silent> <CR> <CR>zv
-        \| nmap <buffer> <C-h>
+        \| nmap <silent> <buffer> <C-h>
         \ :<C-u>let qpos = getcurpos()<CR>
         \<CR>:<C-u>call QFcmd("open '.g:qfheight", "exe '")<CR>
         \:call setpos('.', qpos)<CR>
