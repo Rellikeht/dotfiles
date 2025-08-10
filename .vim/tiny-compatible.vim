@@ -1,6 +1,6 @@
 " helpers {{{ 
 
-command! -nargs=* -complete=file -count=1 Tabe
+command! -nargs=* -complete=file -count=1 TabOpen
       \ <count>tabnew
       \ | arglocal! <args>
 
@@ -17,10 +17,10 @@ command! -nargs=+ Silent
       \ | redraw!
 
 command! -nargs=1 -complete=arglist TabA
-      \ Tabe <args>
+      \ TabOpen <args>
 
 command! -nargs=1 -complete=buffer TabB
-      \ Tabe <args>
+      \ TabOpen <args>
 
 " Nope
 " command! -nargs=1 -complete=arglist Vargument
@@ -93,8 +93,8 @@ nnoremap <Space>qh :<C-u>set hls!<CR>
 
 " tabs with <Tab> {{{ 
 
-nnoremap <Tab>o :<C-u>Tabe<Space>
-nnoremap <Tab>O :<C-u>-Tabe<Space>
+nnoremap <Tab>o :<C-u>TabOpen<Space>
+nnoremap <Tab>O :<C-u>-TabOpen<Space>
 nnoremap <Tab><Space>o :<C-u>TabA<Space>
 nnoremap <Tab><Space>O :<C-u>-TabA<Space>
 nnoremap <Tab>;o :<C-u>TabA<Space>
@@ -109,10 +109,10 @@ nnoremap <Tab><S-Tab> :<C-u>-tab<Space>
 nnoremap <Tab>gp :<C-u>tabfind<Space>
 nnoremap <Tab>gP :<C-u>-tabfind<Space>
 
-nnoremap <Tab><Space>o :<C-u>Tabe  \|
+nnoremap <Tab><Space>o :<C-u>TabOpen  \|
       \exe 'arglocal! '.fnameescape(expand('%'))
       \<Home><C-Right><Right>
-nnoremap <Tab><Space>O :<C-u>-Tabe  \|
+nnoremap <Tab><Space>O :<C-u>-TabOpen  \|
       \exe 'arglocal! '.fnameescape(expand('%'))
       \<Home><C-Right><Right>
 

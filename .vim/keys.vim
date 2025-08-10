@@ -28,7 +28,7 @@ function s:Tabargc(cmd, count, args)
 endfunction
 
 " TODO D bang ?
-command! -nargs=* -range -complete=file -bar Tabe
+command! -nargs=* -range -complete=file -bar TabOpen
       \ call <SID>Tabargc('args!', <count>, [<f-args>])
 
 command! -nargs=* -range -complete=arglist -bar TabA
@@ -81,7 +81,7 @@ command! -nargs=* -complete=file -bar -bang ArgsView
 
 " Breaks readonly at one file
 command! -nargs=* -range -complete=file -bar Tabv
-      \ Tabe <args>
+      \ TabOpen <args>
       \|silent! argdo set readonly
 
 command! -nargs=* -range -complete=arglist -bar TabvA
@@ -202,8 +202,8 @@ nnoremap <Space>t<Space>A :<C-u>ltag!<Space>
 
 " better tab {{{ 
 
-nnoremap <Tab>o :<C-u>Tabe<Space>
-nnoremap <Tab>O :<C-u>-Tabe<Space>
+nnoremap <Tab>o :<C-u>TabOpen<Space>
+nnoremap <Tab>O :<C-u>-TabOpen<Space>
 nnoremap <Tab><Space>o :<C-u>TabA<Space>
 nnoremap <Tab><Space>O :<C-u>-TabA<Space>
 nnoremap <Tab>;o :<C-u>TabB<Space>
@@ -217,7 +217,7 @@ nnoremap <Tab><Space>R :<C-u>-TabvA<Space>
 nnoremap <Tab>;r :<C-u>TabvB<Space>
 nnoremap <Tab>;R :<C-u>-TabvB<Space>
 
-nnoremap <Tab>gf :<C-u>Tabe <cfile><CR>
+nnoremap <Tab>gf :<C-u>TabOpen <cfile><CR>
 
 nnoremap <silent> <Tab>n :<C-u>call SwitchTab(v:count1)<CR>
 nnoremap <silent> <Tab>N :<C-u>execute 'tabmove +'.v:count1<CR>

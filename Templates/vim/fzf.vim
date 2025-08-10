@@ -101,6 +101,76 @@ let g:fzf_colors = {
 
 " }}} 
 
+" actions {{{ 
+
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines, action = 'r')
+  let lns = map(deepcopy(a:lines),
+        \ '{ "filename": v:val'.
+        \ ', "lnum": 1'.
+        \ ' }'
+        \ )
+  if g:qfloc
+    call setloclist(0, lns)
+  else
+    call setqflist(lns)
+  endif
+  call QFcmd('open')
+endfunction
+
+function! s:populate_arg_list(lines)
+  call aplus#define(map(a:lines, 'fnameescape(v:val)'))
+endfunction
+
+function! s:add_arg_list(lines)
+  call aplus#add('', map(a:lines, 'fnameescape(v:val)'))
+endfunction
+
+function! s:add_arg_list_end(lines)
+  call aplus#add('$', map(a:lines, 'fnameescape(v:val)'))
+endfunction
+
+function! s:edit_arg_list(lines)
+  call aplus#edit('', 0, map(a:lines, 'fnameescape(v:val)'))
+endfunction
+
+function! s:edit_arg_list_end(lines)
+  call aplus#edit('$', 0, map(a:lines, 'fnameescape(v:val)'))
+endfunction
+
+function! s:tab_args(lines)
+  TabOpen
+  call aplus#define(map(a:lines, 'fnameescape(v:val)'))
+endfunction
+
+function! s:tab_open(lines)
+  for line in map(a:lines, 'fnameescape(v:val)')
+    execute "tabedit ".line
+  endfor
+endfunction
+
+function! s:add_buffers(lines)
+  execute 'Badd ' . join(map(a:lines, 'fnameescape(v:val)'), ' ')
+endfunction
+
+" TODO make v more robust
+let g:fzf_action = {
+      \ 'alt-q': function('s:build_quickfix_list'),
+      \ 'alt-t': function('s:tab_args'),
+      \ 'alt-T': function('s:tab_open'),
+      \ 'alt-v': 'view',
+      \ 'alt-V': 'TabV',
+      \ 'alt-e': function('s:edit_arg_list'),
+      \ 'alt-E': function('s:edit_arg_list_end'),
+      \ 'alt-a': function('s:add_arg_list'),
+      \ 'alt-A': function('s:add_arg_list_end'),
+      \ 'alt-d': function('s:populate_arg_list'),
+      \ 'alt-b': function('s:add_buffers'),
+      \ }
+      " TODO C
+
+" }}} 
+
 " setup fzf here
 
 " insert mode mappings {{{ 
@@ -184,20 +254,5 @@ nnoremap <leader>sfd :Fdiffs<CR>
 nnoremap <leader>sf<Space>d :Fdiffs<Space>
 nnoremap <leader>sfv :Fdiffv<CR>
 nnoremap <leader>sf<Space>v :Fdiffv<Space>
-
-" }}} 
-
-" actions {{{ 
-
-let g:fzf_action = {
-      \ 'alt-q': function('s:build_quickfix_list'),
-      \ 'alt-t': function('s:tab_args'),
-      \ 'alt-T': 'Tabe',
-      \ 'alt-v': 'view',
-      \ 'alt-V': 'TabV',
-      \ 'alt-L': function('s:populate_arg_list'),
-      \ 'alt-l': function('s:add_arg_list'),
-      \ }
-      " TODO C
 
 " }}} 
