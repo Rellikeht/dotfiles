@@ -27,10 +27,6 @@ function s:Tabargc(cmd, count, args)
   endif
 endfunction
 
-" TODO D bang ?
-command! -nargs=* -range -complete=file -bar TabOpen
-      \ call <SID>Tabargc('args!', <count>, [<f-args>])
-
 command! -nargs=* -range -complete=arglist -bar TabA
       \ call <SID>Tabargc('args!', <count>, [<f-args>])
 
@@ -67,7 +63,7 @@ endfunction
 command -nargs=* -complete=file -bar -bang Edit
       \ call Multif('edit'.<q-bang>, [<f-args>])
 
-command -nargs=* -complete=file -bar Badd
+command -nargs=* -complete=file -bar BAdd
       \ call Multif('badd', [<f-args>])
 
 " Breaks readonly at one file

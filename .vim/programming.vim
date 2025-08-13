@@ -51,11 +51,6 @@ nnoremap <Space>mF :<C-u>set errorformat=<Space>
 
 " compiler {{{ 
 
-command -nargs=1 -complete=customlist,CompleteCompiler SelectCompiler
-      \ exe 'compiler '.<args>
-
-nnoremap <Space>mc<Space> :<C-u>SelectCompiler<Space>
-
 nnoremap <Space>mc; :<C-u>compiler<Space>
 nnoremap <Space>mC; :<C-u>compiler!<Space>
 

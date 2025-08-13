@@ -517,8 +517,15 @@ cnoreabbrev <expr> MakeshiftBuild (g:qfloc) ? 'LMakeshiftBuild' : 'MakeshiftBuil
 " other {{{
 
 function CompleteCompiler(lead, cmdline, curpos)
-  return extras#complete_list(b:compilers, a:lead, a:cmdline, a:curpos)
+  return extras#list_completion_builder(b:compilers, a:lead, a:cmdline, a:curpos)
 endfunction
+
+" command -nargs=1 -complete=customlist,extras#list_complete(b:compilers)
+command -nargs=1 -complete=customlist,CompleteCompiler
+      \ SelectCompiler
+      \ exe 'compiler '.<args>
+
+nnoremap <Space>mc<Space> :<C-u>SelectCompiler<Space>
 
 " }}}
 

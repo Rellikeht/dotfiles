@@ -150,7 +150,7 @@ function! s:tab_open(lines)
 endfunction
 
 function! s:add_buffers(lines)
-  execute 'Badd ' . join(map(a:lines, 'fnameescape(v:val)'), ' ')
+  execute 'BAdd ' . join(map(a:lines, 'fnameescape(v:val)'), ' ')
 endfunction
 
 " TODO make v more robust
