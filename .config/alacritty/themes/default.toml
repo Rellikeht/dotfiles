@@ -1,5 +1,3 @@
-# TODO prettier colors
-
 [bell]
 color = "#023210"
 
@@ -8,34 +6,34 @@ cursor = "#30ffff"
 text = "#000000"
 
 [colors.normal]
-black = "#05080f"
-red = "#ff1816"
-green = "#1fff28"
-yellow = "#ffff28"
-blue = "#1232ff"
-magenta = "#f02bff"
-cyan = "#3af8ff"
-white = "#bfcfef"
+black = "#05141a"
+red = "#b00a2a"
+green = "#0aaa30"
+yellow = "#b0b02a"
+blue = "#1444ba"
+magenta = "#c020df"
+cyan = "#30baf0"
+white = "#aacfda"
 
 [colors.bright]
-black = "#080f28"
-red = "#d01048"
-green = "#10d040"
-yellow = "#d0e04f"
-blue = "#188aff"
-magenta = "#ca3fff"
-cyan = "#36caff"
-white = "#8ad0ff"
+black = "#122838"
+red = "#ff1816"
+green = "#1fff24"
+yellow = "#ffff24"
+blue = "#128fff"
+magenta = "#ff2bff"
+cyan = "#3affff"
+white = "#ffffff"
 
 [colors.primary]
 background = "#000108"
 bright_foreground = "#02aacd" # ??
 dim_foreground = "#020a0f" # ??
-foreground = "#2850ff"
+foreground = "#2f6aff"
 
 [colors.search.matches]
 background = "#002412"
 foreground = "#0256ce"
 
 [colors.selection]
-background = "#0f8faf"
+background = "#009a70"

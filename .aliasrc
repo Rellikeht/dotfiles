@@ -666,8 +666,10 @@ alias npu='nix profile upgrade'
 alias npa='nix profile upgrade --all'
 alias npA='nix profile upgrade ".*"'
 alias npl='nix profile list'
-alias npi='nix profile install'
 alias npd='nix profile remove'
+
+# install is deprecated in some new nixes
+alias npi='nix profile install'
 
 alias npr="nix repl --expr 'import <nixpkgs> {}'"
 alias nur="nix repl --expr 'import <unstable> {}'"
