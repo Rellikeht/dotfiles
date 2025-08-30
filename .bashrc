@@ -13,9 +13,9 @@ fi
 
 # sourcing {{{
 
-conditional_source ~/.aliasrc.bash
-conditional_source ~/.funcrc.bash
-conditional_source "$HOME/.local/.bashrc"
+source_if_exists ~/.aliasrc.bash
+source_if_exists ~/.funcrc.bash
+source_if_exists "$HOME/.local/.bashrc"
 
 # }}}
 
@@ -116,7 +116,7 @@ PS3=""
 PS4="+"
 
 # prompt file
-if ! conditional_source ~/.prompt.bash &>/dev/null; then
+if ! source_if_exists ~/.prompt.bash &>/dev/null; then
     __prompt_command() {
         # {{{
         # Because sometimes z.lua fucks up
@@ -162,25 +162,37 @@ if fzf --bash &>/dev/null; then
 fi
 
 if [ -z "$__Z_INITIALIZED" ]; then
-    # z.lua or plain old z as fallback
-    if whichp z.lua &>/dev/null; then
-        # Because doing this normal way messes in some cases $? {{{
-        # It is exported as $EXIT
-        TEMP="$(mktemp)"
-        z.lua --init bash once enhanced echo fzf >"$TEMP"
-        patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
-        rm -f "$TEMP.orig"
-        eval "$(cat $TEMP)"
-        rm "$TEMP"
-        TEMP=
+    activate_z_lua() {
+        # {{{
+        # Because doing this normal way messes in some cases $?
+        # Here it is exported as $EXIT
+        if [ -r "$HOME/.bash/zlua_patch" ]; then
+            local TEMP
+            TEMP="$(mktemp)"
+            "$@" bash once enhanced echo fzf >"$TEMP"
+            patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
+            rm -f "$TEMP.orig"
+            eval "$(cat "$TEMP")"
+            rm "$TEMP"
+        else
+            eval "$("$@" bash once enhanced echo fzf)"
+        fi
         # }}}
-    elif whichp z &>/dev/null; then
+    }
+
+    # z.lua or plain old z as fallback
+    ZLUA_FILE="$HOME/.local/share/z.lua/z.lua"
+    if [ -r "$ZLUA_FILE" ] && has_exe lua; then
+        activate_z_lua lua "$ZLUA_FILE"
+    elif has_exe z.lua; then
+        activate_z_lua z.lua --init
+    elif has_exe z; then
         . "$(whichp z)"
     fi
     __Z_INITIALIZED=1
 fi
 
-if direnv &>/dev/null; then
+if has_exe direnv; then
     eval "$(direnv hook bash)"
 fi
 

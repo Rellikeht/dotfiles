@@ -35,14 +35,14 @@ setopt AUTO_CD
 
 set -o pipefail
 
-conditional_source() {
+source_if_exists() {
     [ -r "$1" ] && source "$1"
 }
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-conditional_source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # }}}
 
@@ -143,37 +143,35 @@ if [ -f "$HOME/.commonrc" ]; then
     source "$HOME/.commonrc"
 fi
 
-conditional_source ~/.aliasrc.zsh
-conditional_source ~/.funcrc.zsh
-conditional_source "$HOME/.local/.zshrc"
+source_if_exists ~/.aliasrc.zsh
+source_if_exists ~/.funcrc.zsh
+source_if_exists "$HOME/.local/.zshrc"
 
 # Shit, removing this breaks zsh on arch :(((
-conditional_source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-conditional_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source_if_exists /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source_if_exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # p10k config
-conditional_source ~/.p10k.zsh
+source_if_exists ~/.p10k.zsh
 
 # }}}
 
 # hooks {{{
 
-if fzf --zsh &>/dev/null; then
+if has_exe fzf; then
     FZF_COMPLETION_TRIGGER='**'
     eval "$(fzf --zsh)"
 fi
 
 # z.lua or plain old z as fallback
-if whichp z.lua &>/dev/null; then
-    # fzf doesn't do much and is fucked here
+if has_exe lua && has_exe z.lua; then
     eval "$(z.lua --init zsh once enhanced echo)"
-elif whichp z &>/dev/null; then
+elif has_exe z; then
     . "$(whichp z)"
 fi
 
-if direnv &>/dev/null && [ -z "$__DIRENV_LOADED" ]; then
+if has_exe direnv; then
     eval "$(direnv hook zsh)"
-    __DIRENV_LOADED=1
 fi
 
 # }}}
