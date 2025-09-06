@@ -1,5 +1,5 @@
 (defcfg
-  input  (device-file "BLOCK_DEIVCE")
+  input  (device-file "BLOCK_DEVICE")
   output (uinput-sink "Standard 100% keyboard"
     ;; This is for altgr to work with symbols
     "sleep 0.2 && setxkbmap -option compose:ralt"
@@ -31,24 +31,35 @@
 (defalias
   sym (layer-toggle symbols)
   ss  (layer-toggle shift-symbols)
-  sft (layer-toggle shift)
-  lsf (around lsft (layer-toggle shift))
-  rsf (around rsft (layer-toggle shift))
+  lsf (around lsft (layer-toggle lshift))
+  rsf (around rsft (layer-toggle rshift))
   tad (tap-next tab (layer-toggle additional))
 )
 
 (defalias
- S0  #(S-0 (press-only lsft))
- S1  #(S-1 (press-only lsft))
- S2  #(S-2 (press-only lsft))
- S3  #(S-3 (press-only lsft))
- S4  #(S-4 (press-only lsft))
- S5  #(S-5 (press-only lsft))
- S6  #(S-6 (press-only lsft))
- S7  #(S-7 (press-only lsft))
- S8  #(S-8 (press-only lsft))
- S9  #(S-9 (press-only lsft))
- S_  #(\_  (press-only lsft))
+ SL0  #((press-only lsft) 0)
+ SL1  #((press-only lsft) 1)
+ SL2  #((press-only lsft) 2)
+ SL3  #((press-only lsft) 3)
+ SL4  #((press-only lsft) 4)
+ SL5  #((press-only lsft) 5)
+ SL6  #((press-only lsft) 6)
+ SL7  #((press-only lsft) 7)
+ SL8  #((press-only lsft) 8)
+ SL9  #((press-only lsft) 9)
+ SL_  #((press-only lsft) -)
+
+ SR0  #((press-only rsft) 0)
+ SR1  #((press-only rsft) 1)
+ SR2  #((press-only rsft) 2)
+ SR3  #((press-only rsft) 3)
+ SR4  #((press-only rsft) 4)
+ SR5  #((press-only rsft) 5)
+ SR6  #((press-only rsft) 6)
+ SR7  #((press-only rsft) 7)
+ SR8  #((press-only rsft) 8)
+ SR9  #((press-only rsft) 9)
+ SR_  #((press-only rsft) -)
 )
 
 (deflayer main
@@ -59,8 +70,16 @@
   _    _    _              _              @sym      rmet _                   _          _    _    _    _
 )                                                                       _    _    _     _    _   
 
-(deflayer shift
-  _    _    _    _    _    _    XX   @S7  @S8  @S9  @S0  @S6  @S_  _     _    _    _
+(deflayer lshift
+  _    _    _    _    _    _    XX   @SL7 @SL8 @SL9 @SL0 @SL6 @SL_ _     _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _     _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _                               _    _    _
+  _    _    _              _              @ss       _    _                    _          _    _    _    _
+)                                                                        _    _    _     _    _   
+
+(deflayer rshift
+  _    _    _    _    _    _    XX   @SR7 @SR8 @SR9 @SR0 @SR6 @SR_ _     _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _     _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _                               _    _    _
