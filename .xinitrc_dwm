@@ -1,10 +1,18 @@
 #!/usr/bin/env sh
 
-~/.dwm/bar.sh &
-~/.xinitrc_common &
+has_exe() {
+    which "$1" >/dev/null 2>/dev/null
+}
 
-xcompmgr -fcD 1 &
-tabbed st -w &
-~/.dwm/starting_moves.sh &
+[ -x "$HOME/.xinitrc_local_env" ] && "$HOME/.xinitrc_local_env" &
+
+[ -x "$HOME/.dwm/bar.sh" ] && "$HOME/.dwm/bar.sh" &
+[ -x "$HOME/.xinitrc_common" ] && "$HOME/.xinitrc_common" &
+has_exe xcompmgr && xcompmgr -fcD 1 &
+has_exe nitrogen && nitrogen --restore &
+has_exe notification-daemon && notification-daemon &
+[ -x "$HOME/.audio_start.sh" ] && "$HOME/.audio_start.sh" &
+
+[ -x "$HOME/.xinitrc_local" ] && "$HOME/.xinitrc_local" &
 
 exec dwm

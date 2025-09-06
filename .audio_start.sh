@@ -28,4 +28,6 @@ ri "pipewire-pulse" "dbus-launch pipewire-pulse"
 MIC_STAB=".local_scrs/mic_lev_stab.sh"
 [ -e "$MIC_STAB" ] && ri "mic_lev_stab.sh" "$MIC_STAB"
 
+sleep 0.2
+
 # jackd -dalsa -dhw:1

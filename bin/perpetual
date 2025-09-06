@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+SLEEP_TIME=1
+if echo "$1" | grep -E "^[0-9]+|[0-9]*\.[0-9]+$" >/dev/null 2>/dev/null; then
+    SLEEP_TIME="$1"
+    shift
+fi
+
+while true; do
+    "$@"
+    sleep "$SLEEP_TIME"
+done
