@@ -1,0 +1,101 @@
+(defcfg
+  input  (device-file "BLOCK_DEIVCE")
+  output (uinput-sink "Standard 100% keyboard"
+    ;; This is for altgr to work with symbols
+    "sleep 0.2 && setxkbmap -option compose:ralt"
+    )
+
+  cmp-seq ralt    ;; Set the compose key to `RightAlt'
+  cmp-seq-delay 1 ;; delay in ms between each compose-key sequence press
+  key-seq-delay 1 ;; delay in ms between each outputted key event
+
+  ;; Comment this if you want unhandled events not to be emitted
+  fallthrough true
+
+  ;; Set this to false to disable any command-execution in KMonad
+  allow-cmd true
+
+  ;; Set the implicit around to `around`
+  implicit-around around
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
+  lctl lmet lalt           spc            ralt      cmp  rctl            left down rght  kp0  kp.
+)
+
+(defalias
+  sym (layer-toggle symbols)
+  ss  (layer-toggle shift-symbols)
+  sft (layer-toggle shift)
+  lsf (around lsft (layer-toggle shift))
+  rsf (around rsft (layer-toggle shift))
+  tad (tap-next tab (layer-toggle additional))
+)
+
+(defalias
+ S0  #(S-0 (press-only lsft))
+ S1  #(S-1 (press-only lsft))
+ S2  #(S-2 (press-only lsft))
+ S3  #(S-3 (press-only lsft))
+ S4  #(S-4 (press-only lsft))
+ S5  #(S-5 (press-only lsft))
+ S6  #(S-6 (press-only lsft))
+ S7  #(S-7 (press-only lsft))
+ S8  #(S-8 (press-only lsft))
+ S9  #(S-9 (press-only lsft))
+ S_  #(\_  (press-only lsft))
+)
+
+(deflayer main
+  _    1    2    3    4    5    XX   6    7    8    9    0    -    bspc _    _    _
+  @tad q    w    e    r    t    y    u    i    o    p    =    @tad _    _    _    _     _    _    _    _
+  esc  a    s    d    f    g    h    j    k    l    ;    bspc ret       _    _    _     _    _    _    _
+  @lsf z    x    c    v    b    n    m    ,    .    /    @rsf                           _    _    _
+  _    _    _              _              @sym      rmet _                   _          _    _    _    _
+)                                                                       _    _    _     _    _   
+
+(deflayer shift
+  _    _    _    _    _    _    XX   @S7  @S8  @S9  @S0  @S6  @S_  _     _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _     _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _                               _    _    _
+  _    _    _              _              @ss       _    _                    _          _    _    _    _
+)                                                                        _    _    _     _    _   
+
+(deflayer symbols
+  _    `    [    ]    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    ę    _    _    _    _    _    ó    _    _    _    _     _    _    _     _    _    _    _
+  _    ą    ś    {    }    _    _    "    '    ł    _    _    _          _    _    _     _    _    _    _
+  @ss  _    _    ć    _    _    ń    _    _    _    _    @ss                             _    _    _
+  _    _    _              _              _         _    _                    _          _    _    _    _
+)                                                                        _    _    _     _    _   
+
+(deflayer shift-symbols
+  _    ~    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    Ę    _    _    _    _    _    Ó    _    _    _    _     _    _    _     _    _    _    _
+  _    Ą    Ś    \    |    _    _    _    _    Ł    _    _    _          _    _    _     _    _    _    _
+  _    _    _    Ć    _    _    Ń    _    _    _    _    _                               _    _    _
+  _    _    _              _              _         _    _                    _          _    _    _    _
+)                                                                        _    _    _     _    _   
+
+(deflayer additional
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    _    _    _    _    home pgup pgdn end  _    _    _     _    _    _     _    _    _    _
+  _    _    _    _    _    _    left down up   rght ins  del  _          _    _    _     _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _                               _    _    _
+  _    _    _              _              _         _    _                    _          _    _    _    _
+)                                                                        _    _    _     _    _   
+
+;; (deflayer empty
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _                          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
+;;   _    _    _              _              _    _    _    _               _    _    _     _    _   
+;; )
