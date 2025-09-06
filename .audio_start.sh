@@ -1,33 +1,21 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-rp() {
-    if [ -z "$(ps a | grep -E \"$1$\" | grep -v grep)" ]; then
-        $2
-    fi
+run_if_exists() {
+    pgrep -U "$(id -u)" -x "$1" >/dev/null && return
+    dbus-launch "$1" >/dev/null 2>/dev/null &
 }
 
-nc() {
-    echo nc: $@
-    nohup $@ >/dev/null &
+shell_if_exists() {
+    pgrep -U "$(id -u)" -xf "sh $1" >/dev/null && return
+    sh "$1" >/dev/null 2>/dev/null &
 }
 
-ri() {
-    if [ -n "$2" ]; then
-        PR="$2"
-    else
-        PR="$1"
-    fi
-    rp $1 "nc $PR"
-}
+MIC_STAB="$HOME/.local_scrs/mic_lev_stab.sh"
 
-cd
-ri "pipewire" "dbus-launch pipewire"
-ri "wireplumber" "dbus-launch wireplumber"
-ri "pipewire-pulse" "dbus-launch pipewire-pulse"
-
-MIC_STAB=".local_scrs/mic_lev_stab.sh"
-[ -e "$MIC_STAB" ] && ri "mic_lev_stab.sh" "$MIC_STAB"
-
+for prog in pipewire wireplumber pipewire-pulse; do
+    run_if_exists "$prog"
+done
+[ -x "$MIC_STAB" ] && shell_if_exists "$MIC_STAB"
 sleep 0.2
 
 # jackd -dalsa -dhw:1

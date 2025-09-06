@@ -1,15 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-kl () {
-	killall $1 pipewire-pulse
-	killall $1 pipewire-media-session
-	killall $1 pipewire
-	killall $1 mic_lev_stab.sh
+kill_if_exists() {
+    pkill -U "$(id -u)" -xf "$1" >/dev/null
 }
 
-kl
+MIC_STAB="$HOME/.local_scrs/mic_lev_stab.sh"
 
-if [ -n "top -b | grep pipewire" ]
-then
-	kl -9
-fi
+for prog in pipewire wireplumber pipewire-pulse; do
+    kill_if_exists "$prog"
+done
+[ -x "$MIC_STAB" ] && kill_if_exists "sh $MIC_STAB"
