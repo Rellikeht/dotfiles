@@ -14,10 +14,11 @@ find "$SDIR" -mindepth 1 -maxdepth 1 -name '\.*' |
 
 mkdir -p "$DDIR/.config"
 find "$SDIR/.config" -mindepth 1 -maxdepth 1 |
-    grep -Ev '/(mpv)/?$' |
+    grep -Ev '/(mpv|neovide)/?$' |
     xargs -d '\n' -I{} ln -fs "{}" "$DDIR/.config/" 2>/dev/null
 # xargs -d '\n' -I{} echo "{}"
 
+cp -r "$SDIR/.config/neovide" "$DDIR/.config"
 mkdir -p "$DDIR/.config/mpv"
 for o in mpv.conf input.conf scripts script-opts formats; do
     # if [ -e "$DIR/.config/$f" ]; then
