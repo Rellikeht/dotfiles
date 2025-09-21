@@ -6,6 +6,6 @@ cd "$HOME/.kmonad" || exit 1
 
 for file in *.kbd; do
     FILE="$(readlink -f "$file")"
-    pgrep -f "perpetual kmonad $FILE" >/dev/null && continue
-    "$HOME/bin/perpetual" kmonad "$FILE" & 
+    pgrep -f "perpetual $HOME/.dwm/kmonad.sh $FILE" >/dev/null && break
+    "$HOME/bin/perpetual" "$HOME/.dwm/kmonad.sh" "$FILE" &
 done

@@ -155,17 +155,8 @@
 
 ;; SOME MINOR BINDINGS
 
-(xbindkey '("Mod4" "Shift" "i") "xmodmap ~/.xmodmap/julka")
 (xbindkey '("Print") "cd ~/Downloads && shotgun")
 (xbindkey '("Pause") "playerctl -a pause")
-
-(define fkey "F2")
-(xbindkey-function
-  (list fkey)
-  (lambda ()
-    (run-command
-      (string-append
-        "xdotool keyup " fkey " keydown ctrl key q keyup ctrl"))))
 
 ;(xbindkey '("f36") "xdotool keydown control key x keyup control key @ h")
 ;(xbindkey '("f37") "xdotool keydown control key x keyup control key @ a")
