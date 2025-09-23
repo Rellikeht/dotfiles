@@ -2,7 +2,7 @@
   input  (device-file "BLOCK_DEVICE")
   output (uinput-sink "Standard 60% keyboard"
     ;; This is for altgr to work with symbols
-    "sleep 0.2 && setxkbmap -option compose:ralt"
+    "sleep 0.5 && setxkbmap -option compose:ralt"
     )
 
   cmp-seq ralt    ;; Set the compose key to `RightAlt'

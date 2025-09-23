@@ -203,6 +203,13 @@ if vim.g.neovide then -- {{{
   vim.g.neovide_cursor_hack = false
   vim.g.neovide_scale_factor = 0.95
 
+  vim.keymap.set("n", "<F11>", function()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  end, { noremap = true })
+  vim.keymap.set("n", "<C-w>u", function()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  end, { noremap = true })
+
   --  }}}
 elseif vim.fn.has("gui_running") then --  {{{
 

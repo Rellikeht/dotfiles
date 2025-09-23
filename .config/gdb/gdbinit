@@ -1,1 +1,4 @@
-tui enable
+set pagination off
+set height unlimited
+tui disable
+set debuginfod enabled off

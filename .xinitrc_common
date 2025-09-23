@@ -4,7 +4,6 @@ has_exe() {
     which "$1" >/dev/null 2>/dev/null
 }
 
-has_exe keynav && keynav daemonize &
 if [ -x "$HOME/.dwm/kmonads.sh" ]; then
     "$HOME/.dwm/kmonads.sh" &
 else
@@ -12,7 +11,8 @@ else
     [ -x "$HOME/.kb-plug.sh" ] && "$HOME/.kb-plug.sh" &
     [ -x "$HOME/.dwm/kbd.sh" ] && "$HOME/.dwm/kbd.sh" &
 fi
+has_exe xrdb && xrdb .Xresources
 has_exe xbindkeys && xbindkeys -n &
-has_exe xrdb && xrdb .Xresources &
 has_exe unclutter && unclutter -idle 1.2 &
 has_exe playerctld && playerctld daemon &
+has_exe keynav && keynav daemonize &
