@@ -1,11 +1,17 @@
 #!/usr/bin/env sh
 
-if [ -x ~/.local_scrs/bat.sh ]; then
-    BAT="~/.local_scrs/bat.sh"
-    S=" "
+BAT_SCRIPT="$HOME/.local/dwm/bat.sh"
+S=" "
+SLEEP="0.5"
+if [ -n "$1" ]; then
+    SLEEP="$1"
+fi
+if ! [ -x "$BAT_SCRIPT" ]; then
+    BAT_SCRIPT=
 fi
 
 while true; do
-    xsetroot -name " < $(eval $BAT)$S$(date +"%H:%M:%S %d.%m.%Y") < "
-    sleep 0.5
+    DATE="$(date +"%H:%M:%S %d.%m.%Y")"
+    xsetroot -name " < $(eval $BAT_SCRIPT)$S$DATE < "
+    sleep $SLEEP
 done
