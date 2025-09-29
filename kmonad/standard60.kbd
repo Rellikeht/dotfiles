@@ -34,7 +34,7 @@
 )
 
 (deflayer main
-  _    1    2    3    4    5    XX   6    7    8    9    0    -    bspc
+  grv  1    2    3    4    5    XX   6    7    8    9    0    -    bspc
   @tad q    w    e    r    t    y    u    i    o    p    =    @tad _
   esc  a    s    d    f    g    h    j    k    l    ;    bspc ret
   _    z    x    c    v    b    n    m    ,    .    /    _

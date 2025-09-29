@@ -85,49 +85,49 @@ config.set(
     "url.searchengines",
     {  # {{{
         "DEFAULT": DEFAULT_SEARX + "/search?q={}",
-        "sb": "https://searx.be/search?q={}",
-        "ps": DEFAULT_SEARX + "/search?q={}&language=pl-PL",
-        "pb": "https://searx.be/search?q={}&language=pl-PL",
+        "@sb": "https://searx.be/search?q={}",
+        "@ps": DEFAULT_SEARX + "/search?q={}&language=pl-PL",
+        "@pb": "https://searx.be/search?q={}&language=pl-PL",
     }  # }}}
     | {  # {{{
-        "aw": "https://wiki.archlinux.org/index.php?search={}",
-        "gw": "https://wiki.gentoo.org/index.php?search={}",
-        "nw": "https://nixos.wiki/index.php?search={}",
-        "wc": "https://wikichip.org/wiki?search={}",
+        "@aw": "https://wiki.archlinux.org/index.php?search={}",
+        "@gw": "https://wiki.gentoo.org/index.php?search={}",
+        "@nw": "https://nixos.wiki/index.php?search={}",
+        "@wc": "https://wikichip.org/wiki?search={}",
     }  # }}}
     | {  # {{{
-        "ap": "https://archlinux.org/packages/?q={}",
-        "au": "https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a",
-        "auu": "https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a&outdated=off",
+        "@ap": "https://archlinux.org/packages/?q={}",
+        "@au": "https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a",
+        "@auu": "https://aur.archlinux.org/packages?K={}&PP=2500&SB=n&SO=a&outdated=off",
     }  # }}}
     | {  # {{{
-        "gp": "https://packages.gentoo.org/packages/search?q={}",
-        "np": "https://search.nixos.org/packages?size=500&query={}",
-        "no": "https://search.nixos.org/options?size=500&query={}",
+        "@gp": "https://packages.gentoo.org/packages/search?q={}",
+        "@np": "https://search.nixos.org/packages?size=500&query={}",
+        "@no": "https://search.nixos.org/options?size=500&query={}",
     }  # }}}
     | {  # {{{
-        "fp": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=all",
-        "fpn": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=name",
-        "fpd": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=text",
+        "@fp": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=all",
+        "@fpn": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=name",
+        "@fpd": "https://ports.freebsd.org/cgi/ports.cgi?query={}&stype=text",
     }  # }}}
     | {  # {{{
-        "gh": "https://github.com/search?q={}",
-        "sf": "https://sourceforge.net/directory/?clear&q={}",
+        "@gh": "https://github.com/search?q={}",
+        "@sf": "https://sourceforge.net/directory/?clear&q={}",
     }  # }}}
     | {  # {{{
-        "pp": "https://pypi.org/search/?q={}",
-        "jp": "https://juliapackages.com/packages?search={}",
+        "@pp": "https://pypi.org/search/?q={}",
+        "@jp": "https://juliapackages.com/packages?search={}",
     }  # }}}
     | {  # {{{
-        "yt": "https://youtube.com/results?search_query={}",
-        "lb": "https://odysee.com/$/search?q={}",
-        "rb": "https://rumble.com/search/all?q={}",
-        "bc": "https://www.bitchute.com/search?query={}",
+        "@yt": "https://youtube.com/results?search_query={}",
+        "@lb": "https://odysee.com/$/search?q={}",
+        "@rb": "https://rumble.com/search/all?q={}",
+        "@bc": "https://www.bitchute.com/search?query={}",
     }  # }}}
     | {  #  {{{
-        "ss": "https://searchmysite.net/search?q={}",
-        "cl": "https://curlie.org/search?q={}",
-        "br": "https://search.brave.com/search?q={}",
+        "@ss": "https://searchmysite.net/search?q={}",
+        "@cl": "https://curlie.org/search?q={}",
+        "@br": "https://search.brave.com/search?q={}",
     },  #  }}}
 )
 

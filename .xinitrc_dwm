@@ -6,7 +6,7 @@ has_exe() {
 
 [ -x "$HOME/.xinitrc_local_env" ] && "$HOME/.xinitrc_local_env" &
 
-[ -x "$HOME/.dwm/bar.sh" ] && "$HOME/.dwm/bar.sh" &
+[ -x "$HOME/.local/dwm/helpers/bar" ] && "$HOME/.local/dwm/helpers/bar" &
 [ -x "$HOME/.xinitrc_common" ] && "$HOME/.xinitrc_common" &
 has_exe xcompmgr && xcompmgr -fcD 1 &
 has_exe nitrogen && nitrogen --restore &
