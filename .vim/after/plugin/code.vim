@@ -98,7 +98,7 @@ let g:neoformat_enabled_yaml = [
 
 let g:neoformat_yaml_yamlfix = {
       \ 'exe': 'yamlfix',
-      \ 'args': ['-c', '~/.vim/plug-handlers/pyproject.toml', '-'],
+      \ 'args': ['-c', '~/.vim/after/plugin/pyproject.toml', '-'],
       \ 'stdin': 1,
       \ }
 
@@ -126,7 +126,7 @@ let g:neoformat_typst_prettypst = {
       \ '--use-std-in',
       \ '--use-std-out',
       \ '--use-configuration',
-      \ '--file-location=$HOME/.vim/plug-handlers',
+      \ '--file-location=$HOME/.vim/after/plugin',
       \ ],
       \ 'stdin': 1,
       \ 'stderr': 1,

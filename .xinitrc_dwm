@@ -4,15 +4,14 @@ has_exe() {
     which "$1" >/dev/null 2>/dev/null
 }
 
-[ -x "$HOME/.xinitrc_local_env" ] && "$HOME/.xinitrc_local_env" &
+[ -x "$HOME/.xinitrc_local_env" ] && eval "$(cat "$HOME/.xinitrc_local_env")"
 
 [ -x "$HOME/.local/dwm/helpers/bar" ] && "$HOME/.local/dwm/helpers/bar" &
-[ -x "$HOME/.xinitrc_common" ] && "$HOME/.xinitrc_common" &
+[ -x "$HOME/.xinitrc_common" ] && "$HOME/.xinitrc_common"
 has_exe xcompmgr && xcompmgr -fcD 1 &
 has_exe nitrogen && nitrogen --restore &
 has_exe notification-daemon && notification-daemon &
 [ -x "$HOME/.audio_start.sh" ] && "$HOME/.audio_start.sh" &
 
-[ -x "$HOME/.xinitrc_local" ] && "$HOME/.xinitrc_local" &
-
+[ -x "$HOME/.xinitrc_local" ] && "$HOME/.xinitrc_local"
 exec dwm

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-BAT_SCRIPT="$HOME/.local/dwm/bat.sh"
+BAT_SCRIPT="$HOME/.local/dwm/helpers/bat"
 S=" "
 SLEEP="0.5"
 if [ -n "$1" ]; then
