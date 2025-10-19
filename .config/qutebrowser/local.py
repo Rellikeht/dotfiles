@@ -27,7 +27,6 @@ config.set("content.cookies.store", True)
 config.set("content.cookies.accept", "no-unknown-3rdparty", "devtools://*")
 
 COOKIES = [
-    "https://searx.*/*",
     "https://search.rhscz.eu/*",
     "https://searx.stream/*",
     "https://searx.rhscz.eu/*",
@@ -44,7 +43,6 @@ COOKIES = [
     "https://searx.be/*",
     "https://priv.au/*",
 ]
-
 
 for page in COOKIES:
     config.set("content.cookies.accept", "all", page)
