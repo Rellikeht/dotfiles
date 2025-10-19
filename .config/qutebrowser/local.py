@@ -27,11 +27,24 @@ config.set("content.cookies.store", True)
 config.set("content.cookies.accept", "no-unknown-3rdparty", "devtools://*")
 
 COOKIES = [
-    "https://searx.info/*",
+    "https://searx.*/*",
+    "https://search.rhscz.eu/*",
+    "https://searx.stream/*",
+    "https://searx.rhscz.eu/*",
+    "https://searx.oloke.xyz/*",
+    "https://search.inetol.net/*",
+    "https://search.hbubli.cc/*",
+    "https://search.bladerunn.in/*",
+    "https://metacat.online/*",
+    "https://searx.foobar.vip/*",
+    "https://searx.tuxcloud.net/*",
+
+    # old
     "https://paulgo.io/*",
     "https://searx.be/*",
     "https://priv.au/*",
 ]
+
 
 for page in COOKIES:
     config.set("content.cookies.accept", "all", page)
