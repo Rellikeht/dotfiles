@@ -39,7 +39,21 @@ exec julia \
         ))
     end
     @info "Running language server" VERSION pwd() project_path depot_path
-    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
+    try_again = Ref(true)
+    function handler(err, bt)
+        try_again[] = true
+    end
+    # TODO should `exit_on_sigint` be here
+    server = LanguageServer.LanguageServerInstance(
+        stdin,
+        stdout,
+        project_path,
+        depot_path,
+        handler,
+    )
     server.runlinter = true
-    run(server)
+    while try_again[]
+        try_again[] = false
+        run(server)
+    end
     '
