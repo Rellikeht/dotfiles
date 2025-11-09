@@ -77,7 +77,7 @@ config.set("auto_save.interval", 20000)
 # SHORTCUTS
 # ============================================================
 
-DEFAULT_SEARX = "https://search.rhscz.eu"
+DEFAULT_SEARX = "https://searx.stream"
 
 config.set("url.start_pages", DEFAULT_SEARX)
 config.set("url.default_page", DEFAULT_SEARX)
@@ -87,24 +87,22 @@ config.set(
         "DEFAULT": DEFAULT_SEARX + "/search?q={}",
         "@s0": DEFAULT_SEARX + "/search?q={}",
         "@S0": DEFAULT_SEARX + "/search?q={}&language=pl-PL",
-        "@s1": "https://searx.stream/search?q={}",
-        "@S1": "https://searx.stream/search?q={}&language=pl-PL",
-        "@s2": "https://searx.rhscz.eu/search?q={}",
-        "@S2": "https://searx.rhscz.eu/search?q={}&language=pl-PL",
-        "@s3": "https://searx.oloke.xyz/search?q={}",
-        "@S3": "https://searx.oloke.xyz/search?q={}&language=pl-PL",
-        "@s4": "https://search.inetol.net/search?q={}",
-        "@S4": "https://search.inetol.net/search?q={}&language=pl-PL",
-        "@s5": "https://search.hbubli.cc/search?q={}",
-        "@S5": "https://search.hbubli.cc/search?q={}&language=pl-PL",
-        "@s6": "https://search.bladerunn.in/search?q={}",
+        "@s1": "https://searx.rhscz.eu/search?q={}",
+        "@S1": "https://searx.rhscz.eu/search?q={}&language=pl-PL",
+        "@s2": "https://searx.oloke.xyz/search?q={}",
+        "@S2": "https://searx.oloke.xyz/search?q={}&language=pl-PL",
+        "@s3": "https://search.inetol.net/search?q={}",
+        "@S3": "https://search.inetol.net/search?q={}&language=pl-PL",
+        "@s4": "https://search.hbubli.cc/search?q={}",
+        "@S4": "https://search.hbubli.cc/search?q={}&language=pl-PL",
+        "@s5": "https://search.bladerunn.in/search?q={}",
         "@S6": "https://search.bladerunn.in/search?q={}&language=pl-PL",
-        "@s7": "https://metacat.online/search?q={}",
+        "@s6": "https://metacat.online/search?q={}",
         "@S7": "https://metacat.online/search?q={}&language=pl-PL",
-        "@s8": "https://searx.foobar.vip/search?q={}",
+        "@s7": "https://searx.foobar.vip/search?q={}",
         "@S8": "https://searx.foobar.vip/search?q={}&language=pl-PL",
-        "@s9": "https://searx.tuxcloud.net/search?q={}",
-        "@S9": "https://searx.tuxcloud.net/search?q={}&language=pl-PL",
+        "@s8": "https://searx.tuxcloud.net/search?q={}",
+        "@S8": "https://searx.tuxcloud.net/search?q={}&language=pl-PL",
     }  # }}}
     | {  # {{{
         "@aw": "https://wiki.archlinux.org/index.php?search={}",

@@ -109,17 +109,6 @@ let g:neoformat_enabled_javascript = ['clangformat', 'prettierd', 'prettier']
 let g:neoformat_enabled_typescript = ['clangformat', 'prettierd', 'prettier']
 let g:neoformat_enabled_java = ['clangformat', 'astyle', 'uncrustify', 'prettierd', 'prettier']
 
-" Totally differently than it seems
-" from reading README, but somehow this shit works
-let g:neoformat_typst_typstfmt = {
-      \ 'exe': 'typstfmt',
-      \ 'args': ['-o -'],
-      \ 'stdin': 1,
-      \ 'stderr': 1,
-      \ 'replace': 0,
-      \ 'no_append': 1,
-      \ }
-
 let g:neoformat_typst_prettypst = {
       \ 'exe': 'prettypst',
       \ 'args': [
@@ -134,7 +123,7 @@ let g:neoformat_typst_prettypst = {
       \ 'no_append': 1,
       \ }
 
-let g:neoformat_enabled_typst = ["typstfmt", "prettypst"]
+let g:neoformat_enabled_typst = ["typstyle", "prettypst"]
 
 " }}} 
 
@@ -297,12 +286,11 @@ let g:user_emmet_leader_key = '<Leader>,'
 
 " autopairs {{{ 
 
-let g:AutoPairsShortcutToggle = "<C-x>="
+let g:AutoPairsShortcutToggle = "<Leader>qa"
+" nnoremap <Leader>qa :<C-u>call AutoPairsToggle()<CR>
 
 autocmd FileType text
       \ let b:autopairs_enabled = 0
-
-nnoremap <Leader>qa :<C-u>call AutoPairsToggle()<CR>
 
 " }}} 
 
