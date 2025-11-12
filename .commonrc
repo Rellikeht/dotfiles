@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
-# {{{ helpers
+# helpers {{{
 
-# Because this is not obvious some time (zsh)
-alias whichp='/usr/bin/env which'
+has_exe() {
+    command -v "$1" >/dev/null
+}
 
 source_if_exists() {
-    [ -f "$1" ] && source "$1"
+    [ -r "$1" ] && source "$1"
 }
 
 eval_if_exists() {
-    [ -f "$1" ] && . "$1"
+    [ -r "$1" ] && . "$1"
 }
 
-has_exe() {
-    /usr/bin/env which "$1" >/dev/null 2>/dev/null
-}
+# Because this is not obvious sometimes (zsh)
+alias whichp='/usr/bin/env which'
 
 # }}}
 
@@ -28,23 +28,17 @@ stty -ixon 2>/dev/null
 
 #  }}}
 
-# {{{ sourcing
+# sourcing {{{
 
 source_if_exists "/etc/.commonrc"
 
 #aliases
 source_if_exists "/etc/.aliasrc"
 source_if_exists "$HOME/.aliasrc"
-source_if_exists "$HOME/.local/.aliasrc"
 
 #functions
 source_if_exists "/etc/.funcrc"
 source_if_exists "$HOME/.funcrc"
-source_if_exists "$HOME/.local/.funcrc"
-
-#common variables
-
-source_if_exists "$HOME/.local/.commonrc"
 
 # to stop duplication of entries in some variables
 if [ -z "$__VARRC_ETC_SOURCED" ]; then
@@ -62,7 +56,7 @@ fi
 
 # }}}
 
-# {{{ ssh agent
+# ssh agent {{{
 
 if [ -z "$SSH_AGENT_TIME" ]; then
     export SSH_AGENT_TIME="90m"
@@ -98,7 +92,7 @@ fi
 
 # }}}
 
-# {{{ nix
+# nix {{{
 
 # they screwed up
 if [ "$__NIX_SOURCED" != "$UID" ]; then
@@ -114,3 +108,11 @@ if [ "$__HM_SESS_SOURCED" != "$UID" ]; then
 fi
 
 # }}}
+
+# locals {{{
+
+source_if_exists "$HOME/.local/.commonrc"
+source_if_exists "$HOME/.local/.aliasrc"
+source_if_exists "$HOME/.local/.funcrc"
+
+#  }}}

@@ -1,8 +1,13 @@
 #!/usr/bin/env zsh
 
+if [ -r "$HOME/.commonrc" ]; then
+    . "$HOME/.commonrc"
+fi
+
 # settings {{{
 
-HISTFILE=~/.histfile
+HISTFILE="$HOME/.zsh_history"
+SAVEHIST="$HISTFILESIZE"
 
 # For deleting words to work acceptably
 WORDCHARS='%~!?+'
@@ -35,10 +40,6 @@ setopt AUTO_CD
 
 set -o pipefail
 
-source_if_exists() {
-    [ -r "$1" ] && source "$1"
-}
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -58,7 +59,7 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
 zmodload -i zsh/complist
 
 # why does this make things faster
-zstyle :compinstall filename '~/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 # Some completion settings and activation {{{
 if [ -z "$__COMPINIT_RUN" ]; then
@@ -137,26 +138,7 @@ bindkey -M emacs -s "^[i" "**	"
 
 # }}}
 
-# sourcing {{{
-
-if [ -f "$HOME/.commonrc" ]; then
-    source "$HOME/.commonrc"
-fi
-
-source_if_exists ~/.aliasrc.zsh
-source_if_exists ~/.funcrc.zsh
-source_if_exists "$HOME/.local/.zshrc"
-
-# Shit, removing this breaks zsh on arch :(((
-source_if_exists /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-source_if_exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# p10k config
-source_if_exists ~/.p10k.zsh
-
-# }}}
-
-# hooks {{{
+# integrations {{{
 
 if has_exe fzf; then
     FZF_COMPLETION_TRIGGER='**'
@@ -174,13 +156,6 @@ if has_exe direnv; then
     eval "$(direnv hook zsh)"
 fi
 
-# }}}
-
-# other {{{
-
-# from .commonrc
-SAVEHIST=$HISTFILESIZE
-
 # Compatibility between tmux and direnv (?)
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     unset ${$(typeset -m "DIRENV_*")%%=*}
@@ -188,23 +163,17 @@ fi
 
 # }}}
 
-# shit {{{
+# sourcing {{{
 
-if [ -z "$__CONDA_SETUP" ]; then
-    if [ -d "$HOME/.conda" ]; then
-        __conda_setup="$(\"$HOME/.conda/bin/conda\" 'shell.zsh' 'hook' 2>/dev/null)"
-        if [ $? -eq 0 ]; then
-            eval "$__conda_setup"
-        else
-            if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
-                . "$HOME/.conda/etc/profile.d/conda.sh"
-            else
-                pathinsert "$HOME/.conda/bin:$PATH"
-            fi
-        fi
-        unset __conda_setup
-    fi
-    export __CONDA_SETUP=1
-fi
+source_if_exists "$HOME/.aliasrc.zsh"
+source_if_exists "$HOME/.funcrc.zsh"
+source_if_exists "$HOME/.local/.zshrc"
+
+# Shit, removing this breaks zsh on arch :(((
+source_if_exists /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source_if_exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# p10k config
+source_if_exists "$HOME/.p10k.zsh"
 
 # }}}

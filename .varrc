@@ -2,20 +2,20 @@
 
 # {{{ helpers
 
-inpath() {
+in_path() {
   echo "$PATH" |
     sed 's/:/\n/g' |
     grep -E "^$1/?$" >/dev/null
   }
 
-pathadd() {
-  if ! inpath "$1"; then
+path_add() {
+  if ! in_path "$1"; then
     export PATH="$PATH:$1"
   fi
 }
 
-pathinsert() {
-  if ! inpath "$1"; then
+path_insert() {
+  if ! in_path "$1"; then
     export PATH="$1:$PATH"
   fi
 }
@@ -90,8 +90,8 @@ export BAT_THEME='TwoDark'
 
 # {{{ bins from home in path
 
-pathadd "$HOME/.local/bin"
-pathadd "$HOME/bin"
+path_add "$HOME/.local/bin"
+path_add "$HOME/bin"
 
 # }}}
 

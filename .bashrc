@@ -5,23 +5,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-if [ -f "$HOME/.commonrc" ]; then
-    source "$HOME/.commonrc"
+if [ -r "$HOME/.commonrc" ]; then
+    . "$HOME/.commonrc"
 fi
 
-# }}}
-
-# sourcing {{{
-
-source_if_exists ~/.aliasrc.bash
-source_if_exists ~/.funcrc.bash
-source_if_exists "$HOME/.local/.bashrc"
+source_if_exists "$HOME/.aliasrc.bash"
+source_if_exists "$HOME/.funcrc.bash"
 
 # }}}
 
 # settings {{{
 
-HISTFILE=~/.bash_history
+HISTFILE="$HOME/.bash_history"
 
 # nice history settings
 HISTCONTROL=ignoredups:erasedups
@@ -154,7 +149,7 @@ bind 'Space:magic-space'
 
 # }}}
 
-# hooks {{{
+# integrations {{{
 
 if fzf --bash &>/dev/null; then
     FZF_COMPLETION_TRIGGER='**'
@@ -196,10 +191,6 @@ if has_exe direnv; then
     eval "$(direnv hook bash)"
 fi
 
-# }}}
-
-# other {{{
-
 # Compatibility between tmux and direnv
 if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
     # unset env vars starting with DIRENV_
@@ -211,16 +202,15 @@ fi
 # shit {{{
 
 if [ -z "$__CONDA_SETUP" ]; then
-    if [ -d "$HOME/.conda" ]; then
-        __conda_setup=$("$HOME/.conda/bin/conda" 'shell.bash' 'hook' 2>/dev/null)
+    if has_exe micromamba; then
+        eval "$(micromamba shell hook -s bash)"
+    elif has_exe conda; then
+        __conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
         if [ $? -eq 0 ]; then
             eval "$__conda_setup"
         else
-            if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
-                . "$HOME/.conda/etc/profile.d/conda.sh"
-            else
-                pathinsert "$HOME/.conda/bin:$PATH"
-            fi
+            eval_if_exists "$HOME/miniconda3/etc/profile.d/conda.sh" ||
+                path_add "$HOME/miniconda3/bin:$PATH"
         fi
         unset __conda_setup
     fi
@@ -228,3 +218,17 @@ if [ -z "$__CONDA_SETUP" ]; then
 fi
 
 # }}}
+
+# local {{{
+
+eval_if_exists "$HOME/.bashrc.local"
+eval_if_exists "$HOME/.local/.bashrc"
+
+# User specific aliases and functions
+if [ -d "$HOME/.bashrc.d" ]; then
+	for rc in "$HOME/.bashrc.d"/*; do
+        eval_if_exists "$rc"
+	done
+fi
+
+#  }}}
