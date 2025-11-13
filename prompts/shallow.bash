@@ -9,7 +9,7 @@ __prompt_command() {
     fi
 
     PS1=""
-    if [ -n "$USER_PS1" ]; then
+    if [ -n "$PS1_USER" ]; then
         # PS1+="${MAGENTA}[${RESET}"
         PS1+="${MAGENTA}\u${RESET}"
         PS1+="${LRED}@${RESET}"
@@ -19,7 +19,7 @@ __prompt_command() {
     fi
     PS1+="${GREEN}\w${RESET} "
 
-    if [ -n "$USER_PS1" ]; then
+    if [ -n "$PS1_USER" ]; then
         PS1+="\n"
     fi
     if [ "$EX" != 0 ]; then

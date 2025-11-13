@@ -120,6 +120,18 @@ if ! source_if_exists ~/.prompt.bash &>/dev/null; then
             EX="$EXIT"
         fi
         PS1=""
+        if [ -n "$PS1_USER" ]; then
+            PS1+="${LGREEN}\u${RESET}"
+        fi
+        if [ -n "$PS1_USER" ] && [ -n "$PS1_HOST" ]; then
+            PS1+="${MAGENTA}@${RESET}"
+        fi
+        if [ -n "$PS1_HOST" ]; then
+            PS1+="${LCYAN}\h${RESET}"
+        fi
+        if [ -n "$PS1_USER" ] || [ -n "$PS1_HOST" ]; then
+            PS1+=":"
+        fi
         PS1+="${LMAGENTA}\w${RESET}"
         if [ "$EX" != 0 ]; then
             PS1+="${RED}"
@@ -127,6 +139,9 @@ if ! source_if_exists ~/.prompt.bash &>/dev/null; then
             PS1+="${GREEN}"
         fi
         PS1+="[$EX]${RESET}"
+        if [ -n "$PS1_USER" ] || [ -n "$PS1_HOST" ]; then
+            PS1+="\n"
+        fi
         PS1+="${LCYAN}$PSC${RESET} "
     }
 # }}}

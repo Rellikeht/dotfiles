@@ -17,6 +17,18 @@ __prompt_command() {
     fi
     PS1=""
     PS1+="${LBLUE}${SHLVL}=${RESET} "
+    if [ -n "$PS1_USER" ]; then
+        PS1+="${LGREEN}\u${RESET}"
+    fi
+    if [ -n "$PS1_USER" ] && [ -n "$PS1_HOST" ]; then
+        PS1+="${MAGENTA}@${RESET}"
+    fi
+    if [ -n "$PS1_HOST" ]; then
+        PS1+="${LCYAN}\h${RESET}"
+    fi
+    if [ -n "$PS1_USER" ] || [ -n "$PS1_HOST" ]; then
+        PS1+=" "
+    fi
     PS1+="${LMAGENTA}\w${RESET} "
     if [ -n "$TIME_PS1" ]; then
         PS1+="-> ${LWHITE}$DURATION${RESET}"

@@ -7,7 +7,7 @@ __prompt_command() {
     if [ -n "$EXIT" ]; then
         EXT="$EXIT"
     fi
-    if [ -n "$TIME_PS1" ]; then
+    if [ -n "$PS1_TIME" ]; then
         local DURATION=$(__calc_command_duration)
     fi
     PS1=""
@@ -18,7 +18,7 @@ __prompt_command() {
     # PS1+="${BLUE}]${RESET}"
     # PS1+="${LCYAN}:${RESET}"
     PS1+="${LCYAN}\w${RESET}"
-    if [ -n "$TIME_PS1" ]; then
+    if [ -n "$PS1_TIME" ]; then
         PS1+=" -> $DURATION"
         PS1+="\n"
     fi

@@ -7,11 +7,11 @@ __prompt_command() {
     if [ -n "$EXIT" ]; then
         EXT="$EXIT"
     fi
-    if [ -n "$TIME_PS1" ]; then
+    if [ -n "$PS1_TIME" ]; then
         local DURATION=$(__calc_command_duration)
     fi
     PS1=""
-    if [ -n "$USER_PS1" ]; then
+    if [ -n "$PS1_USER" ]; then
         # PS1+="${MAGENTA}[${RESET}"
         PS1+="${CYAN}\u${RESET}"
         PS1+="${LRED}@${RESET}"
@@ -20,10 +20,10 @@ __prompt_command() {
         PS1+="${LBLUE}${RESET}"
     fi
     PS1+="${LBLUE}\w${RESET}"
-    if [ -n "$TIME_PS1" ]; then
+    if [ -n "$PS1_TIME" ]; then
         PS1+=" ${LWHITE}[$DURATION]${RESET}"
     fi
-    if [ -n "$USER_PS1" ] || [ -n "$TIME_PS1" ]; then
+    if [ -n "$PS1_USER" ] || [ -n "$PS1_TIME" ]; then
         PS1+="\n"
     fi
     if [ "$EXT" != 0 ]; then
