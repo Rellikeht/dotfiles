@@ -77,7 +77,7 @@ set shortmess=atsOF
 " 2 is ugly and takes too much space
 " but would make life easier sometimes
 set cmdheight=1
-set laststatus=0
+set laststatus=2
 
 " TODO C tabline
 
@@ -93,6 +93,8 @@ set statusline+=\
 set statusline+=%P
 
 set scrolloff=4
+
+let g:markdown_minlines = 500
 
 " }}} 
 
@@ -247,12 +249,6 @@ let g:vgrep_args = g:grep_args.' -Hn'
 let g:vgrep_prog = 'grep '.g:vgrep_args
 
 " }}} 
-
-" good looking {{{
-
-let g:markdown_minlines = 500
-
-" }}}
 
 " wildignore {{{ 
 

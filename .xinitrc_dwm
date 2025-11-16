@@ -8,7 +8,10 @@ has_exe() {
 
 [ -x "$HOME/.local/dwm/helpers/bar" ] && "$HOME/.local/dwm/helpers/bar" &
 [ -x "$HOME/.xinitrc_common" ] && "$HOME/.xinitrc_common"
-has_exe xcompmgr && xcompmgr -fcD 1 &
+has_exe picom && picom \
+    --no-fading-openclose \
+    --no-fading-destroyed-argb \
+    -c -D 1 &
 has_exe nitrogen && nitrogen --restore &
 has_exe notification-daemon && notification-daemon &
 [ -x "$HOME/.audio_start.sh" ] && "$HOME/.audio_start.sh" &

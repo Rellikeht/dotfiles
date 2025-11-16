@@ -241,9 +241,9 @@ eval_if_exists "$HOME/.local/.bashrc"
 
 # User specific aliases and functions
 if [ -d "$HOME/.bashrc.d" ]; then
-	for rc in "$HOME/.bashrc.d"/*; do
+    for rc in "$HOME/.bashrc.d"/*; do
         eval_if_exists "$rc"
-	done
+    done
 fi
 
 #  }}}

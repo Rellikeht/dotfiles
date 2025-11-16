@@ -110,7 +110,7 @@ multiplier = 3
 startup_mode = "Maximized"
 title = "Alacritty"
 dynamic_title = true
-opacity = 0.98
+opacity = 1.0 # 0.91
 
 [terminal]
 osc52 = "CopyPaste"

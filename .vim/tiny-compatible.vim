@@ -411,7 +411,7 @@ nnoremap yaee gg0vG$y`'
 
 set wildchar=<Tab>
 set wildmode=list:longest,full
-set wildoptions=fuzzy,tagfile,pum
+set wildoptions=fuzzy,tagfile
 set wildmenu
 set wildignore+=*.o,*.elf,*.bin,*.dll,*.so
 
