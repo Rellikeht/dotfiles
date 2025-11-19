@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+if [ -r "$HOME/.instant-zsh.zsh" ]; then
+    source "$HOME/.instant-zsh.zsh" 
+    instant-zsh-pre "%F{4}%~%f %F{5}❯%f "
+fi
+
 if [ -r "$HOME/.commonrc" ]; then
     . "$HOME/.commonrc"
 fi
@@ -175,5 +180,6 @@ source_if_exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highl
 
 # p10k config
 source_if_exists "$HOME/.p10k.zsh"
+instant-zsh-post
 
 # }}}
