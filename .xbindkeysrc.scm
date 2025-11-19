@@ -123,7 +123,7 @@
 
 ;; SOME MINOR BINDINGS
 
-(xbindkey '("Print") "cd ~/Downloads && shotgun")
+; (xbindkey '("Print") "cd ~/Downloads && shotgun")
 (xbindkey '("Pause") "playerctl -a pause")
 
 ;;LOADING LOCAL CONFIG
