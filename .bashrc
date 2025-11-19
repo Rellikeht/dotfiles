@@ -166,11 +166,6 @@ bind 'Space:magic-space'
 
 # integrations {{{
 
-if fzf --bash &>/dev/null; then
-    FZF_COMPLETION_TRIGGER='**'
-    eval "$(fzf --bash)"
-fi
-
 if [ -z "$__Z_INITIALIZED" ]; then
     activate_z_lua() {
         # {{{
@@ -224,7 +219,7 @@ if [ -z "$__CONDA_SETUP" ]; then
         if [ $? -eq 0 ]; then
             eval "$__conda_setup"
         else
-            eval_if_exists "$HOME/miniconda3/etc/profile.d/conda.sh" ||
+            source_if_exists "$HOME/miniconda3/etc/profile.d/conda.sh" ||
                 path_add "$HOME/miniconda3/bin:$PATH"
         fi
         unset __conda_setup
@@ -236,14 +231,21 @@ fi
 
 # local {{{
 
-eval_if_exists "$HOME/.bashrc.local"
-eval_if_exists "$HOME/.local/.bashrc"
+source_if_exists "$HOME/.bashrc.local"
+source_if_exists "$HOME/.local/.bashrc"
 
 # User specific aliases and functions
 if [ -d "$HOME/.bashrc.d" ]; then
     for rc in "$HOME/.bashrc.d"/*; do
-        eval_if_exists "$rc"
+        source_if_exists "$rc"
     done
 fi
 
 #  }}}
+
+if fzf --bash &>/dev/null; then # {{{
+    # this eval has to be run after sourcing all completions which can
+    # be done in local files so this is at the end of file
+    FZF_COMPLETION_TRIGGER='**'
+    eval "$(fzf --bash)"
+fi # }}}
