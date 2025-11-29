@@ -160,3 +160,9 @@ noremap <Leader>iu :<C-u>InfoUp<CR>
 cnoreabbrev info Info
 
 " }}} 
+
+" settings {{{
+
+nnoremap <Space>qs :<C-u>SetOptionCount laststatus<CR>
+
+" }}}

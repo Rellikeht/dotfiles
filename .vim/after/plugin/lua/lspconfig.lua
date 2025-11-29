@@ -34,7 +34,7 @@ if vim.fn.has("nvim-0.11") == 1 then
   end
 
   function NvimDiagNext(args)
-    if not args.count then args.count = -1 end
+    if not args.count then args.count = 1 end
     if not args.float then args.float = true end
     vim.diagnostic.jump(args)
   end

@@ -296,23 +296,8 @@ require("lazy_utils").load_on_insert(
           { name = "nvim_lsp_signature_help" },
           { name = "snippy" },
 
-          { -- {{{
-            name = "buffer",
-            option = {
-              -- below doesn't work sometimes :<
-              -- keyword_pattern = [[̨̨\̨k\+]],
-              keyword_pattern = "\\([^,./<>?;: \\|\"'{}()\\[\\]" ..
-                  "!#$%&*-=+	€£¥¢√∇°∞©®∪∩]\\|" ..
-                  "[A-Z]\\)\\+",
-              -- because this fucking shit can't even understand that something
-              -- that matches [A-Z]* isn't special characters specified above
-              -- totally lovely chinise shit
-
-              get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-              end,
-            },
-          }, -- }}}
+          -- don't need buffer source because this is handled well
+          -- enough by builtin completion 
 
           { name = "omni" },
           { name = "path" },

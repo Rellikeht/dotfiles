@@ -199,19 +199,6 @@ require("lazy_utils").load_on_insert(
 
         sources = { -- {{{
           {name = "nvim_lua"},
-
-          { -- {{{
-            name = "buffer",
-            option = {
-              keyword_pattern = "\\([^,./<>?;: \\|\"'{}()\\[\\]" ..
-                "!@#$%&*-_=+	€£¥¢√∇°∞©®∪∩]\\|" ..
-                "[A-Z]\\)\\+",
-
-              get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-              end,
-            },
-          }, -- }}}
           {name = "omni"},
           {name = "path"},
         }, -- }}}

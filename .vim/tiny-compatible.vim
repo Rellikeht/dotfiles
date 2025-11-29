@@ -84,7 +84,6 @@ noremap <Space>i<Esc> <Nop>
 
 nnoremap <Space>qw :<C-u>setlocal wrap!<CR>
 nnoremap <Space>qW :<C-u>set wrap!<CR>
-nnoremap <Space>qs :<C-u>source %<CR>
 nnoremap <Space>qm :<C-u>setlocal modeline!<CR>:e<CR>
 nnoremap <Space>qM :<C-u>setlocal modeline!<CR>
 nnoremap <Space>qh :<C-u>set hls!<CR>
