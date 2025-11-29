@@ -37,6 +37,7 @@ highlight.css
 .config/qutebrowser*/bookmarks
 .config/qutebrowser*/dracula/*
 .config/qutebrowser*/qsettings
+.config/qutebrowser*/local*
 # }}}
 
 # transmission {{{

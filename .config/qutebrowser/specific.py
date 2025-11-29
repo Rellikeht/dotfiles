@@ -51,7 +51,7 @@ config.set("content.canvas_reading", False)
 config.set("content.javascript.enabled", False, "*")
 
 # Enable JavaScript.
-JSENABLE = [
+for page in [
     "chrome-devtools://*",
     "devtools://*",
     "chrome://*/*",
@@ -83,9 +83,7 @@ JSENABLE = [
     "*://*.stackexchange.com/*",
     "*://*.superuser.com/*",
     "*://superuser.com/*",
-]
-
-for page in JSENABLE:
+]:
     config.set("content.javascript.enabled", True, page)
 
 # User agent to send.  The following placeholders are defined:  *

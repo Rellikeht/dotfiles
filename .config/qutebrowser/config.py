@@ -12,17 +12,17 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
-# from typing import Any
+from os import path
 
 # THIS IS FUCKED
-from qutebrowser.config.configfiles import ConfigAPI  # type: ignore
-from qutebrowser.config.config import ConfigContainer  # type: ignore
+from qutebrowser.config.configfiles import ConfigAPI
+from qutebrowser.config.config import ConfigContainer
 
 import dracula.draw as draw
 
-# ??
-config: ConfigAPI = config
-c: ConfigContainer = c
+# this can't be done properly to make ruff and pylsp not complain
+config: ConfigAPI = config  # noqa: F821
+c: ConfigContainer = c  # noqa: F821
 
 # QT flags, currently only for hardware acceleration
 config.set(
@@ -77,7 +77,7 @@ config.set("auto_save.interval", 20000)
 # SHORTCUTS
 # ============================================================
 
-DEFAULT_SEARX = "https://searx.stream"
+DEFAULT_SEARX = "https://searx.oloke.xyz"
 
 config.set("url.start_pages", DEFAULT_SEARX)
 config.set("url.default_page", DEFAULT_SEARX)
@@ -87,14 +87,14 @@ config.set(
         "DEFAULT": DEFAULT_SEARX + "/search?q={}",
         "@s0": DEFAULT_SEARX + "/search?q={}",
         "@S0": DEFAULT_SEARX + "/search?q={}&language=pl-PL",
-        "@s1": "https://searx.rhscz.eu/search?q={}",
-        "@S1": "https://searx.rhscz.eu/search?q={}&language=pl-PL",
-        "@s2": "https://searx.oloke.xyz/search?q={}",
-        "@S2": "https://searx.oloke.xyz/search?q={}&language=pl-PL",
-        "@s3": "https://search.inetol.net/search?q={}",
-        "@S3": "https://search.inetol.net/search?q={}&language=pl-PL",
-        "@s4": "https://search.hbubli.cc/search?q={}",
-        "@S4": "https://search.hbubli.cc/search?q={}&language=pl-PL",
+        "@s1": "https://search.inetol.net/search?q={}",
+        "@S1": "https://search.inetol.net/search?q={}&language=pl-PL",
+        "@s2": "https://search.hbubli.cc/search?q={}",
+        "@S2": "https://search.hbubli.cc/search?q={}&language=pl-PL",
+        "@s3": "https://searx.rhscz.eu/search?q={}",
+        "@S3": "https://searx.rhscz.eu/search?q={}&language=pl-PL",
+        "@s4": "https://searx.stream/search?q={}",
+        "@S4": "https://searx.stream/search?q={}&language=pl-PL",
         "@s5": "https://search.bladerunn.in/search?q={}",
         "@S6": "https://search.bladerunn.in/search?q={}&language=pl-PL",
         "@s6": "https://metacat.online/search?q={}",
@@ -140,9 +140,10 @@ config.set(
         "@bc": "https://www.bitchute.com/search?query={}",
     }  # }}}
     | {  #  {{{
+        "@br": "https://search.brave.com/search?q={}",
         "@ss": "https://searchmysite.net/search?q={}",
         "@cl": "https://curlie.org/search?q={}",
-        "@br": "https://search.brave.com/search?q={}",
+        "@mw": "https://mwmbl.org/?q={}",
     },  #  }}}
 )
 
@@ -252,16 +253,16 @@ config.bind("sW", "session-save --current")
 config.set("content.media.audio_capture", "ask")
 config.set("content.media.audio_video_capture", "ask")
 config.set("content.media.video_capture", "ask")
-
 config.set("content.media.audio_capture", True, "https://discord.com")
 
 # ============================================================
-# LOCAL
+# SPECIFIC AND LOCAL
 # ============================================================
-# with open("local.py") as local:
-#     eval(local.read())
-# import local
-config.source("local.py")
+
+config.source("specific.py")
+local_config = config.configdir / "local.py"
+if path.exists(local_config):
+    config.source(local_config)
 
 # AUTOCONFIG!!!
 # I use it as local configuration
