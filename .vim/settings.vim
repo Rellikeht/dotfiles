@@ -57,6 +57,7 @@ set listchars+=lead:.
 
 set synmaxcol=250
 set smarttab
+set redrawtime=5000
 
 set undofile
 

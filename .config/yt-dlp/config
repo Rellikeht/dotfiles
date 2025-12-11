@@ -5,5 +5,4 @@
 --convert-subtitles srt
 --concurrent-fragments 8
 --abort-on-unavailable-fragments
-
---geo-bypass 
+--remote-components ejs:github
