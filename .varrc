@@ -97,7 +97,10 @@ path_add "$HOME/bin"
 
 # {{{ random settings
 
-export TMUX_SOCKET='sock'
+# export TMUX_SOCKET='sock'
+# export TMUX_SOCKET='default'
+# probably impossible to use `tmux -l` only when $TMUX_SOCKET is defined
+# __TM_L="$([ -n "$TMUX_SOCKET" ] && echo -L)"
 
 export FZF_DEFAULT_COMMAND='find . -mindepth 1 -xtype f'
 export FZF_CTRL_T_COMMAND='find . -mindepth 1 -xtype d -o -xtype f'

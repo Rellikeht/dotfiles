@@ -319,7 +319,7 @@ alias scl='screen -list'
 
 alias tmc='/usr/bin/env tmux'
 alias tmux='tmux -u'
-alias tm='tmux -L "$TMUX_SOCKET"'
+alias tm='tmux'
 alias tma='tm attach'
 alias etma='etm attach'
 
