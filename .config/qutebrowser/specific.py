@@ -37,11 +37,17 @@ COOKIES = [
     "https://metacat.online/*",
     "https://searx.foobar.vip/*",
     "https://searx.tuxcloud.net/*",
+    "https://priv.au/*",
+
+    # just in case
+    "https://search.im-in/*",
+    "https://cups.moe/*",
+    "https://gruble.de/*",
+    "https://namejeff.xyz/*",
 
     # old
     "https://paulgo.io/*",
     "https://searx.be/*",
-    "https://priv.au/*",
 ]
 
 for page in COOKIES:
