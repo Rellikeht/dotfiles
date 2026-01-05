@@ -57,34 +57,33 @@ fi
 if [ -z "$SSH_AGENT_TIME" ]; then
     export SSH_AGENT_TIME="90m"
 fi
+if [ -z "$SSH_AGENT_ENV" ]; then
+    mkdir -p "$HOME/.ssh"
+    export SSH_AGENT_ENV="$HOME/.ssh/agent.env"
+fi
 
-# Yeah, because this is hard, especially when having
-# one config for multiple environments
 run_ssh_agent() {
-    local DIR
-    if [ -n "$XDG_RUNTIME_DIR" ]; then
-        DIR="$XDG_RUNTIME_DIR"
-    else
-        DIR="/run/user/$UID"
-        if ! [ -d "/run/user/$UID" ]; then
-            return 1
+    [ -S "$SSH_AUTH_SOCK" ] && return
+
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+        if [ -n "$XDG_RUNTIME_DIR" ]; then
+            SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"
+        elif [ -d "/run/user/$UID" ]; then
+            SSH_AUTH_SOCK="/run/user/$UID"
+        else
+            SSH_AUTH_SOCK="$HOME/.ssh"
         fi
-    fi
-    local AGENT_ENV="$DIR/ssh-agent.env"
-
-    if ! [ -f "$AGENT_ENV" ]; then
-        ssh-agent -t "$SSH_AGENT_TIME" >"$AGENT_ENV"
+        export SSH_AUTH_SOCK="$SSH_AUTH_SOCK/ssh-agent.socket"
     fi
 
-    if [ ! -f "$SSH_AUTH_SOCK" ]; then
-        source "$AGENT_ENV" >/dev/null
+    if [ -z "$SSH_AGENT_TIME" ]; then
+        ssh-agent -a "$SSH_AUTH_SOCK" -t "$SSH_AGENT_TIME" > "$SSH_AGENT_ENV"
+    else
+        ssh-agent -a "$SSH_AUTH_SOCK" > "$SSH_AGENT_ENV"
     fi
 }
 
-# Should be good
-if ! pgrep -u "$USER" ssh-agent &>/dev/null; then
-    run_ssh_agent
-fi
+run_ssh_agent
 
 # }}}
 
