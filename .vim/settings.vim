@@ -38,7 +38,7 @@ set nomodeline
 " shitty, but works somehow
 autocmd BufReadPost *
       \ if (&buftype == "") && (&filetype == "")
-      \ |     filetype detect
+      \ |     silent! filetype detect
       \ | endif
       \ | if (&buftype == "") && (&ft == "")
       \ |     if getline(1) =~ "^!"
@@ -96,6 +96,7 @@ set statusline+=%P
 set scrolloff=4
 
 let g:markdown_minlines = 500
+let g:markdown_recommended_style = 0
 
 " }}} 
 

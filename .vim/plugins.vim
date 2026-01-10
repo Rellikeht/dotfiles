@@ -145,7 +145,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'neovimhaskell/haskell-vim', 
       \ {'for': ['haskell', 'cabal']}
 
-Plug 'lervag/vimtex', {'for': 'latex'}
+Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'Gavinok/vim-troff'
 Plug 'kaarmu/typst.vim', {'for': 'typst'}
 Plug 'HiPhish/info.vim'

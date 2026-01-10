@@ -11,10 +11,10 @@ Diagnostics:
       - readability-*
       - clang-analyzer-*
       - misc-*
-      - concurrency-*
       - bugprone-*
       - mpi-*
       - openmp-*
+      # - concurrency-*
     Remove:
       - modernize-use-trailing-return-type
       - modernize-use-auto

@@ -11,6 +11,7 @@ has_exe() {
 has_exe picom && picom \
     --no-fading-openclose \
     --no-fading-destroyed-argb \
+    --backend glx \
     -c -D 1 &
 has_exe nitrogen && nitrogen --restore &
 has_exe notification-daemon && notification-daemon &

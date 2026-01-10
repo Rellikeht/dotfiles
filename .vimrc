@@ -32,7 +32,7 @@ if v:progname !~? "\v^t(v(i(m)?)?)?" && v:progname !~? "^vim.tiny" " {{{
 
   " }}} 
 
-  if has('win32') " ?? {{{ 
+  if has('win32') " windows friendly options, just in case {{{ 
     set shell=powershell.exe
     set shellxquote=
     let &shellcmdflag='-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
