@@ -1,3 +1,10 @@
 #!/usr/bin/env sh
 
-exec ffmpeg -v error -f null - -i "$@"
+# Slightly better version of just
+# exec ffmpeg -v error -f null - -i "$@"
+
+export AV_LOG_FORCE_COLOR=1
+OUT="$(ffmpeg -v error -f null - -i "$@" 2>&1 | tee /dev/stderr)"
+if [ -n "$OUT" ]; then
+    exit 1
+fi

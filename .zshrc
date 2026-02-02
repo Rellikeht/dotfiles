@@ -149,6 +149,11 @@ bindkey -M menuselect "^N" down-line-or-history
 
 bindkey -M emacs -s "^[i" "**	"
 
+# bash has this out of the box
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M emacs "^X^E" edit-command-line
+
 # }}}
 
 # integrations {{{

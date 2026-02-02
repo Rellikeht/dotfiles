@@ -417,7 +417,7 @@ alias trcc='trr --incomplete-dir "$PWD" --download-dir "$PWD" --add'
 alias trC='trr --no-incomplete-dir --download-dir "$(readlink -f .)" --add'
 alias trCC='trr --incomplete-dir "$(readlink -f .)" --download-dir "$(readlink -f .)" --add'
 
-alias w3m='w3m -B -H'
+alias w3m='w3m -B -o high-intensity=true'
 alias w3h='w3m -T text/html'
 
 alias identexif="identify -format '%[EXIF:*]'"
