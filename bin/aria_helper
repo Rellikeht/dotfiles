@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 
+MAXD=32
+MAXC=16
+SPLIT=16
 aria2c --continue=true \
-    --max-concurrent-downloads=200 \
+    --max-concurrent-downloads=$MAXD \
+    --max-connection-per-server=$MAXC \
+    --split=$SPLIT \
     --optimize-concurrent-downloads=true \
     --bt-detach-seed-only=true \
     --bt-max-peers=80 \

@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 
-LANG1="[format_note*=original]"
-LANG2=
+NOTES="[format_note!*=Untested]"
+LANG1="[format_note*=original]$NOTES"
+LANG2="$NOTES"
 if [ -n "$YTL" ]; then
     LANG1="[language=$YTL]"
-    LANG2="[language=$YTL]"
+    LANG2="$LANG2[language=$YTL]"
 fi
 [ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 

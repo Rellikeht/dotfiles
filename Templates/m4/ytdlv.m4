@@ -1,6 +1,7 @@
 define(HF, ifdef(`RES', RES(), 570))dnl
 #!/usr/bin/env sh
 
+NOTES="[format_note!*=Untested]"
 LANG1="[format_note*=original]"
 LANG2=
 if [ -n "$YTL" ]; then
@@ -14,7 +15,7 @@ fi
 # != doesn't work on it's own
 [ -n "$YTNOCODEC" ] && CODEC="[vcodec!*=$YTNOCODEC]"
 HSET="[height>=HF()]"
-ADDS="((ba$ABR$LANG1/ba$ABR$LANG2)+wv$HSET$CODEC)"
-SINGLE="w$HSET$CODEC$LANG1/w$HSET$CODEC$LANG2"
+ADDS="((ba$ABR$LANG1/ba$ABR$LANG2$NOTES)+wv$HSET$CODEC$NOTES)"
+SINGLE="w$HSET$CODEC$LANG1$NOTES/w$HSET$CODEC$LANG2$NOTES"
 
 exec yt-dlp -S size -f "$ADDS/$SINGLE" "$@"
