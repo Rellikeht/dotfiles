@@ -32,6 +32,7 @@ map gm :move<CR>
 
 map K :histnext<CR>
 map J :histprev<CR>
+map <C-j> :histnext<CR>
 
 map ,gh :history<CR>
 map ,gd :history dir<CR>

@@ -110,11 +110,15 @@ Plug 'coachshea/vim-textobj-markdown'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
-Plug 'rhysd/git-messenger.vim' " TODO
+" TODO this is nice for overengineered config
+Plug 'rhysd/git-messenger.vim'
 
 Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
+
+" TODO change
+Plug 'rhysd/conflict-marker.vim'
 
 " }}} 
 
