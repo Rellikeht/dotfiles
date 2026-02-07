@@ -1,11 +1,18 @@
 #!/usr/bin/env sh
 
+# thank you youtube for broken formats (at least they are marked)
+# also thank you yt-dlp for making this not pass when website doesn't 
+# provide format notes
 NOTES="[format_note!*=Untested]"
+# thank you youtube for automatic dubbing noone asked for
 LANG1="[format_note*=original]$NOTES"
 LANG2="$NOTES"
+# thank you youtube for need for third specifier for all other websites
+LANG3=
 if [ -n "$YTL" ]; then
     LANG1="[language=$YTL]"
     LANG2="$LANG2[language=$YTL]"
+    LANG3="[language=$YTL]"
 fi
 [ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 

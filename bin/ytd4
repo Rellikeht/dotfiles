@@ -1,18 +1,28 @@
 #!/usr/bin/env sh
 
+# thank you youtube for broken formats (at least they are marked)
+# also thank you yt-dlp for making this not pass when website doesn't 
+# provide format notes
 NOTES="[format_note!*=Untested]"
+# thank you youtube for automatic dubbing noone asked for
 LANG1="[format_note*=original]"
 LANG2=
+# just in case manual language setting
 if [ -n "$YTL" ]; then
     LANG1="[language=$YTL]"
     LANG2="[language=$YTL]"
-        fi
+fi
 
+# just in case audio bitrate
 [ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
 # != doesn't work on it's own
 [ -n "$YTNOCODEC" ] && CODEC="[vcodec!*=$YTNOCODEC]"
 HSET="[height>=2160]"
-ADDS="((ba$ABR$LANG1/ba$ABR$LANG2$NOTES)+wv$HSET$CODEC$NOTES)"
-SINGLE="w$HSET$CODEC$LANG1$NOTES/w$HSET$CODEC$LANG2$NOTES"
+# thank you youtube once again for need for such mess
+# original tested format / tested format / just a format for all normal 
+# websites besides youtube
+ADDS="((ba$ABR$LANG1$NOTES/ba$ABR$LANG2$NOTES)+wv$HSET$CODEC$NOTES)"
+ADDS="$ADDS/((ba$ABR$LANG1/ba$ABR$LANG2)+wv$HSET$CODEC)"
+SINGLE="w$HSET$CODEC$LANG1$NOTES/w$HSET$CODEC$LANG2$NOTES/w$HSET$CODEC$LANG2"
 
 exec yt-dlp -S size -f "$ADDS/$SINGLE" "$@"

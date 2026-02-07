@@ -3,6 +3,6 @@
 --no-warnings
 --no-playlist
 --convert-subtitles srt
---concurrent-fragments 8
+--concurrent-fragments 10
 --abort-on-unavailable-fragments
 --remote-components ejs:github
