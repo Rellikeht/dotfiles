@@ -22,7 +22,7 @@ Plug("nvim-lua/plenary.nvim")
 
 Plug(
   "nvim-treesitter/nvim-treesitter",
-  {["do"] = ":silent! TSUpdate"}
+  { ["do"] = ":silent! TSUpdate", branch = "master" }
 )
 Plug("norcalli/nvim-colorizer.lua")
 
@@ -39,7 +39,7 @@ Plug("RRethy/nvim-treesitter-endwise")
 
 Plug("neovim/nvim-lspconfig")
 Plug("Rellikeht/nvim-lsp-config")
-Plug("mfussenegger/nvim-jdtls", {["for"] = "java"})
+Plug("mfussenegger/nvim-jdtls", { ["for"] = "java" })
 Plug("ray-x/lsp_signature.nvim")
 
 Plug("dcampos/nvim-snippy")
