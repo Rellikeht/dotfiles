@@ -2,7 +2,7 @@
 
 --no-warnings
 --no-playlist
+--abort-on-unavailable-fragments
 --convert-subtitles srt
 --concurrent-fragments 10
---abort-on-unavailable-fragments
 --remote-components ejs:github
