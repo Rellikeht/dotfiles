@@ -15,7 +15,7 @@ has_exe picom && picom \
     -c -D 1 &
 has_exe nitrogen && nitrogen --restore &
 has_exe notification-daemon && notification-daemon &
-[ -x "$HOME/.audio_start.sh" ] && "$HOME/.audio_start.sh" &
+[ -x "$HOME/.audio_start" ] && "$HOME/.audio_start" &
 
 [ -x "$HOME/.xinitrc_local" ] && "$HOME/.xinitrc_local"
 exec dwm

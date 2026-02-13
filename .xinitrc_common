@@ -4,16 +4,16 @@ has_exe() {
     which "$1" >/dev/null 2>/dev/null
 }
 
-if [ -x "$HOME/.dwm/kmonads.sh" ]; then
-    "$HOME/.dwm/kmonads.sh" &
+if [ -x "$HOME/.dwm/kmonads" ]; then
+    "$HOME/.dwm/kmonads" &
 else
     has_exe setxkbmap && setxkbmap -option caps:escape
-    [ -x "$HOME/.kb-plug.sh" ] && "$HOME/.kb-plug.sh" &
-    [ -x "$HOME/.dwm/kbd.sh" ] && "$HOME/.dwm/kbd.sh" &
+    [ -x "$HOME/.kb-plug" ] && "$HOME/.kb-plug" &
+    [ -x "$HOME/.dwm/kbd" ] && "$HOME/.dwm/kbd" &
 fi
 
 has_exe xbindkeys && xbindkeys -n &
 has_exe unclutter && unclutter -idle 1.2 &
 has_exe playerctld && playerctld daemon &
 has_exe keynav && keynav daemonize &
-has_exe xrdb && xrdb "$HOME/.Xresources"
+has_exe xrdb && [ -r "$HOME/.Xresources" ] && xrdb "$HOME/.Xresources"
