@@ -1,3 +1,0 @@
-^ca(1, xrandr --output HDMI1 --primary --mode 1920x1080) Hhd+ ^ca()
-#^ca(1, xrandr --output ) + ^ca()
-#^ca(1, xrandr --output --off) - ^ca()

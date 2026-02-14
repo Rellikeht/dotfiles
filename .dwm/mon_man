@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+SCRIPT_DIR="$(readlink -f "$0")"
+SCRIPT_DIR="${SCRIPT_DIR%/*}"
+cd "$SCRIPT_DIR/../monsetup" || exit 1
+
+find . -xtype f -printf "%P\n" | dmenu | xargs sh

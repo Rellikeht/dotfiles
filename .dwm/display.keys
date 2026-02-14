@@ -1,7 +1,0 @@
-entermaster=grabkeys;
-enterslave=grabkeys;
-key_Escape=exit;
-key_p=exit;
-key_P=exit;
-key_n=exec: xrandr --output HDMI1 --mode 1920x1080 --primary && xrandr --output LVDS1 --off && nitrogen --restore;
-key_N=exec: xrandr --output HDMI1 --mode 1920x1080 --primary && xrandr --output LVDS1 --mode 1600x900 --right-of HDMI1 && nitrogen --restore;
