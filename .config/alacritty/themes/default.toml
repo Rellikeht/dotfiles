@@ -7,20 +7,20 @@ text = "#000000"
 
 [colors.normal]
 black = "#05141a"
-red = "#b00a2a"
-green = "#0aaa30"
+red = "#ca0a2a"
+green = "#0ab230"
 yellow = "#b0b02a"
-blue = "#1444ba"
+blue = "#1444c2"
 magenta = "#c020df"
-cyan = "#30baf0"
+cyan = "#30bce2"
 white = "#aacfda"
 
 [colors.bright]
-black = "#122838"
+black = "#1a3248"
 red = "#ff1816"
-green = "#1fff24"
+green = "#1fff2a"
 yellow = "#ffff24"
-blue = "#128fff"
+blue = "#1294ff"
 magenta = "#ff2bff"
 cyan = "#3affff"
 white = "#ffffff"
@@ -29,7 +29,7 @@ white = "#ffffff"
 background = "#000108"
 bright_foreground = "#02aacd" # ??
 dim_foreground = "#020a0f" # ??
-foreground = "#2f6aff"
+foreground = "#3072ff"
 
 [colors.search.matches]
 background = "#002412"
