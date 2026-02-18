@@ -162,6 +162,10 @@ bind '"" history-search-forward'
 bind '"\ei":"**	"'
 bind 'Space:magic-space'
 
+# delete deletes
+bind '"[3~" forward-backward-delete-char'
+bind '"[3;5~" kill-word'
+
 # }}}
 
 # integrations {{{

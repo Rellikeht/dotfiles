@@ -41,26 +41,6 @@ family = "MesloLGS NF"
 style = "Bold Italic"
 
 [[keyboard.bindings]]
-action = "Paste"
-key = "V"
-mods = "Control|Alt"
-
-[[keyboard.bindings]]
-action = "Copy"
-key = "C"
-mods = "Control|Alt"
-
-[[keyboard.bindings]]
-action = "ScrollPageUp"
-key = "P"
-mods = "Control|Alt"
-
-[[keyboard.bindings]]
-action = "ScrollPageDown"
-key = "N"
-mods = "Control|Alt"
-
-[[keyboard.bindings]]
 action = "ScrollToTop"
 key = "Comma"
 mods = "Shift|Control|Alt"
@@ -101,8 +81,8 @@ mode = "Alt"
 
 [[keyboard.bindings]]
 command = {program = "sh", args = ["-c", "~/.config/alacritty/theme-toggle.sh"]}
-key = "t"
-mods = "Control|Alt"
+key = "="
+mods = "Alt"
 
 [scrolling]
 history = 10000

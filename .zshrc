@@ -154,6 +154,10 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey -M emacs "^X^E" edit-command-line
 
+# delete key deletes
+bindkey -M emacs "\e[3~" delete-char
+bindkey -M emacs "\e[3;5~" kill-word
+
 # }}}
 
 # integrations {{{
