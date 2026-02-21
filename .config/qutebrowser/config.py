@@ -66,9 +66,9 @@ config.set("content.cache.size", 67108864)
 # }}}
 
 # config.set('editor.command',
-#           ['gsvim', '-c', 'normal {line}G{column0}1',
+#           ['gvim', '-c', 'normal {line}G{column0}1',
 #            '{file}'])
-config.set("editor.command", ["st", "svim", "{file}"])
+config.set("editor.command", ["st", "vim", "{file}"])
 
 config.set("auto_save.session", True)
 config.set("auto_save.interval", 20000)
@@ -183,16 +183,16 @@ config.bind(",dH", "open -t qute://history")
 config.bind(",s", "config-cycle statusbar.show always never")
 config.bind(",t", "config-cycle tabs.show always never")
 config.bind(
-    ",e", 'hint links spawn -d sh -c "wget -O - "{hint-url}" | gsvim -"'
+    ",e", 'hint links spawn -d sh -c "wget -O - "{hint-url}" | gvim -"'
 )
-config.bind(",E", 'spawn -d sh -c "wget -O - "{url}" | gsvim -"')
+config.bind(",E", 'spawn -d sh -c "wget -O - "{url}" | gvim -"')
 config.bind(
     ",r",
-    'hint links spawn -d sh -c "wget -O - "{hint-url}" | w3m -T text/html -dump | gsvim -"',
+    'hint links spawn -d sh -c "wget -O - "{hint-url}" | w3m -T text/html -dump | gvim -"',
 )
 config.bind(
     ",R",
-    'spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gsvim -"',
+    'spawn -d sh -c "wget -O - "{url}" | w3m -T text/html -dump | gvim -"',
 )
 config.bind(",v", 'spawn -d vlc "{url}"')
 config.bind(",V", 'hint links spawn -d vlc "{hint-url}"')

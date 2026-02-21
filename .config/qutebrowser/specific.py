@@ -27,6 +27,9 @@ config.set("content.cookies.store", True)
 config.set("content.cookies.accept", "no-unknown-3rdparty", "devtools://*")
 
 COOKIES = [
+    # :(
+    "https://search.brave.com/*",
+
     "https://search.rhscz.eu/*",
     "https://searx.stream/*",
     "https://searx.rhscz.eu/*",
