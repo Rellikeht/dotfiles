@@ -197,6 +197,8 @@ source_if_exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highl
 
 # p10k config
 source_if_exists "$HOME/.p10k.zsh"
-instant-zsh-post
+command -v instant-zsh-post &>/dev/null &&
+    instant-zsh-post ||
+    true
 
 # }}}
