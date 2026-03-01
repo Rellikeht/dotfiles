@@ -1,31 +1,24 @@
 -- load standard vis module, providing parts of the Lua API
 require("vis")
 
--- {{{
+-- === plugins ===
+
 -- TODO arglist or something close
--- }}}
 
-local plugins = { --  {{{
+local plugins = {
 
-  -- don't even need config {{{
-  { "https://repo.or.cz/vis-goto-file.git" },
-  { "https://gitlab.com/muhq/vis-lockfiles" },
+  -- don't even need config
   { "https://github.com/jpaulogg/vis-ins-completion" },
   { "https://github.com/milhnl/vis-backspace" },
   { "https://github.com/milhnl/vis-options-backport" },
   { "https://github.com/lutobler/vis-commentary" },
   { "https://repo.or.cz/vis-surround.git" },
-  --  }}}
 
   { "https://repo.or.cz/vis-pairs.git" },
   { "https://repo.or.cz/vis-quickfix.git" },
-  { "https://git.cepl.eu/cgit/vis/vis-fzf-open/" },
-  -- TODO B do i even need this
-  -- TODO C check for config options and usage
-  -- { "https://git.sr.ht/~emg/vis-cscope" },
-  -- { "https://github.com/kupospelov/vis-ctags" },
+  { "https://git.sr.ht/~mcepl/vis-fzf-open" },
 
-  --  {{{ ???
+  -- ???
   -- only 2 char combinations
   -- {"https://github.com/erf/vis-sneak"},
 
@@ -43,29 +36,23 @@ local plugins = { --  {{{
     url = "https://github.com/jocap/vis-filetype-settings",
     file = "vis-filetype-settings",
   },
-
-  -- }}}
-
-} --  }}}
+}
 
 require("plugins/vis-plug").init(plugins, true)
 
--- because path can't work by default somehow {{{
+-- because path can't work by default somehow
 local cache = os.getenv("XDG_CACHE_HOME")
 if cache == nil then cache = os.getenv("HOME") .. "/.cache" end
 package.path = cache .. "/vis-plug/plugins/?/?.lua;" .. cache ..
                  "/vis-plug/plugins/?/init.lua;" .. package.path
---  }}}
 
--- helpers {{{
+-- === helpers ===
 
 local function hasSuffix(str, suffix)
   return str:sub(-string.len(suffix)) == suffix
 end
 
---  }}}
-
-local p = require "vis-pairs" --  {{{
+local p = require "vis-pairs"
 p.autopairs = false
 p.map = {
   {
@@ -74,10 +61,8 @@ p.map = {
   },
 }
 
---  }}}
-
 -- TODO A bindings, greps
-local qf = require("vis-quickfix") --  {{{
+local qf = require("vis-quickfix")
 
 qf.grepprg = "grep -HEIn --exclude-dir=.git"
 qf.peek = true
@@ -90,19 +75,28 @@ qf.menu = false
 -- what title it has or anything to differentiate
 -- Simply: one big useless shit
 
---  }}}
 
 -- TODO B bindings
-local fop = require("vis-fzf-open") --  {{{
+local fop = require("vis-fzf-open")
 
---  }}}
-
-require("vis-filetype-settings") --  {{{
+require("vis-filetype-settings")
 settings = {
-  --
-} --  }}}
+    markdown = {"set tabwidth 2"},
+    python = {"set tabwidth 2"},
+    nix = {"set tabwidth 2"},
+    lua = {"set tabwidth 2"},
+    ocaml = {"set tabwidth 2"},
+    zig = {"set tabwidth 2"},
+    vim = {"set tabwidth 2"},
+    haskell = {"set tabwidth 2"},
+    ocaml = {"set tabwidth 2"},
+    elixir = {"set tabwidth 2"},
+    erlang = {"set tabwidth 2"},
+}
 
-vis.events.subscribe( --  {{{
+-- === settings ===
+
+vis.events.subscribe(
   vis.events.INIT, function()
     -- Your global configuration options
 
@@ -133,9 +127,9 @@ vis.events.subscribe( --  {{{
     -- and this probably too
     vis:command("set shell bash")
   end
-) --  }}}
+)
 
-vis.events.subscribe( --  {{{
+vis.events.subscribe(
   vis.events.WIN_OPEN, function(win)
     -- Your per window configuration options e.g.
 
@@ -146,7 +140,7 @@ vis.events.subscribe( --  {{{
     vis:command("set expandtab on")
     vis:command("set cursorline on")
     -- vis:command("set showtabs on")
-    vis:command("set tabwidth 2")
+    vis:command("set tabwidth 4")
 
     -- filename related commands
     if win.file.name == nil then return end
@@ -155,8 +149,8 @@ vis.events.subscribe( --  {{{
     end
 
   end
-) --  }}}
+)
 
-vis.events.subscribe( -- {{{
+vis.events.subscribe(
   vis.events.FILE_OPEN, function(file) end
-) -- }}}
+)

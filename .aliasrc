@@ -206,11 +206,6 @@ alias em='emacs -nw'
 alias emc='emacsclient -nw'
 alias gemc='emacsclient -c'
 alias emd='emacs --daemon'
-
-alias vis='TERM=st-256color vis'
-alias rsv='doas svim'
-alias rka='doas kak'
-alias rvi='doas vis'
 # }}}
 
 # settings {{{
