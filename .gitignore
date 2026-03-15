@@ -46,6 +46,8 @@ highlight.css
 .config/transmission*/blocklists/
 .config/transmission*/dht.dat
 .config/transmission*/stats.json
+.config/transmission*/queue.json
+.config/transmission*/bandwidth-groups.json
 # }}}
 
 # mutlimedia {{{
