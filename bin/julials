@@ -7,18 +7,28 @@ exec julia \
     --startup-file=no --history-file=no \
     --color=no --quiet -e \
     '
-    # Load LanguageServer.jl: attempt to load from ~/.julia/environments/nvim-lspconfig
-    # with the regular load path as a fallback
+    # Setup fallback on global environment just in case
+    ls_install_path = joinpath(
+        get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")),
+        "environments", "v$(VERSION.major).$(VERSION.minor)"
+    )
+    pushfirst!(LOAD_PATH, ls_install_path)
+    # Also setup fallback on lsp config default environment just in case
     ls_install_path = joinpath(
         get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")),
         "environments", "nvim-lspconfig"
     )
     pushfirst!(LOAD_PATH, ls_install_path)
+    # Load LanguageServer.jl: attempt to load from ~/.julia/environments/lsp
+    # with the regular load path as a fallback
+    ls_install_path = joinpath(
+        get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")),
+        "environments", "lsp"
+    )
+    pushfirst!(LOAD_PATH, ls_install_path)
     using LanguageServer, SymbolServer, StaticLint
     popfirst!(LOAD_PATH)
-
-    # Should there be loading from default environment
-    # (~/.julia/environments/v.x.xx) ?
+    popfirst!(LOAD_PATH)
 
     depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
     project_path = let
