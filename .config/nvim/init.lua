@@ -24,7 +24,7 @@ Plug(
   "nvim-treesitter/nvim-treesitter",
   { ["do"] = ":silent! TSUpdate", branch = "master" }
 )
-Plug("norcalli/nvim-colorizer.lua")
+Plug("catgoose/nvim-colorizer.lua")
 
 -- }}}
 

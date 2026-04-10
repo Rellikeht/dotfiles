@@ -17,7 +17,6 @@
     "cache-size-mb": 256,
     "default-trackers": "",
     "dht-enabled": true,
-    "download-dir": "/home/michal/Videos/szajs/egzorcysta",
     "download-queue-enabled": true,
     "download-queue-size": 40,
     "encryption": 1,

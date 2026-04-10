@@ -13,7 +13,7 @@ vim.cmd.source(VIM_DIR .. "/plugins.vim")
 -- {{{
 
 Plug("nvim-lua/plenary.nvim")
-Plug("norcalli/nvim-colorizer.lua")
+Plug("catgoose/nvim-colorizer.lua")
 Plug("windwp/nvim-autopairs")
 
 Plug("hrsh7th/nvim-cmp")
