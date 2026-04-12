@@ -13,7 +13,7 @@ else
 fi
 
 has_exe xbindkeys && xbindkeys -n &
-has_exe unclutter && unclutter -idle 1.2 &
+has_exe unclutter && unclutter -idle 1.2 -noevents &
 has_exe playerctld && playerctld daemon &
 has_exe keynav && keynav daemonize &
 has_exe xrdb && [ -r "$HOME/.Xresources" ] && xrdb "$HOME/.Xresources"

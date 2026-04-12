@@ -163,6 +163,9 @@ cnoreabbrev info Info
 
 " settings {{{
 
+command! -count=1 -nargs=1 -complete=option SetOptionCount
+      \ execute "set <args>=".((!v:count)?<count>:(v:count))
+
 nnoremap <Space>qs :<C-u>SetOptionCount laststatus<CR>
 
 " }}}
