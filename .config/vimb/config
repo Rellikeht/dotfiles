@@ -1,8 +1,10 @@
 set editor-command=st -e vim "%s"
 set dark-mode=true
+set history-max-items=20000
+#set smooth-scrolling=true
 
 set accelerated-2d-canvas=true
-set hardware-acceleration-policy=always
+set hardware-acceleration-policy=ondemand
 set webgl=true
 set input-autohide=true
 set spell-checking=false
@@ -16,17 +18,22 @@ set strict-ssl=false
 set user-scripts=true
 set stylesheet=true
 set site-specific-quirks=true
-
-set default-font=MesloLGS NF
-set font-size=13
-#set monofont=M+ 1m
-set monospace-font=MesloLGS NF
-set monospace-font-size=13
-#set sansfont=DejaVu Sans
-#set seriffont=DejaVu Serif
+set font-size=13px
 
 set print-backgrounds=true
 set offline-cache=true
 
+set default-zoom=120
+set hint-timeout=0
+set hint-keys="asdfjkl;"
+set hint-match-element=false
+
 nunmap <c-z>
 iunmap <c-z>
+
+nnoremap O :tabopen<Space>
+nnoremap + zi
+nnoremap - zo
+nnoremap = zz
+
+source ~/.config/vimb/local

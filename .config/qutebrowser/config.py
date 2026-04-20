@@ -63,6 +63,7 @@ config.set("tabs.background", True)
 config.set("tabs.show", "multiple")
 
 config.set("content.cache.size", 67108864)
+config.set("session.lazy_restore", True)
 # }}}
 
 # config.set('editor.command',
