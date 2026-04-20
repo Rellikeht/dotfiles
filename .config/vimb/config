@@ -36,4 +36,11 @@ nnoremap + zi
 nnoremap - zo
 nnoremap = zz
 
+shortcut-add @br=https://search.brave.com/search?q=$0
+shortcut-default @br
+:shortcut-add @qw=https://qwant.com?q=$0
+:shortcut-add @dg=https://duckduckgo.com/?q=$0
+:shortcut-add @dl=https://duckduckgo.com/lite/?q=$0
+:shortcut-add @dh=https://html.duckduckgo.com/html?q=$0
+
 source ~/.config/vimb/local

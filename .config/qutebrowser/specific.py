@@ -29,6 +29,7 @@ config.set("content.cookies.accept", "no-unknown-3rdparty", "devtools://*")
 COOKIES = [
     # :(
     "https://search.brave.com/*",
+    "https://*.qwant.com/*",
 
     "https://search.rhscz.eu/*",
     "https://searx.stream/*",
@@ -72,6 +73,7 @@ for page in [
     "*://odysee.com/*",
     "*://*.youtube.com/*",
     "*://youtube.com/*",
+    "https://*.qwant.com/*",
     # Dunno if that is necessary
     "*://github.com/*",
     "*://gitlab.com/*",

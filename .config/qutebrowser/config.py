@@ -144,6 +144,7 @@ config.set(
     }  # }}}
     | {  #  {{{
         "@br": "https://search.brave.com/search?q={}",
+        "@qw": "https://qwant.com/?q={}",
         "@ss": "https://searchmysite.net/search?q={}",
         "@cl": "https://curlie.org/search?q={}",
         "@mw": "https://mwmbl.org/?q={}",
