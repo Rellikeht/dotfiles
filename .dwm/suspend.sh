@@ -9,7 +9,7 @@
 
 C=$(doas fgconsole)
 
-$@ &
+"$@" &
 #sleep 0.25
 sleep 0.2
 

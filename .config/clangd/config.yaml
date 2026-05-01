@@ -1,9 +1,16 @@
----
 CompileFlags:
-  Add: [-Wall, -Wno-variadic-macros, -Wextra, -Wunused]
+  Add:
+    - -Wall
+    - -Wno-variadic-macros
+    - -Wextra
+    - -Wunused
+    - -Wpedantic
+    - -Wno-empty-translation-unit
+
 Diagnostics:
   UnusedIncludes: Strict
   ClangTidy:
+    FastCheckFilter: Loose
     Add:
       - modernize-*
       - performance-*
@@ -22,16 +29,24 @@ Diagnostics:
       - misc-use-anonymous-namespace
       - bugprone-switch-missing-default-case
       - readability-math-missing-parentheses
-    FastCheckFilter: Loose
+
 ---
 If:
-  PathMatch: [.*\.c, .*\.h]
+  PathMatch: [.*\.c]
 CompileFlags:
   Add: [-xc]
+
+---
+If:
+  PathMatch: [.*\.h]
+CompileFlags:
+  Add: [-xc-header]
+
 ---
 If:
   PathMatch: [.*\.cpp, .*\.hpp]
 CompileFlags:
   Add: [-xc++, -Weffc++]
-ClangTidy:
-  Add: cppcoreguidelines-*
+Diagnostics:
+  ClangTidy:
+    Add: cppcoreguidelines-*
