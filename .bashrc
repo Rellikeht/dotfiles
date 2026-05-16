@@ -179,7 +179,7 @@ if [ -z "$__Z_INITIALIZED" ]; then
             local TEMP
             TEMP="$(mktemp)"
             "$@" bash once enhanced echo fzf >"$TEMP"
-            patch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
+            patch --no-backup-if-mismatch -u "$TEMP" -i "$HOME/.bash/zlua_patch" &>/dev/null
             rm -f "$TEMP.orig"
             eval "$(cat "$TEMP")"
             rm "$TEMP"

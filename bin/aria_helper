@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-MAXD=32
+MAXD=16
 MAXC=16
 SPLIT=16
 aria2c --continue=true \
