@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 BAT_SCRIPT="$HOME/.local/dwm/helpers/bat"
 S=" "
