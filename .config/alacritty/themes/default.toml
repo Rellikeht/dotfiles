@@ -27,8 +27,9 @@ white = "#ffffff"
 
 [colors.primary]
 background = "#000108"
-bright_foreground = "#02aacd" # ??
-dim_foreground = "#020a0f" # ??
+# used only if bold text is brightened, currently unused
+# bright_foreground = "#02aacd" # untested value
+dim_foreground = "#6f90a0"
 foreground = "#3072ff"
 
 [colors.search.matches]
