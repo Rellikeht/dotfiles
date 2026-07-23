@@ -125,11 +125,9 @@ Plug 'rhysd/conflict-marker.vim'
 " config help {{{ 
 
 Plug 'direnv/direnv.vim'
-
 Plug 'tmux-plugins/vim-tmux'
 Plug 'vifm/vifm.vim'
 Plug 'nickel-lang/vim-nickel'
-
 Plug 'kmonad/kmonad-vim'
 Plug 'mmikeww/autohotkey.vim'
 
@@ -141,7 +139,9 @@ Plug 'junegunn/vader.vim'
 
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
-Plug 'vale1410/vim-minizinc'
+Plug 'CervEdin/vim-minizinc'
+Plug 'Rellikeht/nim.vim'
+Plug 'NickeZ/epics.vim'
 
 Plug 'LnL7/vim-nix', {'for': 'nix'} " TODO A what is going on
 Plug 'ziglang/zig.vim', {'for': 'zig'}
