@@ -4,7 +4,7 @@ has_exe() {
     which "$1" >/dev/null 2>/dev/null
 }
 
-[ -x "$HOME/.xinitrc_local_env" ] && eval "$(cat "$HOME/.xinitrc_local_env")"
+[ -r "$HOME/.xinitrc_local_env" ] && eval "$(cat "$HOME/.xinitrc_local_env")"
 
 [ -x "$HOME/.local/dwm/helpers/bar" ] && "$HOME/.local/dwm/helpers/bar" &
 [ -x "$HOME/.xinitrc_common" ] && "$HOME/.xinitrc_common"
