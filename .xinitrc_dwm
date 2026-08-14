@@ -14,8 +14,11 @@ has_exe picom && picom \
     --backend glx \
     -c -D 1 &
 has_exe nitrogen && nitrogen --restore &
-has_exe notification-daemon && notification-daemon &
-[ -x "$HOME/.audio_start" ] && "$HOME/.audio_start" &
 
 [ -x "$HOME/.xinitrc_local" ] && "$HOME/.xinitrc_local"
-exec dwm
+if [ -x "$HOME/.xinitrc_local_post" ]; then
+    dwm
+    "$HOME/.xinitrc_local_post"
+else
+    exec dwm
+fi
