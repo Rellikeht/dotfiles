@@ -4,15 +4,15 @@
 # https://github.com/alacritty/alacritty-theme
 
 # TODO better switching (some form of cycling)
-THEMES=$(readlink -f ~/.config/alacritty/themes)
+THEMES=$(readlink -f "$HOME/.config/alacritty/themes")
 DEFAULT='default.toml'
 ADDITIONAL='inferno.toml'
-DEST=~/.alacritty.theme.toml
+DEST="$HOME/.local/alacritty.theme.toml"
 
 if ! [ -e "$DEST" ]; then
     ln -s "$THEMES/$DEFAULT" "$DEST"
 else
-    CUR=$(readlink -f "$DEST")
+    CUR="$(readlink -f "$DEST")"
     rm -f "$DEST"
     if [ "$CUR" = "$THEMES/$DEFAULT" ]; then
         ln -s "$THEMES/$ADDITIONAL" "$DEST"

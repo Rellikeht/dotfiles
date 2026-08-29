@@ -1,6 +1,9 @@
 [general]
 import = [
-    "~/.alacritty.theme.toml",
+    # just in case local isn't there
+    # in such case switching works after switch and restart
+    "~/.config/alacritty/themes/default.toml",
+    "~/.local/alacritty.theme.toml",
 ]
 live_config_reload = true
 

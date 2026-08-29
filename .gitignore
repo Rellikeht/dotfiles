@@ -144,5 +144,6 @@ Templates/**/*.so
 dmypy.json
 *.bck
 bck.*
+.config/alacritty/theme.toml
 
 #  }}}
