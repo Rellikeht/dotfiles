@@ -24,25 +24,20 @@ import dracula.draw as draw
 config: ConfigAPI = config  # noqa: F821
 c: ConfigContainer = c  # noqa: F821
 
-# QT flags, currently only for hardware acceleration
-config.set(
-    "qt.args",
-    [  # {{{
-        "ignore-gpu-blocklist",
-        "enable-gpu-rasterization",
-        "enable-zero-copy",
-        "enable-vulkan",
-        "enable-native-gpu-memory-buffers",
-        "disable-gpu-driver-bug-workarounds",
-        # "use-gl=egl",
-        "num-raster-threads=4",
-        "enable-features=VaapiVideoDecoder",
-        "enable-features=VaapiIgnoreDriverChecks",
-        "disable-features=UseChromeOSDirectVideoDecoder",
-    ],  # }}}
-)
+# QT flags allowing hardware acceleration
+c.qt.args.extend([  # {{{
+    "ignore-gpu-blocklist",
+    "enable-gpu-rasterization",
+    "enable-zero-copy",
+    "enable-native-gpu-memory-buffers",
+    "enable-features=VaapiVideoDecoder",
+    "enable-features=VaapiIgnoreDriverChecks",
+    "disable-features=UseChromeOSDirectVideoDecoder",
+]) # }}}
 
 # {{{ OTHER SETTINGS
+
+config.set("content.default_encoding", "utf8")
 
 # Load images automatically in web pages.
 config.set("content.images", True)
@@ -258,6 +253,10 @@ config.set("content.media.audio_capture", "ask")
 config.set("content.media.audio_video_capture", "ask")
 config.set("content.media.video_capture", "ask")
 config.set("content.media.audio_capture", True, "https://discord.com")
+
+# localhost doesn't need certificates
+config.set("content.tls.certificate_errors", "load-insecurely", "*://localhost:*/*")
+config.set("content.tls.certificate_errors", "load-insecurely", "*://127.0.0.1:*/*")
 
 # ============================================================
 # SPECIFIC AND LOCAL
