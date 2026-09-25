@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-exec yt-dlp --flat-playlist --dump-json "$@"

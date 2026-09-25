@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+SEL="b"
+if [ "$#" -gt 1 ]; then
+    case "$1" in
+        b|w|"")
+            SEL="$1"
+            shift
+            ;;
+    esac
+fi
+
+# thank you youtube for automatic dubbing noone asked for
+LANG1="[format_note*=original]"
+# just in case manual language setting
+[ -n "$YTL" ] && LANG1="[language=$YTL]"
+# just in case audio bitrate
+[ -n "$YTABR" ] && ABR="[abr>=$YTABR]"
+
+# thank you youtube once again for need for such mess
+# original tested format / tested format / just a format for all normal 
+# websites besides youtube
+FORMAT="${SEL}a$ABR$LANG1"
+echo "$FORMAT"
+
+# thank you yt-dlp for `size` not working as advertised
+exec yt-dlp -S height,br,size -f "$FORMAT" "$@"
