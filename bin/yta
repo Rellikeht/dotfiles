@@ -20,7 +20,8 @@ LANG1="[format_note*=original]"
 # thank you youtube once again for need for such mess
 # original tested format / tested format / just a format for all normal 
 # websites besides youtube
-FORMAT="${SEL}a$ABR$LANG1"
+FORMAT="${SEL}a$ABR"
+FORMAT="$FORMAT$LANG1/$FORMAT"
 echo "$FORMAT"
 
 # thank you yt-dlp for `size` not working as advertised

@@ -358,7 +358,7 @@ alias prgc='prg \
     -a mpv -a vlc \
     -a vifm -a ranger -a nnn -a lf \
     -a pcmanfm -a pcmanfm-qt \
-    -a wget -a curl -a aria2c -a rsync -a gdown -a megatools \
+    -a wget -a curl -a aria2c -a gdown -a megatools \
     -a rar -a unrar -a 7z -a 7za -a 7zr \
     -a zipgrep -a zipcloak -a zipsplit \
     -a xz -a unxz -a xzcat -a lzma -a unlzma -a lzcat \
@@ -566,7 +566,6 @@ fi
 #  }}}
 
 # other {{{
-alias kbp="~/.kb-plug.sh"
 
 ## groff
 alias groff='groff -ktep'
@@ -576,6 +575,10 @@ alias gsf='gms -Tpdf'
 ## syncthing client
 alias stl='stc --homedir ~/.config/syncthing/ --ignore_cert_errors'
 alias stL='stc --homedir ~/.config/syncthing/'
+
+## nix
+alias npr="nix repl --expr 'import <nixpkgs> {}'"
+alias nur="nix repl --expr 'import <unstable> {}'"
 # }}}
 
 # pacman {{{
@@ -639,41 +642,6 @@ else # {{{
         alias pkgf="apk show"
     fi
 fi
-# }}}
-
-# nix {{{
-alias ncg='nix-collect-garbage -d'
-alias nsh='nix shell'
-alias ndv='nix develop'
-alias nbu='nix build -L'
-alias nru='nix run'
-alias nst='nix store'
-alias npf='nix profile'
-alias nfl='nix flake'
-alias nre='nix repl'
-alias nso='nix store optimise'
-
-alias nfu='nix flake update'
-alias nfa='nix flake archive'
-alias nfs='nix flake show'
-
-alias npu='nix profile upgrade'
-alias npa='nix profile upgrade --all'
-alias npA='nix profile upgrade ".*"'
-alias npl='nix profile list'
-alias npd='nix profile remove'
-
-# install is deprecated in some new nixes
-alias npi='nix profile install'
-
-alias npr="nix repl --expr 'import <nixpkgs> {}'"
-alias nur="nix repl --expr 'import <unstable> {}'"
-
-alias nish='nix-shell'
-alias nist='nix-store'
-alias nibu='nix-build'
-alias nich='nix-channel'
-alias niso='nix-store --optimise'
 # }}}
 
 # direnv {{{

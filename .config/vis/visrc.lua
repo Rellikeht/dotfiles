@@ -133,13 +133,11 @@ vis.events.subscribe(
   vis.events.WIN_OPEN, function(win)
     -- Your per window configuration options e.g.
 
-    -- why can't that work in previous section
-    vis:command("set number on")
     vis:command("set relativenumbers on")
     vis:command("set theme peaksea")
     vis:command("set expandtab on")
     vis:command("set cursorline on")
-    -- vis:command("set showtabs on")
+    vis:command("set showtabs on")
     vis:command("set tabwidth 4")
 
     -- filename related commands

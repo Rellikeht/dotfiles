@@ -1,12 +1,12 @@
 var
-  silent {.compiletime.} = false
-  scrbase {.compiletime.} = false
-  tic {.compiletime.} = false
-  strip {.compiletime.} = false
-  musl {.compiletime.} = false
-  stat {.compiletime.} = false
+  silent {.compileTime.} = false
+  scrbase {.compileTime.} = false
+  tic {.compileTime.} = false
+  strip {.compileTime.} = false
+  musl {.compileTime.} = false
+  stat {.compileTime.} = false
 
-template define(name) =
+template define*(name) =
   static:
     name = true
 

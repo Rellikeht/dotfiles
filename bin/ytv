@@ -22,6 +22,7 @@ LANG1="[format_note*=original]"
 # original tested format / tested format / just a format for all normal 
 # websites besides youtube
 FORMAT="w$HSET$CODEC$LANG1/(ba$ABR$LANG1+wv$HSET)"
+FORMAT="$FORMAT/w$HSET$CODEC/(ba$ABR+wv$HSET)"
 
 # thank you yt-dlp for `size` not working as advertised
 exec yt-dlp -S height,br,size -f "$FORMAT" "$@"
