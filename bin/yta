@@ -22,7 +22,6 @@ LANG1="[format_note*=original]"
 # websites besides youtube
 FORMAT="${SEL}a$ABR"
 FORMAT="$FORMAT$LANG1/$FORMAT"
-echo "$FORMAT"
 
 # thank you yt-dlp for `size` not working as advertised
 exec yt-dlp -S height,br,size -f "$FORMAT" "$@"

@@ -314,49 +314,7 @@ fzh() {
 
 # }}}
 
-# multimedia {{{
-
-mps() {
-    local START="$1"
-    shift
-    mpv --start="$START" $@
-}
-
-mpp() {
-    local PROF="$1"
-    shift
-    mpv --profile="$PROF" $@
-}
-
-ytdg() {
-    local QUAL FORM
-    if [ -n "$2" ]; then
-        QUAL="$1"
-        shift
-    fi
-    if [ -n "$2" ]; then
-        FORM="$1"
-        shift
-    fi
-    yts -f "ba+bv[height>=$QUAL]/best[height>=$QUAL]$FORM" $@
-}
-
-ytda() {
-    local QUAL FORM LANG
-    if [ -n "$2" ]; then
-        LANG="[language=$1]"
-        shift
-    fi
-    if [ -n "$2" ]; then
-        QUAL="$1"
-        shift
-    fi
-    if [ -n "$2" ]; then
-        FORM="$1"
-        shift
-    fi
-    yts -f "ba$LANG+bv[height>=$1]/best[height>=$1]$FORM" $@
-}
+# random stuff {{{
 
 trm() {
     local DIR
@@ -364,10 +322,6 @@ trm() {
     [ -z "$2" ] && DIR="$2"
     transmission-remote -t "$1" --move "$DIR"
 }
-
-# }}}
-
-# random stuff {{{
 
 maxe() {
     if [ -n "$2" ]; then

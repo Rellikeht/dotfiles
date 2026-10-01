@@ -122,13 +122,6 @@ alias dh='du -sh'
 alias ddate='date "+%d.%m.%Y"'
 alias rlp='rlf $(!!)'
 alias dhp='du -sh $(!!)'
-
-## its_just_grep - grep run as script to have different and nonconflicting name
-alias its_just_grep='its_just_grep --color=always'
-alias tbd='top -b -d "$([ -n "$WT" ] && echo "$WT" || echo 1)"'
-alias grepWgrep='its_just_grep --invert-match -E "\<its_just_grep\>"'
-alias tbg='tbd | grepWgrep | its_just_grep -E'
-alias tbgm='tbd -e m | grepWgrep | its_just_grep -E'
 # }}}
 
 # mounts {{{
@@ -599,11 +592,9 @@ if [ "$(uname)" = "FreeBSD" ]; then # {{{
     alias gdif='gdiff --color=always --expand-tab'
     alias gdiu='gdiff --color=never --unified'
 
-    alias fpr='ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
-        grepWgrep | its_just_grep -E'
-
-    alias fprh="ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
-        numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
+    alias mps='ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args='
+    alias hps="ps -ax -o rss= -o pid= -o user= -o state= -o pcpu= -o args= | \
+        numfmt --from-unit=1K --field=1 --to=iec"
 
     # TODO
     # it needs script or link for watch program
@@ -624,11 +615,9 @@ else # {{{
     alias dif='diff --color=always --expand-tab'
     alias diu='diff --color=never --unified'
 
-    alias fpr='ps axh o rss,pid,state,pcpu,user,cmd | \
-        grepWgrep | its_just_grep -E'
-
-    alias fprh="ps axh o rss,pid,state,pcpu,user,cmd | \
-        numfmt --from-unit=1K --field=1 --to=iec | grepWgrep | its_just_grep -E"
+    alias mps='ps axh o rss,pid,state,pcpu,user,cmd'
+    alias hps="ps axh o rss,pid,state,pcpu,user,cmd | \
+        numfmt --from-unit=1K --field=1 --to=iec"
 
     alias w1='wat 1'
     alias w1c='watc 1'
