@@ -1,16 +1,16 @@
-EDITOR='vim'
-VISUAL='svim'
-BAT_THEME='Dracula'
-LESS='--save-marks --status-column --incsearch --ignore-case --status-col-width=1'
-PAGER='less -r'
-MANPAGER='less -s -M -r --use-color -Dd+c -DPYb -DSYb'
+EDITOR=vim
+LESS='--status-column --status-col-width=1 --incsearch --ignore-case --RAW-CONTROL-CHARS'
+PAGER='less -R'
+MANPAGER='less -s -M -R --use-color -Dd+c -DPYb -DSYb'
 GROFF_NO_SGR=1
 
-JULIA_EDITOR='ssvim'
 ZIG_LOCAL_CACHE_DIR='/tmp/$USER-zig/'
 PYTHONDONTWRITEBYTECODE='false'
 
 NIX_REMOTE=daemon
+
+BAT_THEME=Dracula
+BAT_LESS_FLAGS='--save-marks --incsearch --ignore-case --wordwrap'
 
 _JAVA_AWT_WM_NONREPARENTING='1'
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'

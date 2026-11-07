@@ -37,6 +37,8 @@ ZSH_AUTOSUGGEST_USE_ASYNC='true'
 # nothing
 export POWERLEVEL9K_INSTANT_PROMPT=quiet
 
+export JULIA_SHELL='zsh -i'
+
 # History options
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS

@@ -167,7 +167,6 @@ export FZF_CTRL_R_OPTS="
 --preview ''
 "
 
-export JULIA_SHELL='zsh -i'
 export JULIA_EDITOR='ssvim'
 
 export NIXPKGS_ALLOW_UNFREE=1

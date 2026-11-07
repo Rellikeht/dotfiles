@@ -40,6 +40,8 @@ shopt -s cdable_vars
 
 set -o pipefail
 
+export JULIA_SHELL='bash -i'
+
 # }}}
 
 # prompt {{{
